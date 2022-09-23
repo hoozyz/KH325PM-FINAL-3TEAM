@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bc.heal.photo.mapper.PhotoMapper">
+	<resultMap type="Photo" id="photoResultMap">
+		<id property="no" column="NO"/>
+		<result property="title" column="TITLE"/>
+		<result property="cont" column="CONT"/>
+		<result property="readcount" column="READCOUNT"/>
+		<result property="originalfile" column="ORIGINALFILE"/>
+		<result property="renamefile" column="RENAMEFILE"/>
+		<result property="createdate" column="CREATEDATE"/>
+		<result property="modifydate" column="MODIFYDATE"/>
+		<result property="memberno" column="MEMBERNO"/>
+	</resultMap>
+	
+	<select id="selectMember" parameterType="int" resultMap="photoResultMap">
+ 		SELECT * 
+ 		FROM TBL_PHOTO
+ 		WHERE MEMBERNO = #{no}
+	</select>
+	
+	<insert id="insert" parameterType="Photo"
+			useGeneratedKeys="true" keyProperty="no" keyColumn="NO">
+		INSERT INTO TBL_BOARD (
+			NO,
+			TITLE,
+			CONT,
+			READCOUNT,
+			CATEGORY,
+			ORIGINALFILE,
+			RENAMEFILE,
+			CREATEDATE,
+			MODIFYDATE,
+			MEMBERNO		
+		) VALUES (
+			PHOTO_SEQ.NEXTVAL,
+			#{title},
+			#{cont},
+			#{readcount},
+			#{category},
+			#{originalfile},
+			#{renamefile},
+			#{createdate},
+			#{modifydate},
+			#{memberno}
+		)
+	</insert>
+	
+	<delete id="delete" parameterType="int">
+ 		DELETE  
+ 		TBL_PHOTO
+ 		WHERE NO = #{no}
+	</delete>
+	
+</mapper>

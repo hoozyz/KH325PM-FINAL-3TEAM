@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bc.heal.like.mapper.LikeMapper">
+	<resultMap type="Like" id="likeResultMap">
+		<id property="no" column="NO"/>
+		<result property="memberno" column="memberno"/>
+		<result property="hotelno" column="hotelno"/>
+		<result property="campno" column="campno"/>
+		<result property="festivalno" column="festivalno"/>
+		<result property="foodno" column="foodno"/>
+		<result property="parkno" column="parkno"/>
+	</resultMap>
+	
+	<select id="selectNew" parameterType="int" resultMap="likeResultMap">
+ 		SELECT * 
+ 		FROM (SELECT ROWNUM NUM, 
+ 					 NO, 
+ 					 MEMBERNO, 
+ 					 CAMPNO, 
+ 					 HOTELNO, 
+ 					 FESTIVALNO, 
+ 					 FOODNO, 
+ 					 PARKNO 
+ 			  FROM (SELECT * 
+ 			  		FROM TBL_LIKE 
+ 			  		ORDER BY no DESC))
+		WHERE NUM <![CDATA[<=]]> 5 AND MEMBERNO = #{no}
+	</select>
+	
+	<delete id="delete" parameterType="int">
+ 		DELETE  
+ 		TBL_LIKE
+ 		WHERE NO = #{no}
+	</delete>
+	
+	<!-- <![CDATA[]]> 내부에 문자 그대로 DB에 입력가능함 -->
+	
+</mapper>

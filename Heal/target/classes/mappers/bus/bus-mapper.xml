@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bc.heal.bus.mapper.BusMapper">
+	<resultMap type="Bus" id="busResultMap">
+		<id property="no" column="NO"/>
+		<result property="startsta" column="STARTSTA"/>
+		<result property="endsta" column="ENDSTA"/>
+		<result property="startlat" column="STARTLAT"/>
+		<result property="startlng" column="STARTLNG"/>
+		<result property="endlat" column="ENDLAT"/>
+		<result property="endlng" column="ENDLNG"/>
+		<result property="wastetime" column="WASTETIME"/>
+		<result property="schedule" column="SCHEDULE"/>
+		<result property="nightschedule" column="NIGHTSCHEDULE"/>
+		<result property="normalprice" column="NORMALPRICE"/>
+		<result property="nightprice" column="NIGHTPRICE"/>
+	</resultMap>
+	
+	<select id="selectBusByNo" parameterType="int" resultMap="busResultMap">
+ 		SELECT * 
+ 		FROM TBL_BUS
+ 		WHERE NO = #{no}
+	</select>
+	
+</mapper>

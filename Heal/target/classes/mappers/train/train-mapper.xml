@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bc.heal.train.mapper.TrainMapper">
+	<resultMap type="Train" id="trainResultMap">
+		<id property="no" column="NO"/>
+		<result property="startsta" column="STARTSTA"/>
+		<result property="endsta" column="ENDSTA"/>
+		<result property="startlat" column="STARTLAT"/>
+		<result property="startlng" column="STARTLNG"/>
+		<result property="endlat" column="ENDLAT"/>
+		<result property="endlng" column="ENDLNG"/>
+		<result property="starttime" column="STARTTIME"/>
+		<result property="endtime" column="ENDTIME"/>
+		<result property="wastetime" column="WASTETIME"/>
+		<result property="specialprice" column="SPECIALPRICE"/>
+		<result property="generalprice" column="GENERALPRICE"/>
+		<result property="trainclass" column="TRAINCLASS"/>
+		<result property="railname" column="RAILNAME"/>
+	</resultMap>
+	
+	<select id="selectTrainByNo" parameterType="int" resultMap="trainResultMap">
+ 		SELECT * 
+ 		FROM TBL_TRAIN
+ 		WHERE NO = #{no}
+	</select>
+	
+</mapper>

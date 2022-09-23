@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bc.heal.festival.mapper.FestivalMapper">
+	<resultMap type="Festival" id="festivalResultMap">
+		<id property="no" column="NO"/>
+		<result property="name" column="NAME"/>
+		<result property="place" column="PLACE"/>
+		<result property="startdate" column="STARTDATE"/>
+		<result property="enddate" column="ENDDATE"/>
+		<result property="cont" column="CONT"/>
+		<result property="phone" column="PHONE"/>
+		<result property="homepage" column="HOMEPAGE"/>
+		<result property="addr" column="ADDR"/>
+		<result property="lat" column="LAT"/>
+		<result property="lng" column="LNG"/>
+	</resultMap>
+	
+	<select id="selectByNo" parameterType="int" resultMap="festivalResultMap">
+ 		SELECT * 
+ 		FROM TBL_FESTIVAL
+ 		WHERE NO = #{no}
+	</select>
+	
+</mapper>

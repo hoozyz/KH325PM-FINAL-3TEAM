@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bc.heal.reply.mapper.ReplyMapper">
+	<resultMap type="Reply" id="replyResultMap">
+		<id property="no" column="NO"/>
+		<result property="title" column="TITLE"/>
+		<result property="cont" column="CONT"/>
+		<result property="createdate" column="CREATEDATE"/>
+		<result property="modifydate" column="MODIFYDATE"/>
+		<result property="memberno" column="MEMBERNO"/>
+		<result property="photono" column="PHOTONO"/>
+	</resultMap>
+	
+	<select id="selectNew" parameterType="int" resultMap="replyResultMap">
+ 		SELECT * 
+ 		FROM (SELECT ROWNUM NUM, 
+ 					 NO, 
+ 					 TITLE,
+ 					 CONT,
+ 					 CREATEDATE,
+ 					 MODIFYDATE,
+ 					 MEMBERNO, 
+ 					 PHOTONO
+ 			  FROM (SELECT * 
+ 			  		FROM TBL_REPLY 
+ 			  		ORDER BY NO DESC))
+		WHERE NUM <![CDATA[<=]]> 5 AND MEMBERNO = #{no}
+	</select>
+	
+	<delete id="delete" parameterType="int">
+ 		DELETE  
+ 		TBL_REPLY
+ 		WHERE NO = #{no}
+	</delete>
+	
+	<!-- <![CDATA[]]> 내부에 문자 그대로 DB에 입력가능함 -->
+	
+</mapper>

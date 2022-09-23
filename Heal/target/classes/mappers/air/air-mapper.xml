@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bc.heal.air.mapper.AirMapper">
+	<resultMap type="Air" id="airResultMap">
+		<id property="no" column="NO"/>
+		<result property="startsta" column="STARTSTA"/>
+		<result property="endsta" column="ENDSTA"/>
+		<result property="price" column="PRICE"/>
+		<result property="starttime" column="STARTTIME"/>
+		<result property="endtime" column="ENDTIME"/>
+		<result property="flight" column="FLIGHT"/>
+		<result property="airline" column="AIRLINE"/>
+	</resultMap>
+	
+	<select id="selectAirByNo" parameterType="int" resultMap="airResultMap">
+ 		SELECT * 
+ 		FROM TBL_AIR
+ 		WHERE NO = #{no}
+	</select>
+	
+</mapper>

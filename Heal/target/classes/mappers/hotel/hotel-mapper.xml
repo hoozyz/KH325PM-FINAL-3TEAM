@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bc.heal.hotel.mapper.HotelMapper">
+	<resultMap type="Hotel" id="hotelResultMap">
+		<id property="no" column="NO"/>
+		<result property="phone" column="PHONE"/>
+		<result property="addr" column="ADDR"/>
+		<result property="name" column="NAME"/>
+		<result property="price" column="PRICE"/>
+		<result property="lat" column="LAT"/>
+		<result property="lng" column="LNG"/>
+	</resultMap>
+	
+	<select id="selectHotelByNo" parameterType="int" resultMap="hotelResultMap">
+ 		SELECT * 
+ 		FROM TBL_HOTEL
+ 		WHERE NO = #{no}
+	</select>
+	
+</mapper>

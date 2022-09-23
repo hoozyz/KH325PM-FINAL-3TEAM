@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bc.heal.park.mapper.ParkMapper">
+	<resultMap type="Park" id="parkResultMap">
+		<id property="no" column="NO"/>
+		<result property="name" column="NAME"/>
+		<result property="category" column="CATEGORY"/>
+		<result property="addr" column="ADDR"/>
+		<result property="lat" column="LAT"/>
+		<result property="lng" column="LNG"/>
+		<result property="sport" column="SPORT"/>
+		<result property="phone" column="PHONE"/>
+	</resultMap>
+	
+	<select id="selectByNo" parameterType="int" resultMap="parkResultMap">
+ 		SELECT * 
+ 		FROM TBL_PARK
+ 		WHERE NO = #{no}
+	</select>
+	
+</mapper>

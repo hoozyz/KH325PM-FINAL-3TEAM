@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bc.heal.reserve.mapper.ReserveMapper">
+	<resultMap type="Reserve" id="reserveResultMap">
+		<id property="no" column="NO"/>
+		<result property="paydate" column="PAYDATE"/>
+		<result property="reservedate" column="RESERVEDATE"/>
+		<result property="starttime" column="STARTTIME"/>
+		<result property="count" column="COUNT"/>
+		<result property="price" column="PRICE"/>
+		<result property="memberno" column="MEMBERNO"/>
+		<result property="hotelno" column="HOTELNO"/>
+		<result property="campno" column="CAMPNO"/>
+		<result property="airno" column="AIRNO"/>
+		<result property="busno" column="BUSNO"/>
+		<result property="trainno" column="TRAINNO"/>
+	</resultMap>
+	
+	<select id="selectCamp" resultMap="reserveResultMap"  parameterType="int">
+		SELECT *
+		FROM TBL_RESERVE
+		WHERE MEMBERNO = #{no} AND CAMPNO != 0
+		ORDER BY RESERVEDATE ASC
+	</select>
+	
+	<select id="selectHotel" resultMap="reserveResultMap"  parameterType="int">
+		SELECT *
+		FROM TBL_RESERVE
+		WHERE MEMBERNO = #{no} AND HOTELNO != 0
+		ORDER BY RESERVEDATE ASC
+	</select>
+	
+	<select id="selectBus" resultMap="reserveResultMap"  parameterType="int">
+		SELECT *
+		FROM TBL_RESERVE
+		WHERE MEMBERNO = #{no} AND BUSNO != 0
+		ORDER BY RESERVEDATE ASC
+	</select>
+	
+	<select id="selectTrain" resultMap="reserveResultMap"  parameterType="int">
+		SELECT *
+		FROM TBL_RESERVE
+		WHERE MEMBERNO = #{no} AND TRAINNO != 0
+		ORDER BY RESERVEDATE ASC
+	</select>
+	
+	<select id="selectAir" resultMap="reserveResultMap" parameterType="int">
+		SELECT *
+		FROM TBL_RESERVE
+		WHERE MEMBERNO = #{no} AND AIRNO != 0
+		ORDER BY RESERVEDATE ASC
+	</select>
+	 
+	 <delete id="deleteReserve" parameterType="int">
+	 	DELETE TBL_RESERVE 
+	 	WHERE NO = #{no}
+	 </delete>
+</mapper>
