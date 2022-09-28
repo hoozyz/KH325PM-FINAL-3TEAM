@@ -324,27 +324,17 @@
                 <div class="collapse navbar-collapse order-lg-2 mt-3" id="navbarNav">
                     <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
                         <!-- Menu items-->
-                        <li class="nav-item dropdown px-3 "><a class="nav-link dropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="NSR">캠핑장</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-it" href="${path}/showMain?category=연극&rad_date=1개월">연극</a></li>
-                                <li><a class="dropdown-it" href="${path}/showMain?category=뮤지컬&rad_date=1개월">뮤지컬</a></li>
-                                <li><a class="dropdown-it" href="${path}/showMain?category=무용&rad_date=1개월">무용</a></li>
-                                <li><a class="dropdown-it" href="${path}/showMain?category=복합&rad_date=1개월">복합</a></li>
-                            </ul>
+                        <li class="nav-item dropdown px-3 "><a class="nav-link dropdown" href="${path}/camp/main" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="NSR">캠핑장</a>
                         </li>
-                        <li class="nav-item dropdown pe-1"><a class="nav-link dropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="NSR">공원</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-it" href="${path}/musicMain?category=클래식&rad_date=1개월">클래식</a></li>
-                                <li><a class="dropdown-it" href="${path}/musicMain?category=국악&rad_date=1개월">국악</a></li>
-                                <li><a class="dropdown-it" href="${path}/musicMain?category=오페라&rad_date=1개월">오페라</a></li>
-                            </ul>
+                        <li class="nav-item dropdown pe-1"><a class="nav-link dropdown" href="${path}/park/main" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="NSR">공원</a>
                         </li>
-                        <a class="nav-item pe-3"><a class="nav-link" href="${path}/hallMain" role="button" aria-expanded="false" id="NSR">축제</a></a>
-                        <a class="nav-item pe-3"><a class="nav-link" href="${path}/rankList" role="button" aria-expanded="false" id="NSR">주변 시설</a></a>
-                        <li class="nav-item dropdown ps-3"><a class="nav-link dropdown" href="${path}/news?check=0" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="NSR">게시판</a>
+                        <a class="nav-item pe-3"><a class="nav-link" href="${path}/festival/main" role="button" aria-expanded="false" id="NSR">축제</a></a>
+                        <a class="nav-item pe-3"><a class="nav-link" href="${path}/food/main" role="button" aria-expanded="false" id="NSR">주변 시설</a></a> <!-- 주변시설은 음식점이 메인 -->
+                        <a class="nav-item pe-3"><a class="nav-link" href="${path}/festival/main" role="button" aria-expanded="false" id="NSR">OO몰</a></a>
+                        <li class="nav-item dropdown ps-3"><a class="nav-link dropdown" href="${path}/photo/main" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="NSR">게시판</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-it" href="${path}/news">소식</a></li> <!-- check는 소식페이지는 파싱안하게 0으로 보냄 -->
-                                <li><a class="dropdown-it" href="${path}/board/list">자유</a></li>
+                                <li><a class="dropdown-it" href="${path}/photo/main">포토게시판</a></li>
+                                <li><a class="dropdown-it" href="${path}/board/main">자유게시판</a></li>
                             </ul>
                         </li>
                         <li class="nav-item d-lg-none"><a class="nav-link" href="#signin-modal" data-bs-toggle="modal"><i class="fi-user me-2"></i>로그인</a></li>
