@@ -86,7 +86,6 @@
     <script src="${pageContext.request.contextPath}/resources/vendor/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/vendor/filepond-plugin-image-transform/dist/filepond-plugin-image-transform.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/vendor/filepond/dist/filepond.min.js"></script> --%>
- 	
  
     <!-- Main theme script-->
     <%-- <script src="${pageContext.request.contextPath}/resources/js/theme.min.js"></script> --%>
