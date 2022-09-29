@@ -172,40 +172,69 @@
             </div>
         </div>
         
-        <!-- Review modal-->
-        <div class="modal fade" id="modal-air" tabindex="-1"> <!-- 비행기 예매 -->
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header d-block position-relative border-0 pb-0 px-sm-5 px-4">
-                        <h3 class="modal-title mt-4 text-center">캠핑후기 등록</h3>
+        <!-- 비행기 예매 -->
+        <div class="modal fade" id="modal-air" tabindex="-1"> 
+            <div class="modal-dialog modal-dialog-centered" role="document" style="margin-left: 800px;">
+                <div class="modal-content" style="width: 450px;">
+                    <div class="modal-header d-block position-relative border-0 pb-0 px-sm-5 px-4" style="width:450px;">
+                        <h3 class="modal-title mt-4 text-center">비행기 예매</h3>
                         <button class="btn-close position-absolute top-0 end-0 mt-3 me-3" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <hr style="width: 100%; color: grey;">
                     </div>
                     <div class="modal-body px-sm-5 px-4">
-                        <form class="needs-validation" novalidate>
-                            <div class="mb-3">
-                                <label class="form-label" for="review-name">이름<span class='text-danger'>*</span></label>
-                                <input class="form-control" type="text" id="review-name" name="name" value="${loginMember.name}" readonly>
-                                <div class="invalid-feedback">Please let us know your name.</div>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="review-rating">평점<span class='text-danger'>*</span></label>
-                                <select class="form-control form-select" id="review-rating" name="star">
-                      <option value="" selected disabled hidden>평점 선택</option>
-                      <option value="5">5점</option>
-                      <option value="4">4점</option>
-                      <option value="3">3점</option>
-                      <option value="2">2점</option>
-                      <option value="1">1점</option>
-                    </select>
-                                <div class="invalid-feedback">Please rate the property.</div>
-                            </div>
-                            <div class="mb-4">
-                                <label class="form-label" for="review-text">캠핑후기 <span class='text-danger'>*</span></label>
-                                <textarea class="form-control" id="review-text" rows="5" placeholder="캠핑장 어떠셨나요?" required></textarea>
-                                <div class="invalid-feedback">Please write your review.</div>
-                            </div>
-                            <input class="btn btn-primary d-block w-100 mb-4" type="submit" value="후기 등록">
-                        </form>
+                    	<form action="">
+                    		<section style="height: 70px;margin-bottom: 20px;">
+                    			<div style="margin-left: 45px;"><span>출발공항</span> <span style="float: right;margin-right: 45px;">도착공항</span></div>
+                    			<select style="float: left; width: 150px;" class="form-control form-select">
+                    			<option value="" selected disabled hidden>출발역</option>
+			                      <option value="5">서울</option>
+			                      <option value="4">왕십리</option>
+			                      <option value="3">청량리</option>
+			                      <option value="2">수원</option>
+			                      <option value="1">대전</option>
+			                      </select>
+                    			<span style="margin-left: 15px;">---></span>
+                    			<select style="float: right; width: 150px;" class="form-control form-select"readonly>
+                    			<option value="">부산</option>
+                    			</select>
+                    		</section>
+                    		<hr style="width: 100%; border: 1px solid #E2E2E2; margin-bottom: 15px;">
+                    		<section style="margin-bottom: 30px; height: 70px;">
+                    			<div><span style="margin-left: 65px;margin-right: 135px;">날짜</span><span>인원</span></div>	
+                    			<input class="form-control date-picker rounded-pill pi-5 start" style="float: left; width: 170px;" id="datepicker1" name="startDate" type="date" placeholder="날짜를 선택해주세요 " data-datepicker-options="{&quot;altInput&quot;: true, &quot;altFormat&quot;: &quot;Y. m. d &quot;, &quot;dateFormat&quot;: &quot;Y-m-d&quot;, &quot;language&quot;: &quot;ko&quot;} ">
+                    		
+                    			<select style="float: right; width: 120px; margin-right: 20px;" class="form-control form-select">
+                    			<option value="" selected disabled hidden>인원</option>
+			                      <option value="1">1명</option>
+			                      <option value="2">2명</option>
+			                      <option value="3">3명</option>
+			                      <option value="4">4명</option>
+			                      <option value="5">5명</option>
+			                      <option value="6">6명</option>
+			                      <option value="7">7명</option>
+			                      <option value="8">8명</option>
+			                      <option value="9">9명</option>
+			                      <option value="10">10명</option>
+			                      </select>
+                    		</section>
+                    		<hr style="width: 100%; border: 1px solid #E2E2E2; margin-bottom: 15px;">
+                    		<section style="margin-bottom: 30px; height: 70px;">
+                    			<div><span style="margin-left: 45px;margin-right: 130px;">출발시간</span><span>도착시간</span></div>
+                    			<select style="float: left;width: 120px;margin-left: 15px;margin-right: 70px;" class="form-control form-select">
+                    			<option value="" selected disabled hidden>출발시간</option>
+			                      <option value="5">06:10</option>
+			                      <option value="4">07:10</option>
+			                      <option value="3">08:10</option>
+			                      <option value="2">09:10</option>
+			                      <option value="1">10:10</option>
+			                      </select>
+                    			<select style="float: left; width: 120px;" class="form-control form-select"readonly>
+                    			<option value="">11:20</option>
+                    			</select>
+                    		</section>
+                            <input style="width: 250px; margin: auto;" class="btn btn-primary d-block mb-4" type="submit" value="예매하기">
+                       </form>
+                       </div>
                     </div>
                 </div>
             </div>
@@ -223,12 +252,12 @@
                         <form class="needs-validation" novalidate>
                             <div class="mb-3">
                                 <label class="form-label" for="review-name">이름<span class='text-danger'>*</span></label>
-                                <input class="form-control" type="text" id="review-name" name="name" value="${loginMember.name}" readonly>
+                                <input class="form-control" type="text"  name="name" value="${loginMember.name}" readonly>
                                 <div class="invalid-feedback">Please let us know your name.</div>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="review-rating">평점<span class='text-danger'>*</span></label>
-                                <select class="form-control form-select" id="review-rating" name="star">
+                                <select class="form-control form-select"  name="star">
                       <option value="" selected disabled hidden>평점 선택</option>
                       <option value="5">5점</option>
                       <option value="4">4점</option>
@@ -240,7 +269,7 @@
                             </div>
                             <div class="mb-4">
                                 <label class="form-label" for="review-text">캠핑후기 <span class='text-danger'>*</span></label>
-                                <textarea class="form-control" id="review-text" rows="5" placeholder="캠핑장 어떠셨나요?" required></textarea>
+                                <textarea class="form-control"rows="5" placeholder="캠핑장 어떠셨나요?" required></textarea>
                                 <div class="invalid-feedback">Please write your review.</div>
                             </div>
                             <input class="btn btn-primary d-block w-100 mb-4" type="submit" value="후기 등록">
@@ -262,12 +291,12 @@
                         <form class="needs-validation" novalidate>
                             <div class="mb-3">
                                 <label class="form-label" for="review-name">이름<span class='text-danger'>*</span></label>
-                                <input class="form-control" type="text" id="review-name" name="name" value="${loginMember.name}" readonly>
+                                <input class="form-control" type="text" name="name" value="${loginMember.name}" readonly>
                                 <div class="invalid-feedback">Please let us know your name.</div>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="review-rating">평점<span class='text-danger'>*</span></label>
-                                <select class="form-control form-select" id="review-rating" name="star">
+                                <select class="form-control form-select" name="star">
                       <option value="" selected disabled hidden>평점 선택</option>
                       <option value="5">5점</option>
                       <option value="4">4점</option>
@@ -279,7 +308,7 @@
                             </div>
                             <div class="mb-4">
                                 <label class="form-label" for="review-text">캠핑후기 <span class='text-danger'>*</span></label>
-                                <textarea class="form-control" id="review-text" rows="5" placeholder="캠핑장 어떠셨나요?" required></textarea>
+                                <textarea class="form-control" rows="5" placeholder="캠핑장 어떠셨나요?" required></textarea>
                                 <div class="invalid-feedback">Please write your review.</div>
                             </div>
                             <input class="btn btn-primary d-block w-100 mb-4" type="submit" value="후기 등록">
@@ -488,10 +517,10 @@
         			</script>
         			
         			<h3 class="h4">이 캠핑장으로 갈사람 사세요</h3>
-        			<div> <!-- 교통 예매 div --> <!-- 팝업으로 이동 -->
-        				<a></a>
-        				<a></a>
-        				<a></a>
+        			<div style="height: 100px;"> <!-- 교통 예매 div --> <!-- 팝업으로 이동 -->
+        				<a class="" href="#modal-air" data-bs-toggle="modal" style="border-radius: 50%; width:50px; height: 50px;"><img src="/resources/image/airplane.png" style="border-radius: 50%; width:80px;height: 80px;margin-left: 40px;margin-right: 50px;"></a>
+        				<a class="" href="#modal-train" data-bs-toggle="modal" style="border-radius: 50%; width:50px; height: 50px;"><img src="/resources/image/train.png" style="border-radius: 50%; width:80px;height: 80px;margin-right: 50px;"></a>
+        				<a class="" href="#modal-bus" data-bs-toggle="modal" style="border-radius: 50%; width:50px; height: 50px;"><img src="/resources/image/school-bus.png" style="width:80px; height: 80px;"></a>
         			</div>
                     
                     <!--Map-->

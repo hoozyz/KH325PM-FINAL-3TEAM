@@ -9,16 +9,17 @@
 </jsp:include>
 
 <main>
-<div class="container-fluid mt-5 pt-5 p-0">
+<div class="container-fluid mt-5 pt-5 p-0" style="width: 75%;">
         <div class="row g-0 mt-n3">
           <!-- Filters sidebar (Offcanvas on mobile)-->
-          <aside class="col-lg-4 col-xl-3 border-top-lg border-end-lg shadow-sm px-3 px-xl-4 px-xxl-5 pt-lg-2">
+          <aside class="col-lg-4 col-xl-3 border-top-lg border-end-lg shadow-sm px-3">
               <div class="offcanvas-header d-flex d-lg-none align-items-center">
                 <h2 class="h5 mb-0">Filters</h2>
                 <button class="btn-close" type="button" data-bs-dismiss="offcanvas"></button>
               </div>
               <form action="" method="GET">
                 <div class="offcanvas-header d-block border-bottom pt-0 pt-lg-4 px-lg-0">
+                  <h3 class="h6" style="margin-left: 20px;">축제명 검색</h3>
                 <div class="form-group mb-lg-2 rounded-pill" style="height: 53px;">
                   <div class="input-group"><span class="input-group-text text-muted"><i class="fi-search"></i></span>
                     <input class="form-control" type="text" name="keyword" placeholder="검색어를 입력하세요">
@@ -49,14 +50,12 @@
                 </div>
                 <!-- Date range -->
                   <!--calendar-->
-                  <label>Date range</label>
-<div class="input-group">
-  <span class="input-group-text">
-    <i class="fi-calendar"></i>
-  </span>
-  <input class="form-control date-picker date-range" type="text" placeholder="From date" data-datepicker-options='{"altInput": true, "altFormat": "F j, Y", "dateFormat": "Y-m-d"}' data-linked-input="#end-date">
-  <input class="form-control date-picker" type="text" placeholder="To date" data-datepicker-options='{"altInput": true, "altFormat": "F j, Y", "dateFormat": "Y-m-d"}' id="end-date">
-</div>
+                  <h3 class="h6">시작일 선택</h3>
+                  <div class="input-group input-daterange pb-3" style="width: 300px; right: 15px;">
+                    <input class="form-control date-picker rounded-pill " id="datepicker" type="date" placeholder="날짜를 선택해주세요 " data-datepicker-options="{&quot;altInput&quot;: true, &quot;altFormat&quot;: &quot;Y. m. d &quot;, &quot;dateFormat&quot;: &quot;Y-m-d&quot;, &quot;language&quot;: &quot;ko&quot;} ">
+                    <div class="input-group-addon">to</div>
+                    <input class="form-control date-picker rounded-pill pi-5 " id="datepicker" type="date" placeholder="날짜를 선택해주세요 " data-datepicker-options="{&quot;altInput&quot;: true, &quot;altFormat&quot;: &quot;Y. m. d &quot;, &quot;dateFormat&quot;: &quot;Y-m-d&quot;, &quot;language&quot;: &quot;ko&quot;} ">
+                </div>
                   <!-- calendar End-->
                 <div class="border-top py-4">
                   <button class="btn btn-outline-primary" type="button"><i class="fi-rotate-right me-2"></i>조건 새로고침</button>
@@ -93,226 +92,99 @@
             <!-- Catalog grid-->
             <div class="row g-4 py-4">
               <!-- Item-->
-              <div class="col-sm-6 col-xl-4">
-                <div class="card shadow-sm card-hover border-0 h-100">
-                  <div class="tns-carousel-wrapper card-img-top card-img-hover"><a class="img-overlay" href="real-estate-single-v1.html"></a>
-                    <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                      <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
+              <div class="col-sm-6 mb-4">
+                <div class="card card-light card-hover h-100">
+                  <div class="card-img-top card-img-hover"style="border: 1px;">
+                    <div class="tns-carousel-inner"><img src="img/car-finder/catalog/01.jpg" alt="Image"></div>
+                  </div>
+                  <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm me-3" style="color: black;">주소</span>
                     </div>
-                    <div class="tns-carousel-inner"><img src="img/real-estate/catalog/06.jpg" alt="Image"><img src="img/real-estate/catalog/06.jpg" alt="Image"></div>
+                    <h3 class="h5" style="margin-bottom: 10px;"><a class="nav-link" href="car-finder-single.html">축제명</a></h3>
+                    <div class="h6 fw-bold" style="margin-bottom: 20px;">내용</div>
+                    <hr>
+                    <div class="h6 card-footer align-items-center justify-content-center">시작일 ~ 종료일</div>
                   </div>
-                  <div class="card-body position-relative pb-3" style="margin-top: 10px;">
-                    <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">축제명</a></h3>
-                    <p class="mb-2 fs-sm text-muted">내용</p>
-                    <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>주소</div>
-                  </div>
-                  <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap">시작일 ~ 종료일<!-- <span class="d-inline-block mx-1 px-2 fs-sm">3<i class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">1<i class="fi-car ms-1 mt-n1 fs-lg text-muted"></i></span> --></div>
                 </div>
               </div>
               <!-- Item-->
-              <div class="col-sm-6 col-xl-4">
-                <div class="card shadow-sm card-hover border-0 h-100">
-                  <div class="tns-carousel-wrapper card-img-top card-img-hover"><a class="img-overlay" href="real-estate-single-v1.html"></a>
-                    <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info">New</span></div>
-                    <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                      <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
+              <div class="col-sm-6 mb-4">
+                <div class="card card-light card-hover h-100">
+                  <div class="card-img-top card-img-hover"style="border: 1px;">
+                    <div class="tns-carousel-inner"><img src="img/car-finder/catalog/01.jpg" alt="Image"></div>
+                  </div>
+                  <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm me-3" style="color: black;">주소</span>
                     </div>
-                    <div class="tns-carousel-inner"><img src="img/real-estate/catalog/07.jpg" alt="Image"><img src="img/real-estate/catalog/07.jpg" alt="Image"></div>
+                    <h3 class="h5" style="margin-bottom: 10px;"><a class="nav-link" href="car-finder-single.html">축제명</a></h3>
+                    <div class="h6 fw-bold" style="margin-bottom: 20px;">내용</div>
+                    <hr>
+                    <div class="h6 card-footer align-items-center justify-content-center">시작일 ~ 종료일</div>
                   </div>
-                  <div class="card-body position-relative pb-3">
-                    <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For rent</h4>
-                    <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">Pine Apartments | 56 sq.m</a></h3>
-                    <p class="mb-2 fs-sm text-muted">3811 Ditmars Blvd Astoria, NY 11105</p>
-                    <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>$2,000</div>
-                  </div>
-                  <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"><span class="d-inline-block mx-1 px-2 fs-sm">4<i class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-car ms-1 mt-n1 fs-lg text-muted"></i></span></div>
                 </div>
               </div>
               <!-- Item-->
-              <div class="col-sm-6 col-xl-4">
-                <div class="card shadow-sm card-hover border-0 h-100">
-                  <div class="tns-carousel-wrapper card-img-top card-img-hover"><a class="img-overlay" href="real-estate-single-v1.html"></a>
-                    <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info">New</span></div>
-                    <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                      <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
+              <div class="col-sm-6 mb-4">
+                <div class="card card-light card-hover h-100">
+                  <div class="card-img-top card-img-hover"style="border: 1px;">
+                    <div class="tns-carousel-inner"><img src="img/car-finder/catalog/01.jpg" alt="Image"></div>
+                  </div>
+                  <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm me-3" style="color: black;">주소</span>
                     </div>
-                    <div class="tns-carousel-inner"><img src="img/real-estate/catalog/08.jpg" alt="Image"><img src="img/real-estate/catalog/08.jpg" alt="Image"></div>
+                    <h3 class="h5" style="margin-bottom: 10px;"><a class="nav-link" href="car-finder-single.html">축제명</a></h3>
+                    <div class="h6 fw-bold" style="margin-bottom: 20px;">내용</div>
+                    <hr>
+                    <div class="h6 card-footer align-items-center justify-content-center">시작일 ~ 종료일</div>
                   </div>
-                  <div class="card-body position-relative pb-3">
-                    <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For rent</h4>
-                    <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">Greenpoint Rentals | 85 sq.m</a></h3>
-                    <p class="mb-2 fs-sm text-muted">1510 Castle Hill Ave Bronx, NY 10462</p>
-                    <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>$1,350</div>
-                  </div>
-                  <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">1<i class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">0<i class="fi-car ms-1 mt-n1 fs-lg text-muted"></i></span></div>
                 </div>
               </div>
               <!-- Item-->
-              <div class="col-sm-6 col-xl-4">
-                <div class="card shadow-sm card-hover border-0 h-100">
-                  <div class="tns-carousel-wrapper card-img-top card-img-hover"><a class="img-overlay" href="real-estate-single-v1.html"></a>
-                    <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success">Verified</span></div>
-                    <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                      <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
+              <div class="col-sm-6 mb-4">
+                <div class="card card-light card-hover h-100">
+                  <div class="card-img-top card-img-hover"style="border: 1px;">
+                    <div class="tns-carousel-inner"><img src="img/car-finder/catalog/01.jpg" alt="Image"></div>
+                  </div>
+                  <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm me-3" style="color: black;">주소</span>
                     </div>
-                    <div class="tns-carousel-inner"><img src="img/real-estate/catalog/09.jpg" alt="Image"><img src="img/real-estate/catalog/09.jpg" alt="Image"></div>
+                    <h3 class="h5" style="margin-bottom: 10px;"><a class="nav-link" href="car-finder-single.html">축제명</a></h3>
+                    <div class="h6 fw-bold" style="margin-bottom: 20px;">내용</div>
+                    <hr>
+                    <div class="h6 card-footer align-items-center justify-content-center">시작일 ~ 종료일</div>
                   </div>
-                  <div class="card-body position-relative pb-3">
-                    <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For rent</h4>
-                    <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">Terra Nova Apartments | 85 sq.m</a></h3>
-                    <p class="mb-2 fs-sm text-muted">21 India St Brooklyn, NY 11222</p>
-                    <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>$2,400</div>
-                  </div>
-                  <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"><span class="d-inline-block mx-1 px-2 fs-sm">5<i class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-car ms-1 mt-n1 fs-lg text-muted"></i></span></div>
                 </div>
               </div>
               <!-- Item-->
-              <div class="col-sm-6 col-xl-4">
-                <div class="card shadow-sm card-hover border-0 h-100">
-                  <div class="tns-carousel-wrapper card-img-top card-img-hover"><a class="img-overlay" href="real-estate-single-v1.html"></a>
-                    <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">Verified</span><span class="d-table badge bg-danger">Featured</span></div>
-                    <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                      <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
+              <div class="col-sm-6 mb-4">
+                <div class="card card-light card-hover h-100">
+                  <div class="card-img-top card-img-hover"style="border: 1px;">
+                    <div class="tns-carousel-inner"><img src="img/car-finder/catalog/01.jpg" alt="Image"></div>
+                  </div>
+                  <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm me-3" style="color: black;">주소</span>
                     </div>
-                    <div class="tns-carousel-inner"><img src="img/real-estate/catalog/10.jpg" alt="Image"><img src="img/real-estate/catalog/10.jpg" alt="Image"></div>
+                    <h3 class="h5" style="margin-bottom: 10px;"><a class="nav-link" href="car-finder-single.html">축제명</a></h3>
+                    <div class="h6 fw-bold" style="margin-bottom: 20px;">내용</div>
+                    <hr>
+                    <div class="h6 card-footer align-items-center justify-content-center">시작일 ~ 종료일</div>
                   </div>
-                  <div class="card-body position-relative pb-3">
-                    <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For rent</h4>
-                    <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">O’Farrell Rooms | 40 sq.m</a></h3>
-                    <p class="mb-2 fs-sm text-muted">460 E Fordham Rd Bronx, NY 10458</p>
-                    <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>From $550</div>
-                  </div>
-                  <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">1<i class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">0<i class="fi-car ms-1 mt-n1 fs-lg text-muted"></i></span></div>
                 </div>
               </div>
               <!-- Item-->
-              <div class="col-sm-6 col-xl-4">
-                <div class="card shadow-sm card-hover border-0 h-100">
-                  <div class="tns-carousel-wrapper card-img-top card-img-hover"><a class="img-overlay" href="real-estate-single-v1.html"></a>
-                    <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info">New</span></div>
-                    <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                      <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
+              <div class="col-sm-6 mb-4">
+                <div class="card card-light card-hover h-100">
+                  <div class="card-img-top card-img-hover"style="border: 1px;">
+                    <div class="tns-carousel-inner"><img src="img/car-finder/catalog/01.jpg" alt="Image"></div>
+                  </div>
+                  <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm me-3" style="color: black;">주소</span>
                     </div>
-                    <div class="tns-carousel-inner"><img src="img/real-estate/catalog/11.jpg" alt="Image"><img src="img/real-estate/catalog/11.jpg" alt="Image"></div>
+                    <h3 class="h5" style="margin-bottom: 10px;"><a class="nav-link" href="car-finder-single.html">축제명</a></h3>
+                    <div class="h6 fw-bold" style="margin-bottom: 20px;">내용</div>
+                    <hr>
+                    <div class="h6 card-footer align-items-center justify-content-center">시작일 ~ 종료일</div>
                   </div>
-                  <div class="card-body position-relative pb-3">
-                    <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For rent</h4>
-                    <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">Studio | 32 sq.m</a></h3>
-                    <p class="mb-2 fs-sm text-muted">140-60 Beech Ave Flushing, NY 11355</p>
-                    <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>$680</div>
-                  </div>
-                  <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"><span class="d-inline-block mx-1 px-2 fs-sm">1<i class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">1<i class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">1<i class="fi-car ms-1 mt-n1 fs-lg text-muted"></i></span></div>
-                </div>
-              </div>
-              <!-- Item-->
-              <div class="col-sm-6 col-xl-4">
-                <div class="card shadow-sm card-hover border-0 h-100">
-                  <div class="tns-carousel-wrapper card-img-top card-img-hover"><a class="img-overlay" href="real-estate-single-v1.html"></a>
-                    <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-danger">Featured</span></div>
-                    <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                      <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                    </div>
-                    <div class="tns-carousel-inner"><img src="img/real-estate/catalog/12.jpg" alt="Image"><img src="img/real-estate/catalog/12.jpg" alt="Image"></div>
-                  </div>
-                  <div class="card-body position-relative pb-3">
-                    <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For rent</h4>
-                    <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">Mason House | 150 sq.m</a></h3>
-                    <p class="mb-2 fs-sm text-muted">557 Grand Concourse Bronx, NY 10451</p>
-                    <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>From $4,000</div>
-                  </div>
-                  <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"><span class="d-inline-block mx-1 px-2 fs-sm">3<i class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-car ms-1 mt-n1 fs-lg text-muted"></i></span></div>
-                </div>
-              </div>
-              <!-- Item-->
-              <div class="col-sm-6 col-xl-4">
-                <div class="card shadow-sm card-hover border-0 h-100">
-                  <div class="tns-carousel-wrapper card-img-top card-img-hover"><a class="img-overlay" href="real-estate-single-v1.html"></a>
-                    <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success">Verified</span></div>
-                    <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                      <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                    </div>
-                    <div class="tns-carousel-inner"><img src="img/real-estate/catalog/13.jpg" alt="Image"><img src="img/real-estate/catalog/13.jpg" alt="Image"></div>
-                  </div>
-                  <div class="card-body position-relative pb-3">
-                    <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For rent</h4>
-                    <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">Office | 320 sq.m</a></h3>
-                    <p class="mb-2 fs-sm text-muted">159 20th Street Brooklyn, NY 11232</p>
-                    <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>$8,000</div>
-                  </div>
-                  <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">1<i class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">8<i class="fi-car ms-1 mt-n1 fs-lg text-muted"></i></span></div>
-                </div>
-              </div>
-              <!-- Item-->
-              <div class="col-sm-6 col-xl-4">
-                <div class="card shadow-sm card-hover border-0 h-100">
-                  <div class="tns-carousel-wrapper card-img-top card-img-hover"><a class="img-overlay" href="real-estate-single-v1.html"></a>
-                    <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                      <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                    </div>
-                    <div class="tns-carousel-inner"><img src="img/real-estate/catalog/15.jpg" alt="Image"><img src="img/real-estate/catalog/15.jpg" alt="Image"></div>
-                  </div>
-                  <div class="card-body position-relative pb-3">
-                    <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For rent</h4>
-                    <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">Lakewood Rentals | 90 sq.m</a></h3>
-                    <p class="mb-2 fs-sm text-muted">5 Brewster Street Glen Cove, NY 11542</p>
-                    <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>$1,200</div>
-                  </div>
-                  <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">1<i class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">8<i class="fi-car ms-1 mt-n1 fs-lg text-muted"></i></span></div>
-                </div>
-              </div>
-              <!-- Item-->
-              <div class="col-sm-6 col-xl-4">
-                <div class="card shadow-sm card-hover border-0 h-100">
-                  <div class="tns-carousel-wrapper card-img-top card-img-hover"><a class="img-overlay" href="real-estate-single-v1.html"></a>
-                    <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                      <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                    </div>
-                    <div class="tns-carousel-inner"><img src="img/real-estate/catalog/14.jpg" alt="Image"><img src="img/real-estate/catalog/14.jpg" alt="Image"></div>
-                  </div>
-                  <div class="card-body position-relative pb-3">
-                    <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For rent</h4>
-                    <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">Crystal Apartment| 60 sq.m</a></h3>
-                    <p class="mb-2 fs-sm text-muted">495 Henry St Brooklyn, NY 11231</p>
-                    <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>$1,350</div>
-                  </div>
-                  <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">1<i class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">1<i class="fi-car ms-1 mt-n1 fs-lg text-muted"></i></span></div>
-                </div>
-              </div>
-              <!-- Item-->
-              <div class="col-sm-6 col-xl-4">
-                <div class="card shadow-sm card-hover border-0 h-100">
-                  <div class="tns-carousel-wrapper card-img-top card-img-hover"><a class="img-overlay" href="real-estate-single-v1.html"></a>
-                    <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-danger">Featured</span></div>
-                    <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                      <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                    </div>
-                    <div class="tns-carousel-inner"><img src="img/real-estate/catalog/16.jpg" alt="Image"><img src="img/real-estate/catalog/16.jpg" alt="Image"></div>
-                  </div>
-                  <div class="card-body position-relative pb-3">
-                    <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For rent</h4>
-                    <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">Family Home | 120 sq.m</a></h3>
-                    <p class="mb-2 fs-sm text-muted">67-04 Myrtle Ave Glendale, NY 11385</p>
-                    <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>From $4,500</div>
-                  </div>
-                  <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"><span class="d-inline-block mx-1 px-2 fs-sm">4<i class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-car ms-1 mt-n1 fs-lg text-muted"></i></span></div>
-                </div>
-              </div>
-              <!-- Item-->
-              <div class="col-sm-6 col-xl-4">
-                <div class="card shadow-sm card-hover border-0 h-100">
-                  <div class="tns-carousel-wrapper card-img-top card-img-hover"><a class="img-overlay" href="real-estate-single-v1.html"></a>
-                    <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                      <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                    </div>
-                    <div class="tns-carousel-inner"><img src="img/real-estate/catalog/17.jpg" alt="Image"><img src="img/real-estate/catalog/17.jpg" alt="Image"></div>
-                  </div>
-                  <div class="card-body position-relative pb-3">
-                    <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For rent</h4>
-                    <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">Tiffany Studio | 35 sq.m</a></h3>
-                    <p class="mb-2 fs-sm text-muted">3979 Albany Post Road Hyde Park, NY 12538</p>
-                    <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>$700</div>
-                  </div>
-                  <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"><span class="d-inline-block mx-1 px-2 fs-sm">1<i class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">1<i class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">1<i class="fi-car ms-1 mt-n1 fs-lg text-muted"></i></span></div>
                 </div>
               </div>
             </div>
