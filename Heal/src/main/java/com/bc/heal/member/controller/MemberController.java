@@ -25,7 +25,7 @@ public class MemberController {
 
 	@Autowired
 	private MemberService service;
-
+	
 	@RequestMapping("/login")
 	public String login(Model model, String userId, String userPwd) {
 		log.info("id : " + userId + ", pw : " + userPwd);
