@@ -75,8 +75,9 @@
       </div>
     </footer>
     <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>
+   
     <!-- Vendor scrits: js libraries and plugins-->
-    <script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+   <%--  <script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/vendor/simplebar/dist/simplebar.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/vendor/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.min.js"></script>
@@ -84,8 +85,10 @@
     <script src="${pageContext.request.contextPath}/resources/vendor/filepond-plugin-image-crop/dist/filepond-plugin-image-crop.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/vendor/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/vendor/filepond-plugin-image-transform/dist/filepond-plugin-image-transform.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/vendor/filepond/dist/filepond.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/vendor/filepond/dist/filepond.min.js"></script> --%>
+ 	
+ 
     <!-- Main theme script-->
-    <script src="${pageContext.request.contextPath}/resources/js/theme.min.js"></script>
+    <%-- <script src="${pageContext.request.contextPath}/resources/js/theme.min.js"></script> --%>
   </body>
 </html>

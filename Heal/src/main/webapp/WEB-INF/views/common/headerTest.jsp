@@ -121,8 +121,6 @@
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
     <link rel="stylesheet" href="${path}/resources/css/periodUl.css" id="theme-stylesheet"> --%>
     
-    <link rel="stylesheet" href="${path}/resources/css/directory/style.default.css" id="theme-stylesheet">
-
     <!-- Google fonts - Poppins-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,400i,700">
 
@@ -324,8 +322,8 @@
                 <div class="collapse navbar-collapse order-lg-2 mt-3" id="navbarNav">
                     <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
                         <!-- Menu items-->
-                        <li class="nav-item dropdown px-3 "><a class="nav-link dropdown" href="${path}/camp/detail">캠핑장</a>
-                        </li>
+                        <li class="nav-item dropdown px-3 "><a class="nav-link dropdown" href="${path}/camp/campMain">캠핑장</a>                        </li>
+                        <li class="nav-item dropdown px-3 "><a class="nav-link dropdown" href="${path}/camp/detail">캠핑장상세</a>                        </li>
                         <li class="nav-item dropdown pe-1"><a class="nav-link dropdown" href="${path}/park/main" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="NSR">공원</a>
                         </li>
                         <a class="nav-item pe-3"><a class="nav-link" href="${path}/festival/main" role="button" aria-expanded="false" id="NSR">축제</a></a>
