@@ -16,12 +16,11 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="manifest" href="site.webmanifest">
-    
     <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg">
     <meta name="msapplication-TileColor" content="#766df4">
     <meta name="theme-color" content="#ffffff">
     <!-- Page loading styles-->
-<!--     <style>
+    <style>
       .page-loading {
         position: fixed;
         top: 0;
@@ -88,7 +87,7 @@
       }
       
     </style>
- -->    <!-- Page loading scripts-->
+   <!-- Page loading scripts-->
     <script>
       (function () {
         window.onload = function () {
@@ -242,19 +241,47 @@
                 <div class="collapse navbar-collapse order-lg-2 mt-3" id="navbarNav">
                     <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
                         <!-- Menu items-->
-                        <li class="nav-item dropdown px-3 "><a class="nav-link dropdown" href="${path}/camp/campMain">캠핑장</a>                        </li>
-                        <li class="nav-item dropdown px-3 "><a class="nav-link dropdown" href="${path}/camp/detail">캠핑장상세</a>                        </li>
-                        <li class="nav-item dropdown pe-1"><a class="nav-link dropdown" href="${path}/park/main" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="NSR">공원</a>
-                        </li>
-                        <a class="nav-item pe-3"><a class="nav-link" href="${path}/festival/main" role="button" aria-expanded="false" id="NSR">축제</a></a>
-                        <a class="nav-item pe-3"><a class="nav-link" href="${path}/food/main" role="button" aria-expanded="false" id="NSR">주변 시설</a></a> <!-- 주변시설은 음식점이 메인 -->
-                        <a class="nav-item pe-3"><a class="nav-link" href="${path}/festival/main" role="button" aria-expanded="false" id="NSR">OO몰</a></a>
-                        <li class="nav-item dropdown ps-3"><a class="nav-link dropdown" href="${path}/photo/main" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="NSR">게시판</a>
+                        <li class="nav-item px-3 "><a class="nav-link" href="${path}/camp/campMain" role="button" aria-expanded="false" id="NSR">캠핑장</a></li>
+                        <li class="nav-item px-3 "><a class="nav-link" href="${path}/camp/detail" role="button"  aria-expanded="false" id="NSR">캠핑장상세</a></li>
+                        <li class="nav-item pe-1"><a class="nav-link" href="${path}/park/parkMain" role="button" aria-expanded="false" id="NSR">공원</a></li>
+                        <li class="nav-item pe-3"><a class="nav-link" href="${path}/festival/main" role="button" aria-expanded="false" id="NSR">축제</a></li>
+
+
+                        
+                        <li class="nav-item px-3"><a class="nav-link" href="${path}/food/main" role="button" aria-expanded="false" id="NSR">주변 시설</a></li> <!-- 주변시설은 음식점이 메인 -->
+                        
+                        <li class="nav-item dropdown px-3 "><a class="nav-link dropdown" href="${path}/food/main" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="NSR">주변시설</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-it" href="${path}/photo/main">포토게시판</a></li>
-                                <li><a class="dropdown-it" href="${path}/board/main">자유게시판</a></li>
+                                <li><a class="dropdown-item" href="href="${path}/food/main">음식점</a></li>
+                                <li><a class="dropdown-item" href="href="${path}/food/main">숙박</a></li>
                             </ul>
                         </li>
+                        
+                        
+                        <li class="nav-item px-3"><a class="nav-link" href="${path}/shop/shopMain" role="button" aria-expanded="false" id="NSR">OO몰</a></li>
+                        <li class="nav-item dropdown px-3"><a class="nav-link dropdown" href="${path}/photo/main" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="NSR">게시판</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="${path}/photo/main">포토게시판</a></li>
+                                <li><a class="dropdown-item" href="${path}/board/main">자유게시판</a></li>
+                            </ul>
+                        </li>
+                        
+                        
+                        
+                       <%--원본
+                         <li class="nav-item dropdown px-3 "><a class="nav-link dropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="NSR">공연</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-it" href="<%=path%>/showMain?category=연극&rad_date=1개월">연극</a></li>
+                                <li><a class="dropdown-it" href="<%=path%>/showMain?category=뮤지컬&rad_date=1개월">뮤지컬</a></li>
+                                <li><a class="dropdown-it" href="<%=path%>/showMain?category=무용&rad_date=1개월">무용</a></li>
+                                <li><a class="dropdown-it" href="<%=path%>/showMain?category=복합&rad_date=1개월">복합</a></li>
+                            </ul>
+                        </li> --%>
+                        
+                        
+                        
+                        
+                        
                         <li class="nav-item d-lg-none"><a class="nav-link" href="#signin-modal" data-bs-toggle="modal"><i class="fi-user me-2"></i>로그인</a></li>
                     </ul>
                 </div>
