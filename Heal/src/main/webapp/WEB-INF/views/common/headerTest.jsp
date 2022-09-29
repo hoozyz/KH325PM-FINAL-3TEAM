@@ -324,7 +324,7 @@
                 <div class="collapse navbar-collapse order-lg-2 mt-3" id="navbarNav">
                     <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
                         <!-- Menu items-->
-                        <li class="nav-item dropdown px-3 "><a class="nav-link dropdown" href="${path}/camp/main" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="NSR">캠핑장</a>
+                        <li class="nav-item dropdown px-3 "><a class="nav-link dropdown" href="${path}/camp/detail">캠핑장</a>
                         </li>
                         <li class="nav-item dropdown pe-1"><a class="nav-link dropdown" href="${path}/park/main" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="NSR">공원</a>
                         </li>

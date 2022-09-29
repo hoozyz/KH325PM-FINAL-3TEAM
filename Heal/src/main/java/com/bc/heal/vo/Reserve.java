@@ -12,7 +12,8 @@ public class Reserve {
 	private String paydate;
 	private String reservedate;
 	private String starttime;
-	private int count;
+	private String tid;
+	private String count;
 	private int price;
 	private int memberno;
 	private int hotelno;

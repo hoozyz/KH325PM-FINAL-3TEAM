@@ -19,4 +19,6 @@ public interface ReserveMapper {
 	List<Reserve> selectAir(int no);
 	
 	int deleteReserve(int no);
+
+	int insertReserve(Reserve reserve);
 }

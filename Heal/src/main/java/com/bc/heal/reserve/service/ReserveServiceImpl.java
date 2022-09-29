@@ -43,5 +43,10 @@ public class ReserveServiceImpl implements ReserveService{
 	public int delete(int no) {
 		return mapper.deleteReserve(no);
 	}
+
+	@Override
+	public int save(Reserve reserve) {
+		return mapper.insertReserve(reserve);
+	}
 	
 }

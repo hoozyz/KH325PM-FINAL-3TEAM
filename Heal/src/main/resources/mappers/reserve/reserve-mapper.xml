@@ -10,6 +10,7 @@
 		<result property="paydate" column="PAYDATE"/>
 		<result property="reservedate" column="RESERVEDATE"/>
 		<result property="starttime" column="STARTTIME"/>
+		<result property="tid" column="TID"/>
 		<result property="count" column="COUNT"/>
 		<result property="price" column="PRICE"/>
 		<result property="memberno" column="MEMBERNO"/>
@@ -19,6 +20,20 @@
 		<result property="busno" column="BUSNO"/>
 		<result property="trainno" column="TRAINNO"/>
 	</resultMap>
+	
+	<insert id="insertReserve" parameterType="Reserve"
+			useGeneratedKeys="true" keyColumn="NO" keyProperty="no">
+		INSERT INTO TBL_RESERVE(
+			NO,	PAYDATE, RESERVEDATE, 	
+			STARTTIME, TID, COUNT,
+			PRICE, MEMBERNO, HOTELNO,
+			CAMPNO, AIRNO, BUSNO, TRAINNO
+		) VALUES (
+			 RESERVE_SEQ.NEXTVAL, SYSDATE, #{reservedate},
+			 #{starttime}, #{tid}, #{count},
+			 #{price}, #{memberno}, #{hotelno},
+			 #{campno}, #{airno}, #{busno}, #{trainno} )
+	 </insert>
 	
 	<select id="selectCamp" resultMap="reserveResultMap"  parameterType="int">
 		SELECT *

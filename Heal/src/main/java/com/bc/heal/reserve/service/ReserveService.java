@@ -16,4 +16,6 @@ public interface ReserveService {
 	List<Reserve> selectAir(int no);
 	
 	int delete(int no);
+
+	int save(Reserve reserve);
 }
