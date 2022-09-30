@@ -139,73 +139,76 @@
     }
 </style>
 
-       <!-- @@@@@@ Hero 시작 @@@@@@-->
-        <section class="container-fluid mb-5 pb-lg-4 px-xxl-4">
-            <div class="jarallax card align-items-center justify-content-center border-0 p-md-5 p-4 bg-secondary overflow-hidden mt-n3" style="min-height: 50vh; background-image: url(${path}/resources/image/parkHero.jpg);" data-jarallax data-speed="0.5"><span class="img-overlay opacity-40"></span>
-                <div class="content-overlay" style="width: 856px;">
-                    <h1 class="display-5 text-white" style="margin-bottom: 90px;">공원</h1>
+        <!-- @@@@@@ Hero 시작 @@@@@@ -->
+        <section class="jarallax bg-dark zindex-1 py-xxl-5" data-jarallax data-speed="0.5"><span class="img-overlay bg-transparent opacity-50" style="background-image: linear-gradient(0deg, rgba(31, 27, 45, .7), rgba(31, 27, 45, .7));"></span>
+            <div class="jarallax-img" style="background-image: url(${path}/resources/image/parkHero.jpg);"></div>
+            <div class="content-overlay container py-md-5">
+                <div class="mt-5 mb-md-5 py-5">
+                    <div class="col-xl-6 col-lg-8 col-md-10 mx-auto mb-sm-5 mb-4 px-0">
+                        <h1 class="display-5 text-white" style="margin-bottom: 90px;">공원</h1>
+                    </div>
+                    <div class="col-xl-8 col-lg-9 col-md-10 mx-auto px-0">
+                        <!-- @@@@@@ 검색창 시작 @@@@@@-->
 
-                    <!-- @@@@@@ 검색창 시작 @@@@@@-->
-
-                    <form class="form-group d-block">
-                        <div class="row g-0">
-                            <div class="col-md-10 d-sm-flex align-items-center">
-                                <div class="input-group input-group-lg border-end-md"><span class="input-group-text text-muted rounded-pill ps-3"><i class="fi-search"></i></span>
-                                    <input class="form-control" type="text" placeholder="공원명을 검색하세요">
+                        <form class="form-group d-block">
+                            <div class="row g-0">
+                                <div class="col-md-10 d-sm-flex align-items-center">
+                                    <div class="input-group input-group-lg border-end-md"><span class="input-group-text text-muted rounded-pill ps-3"><i class="fi-search"></i></span>
+                                        <input class="form-control" type="text" placeholder="공원명을 검색하세요">
+                                    </div>
+                                    <hr class="d-sm-none my-2">
+                                    <div class="dropdown w-sm-50 border-end-sm" data-bs-toggle="select">
+                                        <button class="btn btn-lg btn-link dropdown-toggle ps-2 ps-sm-3" type="button" data-bs-toggle="dropdown"><i class="fi-home me-2"></i><span class="dropdown-toggle-label">전체/도</span></button>
+                                        <input type="hidden">
+                                        <ul class="dropdown-menu" style="position: absolute; z-index:1;">
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">서울특별시</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">부산광역시</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">대구광역시</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">부산광역시</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">인천광역시</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">광주광역시</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">대전광역시</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">울산광역시</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">세종특별시</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">경기도</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">강원도</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">충청북도</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">충청남도</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">전라북도</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">전라남도</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">경상북도</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">경상남도</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">제주도</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <hr class="d-sm-none my-2">
+                                    <div class="dropdown w-sm-50 border-end-sm" data-bs-toggle="select">
+                                        <button class="btn btn-lg btn-link dropdown-toggle ps-2 ps-sm-3" type="button" data-bs-toggle="dropdown"><i class="fi-map-pin me-2"></i><span class="dropdown-toggle-label">분류 선택</span></button>
+                                        <input type="hidden">
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">근린공원</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">체육공원</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">어린이공원</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">역사공원</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">소공원</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">문화공원</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">수변공원</span></a></li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <hr class="d-sm-none my-2">
-                                <div class="dropdown w-sm-50 border-end-sm" data-bs-toggle="select">
-                                    <button class="btn btn-lg btn-link dropdown-toggle ps-2 ps-sm-3" type="button" data-bs-toggle="dropdown"><i class="fi-home me-2"></i><span class="dropdown-toggle-label">전체/도</span></button>
-                                    <input type="hidden">
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">서울특별시</span></a></li>
-                                        <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">부산광역시</span></a></li>
-                                        <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">대구광역시</span></a></li>
-                                        <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">부산광역시</span></a></li>
-                                        <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">인천광역시</span></a></li>
-                                        <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">광주광역시</span></a></li>
-                                        <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">대전광역시</span></a></li>
-                                        <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">울산광역시</span></a></li>
-                                        <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">세종특별시</span></a></li>
-                                        <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">경기도</span></a></li>
-                                        <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">강원도</span></a></li>
-                                        <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">충청북도</span></a></li>
-                                        <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">충청남도</span></a></li>
-                                        <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">전라북도</span></a></li>
-                                        <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">전라남도</span></a></li>
-                                        <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">경상북도</span></a></li>
-                                        <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">경상남도</span></a></li>
-                                        <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">제주도</span></a></li>
-                                    </ul>
-                                </div>
-                                <hr class="d-sm-none my-2">
-                                <div class="dropdown w-sm-50 border-end-sm" data-bs-toggle="select">
-                                    <button class="btn btn-lg btn-link dropdown-toggle ps-2 ps-sm-3" type="button" data-bs-toggle="dropdown"><i class="fi-map-pin me-2"></i><span class="dropdown-toggle-label">분류 선택</span></button>
-                                    <input type="hidden">
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">근린공원</span></a></li>
-                                        <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">체육공원</span></a></li>
-                                        <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">어린이공원</span></a></li>
-                                        <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">역사공원</span></a></li>
-                                        <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">소공원</span></a></li>
-                                        <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">문화공원</span></a></li>
-                                        <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">수변공원</span></a></li>
-                                    </ul>
+                                <hr class="d-md-none mt-2">
+                                <div class="col-md-2 d-sm-flex align-items-center pt-3 pt-md-0">
+                                    <button class="btn btn-lg btn-icon btn-primary px-3 w-100" type="button">공원 검색</button>
                                 </div>
                             </div>
-                            <hr class="d-md-none mt-2">
-                            <div class="col-md-2 d-sm-flex align-items-center pt-3 pt-md-0">
-                                <button class="btn btn-lg btn-icon btn-primary px-3 w-100" type="button">공원 검색</button>
-                            </div>
-                        </div>
-                    </form>
-                    <!-- @@@@@@ 검색창 끝 @@@@@@-->
-
-
+                        </form>
+                        <!-- @@@@@@ 검색창 끝 @@@@@@-->
+                    </div>
                 </div>
             </div>
+            <div class="position-absolute d-none d-xxl-block bottom-0 start-0 w-100 bg-white zindex-1" style="border-top-left-radius: 30px; border-top-right-radius: 30px; height: 30px;"></div>
         </section>
-        <!-- @@@@@@ Hero 끝 @@@@@@-->
+        <!-- @@@@@@ Hero 끝 @@@@@@ -->
 
 
         <!-- @@@@@@ 인기공원 시작 @@@@@@-->
