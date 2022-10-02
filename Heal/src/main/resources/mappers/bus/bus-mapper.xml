@@ -19,10 +19,36 @@
 		<result property="nightprice" column="NIGHTPRICE"/>
 	</resultMap>
 	
+	<resultMap type="EndStation" id="endStaResultMap">
+		<result property="endsta" column="ENDSTA"/>
+		<result property="endlat" column="ENDLAT"/>
+		<result property="endlng" column="ENDLNG"/>
+	</resultMap>
+	
 	<select id="selectBusByNo" parameterType="int" resultMap="busResultMap">
  		SELECT * 
  		FROM TBL_BUS
  		WHERE NO = #{no}
+	</select>
+	
+	<select id="selectListByEndSta" resultMap="endStaResultMap">
+ 		SELECT ENDSTA,
+ 			   ENDLAT,
+ 			   ENDLNG
+ 		FROM TBL_BUS
+ 		GROUP BY ENDSTA, ENDLAT, ENDLNG
+	</select>
+	
+	<select id="selectListByEnd" parameterType="string" resultMap="busResultMap">
+ 		SELECT * 
+ 		FROM TBL_BUS
+ 		WHERE ENDSTA = #{busEnd}
+	</select>
+	
+	<select id="selectTimeBySta" parameterType="string" resultMap="busResultMap">
+ 		SELECT *
+ 		FROM TBL_BUS
+ 		WHERE STARTSTA = #{start} AND ENDSTA = #{end}
 	</select>
 	
 </mapper>

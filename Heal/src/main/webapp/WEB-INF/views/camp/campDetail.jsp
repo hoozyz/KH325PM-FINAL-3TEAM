@@ -5,7 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <jsp:include page="/WEB-INF/views/common/headerTest.jsp">
-	<jsp:param value="캠핑장 메인" name="title"/>
+	<jsp:param value="캠핑장 상세" name="title"/>
 </jsp:include>
 
 <style>
@@ -162,7 +162,7 @@
                             </div>
                             <div class="mb-4">
                                 <label class="form-label" for="review-text">캠핑후기 <span class='text-danger'>*</span></label>
-                                <textarea class="form-control" id="review-text" rows="5" placeholder="캠핑장 어떠셨나요?" required></textarea>
+                                <textarea class="form-control" id="review-text" name="cont" rows="5" placeholder="캠핑장 어떠셨나요?" required></textarea>
                                 <div class="invalid-feedback">Please write your review.</div>
                             </div>
                             <input class="btn btn-primary d-block w-100 mb-4" type="submit" value="후기 등록">
@@ -185,23 +185,164 @@
                     	<form action="">
                     		<section style="height: 70px;margin-bottom: 20px;">
                     			<div style="margin-left: 45px;"><span>출발공항</span> <span style="float: right;margin-right: 45px;">도착공항</span></div>
-                    			<select style="float: left; width: 150px;" class="form-control form-select">
-                    			<option value="" selected disabled hidden>출발역</option>
-			                      <option value="5">서울</option>
-			                      <option value="4">왕십리</option>
-			                      <option value="3">청량리</option>
-			                      <option value="2">수원</option>
-			                      <option value="1">대전</option>
+                    			<select id="airStartSta" style="float: left; width: 150px;" class="form-control form-select" name="">
+                    			<option value="" selected disabled hidden>출발공항</option>
+                    				<c:forEach var="i" begin="0" end="airStartList.size() - 1"> <!-- 출발역 개수 만큼 -->
+                    					<option value="i">${airStartList.get(i)}</option>
+                    				</c:forEach>
 			                      </select>
                     			<span style="margin-left: 15px;">---></span>
-                    			<select style="float: right; width: 150px;" class="form-control form-select"readonly>
-                    			<option value="">부산</option>
+                    			<select style="float: right; width: 150px;" class="form-control form-select" readonly>
+                    			<option value="1">${airList.get(0).getEndsta}</option> <!-- 도착역 -> 1개 -->
                     			</select>
                     		</section>
                     		<hr style="width: 100%; border: 1px solid #E2E2E2; margin-bottom: 15px;">
                     		<section style="margin-bottom: 30px; height: 70px;">
                     			<div><span style="margin-left: 65px;margin-right: 135px;">날짜</span><span>인원</span></div>	
-                    			<input class="form-control date-picker rounded-pill pi-5 start" style="float: left; width: 170px;" id="datepicker1" name="startDate" type="date" placeholder="날짜를 선택해주세요 " data-datepicker-options="{&quot;altInput&quot;: true, &quot;altFormat&quot;: &quot;Y. m. d &quot;, &quot;dateFormat&quot;: &quot;Y-m-d&quot;, &quot;language&quot;: &quot;ko&quot;} ">
+                    			<input class="form-control date-picker rounded-pill pi-5 start" style="float: left; width: 170px;" id="datepickerAir" name="date" type="date" placeholder="날짜를 선택해주세요 " data-datepicker-options="{&quot;altInput&quot;: true, &quot;altFormat&quot;: &quot;Y. m. d &quot;, &quot;dateFormat&quot;: &quot;Y-m-d&quot;, &quot;language&quot;: &quot;ko&quot;} ">
+                    			<select name="" style="float: right; width: 120px; margin-right: 20px;" class="form-control form-select">
+                    			<option value="" selected disabled hidden>인원</option>
+			                      <option value="1">1명</option>
+			                      <option value="2">2명</option>
+			                      <option value="3">3명</option>
+			                      <option value="4">4명</option>
+			                      <option value="5">5명</option>
+			                      <option value="6">6명</option>
+			                      <option value="7">7명</option>
+			                      <option value="8">8명</option>
+			                      <option value="9">9명</option>
+			                      <option value="10">10명</option>
+			                      </select>
+                    		</section>
+                    		<hr style="width: 100%; border: 1px solid #E2E2E2; margin-bottom: 15px;">
+                    		<section style="margin-bottom: 30px; height: 70px;">
+                    			<div><span style="margin-left: 45px;margin-right: 130px;">출발시간</span><span>도착시간</span></div>
+                    			<select name="" id="airStartTime" style="float: left;width: 120px;margin-left: 15px;margin-right: 70px;" class="form-control form-select">
+                    			<option value="" selected disabled hidden>출발시간</option>
+                    				<%-- <c:forEach var="i" begin="0" end="airList.size() - 1"> <!-- 출발역 개수 만큼 -->
+                    					<option value="i">${airList.get(i).getStarttime}</option>
+                    				</c:forEach> --%>
+			                      </select> <!-- 항공사 -->
+                    			<select id="airArrTime" name="" style="float: left; width: 120px;" class="form-control form-select" readonly>
+                    			<option value="1">도착시간</option>
+                    			</select>
+                    		</section>
+                            <input style="width: 250px; margin: auto;" class="btn btn-primary d-block mb-4" type="submit" id="airPay" value="예매하기">
+                       </form>
+                       </div>
+                    </div>
+                </div>
+            </div>
+            
+        <script> // 비행기
+	       	$(document).ready(() => {
+	       		// 출발공항 선택되었을 때 출발시간 리스트 가져오기
+	       		$("#airStartSta").change(function() { // 변했을 때
+       					var start = $("#airStartSta option:selected").text(); // 값 가져오기 -> 출발공항
+       					var end = ${airList.get(0).getEndsta};
+       					
+       					$.ajax({
+       						type: 'GET',
+       						url: '/air/time',
+       						data: {
+       							start: start,
+       							end: end
+       						},
+       						
+       						success:function(data) {
+       							console.log(data);
+       							
+       							str = "";
+       							str += '<option value="" selected disabled hidden>출발시간</option>';
+       							$.each(data, function (i, obj)) {
+       								str += '<option value="'+i+'">'+ obj.starttime +'</option>';
+       							}
+       							
+       							$("#airStartTime").html(str);
+       						},
+       						
+       						error:function(e) {
+       							console.log(e);
+       						}
+       					});
+       				});
+	       		
+	       		
+	       		$("#airStartTime").change(function() { // 변했을 때
+	       				var i = $("#airStartTime option:selected").val(); // value 값 가져오기 -> i
+	       				var endTime = ${airList.get(i).getEndtime};
+	       				
+	       				$("#airArrTime").html("<option value="1">"+ endTime +"</option>");
+	       			});
+	       		
+	       		
+	       		$("#airPay").click(function(){
+					var start = $("#datepickerAir").val();
+					var item = $("#item").val();
+	       			var totalAmount = $("#total").html();
+	       			// var day = $("#day").html(); -> 나중에 위에 변경 알고리즘 짜면 쓸것
+	       			
+	       			var type = 'camp';
+	       			var no = 4;
+	       			
+	       			var startDate = new Date(start);
+	       			var endDate = new Date(end);
+	       			
+	       			var second = endDate.getTime() - startDate.getTime();
+	       			var day = second / (1000*60*60*24);
+	       			
+	       			 $.ajax({
+	       				type: 'GET',
+	       				url: '/pay/traffic',
+	       				data: {
+	       					day: day,
+	       					no: no,
+	       					start: start,
+	       					type: type,
+	       					total_amount: totalAmount,
+	       					itemName: item,
+	       				},
+	       				
+	       				success:function(resp) {
+	       					window.open(resp.next_redirect_pc_url);
+	       				},
+	       				
+	       				error:function(e) {
+	       					console.log(e);
+	       				}
+	       			}); 
+	       		});
+	       	});
+       </script>
+        
+        <!-- 기차 예매 -->
+        <div class="modal fade" id="modal-train" tabindex="-1"> 
+            <div class="modal-dialog modal-dialog-centered" role="document" style="margin-left: 800px;">
+                <div class="modal-content" style="width: 450px;">
+                    <div class="modal-header d-block position-relative border-0 pb-0 px-sm-5 px-4" style="width:450px;">
+                        <h3 class="modal-title mt-4 text-center">기차 예매</h3>
+                        <button class="btn-close position-absolute top-0 end-0 mt-3 me-3" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <hr style="width: 100%; color: grey;">
+                    </div>
+                    <div class="modal-body px-sm-5 px-4">
+                    	<form action="">
+                    		<section style="height: 70px;margin-bottom: 20px;">
+                    			<div style="margin-left: 45px;"><span>출발역</span> <span style="float: right;margin-right: 45px;">도착역</span></div>
+                    			<select style="float: left; width: 150px;" class="form-control form-select">
+                    			<option value="" selected disabled hidden>출발역</option>
+                    				<c:forEach var="i" begin="0" end="trainStartList.size() - 1"> <!-- 출발역 개수 만큼 -->
+                    					<option value="i">${trainStartList.get(i)}</option>
+                    				</c:forEach>
+			                      </select>
+                    			<span style="margin-left: 15px;">---></span>
+                    			<select style="float: right; width: 150px;" class="form-control form-select"readonly>
+                    			<option value="">${trainList.get(0).getEndsta}</option>
+                    			</select>
+                    		</section>
+                    		<hr style="width: 100%; border: 1px solid #E2E2E2; margin-bottom: 15px;">
+                    		<section style="margin-bottom: 30px; height: 70px;">
+                    			<div><span style="margin-left: 65px;margin-right: 135px;">날짜</span><span>인원</span></div>	
+                    			<input class="form-control date-picker rounded-pill pi-5 start" style="float: left; width: 170px;" id="datepickerTrain" name="date" type="date" placeholder="날짜를 선택해주세요 " data-datepicker-options="{&quot;altInput&quot;: true, &quot;altFormat&quot;: &quot;Y. m. d &quot;, &quot;dateFormat&quot;: &quot;Y-m-d&quot;, &quot;language&quot;: &quot;ko&quot;} ">
                     		
                     			<select style="float: right; width: 120px; margin-right: 20px;" class="form-control form-select">
                     			<option value="" selected disabled hidden>인원</option>
@@ -219,104 +360,105 @@
                     		</section>
                     		<hr style="width: 100%; border: 1px solid #E2E2E2; margin-bottom: 15px;">
                     		<section style="margin-bottom: 30px; height: 70px;">
-                    			<div><span style="margin-left: 45px;margin-right: 130px;">출발시간</span><span>도착시간</span></div>
-                    			<select style="float: left;width: 120px;margin-left: 15px;margin-right: 70px;" class="form-control form-select">
-                    			<option value="" selected disabled hidden>출발시간</option>
+                    			<div><span style="margin-left: 45px;margin-right: 45px;">출발시간</span><span style="margin-right: 30px;">소요시간</span><span>도착시간</span></div>
+                    			<select style="float: left;width: 120px;margin-left: 15px;" class="form-control form-select">
+                    			<option value="" selected disabled hidden>출발시간/종류</option>
 			                      <option value="5">06:10</option>
 			                      <option value="4">07:10</option>
 			                      <option value="3">08:10</option>
 			                      <option value="2">09:10</option>
 			                      <option value="1">10:10</option>
 			                      </select>
+			                      <section style="float: left;margin-right: 20px;margin-left: 20px;">
+			                      	<div style="height: 22px;">-----></div>
+			                      	<div style="font-size: 15px;">02:10</div>
+			                      </section>
                     			<select style="float: left; width: 120px;" class="form-control form-select"readonly>
                     			<option value="">11:20</option>
                     			</select>
                     		</section>
-                            <input style="width: 250px; margin: auto;" class="btn btn-primary d-block mb-4" type="submit" value="예매하기">
+                            <input style="width: 250px; margin: auto;" class="btn btn-primary d-block mb-4" type="submit" id="trainPay" value="예매하기">
                        </form>
                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         
-        <!-- Review modal-->
-        <div class="modal fade" id="modal-train" tabindex="-1"> <!-- 기차 예매 -->
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header d-block position-relative border-0 pb-0 px-sm-5 px-4">
-                        <h3 class="modal-title mt-4 text-center">캠핑후기 등록</h3>
+        <!-- 버스 예매 -->
+        <div class="modal fade" id="modal-bus" tabindex="-1"> 
+            <div class="modal-dialog modal-dialog-centered" role="document" style="margin-left: 800px;">
+                <div class="modal-content" style="width: 450px;">
+                    <div class="modal-header d-block position-relative border-0 pb-0 px-sm-5 px-4" style="width:450px;">
+                        <h3 class="modal-title mt-4 text-center">버스 예매</h3>
                         <button class="btn-close position-absolute top-0 end-0 mt-3 me-3" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <hr style="width: 100%; color: grey;">
                     </div>
                     <div class="modal-body px-sm-5 px-4">
-                        <form class="needs-validation" novalidate>
-                            <div class="mb-3">
-                                <label class="form-label" for="review-name">이름<span class='text-danger'>*</span></label>
-                                <input class="form-control" type="text"  name="name" value="${loginMember.name}" readonly>
-                                <div class="invalid-feedback">Please let us know your name.</div>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="review-rating">평점<span class='text-danger'>*</span></label>
-                                <select class="form-control form-select"  name="star">
-                      <option value="" selected disabled hidden>평점 선택</option>
-                      <option value="5">5점</option>
-                      <option value="4">4점</option>
-                      <option value="3">3점</option>
-                      <option value="2">2점</option>
-                      <option value="1">1점</option>
-                    </select>
-                                <div class="invalid-feedback">Please rate the property.</div>
-                            </div>
-                            <div class="mb-4">
-                                <label class="form-label" for="review-text">캠핑후기 <span class='text-danger'>*</span></label>
-                                <textarea class="form-control"rows="5" placeholder="캠핑장 어떠셨나요?" required></textarea>
-                                <div class="invalid-feedback">Please write your review.</div>
-                            </div>
-                            <input class="btn btn-primary d-block w-100 mb-4" type="submit" value="후기 등록">
-                        </form>
+                    	<form action="">
+                    		<section style="height: 70px;margin-bottom: 20px;">
+                    			<div style="margin-left: 45px;"><span>출발역</span> <span style="float: right;margin-right: 45px;">도착역</span></div>
+                    			<select style="float: left; width: 150px;" class="form-control form-select">
+                    			<option value="" selected disabled hidden>출발역</option>
+                    				<c:forEach var="i" begin="0" end="busStartList.size() - 1"> <!-- 출발역 개수 만큼 -->
+                    					<option value="i">${busStartList.get(i)}</option>
+                    				</c:forEach>
+			                      </select>
+                    			<span style="margin-left: 15px;">---></span>
+                    			<select style="float: right; width: 150px;" class="form-control form-select"readonly>
+                    			<option value="">${busList.get(0).getStartsta}</option>
+                    			</select>
+                    		</section>
+                    		<hr style="width: 100%; border: 1px solid #E2E2E2; margin-bottom: 15px;">
+                    		<section style="margin-bottom: 30px; height: 70px;">
+                    			<div><span style="margin-left: 65px;margin-right: 135px;">날짜</span><span>인원</span></div>	
+                    			<input class="form-control date-picker rounded-pill pi-5 start" style="float: left; width: 170px;" id="datepickerBus" name="date" type="date" placeholder="날짜를 선택해주세요 " data-datepicker-options="{&quot;altInput&quot;: true, &quot;altFormat&quot;: &quot;Y. m. d &quot;, &quot;dateFormat&quot;: &quot;Y-m-d&quot;, &quot;language&quot;: &quot;ko&quot;} ">
+                    		
+                    			<select style="float: right; width: 120px; margin-right: 20px;" class="form-control form-select">
+                    			<option value="" selected disabled hidden>인원</option>
+			                      <option value="1">1명</option>
+			                      <option value="2">2명</option>
+			                      <option value="3">3명</option>
+			                      <option value="4">4명</option>
+			                      <option value="5">5명</option>
+			                      <option value="6">6명</option>
+			                      <option value="7">7명</option>
+			                      <option value="8">8명</option>
+			                      <option value="9">9명</option>
+			                      <option value="10">10명</option>
+			                      </select>
+                    		</section>
+                    		<hr style="width: 100%; border: 1px solid #E2E2E2; margin-bottom: 15px;">
+                    		<section style="margin-bottom: 30px; height: 70px;">
+                    			<div><span style="margin-left: 45px;margin-right: 45px;">출발시간</span><span style="margin-right: 30px;">소요시간</span><span>도착시간</span></div>
+                    			<select style="float: left;width: 120px;margin-left: 15px;" class="form-control form-select">
+                    			<option value="" selected disabled hidden>출발시간</option>
+                    				<c:forEach var="i" begin="0" end="busList.size() - 1"> <!-- 출발역 개수 만큼 -->
+                    					<option value="i">${busList.get(i).getSchedule}</option>
+                    				</c:forEach>
+                    			
+                    			
+			                      <option value="5">06:10</option>
+			                      <option value="4">07:10</option>
+			                      <option value="3">08:10</option>
+			                      <option value="2">09:10</option>
+			                      <option value="1">10:10</option>
+			                      </select>
+			                      <section style="float: left;margin-right: 20px;margin-left: 20px;">
+			                      	<div style="height: 22px;">-----></div>
+			                      	<div style="font-size: 15px;">02:10</div>
+			                      </section>
+                    			<select style="float: left; width: 120px;" class="form-control form-select" readonly>
+                    			<option value="">11:20</option>
+                    			</select>
+                    		</section>
+                            <input style="width: 250px; margin: auto;" class="btn btn-primary d-block mb-4" type="submit" id="busPay" value="예매하기">
+                       </form>
+                       </div>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <!-- Review modal-->
-        <div class="modal fade" id="modal-bus" tabindex="-1"> <!-- 버스 예매 -->
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header d-block position-relative border-0 pb-0 px-sm-5 px-4">
-                        <h3 class="modal-title mt-4 text-center">캠핑후기 등록</h3>
-                        <button class="btn-close position-absolute top-0 end-0 mt-3 me-3" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body px-sm-5 px-4">
-                        <form class="needs-validation" novalidate>
-                            <div class="mb-3">
-                                <label class="form-label" for="review-name">이름<span class='text-danger'>*</span></label>
-                                <input class="form-control" type="text" name="name" value="${loginMember.name}" readonly>
-                                <div class="invalid-feedback">Please let us know your name.</div>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="review-rating">평점<span class='text-danger'>*</span></label>
-                                <select class="form-control form-select" name="star">
-                      <option value="" selected disabled hidden>평점 선택</option>
-                      <option value="5">5점</option>
-                      <option value="4">4점</option>
-                      <option value="3">3점</option>
-                      <option value="2">2점</option>
-                      <option value="1">1점</option>
-                    </select>
-                                <div class="invalid-feedback">Please rate the property.</div>
-                            </div>
-                            <div class="mb-4">
-                                <label class="form-label" for="review-text">캠핑후기 <span class='text-danger'>*</span></label>
-                                <textarea class="form-control" rows="5" placeholder="캠핑장 어떠셨나요?" required></textarea>
-                                <div class="invalid-feedback">Please write your review.</div>
-                            </div>
-                            <input class="btn btn-primary d-block w-100 mb-4" type="submit" value="후기 등록">
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+            
+            
         <!-- Page header-->
         <section class="container pt-5 mt-5">
             <!-- Breadcrumb-->
@@ -470,13 +612,13 @@
                                     </div>
                                 </div>
                                 <h3 class="h3">합계 : <span class="h3" id="total">100000</span>원 / <span class="h3" id="day">2</span> 박</h3>
-                                <input class="btn btn-lg btn-primary d-block w-100" id="payTest" type="submit" value="예약하기">
+                                <input class="btn btn-lg btn-primary d-block w-100" id="campPay" type="submit" value="예약하기">
                         </div>
                     </div>
                     
                     <script> // 결제
         				$(document).ready(() => {
-        					$("#payTest").click(function(){
+        					$("#campPay").click(function(){
 								var start = $("#datepicker1").val();
 								var end = $("#datepicker2").val();
 								var item = $("#item").val();
@@ -674,5 +816,13 @@
                 </div>
             </div>
         </section>
+        
+        <script src="${path}/resources/vendor/bootstrap/dist/js/bootstrap.bundle.min.js "></script>
+	    <script src="${path}/resources/vendor/simplebar/dist/simplebar.min.js "></script>
+	    <script src="${path}/resources/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js "></script>
+	    <script src="${path}/resources/vendor/tiny-slider/dist/min/tiny-slider.js "></script>
+	    <script src="${path}/resources/vendor/jarallax/dist/jarallax.min.js "></script>
+	    <script src="${path}/resources/vendor/rellax/rellax.min.js "></script>
+		<script src="${path}/resources/js/theme.min.js "></script>
         
         <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

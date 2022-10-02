@@ -21,4 +21,16 @@
  		WHERE NO = #{no}
 	</select>
 	
+	<select id="selectListByEnd" parameterType="string" resultMap="airResultMap">
+ 		SELECT *
+ 		FROM TBL_AIR
+ 		WHERE ENDSTA = #{airEnd}
+	</select>
+	
+	<select id="selectTimeBySta" parameterType="string" resultMap="airResultMap">
+ 		SELECT *
+ 		FROM TBL_AIR
+ 		WHERE STARTSTA = #{start} AND ENDSTA = #{end}
+	</select>
+	
 </mapper>

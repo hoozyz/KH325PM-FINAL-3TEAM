@@ -21,10 +21,36 @@
 		<result property="railname" column="RAILNAME"/>
 	</resultMap>
 	
+	<resultMap type="EndStation" id="endStaResultMap">
+		<result property="endsta" column="ENDSTA"/>
+		<result property="endlat" column="ENDLAT"/>
+		<result property="endlng" column="ENDLNG"/>
+	</resultMap>
+	
 	<select id="selectTrainByNo" parameterType="int" resultMap="trainResultMap">
  		SELECT * 
  		FROM TBL_TRAIN
  		WHERE NO = #{no}
+	</select>
+	
+	<select id="selectListByEndSta" resultMap="endStaResultMap">
+ 		SELECT ENDSTA,
+ 			   ENDLAT,
+ 			   ENDLNG
+ 		FROM TBL_TRAIN
+ 		GROUP BY ENDSTA, ENDLAT, ENDLNG
+	</select>
+	
+	<select id="selectListByEnd" parameterType="string" resultMap="trainResultMap">
+ 		SELECT * 
+ 		FROM TBL_TRAIN
+ 		WHERE ENDSTA = #{busEnd}
+	</select>
+	
+	<select id="selectTimeBySta" parameterType="string" resultMap="trainResultMap">
+ 		SELECT * 
+ 		FROM TBL_TRAIN
+ 		WHERE STARTSTA = #{start} AND ENDSTA = #{end}
 	</select>
 	
 </mapper>
