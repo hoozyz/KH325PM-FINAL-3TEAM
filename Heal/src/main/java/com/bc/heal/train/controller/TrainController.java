@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bc.heal.train.service.TrainService;
 import com.bc.heal.vo.Train;
@@ -19,11 +20,22 @@ public class TrainController {
 	@Autowired
 	private TrainService service;
 	
-	@GetMapping("/time") // 출발시간 도착시간 세트로 가져가기 -> ajax
-	public List<Train> time(Model model, String start, String end) {
+	@GetMapping("/time") // ajax
+	@ResponseBody
+	public List<Train> time(Model model, String start, String end, String time) {
 		List<Train> list = new ArrayList<>();
 		
-		list = service.selectTimeBySta(start, end);
+		if(time == null) {
+			list = service.selectTimeBySta(start, end);
+		} else { // 출발시간 있을때
+			list.add(service.selectByStartTime(start, end, time));
+		}
+		
+		for(int i = 0; i < list.size(); i++) {
+			if(list.get(i).getGeneralprice() == 0) { // 가격이 없을 때
+				list.get(i).setGeneralprice(list.get(i-1).getGeneralprice());
+			}
+		}
 		
 		return list;
 	}

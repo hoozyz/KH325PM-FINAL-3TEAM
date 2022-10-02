@@ -11,6 +11,7 @@ public class Camp {
 	private int no;
 	private String name;
 	private String lineintro;
+	private String intro;
 	private String aria;
 	private String category;
 	private String addr;

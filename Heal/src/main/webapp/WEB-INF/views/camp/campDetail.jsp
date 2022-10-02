@@ -181,26 +181,36 @@
                         <button class="btn-close position-absolute top-0 end-0 mt-3 me-3" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                         <hr style="width: 100%; color: grey;">
                     </div>
-                    <div class="modal-body px-sm-5 px-4">
+                    <!-- 근처 공항이 없을 때 -->
+                    <c:if test="${airCheck == 0}">
+                    	<div class="modal-body px-sm-5 px-4">
+                    		<span>근처 공항이 없습니다.</span>
+                    	</div>
+                    </c:if>
+                    
+                    <!-- 근처 공항이 있을 때 -->
+                    <c:if test="${airCheck == 1}">
+                    	<div class="modal-body px-sm-5 px-4">
                     	<form action="">
                     		<section style="height: 70px;margin-bottom: 20px;">
-                    			<div style="margin-left: 45px;"><span>출발공항</span> <span style="float: right;margin-right: 45px;">도착공항</span></div>
-                    			<select id="airStartSta" style="float: left; width: 150px;" class="form-control form-select" name="">
-                    			<option value="" selected disabled hidden>출발공항</option>
-                    				<c:forEach var="i" begin="0" end="airStartList.size() - 1"> <!-- 출발역 개수 만큼 -->
+                    			<div style="margin-left: 45px;"><span>출발역</span> <span style="float: right;margin-right: 45px;">도착역</span></div>
+                    			<select id="airStartSta" style="float: left; width: 150px;" class="form-control form-select">
+                    			<option value="" selected disabled hidden>출발역</option>
+                    				<c:forEach var="i" begin="0" end="${airStartList.size() - 1}"> <!-- 출발역 개수 만큼 -->
                     					<option value="i">${airStartList.get(i)}</option>
                     				</c:forEach>
 			                      </select>
                     			<span style="margin-left: 15px;">---></span>
-                    			<select style="float: right; width: 150px;" class="form-control form-select" readonly>
-                    			<option value="1">${airList.get(0).getEndsta}</option> <!-- 도착역 -> 1개 -->
+                    			<select id="airEndSta" style="float: right; width: 150px;" class="form-control form-select"readonly>
+                    			<option value="">${airList.get(0).endsta}</option>
                     			</select>
                     		</section>
                     		<hr style="width: 100%; border: 1px solid #E2E2E2; margin-bottom: 15px;">
                     		<section style="margin-bottom: 30px; height: 70px;">
                     			<div><span style="margin-left: 65px;margin-right: 135px;">날짜</span><span>인원</span></div>	
-                    			<input class="form-control date-picker rounded-pill pi-5 start" style="float: left; width: 170px;" id="datepickerAir" name="date" type="date" placeholder="날짜를 선택해주세요 " data-datepicker-options="{&quot;altInput&quot;: true, &quot;altFormat&quot;: &quot;Y. m. d &quot;, &quot;dateFormat&quot;: &quot;Y-m-d&quot;, &quot;language&quot;: &quot;ko&quot;} ">
-                    			<select name="" style="float: right; width: 120px; margin-right: 20px;" class="form-control form-select">
+                    			<input class="form-control date-picker rounded-pill pi-5 start" style="float: left; width: 170px;" id="datepickerBus" name="date" type="date" placeholder="날짜를 선택해주세요 " data-datepicker-options="{&quot;altInput&quot;: true, &quot;altFormat&quot;: &quot;Y. m. d &quot;, &quot;dateFormat&quot;: &quot;Y-m-d&quot;, &quot;language&quot;: &quot;ko&quot;} ">
+                    		
+                    			<select id="airCount" style="float: right; width: 120px; margin-right: 20px;" class="form-control form-select">
                     			<option value="" selected disabled hidden>인원</option>
 			                      <option value="1">1명</option>
 			                      <option value="2">2명</option>
@@ -215,21 +225,25 @@
 			                      </select>
                     		</section>
                     		<hr style="width: 100%; border: 1px solid #E2E2E2; margin-bottom: 15px;">
-                    		<section style="margin-bottom: 30px; height: 70px;">
-                    			<div><span style="margin-left: 45px;margin-right: 130px;">출발시간</span><span>도착시간</span></div>
-                    			<select name="" id="airStartTime" style="float: left;width: 120px;margin-left: 15px;margin-right: 70px;" class="form-control form-select">
-                    			<option value="" selected disabled hidden>출발시간</option>
-                    				<%-- <c:forEach var="i" begin="0" end="airList.size() - 1"> <!-- 출발역 개수 만큼 -->
-                    					<option value="i">${airList.get(i).getStarttime}</option>
-                    				</c:forEach> --%>
-			                      </select> <!-- 항공사 -->
-                    			<select id="airArrTime" name="" style="float: left; width: 120px;" class="form-control form-select" readonly>
-                    			<option value="1">도착시간</option>
+                    		<section style="margin-bottom: 10px; height: 70px;">
+                    			<div><span style="margin-left: 45px;margin-right: 45px;">출발시간</span><span style="margin-right: 30px;">소요시간</span><span>도착시간</span></div>
+                    			<select id="airStartTime" style="float: left;width: 120px;margin-left: 15px;" class="form-control form-select">
+                    			<option value="" selected disabled hidden>출발시간/종류</option>
+			                      </select>
+			                      <section style="float: left;margin-right: 20px;margin-left: 20px;">
+			                      	<div style="height: 22px;">-----></div>
+			                      </section>
+                    			<select id="airArrTime" style="float: left; width: 120px;" class="form-control form-select" readonly>
+                    			<option value="">도착시간</option>
                     			</select>
                     		</section>
-                            <input style="width: 250px; margin: auto;" class="btn btn-primary d-block mb-4" type="submit" id="airPay" value="예매하기">
+                    		<section style="text-align: center;">
+                    			<div id="airPrice">가격<span>/1인</span></div>
+                    		</section>
+                            <input style="width: 250px; margin: auto;" class="btn btn-primary d-block mb-4" type="submit" id="busPay" value="예매하기">
                        </form>
                        </div>
+                    </c:if>
                     </div>
                 </div>
             </div>
@@ -239,7 +253,11 @@
 	       		// 출발공항 선택되었을 때 출발시간 리스트 가져오기
 	       		$("#airStartSta").change(function() { // 변했을 때
        					var start = $("#airStartSta option:selected").text(); // 값 가져오기 -> 출발공항
-       					var end = ${airList.get(0).getEndsta};
+       					var end = "";
+       					
+       					<c:if test="${!empty airList}">
+       						end = '${airList.get(0).endsta}';
+       					</c:if>
        					
        					$.ajax({
        						type: 'GET',
@@ -253,10 +271,10 @@
        							console.log(data);
        							
        							str = "";
-       							str += '<option value="" selected disabled hidden>출발시간</option>';
-       							$.each(data, function (i, obj)) {
-       								str += '<option value="'+i+'">'+ obj.starttime +'</option>';
-       							}
+       							str += '<option value="" selected disabled hidden>출발시간/항공사</option>';
+       							$.each(data, function (i, obj) {
+       								str += '<option value="'+i+'">'+ obj.starttime +'/'+ obj.airline +'</option>';
+       							})
        							
        							$("#airStartTime").html(str);
        						},
@@ -269,38 +287,67 @@
 	       		
 	       		
 	       		$("#airStartTime").change(function() { // 변했을 때
-	       				var i = $("#airStartTime option:selected").val(); // value 값 가져오기 -> i
-	       				var endTime = ${airList.get(i).getEndtime};
+	       				var start = $("#airStartSta option:selected").text(); // 값 가져오기 -> 출발역
+   						var end = ""; // 도착역
+   						
+   						<c:if test="${!empty airList}">
+   							end = '${airList.get(0).endsta}';
+						</c:if>
+	       			
+	       				var startTime = $("#airStartTime option:selected").text().substring(0,5); // 출발시간 가져오기
 	       				
-	       				$("#airArrTime").html("<option value="1">"+ endTime +"</option>");
+	       				$.ajax({
+       						type: 'GET',
+       						url: '/air/time',
+       						data: {
+       							start: start,
+       							end: end,
+       							time: startTime
+       						},
+       						
+       						success:function(data) {
+       							console.log(data);
+       							
+								$("#airPrice").html(data[0].price + "원/1인");
+       							
+       							str = '<option value="'+1+'">'+ data[0].endtime +'</option>';
+       		       				$("#airArrTime").html(str);
+       						},
+       						
+       						error:function(e) {
+       							console.log(e);
+       						}
+       					});
 	       			});
 	       		
 	       		
 	       		$("#airPay").click(function(){
-					var start = $("#datepickerAir").val();
-					var item = $("#item").val();
-	       			var totalAmount = $("#total").html();
-	       			// var day = $("#day").html(); -> 나중에 위에 변경 알고리즘 짜면 쓸것
+	       			var start = $("#airStartSta option:seleted").text(); // 출발역
+	       			var end = $("#airEndSta option:seleted").text(); // 도착역
+	       			var time = $("#airArrTime option:selected").text(); // 도착시간
 	       			
-	       			var type = 'camp';
-	       			var no = 4;
+					var date = $("#datepickerAir").val();
+					var item = "비행기 결제"; // 결제할 떄 제품명
+					var price = $("#airPrice").html();
+					var count = $("#airCount option:selected").text().replace("명",""); // 인원
+	       			var totalAmount = price * count;
 	       			
-	       			var startDate = new Date(start);
-	       			var endDate = new Date(end);
-	       			
-	       			var second = endDate.getTime() - startDate.getTime();
-	       			var day = second / (1000*60*60*24);
+					// 비행기 번호는 db에서 가져오기
+					
+	       			var type = 'air';
 	       			
 	       			 $.ajax({
 	       				type: 'GET',
 	       				url: '/pay/traffic',
 	       				data: {
-	       					day: day,
-	       					no: no,
 	       					start: start,
+	       					end: end,
+	       					time: time,
+	       					count: count,
+	       					date: date,
 	       					type: type,
 	       					total_amount: totalAmount,
-	       					itemName: item,
+	       					itemName: item
 	       				},
 	       				
 	       				success:function(resp) {
@@ -328,23 +375,23 @@
                     	<form action="">
                     		<section style="height: 70px;margin-bottom: 20px;">
                     			<div style="margin-left: 45px;"><span>출발역</span> <span style="float: right;margin-right: 45px;">도착역</span></div>
-                    			<select style="float: left; width: 150px;" class="form-control form-select">
+                    			<select id="trainStartSta" style="float: left; width: 150px;" class="form-control form-select">
                     			<option value="" selected disabled hidden>출발역</option>
-                    				<c:forEach var="i" begin="0" end="trainStartList.size() - 1"> <!-- 출발역 개수 만큼 -->
+                    				<c:forEach var="i" begin="0" end="${trainStartList.size() - 1}"> <!-- 출발역 개수 만큼 -->
                     					<option value="i">${trainStartList.get(i)}</option>
                     				</c:forEach>
 			                      </select>
                     			<span style="margin-left: 15px;">---></span>
                     			<select style="float: right; width: 150px;" class="form-control form-select"readonly>
-                    			<option value="">${trainList.get(0).getEndsta}</option>
+                    			<option value="">${trainList.get(0).endsta}</option>
                     			</select>
                     		</section>
                     		<hr style="width: 100%; border: 1px solid #E2E2E2; margin-bottom: 15px;">
                     		<section style="margin-bottom: 30px; height: 70px;">
                     			<div><span style="margin-left: 65px;margin-right: 135px;">날짜</span><span>인원</span></div>	
-                    			<input class="form-control date-picker rounded-pill pi-5 start" style="float: left; width: 170px;" id="datepickerTrain" name="date" type="date" placeholder="날짜를 선택해주세요 " data-datepicker-options="{&quot;altInput&quot;: true, &quot;altFormat&quot;: &quot;Y. m. d &quot;, &quot;dateFormat&quot;: &quot;Y-m-d&quot;, &quot;language&quot;: &quot;ko&quot;} ">
+                    			<input class="form-control date-picker rounded-pill pi-5 start" style="float: left; width: 170px;" id="datepickerTrain" type="date" placeholder="날짜를 선택해주세요 " data-datepicker-options="{&quot;altInput&quot;: true, &quot;altFormat&quot;: &quot;Y. m. d &quot;, &quot;dateFormat&quot;: &quot;Y-m-d&quot;, &quot;language&quot;: &quot;ko&quot;} ">
                     		
-                    			<select style="float: right; width: 120px; margin-right: 20px;" class="form-control form-select">
+                    			<select id="trainCount" style="float: right; width: 120px; margin-right: 20px;" class="form-control form-select">
                     			<option value="" selected disabled hidden>인원</option>
 			                      <option value="1">1명</option>
 			                      <option value="2">2명</option>
@@ -359,23 +406,21 @@
 			                      </select>
                     		</section>
                     		<hr style="width: 100%; border: 1px solid #E2E2E2; margin-bottom: 15px;">
-                    		<section style="margin-bottom: 30px; height: 70px;">
-                    			<div><span style="margin-left: 45px;margin-right: 45px;">출발시간</span><span style="margin-right: 30px;">소요시간</span><span>도착시간</span></div>
-                    			<select style="float: left;width: 120px;margin-left: 15px;" class="form-control form-select">
-                    			<option value="" selected disabled hidden>출발시간/종류</option>
-			                      <option value="5">06:10</option>
-			                      <option value="4">07:10</option>
-			                      <option value="3">08:10</option>
-			                      <option value="2">09:10</option>
-			                      <option value="1">10:10</option>
+                    		<section style="margin-bottom: 10px; height: 70px;">
+                    			<div><span style="margin-left: 45px;margin-right: 45px;">출발시간/종류</span><span style="margin-right: 30px;">소요시간</span><span>도착시간</span></div>
+                    			<select id="trainStartTime" style="float: left;width: 120px;margin-left: 15px;" class="form-control form-select">
+                    				<option value="1">출발시간/종류</option>
 			                      </select>
 			                      <section style="float: left;margin-right: 20px;margin-left: 20px;">
 			                      	<div style="height: 22px;">-----></div>
-			                      	<div style="font-size: 15px;">02:10</div>
+			                      	<div style="font-size: 13px;" id="trainWasteTime">소요시간</div>
 			                      </section>
-                    			<select style="float: left; width: 120px;" class="form-control form-select"readonly>
-                    			<option value="">11:20</option>
+                    			<select id="trainArrTime" style="float: left; width: 120px;" class="form-control form-select"readonly>
+                    			<option value="">도착시간</option>
                     			</select>
+                    		</section>
+                    		<section style="text-align: center;">
+                    			<div id="trainPrice">가격<span>/1인</span></div>
                     		</section>
                             <input style="width: 250px; margin: auto;" class="btn btn-primary d-block mb-4" type="submit" id="trainPay" value="예매하기">
                        </form>
@@ -383,6 +428,114 @@
                     </div>
                 </div>
             </div>
+            
+            
+            <script> // 기차
+	       	$(document).ready(() => {
+	       		$("#trainStartSta").change(function() { // 변했을 때
+       					var start = $("#trainStartSta option:selected").text(); // 값 가져오기 -> 출발역
+       					var end = '${trainList.get(0).endsta}';
+       					
+       					$.ajax({
+       						type: 'GET',
+       						url: '/train/time',
+       						data: {
+       							start: start,
+       							end: end
+       						},
+       						
+       						success:function(data) {
+       							console.log(data);
+       							
+       							str = "";
+       							str += '<option value="" selected disabled hidden>출발시간/종류</option>';
+       							
+       							$.each(data, function (i, obj) {
+       								str += '<option value="'+i+'">'+ obj.starttime +'/'+ obj.trainclass +'</option>';
+       							})
+       							
+       							$("#trainStartTime").html(str);
+       						},
+       						
+       						error:function(e) {
+       							console.log(e);
+       						}
+       					});
+       				});
+	       		
+	       		
+	       		$("#trainStartTime").change(function() { // 변했을 때 -> 도착시간, 가격, 소요시간
+	       				var start = $("#trainStartSta option:selected").text(); // 값 가져오기 -> 출발역
+   						var end = '${trainList.get(0).endsta}'; // 도착역
+	       			
+	       				var startTime = $("#trainStartTime option:selected").text().substring(0,5); // 출발시간 가져오기
+	       				
+	       				$.ajax({
+       						type: 'GET',
+       						url: '/train/time',
+       						data: {
+       							start: start,
+       							end: end,
+       							time: startTime
+       						},
+       						
+       						success:function(data) {
+       							console.log(data);
+       							
+       							$("#trainWasteTime").html(data[0].wastetime);
+								$("#trainPrice").html(data[0].generalprice + "원/1인");
+       							
+       							str = '<option value="'+1+'">'+ data[0].endtime +'</option>';
+       		       				$("#trainArrTime").html(str);
+       						},
+       						
+       						error:function(e) {
+       							console.log(e);
+       						}
+       					});
+	       			});
+	       		
+	       		
+	       		$("#trainPay").click(function(){
+	       			var start = $("#trainStartSta option:seleted").text(); // 출발역
+	       			var end = '${trainList.get(0).endsta}'; // 도착역
+	       			var time = $("#trainArrTime option:selected").text(); // 도착시간
+	       			
+	       			var date = $("#datepickerTrain").val();
+					var item = "기차 결제"; // 결제할 떄 제품명
+					var price = $("#trainPrice").html();
+					var count = $("#trainCount option:selected").text().replace("명",""); // 인원
+	       			var totalAmount = price * count;
+	       			
+					// 비행기 번호는 db에서 가져오기
+					
+	       			var type = 'train';
+	       			
+	       			 $.ajax({
+	       				type: 'GET',
+	       				url: '/pay/traffic',
+	       				data: {
+	       					start: start,
+	       					end: end,
+	       					time: time,
+	       					count: count,
+	       					date: date,
+	       					type: type,
+	       					total_amount: totalAmount,
+	       					itemName: item
+	       				},
+	       				
+	       				success:function(resp) {
+	       					window.open(resp.next_redirect_pc_url);
+	       				},
+	       				
+	       				error:function(e) {
+	       					console.log(e);
+	       				}
+	       			}); 
+	       		});
+	       	});
+       </script>
         
         <!-- 버스 예매 -->
         <div class="modal fade" id="modal-bus" tabindex="-1"> 
@@ -397,23 +550,23 @@
                     	<form action="">
                     		<section style="height: 70px;margin-bottom: 20px;">
                     			<div style="margin-left: 45px;"><span>출발역</span> <span style="float: right;margin-right: 45px;">도착역</span></div>
-                    			<select style="float: left; width: 150px;" class="form-control form-select">
+                    			<select id="busStartSta" style="float: left; width: 150px;" class="form-control form-select">
                     			<option value="" selected disabled hidden>출발역</option>
-                    				<c:forEach var="i" begin="0" end="busStartList.size() - 1"> <!-- 출발역 개수 만큼 -->
+                    				<c:forEach var="i" begin="0" end="${busStartList.size() - 1}"> <!-- 출발역 개수 만큼 -->
                     					<option value="i">${busStartList.get(i)}</option>
                     				</c:forEach>
 			                      </select>
                     			<span style="margin-left: 15px;">---></span>
                     			<select style="float: right; width: 150px;" class="form-control form-select"readonly>
-                    			<option value="">${busList.get(0).getStartsta}</option>
+                    			<option value="">${busList.get(0).endsta}</option>
                     			</select>
                     		</section>
                     		<hr style="width: 100%; border: 1px solid #E2E2E2; margin-bottom: 15px;">
                     		<section style="margin-bottom: 30px; height: 70px;">
                     			<div><span style="margin-left: 65px;margin-right: 135px;">날짜</span><span>인원</span></div>	
-                    			<input class="form-control date-picker rounded-pill pi-5 start" style="float: left; width: 170px;" id="datepickerBus" name="date" type="date" placeholder="날짜를 선택해주세요 " data-datepicker-options="{&quot;altInput&quot;: true, &quot;altFormat&quot;: &quot;Y. m. d &quot;, &quot;dateFormat&quot;: &quot;Y-m-d&quot;, &quot;language&quot;: &quot;ko&quot;} ">
+                    			<input class="form-control date-picker rounded-pill pi-5 start" style="float: left; width: 170px;" id="datepickerBus" type="date" placeholder="날짜를 선택해주세요 " data-datepicker-options="{&quot;altInput&quot;: true, &quot;altFormat&quot;: &quot;Y. m. d &quot;, &quot;dateFormat&quot;: &quot;Y-m-d&quot;, &quot;language&quot;: &quot;ko&quot;} ">
                     		
-                    			<select style="float: right; width: 120px; margin-right: 20px;" class="form-control form-select">
+                    			<select id="busCount" style="float: right; width: 120px; margin-right: 20px;" class="form-control form-select">
                     			<option value="" selected disabled hidden>인원</option>
 			                      <option value="1">1명</option>
 			                      <option value="2">2명</option>
@@ -428,28 +581,21 @@
 			                      </select>
                     		</section>
                     		<hr style="width: 100%; border: 1px solid #E2E2E2; margin-bottom: 15px;">
-                    		<section style="margin-bottom: 30px; height: 70px;">
+                    		<section style="margin-bottom: 10px; height: 70px;">
                     			<div><span style="margin-left: 45px;margin-right: 45px;">출발시간</span><span style="margin-right: 30px;">소요시간</span><span>도착시간</span></div>
-                    			<select style="float: left;width: 120px;margin-left: 15px;" class="form-control form-select">
+                    			<select id="busStartTime" style="float: left;width: 120px;margin-left: 15px;" class="form-control form-select">
                     			<option value="" selected disabled hidden>출발시간</option>
-                    				<c:forEach var="i" begin="0" end="busList.size() - 1"> <!-- 출발역 개수 만큼 -->
-                    					<option value="i">${busList.get(i).getSchedule}</option>
-                    				</c:forEach>
-                    			
-                    			
-			                      <option value="5">06:10</option>
-			                      <option value="4">07:10</option>
-			                      <option value="3">08:10</option>
-			                      <option value="2">09:10</option>
-			                      <option value="1">10:10</option>
 			                      </select>
 			                      <section style="float: left;margin-right: 20px;margin-left: 20px;">
 			                      	<div style="height: 22px;">-----></div>
-			                      	<div style="font-size: 15px;">02:10</div>
+			                      	<div id="busWasteTime" style="font-size: 13px;">소요시간</div>
 			                      </section>
-                    			<select style="float: left; width: 120px;" class="form-control form-select" readonly>
-                    			<option value="">11:20</option>
+                    			<select id="busArrTime" style="float: left; width: 120px;" class="form-control form-select" readonly>
+                    			<option value="">따라 다름</option>
                     			</select>
+                    		</section>
+                    		<section style="text-align: center;">
+                    			<div id="busPrice">가격<span>/1인</span></div>
                     		</section>
                             <input style="width: 250px; margin: auto;" class="btn btn-primary d-block mb-4" type="submit" id="busPay" value="예매하기">
                        </form>
@@ -457,6 +603,90 @@
                     </div>
                 </div>
             </div>
+            
+            <script> // 버스
+	       	$(document).ready(() => {
+	       		$("#busStartSta").change(function() { // 변했을 때
+       					var start = $("#busStartSta option:selected").text(); // 값 가져오기 -> 출발역
+       					var end = '${busList.get(0).endsta}';
+       					
+       					$.ajax({
+       						type: 'GET',
+       						url: '/bus/time',
+       						data: {
+       							start: start,
+       							end: end
+       						},
+       						
+       						success:function(data) {
+       							console.log(data);
+       							
+       							str = "";
+       							str += '<option value="" selected disabled hidden>출발시간/종류</option>';
+       							$.each(data, function (i, obj) {
+       								if(i == 0) { // 소요시간
+       									$("#busWasteTime").html(obj);
+       								}
+       								
+       								if(i == 1) { // 가격
+       									$("#busPrice").html(obj+"원/1인");
+       								}
+       								
+       								if(i > 1) {
+       									str += '<option value="'+i+'">'+ obj +'</option>';	       									
+       								}
+       							})
+       							console.log(str)
+       							
+       							$("#busStartTime").html(str);
+       						},
+       						
+       						error:function(e) {
+       							console.log(e);
+       						}
+       					});
+       				});
+	       		
+	       		$("#busPay").click(function(){
+	       			var start = $("#busStartSta option:seleted").text(); // 출발역
+	       			var end = '${busList.get(0).endsta}'; // 도착역
+	       			var time = $("#busStartTime option:selected").text(); // 버스는 출발시간
+	       			
+	       			var date = $("#datepickerBus").val();
+					var item = "버스 결제"; // 결제할 떄 제품명
+					var price = $("#busPrice").html();
+					var count = $("#busCount option:selected").text().replace("명",""); // 인원
+	       			var totalAmount = price * count;
+	       			
+					// 비행기 번호는 db에서 가져오기
+					
+	       			var type = 'bus';
+	       			
+	       			 $.ajax({
+	       				type: 'GET',
+	       				url: '/pay/traffic',
+	       				data: {
+	       					start: start,
+	       					end: end,
+	       					time: time,
+	       					count: count,
+	       					date: date,
+	       					type: type,
+	       					total_amount: totalAmount,
+	       					itemName: item
+	       				},
+	       				
+	       				success:function(resp) {
+	       					window.open(resp.next_redirect_pc_url);
+	       				},
+	       				
+	       				error:function(e) {
+	       					console.log(e);
+	       				}
+	       			}); 
+	       		});
+	       	});
+       </script>
             
             
         <!-- Page header-->
@@ -466,12 +696,12 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="real-estate-home-v1.html">홈페이지</a></li>
                     <li class="breadcrumb-item"><a href="real-estate-catalog-rent.html">캠핑장</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">(주)디노담양힐링파크 지점</li>
+                    <li class="breadcrumb-item active" aria-current="page">${camp.name}</li>
                 </ol>
             </nav>
             <!-- Features + Sharing-->
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <h1 class="h2 mb-2">(주)디노담양힐링파크 지점</h1>
+                <h1 class="h2 mb-2">${camp.name}</h1>
                 <div class="text-nowrap">
                     <button class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle ms-2 mb-2" type="button" data-bs-toggle="tooltip" title="Add to Wishlist"><i class="fi-heart"></i></button>
                     <div class="dropdown d-inline-block" data-bs-toggle="tooltip" title="Share">
@@ -501,19 +731,16 @@
         <section class="container mb-5 pb-1">
             <div class="row">
                 <div class="col-md-7 mb-md-0 mb-4"><span class="badge bg-success me-2 mb-3">일반</span><span class="badge bg-info me-2 mb-3">글램핑</span><span class="badge bg-warning me-2 mb-3">카라반</span>
-                    <h4 class="h5 mb-4 pb-4 border-bottom">소형(2~3인) : 30,000원&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;중형(4~5인) : 45,000원&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;대형(6~7인) : 60,000원</h4>
+                    <h4 class="h5 mb-4 pb-4 border-bottom">소형(2~3인) : ${camp.price}원&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;중형(4~5인) : ${price}원&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;대형(6~7인) : ${camp.price * 2}원</h4>
                     </h2>
                     <!-- Overview-->
                     <div class="mb-4 pb-md-3 border-bottom">
                         <h3 class="h4">캠핑장 소개</h3>
-                        <h5 class="h6 list-unstyled"><b>한줄소개 : </b>담양 힐링파크에서 일상 속 쌓인 스트레스를 풀어보자</h5>
-                        <p class="mb-1">담양 힐링파크에서 일상 속 쌓인 스트레스를 풀어보자</lineIntro>
-                            <intro>담양군 봉산면 기곡리에 위치한 힐링파크 담양점은 도심과 떨어져 조용히 숲과 자연에서 자유로이 쉴수 있는 힐링파크다. 이곳은 기존 봉산관광농원이라는 이름으로 1998년 농림부 1등급 판정을 받은 시설로 어느 휴양지에서도 느끼지 못했던 색다른 휴식과 즐거움을 동시에 느낄 수 있다. 담양 힐링파크는 대한민국에서 둘째가라면 서러울 정도로 많은 편의시설을 자랑하고 있는데 책을 좋아하는 사람이라면 누구든 이용
-                                가능한 실내 독서실과 저수지낚시터가 있다.
+                        <h5 class="h6 list-unstyled"><b>한줄소개 : </b>${camp.lineintro}</h5>
+                        <p class="mb-1">${camp.intro}
                         </p>
                         <div class="collapse" id="seeMoreOverview">
-                            <p class="mb-1"> 또한 족구, 배드민턴 등 함께 뛰며 게임할 수 있는 족구장이 있으며 배드민턴은 무료 대여중이다. 이밖에도 주말 행복한 하루를 밤하늘을 보며 마감할 수 있는 주말 폭죽서비스가 있다. 이곳은 ‘동물의 왕국’이라고 해도 과언이 아닐 정도로 다양한 동물들과 시간을 보낼 수 있는데 미니동물원에서는 토끼에게 먹이도 주고 만져보며 교감할 수 있다. 그리고 담양곤충체험관이 있어 자연, 곤충과 친해질 수 있으며
-                                이용료는 무료다. 반려동물이 출입이 가능하므로 자신의 반려동물과도 추억을 쌓을 수 있다.</p>
+                            <p class="mb-1"></p>
                         </div>
                         <a class="collapse-label collapsed" href="#seeMoreOverview" data-bs-toggle="collapse" data-bs-label-collapsed="더보기" data-bs-label-expanded="줄이기" role="button" aria-expanded="false" aria-controls="seeMoreOverview"></a>
                     </div>
@@ -521,10 +748,18 @@
                     <div class="mb-4 pb-md-3 border-bottom">
                         <h3 class="h4">상세정보</h3>
                         <ul class="list-unstyled mb-0">
-                            <li><b>테마 : </b>낚시,여름물놀이</li>
-                            <li><b>주소 : </b>전남 담양군 봉산면 탄금길 9-26</li>
-                            <li><b>전화번호 : </b>061-383-5155</li>
-                            <li><b>홈페이지 : </b>https://healingpark.modoo.at/</li>
+                            <li><b>테마 : 
+                            </b>
+							<c:if test="${!empty camp.theme}">
+								${camp.theme}
+							</c:if>
+							<c:if test="${empty camp.theme}">
+								테마가 없습니다.
+							</c:if>
+							</li>
+                            <li><b>주소 : </b>${camp.addr}</li>
+                            <li><b>전화번호 : </b>${camp.phone}</li>
+                            <li><b>홈페이지 : </b>${camp.homepage}</li>
                         </ul>
                     </div>
                     <!-- Reviews-->

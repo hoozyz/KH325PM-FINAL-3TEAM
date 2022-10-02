@@ -8,6 +8,7 @@
 		<id property="no" column="NO"/>
 		<result property="name" column="NAME"/>
 		<result property="lineintro" column="LINEINTRO"/>
+		<result property="intro" column="INTRO"/>
 		<result property="aria" column="ARIA"/>
 		<result property="category" column="CATEGORY"/>
 		<result property="addr" column="ADDR"/>

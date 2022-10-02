@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bc.heal.train.mapper.TrainMapper;
+import com.bc.heal.vo.EndStation;
 import com.bc.heal.vo.Train;
 
 @Service
@@ -20,7 +21,7 @@ public class TrainServiceImpl implements TrainService{
 	}
 
 	@Override
-	public List<Train> selectListByEndSta() {
+	public List<EndStation> selectListByEndSta() {
 		return mapper.selectListByEndSta();
 	}
 
@@ -32,6 +33,11 @@ public class TrainServiceImpl implements TrainService{
 	@Override
 	public List<Train> selectTimeBySta(String start, String end) {
 		return mapper.selectTimeBySta(start, end);
+	}
+
+	@Override
+	public Train selectByStartTime(String start, String end, String time) {
+		return mapper.selectByStartTime(start, end, time);
 	}
 	
 }

@@ -16,6 +16,7 @@ import com.bc.heal.train.service.TrainService;
 import com.bc.heal.vo.Air;
 import com.bc.heal.vo.Bus;
 import com.bc.heal.vo.Camp;
+import com.bc.heal.vo.EndStation;
 import com.bc.heal.vo.Train;
 
 @Controller
@@ -40,8 +41,8 @@ public class CampController {
 	}
 
 	@GetMapping("/detail")
-	public String detail(Model model, int no) { // 캠핑장 상세정보, 기차/비행기/버스 도착역 리스트
-		Camp camp = campService.findByNo(4); // 테스트
+	public String detail(Model model /*int no*/) { // 캠핑장 상세정보, 기차/비행기/버스 도착역 리스트
+		Camp camp = campService.findByNo(57); // 테스트 -> 공항있는 캠핑장
 		
 		// 리뷰
 		
@@ -50,20 +51,20 @@ public class CampController {
 		
 
 		// 교통
-		String lat = camp.getLat(); // 출발역 위도
-		String lng = camp.getLng(); // 출발역 경도
+		String lat = camp.getLat(); // 캠핑장 위도
+		String lng = camp.getLng(); // 캠핑장 경도
 
 		String airEnd = ""; // 도착공항
 		String trainEnd = ""; // 기차 도착역
 		String busEnd = ""; // 버스 도착역
 
 		// 도착역 리스트(위도, 경도 가지고) -> 거리 비교위함
-		List<Train> trainEndList = new ArrayList<>();
-		List<Bus> busEndList = new ArrayList<>();
+		List<EndStation> trainEndList = new ArrayList<>();
+		List<EndStation> busEndList = new ArrayList<>();
 
 		trainEndList = trainService.selectListByEndSta();
 		busEndList = busService.selectListByEndSta();
-
+		
 		// 도착역 정하기 -> 거리가 제일 가까운 역 가져오기
 		Double distance = 1000d; // 초기값 1000설정 -> 0이면 0보다 작을 수 없어서
 		for (int i = 0; i < trainEndList.size(); i++) {
@@ -89,7 +90,7 @@ public class CampController {
 				busEnd = busEndList.get(i).getEndsta();
 			}
 		}
-
+		
 		// 도착항공 정하기
 		if (camp.getAddr().contains("진주") || camp.getAddr().contains("사천")) {
 			airEnd = "진주";
@@ -152,6 +153,19 @@ public class CampController {
 			}
 		}
 		
+		int airCheck = 1;
+		if(airList.isEmpty()) { // 공항 없음
+			airCheck = 0;
+		}
+		Double priceDouble = camp.getPrice() * 1.5;
+		int price = priceDouble.intValue();
+		
+		
+		model.addAttribute("airEnd", airEnd);
+		model.addAttribute("trainEnd", trainEnd);
+		model.addAttribute("busEnd", busEnd);
+		model.addAttribute("price", price);
+		model.addAttribute("airCheck", airCheck);
 		model.addAttribute("camp", camp);
 		model.addAttribute("trainList", trainList);
 		model.addAttribute("busList", busList);

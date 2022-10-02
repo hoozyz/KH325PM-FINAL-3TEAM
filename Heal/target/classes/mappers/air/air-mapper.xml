@@ -33,4 +33,10 @@
  		WHERE STARTSTA = #{start} AND ENDSTA = #{end}
 	</select>
 	
+	<select id="selectByStartTime" parameterType="string" resultMap="airResultMap">
+ 		SELECT *
+ 		FROM TBL_AIR
+ 		WHERE STARTSTA = #{start} AND ENDSTA = #{end} AND STARTTIME = #{time}
+	</select>
+	
 </mapper>

@@ -38,6 +38,7 @@
  			   ENDLAT,
  			   ENDLNG
  		FROM TBL_TRAIN
+ 		WHERE ENDSTA IS NOT NULL
  		GROUP BY ENDSTA, ENDLAT, ENDLNG
 	</select>
 	
@@ -51,6 +52,12 @@
  		SELECT * 
  		FROM TBL_TRAIN
  		WHERE STARTSTA = #{start} AND ENDSTA = #{end}
+	</select>
+	
+	<select id="selectByStartTime" parameterType="string" resultMap="trainResultMap">
+ 		SELECT * 
+ 		FROM TBL_TRAIN
+ 		WHERE STARTSTA = #{start} AND ENDSTA = #{end} AND STARTTIME = #{time}
 	</select>
 	
 </mapper>

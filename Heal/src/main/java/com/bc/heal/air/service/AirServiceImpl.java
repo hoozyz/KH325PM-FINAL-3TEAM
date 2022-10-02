@@ -28,5 +28,10 @@ public class AirServiceImpl implements AirService{
 	public List<Air> selectTimeBySta(String start, String end) {
 		return mapper.selectTimeBySta(start, end);
 	}
+
+	@Override
+	public Air selectByStartTime(String start, String end, String time) {
+		return mapper.selectByStartTime(start, end, time);
+	}
 	
 }

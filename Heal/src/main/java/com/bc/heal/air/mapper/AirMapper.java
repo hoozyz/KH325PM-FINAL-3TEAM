@@ -3,6 +3,7 @@ package com.bc.heal.air.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.bc.heal.vo.Air;
 
@@ -12,5 +13,7 @@ public interface AirMapper {
 
 	List<Air> selectListByEnd(String airEnd);
 
-	List<Air> selectTimeBySta(String start, String end);
+	List<Air> selectTimeBySta(@Param("start") String start, @Param("end") String end);
+
+	Air selectByStartTime(@Param("start") String start, @Param("end") String end, @Param("time") String time);
 }

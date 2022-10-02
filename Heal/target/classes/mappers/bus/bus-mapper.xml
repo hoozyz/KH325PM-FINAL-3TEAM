@@ -36,6 +36,7 @@
  			   ENDLAT,
  			   ENDLNG
  		FROM TBL_BUS
+ 		WHERE ENDSTA IS NOT NULL
  		GROUP BY ENDSTA, ENDLAT, ENDLNG
 	</select>
 	
@@ -48,7 +49,7 @@
 	<select id="selectTimeBySta" parameterType="string" resultMap="busResultMap">
  		SELECT *
  		FROM TBL_BUS
- 		WHERE STARTSTA = #{start} AND ENDSTA = #{end}
+ 		WHERE STARTSTA = #{start} AND ENDSTA = #{end} AND ROWNUM = 1
 	</select>
 	
 </mapper>

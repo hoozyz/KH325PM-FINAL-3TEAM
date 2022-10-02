@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bc.heal.air.service.AirService;
 import com.bc.heal.train.service.TrainService;
@@ -22,10 +23,15 @@ public class AirController {
 	private AirService service;
 	
 	@GetMapping("/time") // 출발시간 도착시간 세트로 가져가기 -> ajax
-	public List<Air> time(Model model, String start, String end) {
+	@ResponseBody
+	public List<Air> time(Model model, String start, String end, String time) {
 		List<Air> list = new ArrayList<>();
 		
-		list = service.selectTimeBySta(start, end);
+		if(time == null) {
+			list = service.selectTimeBySta(start, end);
+		} else { // 출발시간 있을때
+			list.add(service.selectByStartTime(start, end, time));
+		}
 		
 		return list;
 	}

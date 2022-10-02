@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.bc.heal.bus.mapper.BusMapper;
 import com.bc.heal.vo.Bus;
+import com.bc.heal.vo.EndStation;
 
 @Service
 public class BusServiceImpl implements BusService{
@@ -20,7 +21,7 @@ public class BusServiceImpl implements BusService{
 	}
 
 	@Override
-	public List<Bus> selectListByEndSta() {
+	public List<EndStation> selectListByEndSta() {
 		return mapper.selectListByEndSta();
 	}
 

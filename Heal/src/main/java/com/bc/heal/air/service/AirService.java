@@ -10,4 +10,6 @@ public interface AirService {
 	List<Air> selectListByEnd(String airEnd);
 
 	List<Air> selectTimeBySta(String start, String end);
+
+	Air selectByStartTime(String start, String end, String time);
 }
