@@ -50,14 +50,14 @@
 			  <h1>나의 찜</h1>
 			  </div>
           <!-- Content-->
-          <c:if test="${allList != null}">
+          <c:if test="${!empty allList}">
             	<c:forEach var="i" begin="0" end="${allList.size() - 1}">
 			        <c:if test="${allList.get(i).getClass().toString().contains('Camp')}"> <!-- 캠핑장에 대한 찜일때 -->
 			        	<!-- Item-->
 			        	<div class="card card-hover card-horizontal border-0 shadow-sm mb-4">
 			          <div class="card-img-top position-relative" style="background-image: url(${allList.get(i).image});"><a class="stretched-link" href="real-estate-single-v1.html"></a>
 			            <div class="position-absolute end-0 top-0 pt-3 pe-3 zindex-5">
-			              <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle shadow-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" onclick="delete(${likeList.get(i).no})" title="찜 삭제"><i class="fi-heart-filled"></i></button>
+			              <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle shadow-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" onclick="deleteLike(${likeList.get(i).no})" title="찜 삭제"><i class="fi-heart-filled"></i></button>
 			            </div>
 			          </div>
 			          <div class="card-body position-relative pb-3">
@@ -73,7 +73,7 @@
 			        	<div class="card card-hover card-horizontal border-0 shadow-sm mb-4">
 			          <div class="card-img-top position-relative" style="background-image: url()});"><a class="stretched-link" href="real-estate-single-v1.html"></a>
 			            <div class="position-absolute end-0 top-0 pt-3 pe-3 zindex-5">
-			              <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle shadow-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" onclick="delete(${likeList.get(i).no})" title="찜 삭제"><i class="fi-heart-filled"></i></button>
+			              <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle shadow-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" onclick="deleteLike(${likeList.get(i).no})" title="찜 삭제"><i class="fi-heart-filled"></i></button>
 			            </div>
 			          </div>
 			          <div class="card-body position-relative pb-3">
@@ -88,7 +88,7 @@
 			        <div class="card card-hover card-horizontal border-0 shadow-sm mb-4">
 			          <div class="card-img-top position-relative" style="background-image: url(img/real-estate/catalog/16.jpg);"><a class="stretched-link" href="real-estate-single-v1.html"></a>
 			            <div class="position-absolute end-0 top-0 pt-3 pe-3 zindex-5">
-			              <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle shadow-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" onclick="delete(${likeList.get(i).no})" title="찜 삭제"><i class="fi-heart-filled"></i></button>
+			              <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle shadow-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" onclick="deleteLike(${likeList.get(i).no})" title="찜 삭제"><i class="fi-heart-filled"></i></button>
 			            </div>
 			          </div>
 			          <div class="card-body position-relative pb-3">
@@ -107,7 +107,7 @@
 			          <div class="card-img-top position-relative" style="background-image: url(img/real-estate/catalog/16.jpg);"><a class="stretched-link" href="real-estate-single-v1.html"></a>
 			          <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">${allList.get(i).type}</span></div>
 			            <div class="position-absolute end-0 top-0 pt-3 pe-3 zindex-5">
-			            <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle shadow-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" onclick="delete(${likeList.get(i).no})" title="찜 삭제"><i class="fi-heart-filled"></i></button>
+			            <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle shadow-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" onclick="deleteLike(${likeList.get(i).no})" title="찜 삭제"><i class="fi-heart-filled"></i></button>
 			            </div>
 			          </div>
 			          <div class="card-body position-relative pb-3">
@@ -125,7 +125,7 @@
 			          <div class="card-img-top position-relative" style="background-image: url(img/real-estate/catalog/16.jpg);"><a class="stretched-link" href="real-estate-single-v1.html"></a>
 			            <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">${allList.get(i).category}</span></div>
 			            <div class="position-absolute end-0 top-0 pt-3 pe-3 zindex-5">
-			            <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle shadow-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" onclick="delete(${likeList.get(i).no})" title="찜 삭제"><i class="fi-heart-filled"></i></button>
+			            <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle shadow-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" onclick="deleteLike(${likeList.get(i).no})" title="찜 삭제"><i class="fi-heart-filled"></i></button>
 			            </div>
 			          </div>
 			          <div class="card-body position-relative pb-3">
@@ -145,7 +145,17 @@
     </main>
     
     <script>
-    	
-    </script>
+   			function deleteLike(no) {
+   				if(confirm("정말로 삭제하시겠습니까?!")) {
+   					location.href='${path}/like/delete?no=' + no;
+   				}
+   			}
+   	</script>
+    
+     <script src="${path}/resources/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="${path}/resources/vendor/simplebar/dist/simplebar.min.js"></script>
+    <script src="${path}/resources/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+    <!-- Main theme script-->
+    <script src="${path}/resources/js/theme.min.js"></script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

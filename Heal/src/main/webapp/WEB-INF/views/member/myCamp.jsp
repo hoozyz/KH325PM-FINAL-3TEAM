@@ -53,19 +53,16 @@
               <li class="nav-item mb-3"><a class="nav-link" href="${path}/reserve/myTraffic" role="tab" aria-selected="false"><i class="fi-file-clean fs-base me-2"></i>교통</a></li>
             </ul>
             <!-- Item-->
-            <c:if test="${campList != null}">
+            <c:if test="${!empty campList}">
             	<c:forEach var="i" begin="0" end="${campList.size() - 1}">
-		           	<div class="card card-hover card-horizontal border-0 shadow-sm mb-4"><a class="card-img-top" href="real-estate-single-v1.html" style="background-image: url(${campList.get(i).image});">
+		           	<div class="card card-hover card-horizontal border-0 shadow-sm mb-4"><a class="card-img-top" href="${path}/camp/detail?no=${campList.get(i).no}" style="background-image: url(${campList.get(i).image});">
 		                <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info">${campReserve.get(i).reservedate}</span></div></a>
 		              		<div class="card-body position-relative pb-3">
 		                <div class="dropdown position-absolute zindex-5 top-0 end-0 mt-3 me-3">
-		                  <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm" type="button" id="contextMenu1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fi-dots-vertical"></i></button>
-		                  <ul class="dropdown-menu my-1" aria-labelledby="contextMenu1">
-		                  	<li>
-		                      <button class="dropdown-item" type="button" onclick="location.href='${path}/reserve/delete?no=${campReserve.get(i).no}'"><i class="fi-trash opacity-60 me-2"></i>위치 보기</button>
-		                    </li>
+		                  <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm" type="button" id="contextMenu" data-bs-toggle="dropdown" aria-expanded="false"><i class="fi-dots-vertical"></i></button>
+		                  <ul class="dropdown-menu my-1" aria-labelledby="contextMenu">
 		                    <li>
-		                      <button class="dropdown-item" type="button" onclick="location.href='${path}/reserve/delete?no=${campReserve.get(i).no}'"><i class="fi-trash opacity-60 me-2"></i>삭제</button>
+		                      <button class="dropdown-item" type="button" onclick="deleteReserve(${campReserve.get(i).no})"><i class="fi-trash opacity-60 me-2"></i>삭제</button>
 		                    </li>
 		                  </ul>
 		                </div>
@@ -81,16 +78,16 @@
             	</c:forEach>
             </c:if>
             <!-- Item-->
-            <c:if test="${hotelList != null}">
-            	<c:forEach var="i" begin="0" end="${hotelList.size() - 1}">
-		            		<div class="card card-hover card-horizontal border-0 shadow-sm mb-4"><a class="card-img-top" href="real-estate-single-v1.html" style="background-image: url();"> <!-- 호텔 이미지 없음. -->
+            <c:if test="${!empty hotelList}">
+            	<c:forEach var="i" begin="0" end="${hotelList.size() - 1}"> <!-- 전에꺼 가져와서 버튼 id 만들기 -->
+		            		<div class="card card-hover card-horizontal border-0 shadow-sm mb-4"><a class="card-img-top" href="${path}/hotel/detail?no=${hotelList.get(i).no}" style="background-image: url();"> <!-- 호텔 이미지 없음. -->
 		                <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info">${hotelReserve.get(i).reservedate}</span></div></a>
 		              <div class="card-body position-relative pb-3">
 		                <div class="dropdown position-absolute zindex-5 top-0 end-0 mt-3 me-3">
-		                  <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm" type="button" id="contextMenu1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fi-dots-vertical"></i></button>
-		                  <ul class="dropdown-menu my-1" aria-labelledby="contextMenu1">
+		                  <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm" type="button" id="contextMenu" data-bs-toggle="dropdown" aria-expanded="false"><i class="fi-dots-vertical"></i></button>
+		                  <ul class="dropdown-menu my-1" aria-labelledby="contextMenu">
 		                    <li>
-		                      <button class="dropdown-item" type="button" onclick="${path}/reserve/delete?no=${hotelReserve.get(i).no}"><i class="fi-trash opacity-60 me-2"></i>삭제</button>
+		                      <button class="dropdown-item" type="button" onclick="deleteReserve(${hotelReserve.get(i).no})"><i class="fi-trash opacity-60 me-2"></i>삭제</button>
 		                    </li>
 		                  </ul>
 		                </div>
@@ -108,5 +105,20 @@
         </div>
       </div>
     </main>
-
+    
+   	<script>
+	   	function deleteReserve(no) {
+	   		console.log(no)
+	   		if(confirm("정말로 삭제하시겠습니까?!")) {
+	   			location.href='${path}/reserve/delete?no=' + no;
+	   		}
+	   	}
+   	</script>
+    
+    <script src="${path}/resources/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="${path}/resources/vendor/simplebar/dist/simplebar.min.js"></script>
+    <script src="${path}/resources/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+    <!-- Main theme script-->
+    <script src="${path}/resources/js/theme.min.js"></script>
+    
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

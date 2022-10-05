@@ -13,7 +13,8 @@ import com.bc.heal.vo.ReadyResponse;
 
 @Service
 public class PayService {
-	public ReadyResponse payReady(Member member, String itemName, int totalAmount) {
+	
+	public ReadyResponse payReady(Member member, String itemName, int totalAmount) { // 숙박 결제 준비
 
 		String user_id = member.getId();
 		String order_id = user_id + ", " + itemName;
@@ -46,8 +47,6 @@ public class PayService {
 		String user_id = member.getId();
 		String order_id = user_id + ", " + itemName;
 		
-		System.out.println("-----------");
-
 		// request값 담기.
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add("cid", "TC0ONETIME");

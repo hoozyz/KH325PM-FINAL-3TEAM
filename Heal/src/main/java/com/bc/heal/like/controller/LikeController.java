@@ -74,10 +74,6 @@ public class LikeController {
 			}
 		}
 		
-		if(allList.get(3).getClass().toString().contains("Camp")) {
-			System.out.println("----");
-		}
-		
 		model.addAttribute("likeList", likeList);
 		model.addAttribute("allList", allList);
 

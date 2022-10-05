@@ -55,7 +55,7 @@
               <li class="nav-item mb-3"><a class="nav-link" href="${path}/board/myBoard" role="tab" aria-selected="false"><i class="fi-file-clean fs-base me-2"></i>자유게시판</a></li>
             </ul>
             <!-- Item-->
-            <c:if test="${photoList != null}">
+            <c:if test="${!empty photoList}">
             	<c:forEach var="i" begin="0" end="${photoList.size() - 1}">
            			<div class="card card-hover card-horizontal border-0 shadow-sm mb-4"><a class="card-img-top" href="#" style="background-image: url(${path}/resources/img/campTest.jpg);">
              		   <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info">${photoList.get(i).category}</span></div></a>
@@ -69,7 +69,7 @@
 		                <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm" type="button" style="margin-left: 120px;" id="contextMenu1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fi-dots-vertical"></i></button>
 		                  <ul class="dropdown-menu my-1" aria-labelledby="contextMenu1">
 		                    <li>
-		                      <button class="dropdown-item" type="button" onclick="location.href='${path}/photo/delete?no=${photoList.get(i).no}'"><i class="fi-trash opacity-60 me-2"></i>삭제</button>
+		                      <button class="dropdown-item" type="button" onclick="deletePhoto(${photoList.get(i).no})"><i class="fi-trash opacity-60 me-2"></i>삭제</button>
 		                    </li>
 		                  </ul>
 		                  </div>
@@ -82,5 +82,13 @@
         </div>
       </div>
       </main>
+      
+       <script>
+   			function deletePhoto(no) {
+   				if(confirm("정말로 삭제하시겠습니까?!")) {
+   					location.href='${path}/photo/delete?no=' + no;
+   				}
+   			}
+   	</script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

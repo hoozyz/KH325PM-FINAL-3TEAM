@@ -55,7 +55,7 @@
               <li class="nav-item mb-3"><a class="nav-link active" href="${path}/board/myBoard" role="tab" aria-selected="true"><i class="fi-file-clean fs-base me-2"></i>자유게시판</a></li>
             </ul>
             <!-- Item-->
-            <c:if test="${boardList != null}">
+            <c:if test="${!empty boardList}">
             	<c:forEach var="i" begin="0" end="${boardList.size() - 1}">
 			            <div class="mb-4 pb-4 border-bottom">
 	                  <div class="d-flex justify-content-between mb-3">
@@ -70,7 +70,7 @@
 		                <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm" type="button" style="float: left; margin-left: 120px;" id="contextMenu1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fi-dots-vertical"></i></button>
 		                  <ul class="dropdown-menu my-1" aria-labelledby="contextMenu1">
 		                    <li>
-		                      <button class="dropdown-item" type="button" onclick="location.href='${path}/board/delete?no=${boardList.get(i).no}'"><i class="fi-trash opacity-60 me-2"></i>삭제</button>
+		                      <button class="dropdown-item" type="button" onclick="deleteBoard(${boardList.get(i).no})"><i class="fi-trash opacity-60 me-2"></i>삭제</button>
 		                    </li>
 		                  </ul>
 	                		</div>
@@ -81,5 +81,13 @@
         </div>
       </div>
       </main>
+      
+       <script>
+   			function deleteBoard(no) {
+   				if(confirm("정말로 삭제하시겠습니까?!")) {
+   					location.href='${path}/board/delete?no=' + no;
+   				}
+   			}
+   	</script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

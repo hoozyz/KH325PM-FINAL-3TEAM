@@ -50,14 +50,29 @@
 	
 	<select id="selectTimeBySta" parameterType="string" resultMap="trainResultMap">
  		SELECT * 
- 		FROM TBL_TRAIN
- 		WHERE STARTSTA = #{start} AND ENDSTA = #{end}
+ 		FROM (SELECT ROW_NUMBER() OVER (PARTITION BY STARTTIME ORDER BY STARTTIME) AS NUM,
+   						NO, 
+   						STARTSTA, 
+   						ENDSTA, 
+   						STARTLAT, 
+   						STARTLNG, 
+   						ENDLAT, 
+   						ENDLNG, 
+   						STARTTIME, 
+   						ENDTIME, 
+   						WASTETIME, 
+   						SPECIALPRICE, 
+   						GENERALPRICE, 
+   						TRAINCLASS, 
+   						RAILNAME 
+   		FROM TBL_TRAIN WHERE STARTSTA=#{start} AND ENDSTA=#{end})
+   		WHERE NUM = 1
 	</select>
 	
 	<select id="selectByStartTime" parameterType="string" resultMap="trainResultMap">
  		SELECT * 
  		FROM TBL_TRAIN
- 		WHERE STARTSTA = #{start} AND ENDSTA = #{end} AND STARTTIME = #{time}
+ 		WHERE STARTSTA = #{start} AND ENDSTA = #{end} AND STARTTIME = #{time} AND ROWNUM = 1
 	</select>
 	
 </mapper>

@@ -32,6 +32,14 @@ public class TrainController {
 		}
 		
 		for(int i = 0; i < list.size(); i++) {
+			if(i == 0) {
+				if(list.get(i).getGeneralprice() == 0) { // 가격이 없을 때
+					list.get(i).setGeneralprice(10500);
+				}
+				
+				continue;
+			}
+			
 			if(list.get(i).getGeneralprice() == 0) { // 가격이 없을 때
 				list.get(i).setGeneralprice(list.get(i-1).getGeneralprice());
 			}

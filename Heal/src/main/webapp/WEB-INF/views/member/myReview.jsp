@@ -58,7 +58,7 @@
               <div class="tab-pane fade show active" id="review" role="tabpanel">
                 <div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch justify-content-between pb-4 mb-2 mb-md-3">
                 </div>
-                <c:if test="${revList != null}">
+                <c:if test="${!empty revList}">
             		<c:forEach var="i" begin="0" end="${revList.size() - 1}">
 			        	<c:if test="${revList.get(i).getCampno() != 0}"> <!-- 캠프에 관한 리뷰 -->
 		                <!-- Review-->
@@ -118,7 +118,7 @@
 		                    <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm" type="button" style="float: left; margin-left: 770px;" id="contextMenu1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fi-dots-vertical"></i></button>
 		                  <ul class="dropdown-menu my-1" aria-labelledby="contextMenu1">
 		                    <li>
-		                      <button class="dropdown-item" type="button" onclick="location.href='${path}/board/delete?no=${boardList.get(i).no}'"><i class="fi-trash opacity-60 me-2"></i>삭제</button>
+		                      <button class="dropdown-item" type="button" onclick="deleteRev(${revList.get(i).no})"><i class="fi-trash opacity-60 me-2"></i>삭제</button>
 		                    </li>
 		                  </ul>
 		                  </div>
@@ -150,7 +150,7 @@
 		                    <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm" type="button" style="float: left; margin-left: 770px;" id="contextMenu1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fi-dots-vertical"></i></button>
 		                  <ul class="dropdown-menu my-1" aria-labelledby="contextMenu1">
 		                    <li>
-		                      <button class="dropdown-item" type="button" onclick="location.href='${path}/board/delete?no=${boardList.get(i).no}'"><i class="fi-trash opacity-60 me-2"></i>삭제</button>
+		                      <button class="dropdown-item" type="button" onclick="deleteRev(${revList.get(i).no})"><i class="fi-trash opacity-60 me-2"></i>삭제</button>
 		                    </li>
 		                  </ul>
 		                  </div>
@@ -182,7 +182,7 @@
 		                    <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm" type="button" style="float: left; margin-left: 770px;" id="contextMenu1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fi-dots-vertical"></i></button>
 		                  <ul class="dropdown-menu my-1" aria-labelledby="contextMenu1">
 		                    <li>
-		                      <button class="dropdown-item" type="button" onclick="location.href='${path}/board/delete?no=${boardList.get(i).no}'"><i class="fi-trash opacity-60 me-2"></i>삭제</button>
+		                      <button class="dropdown-item" type="button" onclick="deleteRev(${revList.get(i).no})"><i class="fi-trash opacity-60 me-2"></i>삭제</button>
 		                    </li>
 		                  </ul>
 		                  </div>
@@ -214,7 +214,7 @@
 		                    <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm" type="button" style="float: left; margin-left: 770px;" id="contextMenu1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fi-dots-vertical"></i></button>
 		                  <ul class="dropdown-menu my-1" aria-labelledby="contextMenu1">
 		                    <li>
-		                      <button class="dropdown-item" type="button" onclick="location.href='${path}/board/delete?no=${boardList.get(i).no}'"><i class="fi-trash opacity-60 me-2"></i>삭제</button>
+		                      <button class="dropdown-item" type="button" onclick="deleteRev(${revList.get(i).no})"><i class="fi-trash opacity-60 me-2"></i>삭제</button>
 		                    </li>
 		                  </ul>
 		                  </div>
@@ -227,7 +227,7 @@
               <div class="tab-pane fade" id="reply" role="tabpanel">
                 <div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch justify-content-between pb-4 mb-2 mb-md-3">
                 </div>
-                <c:if test="${repList != null}">
+                <c:if test="${!empty repList}">
             		<c:forEach var="i" begin="0" end="${repList.size() - 1}">
 		                <!-- Review-->
 		                <div class="mb-4 pb-4 border-bottom">
@@ -241,7 +241,7 @@
 		                <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm" type="button" style="float: left; margin-left: 120px;" id="contextMenu1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fi-dots-vertical"></i></button>
 		                  <ul class="dropdown-menu my-1" aria-labelledby="contextMenu1">
 		                    <li>
-		                      <button class="dropdown-item" type="button" onclick="location.href='${path}/board/delete?no=${boardList.get(i).no}'"><i class="fi-trash opacity-60 me-2"></i>삭제</button>
+		                      <button class="dropdown-item" type="button" onclick="deleteRev(${revList.get(i).no})"><i class="fi-trash opacity-60 me-2"></i>삭제</button>
 		                    </li>
 		                  </ul>
 	                		</div>
@@ -254,5 +254,13 @@
         </div>
       </div>
     </main>
+    
+    <script>
+   			function deleteRev(no) {
+   				if(confirm("정말로 삭제하시겠습니까?!")) {
+   					location.href='${path}/review/delete?no=' + no;
+   				}
+   			}
+   	</script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

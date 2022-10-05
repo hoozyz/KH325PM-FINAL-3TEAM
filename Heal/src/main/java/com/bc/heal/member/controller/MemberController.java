@@ -1,7 +1,10 @@
 package com.bc.heal.member.controller;
 
+import java.net.http.HttpRequest;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,24 +30,29 @@ public class MemberController {
 	private MemberService service;
 	
 	@RequestMapping("/login")
-	public String login(Model model, String userId, String userPwd) {
+	public String login(Model model, String userId, String userPwd, HttpServletRequest req) {
 		log.info("id : " + userId + ", pw : " + userPwd);
 		Member loginMember = service.login(userId, userPwd);
+		
+		String location = req.getHeader("Referer");
 
 		if (loginMember != null) {
 			model.addAttribute("loginMember", loginMember);
-			return "redirect:/"; // 가져가는 정보 없이 홈으로 보내기
+			return "redirect:" + location; // 가져가는 정보 없이 전 페이지로 보내기
 		} else {
 			model.addAttribute("msg", "아이디나 패스워드가 잘못되었습니다.");
-			model.addAttribute("location", "/");
+			model.addAttribute("location", location);
 			return "common/msg";
 		}
 	}
 
 	@RequestMapping("/logout")
-	public String logout(SessionStatus status) {
+	public String logout(SessionStatus status, HttpServletRequest req) {
 		status.setComplete();
-		return "redirect:/";
+		
+		String location = req.getHeader("Referer");
+		
+		return "redirect:" + location;
 	}
 	
 	@PostMapping("/member/enroll")

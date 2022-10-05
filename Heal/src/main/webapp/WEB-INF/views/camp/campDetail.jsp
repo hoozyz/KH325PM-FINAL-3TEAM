@@ -191,11 +191,10 @@
                     <!-- 근처 공항이 있을 때 -->
                     <c:if test="${airCheck == 1}">
                     	<div class="modal-body px-sm-5 px-4">
-                    	<form action="">
                     		<section style="height: 70px;margin-bottom: 20px;">
-                    			<div style="margin-left: 45px;"><span>출발역</span> <span style="float: right;margin-right: 45px;">도착역</span></div>
+                    			<div style="margin-left: 45px;"><span>출발공항</span> <span style="float: right;margin-right: 45px;">도착공항</span></div>
                     			<select id="airStartSta" style="float: left; width: 150px;" class="form-control form-select">
-                    			<option value="" selected disabled hidden>출발역</option>
+                    			<option value="" selected disabled hidden>출발공항</option>
                     				<c:forEach var="i" begin="0" end="${airStartList.size() - 1}"> <!-- 출발역 개수 만큼 -->
                     					<option value="i">${airStartList.get(i)}</option>
                     				</c:forEach>
@@ -208,7 +207,7 @@
                     		<hr style="width: 100%; border: 1px solid #E2E2E2; margin-bottom: 15px;">
                     		<section style="margin-bottom: 30px; height: 70px;">
                     			<div><span style="margin-left: 65px;margin-right: 135px;">날짜</span><span>인원</span></div>	
-                    			<input class="form-control date-picker rounded-pill pi-5 start" style="float: left; width: 170px;" id="datepickerBus" name="date" type="date" placeholder="날짜를 선택해주세요 " data-datepicker-options="{&quot;altInput&quot;: true, &quot;altFormat&quot;: &quot;Y. m. d &quot;, &quot;dateFormat&quot;: &quot;Y-m-d&quot;, &quot;language&quot;: &quot;ko&quot;} ">
+                    			<input class="form-control date-picker rounded-pill pi-5 start" style="float: left; width: 170px;" id="datepickerAir" type="date" placeholder="날짜를 선택해주세요 " data-datepicker-options="{&quot;altInput&quot;: true, &quot;altFormat&quot;: &quot;Y. m. d &quot;, &quot;dateFormat&quot;: &quot;Y-m-d&quot;, &quot;language&quot;: &quot;ko&quot;} ">
                     		
                     			<select id="airCount" style="float: right; width: 120px; margin-right: 20px;" class="form-control form-select">
                     			<option value="" selected disabled hidden>인원</option>
@@ -226,9 +225,10 @@
                     		</section>
                     		<hr style="width: 100%; border: 1px solid #E2E2E2; margin-bottom: 15px;">
                     		<section style="margin-bottom: 10px; height: 70px;">
-                    			<div><span style="margin-left: 45px;margin-right: 45px;">출발시간</span><span style="margin-right: 30px;">소요시간</span><span>도착시간</span></div>
+                    			<div><span style="margin-left: 20px;margin-right: 20px;">출발시간/항공사</span><span style="margin-right: 30px;">소요시간</span><span>도착시간</span></div>
                     			<select id="airStartTime" style="float: left;width: 120px;margin-left: 15px;" class="form-control form-select">
-                    			<option value="" selected disabled hidden>출발시간/종류</option>
+                    			<option value="" selected disabled hidden>출발시간/항공사</option>
+                    				<option value="">출발공항을 선택해주세요.</option>
 			                      </select>
 			                      <section style="float: left;margin-right: 20px;margin-left: 20px;">
 			                      	<div style="height: 22px;">-----></div>
@@ -238,10 +238,9 @@
                     			</select>
                     		</section>
                     		<section style="text-align: center;">
-                    			<div id="airPrice">가격<span>/1인</span></div>
+                    			<div id="airPrice">가격<span id="countt">/1인</span></div>
                     		</section>
-                            <input style="width: 250px; margin: auto;" class="btn btn-primary d-block mb-4" type="submit" id="busPay" value="예매하기">
-                       </form>
+                            <input style="width: 250px; margin: auto;" class="btn btn-primary d-block mb-4" type="submit" id="airPay" value="예매하기">
                        </div>
                     </c:if>
                     </div>
@@ -322,29 +321,28 @@
 	       		
 	       		
 	       		$("#airPay").click(function(){
-	       			var start = $("#airStartSta option:seleted").text(); // 출발역
-	       			var end = $("#airEndSta option:seleted").text(); // 도착역
-	       			var time = $("#airArrTime option:selected").text(); // 도착시간
+	       			// 3가지로 교통정보 찾기
+	       			var start = $("#airStartSta option:selected").text(); // 출발역
+	       			var end = $("#airEndSta option:selected").text(); // 도착역
+	       			var time = $("#airStartTime option:selected").text().substring(0,5); // 출발시간
 	       			
 					var date = $("#datepickerAir").val();
-					var item = "비행기 결제"; // 결제할 떄 제품명
-					var price = $("#airPrice").html();
+					var price = $("#airPrice").html().replace("원/1인","");
 					var count = $("#airCount option:selected").text().replace("명",""); // 인원
+					var item = "비행기 " + count + "인" + " " + time; // 결제할 떄 제품명
 	       			var totalAmount = price * count;
-	       			
-					// 비행기 번호는 db에서 가져오기
 					
-	       			var type = 'air';
+	       			var type = 'air'; // 종류
 	       			
-	       			 $.ajax({
+	       			$.ajax({
 	       				type: 'GET',
 	       				url: '/pay/traffic',
 	       				data: {
 	       					start: start,
 	       					end: end,
 	       					time: time,
-	       					count: count,
 	       					date: date,
+	       					count: count,
 	       					type: type,
 	       					total_amount: totalAmount,
 	       					itemName: item
@@ -357,7 +355,7 @@
 	       				error:function(e) {
 	       					console.log(e);
 	       				}
-	       			}); 
+	       			});
 	       		});
 	       	});
        </script>
@@ -372,7 +370,6 @@
                         <hr style="width: 100%; color: grey;">
                     </div>
                     <div class="modal-body px-sm-5 px-4">
-                    	<form action="">
                     		<section style="height: 70px;margin-bottom: 20px;">
                     			<div style="margin-left: 45px;"><span>출발역</span> <span style="float: right;margin-right: 45px;">도착역</span></div>
                     			<select id="trainStartSta" style="float: left; width: 150px;" class="form-control form-select">
@@ -407,9 +404,10 @@
                     		</section>
                     		<hr style="width: 100%; border: 1px solid #E2E2E2; margin-bottom: 15px;">
                     		<section style="margin-bottom: 10px; height: 70px;">
-                    			<div><span style="margin-left: 45px;margin-right: 45px;">출발시간/종류</span><span style="margin-right: 30px;">소요시간</span><span>도착시간</span></div>
+                    			<div><span style="margin-left: 30px;margin-right: 25px;">출발시간/종류</span><span style="margin-right: 30px;">소요시간</span><span>도착시간</span></div>
                     			<select id="trainStartTime" style="float: left;width: 120px;margin-left: 15px;" class="form-control form-select">
-                    				<option value="1">출발시간/종류</option>
+                    			<option value="" selected disabled hidden>출발시간/종류</option>
+                    				<option value="">출발역을 선택해주세요.</option>
 			                      </select>
 			                      <section style="float: left;margin-right: 20px;margin-left: 20px;">
 			                      	<div style="height: 22px;">-----></div>
@@ -423,7 +421,6 @@
                     			<div id="trainPrice">가격<span>/1인</span></div>
                     		</section>
                             <input style="width: 250px; margin: auto;" class="btn btn-primary d-block mb-4" type="submit" id="trainPay" value="예매하기">
-                       </form>
                        </div>
                     </div>
                 </div>
@@ -495,47 +492,47 @@
        					});
 	       			});
 	       		
-	       		
-	       		$("#trainPay").click(function(){
-	       			var start = $("#trainStartSta option:seleted").text(); // 출발역
-	       			var end = '${trainList.get(0).endsta}'; // 도착역
-	       			var time = $("#trainArrTime option:selected").text(); // 도착시간
-	       			
-	       			var date = $("#datepickerTrain").val();
-					var item = "기차 결제"; // 결제할 떄 제품명
-					var price = $("#trainPrice").html();
-					var count = $("#trainCount option:selected").text().replace("명",""); // 인원
-	       			var totalAmount = price * count;
-	       			
-					// 비행기 번호는 db에서 가져오기
-					
-	       			var type = 'train';
-	       			
-	       			 $.ajax({
-	       				type: 'GET',
-	       				url: '/pay/traffic',
-	       				data: {
-	       					start: start,
-	       					end: end,
-	       					time: time,
-	       					count: count,
-	       					date: date,
-	       					type: type,
-	       					total_amount: totalAmount,
-	       					itemName: item
-	       				},
-	       				
-	       				success:function(resp) {
-	       					window.open(resp.next_redirect_pc_url);
-	       				},
-	       				
-	       				error:function(e) {
-	       					console.log(e);
-	       				}
-	       			}); 
-	       		});
-	       	});
-       </script>
+	       		                                                                                                   
+	       		$("#trainPay").click(function(){                                                                   
+	       			var start = $("#trainStartSta option:selected").text(); // 출발역                              
+	       			var end = '${trainList.get(0).endsta}'; // 도착역                                              
+	       			var time = $("#trainStartTime option:selected").text().substring(0,5); // 도착시간                            
+	       			                                                                                               
+	       			var date = $("#datepickerTrain").val();                                                        
+					var price = $("#trainPrice").html().replace("원/1인","");                                      
+					var count = $("#trainCount option:selected").text().replace("명",""); // 인원                  
+	       			var totalAmount = price * count;                                                               
+					var item = "기차 " + count + "인" + " " + time; // 결제할 떄 제품명                            
+	       			                                                                                               
+					// 비행기 번호는 db에서 가져오기                                                               
+					                                                                                                    
+	       			var type = 'train';                                                                                 
+	       			                                                                                                    
+	       			 $.ajax({                                                                                           
+	       				type: 'GET',                                                                                    
+	       				url: '/pay/traffic',                                                                            
+	       				data: {                                                                                         
+	       					start: start,                                                                               
+	       					end: end,                                                                                   
+	       					time: time,                                                                                 
+	       					count: count,                                                                               
+	       					date: date,                                                                                 
+	       					type: type,                                                                                 
+	       					total_amount: totalAmount,                                                                  
+	       					itemName: item                                                                              
+	       				},                                                                                              
+	       				                                                                                                
+	       				success:function(resp) {                                                                        
+	       					window.open(resp.next_redirect_pc_url);                                                     
+	       				},                                                                                              
+	       				                                                                                                
+	       				error:function(e) {                                                                             
+	       					console.log(e);                                                                             
+	       				}                                                                                               
+	       			});                                                                                                 
+	       		});                                                                                                     
+	       	});                                                                                                         
+       </script>                                                                                                        
         
         <!-- 버스 예매 -->
         <div class="modal fade" id="modal-bus" tabindex="-1"> 
@@ -547,7 +544,6 @@
                         <hr style="width: 100%; color: grey;">
                     </div>
                     <div class="modal-body px-sm-5 px-4">
-                    	<form action="">
                     		<section style="height: 70px;margin-bottom: 20px;">
                     			<div style="margin-left: 45px;"><span>출발역</span> <span style="float: right;margin-right: 45px;">도착역</span></div>
                     			<select id="busStartSta" style="float: left; width: 150px;" class="form-control form-select">
@@ -585,6 +581,7 @@
                     			<div><span style="margin-left: 45px;margin-right: 45px;">출발시간</span><span style="margin-right: 30px;">소요시간</span><span>도착시간</span></div>
                     			<select id="busStartTime" style="float: left;width: 120px;margin-left: 15px;" class="form-control form-select">
                     			<option value="" selected disabled hidden>출발시간</option>
+                    				<option value="">출발역을 선택해주세요.</option>
 			                      </select>
 			                      <section style="float: left;margin-right: 20px;margin-left: 20px;">
 			                      	<div style="height: 22px;">-----></div>
@@ -598,7 +595,6 @@
                     			<div id="busPrice">가격<span>/1인</span></div>
                     		</section>
                             <input style="width: 250px; margin: auto;" class="btn btn-primary d-block mb-4" type="submit" id="busPay" value="예매하기">
-                       </form>
                        </div>
                     </div>
                 </div>
@@ -647,19 +643,19 @@
        					});
        				});
 	       		
-	       		$("#busPay").click(function(){
-	       			var start = $("#busStartSta option:seleted").text(); // 출발역
-	       			var end = '${busList.get(0).endsta}'; // 도착역
-	       			var time = $("#busStartTime option:selected").text(); // 버스는 출발시간
-	       			
-	       			var date = $("#datepickerBus").val();
-					var item = "버스 결제"; // 결제할 떄 제품명
-					var price = $("#busPrice").html();
-					var count = $("#busCount option:selected").text().replace("명",""); // 인원
-	       			var totalAmount = price * count;
-	       			
-					// 비행기 번호는 db에서 가져오기
-					
+	       		$("#busPay").click(function(){                                                                  
+	       			var start = $("#busStartSta option:selected").text(); // 출발역                             
+	       			var end = '${busList.get(0).endsta}'; // 도착역                                             
+	       			var time = $("#busStartTime option:selected").text(); // 버스 출발시간                      
+	       			                                                                                            
+	       			var date = $("#datepickerBus").val();                                                       
+					var price = $("#busPrice").html().replace("원/1인","");                                     
+					var count = $("#busCount option:selected").text().replace("명",""); // 인원                 
+	       			var totalAmount = price * count;                                                            
+					var item = "버스 " + count + "인" + " " + time; // 결제할 떄 제품명                         
+	       			                                                                                            
+					// 비행기 번호는 db에서 가져오기                                                            
+					                                                                                            
 	       			var type = 'bus';
 	       			
 	       			 $.ajax({

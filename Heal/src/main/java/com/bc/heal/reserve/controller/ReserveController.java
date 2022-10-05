@@ -142,17 +142,19 @@ public class ReserveController {
 	}
 	
 	@GetMapping("/delete")
-	public String deleteReserve(Model model, int no) {
+	public String deleteReserve(Model model, int no, HttpServletRequest req) {
 		int result = 0;
 		
 		result = service.delete(no);
 		
+		String location = req.getHeader("Referer");
+		
 		if(result > 0) {
 			model.addAttribute("msg", "삭제에 성공하였습니다.");
-			model.addAttribute("location", "/reserve/camp");
+			model.addAttribute("location", location);
 		} else {
 			model.addAttribute("msg", "삭제에 실패하였습니다.");
-			model.addAttribute("location", "/reserve/camp");
+			model.addAttribute("location", location);
 		}
 		
 		return "common/msg";
