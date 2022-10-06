@@ -48,8 +48,6 @@ public class BusController {
 			count++;
 		}
 		
-		System.out.println(list);
-		
 		return list;
 	}
 }

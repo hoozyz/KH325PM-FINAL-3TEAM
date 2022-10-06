@@ -129,7 +129,7 @@
                                <img class="d-block mx-auto" src="${path}/resources/images/logo/pjlogo11.png" width="344" alt="Illustartion">
                             </div>
                             <div>
-                                <form class="needs-validation" action="${path}/login" method="POST" novalidate="">
+                                <form class="needs-validation" action="${path}/login" method="POST">
                                     <div class="mb-4">
                                    		<div class="d-flex align-items-center justify-content-between mb-1">
                                        		<label class="form-label ms-3 mb-0" for="signin-email" style="font-size:20px;font-weight:700;font-family:'NanumSquareRound', sans-serif;">아이디</label>

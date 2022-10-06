@@ -29,9 +29,8 @@ public class ParkController {
 	}
 
 	@GetMapping("/parkList")
-	public String parkList(Model model, @RequestParam Map<String, String> param) {
+	public String parkList(Model model, @RequestParam Map<String, String> param) { 
 		
-		System.out.println(param);
 		int page = 1;
 		if(param.containsKey("page") == true) {
 			try {

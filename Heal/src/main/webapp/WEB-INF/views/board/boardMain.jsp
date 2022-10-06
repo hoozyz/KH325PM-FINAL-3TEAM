@@ -8,6 +8,105 @@
 	<jsp:param value="자유게시판" name="title"/>
 </jsp:include>
 
+<style>
+    .board tr {
+        cursor: pointer;
+    }
+    
+    .td-no,
+    .td-title,
+    .td-writer,
+    .td-date {
+        border-right: 1px solid lightgray;
+    }
+    
+    .board-page>a {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        color: #222;
+        line-height: 30px;
+        text-align: center;
+        background: #fff;
+        margin-right: 8px;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    
+    .board-page>.page-on {
+        border: 1px solid #293243;
+        background: #222;
+        color: #fff;
+        cursor: pointer;
+    }
+    
+    .board-page>.page-prev {
+        background-color: #fff;
+    }
+    
+    .board-page>.page-next {
+        background-color: #fff;
+    }
+    
+    .board-write>a {
+        background: #2a2a4e;
+        color: #fff;
+        padding: 3px 15px 3px;
+        display: inline-block;
+        text-align: center;
+        border-radius: 50px;
+        text-decoration: none;
+    }
+    
+    .board-data > tr {
+    	border-bottom: 1px solid lightgray; height: 70px;
+    }
+    
+    
+    
+    h1 {
+             font-family: 'Gugi', cursive;
+            font-weight: 800;
+            color: black;
+            font-size:50px;
+   }
+   a {
+   	text-decoration: none;
+   	color: black;
+   }     
+   
+   a:hover{
+   text-decoration: none;
+   	color: black;
+   }
+   *{
+       font-family: 'NanumSquareRound', sans-serif;
+       font-weight: 500;
+   
+   }
+   
+   .td-writer{
+   text-align:center;
+   }
+   
+   .td-no{
+   text-align:center;
+   }
+   
+   .td-date{
+   text-align:center;
+   }
+   
+   .td-count{
+   text-align:center;
+   }
+   
+   .td-title a{
+   margin-left: 10px;
+   }
+   
+</style>
+
 
 <!-- 글쓰기 팝업-->
         <div class="modal fade" id="write-modal" tabindex="-1" aria-hidden="true">
@@ -19,8 +118,8 @@
                             <div class="col-md-6 px-4 pt-2 pb-4 px-sm-5 pb-sm-5 pt-md-5" style="width: 100%;">
                                 <form class="needs-validation" action="${path}/board/write" method="POST">
                                     <div class="mb-4">
-                                        <label class="form-label mb-2" for="signin-name">이름</label>
-                                        <input class="form-control" name="name" type="text" placeholder="이름을 입력해주세요" required>
+                                        <label class="form-label mb-2" for="signin-name">아이디</label>
+                                        <input class="form-control" name="id" type="text" value="${loginMember.id}" readonly>
                                     </div>
                                     <div class="mb-4">
                                         <label class="form-label mb-2" for="signin-title">제목</label>
@@ -28,7 +127,7 @@
                                     </div>
                                     <div class="mb-4" style="height: 350px;">
                                         <label class="form-label mb-2" for="signin-content">내용</label>
-                                        <textarea class="form-control" style="height:320px; width:480px; word_wrap:break-word;" name="content" type="text" id="signin-content" placeholder="내용을 입력해주세요" required></textarea>
+                                        <textarea class="form-control" style="height:320px; width:480px; word_wrap:break-word;" name="cont" id="signin-content" placeholder="내용을 입력해주세요" required></textarea>
                                     </div>
                                     <div style="text-align: center;">
                                         <input class="btn  btn-lg rounded-pill" style="width:60%; color: #D9E2F2;background-color:#201627;" type="submit" value="게시글 작성">
@@ -52,7 +151,7 @@
                             <div class="col-md-6" style="width: 750px;padding-bottom: 20px;padding-right: 20px;padding-top: 20px;padding-left: 20px;height: 500px;">
                                 <form class="viewForm" method="POST">
                                 	<div class style="margin-bottom: 10px;">
-                                    NO. <input class="form-no" for="signup-name" name="boardNo" style="margin-left: 5px; border:none;" value="123" readonly>
+                                    NO. <input class="form-no" for="signup-name" name="no" style="margin-left: 5px; border:none;" value="123" readonly>
 	                                </div>
 	                                <div class style="margin-bottom: 10px; float: right;">
 	                                    <label class="form-label" for="signup-name">작성자 &nbsp; :&nbsp; 이름&nbsp;&nbsp;&nbsp;|</label>
@@ -64,7 +163,7 @@
 	                                </div>
 	                                <div class style="margin-bottom: 15px;">
 	                                    <label class="form-label" for="signup-name">&nbsp;&nbsp;내용</label>
-	                                    <textarea class="form-control" style="height:220px; width: 100%;" name="content" type="text" id="update-content" readonly>내용</textarea>
+	                                    <textarea class="form-control" style="height:220px; width: 100%;" name="cont" type="text" id="update-content" readonly>내용</textarea>
 	                                </div>
 	                                <div>
 	                                <input class="btn btn-primary btn-lg rounded-pill" formaction="${path}/board/delete" type="submit" value="삭제" style="float: right;margin-left: 15px;padding-left: 20px;padding-right: 20px;padding-top: 10px;padding-bottom: 10px;">
@@ -89,12 +188,18 @@
           </ol>
         </nav>
          <div class="bg-light shadow-sm rounded-3 p-4 p-md-5 mb-2">
-        <form method="GET" action="${path}/board/list"">
-        	<input type="hidden" id="pageNo" name="pageNo" val="" />
         	<section>
-            <div style="width: 1300px; margin: auto; margin-bottom:30px;">
-                <h1>자유게시판</h1>
+            <div style="margin: auto; margin-bottom:30px;">
+            <span style="float: left;"><h1>자유게시판</h1></span>
+            <span style="float:right; margin-top: 15px;"> 
+            <div class="form-group mb-lg-2 rounded-pill" style="height: 40px;width: 300px;float: left;">
+                <div class="input-group">
+                    <input class="form-control" type="text" id="keyword" placeholder="검색어를 입력하세요">
+                    <button class="input-group-text text-muted" onclick="search()"><i class="fi-search"></i></button>
+                </div>
             </div>
+            </span>
+
 
             <div>
                 <table class="board" style="width:1200px; margin-top: 30px; margin: 0 auto; border-top: 1px solid black;">
@@ -106,7 +211,7 @@
                         <th style="width:8%;">조회수</th>
                     </tr>
                     <!-- 공지사항 3개 -->
-                    <tr style="background-color: #c1c1c1; width: 100%; height: 70px; border-bottom: 1px solid lightgray;">
+                    <!-- <tr style="background-color: #c1c1c1; width: 100%; height: 70px; border-bottom: 1px solid lightgray;">
                     	<td class="td-no"></td>
                     	<td class="td-title">
                     	<span style="color:#AB69DD; font-weight:800; margin-right:6px; margin-left:10px;">뉴스</span>
@@ -135,31 +240,48 @@
                     	<td class="td-writer">관리자</td>
                     	<td class="td-date"></td>
                     	<td class="td-count"></td>
-                    </tr>
+                    </tr> -->
                     <tbody class="board-data">
-                        		<tr style="width: 100%; height: 70px; background-color: #f1f1f1;">
-	                            <td class="td-no"></td>
+                    	<c:if test="${!empty boardList}">
+                    		<c:forEach var="i" begin="0" end="${boardList.size() -1}">
+                    			<tr style="width: 100%; height: 70px; background-color: #f1f1f1;">
+	                            <td class="td-no">${boardList.get(i).no}</td>
 	                            <td class="td-title">
-	                            <a href="#view-modal" data-bs-toggle="modal" data-bs-dismiss="modal" onclick="goView(); return false;"></a>
+	                            <a href="#view-modal" data-bs-toggle="modal" data-bs-dismiss="modal" onclick="goView(${boardList.get(i).no}); return false;">${boardList.get(i).title}</a>
 	                            </td>
-	                            <td class="td-writer"></td>
-	                            <td class="td-date"></td>
-	                            <td class="td-count"></td>
+	                            <td class="td-writer">${boardList.get(i).memberno}</td>
+	                            <td class="td-date">${boardList.get(i).createdate}</td>
+	                            <td class="td-count">${boardList.get(i).readcount}</td>
 	                        	</tr>
+                    		</c:forEach>
+                    	</c:if>
                     </tbody>
                 </table>
             </div>
+            
+            <c:if test="${loginMember != null}">
             	<div class="board-write" style="padding-top: 20px; height: 60px; margin: 0 auto; width: 1200px;">
                 	<a href="#write-modal" data-bs-toggle="modal" data-bs-dismiss="modal" style="float: right;">글쓰기</a>
             	</div>
-            		<div class="board-write" style="padding-top: 20px; height: 60px; margin: 0 auto; width: 1200px;">
+            </c:if>
+            <c:if test="${loginMember == null}">
+                <div class="board-write" style="padding-top: 20px; height: 60px; margin: 0 auto; width: 1200px;">
                 	<a href="#signin-modal" data-bs-toggle="modal" data-bs-dismiss="modal" style="float: right;">글쓰기</a>
             	</div>
-            <div class="board-bottom" style="width:1300px; margin: 0 auto; padding-top: 15px;">
+            </c:if>
+            <div class="board-bottom" style="width: 100%; margin: 0 auto; padding-top: 15px;">
+                <div class="board-page" style="text-align: center;">
+	                <a class="page-on" id="page(1)" style="margin-left: 72px;" onclick="goPage(1); return false;">1</a>
+	                <c:if test="${pageInfo.getEndPage() > 1}">
+	                	<c:forEach var="i" begin="2" end="${pageInfo.getEndPage()}">
+	                		<a class="page" id="page(${i})" onclick="goPage(${i}); return false;">${i}</a>
+	                	</c:forEach>
+	                </c:if>
+	                <a class="page-next" onclick="goPage(${pageInfo.getNextPage()}); return false;"><i class="fi-chevron-right align-middle"></i></a>
+	                <a class="page-end" onclick="goPage(${pageInfo.getMaxPage()}); return false;"><i class="fi-chevrons-right align-middle"></i></a>
                 </div>
             </div>
         </section>
-        </form>
         </div>
         </div>
         
@@ -174,34 +296,181 @@
         		}
         	}
         	
+        	function search() {
+        		var keyword = $("#keyword").val();
+        		
+        		$.ajax({
+        			url: "${path}/board/list",
+        			type: 'GET',
+        			data: {
+        				page: 1,
+        				keyword: keyword
+        			},
+        			
+        			success:function(map) {
+        				str = "";
+        				var list = map.list;
+        				var pageInfo = map.pageInfo;
+        				
+        				$.each(list, function (i, obj) { // list.get(i) = obj
+        					str += '<tr style="width: 100%; height: 70px; background-color: #f1f1f1;">                                                                       '
+                            str += '<td class="td-no">'+ obj.no +'</td>                                                                                            '
+                            str += '<td class="td-title">                                                                                                                    '
+                            str += '<a href="#view-modal" data-bs-toggle="modal" data-bs-dismiss="modal" onclick="goView('+ obj.no +'}); return false;">'+ obj.title +'</a>     '
+                            str += '</td>                                                                                                                                    '
+                            str += '<td class="td-writer">'+ obj.memberno +'</td>                                                                                  '
+                            str += '<td class="td-date">'+ obj.createdate +'</td>                                                                                  '
+                            str += '<td class="td-count">'+ obj.readcount +'</td>                                                                                  '
+                        	str += '</tr>                                                                                                                                    '
+        				});
+        				
+        				$(".board-data").html(str);
+        				
+        				var maxPage =     pageInfo.maxPage     ;
+             			var startPage =   pageInfo.startPage   ;
+             			var endPage =     pageInfo.endPage     ;
+             			var currentPage = pageInfo.currentPage ;
+             			var prevPage =    pageInfo.prevPage    ;
+             			var nextPage =    pageInfo.nextPage    ;
+             			var startList =   pageInfo.startList   ;
+             			var endList =     pageInfo.endList     ;  
+
+             			str = ""; 
+             			var prevEndPage = endPage;
+             			
+     	        		if(currentPage != 1) {
+     	            		str += '<a class="page-first" onclick="goPage(1); return false;"><i class="fi-chevrons-left align-middle"></i></a>';
+     	            		str += '<a class="page-prev" onclick="goPage('+ prevPage +'); return false;"><i class="fi-chevron-left align-middle"></i></a>';
+     	            	} else {
+     	            		str += '<a class="page-on" id="page(1)" style="margin-left: 80px;" onclick="goPage(1); return false;">1</a>';
+     	            	}
+     	
+     	            	for (var i = startPage; i <= endPage; i++) { // 페이지 5개마다 페이지 바뀜
+     	            		if(currentPage == 1 && i == 1) {
+     	            			continue;
+     	            		}
+     	            		if(i == currentPage) {
+     	            			str += '<a class="page-on" id="page('+ i +')" onclick="goPage('+ i +'); return false;">'+ i +'</a>';
+     	            		} else {
+     	            			str += '<a class="page" id="page'+ i +'" onclick="goPage('+ i +'); return false;">'+ i +'</a>';
+     	            		}
+     	            	}
+     	
+     	            	if(currentPage != maxPage) {
+     	            		str += '<a class="page-next" onclick="goPage('+ nextPage +'); return false;"><i class="fi-chevron-right align-middle"></i></a>';
+     	            		str += '<a class="page-end" onclick="goPage('+ maxPage +'); return false;"><i class="fi-chevrons-right align-middle"></i></a>';
+     	            	}
+             			
+             			$('.board-page').html(str);
+        				
+        			},
+        			
+        			error:function(e) {
+        				console.log(e)
+        			}
+        		}); 
+        	}
         	
-             
-             
+        	function goPage(no) {
+        		var page = no;
+        		var keyword = $("#keyword").val(); // 페이지에 그대로 있는 keyword 가져오기
+        		
+        		$.ajax({
+        			url: "${path}/board/list",
+        			type: 'GET',
+        			data: {
+        				page: page,
+        				keyword: keyword
+        			},
+        			
+        			success:function(map) {
+        				str = "";
+        				var list = map.list;
+        				var pageInfo = map.pageInfo;
+        				
+        				$.each(list, function (i, obj) { // list.get(i) = obj
+        					str += '<tr style="width: 100%; height: 70px; background-color: #f1f1f1;">                                                                       '
+                            str += '<td class="td-no">'+ obj.no +'</td>                                                                                            '
+                            str += '<td class="td-title">                                                                                                                    '
+                            str += '<a href="#view-modal" data-bs-toggle="modal" data-bs-dismiss="modal" onclick="goView('+ obj.no +'); return false;">'+ obj.title +'</a>     '
+                            str += '</td>                                                                                                                                    '
+                            str += '<td class="td-writer">'+ obj.memberno +'</td>                                                                                  '
+                            str += '<td class="td-date">'+ obj.createdate +'</td>                                                                                  '
+                            str += '<td class="td-count">'+ obj.readcount +'</td>                                                                                  '
+                        	str += '</tr>                                                                                                                                    '
+        				});
+        				
+        				$(".board-data").html(str);
+        				
+        				var maxPage =     pageInfo.maxPage     ;
+             			var startPage =   pageInfo.startPage   ;
+             			var endPage =     pageInfo.endPage     ;
+             			var currentPage = pageInfo.currentPage ;
+             			var prevPage =    pageInfo.prevPage    ;
+             			var nextPage =    pageInfo.nextPage    ;
+             			var startList =   pageInfo.startList   ;
+             			var endList =     pageInfo.endList     ;  
+
+             			str = ""; 
+             			var prevEndPage = endPage;
+             			
+     	        		if(currentPage != 1) {
+     	            		str += '<a class="page-first" onclick="goPage(1); return false;"><i class="fi-chevrons-left align-middle"></i></a>';
+     	            		str += '<a class="page-prev" onclick="goPage('+ prevPage +'); return false;"><i class="fi-chevron-left align-middle"></i></a>';
+     	            	} else {
+     	            		str += '<a class="page-on" id="page(1)" style="margin-left: 80px;" onclick="goPage(1); return false;">1</a>';
+     	            	}
+     	
+     	            	for (var i = startPage; i <= endPage; i++) { // 페이지 5개마다 페이지 바뀜
+     	            		if(currentPage == 1 && i == 1) {
+     	            			continue;
+     	            		}
+     	            		if(i == currentPage) {
+     	            			str += '<a class="page-on" id="page('+ i +')" onclick="goPage('+ i +'); return false;">'+ i +'</a>';
+     	            		} else {
+     	            			str += '<a class="page" id="page'+ i +'" onclick="goPage('+ i +'); return false;">'+ i +'</a>';
+     	            		}
+     	            	}
+     	
+     	            	if(currentPage != maxPage) {
+     	            		str += '<a class="page-next" onclick="goPage('+ nextPage +'); return false;"><i class="fi-chevron-right align-middle"></i></a>';
+     	            		str += '<a class="page-end" onclick="goPage('+ maxPage +'); return false;"><i class="fi-chevrons-right align-middle"></i></a>';
+     	            	}
+             			
+             			$('.board-page').html(str);
+        			},
+        			
+        			error:function(e) {
+        				console.log(e)
+        			}
+        		});
+        	};
+        	
              // 바로 정보 팝업하는 ajax
             	function goView(no) {
              	
 	             	$.ajax({
 	         			url: "${path}/board/view",
-	         			type: "POST",
-	         			dataType: "text",
-	         			data: { "boardNo" : no },
-	         			progress: true,
+	         			type: "GET",
+	         			data: { 
+	         				no: no 
+	         			},
 	             	
 	         			success: function(list) {
-	         				var board = JSON.parse(list);
+	         				console.log(list)
 	             			var str = "";
 	             			
-	     					var boardNo = board[0].board_no;
-	     					var user_id = board[0].user_id;
-	     					var name = board[0].name;
-	     					var title = board[0].title;
-	     					var content = board[0].content;
-	     					var readcount = board[0].readcount;
-	     					var create_date = board[0].create_date;
-	     					var modify_date = board[0].modify_date;
+	     					var no = list.no;
+	     					var memberno = list.memberno;
+	     					var id = list.id; // 게시글 작성자
+	     					var title = list.title;
+	     					var cont = list.cont;
+	     					var readcount = list.readcount;
+	     					var createdate = list.createdate;
+	     					var modifydate = list.modifydate;
 	     					var url1 = "${path}/board/update";
 	     					var url2 = "${path}/board/delete";
-	     					var checkId = board[0].userId;
+	     					var checkId = '${loginMember.id}'; // 작성자 체크 -> 로그인 유저
 	     					
 	     					
 	             			str += '<button class="btn-close position-absolute top-0 end-0 mt-3 me-3" type="button" data-bs-dismiss="modal"></button>'
@@ -209,14 +478,14 @@
 	             			str += '           <div class="col-md-6" style="width: 750px;padding-bottom: 20px;padding-right: 20px;padding-top: 20px;padding-left: 20px;height: 500px;">'
 	             			str += '           <form class="viewForm" action method="POST">'
 	             			str += '           	<div class style="margin-bottom: 10px; margin-left: 5px;">'
-	             			str += 'NO. <input class="form-no" for="signup-name" name="boardNo" style="margin-left: 5px; border:none;" value="'+ boardNo +'" readonly>';
+	             			str += 'NO. <input class="form-no" for="signup-name" name="boardNo" style="margin-left: 5px; border:none;" value="'+ no +'" readonly>';
 	             			str += '            </div>'
 	             			str += '            <div class style="margin-bottom: 10px; float: right;">'
-	             			str += '                <label class="form-label" for="signup-name">작성자 &nbsp; :&nbsp;' + name +'&nbsp;&nbsp;&nbsp;|</label>'
-	             			str += '                <label class="form-label" for="signup-email">&nbsp;&nbsp;&nbsp;날짜 &nbsp;:&nbsp;'+ modify_date +'</label>'
+	             			str += '                <label class="form-label" for="signup-name">작성자 &nbsp; :&nbsp;' + id +'&nbsp;&nbsp;&nbsp;|</label>'
+	             			str += '                <label class="form-label" for="signup-email">&nbsp;&nbsp;&nbsp;날짜 &nbsp;:&nbsp;'+ modifydate +'</label>'
 	             			str += '            </div>'
 	             			
-	             			if(checkId == user_id) {
+	             			if(checkId == id) {
 	             				console.log('게시글 작성자입니다.')
 	             				
 	             				str += '            <div class style="margin-bottom: 20px;">'
@@ -225,7 +494,7 @@
 	                     		str += '            </div>'
 	                     		str += '            <div class style="margin-bottom: 15px;">'
 	                     		str += '                <label class="form-label" for="signup-name">&nbsp;&nbsp;내용</label>'
-	                     		str += '                <textarea class="form-control" style="height:220px; width: 100%;" name="content" type="text" value="">'+ content +'</textarea>'
+	                     		str += '                <textarea class="form-control" style="height:220px; width: 100%;" name="cont" type="text" value="">'+ cont +'</textarea>'
 	                     		str += '         	</div>'
 	                     		str += '   <div>'
 	                     		str += '     <input class="btn  btn-lg rounded-pill" onclick="deleteBoard()" type="submit" value="삭제" style="color: #D9E2F2;background-color:#201627; float: right; margin-left: 15px;padding-left: 20px;padding-right: 20px;padding-top: 10px;padding-bottom: 10px;">'
@@ -242,7 +511,7 @@
 	     	                    str += '         </div>'
 	     	                    str += '         <div class style="margin-bottom: 15px;">'
 	     	                    str += '             <label class="form-label" for="signup-name">&nbsp;&nbsp;내용</label>'
-	     	                    str += '             <textarea class="form-control" style="height:220px; width: 100%;" name="content" type="text" value="" readonly>'+ content +'</textarea>'
+	     	                    str += '             <textarea class="form-control" style="height:220px; width: 100%;" name="cont" type="text" value="" readonly>'+ cont +'</textarea>'
 	     	                    str += '         </div>'
 	     	                    str += '   <div>'
 	     	                    	str += '     <input class="btn  btn-lg rounded-pill" onclick="deleteBoard()" type="submit" value="삭제" style="color: #D9E2F2;background-color:#201627; float: right; margin-left: 15px;padding-left: 20px;padding-right: 20px;padding-top: 10px;padding-bottom: 10px;">'
@@ -255,7 +524,7 @@
 	     	                    str += '         </div>'
 	     	                    str += '         <div class style="margin-bottom: 15px;">'
 	     	                    str += '             <label class="form-label" for="signup-name">&nbsp;&nbsp;내용</label>'
-	     	                    str += '             <textarea class="form-control" style="height:220px; width: 100%;" name="content" type="text"  value="" readonly>'+ content +'</textarea>'
+	     	                    str += '             <textarea class="form-control" style="height:220px; width: 100%;" name="cont" type="text"  value="" readonly>'+ cont +'</textarea>'
 	     	                    str += '         </div>'
 	     	                    str += '</form>'
 	             			}

@@ -14,5 +14,6 @@ public class Board {
 	private int readcount;
 	private String createdate;
 	private String modifydate;
+	private String id;
 	private int memberno;
 }

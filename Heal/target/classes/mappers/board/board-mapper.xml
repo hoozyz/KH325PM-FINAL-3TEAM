@@ -11,6 +11,7 @@
 		<result property="readcount" column="READCOUNT"/>
 		<result property="createdate" column="CREATEDATE"/>
 		<result property="modifydate" column="MODIFYDATE"/>
+		<result property="id" column="ID"/>
 		<result property="memberno" column="MEMBERNO"/>
 	</resultMap>
 	
@@ -29,37 +30,35 @@
 			READCOUNT,
 			CREATEDATE,
 			MODIFYDATE,
+			ID,
 			MEMBERNO		
 		) VALUES (
 			BOARD_SEQ.NEXTVAL,
 			#{title},
 			#{cont},
 			#{readcount},
-			#{createdate},
-			#{modifydate},
+			SYSDATE,
+			SYSDATE,
+			#{id},
 			#{memberno}
 		)
 	</insert>
 	
-	<select id="getBoardList" parameterType="string" resultMap="boardResultMap">
- 		SELECT NO, 
- 			   TITLE, 
- 			   CONT, 
- 			   READCOUNT, 
- 			   CREATEDATE, 
- 			   MODIFYDATE, 
- 			   MEMBERNO 
- 		FROM (SELECT ROWNUM NUM,
- 						    NO, 
- 						    TITLE, 
- 						    CONT, 
- 						    READCOUNT, 
- 						    CREATEDATE, 
- 						    MODIFYDATE, 
- 						    MEMBERNO 
- 						    FROM (SELECT * 
- 			  FROM TBL_BOARD WHERE TITLE LIKE #{keyword} OR CONT LIKE #{keyword} ORDER BY NO DESC))
-		WHERE NUM BETWEEN #{start} AND #{end}
+	<select id="selectByNo" parameterType="int" resultMap="boardResultMap">
+ 		SELECT *
+ 		FROM TBL_BOARD
+ 		WHERE NO = #{no}
+	</select>
+	
+	<select id="selectBoardList" parameterType="map" resultMap="boardResultMap">
+ 		SELECT *
+ 		FROM TBL_BOARD
+ 		WHERE 1=1
+ 		<if test="keyword != null">
+ 			AND TITLE LIKE '%'||#{keyword}||'%'
+ 			AND CONT LIKE '%'||#{keyword}||'%'
+ 		</if>
+ 		ORDER BY NO DESC
 	</select>
 	
 	<select id="getBoardCount" parameterType="string" resultType="int">
@@ -68,10 +67,23 @@
  		WHERE TITLE LIKE #{keyword} OR CONT LIKE #{keyword}
 	</select>
 	
+	<select id="getBoardCountAll" parameterType="string" resultType="int">
+ 		SELECT COUNT(*)
+ 		FROM TBL_BOARD
+	</select>
+	
 	<delete id="delete" parameterType="int">
  		DELETE  
  		TBL_BOARD
  		WHERE NO = #{no}
 	</delete>
+	
+	<update id="update" parameterType="string">
+		UPDATE TBL_BOARD SET TITLE = #{title} AND CONT = #{cont} AND MODIFYDATE = SYSDATE
+	</update>
+	
+	<update id="countPlus" parameterType="int">
+		UPDATE TBL_BOARD SET READCOUNT = #{count} WHERE NO = #{no}
+	</update>
 	
 </mapper>

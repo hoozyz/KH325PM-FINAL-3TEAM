@@ -27,11 +27,11 @@
 		FROM TBL_PARK
 		WHERE 1=1
 		<if test="keyword != null">
-		AND NAME LIKE '%'||#{keyword}||'%'
+			AND NAME LIKE '%'||#{keyword}||'%'
 		<if test="cityKeyword != null">
-		AND ADDR LIKE '%'||#{cityKeyword}||'%'
+			AND ADDR LIKE '%'||#{cityKeyword}||'%'
 		<if test="categoryKeyword != null">
-		AND CATEGORY LIKE '%'||#{categoryKeyword}||'%'
+			AND CATEGORY LIKE '%'||#{categoryKeyword}||'%'
 		</if>
 		</if>
 		</if>
