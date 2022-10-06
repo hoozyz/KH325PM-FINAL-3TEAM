@@ -39,6 +39,13 @@ public class BoardController {
 		return "/member/myBoard";
 	}
 	
+	@GetMapping("/main")
+	public String list(Model model) {
+		model.addAttribute("boardList", "");
+		
+		return "/board/boardMain";
+	}
+	
 	@GetMapping("/delete")
 	public String delete(Model model, int no, HttpServletRequest req) {
 		int result = 0;
