@@ -113,115 +113,43 @@
               <hr class="d-none d-sm-block w-100 mx-4">
               <div class="d-none d-sm-flex align-items-center flex-shrink-0 text-muted"><i class="fi-check-circle me-2"></i><span class="fs-sm mt-n1">148 results</span></div>
             </div>
+            
+            
             <!-- Catalog grid-->
             <div class="row g-4 py-4">
-              <!-- Item-->
-              <div class="col-sm-6">
-                <div class="card card-light card-hover h-100">
-                  <div class="card-img-top card-img-hover"style="border: 1px;">
-                    <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info">카테고리</span></div>
-                    <div class="tns-carousel-inner"><img src="img/car-finder/catalog/01.jpg" alt="Image"></div>
-                  </div>
-                  <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm me-3" style="color: black;">전화번호</span>
-                    </div>
-                    <h3 class="h5" style="margin-bottom: 10px;"><a class="nav-link" href="car-finder-single.html">공원명</a></h3>
-                    <div class="h6 fw-bold" style="margin-bottom: 20px;">주소</div>
-                    <hr>
-                    <div class="h6 card-footer align-items-center justify-content-center">운동시설(없으면 없어지게)</div>
-                  </div>
-                </div>
-              </div>
-            <!-- Item-->
-            <div class="col-sm-6">
-              <div class="card card-light card-hover h-100">
-                <div class="card-img-top card-img-hover"style="border: 1px;">
-                  <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info">카테고리</span></div>
-                  <div class="tns-carousel-inner"><img src="img/car-finder/catalog/01.jpg" alt="Image"></div>
-                </div>
-                <div class="card-body">
-                  <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm me-3" style="color: black;">전화번호</span>
-                  </div>
-                  <h3 class="h5" style="margin-bottom: 10px;"><a class="nav-link" href="car-finder-single.html">공원명</a></h3>
-                  <div class="h6 fw-bold" style="margin-bottom: 20px;">주소</div>
-                  <hr>
-                  <div class="h6 card-footer align-items-center justify-content-center">운동시설(없으면 없어지게)</div>
-                </div>
-              </div>
-            </div>
-            <!-- Item-->
-            <div class="col-sm-6">
-              <div class="card card-light card-hover h-100">
-                <div class="card-img-top card-img-hover"style="border: 1px;">
-                  <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info">카테고리</span></div>
-                  <div class="tns-carousel-inner"><img src="img/car-finder/catalog/01.jpg" alt="Image"></div>
-                </div>
-                <div class="card-body">
-                  <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm me-3" style="color: black;">전화번호</span>
-                  </div>
-                  <h3 class="h5" style="margin-bottom: 10px;"><a class="nav-link" href="car-finder-single.html">공원명</a></h3>
-                  <div class="h6 fw-bold" style="margin-bottom: 20px;">주소</div>
-                  <hr>
-                  <div class="h6 card-footer align-items-center justify-content-center">운동시설(없으면 없어지게)</div>
-                </div>
-              </div>
-            </div>
-            <!-- Item-->
-            <div class="col-sm-6">
-              <div class="card card-light card-hover h-100">
-                <div class="card-img-top card-img-hover"style="border: 1px;">
-                  <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info">카테고리</span></div>
-                  <div class="tns-carousel-inner"><img src="img/car-finder/catalog/01.jpg" alt="Image"></div>
-                </div>
-                <div class="card-body">
-                  <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm me-3" style="color: black;">전화번호</span>
-                  </div>
-                  <h3 class="h5" style="margin-bottom: 10px;"><a class="nav-link" href="car-finder-single.html">공원명</a></h3>
-                  <div class="h6 fw-bold" style="margin-bottom: 20px;">주소</div>
-                  <hr>
-                  <div class="h6 card-footer align-items-center justify-content-center">운동시설(없으면 없어지게)</div>
-                </div>
-              </div>
-            </div>
-            <!-- Item-->
-            <div class="col-sm-6">
-              <div class="card card-light card-hover h-100">
-                <div class="card-img-top card-img-hover"style="border: 1px;">
-                  <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info">카테고리</span></div>
-                  <div class="tns-carousel-inner"><img src="img/car-finder/catalog/01.jpg" alt="Image"></div>
-                </div>
-                <div class="card-body">
-                  <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm me-3" style="color: black;">전화번호</span>
-                  </div>
-                  <h3 class="h5" style="margin-bottom: 10px;"><a class="nav-link" href="car-finder-single.html">공원명</a></h3>
-                  <div class="h6 fw-bold" style="margin-bottom: 20px;">주소</div>
-                  <hr>
-                  <div class="h6 card-footer align-items-center justify-content-center">운동시설(없으면 없어지게)</div>
-                </div>
-              </div>
-            </div>
-            <!-- Item-->
-            <div class="col-sm-6">
-              <div class="card card-light card-hover h-100">
-                <div class="card-img-top card-img-hover"style="border: 1px;">
-                  <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info">카테고리</span></div>
-                  <div class="tns-carousel-inner"><img src="img/car-finder/catalog/01.jpg" alt="Image"></div>
-                </div>
-                <div class="card-body">
-                  <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm me-3" style="color: black;">전화번호</span>
-                  </div>
-                  <h3 class="h5" style="margin-bottom: 10px;"><a class="nav-link" href="car-finder-single.html">공원명</a></h3>
-                  <div class="h6 fw-bold" style="margin-bottom: 20px;">주소</div>
-                  <hr>
-                  <div class="h6 card-footer align-items-center justify-content-center">운동시설(없으면 없어지게)</div>
-                </div>
-              </div>
-            </div>
+            
+            	<c:if test="${empty list}">
+            	</c:if>
+            	<c:if test="${!empty list}">
+		            <c:forEach var="park" items="${list}">
+		              <!-- Item-->
+		              <div class="col-sm-6">
+		                <div class="card card-light card-hover h-100">
+		                  <div class="card-img-top card-img-hover"style="border: 1px;">
+		                    <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info"><c:out value="${park.category}"/></span></div>
+		                    <div class="tns-carousel-inner"><img src="img/car-finder/catalog/01.jpg" alt="Image"></div>
+		                  </div>
+		                  <div class="card-body">
+		                    <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm me-3" style="color: black;"><c:out value="${park.category}"/></span>
+		                    </div>
+		                    <h3 class="h5" style="margin-bottom: 10px;"><a class="nav-link" href="car-finder-single.html"><c:out value="${park.name}"/></a></h3>
+		                    <div class="h6 fw-bold" style="margin-bottom: 20px;"><c:out value="${park.addr}"/></div>
+		                    <hr>
+		                    <div class="h6 card-footer align-items-center justify-content-center">운동시설(없으면 없어지게)</div>
+		                  </div>
+		                </div>
+		              </div>
+		            </c:forEach>
+	            </c:if>
             </div>
             <!-- Pagination-->
             <nav class="border-top pb-md-4 pt-4 mt-2" aria-label="Pagination">
               <ul class="pagination mb-1">
                 <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 5</span></li>
+                <!-- 10개 페이지 목록 -->
+                <c:forEach begin="${pageInfo.startPage}" end="${pageInfo.endPage}" step="1" varStatus="status">
+                	<c:if test="${pageInfo.currentPage == status.current}"></c:if>
+                </c:forEach>
                 <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="visually-hidden">(current)</span></span></li>
                 <li class="page-item d-none d-sm-block"><a class="page-link" href="#">2</a></li>
                 <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li>

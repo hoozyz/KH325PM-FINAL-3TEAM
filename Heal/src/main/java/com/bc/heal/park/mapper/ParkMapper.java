@@ -1,12 +1,17 @@
 package com.bc.heal.park.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
+import java.util.List;
+import java.util.Map;
 
-import com.bc.heal.vo.Camp;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.session.RowBounds;
+
 import com.bc.heal.vo.Park;
 
 @Mapper
 public interface ParkMapper {
+	List<Park> selectParkList(RowBounds rowbounds, Map<String, String> map);
+	int selectParkCount(Map<String, String> Map);
 	Park selectByNo(int no);
 	
 }

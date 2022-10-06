@@ -20,5 +20,37 @@
  		FROM TBL_PARK
  		WHERE NO = #{no}
 	</select>
+
+
+	<select id="selectParkCount" resultType="int" parameterType="map">
+		SELECT COUNT(*)
+		FROM TBL_PARK
+		WHERE 1=1
+		<if test="keyword != null">
+		AND NAME LIKE '%'||#{keyword}||'%'
+		<if test="cityKeyword != null">
+		AND ADDR LIKE '%'||#{cityKeyword}||'%'
+		<if test="categoryKeyword != null">
+		AND CATEGORY LIKE '%'||#{categoryKeyword}||'%'
+		</if>
+		</if>
+		</if>
+				ORDER BY NO DESC
+	</select>
 	
+	<select id="selectParkList" parameterType="map" resultMap="parkResultMap">
+		SELECT *
+		FROM TBL_PARK
+		WHERE 1=1
+		<if test="keyword != null">
+			AND NAME LIKE '%'||#{keyword}||'%'
+			<if test="cityKeyword != null">
+				AND ADDR LIKE '%'||#{cityKeyword}||'%'
+				<if test="categoryKeyword != null">
+					AND CATEGORY LIKE '%'||#{categoryKeyword}||'%'
+					</if>
+				</if>
+		</if>
+				ORDER BY NO DESC
+	</select>
 </mapper>

@@ -22,6 +22,32 @@
  		WHERE MEMBERNO = #{no}
 	</select>
 	
+	<select id="selectByThree" resultMap="photoResultMap"> <!-- 최신 3개 가져오기 -->
+ 		SELECT NO,
+			TITLE,
+			CONT,
+			READCOUNT,
+			CATEGORY,
+			ORIGINALFILE,
+			RENAMEFILE,
+			CREATEDATE,
+			MODIFYDATE,
+			MEMBERNO	
+ 		(SELECT ROWNUM NUM,
+ 				NO,
+				TITLE,
+				CONT,
+				READCOUNT,
+				CATEGORY,
+				ORIGINALFILE,
+				RENAMEFILE,	
+				CREATEDATE,
+				MODIFYDATE,
+				MEMBERNO	
+ 		FROM (SELECT * FROM TBL_PHOTO ORDER BY NO DESC))
+ 		WHERE NUM BETWEEN 1 AND 3
+	</select>
+	
 	<insert id="insert" parameterType="Photo"
 			useGeneratedKeys="true" keyProperty="no" keyColumn="NO">
 		INSERT INTO TBL_BOARD (

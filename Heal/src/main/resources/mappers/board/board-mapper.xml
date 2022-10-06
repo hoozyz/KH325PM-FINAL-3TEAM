@@ -41,6 +41,33 @@
 		)
 	</insert>
 	
+	<select id="getBoardList" parameterType="string" resultMap="boardResultMap">
+ 		SELECT NO, 
+ 			   TITLE, 
+ 			   CONT, 
+ 			   READCOUNT, 
+ 			   CREATEDATE, 
+ 			   MODIFYDATE, 
+ 			   MEMBERNO 
+ 		FROM (SELECT ROWNUM NUM,
+ 						    NO, 
+ 						    TITLE, 
+ 						    CONT, 
+ 						    READCOUNT, 
+ 						    CREATEDATE, 
+ 						    MODIFYDATE, 
+ 						    MEMBERNO 
+ 						    FROM (SELECT * 
+ 			  FROM TBL_BOARD WHERE TITLE LIKE #{keyword} OR CONT LIKE #{keyword} ORDER BY NO DESC))
+		WHERE NUM BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="getBoardCount" parameterType="string" resultType="int">
+ 		SELECT COUNT(*)
+ 		FROM TBL_BOARD
+ 		WHERE TITLE LIKE #{keyword} OR CONT LIKE #{keyword}
+	</select>
+	
 	<delete id="delete" parameterType="int">
  		DELETE  
  		TBL_BOARD

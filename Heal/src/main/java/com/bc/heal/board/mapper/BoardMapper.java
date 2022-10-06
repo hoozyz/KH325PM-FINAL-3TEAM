@@ -10,4 +10,6 @@ public interface BoardMapper {
 	int delete(int no);
 
 	int insert(Board board);
+
+	int getBoardCount(String keyword);
 }

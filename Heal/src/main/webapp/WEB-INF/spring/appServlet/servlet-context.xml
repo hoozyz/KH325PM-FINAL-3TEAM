@@ -29,28 +29,4 @@
 		 어노테이션 스캔이후 다시 트랜잭션 매니저를 생성하기 위해서 재선언이 필요  -->
 	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
 	
-	<!-- 인터셉터 사용을 위한 선언 -->
-	<interceptors>
-	 	<interceptor>
-	 		<!-- 인터셉터를 적용시켜야 할 URL(컨트롤러) 선택 -->
-<!-- 		<mapping path="/member/view"/>
-			<mapping path="/member/update"/> -->
-			
-			<mapping path="/member/**"/>
-			<mapping path="/board/**"/>
-			
-			<!-- 인터셉터를 제외할 URL(컨트롤) 선택 -->
-			<!-- 로그인이 없이도 사용할수 있는 기능 -->
-			<exclude-mapping path="/member/enroll"/>
-			<exclude-mapping path="/member/idCheck"/>
-			<exclude-mapping path="/board/list"/>
-			<exclude-mapping path="/board/view"/>
-			<exclude-mapping path="/board/fileDown"/>
-			
-			<!-- 인터셉터 등록 -->
-			<beans:bean id="loginCheckInterceptor" class="com.bc.heal.common.interceptor.LoginCheckInterceptor" />
-	 	</interceptor>
-	 </interceptors>
-	
-	
 </beans:beans>

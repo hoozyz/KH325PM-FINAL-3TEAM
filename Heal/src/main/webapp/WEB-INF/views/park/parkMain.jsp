@@ -150,16 +150,16 @@
                     <div class="col-xl-8 col-lg-9 col-md-10 mx-auto px-0">
                         <!-- @@@@@@ 검색창 시작 @@@@@@-->
 
-                        <form class="form-group d-block">
+                        <form class="form-group d-block" action="${path}/park/parkList" method="GET">
                             <div class="row g-0">
                                 <div class="col-md-10 d-sm-flex align-items-center">
                                     <div class="input-group input-group-lg border-end-md"><span class="input-group-text text-muted rounded-pill ps-3"><i class="fi-search"></i></span>
-                                        <input class="form-control" type="text" placeholder="공원명을 검색하세요">
+                                        <input class="form-control" type="text" name="keyword" placeholder="공원명을 검색하세요">
                                     </div>
                                     <hr class="d-sm-none my-2">
                                     <div class="dropdown w-sm-50 border-end-sm" data-bs-toggle="select">
                                         <button class="btn btn-lg btn-link dropdown-toggle ps-2 ps-sm-3" type="button" data-bs-toggle="dropdown"><i class="fi-home me-2"></i><span class="dropdown-toggle-label">전체/도</span></button>
-                                        <input type="hidden">
+                                        <input type="hidden" name="city">
                                         <ul class="dropdown-menu" style="position: absolute; z-index:1;">
                                             <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">서울특별시</span></a></li>
                                             <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">부산광역시</span></a></li>
@@ -184,7 +184,7 @@
                                     <hr class="d-sm-none my-2">
                                     <div class="dropdown w-sm-50 border-end-sm" data-bs-toggle="select">
                                         <button class="btn btn-lg btn-link dropdown-toggle ps-2 ps-sm-3" type="button" data-bs-toggle="dropdown"><i class="fi-map-pin me-2"></i><span class="dropdown-toggle-label">분류 선택</span></button>
-                                        <input type="hidden">
+                                        <input type="hidden" name="category">
                                         <ul class="dropdown-menu">
                                             <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">근린공원</span></a></li>
                                             <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">체육공원</span></a></li>
@@ -198,7 +198,7 @@
                                 </div>
                                 <hr class="d-md-none mt-2">
                                 <div class="col-md-2 d-sm-flex align-items-center pt-3 pt-md-0">
-                                    <button class="btn btn-lg btn-icon btn-primary px-3 w-100" type="button">공원 검색</button>
+                                    <button class="btn btn-lg btn-icon btn-primary px-3 w-100" type="submit">공원 검색</button>
                                 </div>
                             </div>
                         </form>

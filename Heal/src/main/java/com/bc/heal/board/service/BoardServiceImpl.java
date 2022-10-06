@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.bc.heal.board.mapper.BoardMapper;
 import com.bc.heal.vo.Board;
+import com.bc.heal.vo.PageInfo;
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -28,5 +29,11 @@ public class BoardServiceImpl implements BoardService{
 	public int save(Board board) {
 		return mapper.insert(board);
 	}
-	
+
+	@Override
+	public int getBoardCount(String keyword) {
+		keyword = "%" + keyword + "%"; // like문 을 위한 문자열 변경
+		return mapper.getBoardCount(keyword);
+	}
+
 }
