@@ -2,16 +2,19 @@ package com.bc.heal.camp.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bc.heal.air.service.AirService;
 import com.bc.heal.bus.service.BusService;
 import com.bc.heal.camp.service.CampService;
+import com.bc.heal.common.util.PageInfo;
 import com.bc.heal.train.service.TrainService;
 import com.bc.heal.vo.Air;
 import com.bc.heal.vo.Bus;
@@ -40,6 +43,70 @@ public class CampController {
 		return "/camp/campMain";
 	}
 
+	
+	@GetMapping("/campSearch")
+	String search(Model model, @RequestParam Map<String, String> param) {
+		
+		int page = 1;
+		if(param.containsKey("page") == true) {
+			try {
+				page = Integer.parseInt(param.get("page"));
+			} catch (Exception e) {}
+		}
+		
+		int listCount = campService.getCampCount(param);
+		System.out.println("총 게시글 수  : " + listCount);
+		model.addAttribute("listCount", listCount);
+		
+		PageInfo pageInfo = new PageInfo(page, 10, listCount, 8);
+		List<Camp> campList = campService.getCampList(pageInfo, param);
+		
+		System.out.println(campList);
+	
+		model.addAttribute("campList", campList);
+		model.addAttribute("param", param);
+		model.addAttribute("pageInfo", pageInfo);
+		
+		
+		return "/camp/campSearch";
+	}
+		@GetMapping("/camplist")
+		String list(Model model, @RequestParam Map<String, String> param) {
+			
+			int page = 1;
+			if(param.containsKey("page") == true) {
+				try {
+					page = Integer.parseInt(param.get("page"));
+				} catch (Exception e) {}
+			}
+			
+			int listCount = campService.getCampCount(param);
+			System.out.println("총 게시글 수  : " + listCount);
+			model.addAttribute("listCount", listCount);
+			
+			PageInfo pageInfo = new PageInfo(page, 10, listCount, 10);
+			List<Camp> campList = campService.getCampList(pageInfo, param);
+			
+			System.out.println(campList);
+			
+			model.addAttribute("campList", campList);
+			model.addAttribute("param", param);
+			model.addAttribute("pageInfo", pageInfo);
+			
+			
+			return "/camp/camplist";
+			
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@GetMapping("/detail")
 	public String detail(Model model /*int no*/) { // 캠핑장 상세정보, 기차/비행기/버스 도착역 리스트
 		Camp camp = campService.findByNo(57); // 테스트 -> 공항있는 캠핑장

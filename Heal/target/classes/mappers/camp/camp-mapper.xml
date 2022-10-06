@@ -28,4 +28,32 @@
  		WHERE NO = #{no}
 	</select>
 	
+	<select id="selectCampList" parameterType="map" resultMap="campResultMap">
+		SELECT  *
+		FROM TBL_CAMP
+		WHERE 1=1
+		<if test="name != null">
+			AND NAME LIKE '%'||#{name}||'%'
+		</if>
+		<if test="addr != null">
+			AND ADDR LIKE '%'||#{addr}||'%'
+		</if>
+		ORDER BY NO DESC
+	</select>
+	
+	
+	<select id="selectCampCount" resultType="int" parameterType="map">
+		SELECT  COUNT(*)
+		FROM TBL_CAMP
+		WHERE 1=1
+		<if test="name != null">
+			AND NAME LIKE '%'||#{name}||'%'
+		</if>
+		<if test="addr != null">
+			AND ADDR LIKE '%'||#{addr}||'%'
+		</if>
+		ORDER BY NO DESC
+	</select> 
+	
+	
 </mapper>

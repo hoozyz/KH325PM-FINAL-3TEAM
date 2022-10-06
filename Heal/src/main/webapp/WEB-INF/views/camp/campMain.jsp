@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
@@ -126,17 +125,19 @@
                     </div>
                     <div class="col-xl-8  mx-auto px-0" style="margin-top:100px">
                         <!-- Form group-->
-                        <form class="form-group d-block" name="campSearchFrm" action="${path}/camp/campSearch" method="post" >
+                        <form class="form-group d-block" name="campSearchFrm" action="${path}/camp/campSearch" method="get" >
                             <div class="row g-0">
                                 <div class="col-md-10 d-sm-flex align-items-center">
                                     <div class="input-group input-group-lg border-end-md"><span class="input-group-text text-muted rounded-pill ps-3"><i class="fi-search"></i></span>
                                         <input class="form-control" name="name" type="text" placeholder="키워드를 입력하세요">
                                     </div>
                                     <hr class="d-sm-none my-2">
+                                    
+                                    
                                     <div class="dropdown w-sm-50 border-end-sm" data-bs-toggle="select">
                                         <button class="btn btn-lg btn-link dropdown-toggle ps-2 ps-sm-3" type="button" data-bs-toggle="dropdown"><i class="fi-home me-2"></i><span class="dropdown-toggle-label">전체/도</span></button>
-                                        <input type="hidden" name="aria">
-                                        <ul class="dropdown-menu">
+                                        <input type="hidden" name="addr">
+                                        <ul class="dropdown-menu" style="position: absolute; z-index:1;">
                                             <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">서울특별시</span></a></li>
                                             <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">부산광역시</span></a></li>
                                             <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">대구광역시</span></a></li>
@@ -157,7 +158,7 @@
                                             <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">제주도</span></a></li>
                                         </ul>
                                     </div>
-                                    <hr class="d-sm-none my-2">
+                                    <!-- <hr class="d-sm-none my-2">
                                     <div class="dropdown w-sm-50 border-end-sm" data-bs-toggle="select">
                                         <button class="btn btn-lg btn-link dropdown-toggle ps-2 ps-sm-3" type="button" data-bs-toggle="dropdown"><i class="fi-map-pin me-2"></i><span class="dropdown-toggle-label">분류 선택</span></button>
                                         <input type="hidden" name="theme">
@@ -171,7 +172,7 @@
                                             <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">호수</span></a></li>
                                             <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">도심</span></a></li>
                                         </ul>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <hr class="d-md-none mt-2">
                                 <div class="col-md-2 d-sm-flex align-items-center pt-3 pt-md-0">

@@ -1,12 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
-<jsp:include page="/WEB-INF/views/common/headerTest.jsp">
-	<jsp:param value="나의 게시글" name="title"/>
+<jsp:include page="/WEB-INF/views/common/header.jsp">
+	<jsp:param value="캠핑 검색" name="title"/>
 </jsp:include>
+
+
+<c:set var="keyword" value="${param.name}"/>
+<c:set var="searchAddr" value="${param.addr}"/>
+<input type="hidden" id="keyword" value="${keyword}" > 
+<input type="hidden" id="addr" value="${searchAddr}" >  
 
 <main>
 <!-- Page container-->
@@ -18,35 +23,36 @@
                 <h2 class="h5 mb-0">Filters</h2>
                 <button class="btn-close" type="button" data-bs-dismiss="offcanvas"></button>
               </div>
-              <form action="" method="GET">
+              <form action="${path}/camp/campSearch" method="GET">
                 <div class="offcanvas-header d-block border-bottom pt-0 pt-lg-4 px-lg-0">
                   <h3 class="h6" style="margin-left: 20px;">캠핑장명 검색</h3>
                 <div class="form-group mb-lg-2 rounded-pill" style="height: 53px;">
                   <div class="input-group"><span class="input-group-text text-muted"><i class="fi-search"></i></span>
-                    <input class="form-control" type="text" name="keyword" placeholder="검색어를 입력하세요">
+                    <input class="form-control" type="text"  name="name" placeholder="검색어를 입력하세요">
                   </div>
                   <input class="btn btn-primary rounded-pill d-lg-inline-block d-none" type="submit" value="검색">
-                  <button class="btn btn-icon btn-primary rounded-circle flex-shrink-0 d-lg-none d-inline-flex" type="button"><i
-                      class="fi-search mt-n2"></i></button>
+                  <button class="btn btn-icon btn-primary rounded-circle flex-shrink-0 d-lg-none d-inline-flex" type="button">
+                  <i class="fi-search mt-n2"></i></button>
+                
                 </div>
               <div class="offcanvas-body py-lg-4">
                 <div class="pb-4">
                   <h3 class="h6">위치</h3>
-                  <select class="form-select mb-2" name="city">
+                  <select class="form-select mb-2" name="addr">
                     <option value="" selected disabled>도/시</option>
-                    <option value="1">서울특별시</option>
-                    <option value="2">부산광역시</option>
-                    <option value="3">대구광역시</option>
-                    <option value="4">인천광역시</option>
-                    <option value="5">광주광역시</option>
-                    <option value="6">대전광역시</option>
-                    <option value="7">울산광역시</option>
-                    <option value="8">경기도</option>
-                    <option value="9">강원도</option>
-                    <option value="10">충청도</option>
-                    <option value="11">전라도</option>
-                    <option value="12">경상도</option>
-                    <option value="13">제주특별자치도</option>
+                    <option value="서울특별시">서울특별시</option>
+                    <option value="부산광역시">부산광역시</option>
+                    <option value="대구광역시">대구광역시</option>
+                    <option value="인천광역시">인천광역시</option>
+                    <option value="광주광역시">광주광역시</option>
+                    <option value="대전광역시">대전광역시</option>
+                    <option value="울산광역시">울산광역시</option>
+                    <option value="경기">경기도</option>
+                    <option value="강원">강원도</option>
+                    <option value="충청">충청도</option>
+                    <option value="전라">전라도</option>
+                    <option value="경상">경상도</option>
+                    <option value="제주">제주특별자치도</option>
                   </select>
                 </div>
                 <div class="pb-4">
@@ -141,11 +147,40 @@
               <div class="d-flex align-items-center flex-shrink-0">
               </div>
               <hr class="d-none d-sm-block w-100 mx-4">
-              <div class="d-none d-sm-flex align-items-center flex-shrink-0 text-muted"><i class="fi-check-circle me-2"></i><span class="fs-sm mt-n1">148 results</span></div>
+              <div class="d-none d-sm-flex align-items-center flex-shrink-0 text-muted"><i class="fi-check-circle me-2"></i><span class="fs-sm mt-n1">${listCount} 개</span></div>
             </div>
             <!-- Catalog grid-->
             <div class="row g-4 py-4">
-              <!-- Item-->
+            
+            
+	            <c:if test="${empty campList}">
+	            	<div>검색결과가 없습니다</div>
+	            </c:if>
+	            
+	            <c:if test="${!empty campList}">
+	            	<c:forEach var="camp" items="${campList}">
+						 <!-- Item-->
+		              <div class="col-sm-6">
+		                <div class="card card-light card-hover h-100">
+		                  <div class="card-img-top card-img-hover"style="border: 1px;">
+		                    <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info">도/시</span></div>
+		                    <div class="tns-carousel-inner"><img src="${camp.image}" alt="Image"></div>
+		                  </div>
+		                  <div class="card-body">
+		                    <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm me-3" style="color: black;">${camp.lineintro}</span>
+		                    </div>
+		                    <h3 class="h5" style="margin-bottom: 10px;"><a class="nav-link" href="car-finder-single.html">${camp.name}</a></h3>
+		                    <div class="h6 fw-bold" style="margin-bottom: 20px;"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>60000원 / 소형 </div>
+		                    <hr>
+		                    <div class="h6 card-footer align-items-center justify-content-center">카테고리 아이콘</div>
+		                  </div>
+		                </div>
+		              </div>
+					</c:forEach>
+	
+	            </c:if>
+	            
+              <%-- <!-- Item-->
               <div class="col-sm-6">
                 <div class="card card-light card-hover h-100">
                   <div class="card-img-top card-img-hover"style="border: 1px;">
@@ -153,116 +188,81 @@
                     <div class="tns-carousel-inner"><img src="img/car-finder/catalog/01.jpg" alt="Image"></div>
                   </div>
                   <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm me-3" style="color: black;">한줄소개</span>
+                    <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm me-3" style="color: black;">${Camp.lineintro}</span>
                     </div>
-                    <h3 class="h5" style="margin-bottom: 10px;"><a class="nav-link" href="car-finder-single.html">캠핑장명</a></h3>
+                    <h3 class="h5" style="margin-bottom: 10px;"><a class="nav-link" href="car-finder-single.html">${Camp.name}</a></h3>
                     <div class="h6 fw-bold" style="margin-bottom: 20px;"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>60000원 / 소형 </div>
                     <hr>
                     <div class="h6 card-footer align-items-center justify-content-center">카테고리 아이콘</div>
                   </div>
                 </div>
-              </div>
-              <!-- Item-->
-              <div class="col-sm-6">
-                <div class="card card-light card-hover h-100">
-                  <div class="card-img-top card-img-hover"style="border: 1px;">
-                    <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info">도/시</span></div>
-                    <div class="tns-carousel-inner"><img src="img/car-finder/catalog/01.jpg" alt="Image"></div>
-                  </div>
-                  <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm me-3" style="color: black;">한줄소개</span>
-                    </div>
-                    <h3 class="h5" style="margin-bottom: 10px;"><a class="nav-link" href="car-finder-single.html">캠핑장명</a></h3>
-                    <div class="h6 fw-bold" style="margin-bottom: 20px;"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>60000원 / 소형 </div>
-                    <hr>
-                    <div class="h6 card-footer align-items-center justify-content-center">카테고리 아이콘</div>
-                  </div>
-                </div>
-              </div>
-              <!-- Item-->
-              <div class="col-sm-6">
-                <div class="card card-light card-hover h-100">
-                  <div class="card-img-top card-img-hover"style="border: 1px;">
-                    <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info">도/시</span></div>
-                    <div class="tns-carousel-inner"><img src="img/car-finder/catalog/01.jpg" alt="Image"></div>
-                  </div>
-                  <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm me-3" style="color: black;">한줄소개</span>
-                    </div>
-                    <h3 class="h5" style="margin-bottom: 10px;"><a class="nav-link" href="car-finder-single.html">캠핑장명</a></h3>
-                    <div class="h6 fw-bold" style="margin-bottom: 20px;"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>60000원 / 소형 </div>
-                    <hr>
-                    <div class="h6 card-footer align-items-center justify-content-center">카테고리 아이콘</div>
-                  </div>
-                </div>
-              </div>
-              <!-- Item-->
-              <div class="col-sm-6">
-                <div class="card card-light card-hover h-100">
-                  <div class="card-img-top card-img-hover"style="border: 1px;">
-                    <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info">도/시</span></div>
-                    <div class="tns-carousel-inner"><img src="img/car-finder/catalog/01.jpg" alt="Image"></div>
-                  </div>
-                  <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm me-3" style="color: black;">한줄소개</span>
-                    </div>
-                    <h3 class="h5" style="margin-bottom: 10px;"><a class="nav-link" href="car-finder-single.html">캠핑장명</a></h3>
-                    <div class="h6 fw-bold" style="margin-bottom: 20px;"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>60000원 / 소형 </div>
-                    <hr>
-                    <div class="h6 card-footer align-items-center justify-content-center">카테고리 아이콘</div>
-                  </div>
-                </div>
-              </div>
-              <!-- Item-->
-              <div class="col-sm-6">
-                <div class="card card-light card-hover h-100">
-                  <div class="card-img-top card-img-hover"style="border: 1px;">
-                    <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info">도/시</span></div>
-                    <div class="tns-carousel-inner"><img src="img/car-finder/catalog/01.jpg" alt="Image"></div>
-                  </div>
-                  <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm me-3" style="color: black;">한줄소개</span>
-                    </div>
-                    <h3 class="h5" style="margin-bottom: 10px;"><a class="nav-link" href="car-finder-single.html">캠핑장명</a></h3>
-                    <div class="h6 fw-bold" style="margin-bottom: 20px;"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>60000원 / 소형 </div>
-                    <hr>
-                    <div class="h6 card-footer align-items-center justify-content-center">카테고리 아이콘</div>
-                  </div>
-                </div>
-              </div>
-              <!-- Item-->
-              <div class="col-sm-6">
-                <div class="card card-light card-hover h-100">
-                  <div class="card-img-top card-img-hover"style="border: 1px;">
-                    <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info">도/시</span></div>
-                    <div class="tns-carousel-inner"><img src="img/car-finder/catalog/01.jpg" alt="Image"></div>
-                  </div>
-                  <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm me-3" style="color: black;">한줄소개</span>
-                    </div>
-                    <h3 class="h5" style="margin-bottom: 10px;"><a class="nav-link" href="car-finder-single.html">캠핑장명</a></h3>
-                    <div class="h6 fw-bold" style="margin-bottom: 20px;"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>60000원 / 소형 </div>
-                    <hr>
-                    <div class="h6 card-footer align-items-center justify-content-center">카테고리 아이콘</div>
-                  </div>
-                </div>
-              </div>
+              </div> --%>
+              
             </div>
-            <!-- Pagination-->
+             <!-- Pagination-->
             <nav class="border-top pb-md-4 pt-4 mt-2" aria-label="Pagination">
               <ul class="pagination mb-1">
                 <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 5</span></li>
-                <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="visually-hidden">(current)</span></span></li>
+                <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1
+                <span class="visually-hidden">${pageInfo.currentPage}</span></span></li>
                 <li class="page-item d-none d-sm-block"><a class="page-link" href="#">2</a></li>
                 <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li>
+                <li class="page-item d-none d-sm-block"><a class="page-link" href="#">4</a></li>
+                <li class="page-item d-none d-sm-block"><a class="page-link" href="#">5</a></li>
                 <li class="page-item d-none d-sm-block">...</li>
-                <li class="page-item d-none d-sm-block"><a class="page-link" href="#">8</a></li>
-                <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="fi-chevron-right"></i></a></li>
+                <li class="page-item d-none d-sm-block"><a class="page-link" href="#">${pageInfo.maxPage}</a></li>
+                <li class="page-item"><a class="page-link" href="${path}/camp/campSearch?page=${pageInfo.nextPage}?name=${param.name}" aria-label="Next"><i class="fi-chevron-right"></i></a></li>
               </ul>
-            </nav>
+            </nav> 
+            
+            
+            <!-- page부 시작 -->
+		<div align="center">
+			<!-- 맨 처음으로 -->
+			<button onclick="movePage('${path}/camp/campSearch?page=1');">&lt;&lt;</button>
+		
+			<!-- 이전 페이지 -->
+			<button onclick="movePage('${path}/camp/campSearch?page=${pageInfo.prevPage}');">&lt;</button>
+			
+			<!-- 10개 페이지 목록 -->
+			<c:forEach begin="${pageInfo.startPage}" end="${pageInfo.endPage}" step="1" varStatus="status">
+				<c:if test="${pageInfo.currentPage == status.current}">
+					<button disabled ><c:out value="${status.current}"/></button>
+				</c:if>
+				<c:if test="${pageInfo.currentPage != status.current}">
+					<button onclick="movePage('${path}/camp/campSearch?page=${status.current}');">
+						<c:out value="${status.current}"/>
+					</button>
+				</c:if>
+			</c:forEach>
+		
+			<!-- 다음 페이지 -->
+			<button onclick="movePage('${path}/camp/campSearch?page=${pageInfo.nextPage}');">&gt;</button>
+		
+			<!-- 마지막 페이지 -->
+			<button onclick="movePage('${path}/camp/campSearch?page=${pageInfo.maxPage}');">&gt;&gt;</button>
+		
+		</div>
+		<!-- page부 종료 -->
+            
+            
+            
+            
           </div>
         </div>
       </div>
     </main>
+    <script type="text/javascript"  charset="UTF-8">
+	function movePage(pageUrl){
+		var keyword = document.getElementById("keyword"); 
+// 		var addr = document.getElementById("addr");  
+		
+		pageUrl = pageUrl + '&name='+ keyword.value + '&addr=' + addr.value;  
+		
+		location.href = encodeURI(pageUrl);	
+	}
+</script>
+    
+
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
