@@ -185,7 +185,7 @@
 
 		<link rel="stylesheet" media="screen" href="${path}/resources/vendor/simplebar/dist/simplebar.min.css"/>
     <link rel="stylesheet" media="screen" href="${path}/resources/css/themeButton.min.css">
-            
+    
             <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
     
 		<!-- Review modal-->
@@ -788,10 +788,11 @@
                     <div class="mb-4 pb-md-3 border-bottom">
                         <h3 class="h4">캠핑장 소개</h3>
                         <h5 class="h6 list-unstyled"><b>한줄소개 : </b>${camp.lineintro}</h5>
-                        <p class="mb-1">${camp.intro}
+                        <p class="mb-1"> <!-- 반반 나눠서 더보기로 넣기 -->
+                        	${camp.intro.split([camp.intro.indexOf(camp.intro.length()/2)])[0]} <!-- el 내부에 []는 el 내부 el을 쓸 수 있다. -->
                         </p>
                         <div class="collapse" id="seeMoreOverview">
-                            <p class="mb-1"></p>
+                            <p class="mb-1">${camp.intro.split([camp.intro.indexOf(camp.intro.length()/2)])[1]}</p>
                         </div>
                         <a class="collapse-label collapsed" href="#seeMoreOverview" data-bs-toggle="collapse" data-bs-label-collapsed="더보기" data-bs-label-expanded="줄이기" role="button" aria-expanded="false" aria-controls="seeMoreOverview"></a>
                     </div>
