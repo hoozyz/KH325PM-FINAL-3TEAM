@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bc.heal.weather.mapper.WeatherMapper">
+	<resultMap type="WeatherCoor" id="weatherResultMap">
+		<result property="gu" column="GU"/>
+		<result property="dong" column="DONG"/>
+		<result property="nx" column="NX"/>
+		<result property="ny" column="NY"/>
+	</resultMap>
+	
+	<select id="selectByDong" parameterType="string" resultMap="weatherResultMap">
+ 		SELECT * 
+ 		FROM TBL_WEATHER
+ 		WHERE DONG = #{dong}
+	</select>
+	
+</mapper>
