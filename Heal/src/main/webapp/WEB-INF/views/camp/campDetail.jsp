@@ -9,127 +9,182 @@
 </jsp:include>
 
 <style>
-                .weather_area {
-                    position: relative;
-                    text-align: center;
-                    overflow: hidden;
-                    z-index: 5
-                }
-                
-                .weather_area .weather_now {
-                    position: relative;
-                    overflow: hidden;
-                    font-size: 0;
-                    line-height: 0;
-                }
-                
-                .weather_area .weather_now .summary_img {
-                    position: relative;
-                    display: inline-block;
-                    vertical-align: top;
-                }
-                
-                .ico_animation[class*=ico_animation_wt] {
-                    -webkit-background-size: 75px 75px;
-                    background-size: 75px 75px;
-                }
-                
-                .ico_animation {
-                    width: 75px;
-                    height: 75px;
-                    -webkit-background-size: 525px 450px;
-                    background-size: 525px 450px;
-                    display: inline-block;
-                    vertical-align: top;
-                }
-                
-                .ico_animation_wt6 {
-                    background-image: url(https://ssl.pstatic.net/static/weather/image/icon_weather/ico_animation_wt6.svg);
-                }
-                
-                .weather_area .weather_now .current {
-                    display: inline-block;
-                    vertical-align: top;
-                    margin-left: -26px;
-                    font-size: 60px;
-                    line-height: 75px;
-                    letter-spacing: -1.85px;
-                    color: #000;
-                    font-weight: 700;
-                    white-space: nowrap;
-                    z-index: 10;
-                }
-                
-                .blind {
-                    overflow: hidden;
-                    position: absolute;
-                    clip: rect(0 0 0 0);
-                    width: 1px;
-                    height: 1px;
-                    margin: -1px;
-                }
-                
-                .weather_area .weather_now .degree {
-                    display: inline-block;
-                    vertical-align: top;
-                    margin-top: 6px;
-                    font-size: 30px;
-                    font-weight: 700;
-                    line-height: 35px;
-                    letter-spacing: -.82px;
-                }
-                
-                .weather_area .weather_now .summary {
-                    display: inline-block;
-                    vertical-align: top;
-                    margin: 15px 0 0 5px;
-                    font-size: 16px;
-                    font-weight: 700;
-                    line-height: 21px;
-                    letter-spacing: -1px;
-                    color: #222;
-                    text-align: left;
-                }
-                
-                .weather_area .weather_now .summary .weather {
-                    display: block;
-                    margin-bottom: 3px;
-                    font-size: 22px;
-                    line-height: 25px;
-                    letter-spacing: -1px;
-                }
-                
-                em {
-                    font-style: normal;
-                }
-                
-                .weather_area .weather_now .summary .temperature {
-                    display: inline-block;
-                    font-size: 18px;
-                    line-height: 21px;
-                    letter-spacing: -1px;
-                    vertical-align: top;
-                }
-                
-                .weather_area .weather_now .summary .temperature.down:after {
-                    display: inline-block;
-                }
-                
-                .weather_area .weather_now .summary .temperature:after {
-                    background-position: -34px -840px;
-                    background-repeat: no-repeat;
-                    width: 8px;
-                    height: 16px;
-                    margin: 3px 0 0 -2px;
-                    vertical-align: top;
-                    content: '';
-                }
-                
-                .weather_area .weather_now .summary .temperature:after {
-                    background-image: url(https://ssl.pstatic.net/static/weather/image/sp_weather_1746dae0.png);
-                    background-size: 965px 883px;
-                }
-            </style>
+    .weather_area {
+        position: relative;
+        text-align: center;
+        overflow: hidden;
+        z-index: 5
+    }
+    
+    .weather_area .weather_now {
+        position: relative;
+        overflow: hidden;
+        font-size: 0;
+        line-height: 0;
+    }
+    
+    .weather_area .weather_now .summary_img {
+        position: relative;
+        display: inline-block;
+        vertical-align: top;
+    }
+    
+    .ico_animation[class*=ico_animation_wt] {
+        -webkit-background-size: 75px 75px;
+        background-size: 75px 75px;
+    }
+    
+    .ico_animation {
+        width: 75px;
+        height: 75px;
+        -webkit-background-size: 525px 450px;
+        background-size: 525px 450px;
+        display: inline-block;
+        vertical-align: top;
+    }
+    
+    .ico_animation_wt1 {
+        background-image: url(https://ssl.pstatic.net/static/weather/image/icon_weather/ico_animation_wt1.svg);
+    }
+    
+    .ico_animation_wt5 {
+        background-image: url(https://ssl.pstatic.net/static/weather/image/icon_weather/ico_animation_wt5.svg);
+    }
+    
+    .ico_animation_wt7 {
+        background-image: url(https://ssl.pstatic.net/static/weather/image/icon_weather/ico_animation_wt7.svg);
+    }
+    
+    .ico_animation_wt8 {
+        background-image: url(https://ssl.pstatic.net/static/weather/image/icon_weather/ico_animation_wt8.svg);
+    }
+    
+    .weather_area .weather_now .current {
+        display: inline-block;
+        vertical-align: top;
+        margin-left: -26px;
+        font-size: 60px;
+        line-height: 75px;
+        letter-spacing: -1.85px;
+        color: #000;
+        font-weight: 700;
+        white-space: nowrap;
+        z-index: 10;
+    }
+    
+    .blind {
+        overflow: hidden;
+        position: absolute;
+        clip: rect(0 0 0 0);
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+    }
+    
+    .weather_area .weather_now .degree {
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 6px;
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 35px;
+        letter-spacing: -.82px;
+    }
+    
+    .weather_area .weather_now .summary {
+        display: inline-block;
+        vertical-align: top;
+        margin: 15px 0 0 5px;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 21px;
+        letter-spacing: -1px;
+        color: #222;
+        text-align: left;
+    }
+    
+    .weather_area .weather_now .summary .lowtem {
+        display: inline-block;
+        vertical-align: top;
+        margin: 0 5px 0 5px;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 21px;
+        letter-spacing: -1px;
+        color: rgb(2, 68, 250);
+        text-align: left;
+    }
+    
+    .weather_area .weather_now .summary .hightem {
+        display: inline-block;
+        vertical-align: top;
+        margin: 0 0 0 5px;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 21px;
+        letter-spacing: -1px;
+        color: rgb(218, 4, 4);
+        text-align: left;
+    }
+    
+    .weather_area .weather_now .summary .weather {
+        display: block;
+        margin-bottom: 3px;
+        font-size: 23px;
+        line-height: 25px;
+        letter-spacing: -1px;
+    }
+    
+    .weather_area .secondary {
+        color: rgb(99, 98, 98);
+        font-weight: 600;
+    }
+    
+    .weather_area .secondaryInfo {
+        color: rgb(66, 66, 66);
+        font-weight: 700;
+        margin-right: 10px;
+    }
+    
+    .weather_area .weather_now .summary .temperature {
+        display: inline-block;
+        font-size: 18px;
+        line-height: 21px;
+        letter-spacing: -1px;
+        vertical-align: top;
+    }
+    
+    .weather_area .weather_now .summary .temperature:after {
+        background-position: -34px -840px;
+        background-repeat: no-repeat;
+        width: 8px;
+        height: 16px;
+        margin: 3px 0 0 -2px;
+        vertical-align: top;
+        content: '';
+    }
+    
+    .weather_area .weather_now .summary .temperature:after {
+        background-image: url(https://ssl.pstatic.net/static/weather/image/sp_weather_1746dae0.png);
+        background-size: 965px 883px;
+    }
+    
+    .btn-group-sm .on {
+    	background-color: black;
+    	color: white;
+    }
+    .btn-group-sm .on:active {
+    	background-color: black;
+    	color: white;
+    }
+     .btn-group-sm>button:hover {
+    	background-color: black;
+    	color: white;
+    }
+</style>
+
+		<link rel="stylesheet" media="screen" href="${path}/resources/vendor/simplebar/dist/simplebar.min.css"/>
+    <link rel="stylesheet" media="screen" href="${path}/resources/css/theme.min.css">
             
             <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
     
@@ -917,25 +972,159 @@
                         marker.setMap(map);
                     </script>
                     <br>
-                    <h3 class="h4">오늘의 날씨</h3>
-                    <!-- Not included in rent-->
+                    <div style="margin-bottom:30px;">
+	                                <p id="weaStr" style="float: left; color: black; font-weight:600;">현재 캠핑장의 날씨는?</p>
+	                               	<div style="margin-left: 265px;width: 150px;text-align: center;">
+	                               		<div class="btn-group btn-group-sm" role="group" style="width:150px;">
+	                               			<button class="btn btn-outline-secondary on" id="today" type="button" style="padding-left: 10px;padding-right: 10px;padding-top: 4px;padding-bottom: 4px;">오늘</button>
+	                               			<button class="btn btn-outline-secondary" id="one" type="button" style="padding-left: 10px;padding-right: 10px;padding-top: 4px;padding-bottom: 4px;">내일</button>
+	                               			<button class="btn btn-outline-secondary" id="two" type="button" style="padding-left: 10px;padding-right: 10px;padding-top: 4px;padding-bottom: 4px;">모레</button>
+	                               		</div>
+	                               	</div>
+                                </div>
                     <div class="weather_area m-0 p-0">
-                        <div class="weather_now m-0 p-0">
-                            <div class="summary_img m-0 p-0">
-                                <i class="ico_animation _cnLazy ico_animation_wt6" data-ico="ico_animation_wt6" data-ymdt="2022092623"></i>
-                                <strong class="current">
-                                    <span class="blind">현재 온도</span>14.1<span class="degree">°</span>
-                                </strong>
-                            </div>
-                            <p class="summary p-0">
-                                <span class="weather">구름많음</span>
-                                <em>어제보다</em> <span class="temperature down">0.4°</span>
-                            </p>
-                        </div>
-                    </div>
+                                        <div class="weather_now m-0 p-0">
+                                            <div class="summary_img m-0 p-0">
+                                            	<c:set var="rainStr" value="${today.pcp}"/>
+                                            
+                                                <c:if test="${fn:contains(rainStr, 'mm')}"> <!-- 비올때 --> 
+                                                	<i class="ico_animation _cnLazy ico_animation_wt8" data-ico="ico_animation_wt8" data-ymdt="2022092623"></i>
+                                                </c:if>
+                                                <c:if test="${today.sky <= 5}"> <!-- 맑음 --> 
+                                                	<i class="ico_animation _cnLazy ico_animation_wt1" data-ico="ico_animation_wt1" data-ymdt="2022092623"></i>
+                                                </c:if>
+                                                <c:if test="${today.sky > 5 && today.sky <= 8}"> <!-- 구름많음 --> 
+                                                	<i class="ico_animation _cnLazy ico_animation_wt5" data-ico="ico_animation_wt5" data-ymdt="2022092623"></i>
+                                                </c:if>
+                                                <c:if test="${today.sky > 8}"> <!-- 흐림 --> 
+                                                	<i class="ico_animation _cnLazy ico_animation_wt7" data-ico="ico_animation_wt7" data-ymdt="2022092623"></i>
+                                                </c:if>
+                                                <strong class="current">
+                                                <span class="blind">현재 온도</span>${today.tmp}<span class="degree">°</span>
+                                            </strong>
+                                            </div>
+                                            <p class="summary p-0">
+                                                <span class="weather">
+                                                <c:if test="${today.sky <= 5}"> <!-- 맑음 -->
+                                                	&nbsp&nbsp맑음
+                                                </c:if>
+                                                <c:if test="${today.sky > 5 && today.sky <= 8}"> <!-- 구름많음 -->
+                                                	구름많음
+                                                </c:if>
+                                                <c:if test="${today.sky > 8}"> <!-- 흐림 -->
+                                                	&nbsp&nbsp흐림
+                                                </c:if>
+                                                </span>
+                                                <span class="lowtem">${today.tmn}</span>/<span class="hightem">${today.tmx}</span>
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <span class="secondary">습도 </span><span class="secondaryInfo">${today.reh}%</span>
+                                            <span class="secondary">강수확률 </span><span class="secondaryInfo">${today.pop}%</span>
+                                            <span class="secondary">강수량 </span><span class="secondaryInfo">${today.pcp}</span>
+                                        </div>
+                                    </div>
                 </aside>
             </div>
         </section>
+        
+        <script>
+        	$(document).ready(function() {
+        		$('.btn-group-sm').find('button').click(function() {
+        			var on_id = $(this).attr('id');
+        			
+        			$('.btn-group-sm button').removeClass('on');
+        			
+        			$("#" + on_id).addClass('on'); // 클릭한 클래스에 on 추가
+        			
+        			var i = -1;
+        			
+        			var sky = 100;
+	        		var tmp = 100;
+	        		var tmn = 100;
+	        		var tmx = 100;
+	        		var reh = 100;
+	        		var pop = 100;
+	        		var pcp = "";
+	        			
+	        		if(on_id == 'today') {      
+		        		sky = ${today.sky};   
+		        		tmp = ${today.tmp};   
+		        		tmn = ${today.tmn};   
+		        		tmx = ${today.tmx};   
+		        		reh = ${today.reh};   
+		        		pop = ${today.pop};   
+		        		pcp = '${today.pcp}';   
+        				$('#weaStr').html('현재 캠핑장의 날씨는?')
+        			} 
+					if(on_id == 'one') {
+						sky = ${one.sky};   
+		        		tmp = ${one.tmp};   
+		        		tmn = ${one.tmn};   
+		        		tmx = ${one.tmx};   
+		        		reh = ${one.reh};   
+		        		pop = ${one.pop};   
+		        		pcp = '${today.pcp}';  
+					    $('#weaStr').html('내일 캠핑장의 날씨는?')
+					} 
+					if(on_id == 'two') {
+						sky = ${two.sky};   
+		        		tmp = ${two.tmp};   
+		        		tmn = ${two.tmn};   
+		        		tmx = ${two.tmx};   
+		        		reh = ${two.reh};   
+		        		pop = ${two.pop};   
+		        		pcp = '${today.pcp}';  
+						$('#weaStr').html('모레 캠핑장의 날씨는?')
+					} 
+					
+					var one = '${weaList.get(i).sky}'
+					console.log(one)
+					str = "";
+					
+					str += '	 <div class="weather_now m-0 p-0">                                                                                            '
+	                str += '     <div class="summary_img m-0 p-0">                                                                                            '
+	                
+	                if(pcp != '강수없음') {
+	                	str += '<i class="ico_animation _cnLazy ico_animation_wt8" data-ico="ico_animation_wt8" data-ymdt="2022092623"></i>           '
+	                } else if(sky <= 5) {
+		            	str += '<i class="ico_animation _cnLazy ico_animation_wt1" data-ico="ico_animation_wt1" data-ymdt="2022092623"></i>           '
+			        } else if(sky > 5 && sky <= 8) {
+						str += '<i class="ico_animation _cnLazy ico_animation_wt5" data-ico="ico_animation_wt5" data-ymdt="2022092623"></i>           '
+			        } else if(sky > 8) {
+						str += '<i class="ico_animation _cnLazy ico_animation_wt7" data-ico="ico_animation_wt7" data-ymdt="2022092623"></i>           '
+					}
+	                
+	                str += '         <strong class="current">                                                                                                 '
+	                str += '         <span class="blind">현재 온도</span>'+ tmp +'<span class="degree">°</span>                                   '
+	                str += '     </strong>                                                                                                                    '
+	                str += '     </div>                                                                                                                       '
+	                str += '     <p class="summary p-0">                                                                                                      '
+	                str += '         <span class="weather">                                                                                                   '
+	                
+	                if(sky <= 5) {
+	                	str += '&nbsp&nbsp맑음';
+	                } else if(sky > 5 && sky <= 8) {
+	                	str += '구름많음'
+	                } else if(sky > 8) {
+						str += '&nbsp&nbsp흐림'
+					}
+					
+	                str += '         </span>                                                                                                                  '
+	                str += '         <span class="lowtem">'+ tmn +'</span>/<span class="hightem">'+ tmx +'</span>                     '
+	                str += '     </p>                                                                                                                         '
+	                str += ' </div>                                                                                                                           '
+	                str += ' <div>                                                                                                                            '
+	                str += '     <span class="secondary">습도 </span><span class="secondaryInfo">'+ reh +'%</span>                                '
+	                str += '     <span class="secondary">강수확률 </span><span class="secondaryInfo">'+ pop +'%</span>                            '
+	                str += '     <span class="secondary">강수량 </span><span class="secondaryInfo">'+ pcp +'</span>                               '
+	                str += ' 		</div>                                                                                                                    '
+	             	str += '		</div>                                                                                                                    '
+	             	
+	             	$('.weather_area').html(str);
+        		})
+        	})
+        </script>
         <!-- Recently viewed-->
         <section class="container mb-5 pb-2 pb-lg-4">
             <div>

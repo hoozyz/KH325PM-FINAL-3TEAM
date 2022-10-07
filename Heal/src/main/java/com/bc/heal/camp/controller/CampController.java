@@ -17,6 +17,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.TransactionSuspensionNotSupportedException;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +34,7 @@ import com.bc.heal.vo.Camp;
 import com.bc.heal.vo.EndStation;
 import com.bc.heal.vo.Train;
 import com.bc.heal.vo.Weather;
+import com.bc.heal.weather.service.WeatherService;
 
 @Controller
 @RequestMapping("/camp")
@@ -49,6 +51,9 @@ public class CampController {
 
 	@Autowired
 	private AirService airService;
+
+	@Autowired
+	private WeatherService weaService;
 
 	@GetMapping("/campMain")
 	public String main(Model model) {
@@ -115,12 +120,48 @@ public class CampController {
 		Camp camp = campService.findByNo(57); // 테스트 -> 공항있는 캠핑장
 
 		// 리뷰
-		
-		
-		// 날씨
-		
-		
 
+		// 날씨
+		List<Weather> weaList = new ArrayList<>();
+
+		String check = "";
+		String[] checkArr;
+		String dong = "";
+		if (camp.getAddr().contains("면")) {
+			check = camp.getAddr().split("면")[0]; // 면 기준 앞에만 자르기
+			checkArr = check.split(" ");
+			dong = checkArr[checkArr.length - 1] + "면";
+
+		} else if (camp.getAddr().contains("읍")) {
+			check = camp.getAddr().split("읍")[0];
+			checkArr = check.split(" ");
+			dong = checkArr[checkArr.length - 1] + "읍";
+
+		} else if (camp.getAddr().contains("동")) {
+			check = camp.getAddr().split("동")[0];
+			checkArr = check.split(" ");
+			dong = checkArr[checkArr.length - 1] + "동";
+		}
+
+		try {
+			weaList = weatherApi(weaService.selectByDong(dong).getNx(), weaService.selectByDong(dong).getNy()); 
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		Weather today = new Weather(); // 오늘
+		Weather one = new Weather(); // 내일
+		Weather two = new Weather(); // 모레
+		
+		today = weaList.get(0);
+		one = weaList.get(1);
+		two = weaList.get(2);
+		
+		model.addAttribute("today", today);
+		model.addAttribute("one", one);
+		model.addAttribute("two", two);
+		
 		// 교통
 		String lat = camp.getLat(); // 캠핑장 위도
 		String lng = camp.getLng(); // 캠핑장 경도
@@ -281,20 +322,33 @@ public class CampController {
 		Date now = new Date();
 		String nowTime = sdf.format(now);
 
+		String date = nowTime.split(" ")[0]; // 날짜만
+
+		String time = nowTime.split(" ")[1] + "00"; // 시간중 -> 0900 처럼 만들기
+
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(now);
-		cal.add(Calendar.DATE, 1); // 하루 추가
-		String oneDate = sdf.format(cal.getTime()).split("")[0]; // 내일 날짜
-		cal.add(Calendar.DATE, 1); // 하루 추가
-		String twoDate = sdf.format(cal.getTime()).split("")[0]; // 모레 날짜
 
-		System.out.println(nowTime);
+		String oneDate = "";
+		String twoDate = "";
 
-		String date = nowTime.split("")[0]; // 날짜만
-
-		String time = nowTime.split("")[1] + "00"; // 시간중 -> 0900 처럼 만들기
-
-		String urlStr = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?"
+		if (time.equals("0000") || time.equals("0100") || time.equals("0200")) { // 00시, 01시, 02시 면 전날로 바꿈
+			time = "0300";
+			oneDate = date;
+			
+			cal.add(Calendar.DATE, -1);
+			date = sdf.format(cal.getTime()).split(" ")[0];
+			cal.add(Calendar.DATE, 2);
+			twoDate = sdf.format(cal.getTime()).split(" ")[0];
+			
+		} else {
+			cal.add(Calendar.DATE, 1); // 하루 추가
+			oneDate = sdf.format(cal.getTime()).split(" ")[0]; // 내일 날짜
+			cal.add(Calendar.DATE, 1); // 하루 추가
+			twoDate = sdf.format(cal.getTime()).split(" ")[0]; // 모레 날짜
+		}
+		
+		String urlStr = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?"
 				+ "serviceKey=1n4THo6i88dAniTj3VQPQLc%2BKj8AhB%2BjrA2WmJxMjKlcpkoi%2BsxoUiHXhe%2Fhrp8NY9BQOoPu1Vdj8UuQH4g2Dg%3D%3D"
 				+ "&pageNo=1&numOfRows=1000&dataType=json&base_date=" + date + "&base_time=0200&nx=" + nx + "&ny=" + ny;
 
@@ -419,13 +473,13 @@ public class CampController {
 				if (category.equals("TMX")) { // 최고기온 시간필요없음
 					if (dateCheck.equals(date)) { // 오늘
 						tmx = (String) jsonItem.get("fcstValue");
-						today.setTmn(tmn);
+						today.setTmx(tmx);
 					} else if (dateCheck.equals(oneDate)) { // 내일
 						tmx = (String) jsonItem.get("fcstValue");
-						one.setTmn(tmn);
+						one.setTmx(tmx);
 					} else { // 모레
 						tmx = (String) jsonItem.get("fcstValue");
-						two.setTmn(tmn);
+						two.setTmx(tmx);
 					}
 				}
 			}
