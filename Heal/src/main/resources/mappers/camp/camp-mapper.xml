@@ -32,8 +32,8 @@
 		SELECT  *
 		FROM TBL_CAMP
 		WHERE 1=1
-		<if test="name != null">
-			AND NAME LIKE '%'||#{name}||'%'
+		<if test="keyword != null">
+			AND NAME LIKE '%'||#{keyword}||'%'
 		</if>
 		<if test="addr != null">
 			AND ADDR LIKE '%'||#{addr}||'%'
@@ -46,8 +46,8 @@
 		SELECT  COUNT(*)
 		FROM TBL_CAMP
 		WHERE 1=1
-		<if test="name != null">
-			AND NAME LIKE '%'||#{name}||'%'
+		<if test="keyword != null">
+			AND NAME LIKE '%'||#{keyword}||'%'
 		</if>
 		<if test="addr != null">
 			AND ADDR LIKE '%'||#{addr}||'%'

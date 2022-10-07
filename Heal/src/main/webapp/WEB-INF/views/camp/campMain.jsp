@@ -129,7 +129,7 @@
                             <div class="row g-0">
                                 <div class="col-md-10 d-sm-flex align-items-center">
                                     <div class="input-group input-group-lg border-end-md"><span class="input-group-text text-muted rounded-pill ps-3"><i class="fi-search"></i></span>
-                                        <input class="form-control" name="name" type="text" placeholder="키워드를 입력하세요">
+                                        <input class="form-control" name="keyword" type="text" placeholder="키워드를 입력하세요">
                                     </div>
                                     <hr class="d-sm-none my-2">
                                     

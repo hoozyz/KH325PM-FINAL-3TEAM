@@ -8,7 +8,7 @@
 </jsp:include>
 
 
-<c:set var="keyword" value="${param.name}"/>
+<c:set var="keyword" value="${param.keyword}"/>
 <c:set var="searchAddr" value="${param.addr}"/>
 <input type="hidden" id="keyword" value="${keyword}" > 
 <input type="hidden" id="addr" value="${searchAddr}" >  
@@ -28,13 +28,16 @@
                   <h3 class="h6" style="margin-left: 20px;">캠핑장명 검색</h3>
                 <div class="form-group mb-lg-2 rounded-pill" style="height: 53px;">
                   <div class="input-group"><span class="input-group-text text-muted"><i class="fi-search"></i></span>
-                    <input class="form-control" type="text"  name="name" placeholder="검색어를 입력하세요">
+                    <input class="form-control" type="text"  name="keyword" placeholder="검색어를 입력하세요">
                   </div>
                   <input class="btn btn-primary rounded-pill d-lg-inline-block d-none" type="submit" value="검색">
                   <button class="btn btn-icon btn-primary rounded-circle flex-shrink-0 d-lg-none d-inline-flex" type="button">
                   <i class="fi-search mt-n2"></i></button>
                 
                 </div>
+                
+                
+                
               <div class="offcanvas-body py-lg-4">
                 <div class="pb-4">
                   <h3 class="h6">위치</h3>
@@ -257,7 +260,7 @@
 		var keyword = document.getElementById("keyword"); 
 // 		var addr = document.getElementById("addr");  
 		
-		pageUrl = pageUrl + '&name='+ keyword.value + '&addr=' + addr.value;  
+		pageUrl = pageUrl + '&keyword='+ keyword.value + '&addr=' + addr.value;  
 		
 		location.href = encodeURI(pageUrl);	
 	}
