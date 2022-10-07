@@ -8,8 +8,8 @@
 		<id property="no" column="NO"/>
 		<result property="name" column="NAME"/>
 		<result property="place" column="PLACE"/>
-		<result property="startdate" column="STARTDATE"/>
-		<result property="enddate" column="ENDDATE"/>
+		<result property="startdate" column="STARTDATE" javaType="java.sql.Date"/>
+		<result property="enddate" column="ENDDATE" javaType="java.sql.Date"/>
 		<result property="cont" column="CONT"/>
 		<result property="phone" column="PHONE"/>
 		<result property="homepage" column="HOMEPAGE"/>
@@ -24,4 +24,33 @@
  		WHERE NO = #{no}
 	</select>
 	
+	<select id="selectFestivalList" parameterType="map" resultMap="festivalResultMap">
+ 		SELECT * 
+ 		FROM TBL_FESTIVAL
+ 		WHERE 1=1 
+		<if test="startdate != null">
+			AND startdate BETWEEN #{startdate} AND #{enddate}	
+		</if>
+		<if test="name != null">
+			AND name LIKE '%' || #{name}|| '%'	
+		</if>
+		<if test="addr != null">
+			AND addr LIKE '%' || #{addr}|| '%'	
+		</if>
+	</select>
+	
+	<select id="selectFestivalCount" resultType="int"  parameterType="map">
+		SELECT COUNT(*)
+		FROM TBL_FESTIVAL
+		WHERE 1=1 
+		<if test="startdate != null">
+			AND startdate BETWEEN #{startdate} AND #{enddate}	
+		</if>
+		<if test="name != null">
+			AND name LIKE '%' || #{name}|| '%'	
+		</if>
+		<if test="addr != null">
+			AND addr LIKE '%' || #{addr}|| '%'	
+		</if>
+	</select>
 </mapper>

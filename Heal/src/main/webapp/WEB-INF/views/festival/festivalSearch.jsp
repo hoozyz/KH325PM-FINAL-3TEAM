@@ -22,7 +22,7 @@
                   <h3 class="h6" style="margin-left: 20px;">축제명 검색</h3>
                 <div class="form-group mb-lg-2 rounded-pill" style="height: 53px;">
                   <div class="input-group"><span class="input-group-text text-muted"><i class="fi-search"></i></span>
-                    <input class="form-control" type="text" name="keyword" placeholder="검색어를 입력하세요">
+                    <input class="form-control" type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요">
                   </div>
                   <input class="btn btn-primary rounded-pill d-lg-inline-block d-none" type="submit" value="검색">
                   <button class="btn btn-icon btn-primary rounded-circle flex-shrink-0 d-lg-none d-inline-flex" type="button"><i
@@ -31,7 +31,7 @@
               <div class="offcanvas-body py-lg-4">
                 <div class="pb-4 mb-2">
                   <h3 class="h6">위치</h3>
-                  <select class="form-select mb-2" name="city">
+                  <select class="form-select mb-2" name="city" id="city">
                     <option value="" selected disabled>도/시</option>
                     <option value="1">서울특별시</option>
                     <option value="2">부산광역시</option>
@@ -52,9 +52,9 @@
                   <!--calendar-->
                   <h3 class="h6">시작일 선택</h3>
                   <div class="input-group input-daterange pb-3" style="width: 300px; right: 15px;">
-                    <input class="form-control date-picker rounded-pill " id="datepicker" type="date" placeholder="날짜를 선택해주세요 " data-datepicker-options="{&quot;altInput&quot;: true, &quot;altFormat&quot;: &quot;Y. m. d &quot;, &quot;dateFormat&quot;: &quot;Y-m-d&quot;, &quot;language&quot;: &quot;ko&quot;} ">
+                    <input class="form-control date-picker rounded-pill " id="startdate" type="date" placeholder="날짜를 선택해주세요 " data-datepicker-options="{&quot;altInput&quot;: true, &quot;altFormat&quot;: &quot;Y. m. d &quot;, &quot;dateFormat&quot;: &quot;Y-m-d&quot;, &quot;language&quot;: &quot;ko&quot;} ">
                     <div class="input-group-addon">to</div>
-                    <input class="form-control date-picker rounded-pill pi-5 " id="datepicker" type="date" placeholder="날짜를 선택해주세요 " data-datepicker-options="{&quot;altInput&quot;: true, &quot;altFormat&quot;: &quot;Y. m. d &quot;, &quot;dateFormat&quot;: &quot;Y-m-d&quot;, &quot;language&quot;: &quot;ko&quot;} ">
+                    <input class="form-control date-picker rounded-pill pi-5 " id="enddate" type="date" placeholder="날짜를 선택해주세요 " data-datepicker-options="{&quot;altInput&quot;: true, &quot;altFormat&quot;: &quot;Y. m. d &quot;, &quot;dateFormat&quot;: &quot;Y-m-d&quot;, &quot;language&quot;: &quot;ko&quot;} ">
                 </div>
                   <!-- calendar End-->
                 <div class="border-top py-4">
@@ -87,121 +87,138 @@
               <div class="d-flex align-items-center flex-shrink-0">
               </div>
               <hr class="d-none d-sm-block w-100 mx-4">
-              <div class="d-none d-sm-flex align-items-center flex-shrink-0 text-muted"><i class="fi-check-circle me-2"></i><span class="fs-sm mt-n1">148 results</span></div>
+              <div class="d-none d-sm-flex align-items-center flex-shrink-0 text-muted"><i class="fi-check-circle me-2"></i>
+              <span class="fs-sm mt-n1">
+              ${listCount} results</span>
+              </div>
             </div>
             <!-- Catalog grid-->
-            <div class="row g-4 py-4">
-              <!-- Item-->
-              <div class="col-sm-6 mb-4">
-                <div class="card card-light card-hover h-100">
-                  <div class="card-img-top card-img-hover"style="border: 1px;">
-                    <div class="tns-carousel-inner"><img src="img/car-finder/catalog/01.jpg" alt="Image"></div>
-                  </div>
-                  <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm me-3" style="color: black;">주소</span>
-                    </div>
-                    <h3 class="h5" style="margin-bottom: 10px;"><a class="nav-link" href="car-finder-single.html">축제명</a></h3>
-                    <div class="h6 fw-bold" style="margin-bottom: 20px;">내용</div>
-                    <hr>
-                    <div class="h6 card-footer align-items-center justify-content-center">시작일 ~ 종료일</div>
-                  </div>
-                </div>
-              </div>
-              <!-- Item-->
-              <div class="col-sm-6 mb-4">
-                <div class="card card-light card-hover h-100">
-                  <div class="card-img-top card-img-hover"style="border: 1px;">
-                    <div class="tns-carousel-inner"><img src="img/car-finder/catalog/01.jpg" alt="Image"></div>
-                  </div>
-                  <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm me-3" style="color: black;">주소</span>
-                    </div>
-                    <h3 class="h5" style="margin-bottom: 10px;"><a class="nav-link" href="car-finder-single.html">축제명</a></h3>
-                    <div class="h6 fw-bold" style="margin-bottom: 20px;">내용</div>
-                    <hr>
-                    <div class="h6 card-footer align-items-center justify-content-center">시작일 ~ 종료일</div>
-                  </div>
-                </div>
-              </div>
-              <!-- Item-->
-              <div class="col-sm-6 mb-4">
-                <div class="card card-light card-hover h-100">
-                  <div class="card-img-top card-img-hover"style="border: 1px;">
-                    <div class="tns-carousel-inner"><img src="img/car-finder/catalog/01.jpg" alt="Image"></div>
-                  </div>
-                  <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm me-3" style="color: black;">주소</span>
-                    </div>
-                    <h3 class="h5" style="margin-bottom: 10px;"><a class="nav-link" href="car-finder-single.html">축제명</a></h3>
-                    <div class="h6 fw-bold" style="margin-bottom: 20px;">내용</div>
-                    <hr>
-                    <div class="h6 card-footer align-items-center justify-content-center">시작일 ~ 종료일</div>
-                  </div>
-                </div>
-              </div>
-              <!-- Item-->
-              <div class="col-sm-6 mb-4">
-                <div class="card card-light card-hover h-100">
-                  <div class="card-img-top card-img-hover"style="border: 1px;">
-                    <div class="tns-carousel-inner"><img src="img/car-finder/catalog/01.jpg" alt="Image"></div>
-                  </div>
-                  <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm me-3" style="color: black;">주소</span>
-                    </div>
-                    <h3 class="h5" style="margin-bottom: 10px;"><a class="nav-link" href="car-finder-single.html">축제명</a></h3>
-                    <div class="h6 fw-bold" style="margin-bottom: 20px;">내용</div>
-                    <hr>
-                    <div class="h6 card-footer align-items-center justify-content-center">시작일 ~ 종료일</div>
-                  </div>
-                </div>
-              </div>
-              <!-- Item-->
-              <div class="col-sm-6 mb-4">
-                <div class="card card-light card-hover h-100">
-                  <div class="card-img-top card-img-hover"style="border: 1px;">
-                    <div class="tns-carousel-inner"><img src="img/car-finder/catalog/01.jpg" alt="Image"></div>
-                  </div>
-                  <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm me-3" style="color: black;">주소</span>
-                    </div>
-                    <h3 class="h5" style="margin-bottom: 10px;"><a class="nav-link" href="car-finder-single.html">축제명</a></h3>
-                    <div class="h6 fw-bold" style="margin-bottom: 20px;">내용</div>
-                    <hr>
-                    <div class="h6 card-footer align-items-center justify-content-center">시작일 ~ 종료일</div>
-                  </div>
-                </div>
-              </div>
-              <!-- Item-->
-              <div class="col-sm-6 mb-4">
-                <div class="card card-light card-hover h-100">
-                  <div class="card-img-top card-img-hover"style="border: 1px;">
-                    <div class="tns-carousel-inner"><img src="img/car-finder/catalog/01.jpg" alt="Image"></div>
-                  </div>
-                  <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm me-3" style="color: black;">주소</span>
-                    </div>
-                    <h3 class="h5" style="margin-bottom: 10px;"><a class="nav-link" href="car-finder-single.html">축제명</a></h3>
-                    <div class="h6 fw-bold" style="margin-bottom: 20px;">내용</div>
-                    <hr>
-                    <div class="h6 card-footer align-items-center justify-content-center">시작일 ~ 종료일</div>
-                  </div>
-                </div>
-              </div>
+            <div class="search-data row g-4 py-4">
+            
+            <c:if test="${empty list}">
+            	</c:if>
+            <c:if test="${!empty list}">
+				<c:forEach items="${list}" var="festival">           	 
+            		<!-- Item-->
+            		<div class="col-sm-6 mb-4">
+                		<div class="card card-light card-hover h-100">
+                  			<div class="card-img-top card-img-hover"style="border: 1px;">
+                    			<div class="tns-carousel-inner"><img src="img/car-finder/catalog/01.jpg" alt="Image"></div>
+                  			</div>
+                  			<div class="card-body">
+                    			<div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm me-3" style="color: black;">${festival.addr}</span>
+                    			</div>
+                    			<h3 class="h5" style="margin-bottom: 10px;"><a class="nav-link" href="car-finder-single.html">${festival.name}</a></h3>
+                    			<div class="h6 fw-bold" style="margin-bottom: 20px;">${festival.phone}</div>
+                    			<hr>
+                    			<div class="h6 card-footer align-items-center justify-content-center">
+                    			${festival.startdate}&nbsp;~&nbsp;${festival.enddate}</div>
+                  			</div>
+              			</div>
+            		</div>
+            	</c:forEach>
+            </c:if>
             </div>
+            
             <!-- Pagination-->
             <nav class="border-top pb-md-4 pt-4 mt-2" aria-label="Pagination">
               <ul class="pagination mb-1">
                 <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 5</span></li>
-                <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="visually-hidden">(current)</span></span></li>
-                <li class="page-item d-none d-sm-block"><a class="page-link" href="#">2</a></li>
-                <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li>
-                <li class="page-item d-none d-sm-block">...</li>
-                <li class="page-item d-none d-sm-block"><a class="page-link" href="#">8</a></li>
-                <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="fi-chevron-right"></i></a></li>
+                <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link" id="page(1)" onclick="goPage(1); return false;">1<span class="visually-hidden">(current)</span></span></li>
+                <c:if test="${pageInfo.getEndPage() > 1}">
+	                	<c:forEach var="i" begin="2" end="${pageInfo.getEndPage()}">
+	                		<li class="page-item d-none d-sm-block"><a class="page-link" id="page(${i})" onclick="goPage(${i}); return false;">${i}</a></li>
+	                	</c:forEach>
+	                </c:if>
+                <li class="page-item"><a class="page-link" onclick="goPage(${pageInfo.getNextPage()}); return false;" aria-label="Next"><i class="fi-chevron-right"></i></a></li>
               </ul>
             </nav>
           </div>
         </div>
-      </div>
     </main>
+    <script>
+	    function goPage(no) {
+        		var page = no;
+        		var keyword = $("#city").val(); 
+        		var keyword = $("#keyword").val(); 
+        		var keyword = $("#startdate").val(); 
+        		var keyword = $("#enddate").val();
+        		
+        		$.ajax({
+        			url: "${path}/festival/list",
+        			type: 'GET',
+        			data: {
+        				page: page,
+        				city: city, 
+        				keyword: keyword,
+        				startdate : startdate,
+        				enddate: enddate
+        			},
+        			
+        			success:function(map) {
+        				str = "";
+        				var list = map.list;
+        				var pageInfo = map.pageInfo;
+        				var param = map.param;
+        				
+        				$.each(list, function (i, obj) { // list.get(i) = obj
+        					str +='<div class="col-sm-6 mb-4">																												 '
+        					str +='<div class="card card-light card-hover h-100">                                                                                              '
+        					str +='<div class="card-img-top card-img-hover"style="border: 1px;">                                                                               '
+        					str +='<div class="tns-carousel-inner"><img src="img/car-finder/catalog/01.jpg" alt="Image"></div>                                                 '
+        					str +='</div>                                                                                                                                      '
+        					str +='<div class="card-body">                                                                                                                     '
+        					str +='<div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm me-3" style="color: black;">'+ obj.addr +'</span>  '
+        					str +='</div>                                                                                                                                      '
+        					str +='<h3 class="h5" style="margin-bottom: 10px;"><a class="nav-link" href="car-finder-single.html">'+ obj.name +'</a></h3>                     '
+        					str +='<div class="h6 fw-bold" style="margin-bottom: 20px;">'+ obj.phone +'</div>                                                                '
+        					str +='<hr>                                                                                                                                        '
+        					str +='<div class="h6 card-footer align-items-center justify-content-center">'+ obj.startdate +'&nbsp;~&nbsp;'+ obj.enddate +'</div>           '
+        					str +='</div>                                                                                                                                      '
+        					str +='</div>                                                                                                                                      '
+        					str +='</div>       																															'
+        				});
+        				
+        				$(".search-data").html(str);
+        				
+        				var maxPage =     pageInfo.maxPage     ;
+             			var startPage =   pageInfo.startPage   ;
+             			var endPage =     pageInfo.endPage     ;
+             			var currentPage = pageInfo.currentPage ;
+             			var prevPage =    pageInfo.prevPage    ;
+             			var nextPage =    pageInfo.nextPage    ;
+             			var startList =   pageInfo.startList   ;
+             			var endList =     pageInfo.endList     ;  
+
+             			str = ""; 
+             			var prevEndPage = endPage;
+             			
+     	        		if(currentPage == 1) {
+     	            		str += '<li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link" id="page(1)" onclick="goPage(1); return false;">1<span class="visually-hidden">(current)</span></span></li>'
+     	            	}
+     	
+     	            	for (var i = startPage; i <= endPage; i++) { // 페이지 5개마다 페이지 바뀜
+     	            		if(currentPage == 1 && i == 1) {
+     	            			continue;
+     	            		}
+     	            		if(i == currentPage) {
+     	            			str += '<li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link" id="page('+ i +')" onclick="goPage('+ i +'); return false;">'+ i +'<span class="visually-hidden">(current)</span></span></li>';
+     	            		} else {
+    	                		str += '<li class="page-item d-none d-sm-block"><a class="page-link" id="page('+ i +')" onclick="goPage('+ i +'); return false;">'+ i +'</a></li>'
+     	            		}
+     	            	}
+     	
+     	            	if(currentPage != maxPage) {
+     	            		str += '<li class="page-item"><a class="page-link" onclick="goPage('+ nextPage +'); return false;" aria-label="Next"><i class="fi-chevron-right"></i></a></li>'
+     	            	}
+             			
+             			$('.search-page').html(str);
+        			},
+        			
+        			error:function(e) {
+        				console.log(e)
+        			}
+        		});
+        	};
+     </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
