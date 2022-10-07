@@ -8,7 +8,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bc.heal.vo.PageInfo;
+import com.bc.heal.common.util.PageInfo;
 import com.bc.heal.park.mapper.ParkMapper;
 import com.bc.heal.vo.Park;
 

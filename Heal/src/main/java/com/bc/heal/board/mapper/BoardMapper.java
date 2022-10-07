@@ -25,5 +25,5 @@ public interface BoardMapper {
 
 	int countPlus(@Param("count") int count, @Param("no") int no);
 
-	int update(@Param("title") String title,@Param("cont") String cont);
+	int update(@Param("title") String title,@Param("cont") String cont, @Param("no") String no);
 }

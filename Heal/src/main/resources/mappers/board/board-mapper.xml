@@ -79,7 +79,7 @@
 	</delete>
 	
 	<update id="update" parameterType="string">
-		UPDATE TBL_BOARD SET TITLE = #{title} AND CONT = #{cont} AND MODIFYDATE = SYSDATE
+		UPDATE TBL_BOARD SET TITLE = #{title}, CONT = #{cont}, MODIFYDATE = SYSDATE WHERE NO = #{no}
 	</update>
 	
 	<update id="countPlus" parameterType="int">

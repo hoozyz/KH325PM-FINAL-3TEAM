@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +22,7 @@ import com.bc.heal.board.service.BoardService;
 import com.bc.heal.photo.service.PhotoService;
 import com.bc.heal.vo.Board;
 import com.bc.heal.vo.Member;
-import com.bc.heal.vo.PageInfo;
+import com.bc.heal.common.util.PageInfo;
 import com.bc.heal.vo.Photo;
 
 @Controller
@@ -112,8 +113,8 @@ public class BoardController {
 	@PostMapping("/update")
 	public String update(Model model, Board board, HttpServletRequest req) {
 		int result = 0;
-		
-		result = boardService.update(board.getTitle(), board.getCont());
+		System.out.println(board);
+		result = boardService.update(board.getTitle(), board.getCont(), Integer.toString(board.getNo()));
 		String location = req.getHeader("Referer");
 
 		if (result > 0) {

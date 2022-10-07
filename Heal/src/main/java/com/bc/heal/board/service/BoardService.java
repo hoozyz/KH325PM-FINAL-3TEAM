@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.bc.heal.vo.Board;
-import com.bc.heal.vo.PageInfo;
+import com.bc.heal.common.util.PageInfo;
 
 public interface BoardService {
 	List<Board> selectByMember(int no);
@@ -23,5 +23,5 @@ public interface BoardService {
 
 	int countPlus(int count, int no);
 
-	int update(String title, String cont);
+	int update(String title, String cont, String no);
 }

@@ -10,8 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.bc.heal.board.mapper.BoardMapper;
 import com.bc.heal.vo.Board;
-import com.bc.heal.vo.PageInfo;
-
+import com.bc.heal.common.util.PageInfo;
 @Service
 public class BoardServiceImpl implements BoardService {
 
@@ -69,7 +68,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int update(String title, String cont) {
-		return mapper.update(title, cont);
+	public int update(String title, String cont, String no) {
+		return mapper.update(title, cont, no);
 	}
 }

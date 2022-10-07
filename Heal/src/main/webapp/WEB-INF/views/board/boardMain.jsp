@@ -151,7 +151,7 @@
                             <div class="col-md-6" style="width: 750px;padding-bottom: 20px;padding-right: 20px;padding-top: 20px;padding-left: 20px;height: 500px;">
                                 <form class="viewForm" method="POST">
                                 	<div class style="margin-bottom: 10px;">
-                                    NO. <input class="form-no" for="signup-name" name="no" style="margin-left: 5px; border:none;" value="123" readonly>
+                                    NO. <input class="form-no" name="no" style="margin-left: 5px; border:none;" value="123" readonly>
 	                                </div>
 	                                <div class style="margin-bottom: 10px; float: right;">
 	                                    <label class="form-label" for="signup-name">작성자 &nbsp; :&nbsp; 이름&nbsp;&nbsp;&nbsp;|</label>
@@ -163,7 +163,7 @@
 	                                </div>
 	                                <div class style="margin-bottom: 15px;">
 	                                    <label class="form-label" for="signup-name">&nbsp;&nbsp;내용</label>
-	                                    <textarea class="form-control" style="height:220px; width: 100%;" name="cont" type="text" id="update-content" readonly>내용</textarea>
+	                                    <textarea class="form-control" style="height:220px; width: 100%;" name="cont" id="update-content" readonly>내용</textarea>
 	                                </div>
 	                                <div>
 	                                <input class="btn btn-primary btn-lg rounded-pill" formaction="${path}/board/delete" type="submit" value="삭제" style="float: right;margin-left: 15px;padding-left: 20px;padding-right: 20px;padding-top: 10px;padding-bottom: 10px;">
@@ -478,7 +478,7 @@
 	             			str += '           <div class="col-md-6" style="width: 750px;padding-bottom: 20px;padding-right: 20px;padding-top: 20px;padding-left: 20px;height: 500px;">'
 	             			str += '           <form class="viewForm" action method="POST">'
 	             			str += '           	<div class style="margin-bottom: 10px; margin-left: 5px;">'
-	             			str += 'NO. <input class="form-no" for="signup-name" name="boardNo" style="margin-left: 5px; border:none;" value="'+ no +'" readonly>';
+	             			str += 'NO. <input class="form-no" for="signup-name" name="no" style="margin-left: 5px; border:none;" value="'+ no +'" readonly>';
 	             			str += '            </div>'
 	             			str += '            <div class style="margin-bottom: 10px; float: right;">'
 	             			str += '                <label class="form-label" for="signup-name">작성자 &nbsp; :&nbsp;' + id +'&nbsp;&nbsp;&nbsp;|</label>'
