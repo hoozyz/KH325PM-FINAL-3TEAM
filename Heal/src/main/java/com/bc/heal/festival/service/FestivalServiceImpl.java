@@ -1,5 +1,6 @@
 package com.bc.heal.festival.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,11 +28,47 @@ public class FestivalServiceImpl implements FestivalService{
 		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
 		RowBounds rowBounds = new RowBounds(offset, pageInfo.getListLimit());
 		
-		return mapper.selectFestivalList(rowBounds, param);
+		Map<String, String> searchMap = new HashMap<String, String>();
+		String startdate = param.get("startdate");
+		String enddate = param.get("enddate");
+		String name = param.get("name");
+		String addr = param.get("addr");
+		if (startdate != null && startdate.length() > 0) {
+			searchMap.put("startdate", startdate);
+		} 
+		if (enddate != null && enddate.length() > 0) {
+			searchMap.put("enddate", enddate);
+		}
+		if (name != null && name.length() > 0) {
+			searchMap.put("name", name);
+		}
+		if (addr != null && addr.length() > 0) {
+			searchMap.put("addr", addr);
+		}
+		
+		return mapper.selectFestivalList(rowBounds, searchMap);
 	}
 
 	@Override
 	public int getFestivalCount(Map<String, String> param) {
-		return mapper.selectFestivalCount(param);
+		Map<String, String> searchMap = new HashMap<String, String>();
+		String startdate = param.get("startdate");
+		String enddate = param.get("enddate");
+		String name = param.get("name");
+		String addr = param.get("addr");
+		if (startdate != null && startdate.length() > 0) {
+			searchMap.put("startdate", startdate);
+		} 
+		if (enddate != null && enddate.length() > 0) {
+			searchMap.put("enddate", enddate);
+		}
+		if (name != null && name.length() > 0) {
+			searchMap.put("name", name);
+		}
+		if (addr != null && addr.length() > 0) {
+			searchMap.put("addr", addr);
+		}
+		
+		return mapper.selectFestivalCount(searchMap);
 	}
 }

@@ -929,7 +929,7 @@
                             </div>
                             <p class="summary p-0">
                                 <span class="weather">구름많음</span>
-                                <em>어제보다</em> <span class="temperature down">0.4° <span class="blind">낮아요</span></span>
+                                <em>어제보다</em> <span class="temperature down">0.4°</span>
                             </p>
                         </div>
                     </div>

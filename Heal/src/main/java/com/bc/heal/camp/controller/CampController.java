@@ -1,9 +1,20 @@
 package com.bc.heal.camp.controller;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +32,7 @@ import com.bc.heal.vo.Bus;
 import com.bc.heal.vo.Camp;
 import com.bc.heal.vo.EndStation;
 import com.bc.heal.vo.Train;
+import com.bc.heal.vo.Weather;
 
 @Controller
 @RequestMapping("/camp")
@@ -43,77 +55,69 @@ public class CampController {
 		return "/camp/campMain";
 	}
 
-	
 	@GetMapping("/campSearch")
 	String search(Model model, @RequestParam Map<String, String> param) {
-		
+
 		int page = 1;
-		if(param.containsKey("page") == true) {
+		if (param.containsKey("page") == true) {
 			try {
 				page = Integer.parseInt(param.get("page"));
-			} catch (Exception e) {}
+			} catch (Exception e) {
+			}
 		}
-		
+
 		int listCount = campService.getCampCount(param);
 		System.out.println("총 게시글 수  : " + listCount);
 		model.addAttribute("listCount", listCount);
-		
+
 		PageInfo pageInfo = new PageInfo(page, 10, listCount, 8);
 		List<Camp> campList = campService.getCampList(pageInfo, param);
-		
+
 		System.out.println(campList);
-	
+
 		model.addAttribute("campList", campList);
 		model.addAttribute("param", param);
 		model.addAttribute("pageInfo", pageInfo);
-		
-		
+
 		return "/camp/campSearch";
 	}
-		@GetMapping("/camplist")
-		String list(Model model, @RequestParam Map<String, String> param) {
-			
-			int page = 1;
-			if(param.containsKey("page") == true) {
-				try {
-					page = Integer.parseInt(param.get("page"));
-				} catch (Exception e) {}
+
+	@GetMapping("/camplist")
+	String list(Model model, @RequestParam Map<String, String> param) {
+
+		int page = 1;
+		if (param.containsKey("page") == true) {
+			try {
+				page = Integer.parseInt(param.get("page"));
+			} catch (Exception e) {
 			}
-			
-			int listCount = campService.getCampCount(param);
-			System.out.println("총 게시글 수  : " + listCount);
-			model.addAttribute("listCount", listCount);
-			
-			PageInfo pageInfo = new PageInfo(page, 10, listCount, 10);
-			List<Camp> campList = campService.getCampList(pageInfo, param);
-			
-			System.out.println(campList);
-			
-			model.addAttribute("campList", campList);
-			model.addAttribute("param", param);
-			model.addAttribute("pageInfo", pageInfo);
-			
-			
-			return "/camp/camplist";
-			
-		
+		}
+
+		int listCount = campService.getCampCount(param);
+		System.out.println("총 게시글 수  : " + listCount);
+		model.addAttribute("listCount", listCount);
+
+		PageInfo pageInfo = new PageInfo(page, 10, listCount, 10);
+		List<Camp> campList = campService.getCampList(pageInfo, param);
+
+		System.out.println(campList);
+
+		model.addAttribute("campList", campList);
+		model.addAttribute("param", param);
+		model.addAttribute("pageInfo", pageInfo);
+
+		return "/camp/camplist";
+
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	@GetMapping("/detail")
-	public String detail(Model model /*int no*/) { // 캠핑장 상세정보, 기차/비행기/버스 도착역 리스트
+	public String detail(Model model /* int no */) { // 캠핑장 상세정보, 기차/비행기/버스 도착역 리스트
 		Camp camp = campService.findByNo(57); // 테스트 -> 공항있는 캠핑장
-		
+
 		// 리뷰
 		
 		
+		// 날씨
 		
 		
 
@@ -131,7 +135,7 @@ public class CampController {
 
 		trainEndList = trainService.selectListByEndSta();
 		busEndList = busService.selectListByEndSta();
-		
+
 		// 도착역 정하기 -> 거리가 제일 가까운 역 가져오기
 		Double distance = 1000d; // 초기값 1000설정 -> 0이면 0보다 작을 수 없어서
 		for (int i = 0; i < trainEndList.size(); i++) {
@@ -145,7 +149,7 @@ public class CampController {
 				trainEnd = trainEndList.get(i).getEndsta(); // 도착역 넣기 -> 마지막에 넣어지는게 제일 가까운 역
 			}
 		}
-		
+
 		distance = 1000d;
 		for (int i = 0; i < busEndList.size(); i++) {
 			Double distance1 = distance(Double.parseDouble(lat), Double.parseDouble(lng),
@@ -157,7 +161,7 @@ public class CampController {
 				busEnd = busEndList.get(i).getEndsta();
 			}
 		}
-		
+
 		// 도착항공 정하기
 		if (camp.getAddr().contains("진주") || camp.getAddr().contains("사천")) {
 			airEnd = "진주";
@@ -197,37 +201,36 @@ public class CampController {
 		airList = airService.selectListByEnd(airEnd);
 
 		for (int i = 0; i < trainList.size(); i++) {
-			if(trainList.get(i).getGeneralprice() == 0) { // 가격이 없을 때
-				trainList.get(i).setGeneralprice(trainList.get(i-1).getGeneralprice());
+			if (trainList.get(i).getGeneralprice() == 0) { // 가격이 없을 때
+				trainList.get(i).setGeneralprice(trainList.get(i - 1).getGeneralprice());
 			}
-			
-			if(trainStartList.contains(trainList.get(i).getStartsta()) == false) { // 시작역 겹칠경우 안넣음
+
+			if (trainStartList.contains(trainList.get(i).getStartsta()) == false) { // 시작역 겹칠경우 안넣음
 				trainStartList.add(trainList.get(i).getStartsta());
 			}
 		}
 		for (int i = 0; i < busList.size(); i++) {
-			if(busList.get(i).getNormalprice() == 0) { // 가격이 없을 때 -> 버스는 10500원으로 통일
+			if (busList.get(i).getNormalprice() == 0) { // 가격이 없을 때 -> 버스는 10500원으로 통일
 				busList.get(i).setNormalprice(10500);
 			}
-			
-			if(busStartList.contains(busList.get(i).getStartsta()) == false) { // 시작역 겹칠경우 안넣음
+
+			if (busStartList.contains(busList.get(i).getStartsta()) == false) { // 시작역 겹칠경우 안넣음
 				busStartList.add(busList.get(i).getStartsta());
 			}
 		}
 		for (int i = 0; i < airList.size(); i++) { // 가격 다 있음
-			if(airStartList.contains(airList.get(i).getStartsta()) == false) { // 시작역 겹칠경우 안넣음
+			if (airStartList.contains(airList.get(i).getStartsta()) == false) { // 시작역 겹칠경우 안넣음
 				airStartList.add(airList.get(i).getStartsta());
 			}
 		}
-		
+
 		int airCheck = 1;
-		if(airList.isEmpty()) { // 공항 없음
+		if (airList.isEmpty()) { // 공항 없음
 			airCheck = 0;
 		}
 		Double priceDouble = camp.getPrice() * 1.5;
 		int price = priceDouble.intValue();
-		
-		
+
 		model.addAttribute("airEnd", airEnd);
 		model.addAttribute("trainEnd", trainEnd);
 		model.addAttribute("busEnd", busEnd);
@@ -264,5 +267,174 @@ public class CampController {
 
 	private static double rad2deg(double rad) {
 		return (rad * 180 / Math.PI);
+	}
+
+	// 날씨 api -> 날짜별 -> 오늘, 내일, 모레 전체 정보 -> date 에는 시간까지 **:** -> ****
+	public List<Weather> weatherApi(String nx, String ny) throws IOException, ParseException {
+		List<Weather> list = new ArrayList<>(); // 오늘 내일 모레 날씨 담을 리스트
+		Weather today = new Weather(); // 오늘
+		Weather one = new Weather(); // 내일
+		Weather two = new Weather(); // 모레
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd HH");
+
+		Date now = new Date();
+		String nowTime = sdf.format(now);
+
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(now);
+		cal.add(Calendar.DATE, 1); // 하루 추가
+		String oneDate = sdf.format(cal.getTime()).split("")[0]; // 내일 날짜
+		cal.add(Calendar.DATE, 1); // 하루 추가
+		String twoDate = sdf.format(cal.getTime()).split("")[0]; // 모레 날짜
+
+		System.out.println(nowTime);
+
+		String date = nowTime.split("")[0]; // 날짜만
+
+		String time = nowTime.split("")[1] + "00"; // 시간중 -> 0900 처럼 만들기
+
+		String urlStr = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?"
+				+ "serviceKey=1n4THo6i88dAniTj3VQPQLc%2BKj8AhB%2BjrA2WmJxMjKlcpkoi%2BsxoUiHXhe%2Fhrp8NY9BQOoPu1Vdj8UuQH4g2Dg%3D%3D"
+				+ "&pageNo=1&numOfRows=1000&dataType=json&base_date=" + date + "&base_time=0200&nx=" + nx + "&ny=" + ny;
+
+		URL url = new URL(urlStr);
+
+		String line = "";
+		String result = "";
+
+		BufferedReader br;
+		br = new BufferedReader(new InputStreamReader(url.openStream()));
+		while ((line = br.readLine()) != null) {
+			result = result.concat(line);
+		}
+
+		JSONParser parser = new JSONParser();
+
+		JSONObject jsonMain = (JSONObject) parser.parse(result);
+
+		JSONObject jsonResponse = (JSONObject) jsonMain.get("response");
+
+		JSONObject jsonBody = (JSONObject) jsonResponse.get("body");
+
+		JSONObject jsonItems = (JSONObject) jsonBody.get("items");
+
+		JSONArray jsonItemArr = (JSONArray) jsonItems.get("item");
+
+		String pop = "";
+		String pcp = "";
+		String reh = "";
+		String sky = "";
+		String tmp = "";
+		String tmn = "";
+		String tmx = "";
+
+		if (jsonItemArr.size() > 0) {
+			for (int i = 0; i < jsonItemArr.size(); i++) {
+				JSONObject jsonItem = (JSONObject) jsonItemArr.get(i);
+
+				String category = (String) jsonItem.get("category"); // 구별 코드 가져오기
+				String timeCheck = (String) jsonItem.get("fcstTime"); // 기준 시간
+				String dateCheck = (String) jsonItem.get("fcstDate"); // 기준 날짜
+
+				if (dateCheck.equals(date) && timeCheck.equals(time)) { // 오늘 -> 현재시간
+					if (category.equals("POP")) { // 강수확률
+						pop = (String) jsonItem.get("fcstValue");
+						today.setPop(pop);
+					}
+					if (category.equals("PCP")) { // 현재 강수량
+						pcp = (String) jsonItem.get("fcstValue");
+						today.setPcp(pcp);
+					}
+					if (category.equals("REH")) { // 습도
+						reh = (String) jsonItem.get("fcstValue");
+						today.setReh(reh);
+					}
+					if (category.equals("SKY")) { // 구름상태 -> 0~5 좋음, 6~8 구름많음, 9~10 흐림
+						sky = (String) jsonItem.get("fcstValue");
+						today.setSky(sky);
+					}
+					if (category.equals("TMP")) { // 현재기온
+						tmp = (String) jsonItem.get("fcstValue");
+						today.setTmp(tmp);
+					}
+				}
+				if (dateCheck.equals(oneDate) && timeCheck.equals(time)) { // 내일
+					if (category.equals("POP")) { // 강수확률
+						pop = (String) jsonItem.get("fcstValue");
+						one.setPop(pop);
+					}
+					if (category.equals("PCP")) { // 현재 강수량
+						pcp = (String) jsonItem.get("fcstValue");
+						one.setPcp(pcp);
+					}
+					if (category.equals("REH")) { // 습도
+						reh = (String) jsonItem.get("fcstValue");
+						one.setReh(reh);
+					}
+					if (category.equals("SKY")) { // 구름상태 -> 0~5 좋음, 6~8 구름많음, 9~10 흐림
+						sky = (String) jsonItem.get("fcstValue");
+						one.setSky(sky);
+					}
+					if (category.equals("TMP")) { // 현재기온
+						tmp = (String) jsonItem.get("fcstValue");
+						one.setTmp(tmp);
+					}
+				}
+				if (dateCheck.equals(twoDate) && timeCheck.equals(time)) { // 모레
+					if (category.equals("POP")) { // 강수확률
+						pop = (String) jsonItem.get("fcstValue");
+						two.setPop(pop);
+					}
+					if (category.equals("PCP")) { // 현재 강수량
+						pcp = (String) jsonItem.get("fcstValue");
+						two.setPcp(pcp);
+					}
+					if (category.equals("REH")) { // 습도
+						reh = (String) jsonItem.get("fcstValue");
+						two.setReh(reh);
+					}
+					if (category.equals("SKY")) { // 구름상태 -> 0~5 좋음, 6~8 구름많음, 9~10 흐림
+						sky = (String) jsonItem.get("fcstValue");
+						two.setSky(sky);
+					}
+					if (category.equals("TMP")) { // 현재기온
+						tmp = (String) jsonItem.get("fcstValue");
+						two.setTmp(tmp);
+					}
+				}
+
+				if (category.equals("TMN")) { // 최저기온 시간필요없음
+					if (dateCheck.equals(date)) { // 오늘
+						tmn = (String) jsonItem.get("fcstValue");
+						today.setTmn(tmn);
+					} else if (dateCheck.equals(oneDate)) { // 내일
+						tmn = (String) jsonItem.get("fcstValue");
+						one.setTmn(tmn);
+					} else { // 모레
+						tmn = (String) jsonItem.get("fcstValue");
+						two.setTmn(tmn);
+					}
+				}
+				if (category.equals("TMX")) { // 최고기온 시간필요없음
+					if (dateCheck.equals(date)) { // 오늘
+						tmx = (String) jsonItem.get("fcstValue");
+						today.setTmn(tmn);
+					} else if (dateCheck.equals(oneDate)) { // 내일
+						tmx = (String) jsonItem.get("fcstValue");
+						one.setTmn(tmn);
+					} else { // 모레
+						tmx = (String) jsonItem.get("fcstValue");
+						two.setTmn(tmn);
+					}
+				}
+			}
+		}
+
+		list.add(today);
+		list.add(one);
+		list.add(two);
+
+		return list;
 	}
 }
