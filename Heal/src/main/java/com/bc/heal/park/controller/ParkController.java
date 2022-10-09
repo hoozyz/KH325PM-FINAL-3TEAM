@@ -38,13 +38,14 @@ public class ParkController {
 			} catch (Exception e) {}
 		}
 		
-		PageInfo pageInfo = new PageInfo(page, 10, service.getParkCount(param), 10);
+		PageInfo pageInfo = new PageInfo(page, 10, service.getParkCount(param), 8);
 		List<Park> list = service.getParkList(pageInfo, param);
+		int searchCount = service.getParkCount(param);
 		
 		model.addAttribute("list", list);
 		model.addAttribute("param", param);
 		model.addAttribute("pageInfo", pageInfo);
-		
+		model.addAttribute("searchCount", searchCount);
 		return "/park/parkSearch";
 	}
 

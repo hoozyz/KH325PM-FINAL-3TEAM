@@ -28,10 +28,10 @@
 		WHERE 1=1
 		<if test="keyword != null">
 			AND NAME LIKE '%'||#{keyword}||'%'
-		<if test="cityKeyword != null">
-			AND ADDR LIKE '%'||#{cityKeyword}||'%'
-		<if test="categoryKeyword != null">
-			AND CATEGORY LIKE '%'||#{categoryKeyword}||'%'
+		<if test="city != null">
+			AND ADDR LIKE '%'||#{city}||'%'
+		<if test="category != null">
+			AND CATEGORY LIKE '%'||#{category}||'%'
 		</if>
 		</if>
 		</if>
@@ -44,10 +44,10 @@
 		WHERE 1=1
 		<if test="keyword != null">
 			AND NAME LIKE '%'||#{keyword}||'%'
-			<if test="cityKeyword != null">
-				AND ADDR LIKE '%'||#{cityKeyword}||'%'
-				<if test="categoryKeyword != null">
-					AND CATEGORY LIKE '%'||#{categoryKeyword}||'%'
+			<if test="city != null">
+				AND ADDR LIKE '%'||#{city}||'%'
+				<if test="category != null">
+					AND CATEGORY LIKE '%'||#{category}||'%'
 					</if>
 				</if>
 		</if>

@@ -1,6 +1,5 @@
 package com.bc.heal.park.service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,22 +25,7 @@ public class ParkServiceImpl implements ParkService{
 
 	@Override
 	public int getParkCount(Map<String, String> param) {
-		Map<String, String> searchMap = new HashMap<String, String>();
-		String keyword = param.get("keyword");
-		if (keyword != null && keyword.length() > 0) {
-			String city = param.get("city");
-			if (city != null && city.length() > 0) {
-				String category = param.get("category");
-				if (category != null && category.length() > 0) {
-					searchMap.put("keyword", keyword);
-					searchMap.put("cityKeyword", city);
-					searchMap.put("categoryKeyword", category);
-				}
-			}
-		}
-		
-		System.out.println(searchMap);
-		return mapper.selectParkCount(searchMap);
+		return mapper.selectParkCount(param);
 	}
 
 	@Override
@@ -50,19 +34,6 @@ public class ParkServiceImpl implements ParkService{
 		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
 		RowBounds rowBounds = new RowBounds(offset, pageInfo.getListLimit());
 		
-		Map<String, String> searchMap = new HashMap<String, String>();
-		String keyword = param.get("keyword");
-		if(keyword != null && keyword.length() > 0) {
-			String city = param.get("city");
-			if(city != null && city.length() > 0) {
-				String category = param.get("category");
-				if(category != null && category.length() > 0) {
-					searchMap.put("keyword", keyword);
-					searchMap.put("cityKeyword", city);
-					searchMap.put("categoryKeyword", category);
-				}
-			}
-		}
-		return mapper.selectParkList(rowBounds, searchMap);
+		return mapper.selectParkList(rowBounds, param);
 	}
 }
