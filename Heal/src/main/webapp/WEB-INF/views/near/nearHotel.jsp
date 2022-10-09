@@ -5,8 +5,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <jsp:include page="/WEB-INF/views/common/headerTest.jsp">
-	<jsp:param value="나의 게시글" name="title"/>
+	<jsp:param value="숙박검색" name="hotel"/>
 </jsp:include>
+
+<c:set var="keyword" value="${param.keyword}"/>
+<c:set var="searchcity" value="${param.city}"/>
+<input type="hidden" id="keyword" value="${keyword}" > 
+<input type="hidden" id="city" value="${searchcity}" >  
 
 <main>
 <div class="container-fluid mt-5 pt-5 p-0">
@@ -39,20 +44,20 @@
                 <div class="pb-4 mb-2">
                   <h3 class="h6">위치</h3>
                   <select class="form-select mb-2" name="city">
-                    <option value="" selected disabled>도/시</option>
-                    <option value="seoul">서울특별시</option>
-                    <option value="busan">부산광역시</option>
-                    <option value="daegu">대구광역시</option>
-                    <option value="incheon">인천광역시</option>
-                    <option value="gwangju">광주광역시</option>
-                    <option value="daejeon">대전광역시</option>
-                    <option value="ulsan">울산광역시</option>
-                    <option value="gyunggi">경기도</option>
-                    <option value="gangwon">강원도</option>
-                    <option value="choongcheong">충청도</option>
-                    <option value="jeonla">전라도</option>
-                    <option value="gyungsang">경상도</option>
-                    <option value="jeju">제주특별자치도</option>
+                   <option value="" selected disabled>도/시</option>
+                    <option value="서울특별시">서울특별시</option>                                             
+                    <option value="부산광역시">부산광역시</option>
+                    <option value="대구광역시">대구광역시</option>
+                    <option value="인천광역시">인천광역시</option>
+                    <option value="광주광역시">광주광역시</option>
+                    <option value="대전광역시">대전광역시</option>
+                    <option value="울산광역시">울산광역시</option>
+                    <option value="경기도">경기도</option>
+                    <option value="강원도">강원도</option>
+                    <option value="충청도">충청도</option>
+                    <option value="전라도">전라도</option>
+                    <option value="경상도">경상도</option>
+                    <option value="제주특별자치도">제주특별자치도</option>       
                   </select>
                 </div>
                 <div class="pb-4 mb-2">
@@ -104,231 +109,41 @@
             <!-- Sorting-->
             <div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch my-2">
               <hr class="d-none d-sm-block w-100 mx-4">
-              <div class="d-none d-sm-flex align-items-center flex-shrink-0 text-muted"><i class="fi-check-circle me-2"></i><span class="fs-sm mt-n1">148 results</span></div>
+              <div class="d-none d-sm-flex align-items-center flex-shrink-0 text-muted"><i class="fi-check-circle me-2"></i><span class="fs-sm mt-n1">총 ${listCount}</span></div>
             </div>
             <!-- Catalog grid-->
             <div class="row g-4 py-4">
-              <!-- Item-->
-              <div class="col-sm-6 col-xl-4">
-                <div class="card shadow-sm card-hover border-0 h-100">
-                  <div class="tns-carousel-wrapper card-img-top card-img-hover"><a class="img-overlay" href="real-estate-single-v1.html"></a>
-                    <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                      <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                    </div>
-                    <div class=""><img src="img/real-estate/catalog/06.jpg" alt="Image"></div>
-                  </div>
-                  <div class="card-body position-relative pb-3" style="margin-top: 10px;">
-                    <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">3-bed Apartment | 67 sq.m</a></h3>
-                    <p class="mb-2 fs-sm text-muted">3811 Ditmars Blvd Astoria, NY 11105</p>
-                    <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>60000원 / 1박</div>
-                  </div>
-                </div>
-              </div>
-              <!-- Item-->
-              <div class="col-sm-6 col-xl-4">
-                <div class="card shadow-sm card-hover border-0 h-100">
-                  <div class="tns-carousel-wrapper card-img-top card-img-hover"><a class="img-overlay" href="real-estate-single-v1.html"></a>
-                    <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info">New</span></div>
-                    <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                      <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                    </div>
-                    <div class="tns-carousel-inner"><img src="img/real-estate/catalog/07.jpg" alt="Image"><img src="img/real-estate/catalog/07.jpg" alt="Image"></div>
-                  </div>
-                  <div class="card-body position-relative pb-3">
-                    <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For rent</h4>
-                    <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">Pine Apartments | 56 sq.m</a></h3>
-                    <p class="mb-2 fs-sm text-muted">3811 Ditmars Blvd Astoria, NY 11105</p>
-                    <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>$2,000</div>
-                  </div>
-                </div>
-              </div>
-              <!-- Item-->
-              <div class="col-sm-6 col-xl-4">
-                <div class="card shadow-sm card-hover border-0 h-100">
-                  <div class="tns-carousel-wrapper card-img-top card-img-hover"><a class="img-overlay" href="real-estate-single-v1.html"></a>
-                    <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info">New</span></div>
-                    <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                      <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                    </div>
-                    <div class="tns-carousel-inner"><img src="img/real-estate/catalog/08.jpg" alt="Image"><img src="img/real-estate/catalog/08.jpg" alt="Image"></div>
-                  </div>
-                  <div class="card-body position-relative pb-3">
-                    <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For rent</h4>
-                    <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">Greenpoint Rentals | 85 sq.m</a></h3>
-                    <p class="mb-2 fs-sm text-muted">1510 Castle Hill Ave Bronx, NY 10462</p>
-                    <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>$1,350</div>
-                  </div>
-                </div>
-              </div>
-              <!-- Item-->
-              <div class="col-sm-6 col-xl-4">
-                <div class="card shadow-sm card-hover border-0 h-100">
-                  <div class="tns-carousel-wrapper card-img-top card-img-hover"><a class="img-overlay" href="real-estate-single-v1.html"></a>
-                    <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success">Verified</span></div>
-                    <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                      <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                    </div>
-                    <div class="tns-carousel-inner"><img src="img/real-estate/catalog/09.jpg" alt="Image"><img src="img/real-estate/catalog/09.jpg" alt="Image"></div>
-                  </div>
-                  <div class="card-body position-relative pb-3">
-                    <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For rent</h4>
-                    <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">Terra Nova Apartments | 85 sq.m</a></h3>
-                    <p class="mb-2 fs-sm text-muted">21 India St Brooklyn, NY 11222</p>
-                    <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>$2,400</div>
-                  </div>
-                  <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"><span class="d-inline-block mx-1 px-2 fs-sm">5<i class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-car ms-1 mt-n1 fs-lg text-muted"></i></span></div>
-                </div>
-              </div>
-              <!-- Item-->
-              <div class="col-sm-6 col-xl-4">
-                <div class="card shadow-sm card-hover border-0 h-100">
-                  <div class="tns-carousel-wrapper card-img-top card-img-hover"><a class="img-overlay" href="real-estate-single-v1.html"></a>
-                    <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">Verified</span><span class="d-table badge bg-danger">Featured</span></div>
-                    <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                      <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                    </div>
-                    <div class="tns-carousel-inner"><img src="img/real-estate/catalog/10.jpg" alt="Image"><img src="img/real-estate/catalog/10.jpg" alt="Image"></div>
-                  </div>
-                  <div class="card-body position-relative pb-3">
-                    <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For rent</h4>
-                    <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">O’Farrell Rooms | 40 sq.m</a></h3>
-                    <p class="mb-2 fs-sm text-muted">460 E Fordham Rd Bronx, NY 10458</p>
-                    <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>From $550</div>
-                  </div>
-                  <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">1<i class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">0<i class="fi-car ms-1 mt-n1 fs-lg text-muted"></i></span></div>
-                </div>
-              </div>
-              <!-- Item-->
-              <div class="col-sm-6 col-xl-4">
-                <div class="card shadow-sm card-hover border-0 h-100">
-                  <div class="tns-carousel-wrapper card-img-top card-img-hover"><a class="img-overlay" href="real-estate-single-v1.html"></a>
-                    <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info">New</span></div>
-                    <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                      <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                    </div>
-                    <div class="tns-carousel-inner"><img src="img/real-estate/catalog/11.jpg" alt="Image"><img src="img/real-estate/catalog/11.jpg" alt="Image"></div>
-                  </div>
-                  <div class="card-body position-relative pb-3">
-                    <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For rent</h4>
-                    <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">Studio | 32 sq.m</a></h3>
-                    <p class="mb-2 fs-sm text-muted">140-60 Beech Ave Flushing, NY 11355</p>
-                    <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>$680</div>
-                  </div>
-                  <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"><span class="d-inline-block mx-1 px-2 fs-sm">1<i class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">1<i class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">1<i class="fi-car ms-1 mt-n1 fs-lg text-muted"></i></span></div>
-                </div>
-              </div>
-              <!-- Item-->
-              <div class="col-sm-6 col-xl-4">
-                <div class="card shadow-sm card-hover border-0 h-100">
-                  <div class="tns-carousel-wrapper card-img-top card-img-hover"><a class="img-overlay" href="real-estate-single-v1.html"></a>
-                    <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-danger">Featured</span></div>
-                    <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                      <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                    </div>
-                    <div class="tns-carousel-inner"><img src="img/real-estate/catalog/12.jpg" alt="Image"><img src="img/real-estate/catalog/12.jpg" alt="Image"></div>
-                  </div>
-                  <div class="card-body position-relative pb-3">
-                    <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For rent</h4>
-                    <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">Mason House | 150 sq.m</a></h3>
-                    <p class="mb-2 fs-sm text-muted">557 Grand Concourse Bronx, NY 10451</p>
-                    <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>From $4,000</div>
-                  </div>
-                  <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"><span class="d-inline-block mx-1 px-2 fs-sm">3<i class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-car ms-1 mt-n1 fs-lg text-muted"></i></span></div>
-                </div>
-              </div>
-              <!-- Item-->
-              <div class="col-sm-6 col-xl-4">
-                <div class="card shadow-sm card-hover border-0 h-100">
-                  <div class="tns-carousel-wrapper card-img-top card-img-hover"><a class="img-overlay" href="real-estate-single-v1.html"></a>
-                    <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success">Verified</span></div>
-                    <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                      <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                    </div>
-                    <div class="tns-carousel-inner"><img src="img/real-estate/catalog/13.jpg" alt="Image"><img src="img/real-estate/catalog/13.jpg" alt="Image"></div>
-                  </div>
-                  <div class="card-body position-relative pb-3">
-                    <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For rent</h4>
-                    <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">Office | 320 sq.m</a></h3>
-                    <p class="mb-2 fs-sm text-muted">159 20th Street Brooklyn, NY 11232</p>
-                    <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>$8,000</div>
-                  </div>
-                  <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">1<i class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">8<i class="fi-car ms-1 mt-n1 fs-lg text-muted"></i></span></div>
-                </div>
-              </div>
-              <!-- Item-->
-              <div class="col-sm-6 col-xl-4">
-                <div class="card shadow-sm card-hover border-0 h-100">
-                  <div class="tns-carousel-wrapper card-img-top card-img-hover"><a class="img-overlay" href="real-estate-single-v1.html"></a>
-                    <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                      <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                    </div>
-                    <div class="tns-carousel-inner"><img src="img/real-estate/catalog/15.jpg" alt="Image"><img src="img/real-estate/catalog/15.jpg" alt="Image"></div>
-                  </div>
-                  <div class="card-body position-relative pb-3">
-                    <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For rent</h4>
-                    <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">Lakewood Rentals | 90 sq.m</a></h3>
-                    <p class="mb-2 fs-sm text-muted">5 Brewster Street Glen Cove, NY 11542</p>
-                    <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>$1,200</div>
-                  </div>
-                  <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">1<i class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">8<i class="fi-car ms-1 mt-n1 fs-lg text-muted"></i></span></div>
-                </div>
-              </div>
-              <!-- Item-->
-              <div class="col-sm-6 col-xl-4">
-                <div class="card shadow-sm card-hover border-0 h-100">
-                  <div class="tns-carousel-wrapper card-img-top card-img-hover"><a class="img-overlay" href="real-estate-single-v1.html"></a>
-                    <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                      <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                    </div>
-                    <div class="tns-carousel-inner"><img src="img/real-estate/catalog/14.jpg" alt="Image"><img src="img/real-estate/catalog/14.jpg" alt="Image"></div>
-                  </div>
-                  <div class="card-body position-relative pb-3">
-                    <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For rent</h4>
-                    <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">Crystal Apartment| 60 sq.m</a></h3>
-                    <p class="mb-2 fs-sm text-muted">495 Henry St Brooklyn, NY 11231</p>
-                    <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>$1,350</div>
-                  </div>
-                  <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">1<i class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">1<i class="fi-car ms-1 mt-n1 fs-lg text-muted"></i></span></div>
-                </div>
-              </div>
-              <!-- Item-->
-              <div class="col-sm-6 col-xl-4">
-                <div class="card shadow-sm card-hover border-0 h-100">
-                  <div class="tns-carousel-wrapper card-img-top card-img-hover"><a class="img-overlay" href="real-estate-single-v1.html"></a>
-                    <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-danger">Featured</span></div>
-                    <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                      <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                    </div>
-                    <div class="tns-carousel-inner"><img src="img/real-estate/catalog/16.jpg" alt="Image"><img src="img/real-estate/catalog/16.jpg" alt="Image"></div>
-                  </div>
-                  <div class="card-body position-relative pb-3">
-                    <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For rent</h4>
-                    <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">Family Home | 120 sq.m</a></h3>
-                    <p class="mb-2 fs-sm text-muted">67-04 Myrtle Ave Glendale, NY 11385</p>
-                    <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>From $4,500</div>
-                  </div>
-                  <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"><span class="d-inline-block mx-1 px-2 fs-sm">4<i class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-car ms-1 mt-n1 fs-lg text-muted"></i></span></div>
-                </div>
-              </div>
-              <!-- Item-->
-              <div class="col-sm-6 col-xl-4">
-                <div class="card shadow-sm card-hover border-0 h-100">
-                  <div class="tns-carousel-wrapper card-img-top card-img-hover"><a class="img-overlay" href="real-estate-single-v1.html"></a>
-                    <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                      <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                    </div>
-                    <div class="tns-carousel-inner"><img src="img/real-estate/catalog/17.jpg" alt="Image"><img src="img/real-estate/catalog/17.jpg" alt="Image"></div>
-                  </div>
-                  <div class="card-body position-relative pb-3">
-                    <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For rent</h4>
-                    <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">Tiffany Studio | 35 sq.m</a></h3>
-                    <p class="mb-2 fs-sm text-muted">3979 Albany Post Road Hyde Park, NY 12538</p>
-                    <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>$700</div>
-                  </div>
-                  <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"><span class="d-inline-block mx-1 px-2 fs-sm">1<i class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">1<i class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">1<i class="fi-car ms-1 mt-n1 fs-lg text-muted"></i></span></div>
-                </div>
-              </div>
-            </div>
+				<c:if test="${!empty HotelList}">
+					<c:forEach var="hotel" items="${HotelList}">
+						<!-- Item-->
+						<div class="col-sm-6 col-xl-4">
+							<div class="card shadow-sm card-hover border-0 h-100">
+								<div class="tns-carousel-wrapper card-img-top card-img-hover">
+									<a class="img-overlay" href="real-estate-single-v1.html"></a>
+									<div class="content-overlay end-0 top-0 pt-3 pe-3">
+										<button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist">
+											<i class="fi-heart"></i>
+										</button>
+									</div>
+									<div class="">
+									<!-- 이미지는 임시, 페이징 다 끝내면 디폴트로 첫 페이지는 임의로 12개 구성 -->
+										<img src="img/real-estate/catalog/06.jpg" alt="Image">
+									</div>
+								</div>
+								<div class="card-body position-relative pb-3"
+									style="margin-top: 10px;">
+									<h3 class="h6 mb-2 fs-base">
+										<a class="nav-link stretched-link" href="real-estate-single-v1.html">${hotel.name}</a>
+									</h3>
+									<p class="mb-2 fs-sm text-muted">${hotel.addr}</p>
+									<div class="fw-bold">
+										<i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>${hotel.price} / 1박</div>
+								</div>
+							</div>
+						</div>
+					</c:forEach>
+				</c:if>
+			</div>         
             <!-- Pagination-->
             <nav class="border-top pb-md-4 pt-4 mt-2" aria-label="Pagination">
               <ul class="pagination mb-1">
@@ -342,8 +157,45 @@
               </ul>
             </nav>
           </div>
+          
+         <!-- page부 시작 -->
+		<div align="center">
+			<!-- 맨 처음으로 -->
+			<button onclick="movePage('${path}/near/nearHotel?page=1');">&lt;&lt;</button>
+			<!-- 이전 페이지 -->
+			<button onclick="movePage('${path}/near/nearHotel?page=${pageInfo.prevPage}');">&lt;</button>		
+			<!-- 10개 페이지 목록 -->
+			<c:forEach begin="${pageInfo.startPage}" end="${pageInfo.endPage}" step="1" varStatus="status">
+				<c:if test="${pageInfo.currentPage == status.current}">
+					<button disabled ><c:out value="${status.current}"/></button>
+				</c:if>
+				<c:if test="${pageInfo.currentPage != status.current}">
+					<button onclick="movePage('${path}/near/nearHotel?page=${status.current}');">
+						<c:out value="${status.current}"/>
+					</button>
+				</c:if>
+			</c:forEach>
+		
+			<!-- 다음 페이지 -->
+			<button onclick="movePage('${path}/near/nearHotel?page=${pageInfo.nextPage}');">&gt;</button>		
+			<!-- 마지막 페이지 -->
+			<button onclick="movePage('${path}/near/nearHotel?page=${pageInfo.maxPage}');">&gt;&gt;</button>	
+		</div>
+		<!-- page부 종료 -->		
         </div>
       </div>
     </main>
+
+<script type="text/javascript" charset="UTF-8">
+	function movePage(pageUrl) {
+		var keyword = document.getElementById("keyword");
+		var addr = document.getElementById("city");
+
+		pageUrl = pageUrl 
+		+ '&keyword=' + keyword.value 
+		+ '&city=' + city.value;
+		location.href = encodeURI(pageUrl);
+	}
+</script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

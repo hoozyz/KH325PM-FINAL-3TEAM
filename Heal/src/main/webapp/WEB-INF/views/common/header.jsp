@@ -252,8 +252,8 @@
                         
                         <li class="nav-item dropdown px-3 "><a class="nav-link dropdown" href="${path}/food/main" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="NSR">주변시설</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="${path}/food/main">음식점</a></li>
-                                <li><a class="dropdown-item" href="${path}/food/main">숙박</a></li>
+                                <li><a class="dropdown-item" href="${path}/near/nearFood">음식점</a></li>
+                                <li><a class="dropdown-item" href="${path}/near/nearHotel">숙박</a></li>
                             </ul>
                         </li>
                         
@@ -261,7 +261,7 @@
                         <li class="nav-item px-3"><a class="nav-link" href="${path}/shop/main" role="button" aria-expanded="false" id="NSR">OO몰</a></li>
                         <li class="nav-item dropdown px-3"><a class="nav-link dropdown" href="${path}/photo/main" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="NSR">게시판</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="${path}/photo/main">포토게시판</a></li>
+                                <li><a class="dropdown-item" href="${path}/board/photoMain">포토게시판</a></li>
                                 <li><a class="dropdown-item" href="${path}/board/main">자유게시판</a></li>
                             </ul>
                         </li>

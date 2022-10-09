@@ -20,4 +20,30 @@
  		WHERE NO = #{no}
 	</select>
 	
+	<select id="selectHotelList" parameterType="map" resultMap="hotelResultMap">
+		SELECT  *
+		FROM TBL_HOTEL
+		WHERE 1=1
+		<if test="keyword != null">
+			AND NAME LIKE '%'||#{keyword}||'%'
+		</if>
+			<if test="city != null">
+			AND ADDR LIKE '%'||#{city}||'%'
+		</if>
+		ORDER BY NO DESC
+	</select>
+		
+	<select id="selectHotelCount" resultType="int" parameterType="map">
+		SELECT  COUNT(*)
+		FROM TBL_HOTEL
+		WHERE 1=1
+		<if test="keyword != null">
+			AND NAME LIKE '%'||#{keyword}||'%'
+		</if>
+			<if test="city != null">
+			AND ADDR LIKE '%'||#{city}||'%'
+		</if>
+		ORDER BY NO DESC
+	</select> 
+	
 </mapper>
