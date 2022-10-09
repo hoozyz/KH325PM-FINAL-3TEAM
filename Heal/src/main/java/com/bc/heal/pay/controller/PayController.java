@@ -28,7 +28,7 @@ import com.bc.heal.vo.Train;
 
 @Controller
 @RequestMapping("/pay")
-@SessionAttributes({ "tid", "reserve", "itemName", "location" }) // modelattribute 쓰려면 필요 -> 세션이나 모델에 있는거 찾아옴
+@SessionAttributes({ "tid", "reserve1", "reserve2", "itemName", "location" }) // modelattribute 쓰려면 필요 -> 세션이나 모델에 있는거 찾아옴
 public class PayController {
 
 	@Autowired
@@ -77,39 +77,90 @@ public class PayController {
 	@GetMapping("/traffic") // 교통 결제
 	public @ResponseBody ReadyResponse payReady(@RequestParam(name = "total_amount") int totalAmount,
 			@SessionAttribute(name = "loginMember", required = false) Member loginMember, String start, String end,
-			String time, String date, String count, String type, String itemName, Model model, HttpServletRequest req) {
-		
+			String time, String date, String count, String type, String itemName, String str, Model model, HttpServletRequest req) {
+
 		String location = req.getHeader("Referer"); // 결제 이전페이지 미리 받기.
 		model.addAttribute("location", location);
+
+		Reserve reserve2 = new Reserve();
+		// 오는편 예매
+		if(type.equals("airRound")) { // 왕복일 때
+			Air air = airService.selectByStartTime(start, end, time);
+			// 오는 표 예약정보
+			reserve2 = new Reserve(0, "", date, time, "", count, totalAmount, 
+					loginMember.getNo(), 0, 0, air.getNo(), 0, 0);
+			totalAmount = totalAmount + Integer.parseInt(str.split(",")[4]); // 가격 2개 더하기
+			itemName = itemName + str.split(",")[3];
+			String start1 = start; // start 넣어놓기
+			start = end; // 출발역 도착역 바꾸기
+			end = start1;
+			date = str.split(",")[0];
+			time = str.split(",")[1];
+			count = str.split(",")[2];
+		}
+		if(type.equals("trainRound")) { // 왕복일 때
+			Train train = trainService.selectByStartTime(start, end, time);
+			reserve2 = new Reserve(0, "", date, time, "", count, totalAmount, 
+					loginMember.getNo(), 0, 0, 0, 0, train.getNo());
+			totalAmount = totalAmount + Integer.parseInt(str.split(",")[4]); // 가격 2개 더하기
+			itemName = itemName + str.split(",")[3];
+			String start1 = start; // start 넣어놓기
+			start = end; // 출발역 도착역 바꾸기
+			end = start1;
+			date = str.split(",")[0];
+			time = str.split(",")[1];
+			count = str.split(",")[2];
+		}
+		if(type.equals("busRound")) { // 왕복일 때
+			Bus bus = busService.selectTimeBySta(start, end);
+			reserve2 = new Reserve(0, "", date, time, "", count, totalAmount, 
+					loginMember.getNo(), 0, 0, 0, bus.getNo(), 0);
+			totalAmount = totalAmount + Integer.parseInt(str.split(",")[4]); // 가격 2개 더하기
+			itemName = itemName + str.split(",")[3];
+			String start1 = start; // start 넣어놓기
+			start = end; // 출발역 도착역 바꾸기
+			end = start1;
+			date = str.split(",")[0];
+			time = str.split(",")[1];
+			count = str.split(",")[2];
+		}
 
 		// 카카오 결제 준비하기 - 결제요청 service 실행.
 		ReadyResponse readyResponse = payService.payReady(loginMember, itemName, totalAmount);
 		// 요청처리후 받아온 결재고유 번호(tid)를 모델에 저장
 		model.addAttribute("tid", readyResponse.getTid());
 		model.addAttribute("itemName", itemName);
-
-		if (type.equals("air")) {
+		
+		if(str.contains("Round")) { // 왕복일 때
+			totalAmount = Integer.parseInt(str.split(",")[4]); // 가는편 가격
+			reserve2.setTid(readyResponse.getTid()); // 왕복일 때만 오는편 가능
+		}
+		model.addAttribute("reserve2", reserve2);
+		
+		// reserve1 은 가는거 , reserve2 는 오는거
+		// 아래는 가는편 예매
+		if (type.contains("air")) {
 			Air air = airService.selectByStartTime(start, end, time);
-			Reserve reserve = new Reserve(0, "", date, time, readyResponse.getTid(), count, totalAmount,
+			Reserve reserve1 = new Reserve(0, "", date, time, readyResponse.getTid(), count, totalAmount,
 					loginMember.getNo(), 0, 0, air.getNo(), 0, 0);
-			
-			model.addAttribute("reserve", reserve);
-		}
-		if (type.equals("train")) {
-			Train train = trainService.selectByStartTime(start, end, time);
-			Reserve reserve = new Reserve(0, "", date, time, readyResponse.getTid(), count, totalAmount,
-					loginMember.getNo(), 0, 0, 0, 0, train.getNo());
-			
-			model.addAttribute("reserve", reserve);
-		}
-		if (type.equals("bus")) {
-			Bus bus = busService.selectTimeBySta(start, end);
-			Reserve reserve = new Reserve(0, "", date, time, readyResponse.getTid(), count, totalAmount,
-					loginMember.getNo(), 0, 0, 0, bus.getNo(), 0);
-			
-			model.addAttribute("reserve", reserve);
-		}
 
+			model.addAttribute("reserve1", reserve1);
+		}
+		if (type.contains("train")) {
+			Train train = trainService.selectByStartTime(start, end, time);
+			Reserve reserve1 = new Reserve(0, "", date, time, readyResponse.getTid(), count, totalAmount,
+					loginMember.getNo(), 0, 0, 0, 0, train.getNo());
+
+			model.addAttribute("reserve1", reserve1);
+		}
+		if (type.contains("bus")) {
+			Bus bus = busService.selectTimeBySta(start, end);
+			Reserve reserve1 = new Reserve(0, "", date, time, readyResponse.getTid(), count, totalAmount,
+					loginMember.getNo(), 0, 0, 0, bus.getNo(), 0);
+
+			model.addAttribute("reserve1", reserve1);
+		}
+		
 		return readyResponse; // 클라이언트에 보냄.(tid,next_redirect_pc_url이 담겨있음.)
 	}
 
@@ -117,18 +168,18 @@ public class PayController {
 	@GetMapping("/completed")
 	public String payCompleted(@RequestParam("pg_token") String pgToken,
 			@ModelAttribute("readyResponse") ReadyResponse readyResponse, @ModelAttribute("tid") String tid,
-			@ModelAttribute("reserve") Reserve reserve, @ModelAttribute("itemName") String itemName,
+			@ModelAttribute("reserve1") Reserve reserve1, @ModelAttribute("reserve2") Reserve reserve2, @ModelAttribute("itemName") String itemName,
 			@SessionAttribute(name = "loginMember", required = false) Member loginMember, String location,
 			Model model) {
 
 		// 카카오 결제 요청하기
 		payService.payApprove(loginMember, itemName, tid, pgToken);
-		
-		int result = 0;
-		result = resService.save(reserve);
 
-		if (result > 0) {
-			model.addAttribute("reserve", reserve);
+		int result = 0;
+		result = resService.save(reserve2);
+		result += resService.save(reserve1); // 가는편이 먼저보이게
+
+		if (result > 1) {
 			model.addAttribute("msg", "예약이 완료되었습니다.");
 			model.addAttribute("location", location);
 		} else {

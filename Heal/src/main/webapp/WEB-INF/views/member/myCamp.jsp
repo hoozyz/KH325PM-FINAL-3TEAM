@@ -52,6 +52,10 @@
               <li class="nav-item mb-3"><a class="nav-link active" href="${path}/reserve/myCamp" role="tab" aria-selected="true"><i class="fi-file fs-base me-2"></i>캠핑장/숙박</a></li>
               <li class="nav-item mb-3"><a class="nav-link" href="${path}/reserve/myTraffic" role="tab" aria-selected="false"><i class="fi-file-clean fs-base me-2"></i>교통</a></li>
             </ul>
+            <c:if test="${empty campList && empty hotelList}"> <!-- 다 없을때 -->
+            	예약내역이 없습니다.
+            </c:if>
+            
             <!-- Item-->
             <c:if test="${!empty campList}">
             	<c:forEach var="i" begin="0" end="${campList.size() - 1}">

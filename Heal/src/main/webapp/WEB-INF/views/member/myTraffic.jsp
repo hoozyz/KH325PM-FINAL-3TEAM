@@ -54,6 +54,10 @@
               <li class="nav-item mb-3"><a class="nav-link" href="${path}/reserve/myCamp" role="tab" aria-selected="false"><i class="fi-file fs-base me-2"></i>캠핑장/숙박</a></li>
               <li class="nav-item mb-3"><a class="nav-link active" href="${path}/reserve/myTraffic" role="tab" aria-selected="true"><i class="fi-file-clean fs-base me-2"></i>교통</a></li>
             </ul>
+            <c:if test="${empty airList && empty trainList && empty busList}"> <!-- 다 없을때 -->
+            	예약내역이 없습니다.
+            </c:if>
+            
             <!-- Item-->
             	<c:if test="${!empty airList}">
             	<c:forEach var="i" begin="0" end="${airList.size() - 1}">
@@ -71,7 +75,7 @@
 		                    </li>
 		                  </ul>
 		                </div>
-		                <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">${airList.get(i).flight}</h4>
+		                <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">${fn:substring(airReserve.get(i).reservedate, 0, 10)}</h4>
 		                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">${airList.get(i).startsta} >> ${airList.get(i).endsta}</a></h3>
 		                <p class="mb-2 fs-sm text-muted">${airList.get(i).starttime} ~ ${airList.get(i).endtime}</p>
 		                <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>${airReserve.get(i).price} 원 | ${airReserve.get(i).count} 명</div>
@@ -96,7 +100,7 @@
 		                    </li>
 		                  </ul>
 		                </div>
-		                <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">${trainList.get(i).railname}</h4>
+		                <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">${fn:substring(trainReserve.get(i).reservedate, 0, 10)}</h4>
 		                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">${trainList.get(i).startsta} >> ${trainList.get(i).endsta}</a></h3>
 		                <p class="mb-2 fs-sm text-muted">${trainList.get(i).starttime} ~ ${trainList.get(i).endtime}</p>
 		                <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>${trainReserve.get(i).price} 원 | ${trainReserve.get(i).count} 명</div>
@@ -120,7 +124,7 @@
 		                    </li>
 		                  </ul>
 		                </div>
-		                <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For rent</h4>
+		                <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">${fn:substring(busReserve.get(i).reservedate, 0, 10)}</h4>
 		                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">${busList.get(i).startsta} >> ${busList.get(i).endsta}</a></h3>
 		                <p class="mb-2 fs-sm text-muted">출발시간 : ${busReserve.get(i).starttime} | 소요시간 : ${busList.get(i).wastetime}</p>
 		                <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>${busReserve.get(i).price} 원 | ${busReserve.get(i).count} 명</div>

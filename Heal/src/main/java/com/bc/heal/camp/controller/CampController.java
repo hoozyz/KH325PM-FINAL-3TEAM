@@ -78,8 +78,6 @@ public class CampController {
 		PageInfo pageInfo = new PageInfo(page, 10, listCount, 8);
 		List<Camp> campList = campService.getCampList(pageInfo, param);
 
-		System.out.println(campList);
-
 		model.addAttribute("campList", campList);
 		model.addAttribute("param", param);
 		model.addAttribute("pageInfo", pageInfo);
@@ -104,8 +102,6 @@ public class CampController {
 
 		PageInfo pageInfo = new PageInfo(page, 10, listCount, 10);
 		List<Camp> campList = campService.getCampList(pageInfo, param);
-
-		System.out.println(campList);
 
 		model.addAttribute("campList", campList);
 		model.addAttribute("param", param);
