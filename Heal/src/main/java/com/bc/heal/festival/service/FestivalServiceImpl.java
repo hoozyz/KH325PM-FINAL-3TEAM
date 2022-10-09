@@ -31,7 +31,7 @@ public class FestivalServiceImpl implements FestivalService{
 		Map<String, String> searchMap = new HashMap<String, String>();
 		String startdate = param.get("startdate");
 		String enddate = param.get("enddate");
-		String name = param.get("name");
+		String keyword = param.get("keyword");
 		String addr = param.get("addr");
 		if (startdate != null && startdate.length() > 0) {
 			searchMap.put("startdate", startdate);
@@ -39,8 +39,8 @@ public class FestivalServiceImpl implements FestivalService{
 		if (enddate != null && enddate.length() > 0) {
 			searchMap.put("enddate", enddate);
 		}
-		if (name != null && name.length() > 0) {
-			searchMap.put("name", name);
+		if (keyword != null && keyword.length() > 0) {
+			searchMap.put("keyword", keyword);
 		}
 		if (addr != null && addr.length() > 0) {
 			searchMap.put("addr", addr);
@@ -54,7 +54,7 @@ public class FestivalServiceImpl implements FestivalService{
 		Map<String, String> searchMap = new HashMap<String, String>();
 		String startdate = param.get("startdate");
 		String enddate = param.get("enddate");
-		String name = param.get("name");
+		String keyword = param.get("keyword");
 		String addr = param.get("addr");
 		if (startdate != null && startdate.length() > 0) {
 			searchMap.put("startdate", startdate);
@@ -62,8 +62,8 @@ public class FestivalServiceImpl implements FestivalService{
 		if (enddate != null && enddate.length() > 0) {
 			searchMap.put("enddate", enddate);
 		}
-		if (name != null && name.length() > 0) {
-			searchMap.put("name", name);
+		if (keyword != null && keyword.length() > 0) {
+			searchMap.put("keyword", keyword);
 		}
 		if (addr != null && addr.length() > 0) {
 			searchMap.put("addr", addr);

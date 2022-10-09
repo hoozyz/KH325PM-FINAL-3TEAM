@@ -31,11 +31,11 @@
 		<if test="startdate != null">
 			AND startdate BETWEEN #{startdate} AND #{enddate}	
 		</if>
-		<if test="name != null">
-			AND name LIKE '%' || #{name}|| '%'	
+		<if test="keyword != null">
+			AND name LIKE '%' || #{keyword} || '%'	
 		</if>
 		<if test="addr != null">
-			AND addr LIKE '%' || #{addr}|| '%'	
+			AND addr LIKE '%' || #{addr} || '%'	
 		</if>
 	</select>
 	
@@ -46,11 +46,11 @@
 		<if test="startdate != null">
 			AND startdate BETWEEN #{startdate} AND #{enddate}	
 		</if>
-		<if test="name != null">
-			AND name LIKE '%' || #{name}|| '%'	
+		<if test="keyword != null">
+			AND name LIKE '%' || #{keyword} || '%'	
 		</if>
 		<if test="addr != null">
-			AND addr LIKE '%' || #{addr}|| '%'	
+			AND addr LIKE '%' || #{addr} || '%'	
 		</if>
 	</select>
 </mapper>

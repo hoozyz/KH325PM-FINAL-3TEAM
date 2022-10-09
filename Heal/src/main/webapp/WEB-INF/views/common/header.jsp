@@ -244,7 +244,7 @@
                         <li class="nav-item px-3 "><a class="nav-link" href="${path}/camp/campMain" role="button" aria-expanded="false" id="NSR">캠핑장</a></li>
                         <li class="nav-item px-3 "><a class="nav-link" href="${path}/camp/detail" role="button"  aria-expanded="false" id="NSR">캠핑장상세</a></li>
                         <li class="nav-item pe-1"><a class="nav-link" href="${path}/park/parkMain" role="button" aria-expanded="false" id="NSR">공원</a></li>
-                        <li class="nav-item pe-3"><a class="nav-link" href="${path}/festival/main" role="button" aria-expanded="false" id="NSR">축제</a></li>
+                        <li class="nav-item pe-3"><a class="nav-link" href="${path}/festival/festivalMain" role="button" aria-expanded="false" id="NSR">축제</a></li>
 
 
                         

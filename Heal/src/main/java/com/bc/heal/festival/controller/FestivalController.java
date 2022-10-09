@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bc.heal.common.util.PageInfo;
 import com.bc.heal.festival.service.FestivalService;
-import com.bc.heal.vo.Board;
 import com.bc.heal.vo.Festival;
 
 @Controller
@@ -25,13 +24,16 @@ public class FestivalController {
 	@Autowired
 	private FestivalService service;
 	
-	@GetMapping("/main")
+	@GetMapping("/festivalMain")
 	public String main(Model model) {
 		return "/festival/festivalMain";
 	}
 
-	@GetMapping("/search")
+	@GetMapping("/festivalSearch")
 	public String search(Model model, @RequestParam Map<String, String> param) {
+		for(String mapkey : param.keySet()) {
+			System.out.println("key:"+mapkey+",value:"+param.get(mapkey));
+		}
 
 		int page = 1;
 		if(param.containsKey("page") == true) {
@@ -46,6 +48,7 @@ public class FestivalController {
 		
 		PageInfo pageInfo = new PageInfo(page, 10, listCount, 10);
 		List<Festival> list = service.getFestivalList(pageInfo, param);
+		
 		
 		System.out.println(list);
 		

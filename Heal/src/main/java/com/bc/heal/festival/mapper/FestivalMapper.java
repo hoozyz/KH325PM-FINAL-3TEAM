@@ -11,7 +11,7 @@ import com.bc.heal.vo.Festival;
 @Mapper
 public interface FestivalMapper {
 	Festival selectByNo(int no);
-	List<Festival> selectFestivalList(RowBounds rowBounds, Map<String, String> searchMap);
-	int selectFestivalCount(Map<String, String> searchMap);
+	List<Festival> selectFestivalList(RowBounds rowBounds, Map<String, String> param);
+	int selectFestivalCount(Map<String, String> param);
 	
 }
