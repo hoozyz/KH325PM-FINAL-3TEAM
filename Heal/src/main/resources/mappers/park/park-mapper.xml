@@ -43,13 +43,13 @@
 		FROM TBL_PARK
 		WHERE 1=1
 		<if test="keyword != null">
-			AND NAME LIKE '%'||#{keyword}||'%'
-			<if test="city != null">
-				AND ADDR LIKE '%'||#{city}||'%'
-				<if test="category != null">
-					AND CATEGORY LIKE '%'||#{category}||'%'
-					</if>
-				</if>
+		AND NAME LIKE '%'||#{keyword}||'%'
+		<if test="city != null">
+		AND ADDR LIKE '%'||#{city}||'%'
+		<if test="category != null">
+		AND CATEGORY LIKE '%'||#{category}||'%'
+		</if>
+		</if>
 		</if>
 				ORDER BY NO DESC
 	</select>

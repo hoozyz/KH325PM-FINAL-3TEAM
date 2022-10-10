@@ -9,8 +9,10 @@
 <link rel="stylesheet" media="screen" href="${path}/resources/vendor/nouislider/dist/nouislider.min.css" />
 <link rel="stylesheet" media="screen" href="${path}/resources/vendor/tiny-slider/dist/tiny-slider.css" />
 <!-- Main Theme Styles + Bootstrap-->
-<link rel="stylesheet" media="screen" href="${path}/resources/css/theme.min.css">
-
+<link rel="stylesheet" media="screen" href="${path}/resources/css/themeButton.min.css">
+<script defer src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" integrity="sha384-vuFJ2JiSdUpXLKGK+tDteQZBqNlMwAjhZ3TvPaDfN9QmbPb7Q8qUpbSNapQev3YF" crossorigin="anonymous"></script>
+    
+            <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param value="공원 메인" name="title"/>
@@ -51,8 +53,20 @@
         vertical-align: top;
     }
     
-    .ico_animation_wt6 {
-        background-image: url(https://ssl.pstatic.net/static/weather/image/icon_weather/ico_animation_wt6.svg);
+    .ico_animation_wt1 {
+        background-image: url(https://ssl.pstatic.net/static/weather/image/icon_weather/ico_animation_wt1.svg);
+    }
+    
+    .ico_animation_wt5 {
+        background-image: url(https://ssl.pstatic.net/static/weather/image/icon_weather/ico_animation_wt5.svg);
+    }
+    
+    .ico_animation_wt7 {
+        background-image: url(https://ssl.pstatic.net/static/weather/image/icon_weather/ico_animation_wt7.svg);
+    }
+    
+    .ico_animation_wt8 {
+        background-image: url(https://ssl.pstatic.net/static/weather/image/icon_weather/ico_animation_wt8.svg);
     }
     
     .weather_area .weather_now .current {
@@ -99,16 +113,47 @@
         text-align: left;
     }
     
+    .weather_area .weather_now .summary .lowtem {
+        display: inline-block;
+        vertical-align: top;
+        margin: 0 5px 0 5px;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 21px;
+        letter-spacing: -1px;
+        color: rgb(2, 68, 250);
+        text-align: left;
+    }
+    
+    .weather_area .weather_now .summary .hightem {
+        display: inline-block;
+        vertical-align: top;
+        margin: 0 0 0 5px;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 21px;
+        letter-spacing: -1px;
+        color: rgb(218, 4, 4);
+        text-align: left;
+    }
+    
     .weather_area .weather_now .summary .weather {
         display: block;
         margin-bottom: 3px;
-        font-size: 22px;
+        font-size: 23px;
         line-height: 25px;
         letter-spacing: -1px;
     }
     
-    em {
-        font-style: normal;
+    .weather_area .secondary {
+        color: rgb(99, 98, 98);
+        font-weight: 600;
+    }
+    
+    .weather_area .secondaryInfo {
+        color: rgb(66, 66, 66);
+        font-weight: 700;
+        margin-right: 10px;
     }
     
     .weather_area .weather_now .summary .temperature {
@@ -117,10 +162,6 @@
         line-height: 21px;
         letter-spacing: -1px;
         vertical-align: top;
-    }
-    
-    .weather_area .weather_now .summary .temperature.down:after {
-        display: inline-block;
     }
     
     .weather_area .weather_now .summary .temperature:after {
@@ -136,6 +177,19 @@
     .weather_area .weather_now .summary .temperature:after {
         background-image: url(https://ssl.pstatic.net/static/weather/image/sp_weather_1746dae0.png);
         background-size: 965px 883px;
+    }
+    
+    .btn-group-sm .on {
+    	background-color: black;
+    	color: white;
+    }
+    .btn-group-sm .on:active {
+    	background-color: black;
+    	color: white;
+    }
+     .btn-group-sm>button:hover {
+    	background-color: black;
+    	color: white;
     }
 </style>
 
@@ -212,7 +266,7 @@
 
 
         <!-- @@@@@@ 인기공원 시작 @@@@@@-->
-        <section class="container mt-n3 mt-md-0 mb-5 pb-3 pb-lg-4">
+        <section class="container mt-4 mb-5 pb-3 pb-lg-4">
             <div class="d-flex align-items-end justify-content-between mb-1 pb-md-2">
                 <div class="d-flex align-items-end justify-content-between">
                     <h2 class="h3 mb-0">인기&nbsp; </h2>
@@ -230,33 +284,68 @@
                         <div class="row">
                             <div class="col-lg-8 col-md-7 mb-md-0 mb-3">
                                 <div class="position-relative pe-lg-5">
-                                    <div class="position-absolute top-0 start-0 zindex-1 m-3 p-1"><span class="badge bg-primary fs-sm me-2">Hot</span><span class="badge bg-success fs-sm me-2">Verified</span></div><img class="rounded-3 zindex-5" src="${path}/resources/image/famousPark3.webp" alt="Article image">
+                                    <div class="position-absolute top-0 start-0 zindex-1 m-3 p-1"><span class="badge bg-primary fs-sm me-2">Hot</span><span class="badge bg-success fs-sm me-2">문화명소</span></div><img class="rounded-3 zindex-5" src="${path}/resources/image/famousPark3.webp" alt="Article image">
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-5"><span class="d-inline-block fs-sm text-uppercase text-primary mb-2 from-top">For sale</span>
+                            <div class="col-lg-4 col-md-5"><span class="d-inline-block fs-sm text-uppercase text-primary mb-2 from-top">이달의 인기공원</span>
                                 <div class="from-start delay-2">
-                                    <h3 class="h4 mb-2">공원명</h3>
-                                    <p class="mb-md-4 mb-3 fs-sm">공원 주소</p>
-                                    <p class="mb-4 pb-md-2" style="height:200px;">공원 설명</p>
+                                    <h3 class="h4 mb-2">${famousPark1.name}</h3>
+                                    <p class="mb-md-4 mb-3 fs-md">${famousPark1.addr}<br>${famousPark1.phone}</p>
+                                    <p class="mb-4 pb-md-2" style="height:200px;">올림픽공원은 문화 예술과 생활 체육, 환경 생태, 역사 체험 구역으로 구성되어 있습니다. 올림픽을 위한 공원답게 테니스장, 펜싱, 체조, 역도, 수영장 등의 경기장이 마련되어 있습니다. 특히, 공원 안에 유명 조각가의 작품을 비롯한 조각 미술품들이 210여 점 정도 설치되어 있어 세계 5대 조각 공원으로 손꼽힐 정도입니다. 미술관, 역사관과 같은 여러 문화 시설이 함께 조성되어 있으니 다양한 문화생활을 즐겨보세요!<br></p>
                                 </div>
-                                <div style="margin-bottom:10px;">
-                                    <p>현재 공원의 날씨는?</p>
-                                    <div class="weather_area m-0 p-0">
+                                <div style="margin-bottom:30px;">
+	                                <p id="weaStr" style="float: left; color: black; font-weight:600;">현재 공원의 날씨는?</p>
+	                               	<div style="margin-left: 265px;width: 150px;text-align: center;">
+	                               		<div class="btn-group btn-group-sm" role="group" style="width:150px;">
+	                               			<button class="btn btn-outline-secondary on" id="today" type="button" style="padding-left: 10px;padding-right: 10px;padding-top: 4px;padding-bottom: 4px;">오늘</button>
+	                               			<button class="btn btn-outline-secondary" id="one" type="button" style="padding-left: 10px;padding-right: 10px;padding-top: 4px;padding-bottom: 4px;">내일</button>
+	                               			<button class="btn btn-outline-secondary" id="two" type="button" style="padding-left: 10px;padding-right: 10px;padding-top: 4px;padding-bottom: 4px;">모레</button>
+	                               		</div>
+	                               	</div>
+                                </div>
+                    <div class="weather_area mb-4 p-0">
                                         <div class="weather_now m-0 p-0">
                                             <div class="summary_img m-0 p-0">
-                                                <i class="ico_animation _cnLazy ico_animation_wt6" data-ico="ico_animation_wt6" data-ymdt="2022092623"></i>
+                                            	<c:set var="rainStr" value="${today.pcp}"/>
+                                            
+                                                <c:if test="${fn:contains(rainStr, 'mm')}"> <!-- 비올때 --> 
+                                                	<i class="ico_animation _cnLazy ico_animation_wt8" data-ico="ico_animation_wt8" data-ymdt="2022092623"></i>
+                                                </c:if>
+                                                <c:if test="${today.sky <= 5}"> <!-- 맑음 --> 
+                                                	<i class="ico_animation _cnLazy ico_animation_wt1" data-ico="ico_animation_wt1" data-ymdt="2022092623"></i>
+                                                </c:if>
+                                                <c:if test="${today.sky > 5 && today.sky <= 8}"> <!-- 구름많음 --> 
+                                                	<i class="ico_animation _cnLazy ico_animation_wt5" data-ico="ico_animation_wt5" data-ymdt="2022092623"></i>
+                                                </c:if>
+                                                <c:if test="${today.sky > 8}"> <!-- 흐림 --> 
+                                                	<i class="ico_animation _cnLazy ico_animation_wt7" data-ico="ico_animation_wt7" data-ymdt="2022092623"></i>
+                                                </c:if>
                                                 <strong class="current">
-                                                <span class="blind">현재 온도</span>14.1<span class="degree">°</span>
+                                                <span class="blind">현재 온도</span>${today.tmp}<span class="degree">°</span>
                                             </strong>
                                             </div>
                                             <p class="summary p-0">
-                                                <span class="weather">구름많음</span>
-                                                <em>어제보다</em> <span class="temperature down">0.4° <span class="blind">낮아요</span></span>
+                                                <span class="weather">
+                                                <c:if test="${today.sky <= 5}"> <!-- 맑음 -->
+                                                	&nbsp&nbsp맑음
+                                                </c:if>
+                                                <c:if test="${today.sky > 5 && today.sky <= 8}"> <!-- 구름많음 -->
+                                                	구름많음
+                                                </c:if>
+                                                <c:if test="${today.sky > 8}"> <!-- 흐림 -->
+                                                	&nbsp&nbsp흐림
+                                                </c:if>
+                                                </span>
+                                                <span class="lowtem">${today.tmn}</span>/<span class="hightem">${today.tmx}</span>
                                             </p>
                                         </div>
+                                        <div>
+                                            <span class="secondary">습도 </span><span class="secondaryInfo">${today.reh}%</span>
+                                            <span class="secondary">강수확률 </span><span class="secondaryInfo">${today.pop}%</span>
+                                            <span class="secondary">강수량 </span><span class="secondaryInfo">${today.pcp}</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="btn-group btn-group-lg scale-up delay-3" role="group" aria-label="Buy now or add to wishlist"><a class="btn" href="real-estate-single-v2.html" style="background-color: #424B0D; color:#ffffff;">공원 상세로 이동하기</a>
+                                <div class="btn-group btn-group-lg scale-up delay-3" role="group" aria-label="Buy now or add to wishlist" style="margin-left: 40px"><a class="btn" href="real-estate-single-v2.html" style="background-color: #424B0D; color:#ffffff;">공원 상세로 이동하기</a>
                                     <button class="btn border-start border-light" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Wishlist" style="background-color: #424B0D; color:#ffffff;"><i class="fi-heart fs-5"></i></button>
                                 </div>
                             </div>
@@ -267,33 +356,68 @@
                         <div class="row">
                             <div class="col-lg-8 col-md-7 mb-md-0 mb-3">
                                 <div class="position-relative pe-lg-5">
-                                    <div class="position-absolute top-0 start-0 zindex-1 m-3 p-1"><span class="badge bg-primary fs-sm me-2">Hot</span><span class="badge bg-success fs-sm me-2">Verified</span></div><img class="rounded-3 zindex-5" src="${path}/resources/image/parkImg/famousPark1.webp" alt="Article image">
+                                    <div class="position-absolute top-0 start-0 zindex-1 m-3 p-1"><span class="badge bg-primary fs-sm me-2">Hot</span><span class="badge bg-success fs-sm me-2">야경명소</span></div><img class="rounded-3 zindex-5" src="${path}/resources/image/famousPark2.png" alt="Article image">
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-5"><span class="d-inline-block fs-sm text-uppercase text-primary mb-2 from-top">For sale</span>
+                            <div class="col-lg-4 col-md-5"><span class="d-inline-block fs-sm text-uppercase text-primary mb-2 from-top">이달의 인기공원</span>
                                 <div class="from-start delay-2">
-                                    <h3 class="h4 mb-2">공원명</h3>
-                                    <p class="mb-md-4 mb-3 fs-sm">공원 주소</p>
-                                    <p class="mb-4 pb-md-2" style="height:200px;">공원 설명</p>
+                                   <h3 class="h4 mb-2">${famousPark2.name}</h3>
+                                    <p class="mb-md-4 mb-3 fs-md">${famousPark2.addr}<br>${famousPark2.phone}</p>
+                                    <p class="mb-4 pb-md-2" style="height:200px;">낙산공원은 대학로부터 동대문까지 이어져 있어 역사와 문화를 함께 즐길 수 있는 공원입니다. 아름답기로 유명한 서울의 야경을 볼 수 있는 명소로 꼽히기도 합니다. 동대문에서 올라가는 코스는 서울 성곽을 따라 도심 속 숲길을 거닐 수 있습니다. 구불구불하게 이어진 성곽길은 낙산공원만의 독특한 특징입니다. 잠시 생각을 비우고 이 길을 따라 걸으며 지친 몸과 마음을 힐링해 보는 건 어떨까요?<br></p>
                                 </div>
-                                <div style="margin-bottom:10px;">
-                                    <p>현재 공원의 날씨는?</p>
-                                    <div class="weather_area m-0 p-0">
+                                <div style="margin-bottom:30px;">
+	                                <p id="weaStr" style="float: left; color: black; font-weight:600;">현재 공원의 날씨는?</p>
+	                               	<div style="margin-left: 265px;width: 150px;text-align: center;">
+	                               		<div class="btn-group btn-group-sm" role="group" style="width:150px;">
+	                               			<button class="btn btn-outline-secondary on" id="today" type="button" style="padding-left: 10px;padding-right: 10px;padding-top: 4px;padding-bottom: 4px;">오늘</button>
+	                               			<button class="btn btn-outline-secondary" id="one" type="button" style="padding-left: 10px;padding-right: 10px;padding-top: 4px;padding-bottom: 4px;">내일</button>
+	                               			<button class="btn btn-outline-secondary" id="two" type="button" style="padding-left: 10px;padding-right: 10px;padding-top: 4px;padding-bottom: 4px;">모레</button>
+	                               		</div>
+	                               	</div>
+                                </div>
+                    <div class="weather_area mb-4 p-0">
                                         <div class="weather_now m-0 p-0">
                                             <div class="summary_img m-0 p-0">
-                                                <i class="ico_animation _cnLazy ico_animation_wt6" data-ico="ico_animation_wt6" data-ymdt="2022092623"></i>
+                                            	<c:set var="rainStr" value="${today.pcp}"/>
+                                            
+                                                <c:if test="${fn:contains(rainStr, 'mm')}"> <!-- 비올때 --> 
+                                                	<i class="ico_animation _cnLazy ico_animation_wt8" data-ico="ico_animation_wt8" data-ymdt="2022092623"></i>
+                                                </c:if>
+                                                <c:if test="${today.sky <= 5}"> <!-- 맑음 --> 
+                                                	<i class="ico_animation _cnLazy ico_animation_wt1" data-ico="ico_animation_wt1" data-ymdt="2022092623"></i>
+                                                </c:if>
+                                                <c:if test="${today.sky > 5 && today2.sky <= 8}"> <!-- 구름많음 --> 
+                                                	<i class="ico_animation _cnLazy ico_animation_wt5" data-ico="ico_animation_wt5" data-ymdt="2022092623"></i>
+                                                </c:if>
+                                                <c:if test="${today.sky > 8}"> <!-- 흐림 --> 
+                                                	<i class="ico_animation _cnLazy ico_animation_wt7" data-ico="ico_animation_wt7" data-ymdt="2022092623"></i>
+                                                </c:if>
                                                 <strong class="current">
-                                                <span class="blind">현재 온도</span>14.1<span class="degree">°</span>
+                                                <span class="blind">현재 온도</span>${today.tmp}<span class="degree">°</span>
                                             </strong>
                                             </div>
                                             <p class="summary p-0">
-                                                <span class="weather">구름많음</span>
-                                                <em>어제보다</em> <span class="temperature down">0.4° <span class="blind">낮아요</span></span>
+                                                <span class="weather">
+                                                <c:if test="${today.sky <= 5}"> <!-- 맑음 -->
+                                                	&nbsp&nbsp맑음
+                                                </c:if>
+                                                <c:if test="${today.sky > 5 && today.sky <= 8}"> <!-- 구름많음 -->
+                                                	구름많음
+                                                </c:if>
+                                                <c:if test="${today.sky > 8}"> <!-- 흐림 -->
+                                                	&nbsp&nbsp흐림
+                                                </c:if>
+                                                </span>
+                                                <span class="lowtem">${today.tmn}</span>/<span class="hightem">${today.tmx}</span>
                                             </p>
                                         </div>
+                                        <div>
+                                            <span class="secondary">습도 </span><span class="secondaryInfo">${today.reh}%</span>
+                                            <span class="secondary">강수확률 </span><span class="secondaryInfo">${today.pop}%</span>
+                                            <span class="secondary">강수량 </span><span class="secondaryInfo">${today.pcp}</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="btn-group btn-group-lg scale-up delay-3" role="group" aria-label="Buy now or add to wishlist"><a class="btn" href="real-estate-single-v2.html" style="background-color: #424B0D; color:#ffffff;">공원 상세로 이동하기</a>
+                                <div class="btn-group btn-group-lg scale-up delay-3" role="group" aria-label="Buy now or add to wishlist" style="margin-left: 40px"><a class="btn" href="real-estate-single-v2.html" style="background-color: #424B0D; color:#ffffff;">공원 상세로 이동하기</a>
                                     <button class="btn border-start border-light" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Wishlist" style="background-color: #424B0D; color:#ffffff;"><i class="fi-heart fs-5"></i></button>
                                 </div>
                             </div>
@@ -302,11 +426,109 @@
                 </div>
             </div>
             <!-- Carousel custom controls-->
-            <div class="tns-carousel-controls pt-2 mt-4" id="carousel-controls-lp">
+            <div class="tns-carousel-controls pt-0 mt-0" id="carousel-controls-lp">
                 <button class="me-3" type="button"><i class="fi-chevron-left fs-xs"></i></button>
                 <button type="button"><i class="fi-chevron-right fs-xs"></i></button>
             </div>
         </section>
+        
+        <script>
+        	$(document).ready(function() {
+        		$('.btn-group-sm').find('button').click(function() {
+        			var on_id = $(this).attr('id');
+        			
+        			$('.btn-group-sm button').removeClass('on');
+        			
+        			$("#" + on_id).addClass('on'); // 클릭한 클래스에 on 추가
+        			
+        			var i = -1;
+        			
+        			var sky = 100;
+	        		var tmp = 100;
+	        		var tmn = 100;
+	        		var tmx = 100;
+	        		var reh = 100;
+	        		var pop = 100;
+	        		var pcp = "";
+	        			
+	        		if(on_id == 'today') {      
+		        		sky = ${today.sky};   
+		        		tmp = ${today.tmp};   
+		        		tmn = ${today.tmn};   
+		        		tmx = ${today.tmx};   
+		        		reh = ${today.reh};   
+		        		pop = ${today.pop};   
+		        		pcp = '${today.pcp}';   
+        				$('#weaStr').html('현재 공원의 날씨는?')
+        			} 
+					if(on_id == 'one') {
+						sky = ${one.sky};   
+		        		tmp = ${one.tmp};   
+		        		tmn = ${one.tmn};   
+		        		tmx = ${one.tmx};   
+		        		reh = ${one.reh};   
+		        		pop = ${one.pop};   
+		        		pcp = '${today.pcp}';  
+					    $('#weaStr').html('내일 공원의 날씨는?')
+					} 
+					if(on_id == 'two') {
+						sky = ${two.sky};   
+		        		tmp = ${two.tmp};   
+		        		tmn = ${two.tmn};   
+		        		tmx = ${two.tmx};   
+		        		reh = ${two.reh};   
+		        		pop = ${two.pop};   
+		        		pcp = '${today.pcp}';  
+						$('#weaStr').html('모레 공원의 날씨는?')
+					} 
+					
+					var one = '${weaList.get(i).sky}'
+					console.log(one)
+					str = "";
+					
+					str += '	 <div class="weather_now m-0 p-0">                                                                                            '
+	                str += '     <div class="summary_img m-0 p-0">                                                                                            '
+	                
+	                if(pcp != '강수없음') {
+	                	str += '<i class="ico_animation _cnLazy ico_animation_wt8" data-ico="ico_animation_wt8" data-ymdt="2022092623"></i>           '
+	                } else if(sky <= 5) {
+		            	str += '<i class="ico_animation _cnLazy ico_animation_wt1" data-ico="ico_animation_wt1" data-ymdt="2022092623"></i>           '
+			        } else if(sky > 5 && sky <= 8) {
+						str += '<i class="ico_animation _cnLazy ico_animation_wt5" data-ico="ico_animation_wt5" data-ymdt="2022092623"></i>           '
+			        } else if(sky > 8) {
+						str += '<i class="ico_animation _cnLazy ico_animation_wt7" data-ico="ico_animation_wt7" data-ymdt="2022092623"></i>           '
+					}
+	                
+	                str += '         <strong class="current">                                                                                                 '
+	                str += '         <span class="blind">현재 온도</span>'+ tmp +'<span class="degree">°</span>                                   '
+	                str += '     </strong>                                                                                                                    '
+	                str += '     </div>                                                                                                                       '
+	                str += '     <p class="summary p-0">                                                                                                      '
+	                str += '         <span class="weather">                                                                                                   '
+	                
+	                if(sky <= 5) {
+	                	str += '&nbsp&nbsp맑음';
+	                } else if(sky > 5 && sky <= 8) {
+	                	str += '구름많음'
+	                } else if(sky > 8) {
+						str += '&nbsp&nbsp흐림'
+					}
+					
+	                str += '         </span>                                                                                                                  '
+	                str += '         <span class="lowtem">'+ tmn +'</span>/<span class="hightem">'+ tmx +'</span>                     '
+	                str += '     </p>                                                                                                                         '
+	                str += ' </div>                                                                                                                           '
+	                str += ' <div>                                                                                                                            '
+	                str += '     <span class="secondary">습도 </span><span class="secondaryInfo">'+ reh +'%</span>                                '
+	                str += '     <span class="secondary">강수확률 </span><span class="secondaryInfo">'+ pop +'%</span>                            '
+	                str += '     <span class="secondary">강수량 </span><span class="secondaryInfo">'+ pcp +'</span>                               '
+	                str += ' 		</div>                                                                                                                    '
+	             	str += '		</div>                                                                                                                    '
+	             	
+	             	$('.weather_area').html(str);
+        		})
+        	})
+        </script>
         <!-- @@@@@@ 인기공원 끝 @@@@@@-->
 
 
