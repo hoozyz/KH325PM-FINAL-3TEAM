@@ -72,7 +72,7 @@ public class ParkController {
 			} catch (Exception e) {}
 		}
 		
-		PageInfo pageInfo = new PageInfo(page, 10, service.getParkCount(param), 8);
+		PageInfo pageInfo = new PageInfo(page, 5, service.getParkCount(param), 6);
 		List<Park> list = service.getParkList(pageInfo, param);
 		int searchCount = service.getParkCount(param);
 		
