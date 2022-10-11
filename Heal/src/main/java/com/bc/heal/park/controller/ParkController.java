@@ -83,6 +83,56 @@ public class ParkController {
 		return "/park/parkSearch";
 	}
 	
+	@GetMapping("/parkDetail")
+	public String parkDetail(Model model, @RequestParam("no") int no) {
+		Park park = service.findByNo(no);
+		
+		// 날씨
+		List<Weather> weaList = new ArrayList<>();
+		
+		String check = "";
+		String[] checkArr;
+		String dong = "";
+		if (park.getAddr().contains("면")) {
+			check = park.getAddr().split("면")[0]; // 면 기준 앞에만 자르기
+			checkArr = check.split(" ");
+			dong = checkArr[checkArr.length - 1] + "면";
+
+		} else if (park.getAddr().contains("읍")) {
+			check = park.getAddr().split("읍")[0];
+			checkArr = check.split(" ");
+			dong = checkArr[checkArr.length - 1] + "읍";
+
+		} else if (park.getAddr().contains("동")) {
+			check = park.getAddr().split("동")[0];
+			checkArr = check.split(" ");
+			dong = checkArr[checkArr.length - 1] + "동";
+		}
+
+		System.out.println(park.getAddr().split(dong));
+		try {
+			weaList = weatherApi(weaService.selectByDong(dong).getNx(), weaService.selectByDong(dong).getNy()); 
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		Weather today = new Weather(); // 오늘
+		Weather one = new Weather(); // 내일
+		Weather two = new Weather(); // 모레
+		
+		today = weaList.get(0);
+		one = weaList.get(1);
+		two = weaList.get(2);
+		
+		model.addAttribute("park", park);
+		model.addAttribute("today", today);
+		model.addAttribute("one", one);
+		model.addAttribute("two", two);
+		
+		return "/park/parkDetail";
+	}
+	
 	
 	
 	// 날씨 api -> 날짜별 -> 오늘, 내일, 모레 전체 정보 -> date 에는 시간까지 **:** -> ****

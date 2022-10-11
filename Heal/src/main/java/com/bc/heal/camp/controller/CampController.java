@@ -217,7 +217,7 @@ public class CampController {
 		} else if (camp.getAddr().contains("여수")) {
 			airEnd = "여수";
 		} else if (camp.getAddr().contains("김포")) {
-			airEnd = "깊모";
+			airEnd = "김포";
 		}
 
 		// 도착역이랑 캠핑장 위치랑 제일 가까운

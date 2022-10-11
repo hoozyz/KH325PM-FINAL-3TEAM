@@ -147,7 +147,7 @@
 		                  <div class="card-body">
 		                    <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm me-3" style="color: black;"><c:out value="${park.category}"/></span>
 		                    </div>
-		                    <h3 class="h5" style="margin-bottom: 10px;"><a class="nav-link" href="car-finder-single.html"><c:out value="${park.name}"/></a></h3>
+		                    <h3 class="h5" style="margin-bottom: 10px;"><a class="nav-link" href="${path}/park/parkDetail?no=${park.no}"><c:out value="${park.name}"/></a></h3>
 		                    <div class="h6 fw-bold" style="margin-bottom: 20px;"><c:out value="${park.addr}"/></div>
 		                    <hr>
 		                    <div class="h6 card-footer align-items-center justify-content-center"><c:out value="${park.sport}"/></div>
