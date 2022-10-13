@@ -2,16 +2,21 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param value="캠핑 검색" name="title"/>
 </jsp:include>
 
 
 <c:set var="keyword" value="${param.keyword}"/>
-<c:set var="searchAddr" value="${param.addr}"/>
+<c:set var="addr" value="${param.addr}"/>
+<c:set var="theme" value="${param.theme}"/>
+<c:set var="category" value="${param.category}"/>
+
 <input type="hidden" id="keyword" value="${keyword}" > 
-<input type="hidden" id="addr" value="${searchAddr}" >  
+<input type="hidden" id="addr" value="${addr}" >  
+<input type="hidden" id="theme" value="${theme}" >  
+<input type="hidden" id="category" value="${category}" >  
+
 
 <main>
 <!-- Page container-->
@@ -62,41 +67,45 @@
                   <h3 class="h6">테마</h3>
                   <select class="form-select mb-2" name="theme">
                     <option value="" selected disabled>테마</option>
-                    <option value="1">일몰명소</option>
-                    <option value="2">일출명소</option>
-                    <option value="3">낚시</option>
-                    <option value="4">물놀이</option>
-                    <option value="5">단풍명소</option>
-                    <option value="6">눈꽃명소</option>
-                    <option value="7">걷기길</option>
-                    <option value="8">액티비티</option>
-                    <option value="9">수상레저</option>
-                    <option value="10">봄꽃여행</option>
-                    <option value="11">스키</option>
-                    <option value="12">항공레저</option>
+                    <option value="일몰명소">일몰명소</option>
+                    <option value="일출명소">일출명소</option>
+                    <option value="낚시">낚시</option>
+                    <option value="물놀이">물놀이</option>
+                    <option value="단풍명소">단풍명소</option>
+                    <option value="눈꽃명소">눈꽃명소</option>
+                    <option value="걷기길">걷기길</option>
+                    <option value="액티비티">액티비티</option>
+                    <option value="수상레저">수상레저</option>
+                    <option value="봄꽃여행">봄꽃여행</option>
+                    <option value="스키">스키</option>
+                    <option value="항공레저">항공레저</option>
                   </select>
                 </div>
+                
+                
                 <div class="pb-4">
                   <h3 class="h6">카테고리</h3>
                   <div class="overflow-auto" data-simplebar data-simplebar-auto-hide="false" style="height: 11rem;">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" name="category" value="glam">
+                      <input class="form-check-input" type="checkbox" name="category" value="글램핑">
                       <label class="form-check-label fs-sm" for="house">글램핑</label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" name="category" value="cara">
+                      <input class="form-check-input" type="checkbox" name="category" value="카라반">
                       <label class="form-check-label fs-sm" for="apartment">카라반</label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" name="category" value="normal">
+                      <input class="form-check-input" type="checkbox" name="category" value="일반야영장">
                       <label class="form-check-label fs-sm" for="room">일반야영장</label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" name="category" value="car">
+                      <input class="form-check-input" type="checkbox" name="category" value="자동차야영장">
                       <label class="form-check-label fs-sm" for="office">자동차야영장</label>
                     </div>
                   </div>
                 </div>
+                
+                
                 <div class="pb-4">
                   <h3 class="h6">소형기준 1박 가격</h3>
                   <div class="range-slider" data-start-min="50000" data-start-max="100000" data-min="30000" data-max="300000" data-step="10000">
@@ -166,21 +175,42 @@
 		              <div class="col-sm-6">
 		                <div class="card card-light card-hover h-100">
 		                  <div class="card-img-top card-img-hover"style="border: 1px;">
-		                    <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info">도/시</span></div>
-		                    <div class="tns-carousel-inner"><img src="${camp.image}" alt="Image"></div>
+		                    <div class="position-absolute start-0 top-0 pt-3 ps-3">
+		                    
+		                    <c:if test="${fn : contains(camp, '글램핑')}">
+			                    <span class="d-table badge bg-primary">글램핑</span>
+		                    </c:if>
+		                    <c:if test="${fn : contains(camp, '카라반')}">
+			                    <span class="d-table badge bg-info">카라반</span>
+		                    </c:if>
+		                    <c:if test="${fn : contains(camp, '일반야영장')}">
+			                    <span class="d-table badge bg-success">일반야영장</span>
+		                    </c:if>
+		                    <c:if test="${fn : contains(camp, '자동차야영장')}">
+			                    <span class="d-table badge bg-warning">자동차야영장</span>
+		                    </c:if>
+		                    </div>
+		                    <a class="img-overlay" href="${path}/camp/campDetail?no=${camp.no}"></a>
+		                    <c:if test="${empty camp.image}">
+			                    <div class="tns-carousel-inner"><img src="${path}/resources/image/campImg<%=Math.round(Math.random()*4 + 1)%>.jpg" alt="Image" style="width:400px;height:260px"></div>
+		                    </c:if>
+		                    <c:if test="${!empty camp.image}">
+			                    <div class="tns-carousel-inner"><img src="${camp.image}" style="width:400px;height:260px" alt="Image"></div>
+		                    </c:if>
+		                    
 		                  </div>
 		                  <div class="card-body">
 		                    <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm me-3" style="color: black;">${camp.lineintro}</span>
 		                    </div>
-		                    <h3 class="h5" style="margin-bottom: 10px;"><a class="nav-link" href="car-finder-single.html">${camp.name}</a></h3>
-		                    <div class="h6 fw-bold" style="margin-bottom: 20px;"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>60000원 / 소형 </div>
+		                    <h4 class="" style="margin-bottom: 10px;"><a class="nav-link" href="${path}/camp/campDetail?no=${camp.no}">${camp.name}</a></h4>
+		                    
+		                    <div class="h6 fw-bold" style="margin-bottom: 20px;"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>${camp.price}원</div>
 		                    <hr>
 		                    <div class="h6 card-footer align-items-center justify-content-center">카테고리 아이콘</div>
 		                  </div>
 		                </div>
 		              </div>
 					</c:forEach>
-	
 	            </c:if>
 	            
               <%-- <!-- Item-->
@@ -206,61 +236,39 @@
             <nav class="border-top pb-md-4 pt-4 mt-2" aria-label="Pagination">
               <ul class="pagination mb-1">
                 <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 5</span></li>
-                <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1
-                <span class="visually-hidden">${pageInfo.currentPage}</span></span></li>
-                <li class="page-item d-none d-sm-block"><a class="page-link" href="#">2</a></li>
-                <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li>
-                <li class="page-item d-none d-sm-block"><a class="page-link" href="#">4</a></li>
-                <li class="page-item d-none d-sm-block"><a class="page-link" href="#">5</a></li>
-                <li class="page-item d-none d-sm-block">...</li>
-                <li class="page-item d-none d-sm-block"><a class="page-link" href="#">${pageInfo.maxPage}</a></li>
-                <li class="page-item"><a class="page-link" href="${path}/camp/campSearch?page=${pageInfo.nextPage}?name=${param.name}" aria-label="Next"><i class="fi-chevron-right"></i></a></li>
-              </ul>
-            </nav> 
-            
-            
-            <!-- page부 시작 -->
-		<div align="center">
-			<!-- 맨 처음으로 -->
-			<button onclick="movePage('${path}/camp/campSearch?page=1');">&lt;&lt;</button>
-		
-			<!-- 이전 페이지 -->
-			<button onclick="movePage('${path}/camp/campSearch?page=${pageInfo.prevPage}');">&lt;</button>
-			
-			<!-- 10개 페이지 목록 -->
-			<c:forEach begin="${pageInfo.startPage}" end="${pageInfo.endPage}" step="1" varStatus="status">
-				<c:if test="${pageInfo.currentPage == status.current}">
-					<button disabled ><c:out value="${status.current}"/></button>
-				</c:if>
-				<c:if test="${pageInfo.currentPage != status.current}">
-					<button onclick="movePage('${path}/camp/campSearch?page=${status.current}');">
-						<c:out value="${status.current}"/>
-					</button>
-				</c:if>
-			</c:forEach>
-		
-			<!-- 다음 페이지 -->
-			<button onclick="movePage('${path}/camp/campSearch?page=${pageInfo.nextPage}');">&gt;</button>
-		
-			<!-- 마지막 페이지 -->
-			<button onclick="movePage('${path}/camp/campSearch?page=${pageInfo.maxPage}');">&gt;&gt;</button>
-		
-		</div>
-		<!-- page부 종료 -->
-            
-            
-            
+                <!-- 맨 처음으로 -->
+                <li class="page-item"><a class="page-link" onclick="movePage('${path}/camp/campSearch?page=1');" aria-label="Next"><i class="fi-chevrons-left"></i></a></li>
+				<!-- 이전 페이지 -->
+                <li class="page-item"><a class="page-link" onclick="movePage('${path}/camp/campSearch?page=${pageInfo.prevPage}');" aria-label="Next"><i class="fi-chevron-left"></i></a></li>
+	                
+	            <!-- 10개 페이지 목록 -->
+				<c:forEach begin="${pageInfo.startPage}" end="${pageInfo.endPage}" step="1" varStatus="status">
+					<c:if test="${pageInfo.currentPage == status.current}">
+	               		 <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link"><c:out value="${status.current}"/><span class="visually-hidden">(current)</span></span></li>
+					</c:if>
+					<c:if test="${pageInfo.currentPage != status.current}">
+						<li class="page-item d-none d-sm-block"><a class="page-link" onclick="movePage('${path}/camp/campSearch?page=${status.current}');"><c:out value="${status.current}"/></a></li>
+					</c:if>
+				</c:forEach>    
+	                
+	            <!-- 다음 페이지 -->
+				 <li class="page-item"><a class="page-link" onclick="movePage('${path}/camp/campSearch?page=${pageInfo.nextPage}');" aria-label="Next"><i class="fi-chevron-right"></i></a></li>
+				<!-- 마지막 페이지 -->
+             	<li class="page-item"><a class="page-link" onclick="movePage('${path}/camp/campSearch?page=${pageInfo.maxPage}');" aria-label="Next"><i class="fi-chevrons-right"></i></a></li>
+				</ul>
+				</nav>
+	          </div>    
             
           </div>
-        </div>
-      </div>
     </main>
-    <script type="text/javascript"  charset="UTF-8">
+    <script>
 	function movePage(pageUrl){
 		var keyword = document.getElementById("keyword"); 
-// 		var addr = document.getElementById("addr");  
+		var addr = document.getElementById("addr");  
+		var theme = document.getElementById("theme");  
+		var category = document.getElementById("category");  
 		
-		pageUrl = pageUrl + '&keyword='+ keyword.value + '&addr=' + addr.value;  
+		pageUrl = pageUrl + '&keyword='+ keyword.value + '&addr=' + addr.value + '&theme=' + theme.value + '&category=' + category.value  ;  
 		
 		location.href = encodeURI(pageUrl);	
 	}

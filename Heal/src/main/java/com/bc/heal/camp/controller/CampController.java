@@ -75,43 +75,20 @@ public class CampController {
 		System.out.println("총 게시글 수  : " + listCount);
 		model.addAttribute("listCount", listCount);
 
-		PageInfo pageInfo = new PageInfo(page, 10, listCount, 8);
+		PageInfo pageInfo = new PageInfo(page, 5, listCount, 6);
 		List<Camp> campList = campService.getCampList(pageInfo, param);
 
 		model.addAttribute("campList", campList);
 		model.addAttribute("param", param);
 		model.addAttribute("pageInfo", pageInfo);
+		
+		System.out.println(campList);
 
 		return "/camp/campSearch";
 	}
 
-	@GetMapping("/camplist")
-	String list(Model model, @RequestParam Map<String, String> param) {
 
-		int page = 1;
-		if (param.containsKey("page") == true) {
-			try {
-				page = Integer.parseInt(param.get("page"));
-			} catch (Exception e) {
-			}
-		}
-
-		int listCount = campService.getCampCount(param);
-		System.out.println("총 게시글 수  : " + listCount);
-		model.addAttribute("listCount", listCount);
-
-		PageInfo pageInfo = new PageInfo(page, 10, listCount, 10);
-		List<Camp> campList = campService.getCampList(pageInfo, param);
-
-		model.addAttribute("campList", campList);
-		model.addAttribute("param", param);
-		model.addAttribute("pageInfo", pageInfo);
-
-		return "/camp/camplist";
-
-	}
-
-	@GetMapping("/detail")
+	@GetMapping("/campDetail")
 	public String detail(Model model /* int no */) { // 캠핑장 상세정보, 기차/비행기/버스 도착역 리스트
 		Camp camp = campService.findByNo(57); // 테스트 -> 공항있는 캠핑장
 

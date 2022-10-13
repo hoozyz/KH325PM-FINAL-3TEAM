@@ -132,8 +132,6 @@
                                         <input class="form-control" name="keyword" type="text" placeholder="키워드를 입력하세요">
                                     </div>
                                     <hr class="d-sm-none my-2">
-                                    
-                                    
                                     <div class="dropdown w-sm-50 border-end-sm" data-bs-toggle="select">
                                         <button class="btn btn-lg btn-link dropdown-toggle ps-2 ps-sm-3" type="button" data-bs-toggle="dropdown"><i class="fi-home me-2"></i><span class="dropdown-toggle-label">전체/도</span></button>
                                         <input type="hidden" name="addr">
@@ -158,7 +156,7 @@
                                             <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">제주도</span></a></li>
                                         </ul>
                                     </div>
-                                    <!-- <hr class="d-sm-none my-2">
+                                    <hr class="d-sm-none my-2">
                                     <div class="dropdown w-sm-50 border-end-sm" data-bs-toggle="select">
                                         <button class="btn btn-lg btn-link dropdown-toggle ps-2 ps-sm-3" type="button" data-bs-toggle="dropdown"><i class="fi-map-pin me-2"></i><span class="dropdown-toggle-label">분류 선택</span></button>
                                         <input type="hidden" name="theme">
@@ -172,7 +170,9 @@
                                             <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">호수</span></a></li>
                                             <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">도심</span></a></li>
                                         </ul>
-                                    </div> -->
+                                    </div>  
+<!--                                     <input class="form-control" name="category" type="hidden"> -->
+<!--                                     <input class="form-control" name="price" type="hidden"> -->
                                 </div>
                                 <hr class="d-md-none mt-2">
                                 <div class="col-md-2 d-sm-flex align-items-center pt-3 pt-md-0">
@@ -186,7 +186,6 @@
                 </div>
             </div>
         </section>
-
 
 
         <!-- CTA carousel-->
@@ -203,16 +202,16 @@
                                 </div>
                                 <div class="col-md-8 col-xl-9">
                                     <div class="row row-cols-2 row-cols-lg-4 gy-4 gx-3 gx-sm-4">
-                                        <a class="col text-light text-decoration-none" href="#"><img class="d-block mb-2 mx-auto" src="${path}/resources/image/campIcon1.png" width="140" style="padding-top:20px;" alt="Seat Covers">
+                                        <a class="col text-light text-decoration-none" href="${path}/camp/campSearch?category=일반야영장"><img class="d-block mb-2 mx-auto" src="${path}/resources/image/campIcon1.png" width="140" style="padding-top:20px;" alt="Seat Covers">
                                             <div class="fw-bold text-center pt-1" style="margin-top :20px;">캠핑</div>
                                         </a>
-                                        <a class="col text-light text-decoration-none" href="#"><img class="d-block mb-2 mx-auto" src="${path}/resources/image/glamping.png" width="140" alt="Tires">
+                                        <a class="col text-light text-decoration-none" href="${path}/camp/campSearch?category=글램핑"><img class="d-block mb-2 mx-auto" src="${path}/resources/image/glamping.png" width="140" alt="Tires">
                                             <div class="fw-bold text-center pt-1" style="margin-top :18px;">글램핑</div>
                                         </a>
-                                        <a class="col text-light text-decoration-none" href="#" style="margin-top: 40px;"><img class="d-block mb-2 mx-auto" src="${path}/resources/image/caravan.png" width="140" alt="Disks">
+                                        <a class="col text-light text-decoration-none" href="${path}/camp/campSearch?category=카라반" style="margin-top: 40px;"><img class="d-block mb-2 mx-auto" src="${path}/resources/image/caravan.png" width="140" alt="Disks">
                                             <div class="fw-bold text-center">카라반</div>
                                         </a>
-                                        <a class="col text-light text-decoration-none" href="#" style="margin-top: 40px;"><img class="d-block mb-2 mx-auto" src="${path}/resources/image/carB.png" width="140" alt="Child Seats">
+                                        <a class="col text-light text-decoration-none" href="${path}/camp/campSearch?category=자동차야영장" style="margin-top: 40px;"><img class="d-block mb-2 mx-auto" src="${path}/resources/image/carB.png" width="140" alt="Child Seats">
                                             <div class="fw-bold text-center">카박</div>
                                         </a>
                                     </div>

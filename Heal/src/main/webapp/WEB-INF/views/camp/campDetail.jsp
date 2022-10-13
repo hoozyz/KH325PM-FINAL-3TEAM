@@ -191,7 +191,7 @@
 	    <link rel="stylesheet" media="screen" href="${path}/resources/css/theme.min.css">
 	    <script defer src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" integrity="sha384-vuFJ2JiSdUpXLKGK+tDteQZBqNlMwAjhZ3TvPaDfN9QmbPb7Q8qUpbSNapQev3YF" crossorigin="anonymous"></script>
     
-            <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+        <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
     
 		<!-- Review modal-->
         <div class="modal fade" id="modal-review" tabindex="-1">

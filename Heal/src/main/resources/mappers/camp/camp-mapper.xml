@@ -38,6 +38,15 @@
 		<if test="addr != null">
 			AND ADDR LIKE '%'||#{addr}||'%'
 		</if>
+		<if test="theme != null">
+			AND THEME LIKE '%'||#{theme}||'%'
+		</if>
+		<if test="category != null">
+			AND CATEGORY LIKE '%'||#{category}||'%'
+		</if>
+		<if test="price != null">
+			AND PRICE LIKE '%'||#{price}||'%'
+		</if>
 		ORDER BY NO DESC
 	</select>
 	
@@ -52,8 +61,17 @@
 		<if test="addr != null">
 			AND ADDR LIKE '%'||#{addr}||'%'
 		</if>
+		<if test="theme != null">
+			AND THEME LIKE '%'||#{theme}||'%'
+		</if>
+		<if test="category != null">
+			AND CATEGORY LIKE '%'||#{category}||'%'
+		</if>
+		<if test="price != null">
+			AND PRICE LIKE '%'||#{price}||'%'
+		</if>
 		ORDER BY NO DESC
-	</select> 
+	</select>
 	
 	
 </mapper>

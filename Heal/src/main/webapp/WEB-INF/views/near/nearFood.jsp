@@ -4,10 +4,19 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
-<jsp:include page="/WEB-INF/views/common/headerTest.jsp">
+<jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param value="음식검색" name="food"/>
 </jsp:include>
 
+
+<!-- Vendor Styles-->
+    <link rel="stylesheet" media="screen" href="${path}/vendor/simplebar/dist/simplebar.min.css" />
+    <link rel="stylesheet" media="screen" href="${path}/vendor/nouislider/dist/nouislider.min.css" />
+    <link rel="stylesheet" media="screen" href="${path}/vendor/tiny-slider/dist/tiny-slider.css" />
+    <!-- Main Theme Styles + Bootstrap-->
+    <link rel="stylesheet" media="screen" href="${path}/css/theme.min.css">
+    
+    
 <c:set var="keyword" value="${param.keyword}"/>
 <c:set var="searchcity" value="${param.city}"/>
 <c:set var="searchtype" value="${param.type}"/>
@@ -16,8 +25,9 @@
 <input type="hidden" id="city" value="${searchcity}" >  
 <input type="hidden" id="type" value="${searchtype}" >
 
+
 <main>
-<div class="container-fluid mt-5 pt-5 p-0">
+<div class="container mt-5 pt-5 p-0">
         <div class="row g-0 mt-n3">
           <!-- Filters sidebar (Offcanvas on mobile)-->
           <aside class="col-lg-4 col-xl-3 border-top-lg border-end-lg shadow-sm px-3 px-xl-4 px-xxl-5 pt-lg-2">
@@ -28,8 +38,8 @@
               </div>
               <div class="offcanvas-header d-block border-bottom pt-0 pt-lg-4 px-lg-0">
                 <ul class="nav nav-tabs mb-0">
-                  <li class="nav-item"><a class="nav-link active" href="/front/nearFood.html"><i class="fi-rent fs-base me-2"></i>음식점</a></li>
-                  <li class="nav-item"><a class="nav-link" href="/front/nearHotel.html"><i class="fi-home fs-base me-2"></i>숙박업소</a></li>
+                  <li class="nav-item"><a class="nav-link active" href="#"><i class="fi-rent fs-base me-2"></i>음식점</a></li>
+                  <li class="nav-item"><a class="nav-link" href="${path}/near/nearHotel"><i class="fi-home fs-base me-2"></i>숙박업소</a></li>
                 </ul>
               </div>
               <!-- Search form-->
@@ -134,9 +144,8 @@
 
 							<div class="col-sm-6 col-xl-4" style="margin-bottom: 20px;">
 								<div class="card shadow-sm card-hover border-0 h-100">
-									<div class="tns-carousel-wrapper card-img-top card-img-hover"
-										style>
-										<a class="img-overlay" href="real-estate-single-v1.html"></a>
+									<div class="tns-carousel-wrapper card-img-top card-img-hover" style>
+										<a class="img-overlay" href="${path}/near/foodDetail?no=${food.no}"></a>
 										<div class="position-absolute start-0 top-0 pt-3 ps-3">
 											<span class="d-table badge bg-success mb-1">${food.type}</span><span class="d-table badge bg-info">${food.main}</span>
 										</div>
@@ -154,7 +163,7 @@
 										style="margin-top: 20px;">
 										<h3 class="h6 mb-2 fs-base" style="margin-bottom: 10px;">
 											<a class="nav-link stretched-link"
-												href="real-estate-single-v1.html">${food.addr}</a>
+												href="${path}/near/foodDetail?no=${food.no}">${food.addr}</a>
 										</h3>
 										<p class="mb-2 fs-sm text-muted">${food.name}</p>
 									</div>
@@ -220,5 +229,17 @@
 			location.href = encodeURI(pageUrl);
 		}
 	</script>
+	
+	
+	
+        <script src="${path}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="${path}/vendor/simplebar/dist/simplebar.min.js"></script>
+        <script src="${path}/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+        <script src="${path}/vendor/nouislider/dist/nouislider.min.js"></script>
+        <script src="${path}/vendor/tiny-slider/dist/min/tiny-slider.js"></script>
+        <!-- Main theme script-->
+        <script src="${path}/js/theme.min.js"></script>
+        
+        
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
