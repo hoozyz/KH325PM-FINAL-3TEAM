@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,17 +22,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bc.heal.air.service.AirService;
 import com.bc.heal.bus.service.BusService;
 import com.bc.heal.common.util.PageInfo;
 import com.bc.heal.food.service.FoodService;
+import com.bc.heal.review.service.ReviewService;
 import com.bc.heal.train.service.TrainService;
 import com.bc.heal.vo.Air;
 import com.bc.heal.vo.Bus;
 import com.bc.heal.vo.EndStation;
 import com.bc.heal.vo.Train;
 import com.bc.heal.vo.Food;
+import com.bc.heal.vo.Review;
 import com.bc.heal.vo.Weather;
 import com.bc.heal.weather.service.WeatherService;
 
@@ -54,6 +58,10 @@ public class FoodController {
 
 	@Autowired
 	private WeatherService weaService;
+	
+	@Autowired
+	private ReviewService rewService;
+	
 	
 	@GetMapping("/nearFood")
 	String list(Model model, @RequestParam Map<String, String> param) {
@@ -87,22 +95,51 @@ public class FoodController {
 	
 	
 	@GetMapping("/foodDetail")
-	String detail(Model model,@RequestParam("no") int no) {
+	String detail(Model model,@RequestParam Map<String, String> param) {
 		
-		
-		Food food = foodService.findByNo(no);
-		if(food == null) {
-			model.addAttribute("msg", "상세정보가 없습니다");
-			return "redirect:error";
-		}
-		
-		
-		System.out.println("음식점  : " + food);
-		
-		model.addAttribute("food", food);
+		//상세
+				int no;
+				no  = Integer.parseInt(param.get("no"));
+				System.out.println("foodNo : "+no);
+				
+				Food food = foodService.findByNo(no);
+//				if(food == null) {
+//					model.addAttribute("msg", "상세정보가 없습니다");
+//					return "redirect:error";
+//				}
+				
+				
+				System.out.println("음식점  : " + food);
+				
+				model.addAttribute("food", food);
+				
 		
 		// 리뷰
-//		model.addAttribute("replyList", food.getReplies());
+		int page = 1;
+		if (param.containsKey("page") == true) {
+			try {
+				page = Integer.parseInt(param.get("page"));
+			} catch (Exception e) {
+			}
+		}
+		int revCount = rewService.selectRevByFoodCnt(no);
+		System.out.println("리뷰수 : "  +revCount);
+		
+		List<Review> revList = new ArrayList<>();
+		PageInfo pageInfo = new PageInfo(page, 5, revCount, 3);
+		
+		revList = rewService.selectRevByFood(pageInfo, param);
+		
+		System.out.println(revList);
+		
+		model.addAttribute("no", no);
+		model.addAttribute("revList", revList);
+		model.addAttribute("param", param);
+		model.addAttribute("pageInfo", pageInfo);
+		
+		// 아작스 시러
+		Map<String, Object> map = new HashMap<>();
+
 		
 		// 날씨
 				List<Weather> weaList = new ArrayList<>();
@@ -140,8 +177,6 @@ public class FoodController {
 				today = weaList.get(0);
 				one = weaList.get(1);
 				two = weaList.get(2);
-				System.out.println(weaService.selectByDong(dong).getNx());
-				System.out.println(weaService.selectByDong(dong).getNy());
 				
 				model.addAttribute("today", today);
 				model.addAttribute("one", one);

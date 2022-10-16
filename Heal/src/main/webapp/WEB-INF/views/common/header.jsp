@@ -154,7 +154,7 @@
                                     <div class="px-3">Or</div>
                                     <hr class="w-100">
                                 </div>
-                            	<a style="width: 150%;height: 50px;margin-bottom: 15px;" href="javascript:void(0);" onclick="kakaoLogin();"><img src="${path}/resources/image/kakao_login_medium_wide.png" style=" width:400px;"></a>
+                            	<a style="width: 150%;height: 50px;margin-bottom: 15px;" href="javascript:void(0);" onclick="kakaoLogin();"><img src="/Show/resources/images/kakao_login_medium_wide.png" style=" width:400px;"></a>
                                 <div class="mt-4 mt-sm-5">계정이 없으신가요? <a href="#signup-modal" data-bs-toggle="modal" data-bs-dismiss="modal">회원가입</a></div>
                             </div>
                     </div>
@@ -169,7 +169,7 @@
                         <button class="btn-close position-absolute top-0 end-0 mt-3 me-3" type="button" data-bs-dismiss="modal"></button>
                         <div class="mx-0 align-items-center">
                             <div>
-                               <img class="d-block mx-auto" src="#" width="344" alt="Illustartion">
+                               <img class="d-block mx-auto" src="${path}/resources/images/logo/pjlogo2.png" width="344" alt="Illustartion">
                             </div>
                             <div class="px-4 pb-4 px-sm-5 pb-sm-5">
                                 <form class="needs-validation" action="${path}/member/enroll" method="POST" novalidate>
@@ -242,9 +242,14 @@
                     <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
                         <!-- Menu items-->
                         <li class="nav-item px-3 "><a class="nav-link" href="${path}/camp/campMain" role="button" aria-expanded="false" id="NSR">캠핑장</a></li>
-                        <li class="nav-item px-3 "><a class="nav-link" href="${path}/camp/campDetail" role="button"  aria-expanded="false" id="NSR">캠핑장상세</a></li>
+                        <li class="nav-item px-3 "><a class="nav-link" href="${path}/camp/detail" role="button"  aria-expanded="false" id="NSR">캠핑장상세</a></li>
                         <li class="nav-item pe-1"><a class="nav-link" href="${path}/park/parkMain" role="button" aria-expanded="false" id="NSR">공원</a></li>
                         <li class="nav-item pe-3"><a class="nav-link" href="${path}/festival/festivalMain" role="button" aria-expanded="false" id="NSR">축제</a></li>
+
+
+                        
+                        <li class="nav-item px-3"><a class="nav-link" href="${path}/food/main" role="button" aria-expanded="false" id="NSR">주변 시설</a></li> <!-- 주변시설은 음식점이 메인 -->
+                        
                         <li class="nav-item dropdown px-3 "><a class="nav-link dropdown" href="${path}/food/main" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="NSR">주변시설</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="${path}/near/nearFood">음식점</a></li>

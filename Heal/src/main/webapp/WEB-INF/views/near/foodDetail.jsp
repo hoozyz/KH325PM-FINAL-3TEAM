@@ -8,6 +8,16 @@
 	<jsp:param value="음식점 상세" name="title"/>
 </jsp:include>
 
+<c:set var="foodNo" value="${no}"/>
+
+<input type="hidden" id="foodNo" value="${foodNo}" > 
+
+
+   
+
+
+
+
 <!-- Vendor Styles-->
 	    <link rel="stylesheet" media="screen" href="${path}/resources/vendor/simplebar/dist/simplebar.min.css" />
 	    <link rel="stylesheet" media="screen" href="${path}/resources/vendor/nouislider/dist/nouislider.min.css" />
@@ -1156,45 +1166,156 @@
                         <div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch justify-content-between"><a class="btn btn-outline-primary mb-sm-0 mb-3" href="#modal-review" data-bs-toggle="modal"><i class="fi-edit me-1"></i>후기 등록</a>
                             <div class="d-flex align-items-center ms-sm-4">
                                 <label class="me-2 pe-1 text-nowrap" for="reviews-sorting"><i class="fi-arrows-sort text-muted mt-n1 me-2"></i>정렬순:</label>
-                                <select class="form-select" id="reviews-sorting">
-                      <option>최신순</option>
-                      <option>오래된순</option>
-                      <option>좋아요순</option>
-                      <option>별점 높은순</option>
+                                <select class="form-select" id="reviews-sort" onchange="reviewSort(${food.no});" name ="type">
+                      <option value="new">최신순</option>
+                      <option value="old">오래된순</option>
+                      <option value="star">좋아요순</option>
+                      <option value="like">별점 높은순</option>
                     </select>
                             </div>
                         </div>
                     </div>
-                    <!-- Review-->
-                    <div class="mb-4 pb-4 border-bottom">
-                        <div class="d-flex justify-content-between mb-3">
-                            <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/03.jpg" width="48" alt="Avatar">
-                                <div class="ps-2">
-                                    <h6 class="fs-base mb-0">Annette Black</h6><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
-                                </div>
-                            </div><span class="text-muted fs-sm">Jan 17, 2021</span>
-                        </div>
-                        <p>Elementum ut quam tincidunt egestas vitae elit, hendrerit. Ullamcorper nulla amet lobortis elit, nibh condimentum enim. Aliquam felis nisl tellus sodales lectus dictum tristique proin vitae. Odio fermentum viverra tortor quis.</p>
-                        <div class="d-flex align-items-center">
-                            <button class="btn-like" type="button"><i class="fi-like"></i><span>(3)</span></button>
-                            <div class="border-end me-1">&nbsp;</div>
-                            <button class="btn-dislike" type="button"><i class="fi-dislike"></i><span>(0)</span></button>
-                        </div>
-                    </div>
-                    <!-- Pagination-->
-                    <nav class="mt-2 mb-4" aria-label="Reviews pagination">
-                        <ul class="pagination">
-                            <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 5</span></li>
-                            <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="visually-hidden">(current)</span></span>
-                            </li>
-                            <li class="page-item d-none d-sm-block"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item d-none d-sm-block">...</li>
-                            <li class="page-item d-none d-sm-block"><a class="page-link" href="#">8</a></li>
-                            <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="fi-chevron-right"></i></a></li>
-                        </ul>
-                    </nav>
-                </div>
+                    <!-- 리뷰-->
+                     <c:if test="${empty revList}">
+                     	<div>리뷰가 없습니다</div>
+                     </c:if>
+                     
+		            
+		            <c:if test="${!empty revList}">
+		             	<c:forEach var="revList" items="${revList}">
+		                    <div class="mb-4 pb-4 border-bottom">
+		                        <div class="d-flex justify-content-between mb-3">
+		                            <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/03.jpg" width="48" alt="Avatar">
+		                                <div class="ps-2">
+		                                    <h6 class="fs-base mb-0">${revList.id}</h6>
+		                                    <span class="star-rating">
+		                                    	<c:forEach var="i" begin="1" end="5" step="1" varStatus="status">
+			                                    	<c:if test="${i <= revList.revstar}">
+													     <i class="star-rating-icon fi-star-filled active"></i>
+													</c:if>
+													<c:if test="${i > revList.revstar}">
+													   <i class="star-rating-icon fi-star"></i>
+													</c:if>
+												</c:forEach>
+		                                    </span>
+                    
+		                                </div>
+		                            </div><span class="text-muted fs-sm"><fmt:formatDate type="both" pattern = "yyyy-MM-dd HH:mm:ss" value="${revList.createdate}"/></span>
+		                        </div>
+		                        <p>${revList.cont}</p>
+		                       
+		                        <div class="d-flex align-items-center"><!-- 좋아요  -->
+		                            <button class="btn-like" type="button"><i class="fi-like"></i><span>(3)</span></button>
+		                            <div class="border-end me-1">&nbsp;</div>
+		                            <button class="btn-dislike" type="button"><i class="fi-dislike"></i><span>(0)</span></button>
+		                        </div>
+		                    </div>
+                    	</c:forEach>
+                    </c:if>
+                    
+                
+                <!-- Pagination-->
+								<nav class="mt-2 mb-4" aria-label="Reviews pagination">
+									<ul class="pagination">				
+					  		            
+					                <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 5</span></li>
+					                
+					                <c:if test="${pageInfo.currentPage != 1}">
+						                <li class="page-item"><a class="page-link" onclick="movePage('${path}/near/foodDetail?page=1');" aria-label="Next"><i class="fi-chevrons-left"></i></a></li>
+										<!-- 이전 페이지 -->
+						                <li class="page-item"><a class="page-link" onclick="movePage('${path}/near/foodDetail?page=${pageInfo.prevPage}');" aria-label="Next"><i class="fi-chevron-left"></i></a></li>
+					                </c:if>
+					                <!-- 맨 처음으로 -->
+						            <!-- 10개 페이지 목록 -->
+									<c:forEach begin="${pageInfo.startPage}" end="${pageInfo.endPage}" step="1" varStatus="status">
+										<c:if test="${pageInfo.currentPage == status.current}">
+						               		 <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link"><c:out value="${status.current}"/><span class="visually-hidden">(current)</span></span></li>
+										</c:if>
+										<c:if test="${pageInfo.currentPage != status.current}">
+											<li class="page-item d-none d-sm-block"><a class="page-link" onclick="movePage('${path}/near/foodDetail?page=${status.current}');"><c:out value="${status.current}"/></a></li>
+										</c:if>
+									</c:forEach>    
+						                
+						            <!-- 다음 페이지 -->
+									 <li class="page-item"><a class="page-link" onclick="movePage('${path}/near/foodDetail?page=${pageInfo.nextPage}');" aria-label="Next"><i class="fi-chevron-right"></i></a></li>
+									<!-- 마지막 페이지 -->
+					             	<li class="page-item"><a class="page-link" onclick="movePage('${path}/near/foodDetail?page=${pageInfo.maxPage}');" aria-label="Next"><i class="fi-chevrons-right"></i></a></li>
+									</ul>
+								</nav>
+				          	</div>    
+					            
+<!-- 				        일반 페이징 -->
+                    <script>
+							function movePage(pageUrl){
+								var foodNo = document.getElementById("foodNo"); 
+								
+								pageUrl = pageUrl + '&no='+ foodNo.value;  
+								
+								location.href = encodeURI(pageUrl);	
+							}
+					</script>
+               
+               
+					<!--  @@@@@@@@@@@@ AJAX@ -->
+					
+               	<script>
+                function reviewSort(no) {
+            		var sortVal = $('#reviews-sort').val();
+            		console.log(sortVal);
+            		$.ajax({
+             			url: "${path}/near/foodDetail",
+             			type: "GET",
+             			data: { "type" : type , "no" : no , "pageNo" : pageNo },
+             			progress: true,
+             			contentType : "application/json"
+             			dataType: "text",
+                 	
+             			success: function(list) {
+            				var rev = JSON.parse(list);
+            				console.log(rev);
+            				
+            				var str = "";
+            				var url = "${path}/resources/images/avatar.png";
+            				
+            				$.each(rev, (i, obj) => {
+                				str += '<div class="d-flex justify-content-between mb-3 ">'
+                				str += '    <div class="d-flex align-items-center pe-2 "><img class="rounded-circle me-1 " src="'+ url +'" width="60 " alt="Avatar ">'
+                				str += '        <div class="ps-2 ">'
+                				str += '            <h6 class="fs-base mb-0 ">'+ obj.user_id +'</h6>'
+                				str += '            <span class="star-rating ">'
+                				
+                				for (var k = 0; k < 5; k++) {
+                    					if(k < obj.star) {
+                    						str += '<i class="star-rating-icon fi-star-filled active"></i>'
+                    					} else {
+                    						str += '<i class="star-rating-icon fi-star"></i>'
+                    					}
+                				    }
+                				
+                				str += '            </span>'
+                				str += '        </div>'
+                				str += '    </div><span class="text-muted fs-sm ">'+ obj.date +'</span>'
+                				str += '</div>'
+                				str += '<p>'+ obj.content +'</p>'
+                				str += '<div class="d-flex align-items-center " id="revLike'+ obj.revNo +'">'
+                				str += '    <button class="heart" type="button" style="border: none;" onclick="likePlus('+ obj.revNo +');"><i class="fi-heart"></i><span>('+ obj.like +')</span></button>'
+                				str += '</div>'
+                				str += '<hr><br>'
+            				});
+            				
+            				$('.board-page').html(str);
+             			},
+             			
+             			error: function(e) {
+             				console.log(e);			
+            			}
+            		});
+            	};
+               	
+               	</script>
+                
+                
+                
                 <!-- Sidebar with details-->
                 <aside class="col-lg-5">
                     <div class="ps-lg-5">
@@ -1304,6 +1425,7 @@
                                             <span class="secondary">강수확률 </span><span class="secondaryInfo">${today.pop}%</span>
                                             <span class="secondary">강수량 </span><span class="secondaryInfo">${today.pcp}</span>
                                         </div>
+                                    </div>
                                     </div>
                 </aside>
             </div>
