@@ -205,8 +205,9 @@
                         	<input type="hidden" name="type" value="camp">
                         	<input type="hidden" name="no" value="${camp.no}">
                             <div class="mb-3">
-                                <label class="form-label" for="review-name">이름<span class='text-danger'>*</span></label>
+                                <label class="form-label" for="review-name">아이디<span class='text-danger'>*</span></label>
                                 <input class="form-control" type="text" id="review-id" name="id" value="${loginMember.id}" readonly>
+                                <div class="invalid-feedback">아이디을 입력해주세요.</div>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="review-rating">평점<span class='text-danger'>*</span></label>
@@ -218,12 +219,12 @@
                       <option value="2">2점</option>
                       <option value="1">1점</option>
                     </select>
-                                <div class="invalid-feedback">Please rate the property.</div>
+                                <div class="invalid-feedback">평점을 입력해주세요.</div>
                             </div>
                             <div class="mb-4">
                                 <label class="form-label" for="review-text">캠핑후기 <span class='text-danger'>*</span></label>
                                 <textarea class="form-control" id="review-text" name="cont" rows="5" placeholder="캠핑장 어떠셨나요?" required></textarea>
-                                <div class="invalid-feedback">Please write your review.</div>
+                                <div class="invalid-feedback">후기를 입력해주세요.</div>
                             </div>
                             <input class="btn btn-primary d-block w-100 mb-4" type="submit" value="후기 등록">
                         </form>

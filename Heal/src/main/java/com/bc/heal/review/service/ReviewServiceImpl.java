@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.bc.heal.common.util.PageInfo;
 import com.bc.heal.review.mapper.ReviewMapper;
@@ -37,22 +38,36 @@ public class ReviewServiceImpl implements ReviewService {
 	public int getLike(int no) {
 		return mapper.getLike(no);
 	}
-
+	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public int insert(Map<String, String> param) {
-		switch (param.get("type")) {
-		case "hotel":
+		
+		String type = (String)param.get("type");
+
+		if(type.equals("hotel")) {
 			param.put("hotelNo", param.get("no"));
-		case "camp":
+		}else if(type.equals("camp")) {
 			param.put("campNo", param.get("no"));
-		case "festival":
+		}else if(type.equals("festival")) {
 			param.put("festivalNo", param.get("no"));
-		case "food":
+		}else if(type.equals("food")) {
 			param.put("foodNo", param.get("no"));
-		case "park":
+		}else if(type.equals("park")) {
 			param.put("parkNo", param.get("no"));
 		}
-
+		
+//		switch (type) {
+//		case "hotel":
+//			param.put("hotelNo", param.get("no"));
+//		case "camp":
+//			param.put("campNo", param.get("no"));
+//		case "festival":
+//			param.put("festivalNo", param.get("no"));
+//		case "food":
+//			param.put("foodNo", param.get("no"));
+//		case "park":
+//			param.put("parkNo", param.get("no"));
+//		}
 		return mapper.insert(param);
 	}
 

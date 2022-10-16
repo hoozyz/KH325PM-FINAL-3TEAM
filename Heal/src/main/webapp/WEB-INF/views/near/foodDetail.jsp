@@ -205,15 +205,17 @@
                         <button class="btn-close position-absolute top-0 end-0 mt-3 me-3" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body px-sm-5 px-4">
-                        <form class="needs-validation" novalidate>
+                         <form class="needs-validation" action="${path}/review/write" method="POST">
+                        	<input type="hidden" name="type" value="food">
+                        	<input type="hidden" name="no" value="${food.no}">
                             <div class="mb-3">
-                                <label class="form-label" for="review-name">이름 <span class='text-danger'>*</span></label>
-                                <input class="form-control" type="text" id="review-name" name="name" value="${loginMember.name}" readonly>
-                                <div class="invalid-feedback">이름을 입력해주세요</div>
+                                <label class="form-label" for="review-name">아이디<span class='text-danger'>*</span></label>
+                                <input class="form-control" type="text" id="review-name" name="id" value="${loginMember.id}" readonly>
+                                <div class="invalid-feedback">아이디을 입력해주세요.</div>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="review-rating">평점 <span class='text-danger'>*</span></label>
-                                <select class="form-control form-select" id="review-rating" required>
+                                <select class="form-control form-select" id="review-rating" name="star" required>
                       <option value="" selected disabled hidden>평점 선택</option>
                       <option value="5">5점</option>
                       <option value="4">4점</option>
@@ -225,7 +227,7 @@
                             </div>
                             <div class="mb-4">
                                 <label class="form-label" for="review-text">음식점 후기 <span class='text-danger'>*</span></label>
-                                <textarea class="form-control" id="review-text" rows="5" placeholder="음식점 어떠셨나요?" required></textarea>
+                                <textarea class="form-control" id="review-text" name="cont" rows="5" placeholder="음식점 어떠셨나요?" required></textarea>
                                 <div class="invalid-feedback">후기를 입력해주세요</div>
                             </div>
                             <input class="btn btn-primary d-block w-100 mb-4" type="submit" value="후기 등록">
@@ -1198,7 +1200,7 @@
 		                        <p>${revList.cont}</p>
 		                       
 		                        <div class="d-flex align-items-center" id="like${revList.no}"><!-- 좋아요  -->
-		                            <button class="btn-like" type="button" onclick="likePlus(${revList.no})"><i class="fi-like"></i><span>(<span id="revLike${revList.no}">${revList.revlike}</span>)</span></button>
+		                            <button class="btn-like" type="button" onclick="likePlus(${revList.no})"><i class="fi-heart"></i><span>(<span id="revLike${revList.no}">${revList.revlike}</span>)</span></button>
 		                        </div>
 		                    </div>
                     	</c:forEach>

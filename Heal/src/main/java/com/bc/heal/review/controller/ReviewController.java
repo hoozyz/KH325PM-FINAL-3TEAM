@@ -62,11 +62,13 @@ public class ReviewController {
 	public String write(Model model, @RequestParam Map<String, String> param,
 			@SessionAttribute(name = "loginMember", required = false) Member loginMember, HttpServletRequest req) {
 		String location = req.getHeader("Referer");
+		
 		String memNo = ""+loginMember.getNo();
 		param.put("memNo", memNo);
 		int result = 0;
 		
 		result = revService.insert(param);
+		
 		if(result > 0) {
 			model.addAttribute("msg", "작성에 성공하셨습니다.");
 			model.addAttribute("location", location);
@@ -76,6 +78,9 @@ public class ReviewController {
 		}
 		return "common/msg";
 	}
+	
+	
+	
 
 	@GetMapping("/delete")
 	public String delete(Model model, int no, HttpServletRequest req) {

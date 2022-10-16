@@ -56,51 +56,70 @@
 		WHERE NUM <![CDATA[<=]]> 5 AND MEMBERNO = #{no}
 	</select>
 	
-	<select id="insert" parameterType="map" resultType="int">
+	<insert id="insert" parameterType="map" >
 		INSERT INTO TBL_REVIEW (
- 			NO, 
- 			TITLE,
- 			CONT,
+ 			NO,
+            TITLE,
+            CONT,
  			REVSTAR,
  			REVLIKE,
  			CREATEDATE,
- 			MEMBERNO, 
- 			CAMPNO, 
- 			HOTELNO, 
+ 			MEMBERNO,
+            HOTELNO,
+ 			CAMPNO,  
  			FESTIVALNO, 
  			FOODNO, 
  			PARKNO 
 		) VALUES (
 			REVIEW_SEQ.NEXTVAL,
 			NULL,
-			<if test="cont != null"> <!-- 최신순 -->
- 				#{cont},
- 			</if>
- 			<if test="star != null"> <!-- 최신순 -->
- 				#{star},
- 			</if>
+			#{cont},
+ 			#{star},
  			${0},
  			SYSDATE,
- 			<if test="memNo != null"> <!-- 최신순 -->
- 				#{memNo},
- 			</if>
- 			<if test="hotelNo != null"> <!-- 최신순 -->
- 				#{hotelNo},
- 			</if>
- 			<if test="campNo != null"> <!-- 최신순 -->
- 				#{campNo},
- 			</if>
- 			<if test="festivalNo != null"> <!-- 최신순 -->
- 				#{festivalNo},
- 			</if>
- 			<if test="foodNo != null"> <!-- 최신순 -->
- 				#{foodNo},
- 			</if>
- 			<if test="parkNo != null"> <!-- 최신순 -->
- 				#{parkNo}
- 			</if>
+ 			#{memNo},
+ 			<choose>
+				<when test="hotelNo != null">
+					#{hotelNo},
+				</when>
+				<otherwise>
+					NULL,
+				</otherwise>
+			</choose>
+ 			<choose>
+				<when test="campNo != null">
+					#{campNo},
+				</when>
+				<otherwise>
+					NULL,
+				</otherwise>
+			</choose>
+ 			<choose>
+				<when test="festivalNo != null">
+					#{festivalNo},
+				</when>
+				<otherwise>
+					NULL,
+				</otherwise>
+			</choose>
+ 			<choose>
+				<when test="foodNo != null">
+					#{foodNo},
+				</when>
+				<otherwise>
+					NULL,
+				</otherwise>
+			</choose>
+ 			<choose>
+				<when test="parkNo != null">
+					#{parkNo}
+				</when>
+				<otherwise>
+					NULL
+				</otherwise>
+			</choose>
  		)
-	</select>
+	</insert>
 	
 	<update id="setLike" parameterType="int">
 		UPDATE TBL_REVIEW
