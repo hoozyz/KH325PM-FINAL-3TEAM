@@ -20,14 +20,16 @@ public interface ReviewMapper {
 	int getLike(int no);
 
 	int insert(Map<String, String> param);
-	
+
 	// 캠핑
 	List<Review> selectRevCamp(RowBounds rowBounds, Map<String, String> searchMap);
 	int getCountByCamp(int no);
-	
+
 	// 상현(food)
 	List<Review> selectRevFood(RowBounds rowBounds, Map<String, String> searchMap);
 	int selectRevByFoodCnt(int no);
-	
 
+	// 우성(hotel)
+	List<Review> selectRevByHotel(RowBounds rowBounds, Map<String, String> map);
+	int selectRevByHotelCnt(int no);
 }

@@ -25,6 +25,8 @@ public interface ReviewService {
 	List<Review> selectRevFood(int no, PageInfo pageInfo, String sort);
 	int selectRevByFoodCnt(int no);
 
-	
+	// 우성(hotel)
+	List<Review> selectRevHotel(int no, PageInfo pageInfo, String sort);
+	int selectRevByHotelCnt(int no);
 	
 }

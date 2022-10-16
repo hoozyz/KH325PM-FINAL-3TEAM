@@ -58,7 +58,7 @@ public class ReviewController {
 		return "/member/myReview";
 	}
 
-	@PostMapping("write")
+	@PostMapping("/write")
 	public String write(Model model, @RequestParam Map<String, String> param,
 			@SessionAttribute(name = "loginMember", required = false) Member loginMember, HttpServletRequest req) {
 		String location = req.getHeader("Referer");
