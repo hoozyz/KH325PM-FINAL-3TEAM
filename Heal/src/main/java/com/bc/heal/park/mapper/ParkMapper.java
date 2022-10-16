@@ -13,5 +13,4 @@ public interface ParkMapper {
 	Park selectByNo(int no);
 	List<Park> selectParkList(RowBounds rowbounds, Map<String, String> map);
 	int selectParkCount(Map<String, String> Map);
-	
 }
