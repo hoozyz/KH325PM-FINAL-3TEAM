@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bc.heal.air.service.AirService;
 import com.bc.heal.bus.service.BusService;
@@ -90,6 +92,40 @@ public class CampController {
 
 		return "/camp/campSearch";
 	}
+	
+	@GetMapping("/rev")
+	@ResponseBody
+	public Map<String, Object> list(@RequestParam Map<String, String> param) {
+		Map<String, Object> map = new HashMap<>();
+
+		int page = Integer.parseInt(param.get("no"));
+
+		List<Review> list = new ArrayList<>();
+		String sort = param.get("sort");
+		
+		if(sort.contains("최신")) {
+			sort = "new";
+		}
+		if(sort.contains("오래")) {
+			sort = "old";
+		}
+		if(sort.contains("좋아")) {
+			sort = "like";
+		}
+		if(sort.contains("별점")) {
+			sort = "star";
+		}
+
+		int campNo = Integer.parseInt(param.get("camp"));
+		PageInfo pageInfo = new PageInfo(page, 5, revService.getCountByCamp(campNo), 2);
+		
+		list = revService.selectRevCamp(campNo, pageInfo, sort); // 캠프번호, 페이지, 정렬
+
+		map.put("list", list);
+		map.put("pageInfo", pageInfo);
+
+		return map;
+	}
 
 	@GetMapping("/campDetail")
 	public String detail(Model model, int no) { // 캠핑장 상세정보, 기차/비행기/버스 도착역 리스트
@@ -131,7 +167,7 @@ public class CampController {
 		model.addAttribute("lastList", lastList);
 
 		// 리뷰
-		PageInfo pageInfo = new PageInfo(1, 5, revService.getCount(), 2);
+		PageInfo pageInfo = new PageInfo(1, 5, revService.getCountByCamp(no), 2);
 		List<Review> revList = new ArrayList<>();
 		String sort = "new";
 		revList = revService.selectRevCamp(no, pageInfo, sort); // 캠프번호, 페이지, 정렬

@@ -11,8 +11,6 @@ public interface ReviewService {
 
 	int delete(int no);
 
-	int getCount();
-
 	List<Review> selectRevCamp(int no, PageInfo pageInfo, String sort);
 
 	void setLike(int no, int like);
@@ -20,4 +18,11 @@ public interface ReviewService {
 	int getLike(int no);
 
 	int insert(Map<String, String> param);
+	int getCountByCamp(int campNo);
+	
+	// 상현
+	List<Review> selectRevByFood(PageInfo pageInfo, Map<String, String> param);
+
+	int selectRevByFoodCnt(int no);
+
 }

@@ -15,13 +15,19 @@ public interface ReviewMapper {
 
 	int delete(int no);
 
-	int getCount();
-
 	List<Review> selectRevCamp(RowBounds rowBounds, Map<String, String> searchMap);
 
 	void setLike(@Param("no") int no, @Param("like") int like);
 
 	int getLike(int no);
+	
+	int getCountByCamp(int no);
 
 	int insert(Map<String, String> param);
+	
+	// 상현
+	List<Review> selectRevByFood(RowBounds rowBounds, Map<String, String> map);
+
+	int selectRevByFoodCnt(int no);
+
 }

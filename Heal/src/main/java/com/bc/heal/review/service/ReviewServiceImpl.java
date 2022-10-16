@@ -29,11 +29,6 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public int getCount() {
-		return mapper.getCount();
-	}
-
-	@Override
 	public List<Review> selectRevCamp(int no, PageInfo pageInfo, String sort) {
 		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit(); // 앞에서 뺄 수 
 		RowBounds rowBounds = new RowBounds(offset, pageInfo.getListLimit());
@@ -69,4 +64,22 @@ public class ReviewServiceImpl implements ReviewService {
 		return mapper.insert(param);
 	}
 
+	@Override
+	public int getCountByCamp(int no) {
+		return mapper.getCountByCamp(no);
+	}
+	
+	// 상현
+	@Override
+	public List<Review> selectRevByFood(PageInfo pageInfo, Map<String, String> param) {
+		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
+		RowBounds rowBounds = new RowBounds(offset, pageInfo.getListLimit());
+		
+		return mapper.selectRevByFood(rowBounds, param);
+	}
+
+	@Override
+	public int selectRevByFoodCnt(int no) {
+		return mapper.selectRevByFoodCnt(no);
+	}
 }

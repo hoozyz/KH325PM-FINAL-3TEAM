@@ -95,40 +95,6 @@ public class ReviewController {
 		return "common/msg";
 	}
 
-	@GetMapping("/list")
-	@ResponseBody
-	public Map<String, Object> list(@RequestParam Map<String, String> param) {
-		Map<String, Object> map = new HashMap<>();
-
-		int page = Integer.parseInt(param.get("no"));
-
-		PageInfo pageInfo = new PageInfo(page, 5, revService.getCount(), 2);
-
-		List<Review> list = new ArrayList<>();
-		String sort = param.get("sort");
-		
-		if(sort.contains("최신")) {
-			sort = "new";
-		}
-		if(sort.contains("오래")) {
-			sort = "old";
-		}
-		if(sort.contains("좋아")) {
-			sort = "like";
-		}
-		if(sort.contains("별점")) {
-			sort = "star";
-		}
-
-		int campNo = Integer.parseInt(param.get("camp"));
-		list = revService.selectRevCamp(campNo, pageInfo, sort); // 캠프번호, 페이지, 정렬
-
-		map.put("list", list);
-		map.put("pageInfo", pageInfo);
-
-		return map;
-	}
-
 	@GetMapping("/like")
 	@ResponseBody
 	public int like(int no, int check) {

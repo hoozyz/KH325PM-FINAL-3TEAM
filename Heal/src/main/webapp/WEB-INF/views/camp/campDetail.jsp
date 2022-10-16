@@ -1322,7 +1322,7 @@
                 		
                 		$.ajax({
                 			type: 'GET',
-                			url: "/review/list",
+                			url: "/camp/rev",
                 			data: {
                 				no: no,
                 				sort: sort,

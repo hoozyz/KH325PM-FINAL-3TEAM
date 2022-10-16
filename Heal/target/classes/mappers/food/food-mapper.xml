@@ -16,7 +16,7 @@
 	</resultMap>
 	
 	<select id="selectByNo" parameterType="int" resultMap="foodResultMap">
- 		SELECT * 
+ 		SELECT *
  		FROM TBL_FOOD
  		WHERE NO = #{no}
 	</select>

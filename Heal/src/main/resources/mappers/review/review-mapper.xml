@@ -127,15 +127,41 @@
  		</if>
 	</select>
 	
+	<select id="selectRevByFood" parameterType="map" resultMap="reviewIdMap">
+	 	SELECT R.*, M.ID
+		 FROM TBL_REVIEW R
+		 JOIN TBL_MEMBER M ON (R.MEMBERNO = M.NO)
+		 AND R.FOODNO = ${no} <!-- ${} -> '' 안붙음 -> 정수가능 -->
+		 <if test='sort.equals("new")'> <!-- 최신순 -->
+ 			ORDER BY R.NO DESC
+ 		</if>
+ 		<if test='sort.equals("old")'>
+ 			ORDER BY R.NO ASC
+ 		</if>
+ 		<if test='sort.equals("star")'>
+ 			ORDER BY R.REVSTAR DESC
+ 		</if>
+ 		<if test='sort.equals("like")'>
+ 			ORDER BY R.REVLIKE DESC
+ 		</if>
+	</select>
+	
+	<select id="selectRevByFoodCnt" resultType="int" parameterType="int">
+	 	SELECT COUNT(*)
+	 		FROM TBL_REVIEW 
+	 		WHERE FOODNO = ${no}
+	</select>
+	
 	<select id="getLike" parameterType="int" resultType="int">
 		SELECT REVLIKE
 		FROM TBL_REVIEW
 		WHERE NO = #{no}
 	</select>
 	
-	<select id="getCount" resultType="int">
+	<select id="getCountByCamp" parameterType="int" resultType="int">
 		SELECT COUNT(*)
 		FROM TBL_REVIEW
+		WHERE CAMPNO = #{no}
 	</select>
 	
 	<delete id="delete" parameterType="int">
