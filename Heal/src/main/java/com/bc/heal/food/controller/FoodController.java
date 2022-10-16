@@ -60,7 +60,7 @@ public class FoodController {
 	private WeatherService weaService;
 	
 	@Autowired
-	private ReviewService rewService;
+	private ReviewService revService;
 	
 	
 	@GetMapping("/nearFood")
@@ -91,23 +91,52 @@ public class FoodController {
 		
 	}
 	
-	
+
+	@GetMapping("/rev")
+	@ResponseBody
+	public Map<String, Object> list(@RequestParam Map<String, String> param) {
+		Map<String, Object> map = new HashMap<>();
+
+		int page = Integer.parseInt(param.get("no"));
+
+		List<Review> list = new ArrayList<>();
+		String sort = param.get("sort");
+		
+		if(sort.contains("최신")) {
+			sort = "new";
+		}
+		if(sort.contains("오래")) {
+			sort = "old";
+		}
+		if(sort.contains("좋아")) {
+			sort = "like";
+		}
+		if(sort.contains("별점")) {
+			sort = "star";
+		}
+
+		int foodNo = Integer.parseInt(param.get("food"));
+		PageInfo pageInfo = new PageInfo(page, 5, revService.getCountByCamp(foodNo), 2);
+		
+		list = revService.selectRevByFood(pageInfo, foodNo,  sort); 
+
+		map.put("list", list);
+		map.put("pageInfo", pageInfo);
+
+		return map;
+	}
 	
 	
 	@GetMapping("/foodDetail")
-	String detail(Model model,@RequestParam Map<String, String> param) {
+	String detail(Model model,int no) {
 		
 		//상세
-				int no;
-				no  = Integer.parseInt(param.get("no"));
-				System.out.println("foodNo : "+no);
-				
-				Food food = foodService.findByNo(no);
-//				if(food == null) {
-//					model.addAttribute("msg", "상세정보가 없습니다");
-//					return "redirect:error";
-//				}
-				
+		Food food = foodService.findByNo(no);
+//		if(food == null) {
+//			model.addAttribute("msg", "상세정보가 없습니다");
+//			return "redirect:error";
+//		}
+		
 				
 				System.out.println("음식점  : " + food);
 				
@@ -115,30 +144,19 @@ public class FoodController {
 				
 		
 		// 리뷰
-		int page = 1;
-		if (param.containsKey("page") == true) {
-			try {
-				page = Integer.parseInt(param.get("page"));
-			} catch (Exception e) {
-			}
-		}
-		int revCount = rewService.selectRevByFoodCnt(no);
-		System.out.println("리뷰수 : "  +revCount);
+				
+		int revCount = revService.selectRevByFoodCnt(no);
+		PageInfo pageInfo = new PageInfo(1, 5, revCount, 2);
 		
 		List<Review> revList = new ArrayList<>();
-		PageInfo pageInfo = new PageInfo(page, 5, revCount, 3);
-		
-		revList = rewService.selectRevByFood(pageInfo, param);
+		String sort = "new";
+		revList = revService.selectRevByFood(pageInfo, no,  sort);
 		
 		System.out.println(revList);
 		
-		model.addAttribute("no", no);
 		model.addAttribute("revList", revList);
-		model.addAttribute("param", param);
 		model.addAttribute("pageInfo", pageInfo);
 		
-		// 아작스 시러
-		Map<String, Object> map = new HashMap<>();
 
 		
 		// 날씨

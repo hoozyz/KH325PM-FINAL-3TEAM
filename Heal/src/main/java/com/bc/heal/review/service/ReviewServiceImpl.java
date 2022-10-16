@@ -28,18 +28,6 @@ public class ReviewServiceImpl implements ReviewService {
 		return mapper.delete(no);
 	}
 
-	@Override
-	public List<Review> selectRevCamp(int no, PageInfo pageInfo, String sort) {
-		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit(); // 앞에서 뺄 수 
-		RowBounds rowBounds = new RowBounds(offset, pageInfo.getListLimit());
-		
-		Map<String, String> searchMap = new HashMap<String, String>();
-		searchMap.put("no", "" + no); // ${}
-		searchMap.put("sort", sort);
-		System.out.println("----"+sort);
-		// 정렬은 쿼리에서 if문
-		return mapper.selectRevCamp(rowBounds, searchMap);
-	}
 
 	@Override
 	public void setLike(int no, int like) {
@@ -64,6 +52,20 @@ public class ReviewServiceImpl implements ReviewService {
 		return mapper.insert(param);
 	}
 
+	// 캠핑
+	@Override
+	public List<Review> selectRevCamp(int no, PageInfo pageInfo, String sort) {
+		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit(); // 앞에서 뺄 수 
+		RowBounds rowBounds = new RowBounds(offset, pageInfo.getListLimit());
+		
+		Map<String, String> searchMap = new HashMap<String, String>();
+		searchMap.put("no", "" + no); // ${}
+		searchMap.put("sort", sort);
+		System.out.println("----"+sort);
+		// 정렬은 쿼리에서 if문
+		return mapper.selectRevCamp(rowBounds, searchMap);
+	}
+	
 	@Override
 	public int getCountByCamp(int no) {
 		return mapper.getCountByCamp(no);
@@ -71,15 +73,20 @@ public class ReviewServiceImpl implements ReviewService {
 	
 	// 상현
 	@Override
-	public List<Review> selectRevByFood(PageInfo pageInfo, Map<String, String> param) {
-		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
+	public List<Review> selectRevByFood(PageInfo pageInfo, int no, String sort) {
+		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit(); // 앞에서 뺄 수 
 		RowBounds rowBounds = new RowBounds(offset, pageInfo.getListLimit());
 		
-		return mapper.selectRevByFood(rowBounds, param);
+		Map<String, String> searchMap = new HashMap<String, String>();
+		searchMap.put("no", "" + no); // ${}
+		searchMap.put("sort", sort);
+		// 정렬은 쿼리에서 if문
+		return mapper.selectRevCamp(rowBounds, searchMap);
 	}
 
 	@Override
 	public int selectRevByFoodCnt(int no) {
 		return mapper.selectRevByFoodCnt(no);
 	}
+
 }

@@ -8,14 +8,6 @@
 	<jsp:param value="음식점 상세" name="title"/>
 </jsp:include>
 
-<c:set var="foodNo" value="${no}"/>
-
-<input type="hidden" id="foodNo" value="${foodNo}" > 
-
-
-   
-
-
 
 
 <!-- Vendor Styles-->
@@ -1166,16 +1158,17 @@
                         <div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch justify-content-between"><a class="btn btn-outline-primary mb-sm-0 mb-3" href="#modal-review" data-bs-toggle="modal"><i class="fi-edit me-1"></i>후기 등록</a>
                             <div class="d-flex align-items-center ms-sm-4">
                                 <label class="me-2 pe-1 text-nowrap" for="reviews-sorting"><i class="fi-arrows-sort text-muted mt-n1 me-2"></i>정렬순:</label>
-                                <select class="form-select" id="reviews-sort" onchange="reviewSort(${food.no});" name ="type">
-                      <option value="new">최신순</option>
-                      <option value="old">오래된순</option>
-                      <option value="star">좋아요순</option>
-                      <option value="like">별점 높은순</option>
+                                <select class="form-select" id="sort" >
+                      <option id="new" selected>>최신순</option>
+                      <option id="old">오래된순</option>
+                      <option id="star">좋아요순</option>
+                      <option id="like">별점 높은순</option>
                     </select>
                             </div>
                         </div>
                     </div>
                     <!-- 리뷰-->
+      	 		<div id="revDiv">	  
                      <c:if test="${empty revList}">
                      	<div>리뷰가 없습니다</div>
                      </c:if>
@@ -1210,51 +1203,247 @@
 		                            <button class="btn-dislike" type="button"><i class="fi-dislike"></i><span>(0)</span></button>
 		                        </div>
 		                    </div>
+	                	
                     	</c:forEach>
                     </c:if>
-                    
+           		</div>
+                      <!-- Pagination-->
+                    <nav class="mt-2 mb-4" aria-label="Reviews pagination">
+                        <ul class="pagination">
+                            <li class="page-item active d-none d-sm-block" aria-current="page"><a class="page-link" id="page(1)" onclick="goPage(1); return false;">1</a></li>
+                            <c:if test="${pageInfo.getEndPage() > 1}">
+	                			<c:forEach var="i" begin="2" end="${pageInfo.getEndPage()}">
+	                				<li class="page-item d-none d-sm-block"><a class="page-link" id="page(${i})" onclick="goPage(${i}); return false;">${i}</a></li>
+	                			</c:forEach>
+	                		</c:if>
+	                		
+                            <li class="page-item"><a class="page-next" onclick="goPage(${pageInfo.getNextPage()}); return false;" aria-label="Next"><i class="fi-chevron-right"></i></a></li>
+                            <li class="page-item"><a class="page-end" onclick="goPage(${pageInfo.getMaxPage()}); return false;" aria-label="Next"><i class="fi-chevrons-right"></i></a></li>
+                        </ul>
+                    </nav>
+                </div>
                 
-                <!-- Pagination-->
-								<nav class="mt-2 mb-4" aria-label="Reviews pagination">
-									<ul class="pagination">				
+<!--                 Pagination -->
+<!-- 								<nav class="mt-2 mb-4" aria-label="Reviews pagination"> -->
+<!-- 									<ul class="pagination">				 -->
 					  		            
-					                <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 5</span></li>
+<!-- 					                <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 5</span></li> -->
 					                
-					                <c:if test="${pageInfo.currentPage != 1}">
-						                <li class="page-item"><a class="page-link" onclick="movePage('${path}/near/foodDetail?page=1');" aria-label="Next"><i class="fi-chevrons-left"></i></a></li>
-										<!-- 이전 페이지 -->
-						                <li class="page-item"><a class="page-link" onclick="movePage('${path}/near/foodDetail?page=${pageInfo.prevPage}');" aria-label="Next"><i class="fi-chevron-left"></i></a></li>
-					                </c:if>
-					                <!-- 맨 처음으로 -->
-						            <!-- 10개 페이지 목록 -->
-									<c:forEach begin="${pageInfo.startPage}" end="${pageInfo.endPage}" step="1" varStatus="status">
-										<c:if test="${pageInfo.currentPage == status.current}">
-						               		 <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link"><c:out value="${status.current}"/><span class="visually-hidden">(current)</span></span></li>
-										</c:if>
-										<c:if test="${pageInfo.currentPage != status.current}">
-											<li class="page-item d-none d-sm-block"><a class="page-link" onclick="movePage('${path}/near/foodDetail?page=${status.current}');"><c:out value="${status.current}"/></a></li>
-										</c:if>
-									</c:forEach>    
+<%-- 					                <c:if test="${pageInfo.currentPage != 1}"> --%>
+<%-- 						                <li class="page-item"><a class="page-link" onclick="movePage('${path}/near/foodDetail?page=1');" aria-label="Next"><i class="fi-chevrons-left"></i></a></li> --%>
+<!-- 										이전 페이지 -->
+<%-- 						                <li class="page-item"><a class="page-link" onclick="movePage('${path}/near/foodDetail?page=${pageInfo.prevPage}');" aria-label="Next"><i class="fi-chevron-left"></i></a></li> --%>
+<%-- 					                </c:if> --%>
+<!-- 					                맨 처음으로 -->
+<!-- 						            10개 페이지 목록 -->
+<%-- 									<c:forEach begin="${pageInfo.startPage}" end="${pageInfo.endPage}" step="1" varStatus="status"> --%>
+<%-- 										<c:if test="${pageInfo.currentPage == status.current}"> --%>
+<%-- 						               		 <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link"><c:out value="${status.current}"/><span class="visually-hidden">(current)</span></span></li> --%>
+<%-- 										</c:if> --%>
+<%-- 										<c:if test="${pageInfo.currentPage != status.current}"> --%>
+<%-- 											<li class="page-item d-none d-sm-block"><a class="page-link" onclick="movePage('${path}/near/foodDetail?page=${status.current}');"><c:out value="${status.current}"/></a></li> --%>
+<%-- 										</c:if> --%>
+<%-- 									</c:forEach>     --%>
 						                
-						            <!-- 다음 페이지 -->
-									 <li class="page-item"><a class="page-link" onclick="movePage('${path}/near/foodDetail?page=${pageInfo.nextPage}');" aria-label="Next"><i class="fi-chevron-right"></i></a></li>
-									<!-- 마지막 페이지 -->
-					             	<li class="page-item"><a class="page-link" onclick="movePage('${path}/near/foodDetail?page=${pageInfo.maxPage}');" aria-label="Next"><i class="fi-chevrons-right"></i></a></li>
-									</ul>
-								</nav>
-				          	</div>    
+<!-- 						            다음 페이지 -->
+<%-- 									 <li class="page-item"><a class="page-link" onclick="movePage('${path}/near/foodDetail?page=${pageInfo.nextPage}');" aria-label="Next"><i class="fi-chevron-right"></i></a></li> --%>
+<!-- 									마지막 페이지 -->
+<%-- 					             	<li class="page-item"><a class="page-link" onclick="movePage('${path}/near/foodDetail?page=${pageInfo.maxPage}');" aria-label="Next"><i class="fi-chevrons-right"></i></a></li> --%>
+<!-- 									</ul> -->
+<!-- 								</nav> -->
+<!-- 				          	</div>     -->
 					            
-<!-- 				        일반 페이징 -->
-                    <script>
-							function movePage(pageUrl){
-								var foodNo = document.getElementById("foodNo"); 
-								
-								pageUrl = pageUrl + '&no='+ foodNo.value;  
-								
-								location.href = encodeURI(pageUrl);	
-							}
-					</script>
-               
+					<!-- 일반 페이징 -->
+					<script>
+                	$("#sort").change(function() {
+                		goPage(1);
+                	});
+                
+//                 	function likePlus(no) {
+//                 		$.ajax({
+//                 			type: 'GET',
+//                 			url: '/review/like',
+//                 			data: {
+//                 				no: no,
+//                 				check: 1 // like + 1
+//                 			},
+                			
+//                 			success:function(like) {
+//                 				console.log(like)
+//                 				$("#like"+no).html('<button class="btn-like" type="button" onclick="likeMinus('+ no +')"><i class="fi-heart-filled"></i>(<span id="revLike'+ no +'">'+ like +'</span>)</button>')
+//                 			},
+                			
+//                 			error:function(e) {
+//                 				console.log(e)
+//                 			}
+//                 		});
+//                 	}
+                	
+//                 	function likeMinus(no) {
+//                 		$.ajax({
+//                 			type: 'GET',
+//                 			url: '/review/like',
+//                 			data: {
+//                 				no: no,
+//                 				check: 0
+//                 			},
+                			
+//                 			success:function(like) {
+// 								$("#like"+no).html('<button class="btn-like" type="button" onclick="likePlus('+ no +')"><i class="fi-heart"></i>(<span id="revLike'+ no +'">'+ like +'</span>)</button>')
+//                 			},
+                			
+//                 			error:function(e) {
+//                 				console.log(e)
+//                 			}
+//                 		});
+//                 	}
+                
+                	function goPage(no) {
+                		var sort = $("#sort option:selected").text(); // 정렬 방법
+                		var food = '${food.no}'; // 캠핑장 번호
+                		
+                		console.log(sort)
+                		
+                		$.ajax({
+                			type: 'GET',
+                			url: "/food/rev",
+                			data: {
+                				no: no,
+                				sort: sort,
+                				food: food
+                			},
+                			
+                			success:function(map) {
+                				console.log(map)	
+                				var list = map.list;
+                				var pageInfo = map.pageInfo;
+                				console.log(list)
+                				
+                				str = "";
+                				$.each(list, function (i, obj) { // list.get(i) = obj   
+                                	str += '	<div class="mb-4 pb-4 border-bottom"><div class="d-flex justify-content-between mb-3"><div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/03.jpg" width="48" alt="Avatar">          '
+                                    str += '        <div class="ps-2"><h6 class="fs-base mb-0">'+ obj.id +'</h6>                                                                                                                                                      '
+                                    str += '            <span class="star-rating">   '
+	                                for(var j = 1; j <= 5; j++) {
+	                                	if(j <= obj.revstar) {
+	                                		str += '<i class="star-rating-icon fi-star-filled active"></i>'
+	                                	} else {
+	                                		str += '<i class="star-rating-icon fi-star"></i>'
+	                                	}
+	                                }
+                                    var revNo = obj.no
+                                    var like = obj.revlike
+                                    str += '            </span></div>                                                                                                                                                                                                         '
+                                    str += '    </div><span class="text-muted fs-sm">'+ obj.createdate +'</span></div><p>'+ obj.cont +'</p>                                                                                                                   '
+                                    str += '<div class="d-flex align-items-center" id="like'+ revNo +'"><button class="btn-like" type="button" onclick="likePlus('+ revNo +')"><i class="fi-heart"></i>(<span id="revLike'+ revNo +'">'+ like +'</span>)</button></div></div>                       '
+                                	str += '</div>                                                                                                                              '                                                                                             
+                				});                                                                                                                                                                                                                                           
+                				
+                				$.each(list, function (i, obj) { // list.get(i) = obj  
+                					
+                					str += ' 	<div class="mb-4 pb-4 border-bottom">                                                                                                             '	
+                					str += '    <div class="d-flex justify-content-between mb-3">                                                                                                 '	
+                					str += '        <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/03.jpg" width="48" alt="Avatar">                '	
+                					str += '            <div class="ps-2">                                                                                                                        '	
+                					str += '                <h6 class="fs-base mb-0">'+ obj.id +'</h6>                                                                                            '	
+                					str += '                <span class="star-rating">                                                                                                            '	
+               						for(var j = 1; j <= 5; j++) {
+   	                                	if(j <= obj.revstar) {
+   	                                		str += '<i class="star-rating-icon fi-star-filled active"></i>'
+   	                                	} else {
+   	                                		str += '<i class="star-rating-icon fi-star"></i>'
+   	                                	}
+   	                                }
+                					str += '                </span>                                                                                                                               '	
+                					str += '            </div>                                                                                                                                    '	
+                					str += '        </div><span class="text-muted fs-sm"><fmt:formatDate type="both" pattern = "yyyy-MM-dd HH:mm:ss" value="${revList.createdate}"/></span>       '	
+                					str += '    </div>                                                                                                                                            '	
+                					str += '    <p>${revList.cont}</p>                                                                                                                            '	
+                					str += '                                                                                                                                                      '	
+                					str += '    <div class="d-flex align-items-center"><!-- 좋아요  -->                                                                                             '	
+                					str += '        <button class="btn-like" type="button"><i class="fi-like"></i><span>(3)</span></button>                                                       '	
+                					str += '        <div class="border-end me-1">&nbsp;</div>                                                                                                     '	
+                					str += '        <button class="btn-dislike" type="button"><i class="fi-dislike"></i><span>(0)</span></button>                                                 '	
+                					str += '    </div>                                                                                                                                            '	
+                					str += '</div>                                                                                                                                                '	
+                				});  
+             				
+ 		                    
+ 		                    
+ 		                    
+ 		                    
+ 		                    
+ 		                    
+ 			                
+ 							
+ 							
+ 							
+ 							
+ 							
+ 							
+ 		                    
+                     
+ 		                    
+ 		                    
+ 		                    
+ 		                    
+ 		                    
+ 		                    
+ 		                    
+ 		                    
+ 		                    
+ 		                    
+ 		                    
+                				
+                				
+                				
+                				
+                				
+                				
+                				
+                				
+                				$("#revDiv").html(str);
+                				
+                				str = "";
+                				
+                				var maxPage =     pageInfo.maxPage     ;
+                     			var startPage =   pageInfo.startPage   ;
+                     			var endPage =     pageInfo.endPage     ;
+                     			var currentPage = pageInfo.currentPage ;
+                     			var prevPage =    pageInfo.prevPage    ;
+                     			var nextPage =    pageInfo.nextPage    ;
+                     			var startList =   pageInfo.startList   ;
+                     			var endList =     pageInfo.endList     ;
+                     			
+                     			if(currentPage != 1) {
+             	            		str += '<li class="page-item"><a class="page-first" onclick="goPage(1); return false;" aria-label="Next"><i class="fi-chevrons-left"></i></a></li>';
+             	            		str += '<li class="page-item"><a class="page-prev" onclick="goPage('+ prevPage +'}); return false;" aria-label="Next"><i class="fi-chevron-left"></i></a></li>';
+             	            	} 
+             	
+             	            	for (var i = startPage; i <= endPage; i++) { // 페이지 5개마다 페이지 바뀜
+             	            		if(i == currentPage) {
+             	            			str += '<li class="page-item active d-none d-sm-block"><a class="page-link" id="page('+ i +')" onclick="goPage('+ i +'); return false;">'+ i +'</a></li>';
+             	            		} else {
+             	            			str += '<li class="page-item d-none d-sm-block"><a class="page-link" id="page('+ i +')" onclick="goPage('+ i +'); return false;">'+ i +'</a></li>';
+             	            		}
+             	            	}
+             	
+             	            	if(currentPage != maxPage) {
+             	            		str += '<li class="page-item"><a class="page-next" onclick="goPage('+ nextPage +'); return false;" aria-label="Next"><i class="fi-chevron-right"></i></a></li>';
+             	            		str += '<li class="page-item"><a class="page-end" onclick="goPage('+ endPage +'); return false;" aria-label="Next"><i class="fi-chevrons-right"></i></a></li>';
+             	            	}
+                     			
+                     			$('.pagination').html(str);
+                			},
+                			
+                			error:function(e) {
+                				console.log(e)
+                			}
+                		});
+                	}
+                </script>
+                
+                
                
 					<!--  @@@@@@@@@@@@ AJAX@ -->
 					
