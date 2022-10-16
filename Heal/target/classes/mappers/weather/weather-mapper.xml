@@ -14,7 +14,8 @@
 	<select id="selectByDong" parameterType="string" resultMap="weatherResultMap">
  		SELECT * 
  		FROM TBL_WEATHER
- 		WHERE DONG LIKE #{dong}
+ 		WHERE DONG LIKE #{dong} 
+ 		AND ROWNUM <![CDATA[=]]> 1
 	</select>
 	
 </mapper>

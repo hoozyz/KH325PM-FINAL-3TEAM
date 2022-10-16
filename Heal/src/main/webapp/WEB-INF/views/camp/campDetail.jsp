@@ -1688,13 +1688,13 @@
                     		<div class="col">
                         <div class="card shadow-sm card-hover border-0 h-100">
                             <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" onclick="return flase;"></a>
+                                <a class="img-overlay" href="${path}/camp/campDetail?no=${lastList.get(i).no}"></a>
                                 <div class="content-overlay end-0 top-0 pt-3 pe-3">
                                 </div><img src="${lastList.get(i).image}" alt="Image">
                             </div>
                             <div class="card-body position-relative pb-3">
                                 <span class="badge bg-info me-2 mb-2">${lastList.get(i).category}</span>
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" onclick="return flase;">${lastList.get(i).name}</a></h3>
+                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="${path}/camp/campDetail?no=${lastList.get(i).no}">${lastList.get(i).name}</a></h3>
                                 <p class="mb-2 fs-sm text-muted">${lastList.get(i).addr}</p>
                                 <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>${lastList.get(i).price}원</div>
                             </div>

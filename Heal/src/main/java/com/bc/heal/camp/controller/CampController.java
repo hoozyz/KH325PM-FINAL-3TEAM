@@ -149,6 +149,8 @@ public class CampController {
 		String fourNo = "";
 		// 4개 넣어놓고 -> name에 최신 한 칸씩 뒤로 옮기기
 		String twoNo = zero.getName();
+		System.out.println(""+no);
+		System.out.println(twoNo);
 		if (twoNo.equals("" + no)) { // 이미 최신에 현재 캠핑장이 있을 때
 			twoNo = zero.getLineintro();
 			threeNo = zero.getIntro();
@@ -303,6 +305,9 @@ public class CampController {
 		airList = airService.selectListByEnd(airEnd);
 
 		for (int i = 0; i < trainList.size(); i++) {
+			if(trainList.get(0).getGeneralprice() == 0) {
+				trainList.get(i).setGeneralprice(15500);
+			}
 			if (trainList.get(i).getGeneralprice() == 0) { // 가격이 없을 때
 				trainList.get(i).setGeneralprice(trainList.get(i - 1).getGeneralprice());
 			}

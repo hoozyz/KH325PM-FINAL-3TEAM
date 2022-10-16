@@ -9,8 +9,6 @@
         <link rel="stylesheet" media="screen" href="${path}/resources/vendor/nouislider/dist/nouislider.min.css" />
         <link rel="stylesheet" media="screen" href="${path}/resources/vendor/tiny-slider/dist/tiny-slider.css" />
 
-
-
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param value="쇼핑메인" name="title"/>
 </jsp:include>
@@ -174,39 +172,39 @@
             <div class="row row-cols-lg-6 row-cols-sm-3 row-cols-2 g-3 g-xl-4">
                 <div class="col">
                     <a class="icon-box card card-body h-100 border-0 shadow-sm card-hover h-100 text-center" href="real-estate-catalog-rent.html">
-                        <div class="icon-box-media bg-faded-primary text-primary rounded-circle mb-3 mx-auto"><i class="fi-real-estate-house"></i></div>
-                        <h3 class="icon-box-title fs-base mb-0">Houses</h3>
+                        <div class="icon-box-media bg-faded-primary text-primary rounded-circle mb-3 mx-auto"><i class="fi-real-estate-house" style="margin-top: 10px;"></i></div>
+                        <h3 class="icon-box-title fs-base mb-0">텐트/침낭</h3>
                     </a>
                 </div>
                 <div class="col">
                     <a class="icon-box card card-body h-100 border-0 shadow-sm card-hover h-100 text-center" href="real-estate-catalog-sale.html">
                         <div class="icon-box-media bg-faded-primary text-primary rounded-circle mb-3 mx-auto"><i class="fi-apartment"></i></div>
-                        <h3 class="icon-box-title fs-base mb-0">Apartments</h3>
+                        <h3 class="icon-box-title fs-base mb-0">음식</h3>
                     </a>
                 </div>
                 <div class="col">
                     <a class="icon-box card card-body h-100 border-0 shadow-sm card-hover h-100 text-center" href="real-estate-catalog-rent.html">
                         <div class="icon-box-media bg-faded-primary text-primary rounded-circle mb-3 mx-auto"><i class="fi-shop"></i></div>
-                        <h3 class="icon-box-title fs-base mb-0">Commercial</h3>
+                        <h3 class="icon-box-title fs-base mb-0">가구</h3>
                     </a>
                 </div>
                 <div class="col">
                     <a class="icon-box card card-body h-100 border-0 shadow-sm card-hover h-100 text-center" href="real-estate-catalog-sale.html">
                         <div class="icon-box-media bg-faded-primary text-primary rounded-circle mb-3 mx-auto"><i class="fi-rent"></i></div>
-                        <h3 class="icon-box-title fs-base mb-0">Daily rental</h3>
+                        <h3 class="icon-box-title fs-base mb-0">도구</h3>
                     </a>
                 </div>
                 <div class="col">
                     <a class="icon-box card card-body h-100 border-0 shadow-sm card-hover h-100 text-center" href="real-estate-catalog-rent.html">
                         <div class="icon-box-media bg-faded-primary text-primary rounded-circle mb-3 mx-auto"><i class="fi-house-chosen"></i></div>
-                        <h3 class="icon-box-title fs-base mb-0">New buildings</h3>
+                        <h3 class="icon-box-title fs-base mb-0">차량용</h3>
                     </a>
                 </div>
                 <div class="col">
                     <div class="dropdown h-100">
                         <a class="icon-box card card-body h-100 border-0 shadow-sm card-hover text-center" href="#" data-bs-toggle="dropdown">
                             <div class="icon-box-media bg-faded-primary text-primary rounded-circle mb-3 mx-auto"><i class="fi-dots-horisontal"></i></div>
-                            <h3 class="icon-box-title fs-base mb-0">More</h3>
+                            <h3 class="icon-box-title fs-base mb-0">ETC</h3>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end my-1"><a class="dropdown-item fw-bold" href="real-estate-catalog-sale.html"><i class="fi-single-bed fs-base opacity-60 me-2"></i>Room</a><a class="dropdown-item fw-bold" href="real-estate-catalog-rent.html"><i class="fi-computer fs-base opacity-60 me-2"></i>Office</a>
                             <a class="dropdown-item fw-bold" href="real-estate-catalog-sale.html"><i class="fi-real-estate-buy fs-base opacity-60 me-2"></i>Land</a><a class="dropdown-item fw-bold" href="real-estate-catalog-rent.html"><i class="fi-parking fs-base opacity-60 me-2"></i>Parking lot</a></div>
@@ -223,28 +221,42 @@
                 <div class="row ">
                     <div class="col-4 ">
                         <div class="card ">
-                            <img src="${path}/resources/image/shopCard1.jpg " class="card-img-top " style="height: 200px;" alt="Card image ">
+                        	<a href="${saleList.get(0).link}" style="text-decoration: none;">
+                            <img src="${saleList.get(0).image}" class="card-img-top " style="height: 200px;" alt="Card image ">
                             <div class="card-body ">
                                 <div class="c-flag">
                                     <div class="c-flag_body">
                                         <span class="c-flag__item">시선집중</span>
                                     </div>
                                 </div>
-                                <h5 class="card-title ">파라다이스시티호텔 인천</h5>
+                                <h5 class="card-title ">${saleList.get(0).title}</h5>
                                 <div class="c_prd_price">
                                     <span class="rate">
-                                        <span>32<span class="rate2">%</span></span>
+                                        <span>20<span class="rate2">%</span></span> <!-- 20 30 40 퍼 순서로 할인 -->
                                     </span>
+                                    
+                                    <c:set var="price0" value="${saleList.get(0).price * 0.8}" />
+                                    <fmt:parseNumber var= "price0" integerOnly= "true" value= "${fn:replace(price0,'.0','')}"/>
                                     <span class="price">
-                                        <span class="value">115,000</span><span class="unit">원~</span>
+                                        <span class="value">${price0}</span><span class="unit">원</span>
                                     </span>
                                     <span class="price_regular">
-                                        <span class="value">170,000</span><span class="unit">원</span>
+                                        <span class="value">${saleList.get(0).price}</span><span class="unit">원</span>
                                     </span>
                                 </div>
+                                </a>
                                 <div class="cover">
-                                    <span><i class="fi-truck fs-6 me-2"></i>무료배송</span>
-                                    <span class="prd_count"><span class="number">373</span>개 구매</span>
+                                    <c:set var="saleTitle0" value="${saleList.get(0).title}"/>
+
+                                    <c:if test="${fn:contains(saleTitle0, '입장권')}"> <!-- 입장권 --> 
+                                		<span><i class="fi-ticket fs-6 me-2"></i>E-Mail & SMS전송 상품</span>
+                                	</c:if>
+                                	<c:if test="${not fn:contains(saleTitle0, '입장권')}"> <!-- 입장권 아닐 때 -->
+                                		<span><i class="fi-truck fs-6 me-2"></i>무료배송</span>
+                                	</c:if>
+                                	
+                                	<c:set var="ran"><%= java.lang.Math.round(java.lang.Math.random() * 500) %></c:set> <!-- 랜덤 숫자 -->
+                                    <span class="prd_count"><span class="number">${ran}</span>개 구매</span>
                                 </div>
                             </div>
                             <div class="card-footer text-muted" style="font-size :16px;">ㅁㅁㅁ추천 상품</div>
@@ -252,28 +264,42 @@
                     </div>
                     <div class="col-4 ">
                         <div class="card ">
-                            <img src="${path}/resources/image/shopCard3.jpg " class="card-img-top " style="height: 200px;" alt="Card image ">
+                        	<a href="${saleList.get(1).link}" style="text-decoration: none;">
+                            <img src="${saleList.get(1).image}" class="card-img-top " style="height: 200px;" alt="Card image ">
                             <div class="card-body ">
                                 <div class="c-flag">
                                     <div class="c-flag_body">
                                         <span class="c-flag__item">시선집중</span>
                                     </div>
                                 </div>
-                                <h5 class="card-title ">태안 바다여행파크(글램핑,카라반,캠핑장)</h5>
+                                <h5 class="card-title ">${saleList.get(1).title}</h5>
                                 <div class="c_prd_price">
                                     <span class="rate">
-                                        <span>10<span class="rate2">%</span></span>
+                                        <span>25<span class="rate2">%</span></span>
                                     </span>
+                                    
+                                    <c:set var="price1" value="${saleList.get(1).price * 0.75}" />
+                                    <fmt:parseNumber var= "price1" integerOnly= "true" value= "${fn:replace(price1,'.0','')}"/>
                                     <span class="price">
-                                        <span class="value">100,000</span><span class="unit">원~</span>
+                                        <span class="value">${price1}</span><span class="unit">원</span>
                                     </span>
                                     <span class="price_regular">
-                                        <span class="value">90,000</span><span class="unit">원</span>
+                                        <span class="value">${saleList.get(1).price}</span><span class="unit">원~</span>
                                     </span>
                                 </div>
+                                </a>
                                 <div class="cover">
-                                    <span><i class="fi-truck fs-6 me-2"></i>무료배송</span>
-                                    <span class="prd_count"><span class="number">145</span>개 구매</span>
+                                    <c:set var="saleTitle1" value="${saleList.get(1).title}"/>
+
+                                    <c:if test="${fn:contains(saleTitle1, '입장권')}"> <!-- 입장권 --> 
+                                		<span><i class="fi-ticket fs-6 me-2"></i>E-Mail & SMS전송 상품</span>
+                                	</c:if>
+                                	<c:if test="${not fn:contains(saleTitle1, '입장권')}"> <!-- 입장권 아닐 때 -->
+                                		<span><i class="fi-truck fs-6 me-2"></i>무료배송</span>
+                                	</c:if>
+                                	
+                                	<c:set var="ran"><%= java.lang.Math.round(java.lang.Math.random() * 500) %></c:set> <!-- 랜덤 숫자 -->
+                                    <span class="prd_count"><span class="number">${ran}</span>개 구매</span>
                                 </div>
                             </div>
                             <div class="card-footer text-muted" style="font-size :16px;">ㅁㅁㅁ추천 상품</div>
@@ -281,28 +307,41 @@
                     </div>
                     <div class="col-4 ">
                         <div class="card ">
-                            <img src="${path}/resources/image/shopCard2.jpg " class="card-img-top " style="height: 200px;" alt="Card image ">
+                        	<a href="${saleList.get(2).link}" style="text-decoration: none;">
+                            <img src="${saleList.get(2).image}" class="card-img-top " style="height: 200px;" alt="Card image">
                             <div class="card-body ">
                                 <div class="c-flag">
                                     <div class="c-flag_body">
                                         <span class="c-flag__item">시선집중</span>
                                     </div>
                                 </div>
-                                <h5 class="card-title ">제주 한림공원 입장권</h5>
+                                <h5 class="card-title">${saleList.get(2).title}</h5>
                                 <div class="c_prd_price">
                                     <span class="rate">
-                                        <span><span class="rate2"></span></span>
+                                        <span>30<span class="rate2">%</span></span>
                                     </span>
+                                    <c:set var="price2" value="${saleList.get(2).price * 0.7}" />
+                                    <fmt:parseNumber var= "price2" integerOnly= "true" value= "${fn:replace(price2,'.0','')}"/>
                                     <span class="price">
-                                        <span class="value">6300</span><span class="unit">원</span>
+                                        <span class="value">${price2}</span><span class="unit">원</span>
                                     </span>
                                     <span class="price_regular">
-                                        <!-- <span class="value">170,000</span><span class="unit">원</span> -->
+                                        <span class="value">${saleList.get(2).price}</span><span class="unit">원</span>
                                     </span>
                                 </div>
+                                </a>
                                 <div class="cover">
-                                    <span><i class="fi-ticket fs-6 me-2"></i>E-Mail & SMS전송 상품</span>
-                                    <span class="prd_count"><span class="number">124</span>개 구매</span>
+                                	<c:set var="saleTitle2" value="${saleList.get(2).title}"/>
+
+                                    <c:if test="${fn:contains(saleTitle2, '입장권')}"> <!-- 입장권 --> 
+                                		<span><i class="fi-ticket fs-6 me-2"></i>E-Mail & SMS전송 상품</span>
+                                	</c:if>
+                                	<c:if test="${not fn:contains(saleTitle2, '입장권')}"> <!-- 입장권 아닐 때 -->
+                                		<span><i class="fi-truck fs-6 me-2"></i>무료배송</span>
+                                	</c:if>
+                                
+                                	<c:set var="ran"><%= java.lang.Math.round(java.lang.Math.random() * 500) %></c:set> <!-- 랜덤 숫자 -->
+                                    <span class="prd_count"><span class="number">${ran}</span>개 구매</span>
                                 </div>
                             </div>
                             <div class="card-footer text-muted" style="font-size :16px;">ㅁㅁㅁ추천 상품</div>
