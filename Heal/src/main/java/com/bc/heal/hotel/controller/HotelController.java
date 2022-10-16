@@ -91,8 +91,8 @@ public class HotelController {
 		
 	}
 
-	@GetMapping("/rev")
-//	@GetMapping("/revs")
+//	@GetMapping("/rev")
+	@GetMapping("/revs")
 	@ResponseBody
 	public Map<String, Object> list(@RequestParam Map<String, String> param) {
 		Map<String, Object> map = new HashMap<>();
