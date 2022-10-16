@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,10 +22,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bc.heal.air.service.AirService;
+import com.bc.heal.bus.service.BusService;
 import com.bc.heal.common.util.PageInfo;
 import com.bc.heal.park.service.ParkService;
+import com.bc.heal.review.service.ReviewService;
+import com.bc.heal.train.service.TrainService;
+import com.bc.heal.vo.Air;
+import com.bc.heal.vo.Bus;
+import com.bc.heal.vo.EndStation;
 import com.bc.heal.vo.Park;
+import com.bc.heal.vo.Review;
+import com.bc.heal.vo.Train;
 import com.bc.heal.vo.Weather;
 import com.bc.heal.weather.service.WeatherService;
 
@@ -36,7 +47,19 @@ public class ParkController {
 	private ParkService service;
 	
 	@Autowired
+	private TrainService trainService;
+
+	@Autowired
+	private BusService busService;
+
+	@Autowired
+	private AirService airService;
+	
+	@Autowired
 	private WeatherService weaService;
+	
+	@Autowired
+	private ReviewService revService;
 
 	@GetMapping("/parkMain")
 	public String park(Model model) throws IOException, ParseException {
@@ -83,9 +106,57 @@ public class ParkController {
 		return "/park/parkSearch";
 	}
 	
+	@GetMapping("/rev")
+	@ResponseBody
+	public Map<String, Object> list(@RequestParam Map<String, String> param){
+		Map<String, Object> map = new HashMap<>(); 
+		
+		int page = Integer.parseInt(param.get("no"));
+		
+		List<Review> list = new ArrayList<>();
+		String sort = param.get("sort");
+		
+		if(sort.contains("최신")) {
+			sort = "new";
+		}
+		if(sort.contains("오래")) {
+			sort = "old";
+		}
+		if(sort.contains("좋아")) {
+			sort = "like";
+		}
+		if(sort.contains("별점")) {
+			sort = "star";
+		}
+		
+		int parkNo = Integer.parseInt(param.get("park"));
+		PageInfo pageInfo = new PageInfo(page, 5, revService.selectRevByParkCnt(parkNo), 2);
+		
+		list = revService.selectRevPark(parkNo, pageInfo, sort); // 캠프번호, 페이지, 정렬
+		
+		map.put("list", list);
+		map.put("pageInfo", pageInfo);
+		
+		return map;
+
+	}
+	
 	@GetMapping("/parkDetail")
-	public String parkDetail(Model model, @RequestParam("no") int no) {
+	public String parkDetail(Model model, int no) {
 		Park park = service.findByNo(no);
+		
+		// 리뷰
+		PageInfo pageInfo = new PageInfo(1, 5, revService.selectRevByParkCnt(no), 2);
+		List<Review> revList = new ArrayList<>();
+		String sort = "new";
+		
+		
+		
+		revList = revService.selectRevPark(no, pageInfo, sort);
+		System.out.println(revList);
+		
+		model.addAttribute("revList", revList);
+		model.addAttribute("pageInfo", pageInfo);
 		
 		// 날씨
 		List<Weather> weaList = new ArrayList<>();
@@ -125,14 +196,159 @@ public class ParkController {
 		one = weaList.get(1);
 		two = weaList.get(2);
 		
-		model.addAttribute("park", park);
 		model.addAttribute("today", today);
 		model.addAttribute("one", one);
 		model.addAttribute("two", two);
 		
+		// 교통
+		String lat = park.getLat(); // 캠핑장 위도
+		String lng = park.getLng(); // 캠핑장 경도
+
+		String airEnd = ""; // 도착공항
+		String trainEnd = ""; // 기차 도착역
+		String busEnd = ""; // 버스 도착역
+
+		// 도착역 리스트(위도, 경도 가지고) -> 거리 비교위함
+		List<EndStation> trainEndList = new ArrayList<>();
+		List<EndStation> busEndList = new ArrayList<>();
+
+		trainEndList = trainService.selectListByEndSta();
+		busEndList = busService.selectListByEndSta();
+
+		// 도착역 정하기 -> 거리가 제일 가까운 역 가져오기
+		Double distance = 1000d; // 초기값 1000설정 -> 0이면 0보다 작을 수 없어서
+		for (int i = 0; i < trainEndList.size(); i++) {
+			Double distance1 = distance(Double.parseDouble(lat), Double.parseDouble(lng),
+					Double.parseDouble(trainEndList.get(i).getEndlat()),
+					Double.parseDouble(trainEndList.get(i).getEndlng()));
+
+			// 앞의 지역 사이 거리보다 작으면 거리 바꾸기
+			if (distance1 < distance) {
+				distance = distance1;
+				trainEnd = trainEndList.get(i).getEndsta(); // 도착역 넣기 -> 마지막에 넣어지는게 제일 가까운 역
+			}
+		}
+		
+		distance = 1000d;
+		for (int i = 0; i < busEndList.size(); i++) {
+			Double distance1 = distance(Double.parseDouble(lat), Double.parseDouble(lng),
+					Double.parseDouble(busEndList.get(i).getEndlat()),
+					Double.parseDouble(busEndList.get(i).getEndlng()));
+
+			if (distance1 < distance) {
+				distance = distance1;
+				busEnd = busEndList.get(i).getEndsta();
+			}
+		}
+
+		// 도착항공 정하기
+		if (park.getAddr().contains("진주") || park.getAddr().contains("사천")) {
+			airEnd = "진주";
+		} else if (park.getAddr().contains("무안")) {
+			airEnd = "무안";
+		} else if (park.getAddr().contains("포항")) {
+			airEnd = "포항";
+		} else if (park.getAddr().contains("부산")) {
+			airEnd = "부산";
+		} else if (park.getAddr().contains("울산")) {
+			airEnd = "울산";
+		} else if (park.getAddr().contains("제주")) {
+			airEnd = "제주";
+		} else if (park.getAddr().contains("광주")) {
+			airEnd = "광주";
+		} else if (park.getAddr().contains("여수")) {
+			airEnd = "여수";
+		} else if (park.getAddr().contains("김포")) {
+			airEnd = "김포";
+		}
+
+		// 도착역이랑 캠핑장 위치랑 제일 가까운
+		// 비행기는 도착공항이 주소에 들어가면 도착공항 가능
+		// 시간표 리스트
+		List<Train> trainList = new ArrayList<>();
+		List<Bus> busList = new ArrayList<>();
+		List<Air> airList = new ArrayList<>();
+
+		// 출발역 리스트
+		List<String> trainStartList = new ArrayList<>();
+		List<String> busStartList = new ArrayList<>();
+		List<String> airStartList = new ArrayList<>();
+
+		// 도착역이 정해진 리스트
+		trainList = trainService.selectListByEnd(trainEnd);
+		busList = busService.selectListByEnd(busEnd);
+		airList = airService.selectListByEnd(airEnd);
+
+		for (int i = 0; i < trainList.size(); i++) {
+			if (trainList.get(i).getGeneralprice() == 0) { // 가격이 없을 때
+				trainList.get(i).setGeneralprice(trainList.get(i - 1).getGeneralprice());
+			}
+
+			if (trainStartList.contains(trainList.get(i).getStartsta()) == false) { // 시작역 겹칠경우 안넣음
+				trainStartList.add(trainList.get(i).getStartsta());
+			}
+		}
+		for (int i = 0; i < busList.size(); i++) {
+			if (busList.get(i).getNormalprice() == 0) { // 가격이 없을 때 -> 버스는 10500원으로 통일
+				busList.get(i).setNormalprice(10500);
+			}
+
+			if (busStartList.contains(busList.get(i).getStartsta()) == false) { // 시작역 겹칠경우 안넣음
+				busStartList.add(busList.get(i).getStartsta());
+			}
+		}
+		for (int i = 0; i < airList.size(); i++) { // 가격 다 있음
+			if (airStartList.contains(airList.get(i).getStartsta()) == false) { // 시작역 겹칠경우 안넣음
+				airStartList.add(airList.get(i).getStartsta());
+			}
+		}
+
+		int airCheck = 1;
+		if (airList.isEmpty()) { // 공항 없음
+			airCheck = 0;
+		}
+
+
+		model.addAttribute("airEnd", airEnd);
+		model.addAttribute("trainEnd", trainEnd);
+		model.addAttribute("busEnd", busEnd);
+		model.addAttribute("airCheck", airCheck);
+		model.addAttribute("park", park);
+		model.addAttribute("trainList", trainList);
+		model.addAttribute("busList", busList);
+		model.addAttribute("airList", airList);
+		model.addAttribute("trainStartList", trainStartList);
+		model.addAttribute("busStartList", busStartList);
+		model.addAttribute("airStartList", airStartList);
+		
+		
+		// 근처 음식점
+		
+		
 		return "/park/parkDetail";
 	}
 	
+	// 사이의 거리
+		private static double distance(double lat1, double lon1, double lat2, double lon2) {
+	
+			double theta = lon1 - lon2;
+			double dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2))
+					+ Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
+	
+			dist = Math.acos(dist);
+			dist = rad2deg(dist);
+			dist = dist * 60 * 1.1515;
+	
+			return dist;
+		}
+	
+		private static double deg2rad(double deg) {
+			return (deg * Math.PI / 180.0);
+		}
+	
+		private static double rad2deg(double rad) {
+			return (rad * 180 / Math.PI);
+		}
 	
 	
 	// 날씨 api -> 날짜별 -> 오늘, 내일, 모레 전체 정보 -> date 에는 시간까지 **:** -> ****
