@@ -46,4 +46,15 @@
 		ORDER BY NO DESC
 	</select> 
 	
+	<select id="selectNearHotelList" parameterType="string" resultMap="hotelResultMap">
+		SELECT  *
+		FROM TBL_HOTEL
+		WHERE 1=1
+		<if test="addr != null">
+			AND ADDR LIKE '%'||#{addr}||'%'
+		</if>
+		ORDER BY NO DESC
+	</select>
+	
+	
 </mapper>
