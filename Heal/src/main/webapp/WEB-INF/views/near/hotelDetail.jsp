@@ -21,127 +21,181 @@
 
 
 		<style>
-                .weather_area {
-                    position: relative;
-                    text-align: center;
-                    overflow: hidden;
-                    z-index: 5
-                }
-                
-                .weather_area .weather_now {
-                    position: relative;
-                    overflow: hidden;
-                    font-size: 0;
-                    line-height: 0;
-                }
-                
-                .weather_area .weather_now .summary_img {
-                    position: relative;
-                    display: inline-block;
-                    vertical-align: top;
-                }
-                
-                .ico_animation[class*=ico_animation_wt] {
-                    -webkit-background-size: 75px 75px;
-                    background-size: 75px 75px;
-                }
-                
-                .ico_animation {
-                    width: 75px;
-                    height: 75px;
-                    -webkit-background-size: 525px 450px;
-                    background-size: 525px 450px;
-                    display: inline-block;
-                    vertical-align: top;
-                }
-                
-                .ico_animation_wt6 {
-                    background-image: url(https://ssl.pstatic.net/static/weather/image/icon_weather/ico_animation_wt6.svg);
-                }
-                
-                .weather_area .weather_now .current {
-                    display: inline-block;
-                    vertical-align: top;
-                    margin-left: -26px;
-                    font-size: 60px;
-                    line-height: 75px;
-                    letter-spacing: -1.85px;
-                    color: #000;
-                    font-weight: 700;
-                    white-space: nowrap;
-                    z-index: 10;
-                }
-                
-                .blind {
-                    overflow: hidden;
-                    position: absolute;
-                    clip: rect(0 0 0 0);
-                    width: 1px;
-                    height: 1px;
-                    margin: -1px;
-                }
-                
-                .weather_area .weather_now .degree {
-                    display: inline-block;
-                    vertical-align: top;
-                    margin-top: 6px;
-                    font-size: 30px;
-                    font-weight: 700;
-                    line-height: 35px;
-                    letter-spacing: -.82px;
-                }
-                
-                .weather_area .weather_now .summary {
-                    display: inline-block;
-                    vertical-align: top;
-                    margin: 15px 0 0 5px;
-                    font-size: 16px;
-                    font-weight: 700;
-                    line-height: 21px;
-                    letter-spacing: -1px;
-                    color: #222;
-                    text-align: left;
-                }
-                
-                .weather_area .weather_now .summary .weather {
-                    display: block;
-                    margin-bottom: 3px;
-                    font-size: 22px;
-                    line-height: 25px;
-                    letter-spacing: -1px;
-                }
-                
-                em {
-                    font-style: normal;
-                }
-                
-                .weather_area .weather_now .summary .temperature {
-                    display: inline-block;
-                    font-size: 18px;
-                    line-height: 21px;
-                    letter-spacing: -1px;
-                    vertical-align: top;
-                }
-                
-                .weather_area .weather_now .summary .temperature.down:after {
-                    display: inline-block;
-                }
-                
-                .weather_area .weather_now .summary .temperature:after {
-                    background-position: -34px -840px;
-                    background-repeat: no-repeat;
-                    width: 8px;
-                    height: 16px;
-                    margin: 3px 0 0 -2px;
-                    vertical-align: top;
-                    content: '';
-                }
-                
-                .weather_area .weather_now .summary .temperature:after {
-                    background-image: url(https://ssl.pstatic.net/static/weather/image/sp_weather_1746dae0.png);
-                    background-size: 965px 883px;
-                }
-        </style>
+    .weather_area {
+        position: relative;
+        text-align: center;
+        overflow: hidden;
+        z-index: 5
+    }
+    
+    .weather_area .weather_now {
+        position: relative;
+        overflow: hidden;
+        font-size: 0;
+        line-height: 0;
+    }
+    
+    .weather_area .weather_now .summary_img {
+        position: relative;
+        display: inline-block;
+        vertical-align: top;
+    }
+    
+    .ico_animation[class*=ico_animation_wt] {
+        -webkit-background-size: 75px 75px;
+        background-size: 75px 75px;
+    }
+    
+    .ico_animation {
+        width: 75px;
+        height: 75px;
+        -webkit-background-size: 525px 450px;
+        background-size: 525px 450px;
+        display: inline-block;
+        vertical-align: top;
+    }
+    
+    .ico_animation_wt1 {
+        background-image: url(https://ssl.pstatic.net/static/weather/image/icon_weather/ico_animation_wt1.svg);
+    }
+    
+    .ico_animation_wt5 {
+        background-image: url(https://ssl.pstatic.net/static/weather/image/icon_weather/ico_animation_wt5.svg);
+    }
+    
+    .ico_animation_wt7 {
+        background-image: url(https://ssl.pstatic.net/static/weather/image/icon_weather/ico_animation_wt7.svg);
+    }
+    
+    .ico_animation_wt8 {
+        background-image: url(https://ssl.pstatic.net/static/weather/image/icon_weather/ico_animation_wt8.svg);
+    }
+    
+    .weather_area .weather_now .current {
+        display: inline-block;
+        vertical-align: top;
+        margin-left: -26px;
+        font-size: 60px;
+        line-height: 75px;
+        letter-spacing: -1.85px;
+        color: #000;
+        font-weight: 700;
+        white-space: nowrap;
+        z-index: 10;
+    }
+    
+    .blind {
+        overflow: hidden;
+        position: absolute;
+        clip: rect(0 0 0 0);
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+    }
+    
+    .weather_area .weather_now .degree {
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 6px;
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 35px;
+        letter-spacing: -.82px;
+    }
+    
+    .weather_area .weather_now .summary {
+        display: inline-block;
+        vertical-align: top;
+        margin: 15px 0 0 5px;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 21px;
+        letter-spacing: -1px;
+        color: #222;
+        text-align: left;
+    }
+    
+    .weather_area .weather_now .summary .lowtem {
+        display: inline-block;
+        vertical-align: top;
+        margin: 0 5px 0 5px;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 21px;
+        letter-spacing: -1px;
+        color: rgb(2, 68, 250);
+        text-align: left;
+    }
+    
+    .weather_area .weather_now .summary .hightem {
+        display: inline-block;
+        vertical-align: top;
+        margin: 0 0 0 5px;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 21px;
+        letter-spacing: -1px;
+        color: rgb(218, 4, 4);
+        text-align: left;
+    }
+    
+    .weather_area .weather_now .summary .weather {
+        display: block;
+        margin-bottom: 3px;
+        font-size: 23px;
+        line-height: 25px;
+        letter-spacing: -1px;
+    }
+    
+    .weather_area .secondary {
+        color: rgb(99, 98, 98);
+        font-weight: 600;
+    }
+    
+    .weather_area .secondaryInfo {
+        color: rgb(66, 66, 66);
+        font-weight: 700;
+        margin-right: 10px;
+    }
+    
+    .weather_area .weather_now .summary .temperature {
+        display: inline-block;
+        font-size: 18px;
+        line-height: 21px;
+        letter-spacing: -1px;
+        vertical-align: top;
+    }
+    
+    .weather_area .weather_now .summary .temperature:after {
+        background-position: -34px -840px;
+        background-repeat: no-repeat;
+        width: 8px;
+        height: 16px;
+        margin: 3px 0 0 -2px;
+        vertical-align: top;
+        content: '';
+    }
+    
+    .weather_area .weather_now .summary .temperature:after {
+        background-image: url(https://ssl.pstatic.net/static/weather/image/sp_weather_1746dae0.png);
+        background-size: 965px 883px;
+    }
+    
+    .btn-group-sm .on {
+    	background-color: black;
+    	color: white;
+    }
+    .btn-group-sm .on:active {
+    	background-color: black;
+    	color: white;
+    }
+     .btn-group-sm>button:hover {
+    	background-color: black;
+    	color: white;
+    }
+</style>
+
+
         <!-- Review modal-->
         <div class="modal fade" id="modal-review" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -151,15 +205,17 @@
                         <button class="btn-close position-absolute top-0 end-0 mt-3 me-3" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body px-sm-5 px-4">
-                        <form class="needs-validation" novalidate>
+                    <form class="needs-validation" action="${path}/review/write" method="POST">
+                        	<input type="hidden" name="type" value="hotel">
+                        	<input type="hidden" name="no" value="${hotel.no}">
                             <div class="mb-3">
                                 <label class="form-label" for="review-name">이름 <span class='text-danger'>*</span></label>
-                                <input class="form-control" type="text" id="review-name" name="name" value="${loginMember.name}" readonly>
-                                <div class="invalid-feedback">Please let us know your name.</div>
+                                <input class="form-control" type="text" id="review-name" name="id" value="${loginMember.name}" readonly>
+                                <div class="invalid-feedback">아이디를 입력해주십쇼</div>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="review-rating">평점 <span class='text-danger'>*</span></label>
-                                <select class="form-control form-select" id="review-rating" required>
+                                <select class="form-control form-select" id="review-rating" name="star" required>
                       <option value="" selected disabled hidden>평점 선택</option>
                       <option value="5">5점</option>
                       <option value="4">4점</option>
@@ -171,7 +227,7 @@
                             </div>
                             <div class="mb-4">
                                 <label class="form-label" for="review-text">숙소 후기 <span class='text-danger'>*</span></label>
-                                <textarea class="form-control" id="review-text" rows="5" placeholder="숙소 어떠셨나요?" required></textarea>
+                                <textarea class="form-control" id="review-text" name="cont" rows="5" placeholder="숙소 어떠셨나요?" required></textarea>
                                 <div class="invalid-feedback">Please write your review.</div>
                             </div>
                             <input class="btn btn-primary d-block w-100 mb-4" type="submit" value="후기 등록">
@@ -239,54 +295,39 @@
                     	<c:if test="${empty revList}">
                     		리뷰내역이 없습니다.
                     	</c:if>
+                    	               	
                     	<c:if test="${!empty revList}">
-                    		<div class="mb-4 pb-4 border-bottom"><div class="d-flex justify-content-between mb-3"><div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/i3.jpg" width="48" alt="Avatar">
-                                <div class="ps-2"><h6 class="fs-base mb-i">${revList.get(0).id}</h6>
-                                    <span class="star-rating">
-	                                    <c:if test="${revList.get(0).revstar == 5}">
-	                                    	<i class="star-rating-icon fi-star-filled active"></i>
-	                                    	<i class="star-rating-icon fi-star-filled active"></i>
-	                                    	<i class="star-rating-icon fi-star-filled active"></i>
-	                                    	<i class="star-rating-icon fi-star-filled active"></i>
-	                                    	<i class="star-rating-icon fi-star-filled active"></i>
-	                                    </c:if>
-	                                    <c:if test="${revList.get(0).revstar < 5}">
-	                                    	<c:forEach var="i" begin="1" end="${revList.get(0).revstar}">
-	                                    		<i class="star-rating-icon fi-star-filled active"></i>
-	                                   	 	</c:forEach>
-	                                    	<c:forEach var="i" begin="${revList.get(0).revstar + 1}" end="5">
-	                                    		<i class="star-rating-icon fi-star"></i>
-	                                    	</c:forEach>
-	                                    </c:if>
-                                    </span></div>
-                            </div><span class="text-muted fs-sm">${revList.get(0).createdate}</span></div><p>${revList.get(0).cont}</p>
-                        <div class="d-flex align-items-center" id="like${revList.get(0).no}"><button class="btn-like" type="button" onclick="likePlus(${revList.get(0).no})"><i class="fi-heart"></i>(<span id="revLike${revList.get(0).no}">${revList.get(0).revlike}</span>)</button>
-                        </div></div>
-                        
-                        <div class="mb-4 pb-4 border-bottom"><div class="d-flex justify-content-between mb-3"><div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/03.jpg" width="48" alt="Avatar">
-                                <div class="ps-2"><h6 class="fs-base mb-0">${revList.get(1).id}</h6>
-                                    <span class="star-rating">
-	                                    <c:if test="${revList.get(1).revstar == 5}">
-	                                    	<i class="star-rating-icon fi-star-filled active"></i>
-	                                    	<i class="star-rating-icon fi-star-filled active"></i>
-	                                    	<i class="star-rating-icon fi-star-filled active"></i>
-	                                    	<i class="star-rating-icon fi-star-filled active"></i>
-	                                    	<i class="star-rating-icon fi-star-filled active"></i>
-	                                    </c:if>
-	                                    <c:if test="${revList.get(1).revstar < 5}">
-	                                    	<c:forEach var="i" begin="1" end="${revList.get(1).revstar}">
-	                                    		<i class="star-rating-icon fi-star-filled active"></i>
-	                                   	 	</c:forEach>
-	                                    	<c:forEach var="i" begin="${revList.get(1).revstar + 1}" end="5">
-	                                    		<i class="star-rating-icon fi-star"></i>
-	                                    	</c:forEach>
-	                                    </c:if>
-                                    </span></div>
-                            </div><span class="text-muted fs-sm">${revList.get(1).createdate}</span></div><p>${revList.get(1).cont}</p>
-                        <div class="d-flex align-items-center" id="like${revList.get(1).no}"><button class="btn-like" type="button" onclick="likePlus(${revList.get(1).no})"><i class="fi-heart"></i>(<span id="revLike${revList.get(1).no}">${revList.get(1).revlike}</span>)</button>
-                        </div></div>
-                   	 	</c:if>
+		             	<c:forEach var="revList" items="${revList}">
+		                    <div class="mb-4 pb-4 border-bottom">
+		                        <div class="d-flex justify-content-between mb-3">
+		                            <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/03.jpg" width="48" alt="Avatar">
+		                                <div class="ps-2">
+		                                    <h6 class="fs-base mb-0">${revList.id}</h6>
+		                                    <span class="star-rating">
+		                                    	<c:forEach var="i" begin="1" end="5" step="1" varStatus="status">
+			                                    	<c:if test="${i <= revList.revstar}">
+													     <i class="star-rating-icon fi-star-filled active"></i>
+													</c:if>
+													<c:if test="${i > revList.revstar}">
+													   <i class="star-rating-icon fi-star"></i>
+													</c:if>
+												</c:forEach>
+		                                    </span>
+		                                </div>
+<%-- 		                                <fmt:formatDate value="${parsedDate}" pattern="yyyy-MM-dd"/> --%>
+		                            </div><span class="text-muted fs-sm">${revList.createdate}</span>
+		                        </div>
+		                        <p>${revList.cont}</p>
+		                       
+		                        <div class="d-flex align-items-center" id="like${revList.no}"><!-- 좋아요  -->
+		                            <button class="btn-like" type="button" onclick="likePlus(${revList.no})"><i class="fi-heart"></i><span>(<span id="revLike${revList.no}">${revList.revlike}</span>)</span></button>
+		                        </div>
+		                    </div>
+                    	</c:forEach>
+                    </c:if>       	
                     </div>
+                    
+                    
                     <!-- Pagination-->
                     <nav class="mt-2 mb-4" aria-label="Reviews pagination">
                         <ul class="pagination">
@@ -348,17 +389,17 @@
                 
                 	function goPage(no) {
                 		var sort = $("#sort option:selected").text(); // 정렬 방법
-                		var camp = '${camp.no}'; // 캠핑장 번호
+                		var hotel = '${hotel.no}'; 
                 		
                 		console.log(sort)
                 		
                 		$.ajax({
                 			type: 'GET',
-                			url: "/camp/rev",
+                			url: "/near/rev",
                 			data: {
                 				no: no,
                 				sort: sort,
-                				camp: camp
+                				hotel: hotel
                 			},
                 			
                 			success:function(map) {
