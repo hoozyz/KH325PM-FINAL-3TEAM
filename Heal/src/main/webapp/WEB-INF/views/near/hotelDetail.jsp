@@ -227,7 +227,7 @@
                             </div>
                             <div class="mb-4">
                                 <label class="form-label" for="review-text">숙소 후기 <span class='text-danger'>*</span></label>
-                                <textarea class="form-control" id="review-text" name="cont" rows="5" placeholder="숙소 어떠셨나요?" required></textarea>
+                                <textarea class="form-control" id="review-text" name="cont" rows="2" placeholder="숙소 어떠셨나요?" required></textarea>
                                 <div class="invalid-feedback">Please write your review.</div>
                             </div>
                             <input class="btn btn-primary d-block w-100 mb-4" type="submit" value="후기 등록">
@@ -395,7 +395,7 @@
                 		
                 		$.ajax({
                 			type: 'GET',
-                			url: "/near/rev",
+                			url: "/near/revs",
                 			data: {
                 				no: no,
                 				sort: sort,

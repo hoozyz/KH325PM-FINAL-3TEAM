@@ -138,6 +138,7 @@ public class HotelController {
 		
 		
 		revList = revService.selectRevHotel(no, pageInfo, sort); // 캠프번호, 페이지, 정렬
+		
 		System.out.println(revList);
 		
 		model.addAttribute("revList", revList);
