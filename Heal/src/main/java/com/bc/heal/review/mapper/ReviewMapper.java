@@ -26,7 +26,8 @@ public interface ReviewMapper {
 	int getCountByCamp(int no);
 	
 	// 상현(food)
-	List<Review> selectRevByFood(RowBounds rowBounds, Map<String, String> searchMap);
+	List<Review> selectRevFood(RowBounds rowBounds, Map<String, String> searchMap);
 	int selectRevByFoodCnt(int no);
+	
 
 }

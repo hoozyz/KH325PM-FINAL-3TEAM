@@ -35,4 +35,9 @@ public class FoodServiceImpl implements FoodService{
 		return mapper.selectFoodList(rowBounds, param);
 	}
 	
+
+	@Override
+	public void updateFood(String no1, String no2, String no3, String no4) {
+		mapper.updateFood(no1,no2,no3,no4);
+	}
 }

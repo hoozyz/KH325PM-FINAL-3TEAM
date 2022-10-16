@@ -32,6 +32,7 @@ import com.bc.heal.review.service.ReviewService;
 import com.bc.heal.train.service.TrainService;
 import com.bc.heal.vo.Air;
 import com.bc.heal.vo.Bus;
+import com.bc.heal.vo.Camp;
 import com.bc.heal.vo.EndStation;
 import com.bc.heal.vo.Train;
 import com.bc.heal.vo.Food;
@@ -91,7 +92,6 @@ public class FoodController {
 		
 	}
 	
-
 	@GetMapping("/rev")
 	@ResponseBody
 	public Map<String, Object> list(@RequestParam Map<String, String> param) {
@@ -104,101 +104,117 @@ public class FoodController {
 		
 		if(sort.contains("최신")) {
 			sort = "new";
-		}
-		if(sort.contains("오래")) {
+		}else if(sort.contains("오래")) {
 			sort = "old";
-		}
-		if(sort.contains("좋아")) {
+		}else if(sort.contains("좋아")) {
 			sort = "like";
-		}
-		if(sort.contains("별점")) {
+		}else if(sort.contains("별점")) {
 			sort = "star";
 		}
 
 		int foodNo = Integer.parseInt(param.get("food"));
-		PageInfo pageInfo = new PageInfo(page, 5, revService.getCountByCamp(foodNo), 2);
+		PageInfo pageInfo = new PageInfo(page, 5, revService.selectRevByFoodCnt(foodNo), 2);
 		
-		list = revService.selectRevByFood(pageInfo, foodNo,  sort); 
+		list = revService.selectRevFood(foodNo, pageInfo, sort); // 캠프번호, 페이지, 정렬
 
 		map.put("list", list);
 		map.put("pageInfo", pageInfo);
 
 		return map;
 	}
-	
-	
+
 	@GetMapping("/foodDetail")
-	String detail(Model model,int no) {
+	public String detail(Model model, int no) { 
+		Food food = foodService.findByNo(no);// 테스트 -> 공항있는 캠핑장
 		
-		//상세
-		Food food = foodService.findByNo(no);
-//		if(food == null) {
-//			model.addAttribute("msg", "상세정보가 없습니다");
-//			return "redirect:error";
-//		}
-		
+		// 최근 본 캠핑장 -> no 0 인 곳에 차례로 번호 넣기
+				List<Food> lastList = new ArrayList<>(); // 최신 4개 리스트
+				lastList.add(food); // 지금 들어가는게 최신
+
+				Food zero = foodService.findByNo(0); // name, ADDR, PHONE, MAIN 순서로 없을 시 넣기 -> name가 최근
+				if (zero.getName() == null) { // 초기값
+					zero.setName("1104");
+				}
+				if (zero.getAddr() == null) {
+					zero.setAddr("737");
+				}
+				if (zero.getPhone() == null) {
+					zero.setPhone("3965");
+				}
+				String threeNo = "";
+				String fourNo = "";
+				// 4개 넣어놓고 -> name에 최신 한 칸씩 뒤로 옮기기
+				String twoNo = zero.getName();
+				if (twoNo.equals("" + no)) { // 이미 최신에 현재 캠핑장이 있을 때
+					twoNo = zero.getAddr();
+					threeNo = zero.getPhone();
+					fourNo = zero.getMain();
+				} else {
+					threeNo = zero.getAddr();
+					fourNo = zero.getPhone();
+				}
+
+				lastList.add(foodService.findByNo(Integer.parseInt(twoNo)));
+				lastList.add(foodService.findByNo(Integer.parseInt(threeNo)));
+				lastList.add(foodService.findByNo(Integer.parseInt(fourNo)));
+
+				foodService.updateFood("" + no, twoNo, threeNo, fourNo); // update
+
+				model.addAttribute("lastList", lastList);
 				
-				System.out.println("음식점  : " + food);
-				
-				model.addAttribute("food", food);
-				
-		
 		// 리뷰
-				
-		int revCount = revService.selectRevByFoodCnt(no);
-		PageInfo pageInfo = new PageInfo(1, 5, revCount, 2);
-		
+		PageInfo pageInfo = new PageInfo(1, 5, revService.selectRevByFoodCnt(no), 2);
 		List<Review> revList = new ArrayList<>();
 		String sort = "new";
-		revList = revService.selectRevByFood(pageInfo, no,  sort);
 		
+		
+		
+		revList = revService.selectRevFood(no, pageInfo, sort);
 		System.out.println(revList);
 		
 		model.addAttribute("revList", revList);
 		model.addAttribute("pageInfo", pageInfo);
 		
-
-		
 		// 날씨
-				List<Weather> weaList = new ArrayList<>();
+		List<Weather> weaList = new ArrayList<>();
 
-				String check = "";
-				String[] checkArr;
-				String dong = "";
-				if (food.getAddr().contains("면")) {
-					check = food.getAddr().split("면")[0]; // 면 기준 앞에만 자르기
-					checkArr = check.split(" ");
-					dong = checkArr[checkArr.length - 1] + "면";
+		String check = "";
+		String[] checkArr;
+		String dong = "";
+		if (food.getAddr().contains("면")) {
+			check = food.getAddr().split("면")[0]; // 면 기준 앞에만 자르기
+			checkArr = check.split(" ");
+			dong = checkArr[checkArr.length - 1] + "면";
 
-				} else if (food.getAddr().contains("읍")) {
-					check = food.getAddr().split("읍")[0];
-					checkArr = check.split(" ");
-					dong = checkArr[checkArr.length - 1] + "읍";
+		} else if (food.getAddr().contains("읍")) {
+			check = food.getAddr().split("읍")[0];
+			checkArr = check.split(" ");
+			dong = checkArr[checkArr.length - 1] + "읍";
 
-				} else if (food.getAddr().contains("동")) {
-					check = food.getAddr().split("동")[0];
-					checkArr = check.split(" ");
-					dong = checkArr[checkArr.length - 1] + "동";
-				}
+		} else if (food.getAddr().contains("동")) {
+			check = food.getAddr().split("동")[0];
+			checkArr = check.split(" ");
+			dong = checkArr[checkArr.length - 1] + "동";
+		}
 
-				try {
-					weaList = weatherApi(weaService.selectByDong(dong).getNx(), weaService.selectByDong(dong).getNy()); 
-				} catch (IOException e) {
-					e.printStackTrace();
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}
-				Weather today = new Weather(); // 오늘
-				Weather one = new Weather(); // 내일
-				Weather two = new Weather(); // 모레
-				
-				today = weaList.get(0);
-				one = weaList.get(1);
-				two = weaList.get(2);
-				
-				model.addAttribute("today", today);
-				model.addAttribute("one", one);
-				model.addAttribute("two", two);
+		try {
+			weaList = weatherApi(weaService.selectByDong(dong).getNx(), weaService.selectByDong(dong).getNy()); 
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		Weather today = new Weather(); // 오늘
+		Weather one = new Weather(); // 내일
+		Weather two = new Weather(); // 모레
+		
+		today = weaList.get(0);
+		one = weaList.get(1);
+		two = weaList.get(2);
+		
+		model.addAttribute("today", today);
+		model.addAttribute("one", one);
+		model.addAttribute("two", two);
 				
 				
 				

@@ -54,4 +54,13 @@
 		ORDER BY NO DESC
 	</select> 
 	
+	<update id="updateFood" parameterType="string">
+		UPDATE TBL_FOOD
+		SET NAME = #{no1},
+			ADDR = #{no2},
+			PHONE= #{no3},
+			MAIN = #{no4}
+		WHERE NO = ${0}
+	</update>
+	
 </mapper>

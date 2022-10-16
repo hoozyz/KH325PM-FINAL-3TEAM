@@ -22,7 +22,7 @@ public interface ReviewService {
 	int getCountByCamp(int campNo);
 	
 	// 상현
-	List<Review> selectRevByFood(PageInfo pageInfo, int no, String sort);
+	List<Review> selectRevFood(int no, PageInfo pageInfo, String sort);
 	int selectRevByFoodCnt(int no);
 
 	

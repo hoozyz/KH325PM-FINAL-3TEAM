@@ -109,6 +109,8 @@
 	</update>
 
 
+
+
 <!-- 	@@@캠핑@@@ -->		
 	<select id="selectRevCamp" parameterType="map" resultMap="reviewIdMap">
  		SELECT R.*, M.ID
@@ -137,14 +139,14 @@
 <!-- 	@@@캠핑@@@ -->	
 	
 	
-	
+
 <!-- 	@@@푸드@@@ -->
-	<select id="selectRevByFood" parameterType="map" resultMap="reviewIdMap">
-	 	SELECT R.*, M.ID
-		 FROM TBL_REVIEW R
-		 JOIN TBL_MEMBER M ON (R.MEMBERNO = M.NO)
-		 AND R.FOODNO = ${no} <!-- ${} -> '' 안붙음 -> 정수가능 -->
-		 <if test='sort.equals("new")'> <!-- 최신순 -->
+	<select id="selectRevFood" parameterType="map" resultMap="reviewIdMap">
+			SELECT R.*, M.ID
+			FROM TBL_REVIEW R
+			JOIN TBL_MEMBER M ON (R.MEMBERNO = M.NO)
+			WHERE R.FOODNO = ${no} <!-- ${} -> '' 안붙음 -> 정수가능 -->
+		<if test='sort.equals("new")'> <!-- 최신순 -->
  			ORDER BY R.NO DESC
  		</if>
  		<if test='sort.equals("old")'>
@@ -164,7 +166,9 @@
 	 		WHERE FOODNO = ${no}
 	</select>
 <!-- 	@@@푸드@@@ -->
-	
+
+
+
 	
 	
 	<select id="getLike" parameterType="int" resultType="int">

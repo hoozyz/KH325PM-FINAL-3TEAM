@@ -73,20 +73,21 @@ public class ReviewServiceImpl implements ReviewService {
 	
 	// 상현
 	@Override
-	public List<Review> selectRevByFood(PageInfo pageInfo, int no, String sort) {
-		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit(); // 앞에서 뺄 수 
+	public List<Review> selectRevFood(int no, PageInfo pageInfo, String sort) {
+		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
 		RowBounds rowBounds = new RowBounds(offset, pageInfo.getListLimit());
 		
 		Map<String, String> searchMap = new HashMap<String, String>();
 		searchMap.put("no", "" + no); // ${}
 		searchMap.put("sort", sort);
-		// 정렬은 쿼리에서 if문
-		return mapper.selectRevCamp(rowBounds, searchMap);
+		
+		return mapper.selectRevFood(rowBounds, searchMap);
 	}
 
 	@Override
 	public int selectRevByFoodCnt(int no) {
 		return mapper.selectRevByFoodCnt(no);
 	}
+
 
 }
