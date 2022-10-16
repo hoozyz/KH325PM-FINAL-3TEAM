@@ -4,17 +4,23 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
+
 <jsp:include page="/WEB-INF/views/common/headerTest.jsp">
 	<jsp:param value="숙박검색" name="hotel"/>
 </jsp:include>
 
 <c:set var="keyword" value="${param.keyword}"/>
 <c:set var="searchcity" value="${param.city}"/>
+<c:set var="searchmoney" value="${param.money}"/>
+
 <input type="hidden" id="keyword" value="${keyword}" > 
-<input type="hidden" id="city" value="${searchcity}" >  
+<input type="hidden" id="city" value="${searchcity}" > 
+<input type="hidden" id="money" value="${searchmoney}" > 
+
+
 
 <main>
-<div class="container-fluid mt-5 pt-5 p-0">
+<div class="container mt-5 pt-5 p-0">
         <div class="row g-0 mt-n3">
           <!-- Filters sidebar (Offcanvas on mobile)-->
           <aside class="col-lg-4 col-xl-3 border-top-lg border-end-lg shadow-sm px-3 px-xl-4 px-xxl-5 pt-lg-2">
@@ -62,18 +68,18 @@
                 </div>
                 <div class="pb-4 mb-2">
                   <h3 class="h6">Price per month</h3>
-                  <div class="range-slider" data-start-min="50000" data-start-max="100000" data-min="30000" data-max="300000" data-step="10000">
+                  <div class="range-slider" data-start-min="50000" data-start-max="1000000" data-min="30000" data-max="3000000" data-step="10000">
                     <div class="range-slider-ui"></div>
                     <div class="d-flex align-items-center">
                       <div class="w-50 pe-2">
                         <div class="input-group"><span class="input-group-text fs-base">원</span>
-                          <input class="form-control range-slider-value-min" type="text">
+                          <input class="form-control range-slider-value-min" type="text" name="money">
                         </div>
                       </div>
                       <div class="text-muted">&mdash;</div>
                       <div class="w-50 ps-2">
                         <div class="input-group"><span class="input-group-text fs-base">원</span>
-                          <input class="form-control range-slider-value-max" type="text">
+                          <input class="form-control range-slider-value-max" type="text" name="money">
                         </div>
                       </div>
                     </div>
@@ -133,11 +139,12 @@
 								<div class="card-body position-relative pb-3"
 									style="margin-top: 10px;">
 									<h3 class="h6 mb-2 fs-base">
-										<a class="nav-link stretched-link" href="real-estate-single-v1.html">${hotel.name}</a>
+										<a class="nav-link stretched-link" href="${path}/near/hotelDetail?no=${hotel.no}">${hotel.name}</a>
 									</h3>
 									<p class="mb-2 fs-sm text-muted">${hotel.addr}</p>
 									<div class="fw-bold">
-										<i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>${hotel.price} / 1박</div>
+										<i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>
+										<fmt:formatNumber value="${hotel.price}" pattern="#,###"/> / 1박</div>
 								</div>
 							</div>
 						</div>
@@ -148,52 +155,42 @@
             <nav class="border-top pb-md-4 pt-4 mt-2" aria-label="Pagination">
               <ul class="pagination mb-1">
                 <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 5</span></li>
-                <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="visually-hidden">(current)</span></span></li>
-                <li class="page-item d-none d-sm-block"><a class="page-link" href="#">2</a></li>
-                <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li>
-                <li class="page-item d-none d-sm-block">...</li>
-                <li class="page-item d-none d-sm-block"><a class="page-link" href="#">8</a></li>
-                <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="fi-chevron-right"></i></a></li>
-              </ul>
-            </nav>
+                <!-- 맨 처음으로 -->
+                <li class="page-item"><a class="page-link" onclick="movePage('${path}/near/nearHotel?page=1');" aria-label="Next" style="cursor:pointer"><i class="fi-chevrons-left"></i></a></li>
+				<!-- 이전 페이지 -->
+                <li class="page-item"><a class="page-link" onclick="movePage('${path}/near/nearHotel?page=${pageInfo.prevPage}');" aria-label="Next" style="cursor:pointer"><i class="fi-chevron-left"></i></a></li>
+	                
+	            <!-- 10개 페이지 목록 -->
+				<c:forEach begin="${pageInfo.startPage}" end="${pageInfo.endPage}" step="1" varStatus="status">
+					<c:if test="${pageInfo.currentPage == status.current}">
+	               		 <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link"><c:out value="${status.current}"/><span class="visually-hidden">(current)</span></span></li>
+					</c:if>
+					<c:if test="${pageInfo.currentPage != status.current}">
+						<li class="page-item d-none d-sm-block"><a class="page-link" onclick="movePage('${path}/near/nearHotel?page=${status.current}');" style="cursor:pointer"><c:out value="${status.current}"/></a></li>
+					</c:if>
+				</c:forEach>    
+	                
+	            <!-- 다음 페이지 -->
+				 <li class="page-item"><a class="page-link" onclick="movePage('${path}/near/nearHotel?page=${pageInfo.nextPage}');" aria-label="Next" style="cursor:pointer"><i class="fi-chevron-right"></i></a></li>
+				<!-- 마지막 페이지 -->
+             	<li class="page-item"><a class="page-link" onclick="movePage('${path}/near/nearHotel?page=${pageInfo.maxPage}');" aria-label="Next" style="cursor:pointer"><i class="fi-chevrons-right"></i></a></li>
+				</ul>
+				</nav>
           </div>
-          
-         <!-- page부 시작 -->
-		<div align="center">
-			<!-- 맨 처음으로 -->
-			<button onclick="movePage('${path}/near/nearHotel?page=1');">&lt;&lt;</button>
-			<!-- 이전 페이지 -->
-			<button onclick="movePage('${path}/near/nearHotel?page=${pageInfo.prevPage}');">&lt;</button>		
-			<!-- 10개 페이지 목록 -->
-			<c:forEach begin="${pageInfo.startPage}" end="${pageInfo.endPage}" step="1" varStatus="status">
-				<c:if test="${pageInfo.currentPage == status.current}">
-					<button disabled ><c:out value="${status.current}"/></button>
-				</c:if>
-				<c:if test="${pageInfo.currentPage != status.current}">
-					<button onclick="movePage('${path}/near/nearHotel?page=${status.current}');">
-						<c:out value="${status.current}"/>
-					</button>
-				</c:if>
-			</c:forEach>
-		
-			<!-- 다음 페이지 -->
-			<button onclick="movePage('${path}/near/nearHotel?page=${pageInfo.nextPage}');">&gt;</button>		
-			<!-- 마지막 페이지 -->
-			<button onclick="movePage('${path}/near/nearHotel?page=${pageInfo.maxPage}');">&gt;&gt;</button>	
 		</div>
 		<!-- page부 종료 -->		
-        </div>
-      </div>
     </main>
 
 <script type="text/javascript" charset="UTF-8">
 	function movePage(pageUrl) {
 		var keyword = document.getElementById("keyword");
 		var addr = document.getElementById("city");
+		var price = document.getElementById("money");
 
 		pageUrl = pageUrl 
 		+ '&keyword=' + keyword.value 
-		+ '&city=' + city.value;
+		+ '&city=' + city.value
+		+ '&money=' + money.value;
 		location.href = encodeURI(pageUrl);
 	}
 </script>

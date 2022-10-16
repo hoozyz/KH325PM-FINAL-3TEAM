@@ -4,13 +4,22 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
-<jsp:include page="/WEB-INF/views/common/header.jsp">
-	<jsp:param value="숙소 상세" name="title"/>
-</jsp:include>
+
 
 <link rel="stylesheet" media="screen" href="${path}/resources/vendor/simplebar/dist/simplebar.min.css" />
 <link rel="stylesheet" media="screen" href="${path}/resources/vendor/nouislider/dist/nouislider.min.css" />
 <link rel="stylesheet" media="screen" href="${path}/resources/vendor/tiny-slider/dist/tiny-slider.css" />
+<!-- Main Theme Styles + Bootstrap-->
+<link rel="stylesheet" media="screen" href="${path}/resources/css/themeButton.min.css">
+<script defer src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" integrity="sha384-vuFJ2JiSdUpXLKGK+tDteQZBqNlMwAjhZ3TvPaDfN9QmbPb7Q8qUpbSNapQev3YF" crossorigin="anonymous"></script>   
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
+
+<jsp:include page="/WEB-INF/views/common/header.jsp">
+<jsp:param value="숙소 상세" name="title"/>
+</jsp:include>
+
+
 		<style>
                 .weather_area {
                     position: relative;
@@ -178,7 +187,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">홈페이지</a></li>
                     <li class="breadcrumb-item"><a href="#">숙소</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">브람스 펜션</li>
+                    <li class="breadcrumb-item active" aria-current="page">${hotel.name}></li>
                 </ol>
             </nav>
             <div class="row gy-5 pt-lg-2">
@@ -214,67 +223,785 @@
                         <h3 class="h4 pb-3"><i class="fi-star-filled mt-n1 me-2 lead align-middle text-warning"></i>4,9 (32 후기)</h3>
                         <div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch justify-content-between"><a class="btn btn-outline-primary mb-sm-0 mb-3" href="#modal-review" data-bs-toggle="modal"><i class="fi-edit me-1"></i>후기 등록</a>
                             <div class="d-flex align-items-center ms-sm-4">
-                                <label class="me-2 pe-1 text-nowrap" for="reviews-sorting"><i class="fi-arrows-sort text-muted mt-n1 me-2"></i>정렬순:</label>
-                                <select class="form-select" id="reviews-sorting">
-                      <option>최신순</option>
-                      <option>오래된순</option>
-                      <option>좋아요순</option>
-                      <option>별점 높은순</option>
+                                <label class="me-2 pe-1 text-nowrap" for="reviewSort"><i class="fi-arrows-sort text-muted mt-n1 me-2"></i>정렬순:</label>
+                                <select class="form-select" id="sort">
+                      <option id="new" selected>최신순</option>
+                      <option id="old">오래된순</option>
+                      <option id="like">좋아요순</option>
+                      <option id="star">별점 높은순</option>
                     </select>
                             </div>
                         </div>
                     </div>
+                    
                     <!-- Review-->
-                    <div class="mb-4 pb-4 border-bottom">
-                        <div class="d-flex justify-content-between mb-3">
-                            <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/03.jpg" width="48" alt="Avatar">
-                                <div class="ps-2">
-                                    <h6 class="fs-base mb-0">Annette Black</h6><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
-                                </div>
-                            </div><span class="text-muted fs-sm">Jan 17, 2021</span>
-                        </div>
-                        <p>Elementum ut quam tincidunt egestas vitae elit, hendrerit. Ullamcorper nulla amet lobortis elit, nibh condimentum enim. Aliquam felis nisl tellus sodales lectus dictum tristique proin vitae. Odio fermentum viverra tortor quis.</p>
-                        <div class="d-flex align-items-center">
-                            <button class="btn-like" type="button"><i class="fi-like"></i><span>(3)</span></button>
-                            <div class="border-end me-1">&nbsp;</div>
-                            <button class="btn-dislike" type="button"><i class="fi-dislike"></i><span>(0)</span></button>
-                        </div>
-                    </div>
-                    <!-- Review-->
-                    <div class="mb-4 pb-4 border-bottom">
-                        <div class="d-flex justify-content-between mb-3">
-                            <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/13.png" width="48" alt="Avatar">
-                                <div class="ps-2">
-                                    <h6 class="fs-base mb-0">Darrell Steward</h6><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star"></i><i class="star-rating-icon fi-star"></i></span>
-                                </div>
-                            </div><span class="text-muted fs-sm">Dec 1, 2020</span>
-                        </div>
-                        <p>Vel dictum nunc ut tristique. Egestas diam amet, ut proin hendrerit. Dui accumsan at phasellus tempus consequat dignissim.</p>
-                        <div class="d-flex align-items-center">
-                            <button class="btn-like" type="button"><i class="fi-like"></i><span>(0)</span></button>
-                            <div class="border-end me-1">&nbsp;</div>
-                            <button class="btn-dislike" type="button"><i class="fi-dislike"></i><span>(1)</span></button>
-                        </div>
+                    <div id="revDiv">
+                    	<c:if test="${empty revList}">
+                    		리뷰내역이 없습니다.
+                    	</c:if>
+                    	<c:if test="${!empty revList}">
+                    		<div class="mb-4 pb-4 border-bottom"><div class="d-flex justify-content-between mb-3"><div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/i3.jpg" width="48" alt="Avatar">
+                                <div class="ps-2"><h6 class="fs-base mb-i">${revList.get(0).id}</h6>
+                                    <span class="star-rating">
+	                                    <c:if test="${revList.get(0).revstar == 5}">
+	                                    	<i class="star-rating-icon fi-star-filled active"></i>
+	                                    	<i class="star-rating-icon fi-star-filled active"></i>
+	                                    	<i class="star-rating-icon fi-star-filled active"></i>
+	                                    	<i class="star-rating-icon fi-star-filled active"></i>
+	                                    	<i class="star-rating-icon fi-star-filled active"></i>
+	                                    </c:if>
+	                                    <c:if test="${revList.get(0).revstar < 5}">
+	                                    	<c:forEach var="i" begin="1" end="${revList.get(0).revstar}">
+	                                    		<i class="star-rating-icon fi-star-filled active"></i>
+	                                   	 	</c:forEach>
+	                                    	<c:forEach var="i" begin="${revList.get(0).revstar + 1}" end="5">
+	                                    		<i class="star-rating-icon fi-star"></i>
+	                                    	</c:forEach>
+	                                    </c:if>
+                                    </span></div>
+                            </div><span class="text-muted fs-sm">${revList.get(0).createdate}</span></div><p>${revList.get(0).cont}</p>
+                        <div class="d-flex align-items-center" id="like${revList.get(0).no}"><button class="btn-like" type="button" onclick="likePlus(${revList.get(0).no})"><i class="fi-heart"></i>(<span id="revLike${revList.get(0).no}">${revList.get(0).revlike}</span>)</button>
+                        </div></div>
+                        
+                        <div class="mb-4 pb-4 border-bottom"><div class="d-flex justify-content-between mb-3"><div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/03.jpg" width="48" alt="Avatar">
+                                <div class="ps-2"><h6 class="fs-base mb-0">${revList.get(1).id}</h6>
+                                    <span class="star-rating">
+	                                    <c:if test="${revList.get(1).revstar == 5}">
+	                                    	<i class="star-rating-icon fi-star-filled active"></i>
+	                                    	<i class="star-rating-icon fi-star-filled active"></i>
+	                                    	<i class="star-rating-icon fi-star-filled active"></i>
+	                                    	<i class="star-rating-icon fi-star-filled active"></i>
+	                                    	<i class="star-rating-icon fi-star-filled active"></i>
+	                                    </c:if>
+	                                    <c:if test="${revList.get(1).revstar < 5}">
+	                                    	<c:forEach var="i" begin="1" end="${revList.get(1).revstar}">
+	                                    		<i class="star-rating-icon fi-star-filled active"></i>
+	                                   	 	</c:forEach>
+	                                    	<c:forEach var="i" begin="${revList.get(1).revstar + 1}" end="5">
+	                                    		<i class="star-rating-icon fi-star"></i>
+	                                    	</c:forEach>
+	                                    </c:if>
+                                    </span></div>
+                            </div><span class="text-muted fs-sm">${revList.get(1).createdate}</span></div><p>${revList.get(1).cont}</p>
+                        <div class="d-flex align-items-center" id="like${revList.get(1).no}"><button class="btn-like" type="button" onclick="likePlus(${revList.get(1).no})"><i class="fi-heart"></i>(<span id="revLike${revList.get(1).no}">${revList.get(1).revlike}</span>)</button>
+                        </div></div>
+                   	 	</c:if>
                     </div>
                     <!-- Pagination-->
                     <nav class="mt-2 mb-4" aria-label="Reviews pagination">
                         <ul class="pagination">
-                            <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 5</span></li>
-                            <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="visually-hidden">(current)</span></span>
-                            </li>
-                            <li class="page-item d-none d-sm-block"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item d-none d-sm-block">...</li>
-                            <li class="page-item d-none d-sm-block"><a class="page-link" href="#">8</a></li>
-                            <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="fi-chevron-right"></i></a></li>
+                            <li class="page-item active d-none d-sm-block" aria-current="page"><a class="page-link" id="page(1)" onclick="goPage(1); return false;">1</a></li>
+                            <c:if test="${pageInfo.getEndPage() > 1}">
+	                			<c:forEach var="i" begin="2" end="${pageInfo.getEndPage()}">
+	                				<li class="page-item d-none d-sm-block"><a class="page-link" id="page(${i})" onclick="goPage(${i}); return false;">${i}</a></li>
+	                			</c:forEach>
+	                		</c:if>
+                            <li class="page-item"><a class="page-next" onclick="goPage(${pageInfo.getNextPage()}); return false;" aria-label="Next"><i class="fi-chevron-right"></i></a></li>
+                            <li class="page-item"><a class="page-end" onclick="goPage(${pageInfo.getMaxPage()}); return false;" aria-label="Next"><i class="fi-chevrons-right"></i></a></li>
                         </ul>
                     </nav>
+                    
+                    
+                    <script>
+                	$("#sort").change(function() {
+                		goPage(1);
+                	});
+                
+                	function likePlus(no) {
+                		$.ajax({
+                			type: 'GET',
+                			url: '/review/like',
+                			data: {
+                				no: no,
+                				check: 1 // like + 1
+                			},
+                			
+                			success:function(like) {
+                				console.log(like)
+                				$("#like"+no).html('<button class="btn-like" type="button" onclick="likeMinus('+ no +')"><i class="fi-heart-filled"></i>(<span id="revLike'+ no +'">'+ like +'</span>)</button>')
+                			},
+                			
+                			error:function(e) {
+                				console.log(e)
+                			}
+                		});
+                	}
+                	
+                	function likeMinus(no) {
+                		$.ajax({
+                			type: 'GET',
+                			url: '/review/like',
+                			data: {
+                				no: no,
+                				check: 0
+                			},
+                			
+                			success:function(like) {
+								$("#like"+no).html('<button class="btn-like" type="button" onclick="likePlus('+ no +')"><i class="fi-heart"></i>(<span id="revLike'+ no +'">'+ like +'</span>)</button>')
+                			},
+                			
+                			error:function(e) {
+                				console.log(e)
+                			}
+                		});
+                	}
+                
+                	function goPage(no) {
+                		var sort = $("#sort option:selected").text(); // 정렬 방법
+                		var camp = '${camp.no}'; // 캠핑장 번호
+                		
+                		console.log(sort)
+                		
+                		$.ajax({
+                			type: 'GET',
+                			url: "/camp/rev",
+                			data: {
+                				no: no,
+                				sort: sort,
+                				camp: camp
+                			},
+                			
+                			success:function(map) {
+                				console.log(map)	
+                				var list = map.list;
+                				var pageInfo = map.pageInfo;
+                				console.log(list)
+                				
+                				str = "";
+                				$.each(list, function (i, obj) { // list.get(i) = obj   
+                                	str += '	<div class="mb-4 pb-4 border-bottom"><div class="d-flex justify-content-between mb-3"><div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/03.jpg" width="48" alt="Avatar">          '
+                                    str += '        <div class="ps-2"><h6 class="fs-base mb-0">'+ obj.id +'</h6>                                                                                                                                                      '
+                                    str += '            <span class="star-rating">   '
+	                                for(var j = 1; j <= 5; j++) {
+	                                	if(j <= obj.revstar) {
+	                                		str += '<i class="star-rating-icon fi-star-filled active"></i>'
+	                                	} else {
+	                                		str += '<i class="star-rating-icon fi-star"></i>'
+	                                	}
+	                                }
+                                    var revNo = obj.no
+                                    var like = obj.revlike
+                                    str += '            </span></div>                                                                                                                                                                                                         '
+                                    str += '    </div><span class="text-muted fs-sm">'+ obj.createdate +'</span></div><p>'+ obj.cont +'</p>                                                                                                                   '
+                                    str += '<div class="d-flex align-items-center" id="like'+ revNo +'"><button class="btn-like" type="button" onclick="likePlus('+ revNo +')"><i class="fi-heart"></i>(<span id="revLike'+ revNo +'">'+ like +'</span>)</button></div></div>                       '
+                                	str += '</div>                                                                                                                              '                                                                                             
+                				});                                                                                                                                                                                                                                           
+                				
+                				$("#revDiv").html(str);
+                				
+                				str = "";
+                				
+                				var maxPage =     pageInfo.maxPage     ;
+                     			var startPage =   pageInfo.startPage   ;
+                     			var endPage =     pageInfo.endPage     ;
+                     			var currentPage = pageInfo.currentPage ;
+                     			var prevPage =    pageInfo.prevPage    ;
+                     			var nextPage =    pageInfo.nextPage    ;
+                     			var startList =   pageInfo.startList   ;
+                     			var endList =     pageInfo.endList     ;
+                     			
+                     			if(currentPage != 1) {
+             	            		str += '<li class="page-item"><a class="page-first" onclick="goPage(1); return false;" aria-label="Next"><i class="fi-chevrons-left"></i></a></li>';
+             	            		str += '<li class="page-item"><a class="page-prev" onclick="goPage('+ prevPage +'}); return false;" aria-label="Next"><i class="fi-chevron-left"></i></a></li>';
+             	            	} 
+             	
+             	            	for (var i = startPage; i <= endPage; i++) { // 페이지 5개마다 페이지 바뀜
+             	            		if(i == currentPage) {
+             	            			str += '<li class="page-item active d-none d-sm-block"><a class="page-link" id="page('+ i +')" onclick="goPage('+ i +'); return false;">'+ i +'</a></li>';
+             	            		} else {
+             	            			str += '<li class="page-item d-none d-sm-block"><a class="page-link" id="page('+ i +')" onclick="goPage('+ i +'); return false;">'+ i +'</a></li>';
+             	            		}
+             	            	}
+             	
+             	            	if(currentPage != maxPage) {
+             	            		str += '<li class="page-item"><a class="page-next" onclick="goPage('+ nextPage +'); return false;" aria-label="Next"><i class="fi-chevron-right"></i></a></li>';
+             	            		str += '<li class="page-item"><a class="page-end" onclick="goPage('+ endPage +'); return false;" aria-label="Next"><i class="fi-chevrons-right"></i></a></li>';
+             	            	}
+                     			
+                     			$('.pagination').html(str);
+                			},
+                			
+                			error:function(e) {
+                				console.log(e)
+                			}
+                		});
+                	}
+                </script>    
+                     <!-- 기차 예매 -->
+        <div class="modal fade" id="modal-train" tabindex="-1"> 
+            <div class="modal-dialog modal-dialog-centered" role="document" style="margin-left: 800px;">
+                <div class="modal-content" style="width: 450px;">
+                    <div class="modal-header d-block position-relative border-0 pb-0 px-sm-5 px-4" style="width:450px;">
+                        <h3 class="modal-title mt-4 text-center" id="airTitle">
+                        기차 예매
+                        <span class="dropdown d-inline-block"><a class="dropdown-toggle text-decoration-none" id="trainOne" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">가는편</a>
+		                <span class="dropdown-menu dropdown-menu-end my-1">
+		                  <button id="trainTwo" class="dropdown-item fs-base fw-bold">오는편</button>
+		                </span></span>
+                        </h3>
+                        <button class="btn-close position-absolute top-0 end-0 mt-3 me-3" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <hr style="width: 100%; color: grey;">
+                    </div>
+                    <div class="modal-body px-sm-5 px-4">
+                    		<section style="height: 70px;margin-bottom: 20px;">
+                    			<div style="margin-left: 45px;"><span>출발역</span> <span style="float: right;margin-right: 45px;">도착역</span></div>
+                    			<select id="trainStartSta" style="float: left; width: 150px;" class="form-control form-select">
+                    			<option value="" selected disabled hidden>출발역</option>
+                    				<c:forEach var="i" begin="0" end="${trainStartList.size() - 1}"> <!-- 출발역 개수 만큼 -->
+                    					<option value="i">${trainStartList.get(i)}</option>
+                    				</c:forEach>
+			                      </select>
+                    			<div style="float: left;margin-top: 8px;">
+                    				<span style="margin-left: 18px;"><i class="fi-arrow-right"></i></span>
+                    			</div>
+                    			<select id="trainEndSta" style="float: right; width: 150px;" class="form-control form-select" readonly>
+                    			<option value="" selected>${trainList.get(0).endsta}</option>
+                    			</select>
+                    		</section>
+                    		<hr style="width: 100%; border: 1px solid #E2E2E2; margin-bottom: 15px;">
+                    		<section style="margin-bottom: 30px; height: 70px;">
+                    			<div><span style="margin-left: 65px;margin-right: 135px;">날짜</span><span>인원</span></div>	
+                    			<input class="form-control date-picker rounded-pill pi-5 start" style="float: left; width: 170px;" id="datepickerTrain" type="date" placeholder="날짜를 선택해주세요 " data-datepicker-options="{&quot;altInput&quot;: true, &quot;altFormat&quot;: &quot;Y. m. d &quot;, &quot;dateFormat&quot;: &quot;Y-m-d&quot;, &quot;language&quot;: &quot;ko&quot;} ">
+                    			
+                    			<select id="trainCount" style="float: right; width: 120px; margin-right: 20px;" class="form-control form-select">
+                    			<option value="" selected disabled hidden>인원</option>
+			                      <option value="1">1명</option>
+			                      <option value="2">2명</option>
+			                      <option value="3">3명</option>
+			                      <option value="4">4명</option>
+			                      <option value="5">5명</option>
+			                      <option value="6">6명</option>
+			                      <option value="7">7명</option>
+			                      <option value="8">8명</option>
+			                      <option value="9">9명</option>
+			                      <option value="10">10명</option>
+			                      </select>
+                    		</section>
+                    		<!-- hidden으로 값 가져오기 -->
+                    		<input type="hidden" id="str2" value="no">
+                    		
+                    		<hr style="width: 100%; border: 1px solid #E2E2E2; margin-bottom: 15px;">
+                    		<section style="margin-bottom: 10px; height: 70px;">
+                    			<div><span style="margin-left: 30px;margin-right: 25px;">출발시간/종류</span><span style="margin-right: 30px;">소요시간</span><span>도착시간</span></div>
+                    			<select id="trainStartTime" style="float: left;width: 120px;margin-left: 15px;" class="form-control form-select">
+                    			<option value="" selected disabled hidden>출발시간/종류</option>
+                    				<option value="">출발역을 선택해주세요.</option>
+			                      </select>
+			                      <section style="float: left;margin-right: 20px;margin-left: 20px;">
+			                      	<div style="height: 22px;">-----></div>
+			                      	<div style="font-size: 13px;" id="trainWasteTime">소요시간</div>
+			                      </section>
+                    			<select id="trainArrTime" style="float: left; width: 120px;" class="form-control form-select"readonly>
+                    			<option value="">도착시간</option>
+                    			</select>
+                    		</section>
+                    		<section style="text-align: center;">
+                    			<div id="trainPrice">가격<span>/1인</span></div>
+                    		</section>
+                            <div id="trainPay">
+                            	<button style="width: 300px; margin: 0 auto; padding-left: 10px;padding-right: 10px;" class="btn btn-primary d-block mb-4" type="button" id="trainPay">
+                            	<img style="margin-right: 20px;" src="${path}/resources/image/payment_icon_yellow_small.png">예매하기</button>
+                            </div>
+                       </div>
+                    </div>
                 </div>
+            </div>
+            
+            
+            <script> // 기차
+	       	$(document).ready(() => {
+	       		$('#trainTwo').on('click', function() { // 왕복을 원하면
+	       			var check = $("#trainTwo").html(); // 가는편 오는편 가져오기
+	       			if(check == '오는편') { // 가는편 가지고 오는편 가져오기 -> 왕복
+	       				$("#trainOne").html('오는편');
+	       				$("#trainTwo").html('가는편');
+	       				
+	       				var start = $("#trainEndSta option:selected").text(); // 출발역 도착역 교환
+		       			
+		       			var end = $("#trainStartSta option:selected").text();
+		       			
+		       			var date = $("#datepickerTrain").val(); // 가는 날짜
+		       			$("#datepickerTrain").val("연도-월-일"); // 원래대로 돌려놓기
+		       			var time = $("#trainStartTime option:selected").text().substring(0,5); // 가는 시간
+		       			var price = $("#trainPrice").html().replace("원/1인",""); // 가는 표 가격
+		       			$("#trainPrice").html('가격<span id="countt">/1인</span>');
+		       			var count = $("#trainCount option:selected").text().replace("명",""); // 인원
+		       			$("#trainCount").html('<option value="" selected>'+ count +'명</option>');
+						var item = "비행기 " + date.substr(5) + " " + time; // 결제할 떄 제품명
+		       			var totalAmount = price * count;
+						
+		       			var str2 = date + "," + time + "," + count + "," + item + "," + totalAmount; // 가는 표 정보 문자열
+						
+						// 고정된 정보 readonly하기 -> 역만 바꾸면 됨
+						$("#trainStartSta").attr('readonly', true); // readonly 추가
+						$("#trainStartSta").html('<option value="" selected>'+ start +'</option>');
+						
+						$("#trainEndSta").html('<option value="" selected>'+ end +'</option>');
+						
+						$("#trainCount").attr('readonly', true); // readonly 추가
+						
+						$("#trainArrTime").html('<option value="">도착시간</option>');
+						
+						$("#str2").val(str2); // hidden에 저장
+						
+						$.ajax({ // 출발시간 바로 가져오기
+		       				type: 'GET',
+		       				url: '/train/time',
+		       				data: {
+		       					start: start,
+		       					end: end
+		       				},
+		       				
+		       				success:function(data) {
+		       					console.log(data);
+		       					
+		       					str = "";
+		       					str += '<option value="" selected disabled hidden>출발시간/종류</option>';
+	   							
+	   							$.each(data, function (i, obj) {
+	   								str += '<option value="'+i+'">'+ obj.starttime +'/'+ obj.trainclass +'</option>';
+		       					})
+		       					
+		       					$("#trainStartTime").html(str);
+		       				},
+		       				
+		       				error:function(e) {
+		       					console.log(e);
+		       				}
+		       			});	
+	       			} else {
+	       				$("#trainOne").html('가는편');
+	       				$("#trainTwo").html('오는편');
+	       				$("#datepickerTrain").val("연도-월-일"); // 원래대로 돌려놓기
+	       				str = "";
+	       				
+	       				str += '<option value="" selected disabled hidden>출발역</option>                            '
+	       				
+	       				<c:forEach var="i" begin="0" end="${trainStartList.size() - 1}">
+	       					var item = '${trainStartList.get(i)}';
+	       					str += '<option value="i">'+ item +'</option>'
+	       				</c:forEach>
+	       					
+						$("#trainStartSta").html(str);     				
+	       				
+						var end = '${trainList.get(0).endsta}';
+        				$("#trainEndSta").html('<option value="" selected>'+end+'</option>');
+        				
+        				$("#trainCount").html('<option value="" selected disabled hidden>인원</option>' 
+			                      +'<option value="1">1명</option>'
+			                      +'<option value="2">2명</option>'
+			                      +'<option value="3">3명</option>'
+			                      +'<option value="4">4명</option>'
+			                      +'<option value="5">5명</option>'
+			                      +'<option value="6">6명</option>'
+			                      +'<option value="7">7명</option>'
+			                      +'<option value="8">8명</option>'
+			                      +'<option value="9">9명</option>'
+			                      +'<option value="10">10명</option>');
+        				
+        				$("#trainStartTime").html('<option value="" selected disabled hidden>출발시간/종류</option>'
+                				+'<option value="">출발역을 선택해주세요.</option>');
+        				
+        				$("#trainArrTime").html('<option value="">도착시간</option>');
+	       				
+	       				$("#trainPrice").html('가격<span id="countt">/1인</span>');
+        				
+		       			$("#str2").val('no'); // str1 값 없애서 가는편 없애기
+	       			}
+	       		});
+	       		
+	       		$("#trainStartSta").change(function() { // 변했을 때
+       					var start = $("#trainStartSta option:selected").text(); // 값 가져오기 -> 출발역
+       					var end = $("#trainEndSta option:selected").text();; // 도착역
+       					
+       					$.ajax({
+       						type: 'GET',
+       						url: '/train/time',
+       						data: {
+       							start: start,
+       							end: end
+       						},
+       						
+       						success:function(data) {
+       							console.log(data);
+       							
+       							str = "";
+       							str += '<option value="" selected disabled hidden>출발시간/종류</option>';
+       							
+       							$.each(data, function (i, obj) {
+       								str += '<option value="'+i+'">'+ obj.starttime +'/'+ obj.trainclass +'</option>';
+       							})
+       							
+       							$("#trainStartTime").html(str);
+       						},
+       						
+       						error:function(e) {
+       							console.log(e);
+       						}
+       					});
+       				});
+	       		
+	       		
+	       		$("#trainStartTime").change(function() { // 변했을 때 -> 도착시간, 가격, 소요시간
+	       				var start = $("#trainStartSta option:selected").text(); // 값 가져오기 -> 출발역
+	       				var end = $("#trainEndSta option:selected").text();; // 도착역
+	       			
+	       				var startTime = $("#trainStartTime option:selected").text().substring(0,5); // 출발시간 가져오기
+	       				
+	       				$.ajax({
+       						type: 'GET',
+       						url: '/train/time',
+       						data: {
+       							start: start,
+       							end: end,
+       							time: startTime
+       						},
+       						
+       						success:function(data) {
+       							console.log(data);
+       							
+       							$("#trainWasteTime").html(data[0].wastetime);
+								$("#trainPrice").html(data[0].generalprice + "원/1인");
+       							
+       							str = '<option value="'+1+'">'+ data[0].endtime +'</option>';
+       		       				$("#trainArrTime").html(str);
+       						},
+       						
+       						error:function(e) {
+       							console.log(e);
+       						}
+       					});
+	       			});
+	       		
+	       		                                                                                                   
+	       		$("#trainPay").click(function(){     
+	       			var str = $("#str2").val(); 
+
+	       			if(str == 'no') {
+	       				var type = 'train';    
+	       			} else {
+	       				var type = 'trainRound';    
+	       			}
+	       			
+	       			var start = $("#trainStartSta option:selected").text(); // 출발역                              
+	       			var end = $("#trainEndSta option:selected").text();; // 도착역                                          
+	       			var time = $("#trainStartTime option:selected").text().substring(0,5); // 도착시간                            
+	       			                                                                                               
+	       			var date = $("#datepickerTrain").val();                                                        
+					var price = $("#trainPrice").html().replace("원/1인","");                                      
+					var count = $("#trainCount option:selected").text().replace("명",""); // 인원                  
+	       			var totalAmount = price * count;                                                               
+					var item = "기차 " + count + "인" + " " + time; // 결제할 떄 제품명                            
+	       			                                                                                               
+					// 비행기 번호는 db에서 가져오기                                                               
+					                                                                                                    
+	       			 $.ajax({                                                                                           
+	       				type: 'GET',                                                                                    
+	       				url: '/pay/traffic',                                                                            
+	       				data: {                                                                                         
+	       					start: start,                                                                               
+	       					end: end,                                                                                   
+	       					time: time,                                                                                 
+	       					count: count,                                                                               
+	       					date: date,                                                                                 
+	       					type: type,                                                                                 
+	       					total_amount: totalAmount,                                                                  
+	       					itemName: item,
+	       					str: str
+	       				},                                                                                              
+	       				                                                                                                
+	       				success:function(resp) {                                                                        
+	       					var url = resp.next_redirect_pc_url;
+	       					window.open(url,'payQr','width=420,height=435,screenX=700,screenY=310'); // qr 보이게 크기 조정                                                  
+	       				},                                                                                              
+	       				                                                                                                
+	       				error:function(e) {                                                                             
+	       					console.log(e);                                                                             
+	       				}                                                                                               
+	       			});                                                                                                 
+	       		});                                                                                                     
+	       	});                                                                                                         
+       </script>                                                                                                        
+        
+        <!-- 버스 예매 -->
+        <div class="modal fade" id="modal-bus" tabindex="-1"> 
+            <div class="modal-dialog modal-dialog-centered" role="document" style="margin-left: 800px;">
+                <div class="modal-content" style="width: 450px;">
+                    <div class="modal-header d-block position-relative border-0 pb-0 px-sm-5 px-4" style="width:450px;">
+                        <h3 class="modal-title mt-4 text-center" id="airTitle">
+                        버스 예매
+                        <span class="dropdown d-inline-block"><a class="dropdown-toggle text-decoration-none" id="busOne" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">가는편</a>
+		                <span class="dropdown-menu dropdown-menu-end my-1">
+		                  <button id="busTwo" class="dropdown-item fs-base fw-bold">오는편</button>
+		                </span></span>
+                        </h3>
+                        <button class="btn-close position-absolute top-0 end-0 mt-3 me-3" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <hr style="width: 100%; color: grey;">
+                    </div>
+                    <div class="modal-body px-sm-5 px-4">
+                    		<section style="height: 70px;margin-bottom: 20px;">
+                    			<div style="margin-left: 45px;"><span>출발역</span> <span style="float: right;margin-right: 45px;">도착역</span></div>
+                    			<select id="busStartSta" style="float: left; width: 150px;" class="form-control form-select">
+                    			<option value="" selected disabled hidden>출발역</option>
+                    				<c:forEach var="i" begin="0" end="${busStartList.size() - 1}"> <!-- 출발역 개수 만큼 -->
+                    					<option value="i">${busStartList.get(i)}</option>
+                    				</c:forEach>
+			                      </select>
+                    			<div style="float: left;margin-top: 8px;">
+                    				<span style="margin-left: 18px;"><i class="fi-arrow-right"></i></span>
+                    			</div>
+                    			<select id="busEndSta" style="float: right; width: 150px;" class="form-control form-select"readonly>
+                    			<option value="" selected>${busList.get(0).endsta}</option>
+                    			</select>
+                    		</section>
+                    		<hr style="width: 100%; border: 1px solid #E2E2E2; margin-bottom: 15px;">
+                    		<section style="margin-bottom: 30px; height: 70px;">
+                    			<div><span style="margin-left: 65px;margin-right: 135px;">날짜</span><span>인원</span></div>	
+                    			<input class="form-control date-picker rounded-pill pi-5 start" style="float: left; width: 170px;" id="datepickerBus" type="date" placeholder="날짜를 선택해주세요 " data-datepicker-options="{&quot;altInput&quot;: true, &quot;altFormat&quot;: &quot;Y. m. d &quot;, &quot;dateFormat&quot;: &quot;Y-m-d&quot;, &quot;language&quot;: &quot;ko&quot;} ">
+                    		
+                    			<select id="busCount" style="float: right; width: 120px; margin-right: 20px;" class="form-control form-select">
+                    			<option value="" selected disabled hidden>인원</option>
+			                      <option value="1">1명</option>
+			                      <option value="2">2명</option>
+			                      <option value="3">3명</option>
+			                      <option value="4">4명</option>
+			                      <option value="5">5명</option>
+			                      <option value="6">6명</option>
+			                      <option value="7">7명</option>
+			                      <option value="8">8명</option>
+			                      <option value="9">9명</option>
+			                      <option value="10">10명</option>
+			                      </select>
+                    		</section>
+                    		<!-- hidden으로 값 가져오기 -->
+                    		<input type="hidden" id="str3" value="no">
+                    		
+                    		<hr style="width: 100%; border: 1px solid #E2E2E2; margin-bottom: 15px;">
+                    		<section style="margin-bottom: 10px; height: 70px;">
+                    			<div><span style="margin-left: 45px;margin-right: 45px;">출발시간</span><span style="margin-right: 30px;">소요시간</span><span>도착시간</span></div>
+                    			<select id="busStartTime" style="float: left;width: 120px;margin-left: 15px;" class="form-control form-select">
+                    			<option value="" selected disabled hidden>출발시간</option>
+                    				<option value="">출발역을 선택해주세요.</option>
+			                      </select>
+			                      <section style="float: left;margin-right: 20px;margin-left: 20px;">
+			                      	<div style="height: 22px;">-----></div>
+			                      	<div id="busWasteTime" style="font-size: 13px;">소요시간</div>
+			                      </section>
+                    			<select id="busArrTime" style="float: left; width: 120px;" class="form-control form-select" readonly>
+                    			<option value="">따라 다름</option>
+                    			</select>
+                    		</section>
+                    		<section style="text-align: center;">
+                    			<div id="busPrice">가격<span>/1인</span></div>
+                    		</section>
+                    		<div id="busPay">
+                            	<button style="width: 300px; margin: 0 auto; padding-left: 10px;padding-right: 10px;" class="btn btn-primary d-block mb-4" type="button" id="busPay">
+                            	<img style="margin-right: 20px;" src="${path}/resources/image/payment_icon_yellow_small.png">예매하기</button>
+                            </div>
+                       </div>
+                    </div>
+                </div>
+            </div>
+            
+            <script> // 버스
+	       	$(document).ready(() => {
+	       		$('#busTwo').on('click', function() { // 왕복을 원하면
+	       			var check = $("#busTwo").html(); // 가는편 오는편 가져오기
+	       			if(check == '오는편') { // 가는편 가지고 오는편 가져오기 -> 왕복
+	       				$("#busOne").html('오는편');
+	       				$("#busTwo").html('가는편');
+	       				
+	       				var start = $("#busEndSta option:selected").text(); // 출발역 도착역 교환
+		       			
+		       			var end = $("#busStartSta option:selected").text();
+		       			
+		       			var date = $("#datepickerBus").val(); // 가는 날짜
+		       			$("#datepickerBus").val("연도-월-일"); // 원래대로 돌려놓기
+		       			var time = $("#busStartTime option:selected").text().substring(0,5); // 가는 시간
+		       			var price = $("#busPrice").html().replace("원/1인",""); // 가는 표 가격
+		       			$("#busPrice").html('가격<span>/1인</span>');
+		       			var count = $("#busCount option:selected").text().replace("명",""); // 인원
+		       			$("#busCount").html('<option value="" selected>'+ count +'명</option>');
+						var item = "비행기 " + date.substr(5) + " " + time; // 결제할 떄 제품명
+		       			var totalAmount = price * count;
+						
+		       			var str3 = date + "," + time + "," + count + "," + item + "," + totalAmount; // 가는 표 정보 문자열
+						
+						// 고정된 정보 readonly하기 -> 역만 바꾸면 됨
+						$("#busStartSta").attr('readonly', true); // readonly 추가
+						$("#busStartSta").html('<option value="" selected>'+ start +'</option>');
+						
+						$("#busEndSta").html('<option value="" selected>'+ end +'</option>');
+						
+						$("#busCount").attr('readonly', true); // readonly 추가
+						
+						$("#str3").val(str3); // hidden에 저장
+						
+						$.ajax({ // 출발시간 바로 가져오기
+		       				type: 'GET',
+		       				url: '/bus/time',
+		       				data: {
+		       					start: start,
+		       					end: end
+		       				},
+		       				
+		       				success:function(data) {
+		       					console.log(data);
+		       					
+		       					str = "";
+		       					str += '<option value="" selected disabled hidden>출발시간</option>';
+	   							$.each(data, function (i, obj) {
+	   								if(i == 0) { // 소요시간
+	   									$("#busWasteTime").html(obj);
+	   								}
+	   								
+	   								if(i == 1) { // 가격
+	   									$("#busPrice").html(obj+"원/1인");
+	   								}
+	   								
+	   								if(i > 1) {
+	   									str += '<option value="'+i+'">'+ obj +'</option>';	       									
+	   								}
+	   							})
+		       					
+		       					$("#busStartTime").html(str);
+		       				},
+		       				
+		       				error:function(e) {
+		       					console.log(e);
+		       				}
+		       			});	
+	       			} else {
+	       				$("#busOne").html('가는편');
+	       				$("#busTwo").html('오는편');
+	       				$("#datepickerBus").val("연도-월-일"); // 원래대로 돌려놓기
+	       				str = "";
+	       				
+	       				str += '<option value="" selected disabled hidden>출발역</option>                            '
+	       				
+	       				<c:forEach var="i" begin="0" end="${busStartList.size() - 1}">
+	       					var item = '${busStartList.get(i)}';
+	       					str += '<option value="i">'+ item +'</option>'
+	       				</c:forEach>
+	       					
+						$("#busStartSta").html(str);     				
+	       				
+						var end = '${busList.get(0).endsta}';
+        				$("#busEndSta").html('<option value="" selected>'+end+'</option>');
+        				
+        				$("#busCount").html('<option value="" selected disabled hidden>인원</option>' 
+			                      +'<option value="1">1명</option>'
+			                      +'<option value="2">2명</option>'
+			                      +'<option value="3">3명</option>'
+			                      +'<option value="4">4명</option>'
+			                      +'<option value="5">5명</option>'
+			                      +'<option value="6">6명</option>'
+			                      +'<option value="7">7명</option>'
+			                      +'<option value="8">8명</option>'
+			                      +'<option value="9">9명</option>'
+			                      +'<option value="10">10명</option>');
+        				
+        				$("#busStartTime").html('<option value="" selected disabled hidden>출발시간</option>'
+                				+'<option value="">출발역을 선택해주세요.</option>');
+        				
+	       				$("#busPrice").html('가격<span>/1인</span>');
+        				
+		       			$("#str3").val('no'); // str1 값 없애서 가는편 없애기
+	       			}
+	       		});
+	       		
+	       		$("#busStartSta").change(function() { // 변했을 때
+       					var start = $("#busStartSta option:selected").text(); // 값 가져오기 -> 출발역
+       					var end = $("#busEndSta option:selected").text();; // 도착역
+       					
+       					$.ajax({
+       						type: 'GET',
+       						url: '/bus/time',
+       						data: {
+       							start: start,
+       							end: end
+       						},
+       						
+       						success:function(data) {
+       							console.log(data);
+       							
+       							str = "";
+       							str += '<option value="" selected disabled hidden>출발시간/종류</option>';
+       							$.each(data, function (i, obj) {
+       								if(i == 0) { // 소요시간
+       									$("#busWasteTime").html(obj);
+       								}
+       								
+       								if(i == 1) { // 가격
+       									$("#busPrice").html(obj+"원/1인");
+       								}
+       								
+       								if(i > 1) {
+       									str += '<option value="'+i+'">'+ obj +'</option>';	       									
+       								}
+       							})
+       							console.log(str)
+       							
+       							$("#busStartTime").html(str);
+       						},
+       						
+       						error:function(e) {
+       							console.log(e);
+       						}
+       					});
+       				});
+	       		
+	       		$("#busPay").click(function(){             
+	       			var str = $("#str3").val();
+	       			if(str == 'no') {
+	       				var type = "bus"; 
+	       			} else {
+	       				var type = "busRound"
+	       			}
+
+	       			var start = $("#busStartSta option:selected").text(); // 출발역                             
+	       			var end = $("#busEndSta option:selected").text();; // 도착역                                            
+	       			var time = $("#busStartTime option:selected").text(); // 버스 출발시간                      
+	       			                                                                                            
+	       			var date = $("#datepickerBus").val();                                                       
+					var price = $("#busPrice").html().replace("원/1인","");                                     
+					var count = $("#busCount option:selected").text().replace("명",""); // 인원                 
+	       			var totalAmount = price * count;                                                            
+					var item = "버스 " + count + "인" + " " + time; // 결제할 떄 제품명                         
+	       			                                       
+	       			 $.ajax({
+	       				type: 'GET',
+	       				url: '/pay/traffic',
+	       				data: {
+	       					start: start,
+	       					end: end,
+	       					time: time,
+	       					count: count,
+	       					date: date,
+	       					type: type,
+	       					total_amount: totalAmount,
+	       					itemName: item,
+	       					str: str
+	       				},
+	       				
+	       				success:function(resp) {
+	       					var url = resp.next_redirect_pc_url;
+	       					window.open(url,'payQr','width=420,height=435,screenX=700,screenY=310'); // qr 보이게 크기 조정
+	       				},
+	       				
+	       				error:function(e) {
+	       					console.log(e);
+	       				}
+	       			}); 
+	       		});
+	       	});
+       </script>         
+               </div>
                 <!-- Sidebar with details-->
                 <aside class="col-lg-5">
                     <div class="ps-lg-5">
                         <div class="d-flex align-items-center justify-content-between mb-2">
-                            <h2 class="h2">브람스 펜션</h2>
+                            <h2 class="h2">${hotel.name}</h2>
                             <div class="text-nowrap">
                                 <button class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle ms-2 mb-2" type="button" data-bs-toggle="tooltip" title="Add to Wishlist"><i class="fi-heart"></i></button>
                                 <div class="dropdown d-inline-block" data-bs-toggle="tooltip" title="Share">
@@ -291,53 +1018,195 @@
                         <div class="card border-0 bg-secondary mb-4">
                             <div class="card-body">
                                 <ul class="list-unstyled mt-n2 mb-0">
-                                    <li class="mt-2 mb-0"><b>주소 | </b>전라북도 정읍시 부전동 866-10번지</li>
+                                    <li class="mt-2 mb-0"><b>주소 | </b> ${hotel.addr} </li>
                                 </ul>
                             </div>
                         </div>
-                        <h2 class="h4">가격 : 180,000원</h2>
+                        <h2 class="h4">가격 :<fmt:formatNumber value="${hotel.price}" pattern="#,###"/>원</h2>
                         <input class="btn btn-lg btn-primary d-block w-100" id="payTest" type="submit" value="예약하기">
+                        
+                        <h3 class="h4">숙박시설을 향해</h3>
+        				<div style="height: 100px;"> <!-- 교통 예매 div --> <!-- 팝업으로 이동 -->
+	        				<a class="" href="#modal-air" data-bs-toggle="modal" style="border-radius: 50%; width:50px; height: 50px;"><img src="/resources/image/airplane.png" style="border-radius: 50%; width:80px;height: 80px;margin-left: 40px;margin-right: 50px;"></a>
+	        				<a class="" href="#modal-train" data-bs-toggle="modal" style="border-radius: 50%; width:50px; height: 50px;"><img src="/resources/image/train.png" style="border-radius: 50%; width:80px;height: 80px;margin-right: 50px;"></a>
+	        				<a class="" href="#modal-bus" data-bs-toggle="modal" style="border-radius: 50%; width:50px; height: 50px;"><img src="/resources/image/school-bus.png" style="width:80px; height: 80px;"></a>
+        				</div>
+                                              
                         <!--Map-->
                         <div id="map" style="width: 480px; height: 300px; border-radius:2%;"></div>
                         <script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=8cddaf5bb7b88f487cf47627b52b649b"></script>
                         <script>
-                            var container = document.getElementById('map');
-                            var options = {
-                                center: new kakao.maps.LatLng(35.527186, 126.8965146473305),
-                                level: 3
-                            };
+                        var container = document.getElementById('map');
+                        var options = {
+                            center: new kakao.maps.LatLng('${hotel.lat}','${hotel.lng}'),
+                            level: 3
+                        };
 
-                            var map = new kakao.maps.Map(container, options);
+                        var map = new kakao.maps.Map(container, options);
 
-                            var markerPosition = new kakao.maps.LatLng(35.527186, 126.8965146473305);
+                        var markerPosition = new kakao.maps.LatLng('${hotel.lat}','${hotel.lng}');
 
-                            var marker = new kakao.maps.Marker({
-                                position: markerPosition
-                            });
+                        var marker = new kakao.maps.Marker({
+                            position: markerPosition
+                        });
 
-                            marker.setMap(map);
+                        marker.setMap(map);
                         </script>
-                        <br>
-                        <h3 class="h4">오늘의 날씨</h3>
-                        <!-- Not included in rent-->
-                        <div class="weather_area m-0 p-0">
-                            <div class="weather_now m-0 p-0">
-                                <div class="summary_img m-0 p-0">
-                                    <i class="ico_animation _cnLazy ico_animation_wt6" data-ico="ico_animation_wt6" data-ymdt="2022092623"></i>
-                                    <strong class="current">
-                                    <span class="blind">현재 온도</span>14.1<span class="degree">°</span>
-                                </strong>
+                        <br>	
+                        <!--  날씨 -->	
+				<div style="margin-bottom:30px;">
+	                                <p id="weaStr" style="float: left; color: black; font-weight:600;">현재 숙박시설의 날씨는?${weaList }</p> 
+	                               	<div style="margin-left: 265px;width: 150px;text-align: center;">
+	                               		<div class="btn-group btn-group-sm" role="group" style="width:150px;">
+	                               			<button class="btn btn-outline-secondary on" id="today" type="button" style="padding-left: 10px;padding-right: 10px;padding-top: 4px;padding-bottom: 4px;">오늘</button>
+	                               			<button class="btn btn-outline-secondary" id="one" type="button" style="padding-left: 10px;padding-right: 10px;padding-top: 4px;padding-bottom: 4px;">내일</button>
+	                               			<button class="btn btn-outline-secondary" id="two" type="button" style="padding-left: 10px;padding-right: 10px;padding-top: 4px;padding-bottom: 4px;">모레</button>
+	                               		</div>
+	                               	</div>
                                 </div>
-                                <p class="summary p-0">
-                                    <span class="weather">구름많음</span>
-                                    <em>어제보다</em> <span class="temperature down">0.4° <span class="blind">낮아요</span></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="weather_area m-0 p-0">
+                                        <div class="weather_now m-0 p-0">
+                                            <div class="summary_img m-0 p-0">
+                                            	<c:set var="rainStr" value="${today.pcp}"/>
+                                            
+                                                <c:if test="${fn:contains(rainStr, 'mm')}"> <!-- 비올때 --> 
+                                                	<i class="ico_animation _cnLazy ico_animation_wt8" data-ico="ico_animation_wt8" data-ymdt="2022092623"></i>
+                                                </c:if>
+                                                <c:if test="${today.sky <= 5}"> <!-- 맑음 --> 
+                                                	<i class="ico_animation _cnLazy ico_animation_wt1" data-ico="ico_animation_wt1" data-ymdt="2022092623"></i>
+                                                </c:if>
+                                                <c:if test="${today.sky > 5 && today.sky <= 8}"> <!-- 구름많음 --> 
+                                                	<i class="ico_animation _cnLazy ico_animation_wt5" data-ico="ico_animation_wt5" data-ymdt="2022092623"></i>
+                                                </c:if>
+                                                <c:if test="${today.sky > 8}"> <!-- 흐림 --> 
+                                                	<i class="ico_animation _cnLazy ico_animation_wt7" data-ico="ico_animation_wt7" data-ymdt="2022092623"></i>
+                                                </c:if>
+                                                <strong class="current">
+                                                <span class="blind">현재 온도</span>${today.tmp}<span class="degree">°</span>
+                                            </strong>
+                                            </div>
+                                            <p class="summary p-0">
+                                                <span class="weather">
+                                                <c:if test="${today.sky <= 5}"> <!-- 맑음 -->
+                                                	&nbsp&nbsp맑음
+                                                </c:if>
+                                                <c:if test="${today.sky > 5 && today.sky <= 8}"> <!-- 구름많음 -->
+                                                	구름많음
+                                                </c:if>
+                                                <c:if test="${today.sky > 8}"> <!-- 흐림 -->
+                                                	&nbsp&nbsp흐림
+                                                </c:if>
+                                                </span>
+                                                <span class="lowtem">${today.tmn}</span>/<span class="hightem">${today.tmx}</span>
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <span class="secondary">습도 </span><span class="secondaryInfo">${today.reh}%</span>
+                                            <span class="secondary">강수확률 </span><span class="secondaryInfo">${today.pop}%</span>
+                                            <span class="secondary">강수량 </span><span class="secondaryInfo">${today.pcp}</span>
+                                        </div>
+                                    </div>
+                                    </div>
                 </aside>
             </div>
-        </section>
+        </section>  
+         <script>
+        	$(document).ready(function() {
+        		$('.btn-group-sm').find('button').click(function() {
+        			var on_id = $(this).attr('id');
+        			
+        			$('.btn-group-sm button').removeClass('on');
+        			
+        			$("#" + on_id).addClass('on'); // 클릭한 클래스에 on 추가
+        			
+        			var i = -1;
+        			
+        			var sky = 100;
+	        		var tmp = 100;
+	        		var tmn = 100;
+	        		var tmx = 100;
+	        		var reh = 100;
+	        		var pop = 100;
+	        		var pcp = "";
+	        			
+	        		if(on_id == 'today') {      
+		        		sky = ${today.sky};   
+		        		tmp = ${today.tmp};   
+		        		tmn = ${today.tmn};   
+		        		tmx = ${today.tmx};   
+		        		reh = ${today.reh};   
+		        		pop = ${today.pop};   
+		        		pcp = '${today.pcp}';   
+        				$('#weaStr').html('현재 숙박시설의 날씨는?')
+        			} 
+					if(on_id == 'one') {
+						sky = ${one.sky};   
+		        		tmp = ${one.tmp};   
+		        		tmn = ${one.tmn};   
+		        		tmx = ${one.tmx};   
+		        		reh = ${one.reh};   
+		        		pop = ${one.pop};   
+		        		pcp = '${today.pcp}';  
+					    $('#weaStr').html('내일 숙박시설의 날씨는?')
+					} 
+					if(on_id == 'two') {
+						sky = ${two.sky};   
+		        		tmp = ${two.tmp};   
+		        		tmn = ${two.tmn};   
+		        		tmx = ${two.tmx};   
+		        		reh = ${two.reh};   
+		        		pop = ${two.pop};   
+		        		pcp = '${today.pcp}';  
+						$('#weaStr').html('모레 숙박시설의 날씨는?')
+					} 
+					
+					var one = '${weaList.get(i).sky}'
+					console.log(one)
+					str = "";
+					
+					str += '	 <div class="weather_now m-0 p-0">                                                                                            '
+	                str += '     <div class="summary_img m-0 p-0">                                                                                            '
+	                
+	                if(pcp != '강수없음') {
+	                	str += '<i class="ico_animation _cnLazy ico_animation_wt8" data-ico="ico_animation_wt8" data-ymdt="2022092623"></i>           '
+	                } else if(sky <= 5) {
+		            	str += '<i class="ico_animation _cnLazy ico_animation_wt1" data-ico="ico_animation_wt1" data-ymdt="2022092623"></i>           '
+			        } else if(sky > 5 && sky <= 8) {
+						str += '<i class="ico_animation _cnLazy ico_animation_wt5" data-ico="ico_animation_wt5" data-ymdt="2022092623"></i>           '
+			        } else if(sky > 8) {
+						str += '<i class="ico_animation _cnLazy ico_animation_wt7" data-ico="ico_animation_wt7" data-ymdt="2022092623"></i>           '
+					}
+	                
+	                str += '         <strong class="current">                                                                                                 '
+	                str += '         <span class="blind">현재 온도</span>'+ tmp +'<span class="degree">°</span>                                   '
+	                str += '     </strong>                                                                                                                    '
+	                str += '     </div>                                                                                                                       '
+	                str += '     <p class="summary p-0">                                                                                                      '
+	                str += '         <span class="weather">                                                                                                   '
+	                
+	                if(sky <= 5) {
+	                	str += '&nbsp&nbsp맑음';
+	                } else if(sky > 5 && sky <= 8) {
+	                	str += '구름많음'
+	                } else if(sky > 8) {
+						str += '&nbsp&nbsp흐림'
+					}
+					
+	                str += '         </span>                                                                                                                  '
+	                str += '         <span class="lowtem">'+ tmn +'</span>/<span class="hightem">'+ tmx +'</span>                     '
+	                str += '     </p>                                                                                                                         '
+	                str += ' </div>                                                                                                                           '
+	                str += ' <div>                                                                                                                            '
+	                str += '     <span class="secondary">습도 </span><span class="secondaryInfo">'+ reh +'%</span>                                '
+	                str += '     <span class="secondary">강수확률 </span><span class="secondaryInfo">'+ pop +'%</span>                            '
+	                str += '     <span class="secondary">강수량 </span><span class="secondaryInfo">'+ pcp +'</span>                               '
+	                str += ' 		</div>                                                                                                                    '
+	             	str += '		</div>                                                                                                                    '
+	             	
+	             	$('.weather_area').html(str);
+        		})
+        	})
+        </script>      
         <!-- Recently viewed-->
         <section class="container mb-5 pb-2 pb-lg-4">
             <div>
