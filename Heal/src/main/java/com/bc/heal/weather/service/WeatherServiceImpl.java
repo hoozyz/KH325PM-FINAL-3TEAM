@@ -14,6 +14,7 @@ public class WeatherServiceImpl implements WeatherService{
 
 	@Override
 	public WeatherCoor selectByDong(String dong) {
+		dong = "%" + dong + "%";
 		return mapper.selectByDong(dong);
 	}
 

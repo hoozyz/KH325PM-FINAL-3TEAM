@@ -14,7 +14,7 @@ public interface CampService {
 	int getCampCount(Map<String, String> param);
 	
 	List<Camp> getCampList(PageInfo pageInfo, Map<String, String> param);
-	
 
-	
+	void updateCamp(String no1, String no2, String no3, String no4);
+
 }

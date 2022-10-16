@@ -38,6 +38,15 @@
 		<if test="addr != null">
 			AND ADDR LIKE '%'||#{addr}||'%'
 		</if>
+		<if test="theme != null">
+			AND THEME LIKE '%'||#{theme}||'%'
+		</if>
+		<if test="category != null">
+			AND CATEGORY LIKE '%'||#{category}||'%'
+		</if>
+		<if test="price != null">
+			AND PRICE LIKE '%'||#{price}||'%'
+		</if>
 		ORDER BY NO DESC
 	</select>
 	
@@ -52,8 +61,25 @@
 		<if test="addr != null">
 			AND ADDR LIKE '%'||#{addr}||'%'
 		</if>
+		<if test="theme != null">
+			AND THEME LIKE '%'||#{theme}||'%'
+		</if>
+		<if test="category != null">
+			AND CATEGORY LIKE '%'||#{category}||'%'
+		</if>
+		<if test="price != null">
+			AND PRICE LIKE '%'||#{price}||'%'
+		</if>
 		ORDER BY NO DESC
-	</select> 
+	</select>
 	
+	<update id="updateCamp" parameterType="string">
+		UPDATE TBL_CAMP
+		SET NAME = #{no1},
+			LINEINTRO = #{no2},
+			INTRO = #{no3},
+			ARIA = #{no4}
+		WHERE NO = ${0}
+	</update>
 	
 </mapper>

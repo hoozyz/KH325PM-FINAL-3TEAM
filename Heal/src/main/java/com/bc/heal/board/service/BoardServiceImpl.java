@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bc.heal.board.mapper.BoardMapper;
-import com.bc.heal.vo.Board;
 import com.bc.heal.common.util.PageInfo;
+import com.bc.heal.vo.Board;
 @Service
 public class BoardServiceImpl implements BoardService {
 

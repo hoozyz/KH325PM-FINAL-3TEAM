@@ -19,7 +19,6 @@ import com.bc.heal.pay.service.PayService;
 import com.bc.heal.reserve.service.ReserveService;
 import com.bc.heal.train.service.TrainService;
 import com.bc.heal.vo.Air;
-import com.bc.heal.vo.ApproveResponse;
 import com.bc.heal.vo.Bus;
 import com.bc.heal.vo.Member;
 import com.bc.heal.vo.ReadyResponse;

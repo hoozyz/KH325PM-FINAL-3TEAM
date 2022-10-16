@@ -189,9 +189,8 @@
 	    <link rel="stylesheet" media="screen" href="${path}/resources/vendor/tiny-slider/dist/tiny-slider.css" />.
 	    <!-- Main Theme Styles + Bootstrap-->
 	    <link rel="stylesheet" media="screen" href="${path}/resources/css/theme.min.css">
-	    <script defer src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" integrity="sha384-vuFJ2JiSdUpXLKGK+tDteQZBqNlMwAjhZ3TvPaDfN9QmbPb7Q8qUpbSNapQev3YF" crossorigin="anonymous"></script>
     
-        <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+            <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
     
 		<!-- Review modal-->
         <div class="modal fade" id="modal-review" tabindex="-1">
@@ -202,15 +201,16 @@
                         <button class="btn-close position-absolute top-0 end-0 mt-3 me-3" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body px-sm-5 px-4">
-                        <form class="needs-validation" novalidate>
+                        <form class="needs-validation" action="${path}/review/write" method="POST">
+                        	<input type="hidden" name="type" value="camp">
+                        	<input type="hidden" name="no" value="${camp.no}">
                             <div class="mb-3">
                                 <label class="form-label" for="review-name">이름<span class='text-danger'>*</span></label>
-                                <input class="form-control" type="text" id="review-name" name="name" value="${loginMember.name}" readonly>
-                                <div class="invalid-feedback">Please let us know your name.</div>
+                                <input class="form-control" type="text" id="review-id" name="id" value="${loginMember.id}" readonly>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="review-rating">평점<span class='text-danger'>*</span></label>
-                                <select class="form-control form-select" id="review-rating" name="star">
+                                <select class="form-control form-select" id="review-rating" name="star" required>
                       <option value="" selected disabled hidden>평점 선택</option>
                       <option value="5">5점</option>
                       <option value="4">4점</option>
@@ -239,7 +239,7 @@
                     <div class="modal-header d-block position-relative border-0 pb-0 px-sm-5 px-4" style="width:450px;">
                         <h3 class="modal-title mt-4 text-center" id="airTitle">
                         비행기 예매
-                        <span class="dropdown d-inline-block"><a class="dropdown-toggle text-decoration-none" id="airOne" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">가는편</a>
+                        <span class="dropdown d-inline-block"><a class="dropdown-toggle text-decoration-none" id="airOne" onclick="return flase;" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">가는편</a>
 		                <span class="dropdown-menu dropdown-menu-end my-1">
 		                  <button id="airTwo" class="dropdown-item fs-base fw-bold">오는편</button>
 		                </span></span>
@@ -389,14 +389,20 @@
 	       				
 	       				str += '<option value="" selected disabled hidden>출발공항</option>                            '
 	       				
-	       				<c:forEach var="i" begin="0" end="${airStartList.size() - 1}">
-	       					var item = '${airStartList.get(i)}';
-	       					str += '<option value="i">'+ item +'</option>'
-	       				</c:forEach>
+	       				<c:if test="${!empty airStartList}">
+	       					<c:forEach var="i" begin="0" end="${airStartList.size() - 1}">
+       						var item = '${airStartList.get(i)}';
+       						str += '<option value="i">'+ item +'</option>'
+       						</c:forEach>
+	       				</c:if>
 	       					
 						$("#airStartSta").html(str);     				
 	       				
-						var end = '${airList.get(0).endsta}';
+						var end = "";
+						<c:if test="${!empty airList}">
+							end = '${airList.get(0).endsta}';
+						</c:if>
+							
         				$("#airEndSta").html('<option value="" selected>'+end+'</option>');
         				
         				$("#airCount").html('<option value="" selected disabled hidden>인원</option>' 
@@ -543,7 +549,7 @@
                     <div class="modal-header d-block position-relative border-0 pb-0 px-sm-5 px-4" style="width:450px;">
                         <h3 class="modal-title mt-4 text-center" id="airTitle">
                         기차 예매
-                        <span class="dropdown d-inline-block"><a class="dropdown-toggle text-decoration-none" id="trainOne" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">가는편</a>
+                        <span class="dropdown d-inline-block"><a class="dropdown-toggle text-decoration-none" id="trainOne" onclick="return flase;" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">가는편</a>
 		                <span class="dropdown-menu dropdown-menu-end my-1">
 		                  <button id="trainTwo" class="dropdown-item fs-base fw-bold">오는편</button>
 		                </span></span>
@@ -839,7 +845,7 @@
                     <div class="modal-header d-block position-relative border-0 pb-0 px-sm-5 px-4" style="width:450px;">
                         <h3 class="modal-title mt-4 text-center" id="airTitle">
                         버스 예매
-                        <span class="dropdown d-inline-block"><a class="dropdown-toggle text-decoration-none" id="busOne" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">가는편</a>
+                        <span class="dropdown d-inline-block"><a class="dropdown-toggle text-decoration-none" id="busOne" onclick="return flase;" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">가는편</a>
 		                <span class="dropdown-menu dropdown-menu-end my-1">
 		                  <button id="busTwo" class="dropdown-item fs-base fw-bold">오는편</button>
 		                </span></span>
@@ -1186,62 +1192,209 @@
                         <h3 class="h4 pb-3"><i class="fi-star-filled mt-n1 me-2 lead align-middle text-warning"></i>4,9 (32 후기)</h3>
                         <div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch justify-content-between"><a class="btn btn-outline-primary mb-sm-0 mb-3" href="#modal-review" data-bs-toggle="modal"><i class="fi-edit me-1"></i>후기 등록</a>
                             <div class="d-flex align-items-center ms-sm-4">
-                                <label class="me-2 pe-1 text-nowrap" for="reviews-sorting"><i class="fi-arrows-sort text-muted mt-n1 me-2"></i>정렬순:</label>
-                                <select class="form-select" id="reviews-sorting">
-                      <option>최신순</option>
-                      <option>오래된순</option>
-                      <option>좋아요순</option>
-                      <option>별점 높은순</option>
+                                <label class="me-2 pe-1 text-nowrap" for="reviewSort"><i class="fi-arrows-sort text-muted mt-n1 me-2"></i>정렬순:</label>
+                                <select class="form-select" id="sort">
+                      <option id="new" selected>최신순</option>
+                      <option id="old">오래된순</option>
+                      <option id="like">좋아요순</option>
+                      <option id="star">별점 높은순</option>
                     </select>
                             </div>
                         </div>
                     </div>
                     <!-- Review-->
-                    <div class="mb-4 pb-4 border-bottom">
-                        <div class="d-flex justify-content-between mb-3">
-                            <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/03.jpg" width="48" alt="Avatar">
-                                <div class="ps-2">
-                                    <h6 class="fs-base mb-0">Annette Black</h6><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
-                                </div>
-                            </div><span class="text-muted fs-sm">Jan 17, 2021</span>
-                        </div>
-                        <p>Elementum ut quam tincidunt egestas vitae elit, hendrerit. Ullamcorper nulla amet lobortis elit, nibh condimentum enim. Aliquam felis nisl tellus sodales lectus dictum tristique proin vitae. Odio fermentum viverra tortor quis.</p>
-                        <div class="d-flex align-items-center">
-                            <button class="btn-like" type="button"><i class="fi-like"></i><span>(3)</span></button>
-                            <div class="border-end me-1">&nbsp;</div>
-                            <button class="btn-dislike" type="button"><i class="fi-dislike"></i><span>(0)</span></button>
-                        </div>
-                    </div>
-                    <!-- Review-->
-                    <div class="mb-4 pb-4 border-bottom">
-                        <div class="d-flex justify-content-between mb-3">
-                            <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/13.png" width="48" alt="Avatar">
-                                <div class="ps-2">
-                                    <h6 class="fs-base mb-0">Darrell Steward</h6><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star"></i><i class="star-rating-icon fi-star"></i></span>
-                                </div>
-                            </div><span class="text-muted fs-sm">Dec 1, 2020</span>
-                        </div>
-                        <p>Vel dictum nunc ut tristique. Egestas diam amet, ut proin hendrerit. Dui accumsan at phasellus tempus consequat dignissim.</p>
-                        <div class="d-flex align-items-center">
-                            <button class="btn-like" type="button"><i class="fi-like"></i><span>(0)</span></button>
-                            <div class="border-end me-1">&nbsp;</div>
-                            <button class="btn-dislike" type="button"><i class="fi-dislike"></i><span>(1)</span></button>
-                        </div>
+                    <div id="revDiv">
+                    	<c:if test="${empty revList}">
+                    		리뷰내역이 없습니다.
+                    	</c:if>
+                    	<c:if test="${!empty revList}">
+                    		<div class="mb-4 pb-4 border-bottom"><div class="d-flex justify-content-between mb-3"><div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/i3.jpg" width="48" alt="Avatar">
+                                <div class="ps-2"><h6 class="fs-base mb-i">${revList.get(0).id}</h6>
+                                    <span class="star-rating">
+	                                    <c:if test="${revList.get(0).revstar == 5}">
+	                                    	<i class="star-rating-icon fi-star-filled active"></i>
+	                                    	<i class="star-rating-icon fi-star-filled active"></i>
+	                                    	<i class="star-rating-icon fi-star-filled active"></i>
+	                                    	<i class="star-rating-icon fi-star-filled active"></i>
+	                                    	<i class="star-rating-icon fi-star-filled active"></i>
+	                                    </c:if>
+	                                    <c:if test="${revList.get(0).revstar < 5}">
+	                                    	<c:forEach var="i" begin="1" end="${revList.get(0).revstar}">
+	                                    		<i class="star-rating-icon fi-star-filled active"></i>
+	                                   	 	</c:forEach>
+	                                    	<c:forEach var="i" begin="${revList.get(0).revstar + 1}" end="5">
+	                                    		<i class="star-rating-icon fi-star"></i>
+	                                    	</c:forEach>
+	                                    </c:if>
+                                    </span></div>
+                            </div><span class="text-muted fs-sm">${revList.get(0).createdate}</span></div><p>${revList.get(0).cont}</p>
+                        <div class="d-flex align-items-center" id="like${revList.get(0).no}"><button class="btn-like" type="button" onclick="likePlus(${revList.get(0).no})"><i class="fi-heart"></i>(<span id="revLike${revList.get(0).no}">${revList.get(0).revlike}</span>)</button>
+                        </div></div>
+                        
+                        <div class="mb-4 pb-4 border-bottom"><div class="d-flex justify-content-between mb-3"><div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/03.jpg" width="48" alt="Avatar">
+                                <div class="ps-2"><h6 class="fs-base mb-0">${revList.get(1).id}</h6>
+                                    <span class="star-rating">
+	                                    <c:if test="${revList.get(1).revstar == 5}">
+	                                    	<i class="star-rating-icon fi-star-filled active"></i>
+	                                    	<i class="star-rating-icon fi-star-filled active"></i>
+	                                    	<i class="star-rating-icon fi-star-filled active"></i>
+	                                    	<i class="star-rating-icon fi-star-filled active"></i>
+	                                    	<i class="star-rating-icon fi-star-filled active"></i>
+	                                    </c:if>
+	                                    <c:if test="${revList.get(1).revstar < 5}">
+	                                    	<c:forEach var="i" begin="1" end="${revList.get(1).revstar}">
+	                                    		<i class="star-rating-icon fi-star-filled active"></i>
+	                                   	 	</c:forEach>
+	                                    	<c:forEach var="i" begin="${revList.get(1).revstar + 1}" end="5">
+	                                    		<i class="star-rating-icon fi-star"></i>
+	                                    	</c:forEach>
+	                                    </c:if>
+                                    </span></div>
+                            </div><span class="text-muted fs-sm">${revList.get(1).createdate}</span></div><p>${revList.get(1).cont}</p>
+                        <div class="d-flex align-items-center" id="like${revList.get(1).no}"><button class="btn-like" type="button" onclick="likePlus(${revList.get(1).no})"><i class="fi-heart"></i>(<span id="revLike${revList.get(1).no}">${revList.get(1).revlike}</span>)</button>
+                        </div></div>
+                   	 	</c:if>
                     </div>
                     <!-- Pagination-->
                     <nav class="mt-2 mb-4" aria-label="Reviews pagination">
                         <ul class="pagination">
-                            <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 5</span></li>
-                            <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="visually-hidden">(current)</span></span>
-                            </li>
-                            <li class="page-item d-none d-sm-block"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item d-none d-sm-block">...</li>
-                            <li class="page-item d-none d-sm-block"><a class="page-link" href="#">8</a></li>
-                            <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="fi-chevron-right"></i></a></li>
+                            <li class="page-item active d-none d-sm-block" aria-current="page"><a class="page-link" id="page(1)" onclick="goPage(1); return false;">1</a></li>
+                            <c:if test="${pageInfo.getEndPage() > 1}">
+	                			<c:forEach var="i" begin="2" end="${pageInfo.getEndPage()}">
+	                				<li class="page-item d-none d-sm-block"><a class="page-link" id="page(${i})" onclick="goPage(${i}); return false;">${i}</a></li>
+	                			</c:forEach>
+	                		</c:if>
+                            <li class="page-item"><a class="page-next" onclick="goPage(${pageInfo.getNextPage()}); return false;" aria-label="Next"><i class="fi-chevron-right"></i></a></li>
+                            <li class="page-item"><a class="page-end" onclick="goPage(${pageInfo.getMaxPage()}); return false;" aria-label="Next"><i class="fi-chevrons-right"></i></a></li>
                         </ul>
                     </nav>
                 </div>
+                
+                <script>
+                	$("#sort").change(function() {
+                		goPage(1);
+                	});
+                
+                	function likePlus(no) {
+                		$.ajax({
+                			type: 'GET',
+                			url: '/review/like',
+                			data: {
+                				no: no,
+                				check: 1 // like + 1
+                			},
+                			
+                			success:function(like) {
+                				console.log(like)
+                				$("#like"+no).html('<button class="btn-like" type="button" onclick="likeMinus('+ no +')"><i class="fi-heart-filled"></i>(<span id="revLike'+ no +'">'+ like +'</span>)</button>')
+                			},
+                			
+                			error:function(e) {
+                				console.log(e)
+                			}
+                		});
+                	}
+                	
+                	function likeMinus(no) {
+                		$.ajax({
+                			type: 'GET',
+                			url: '/review/like',
+                			data: {
+                				no: no,
+                				check: 0
+                			},
+                			
+                			success:function(like) {
+								$("#like"+no).html('<button class="btn-like" type="button" onclick="likePlus('+ no +')"><i class="fi-heart"></i>(<span id="revLike'+ no +'">'+ like +'</span>)</button>')
+                			},
+                			
+                			error:function(e) {
+                				console.log(e)
+                			}
+                		});
+                	}
+                
+                	function goPage(no) {
+                		var sort = $("#sort option:selected").text(); // 정렬 방법
+                		var camp = '${camp.no}'; // 캠핑장 번호
+                		
+                		console.log(sort)
+                		
+                		$.ajax({
+                			type: 'GET',
+                			url: "/review/list",
+                			data: {
+                				no: no,
+                				sort: sort,
+                				camp: camp
+                			},
+                			
+                			success:function(map) {
+                				console.log(map)	
+                				var list = map.list;
+                				var pageInfo = map.pageInfo;
+                				console.log(list)
+                				
+                				str = "";
+                				$.each(list, function (i, obj) { // list.get(i) = obj   
+                                	str += '	<div class="mb-4 pb-4 border-bottom"><div class="d-flex justify-content-between mb-3"><div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/03.jpg" width="48" alt="Avatar">          '
+                                    str += '        <div class="ps-2"><h6 class="fs-base mb-0">'+ obj.id +'</h6>                                                                                                                                                      '
+                                    str += '            <span class="star-rating">   '
+	                                for(var j = 1; j <= 5; j++) {
+	                                	if(j <= obj.revstar) {
+	                                		str += '<i class="star-rating-icon fi-star-filled active"></i>'
+	                                	} else {
+	                                		str += '<i class="star-rating-icon fi-star"></i>'
+	                                	}
+	                                }
+                                    var revNo = obj.no
+                                    var like = obj.revlike
+                                    str += '            </span></div>                                                                                                                                                                                                         '
+                                    str += '    </div><span class="text-muted fs-sm">'+ obj.createdate +'</span></div><p>'+ obj.cont +'</p>                                                                                                                   '
+                                    str += '<div class="d-flex align-items-center" id="like'+ revNo +'"><button class="btn-like" type="button" onclick="likePlus('+ revNo +')"><i class="fi-heart"></i>(<span id="revLike'+ revNo +'">'+ like +'</span>)</button></div></div>                       '
+                                	str += '</div>                                                                                                                              '                                                                                             
+                				});                                                                                                                                                                                                                                           
+                				
+                				$("#revDiv").html(str);
+                				
+                				str = "";
+                				
+                				var maxPage =     pageInfo.maxPage     ;
+                     			var startPage =   pageInfo.startPage   ;
+                     			var endPage =     pageInfo.endPage     ;
+                     			var currentPage = pageInfo.currentPage ;
+                     			var prevPage =    pageInfo.prevPage    ;
+                     			var nextPage =    pageInfo.nextPage    ;
+                     			var startList =   pageInfo.startList   ;
+                     			var endList =     pageInfo.endList     ;
+                     			
+                     			if(currentPage != 1) {
+             	            		str += '<li class="page-item"><a class="page-first" onclick="goPage(1); return false;" aria-label="Next"><i class="fi-chevrons-left"></i></a></li>';
+             	            		str += '<li class="page-item"><a class="page-prev" onclick="goPage('+ prevPage +'}); return false;" aria-label="Next"><i class="fi-chevron-left"></i></a></li>';
+             	            	} 
+             	
+             	            	for (var i = startPage; i <= endPage; i++) { // 페이지 5개마다 페이지 바뀜
+             	            		if(i == currentPage) {
+             	            			str += '<li class="page-item active d-none d-sm-block"><a class="page-link" id="page('+ i +')" onclick="goPage('+ i +'); return false;">'+ i +'</a></li>';
+             	            		} else {
+             	            			str += '<li class="page-item d-none d-sm-block"><a class="page-link" id="page('+ i +')" onclick="goPage('+ i +'); return false;">'+ i +'</a></li>';
+             	            		}
+             	            	}
+             	
+             	            	if(currentPage != maxPage) {
+             	            		str += '<li class="page-item"><a class="page-next" onclick="goPage('+ nextPage +'); return false;" aria-label="Next"><i class="fi-chevron-right"></i></a></li>';
+             	            		str += '<li class="page-item"><a class="page-end" onclick="goPage('+ endPage +'); return false;" aria-label="Next"><i class="fi-chevrons-right"></i></a></li>';
+             	            	}
+                     			
+                     			$('.pagination').html(str);
+                			},
+                			
+                			error:function(e) {
+                				console.log(e)
+                			}
+                		});
+                	}
+                </script>
                 <!-- Sidebar-->
                 <aside class="col-lg-4 col-md-5 ms-lg-auto pb-1">
                     <!-- Contact card-->
@@ -1250,18 +1403,18 @@
                             <!-- Contact form-->
                                 <span class="popup_date">날짜선택<i class="fi-calendar ps-1"></i></span>
                                 <div class="input-group input-daterange pb-3">
-                                    <input class="form-control date-picker rounded-pill pi-5 start" id="datepicker1" name="startDate" type="date" placeholder="날짜를 선택해주세요 " data-datepicker-options="{&quot;altInput&quot;: true, &quot;altFormat&quot;: &quot;Y. m. d &quot;, &quot;dateFormat&quot;: &quot;Y-m-d&quot;, &quot;language&quot;: &quot;ko&quot;} ">
+                                    <input class="form-control date-picker rounded-pill pi-5 start" id="datepicker1" type="date" placeholder="날짜를 선택해주세요 " data-datepicker-options="{&quot;altInput&quot;: true, &quot;altFormat&quot;: &quot;Y. m. d &quot;, &quot;dateFormat&quot;: &quot;Y-m-d&quot;, &quot;language&quot;: &quot;ko&quot;} ">
                                     <div class="input-group-addon">to</div>
-                                    <input class="form-control date-picker rounded-pill pi-5 end" id="datepicker2" name="endDate" type="date" placeholder="날짜를 선택해주세요 " data-datepicker-options="{&quot;altInput&quot;: true, &quot;altFormat&quot;: &quot;Y. m. d &quot;, &quot;dateFormat&quot;: &quot;Y-m-d&quot;, &quot;language&quot;: &quot;ko&quot;} ">
+                                    <input class="form-control date-picker rounded-pill pi-5 end" id="datepicker2" type="date" placeholder="날짜를 선택해주세요 " data-datepicker-options="{&quot;altInput&quot;: true, &quot;altFormat&quot;: &quot;Y. m. d &quot;, &quot;dateFormat&quot;: &quot;Y-m-d&quot;, &quot;language&quot;: &quot;ko&quot;} ">
                                 </div>
                                 <div class="popup_count">텐트선택</div>
                                 <div class="row pb-3">
                                     <div class="col-2" style="text-align: right;">
-                                        <select id="item" name="headcnt" required>
+                                        <select id="item" required>
                                         <option value="" selected disabled hidden></option>
-                                        <option value= "소형">소형</option>
-                                        <option value= "중형">중형</option>
-                                        <option value= "대형">대형</option>
+                                        <option value="소형">소형</option>
+                                        <option value="중형">중형</option>
+                                        <option value="대형">대형</option>
                                     </select>
                                     </div>
                                 </div>
@@ -1273,21 +1426,47 @@
                     
                     <script> // 결제
         				$(document).ready(() => {
-        					$("#campPay").click(function(){
-								var start = $("#datepicker1").val();
+        					$("#datepicker2").change(function() { // 날짜 변경
+        						var start = $("#datepicker1").val();
 								var end = $("#datepicker2").val();
-								var item = $("#item").val();
-        						var totalAmount = $("#total").html();
-        						// var day = $("#day").html(); -> 나중에 위에 변경 알고리즘 짜면 쓸것
-        						
-        						var type = 'camp';
-        						var no = 4;
-        						
-        						var startDate = new Date(start);
+								
+								var startDate = new Date(start);
         						var endDate = new Date(end);
         						
         						var second = endDate.getTime() - startDate.getTime();
         						var day = second / (1000*60*60*24);
+        						
+        						$("#day").html(day);
+        					});
+        					
+        					$("#item").change(function() { // 총액 변경
+        						var item = $("#item option:selected").text();
+        						
+        						if(item == '소형') {
+        							$("#total").html(${camp.price});
+        						}
+								if(item == '중형') {
+									$("#total").html(${price});
+        						}
+								if(item == '대형') {
+									$("#total").html(${camp.price * 2});
+								}
+        					});
+        					
+        					$("#campPay").click(function(){
+								var start = $("#datepicker1").val();
+								var item = $("#item").val();
+        						var totalAmount = $("#total").html();
+        						var day = $("#day").html();
+        						
+        						var type = 'camp';
+        						var no = ${camp.no};
+        						
+        						//var startDate = new Date(start);
+        						//var endDate = new Date(end);
+        						
+        						//var second = endDate.getTime() - startDate.getTime();
+        						//var day = second / (1000*60*60*24);
         						
         						 $.ajax({
         							type: 'GET',
@@ -1504,85 +1683,28 @@
             <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside tns-nav-outside-flush mx-n2">
                 <div class="tns-carousel-inner row gx-4 mx-0 pt-3 pb-4" data-carousel-options="{&quot;items&quot;: 4, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3},&quot;992&quot;:{&quot;items&quot;:4}}}">
                     <!-- Item-->
-                    <div class="col">
+                    <c:if test="${!empty lastList}">
+                    	<c:forEach var="i" begin="0" end="${lastList.size() -1}">
+                    		<div class="col">
                         <div class="card shadow-sm card-hover border-0 h-100">
                             <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" href="#"></a>
+                                <a class="img-overlay" onclick="return flase;"></a>
                                 <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                </div><img src="https://gocamping.or.kr/upload/camp/9/thumb/thumb_720_36369SPhIkIhwmImFUZ9E1pT.jpg" alt="Image">
+                                </div><img src="${lastList.get(i).image}" alt="Image">
                             </div>
                             <div class="card-body position-relative pb-3">
-                                <span class="badge bg-info me-2 mb-2">글램핑</span>
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="#">(주)쉐르빌리안티티</a></h3>
-                                <p class="mb-2 fs-sm text-muted">강원 홍천군 서면 밤벌길19번길 111</p>
-                                <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>84,000원</div>
+                                <span class="badge bg-info me-2 mb-2">${lastList.get(i).category}</span>
+                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" onclick="return flase;">${lastList.get(i).name}</a></h3>
+                                <p class="mb-2 fs-sm text-muted">${lastList.get(i).addr}</p>
+                                <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>${lastList.get(i).price}원</div>
                             </div>
                             <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap">
-                                <p class="mb-2 fs-sm text-muted">반려견과 함께 즐기는 글램핑</p>
+                                <p class="mb-2 fs-sm text-muted">${lastList.get(i).lineintro}</p>
                             </div>
                         </div>
                     </div>
-                    <!-- Item-->
-                    <div class="col">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" href="#"></a>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                </div><img src="https://gocamping.or.kr/upload/camp/10/thumb/thumb_720_1869epdMHtUyrinZWKFHDWty.jpg" alt="Image">
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <span class="badge bg-warning me-2 mb-2">카라반</span>
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="#">(주)아웃오브파크</a></h3>
-                                <p class="mb-2 fs-sm text-muted">강원도 춘천시 남면 가옹개길 52-9</p>
-                                <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>95,000원</div>
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap">
-                                <p class="mb-2 fs-sm text-muted">이국적인 캐러밴과 알찬 부대시설</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Item-->
-                    <div class="col">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" href="#"></a>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                </div><img src="https://gocamping.or.kr/upload/camp/11/thumb/thumb_720_4031mKP95kUbSSBNbq5bSC5o.jpg" alt="Image">
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <span class="badge bg-success me-2 mb-2">일반</span><span class="badge bg-primary me-2 mb-2">자동차</span>
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="#">(주)양촌여울체험캠프</a></h3>
-                                <p class="mb-2 fs-sm text-muted">경상남도 창원시 마산합포구 진전면</p>
-                                <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>70,000원</div>
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap">
-                                <p class="mb-2 fs-sm text-muted">다양한 먹거리를 체험을 할 수 있는 곳</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Item-->
-                    <div class="col">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" href="#"></a>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                </div><img src="https://gocamping.or.kr/upload/camp/16/thumb/thumb_720_7281ozQmm7ppv6bLdBn7I6Xv.jpg" alt="Image">
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <span class="badge bg-info me-2 mb-2">글램핑</span>
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="#">이스케이프 지점 (휴토피아)</a></h3>
-                                <p class="mb-2 fs-sm text-muted">강원도 홍천군 서면 어유포리 282-8</p>
-                                <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>65,000원</div>
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap">
-                                <p class="mb-2 fs-sm text-muted">침대에 누워 즐기는 홍천강 풍경</p>
-                            </div>
-                        </div>
-                    </div>
+                    	</c:forEach>
+                    </c:if>
                     <!-- Item-->
                     <!-- <div class="col">
                         <div class="card shadow-sm card-hover border-0 h-100">

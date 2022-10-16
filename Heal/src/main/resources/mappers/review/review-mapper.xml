@@ -4,6 +4,22 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bc.heal.review.mapper.ReviewMapper">
+	<resultMap type="Review" id="reviewIdMap">
+		<id property="no" column="NO"/>
+		<result property="id" column="ID"/>
+		<result property="title" column="TITLE"/>
+		<result property="cont" column="CONT"/>
+		<result property="revstar" column="REVSTAR"/>
+		<result property="revlike" column="REVLIKE"/>
+		<result property="createdate" column="CREATEDATE"/>
+		<result property="memberno" column="MEMBERNO"/>
+		<result property="hotelno" column="HOTELNO"/>
+		<result property="campno" column="CAMPNO"/>
+		<result property="festivalno" column="FESTIVALNO"/>
+		<result property="foodno" column="FOODNO"/>
+		<result property="parkno" column="PARKNO"/>
+	</resultMap>
+	
 	<resultMap type="Review" id="reviewResultMap">
 		<id property="no" column="NO"/>
 		<result property="title" column="TITLE"/>
@@ -38,6 +54,88 @@
  			  		FROM TBL_REVIEW 
  			  		ORDER BY NO DESC))
 		WHERE NUM <![CDATA[<=]]> 5 AND MEMBERNO = #{no}
+	</select>
+	
+	<select id="insert" parameterType="map" resultType="int">
+		INSERT INTO TBL_REVIEW (
+ 			NO, 
+ 			TITLE,
+ 			CONT,
+ 			REVSTAR,
+ 			REVLIKE,
+ 			CREATEDATE,
+ 			MEMBERNO, 
+ 			CAMPNO, 
+ 			HOTELNO, 
+ 			FESTIVALNO, 
+ 			FOODNO, 
+ 			PARKNO 
+		) VALUES (
+			REVIEW_SEQ.NEXTVAL,
+			NULL,
+			<if test="cont != null"> <!-- 최신순 -->
+ 				#{cont},
+ 			</if>
+ 			<if test="star != null"> <!-- 최신순 -->
+ 				#{star},
+ 			</if>
+ 			${0},
+ 			SYSDATE,
+ 			<if test="memNo != null"> <!-- 최신순 -->
+ 				#{memNo},
+ 			</if>
+ 			<if test="hotelNo != null"> <!-- 최신순 -->
+ 				#{hotelNo},
+ 			</if>
+ 			<if test="campNo != null"> <!-- 최신순 -->
+ 				#{campNo},
+ 			</if>
+ 			<if test="festivalNo != null"> <!-- 최신순 -->
+ 				#{festivalNo},
+ 			</if>
+ 			<if test="foodNo != null"> <!-- 최신순 -->
+ 				#{foodNo},
+ 			</if>
+ 			<if test="parkNo != null"> <!-- 최신순 -->
+ 				#{parkNo}
+ 			</if>
+ 		)
+	</select>
+	
+	<update id="setLike" parameterType="int">
+		UPDATE TBL_REVIEW
+		SET REVLIKE = #{like}
+		WHERE NO = #{no}
+	</update>
+	
+	<select id="selectRevCamp" parameterType="map" resultMap="reviewIdMap">
+ 		SELECT R.*, M.ID
+ 		FROM TBL_REVIEW R
+ 		JOIN TBL_MEMBER M ON (R.MEMBERNO = M.NO)
+ 		WHERE R.CAMPNO = ${no} <!-- ${} -> '' 안붙음 -> 정수가능 -->
+ 		<if test='sort.equals("new")'> <!-- 최신순 -->
+ 			ORDER BY R.NO DESC
+ 		</if>
+ 		<if test='sort.equals("old")'>
+ 			ORDER BY R.NO ASC
+ 		</if>
+ 		<if test='sort.equals("star")'>
+ 			ORDER BY R.REVSTAR DESC
+ 		</if>
+ 		<if test='sort.equals("like")'>
+ 			ORDER BY R.REVLIKE DESC
+ 		</if>
+	</select>
+	
+	<select id="getLike" parameterType="int" resultType="int">
+		SELECT REVLIKE
+		FROM TBL_REVIEW
+		WHERE NO = #{no}
+	</select>
+	
+	<select id="getCount" resultType="int">
+		SELECT COUNT(*)
+		FROM TBL_REVIEW
 	</select>
 	
 	<delete id="delete" parameterType="int">

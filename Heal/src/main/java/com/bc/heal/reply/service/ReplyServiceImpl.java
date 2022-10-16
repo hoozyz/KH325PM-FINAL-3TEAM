@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bc.heal.reply.mapper.ReplyMapper;
-import com.bc.heal.review.mapper.ReviewMapper;
 import com.bc.heal.vo.Reply;
 
 @Service

@@ -249,8 +249,8 @@
                                                 <a class="text-decoration-none" href="real-estate-vendor-properties.html">
                                                     <h6 class="mb-0">Floyd Miles</h6>
                                                     <div class="text-muted fw-normal fs-sm mb-3">Imperial Property Group Agent</div>
-                                                </a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" href="#"><i class="fi-facebook"></i></a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2"
-                                                    href="#"><i class="fi-twitter"></i></a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" href="#"><i class="fi-linkedin"></i></a></div>
+                                                </a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" onclick="return flase;"><i class="fi-facebook"></i></a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2"
+                                                    onclick="return flase;"><i class="fi-twitter"></i></a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" onclick="return flase;"><i class="fi-linkedin"></i></a></div>
                                             <div><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
                                                 <div class="text-muted fs-sm mt-1">45 reviews</div>
                                             </div>
@@ -277,8 +277,8 @@
                                                 <a class="text-decoration-none" href="real-estate-vendor-properties.html">
                                                     <h6 class="mb-0">Floyd Miles</h6>
                                                     <div class="text-muted fw-normal fs-sm mb-3">Imperial Property Group Agent</div>
-                                                </a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" href="#"><i class="fi-facebook"></i></a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2"
-                                                    href="#"><i class="fi-twitter"></i></a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" href="#"><i class="fi-linkedin"></i></a></div>
+                                                </a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" onclick="return flase;"><i class="fi-facebook"></i></a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2"
+                                                    onclick="return flase;"><i class="fi-twitter"></i></a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" onclick="return flase;"><i class="fi-linkedin"></i></a></div>
                                             <div><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
                                                 <div class="text-muted fs-sm mt-1">45 reviews</div>
                                             </div>
@@ -310,7 +310,7 @@
                     <div class="dropdown d-md-none" data-bs-toggle="select">
                         <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"><span class="dropdown-toggle-label">Houses</span></button>
                         <input type="hidden">
-                        <div class="dropdown-menu"><a class="dropdown-item" href="#"><span class="dropdown-item-label">Apartments</span></a><a class="dropdown-item" href="#"><span class="dropdown-item-label">Houses</span></a><a class="dropdown-item" href="#"><span class="dropdown-item-label">Rooms</span></a>
+                        <div class="dropdown-menu"><a class="dropdown-item" onclick="return flase;"><span class="dropdown-item-label">Apartments</span></a><a class="dropdown-item" onclick="return flase;"><span class="dropdown-item-label">Houses</span></a><a class="dropdown-item" onclick="return flase;"><span class="dropdown-item-label">Rooms</span></a>
                             <a class="dropdown-item" href="#"><span class="dropdown-item-label">Commercial</span></a>
                         </div>
                     </div>

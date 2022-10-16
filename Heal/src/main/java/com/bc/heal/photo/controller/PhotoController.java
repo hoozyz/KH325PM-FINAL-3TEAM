@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import com.bc.heal.photo.service.PhotoService;
 import com.bc.heal.vo.Member;
 import com.bc.heal.vo.Photo;
-import com.bc.heal.vo.Reserve;
 
 @Controller
 @RequestMapping("/photo")

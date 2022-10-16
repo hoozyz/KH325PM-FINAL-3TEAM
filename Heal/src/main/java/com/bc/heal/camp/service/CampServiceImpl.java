@@ -34,5 +34,10 @@ public class CampServiceImpl implements CampService{
 		
 		return mapper.selectCampList(rowBounds, param);
 	}
+
+	@Override
+	public void updateCamp(String no1, String no2, String no3, String no4) {
+		mapper.updateCamp(no1,no2,no3,no4);
+	}
 	
 }

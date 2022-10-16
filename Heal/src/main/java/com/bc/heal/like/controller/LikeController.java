@@ -10,22 +10,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
-import com.bc.heal.air.service.AirService;
-import com.bc.heal.bus.service.BusService;
 import com.bc.heal.camp.service.CampService;
 import com.bc.heal.festival.service.FestivalService;
 import com.bc.heal.food.service.FoodService;
 import com.bc.heal.hotel.service.HotelService;
 import com.bc.heal.like.service.LikeService;
 import com.bc.heal.park.service.ParkService;
-import com.bc.heal.train.service.TrainService;
-import com.bc.heal.vo.Camp;
-import com.bc.heal.vo.Festival;
-import com.bc.heal.vo.Food;
-import com.bc.heal.vo.Hotel;
 import com.bc.heal.vo.Like;
 import com.bc.heal.vo.Member;
-import com.bc.heal.vo.Park;
 
 @Controller
 @RequestMapping("/like")

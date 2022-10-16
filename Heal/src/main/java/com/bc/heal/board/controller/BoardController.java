@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,11 +18,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.bc.heal.board.service.BoardService;
+import com.bc.heal.common.util.PageInfo;
 import com.bc.heal.photo.service.PhotoService;
 import com.bc.heal.vo.Board;
 import com.bc.heal.vo.Member;
-import com.bc.heal.common.util.PageInfo;
-import com.bc.heal.vo.Photo;
 
 @Controller
 @RequestMapping("/board")

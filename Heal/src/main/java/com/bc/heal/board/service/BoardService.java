@@ -3,8 +3,8 @@ package com.bc.heal.board.service;
 import java.util.List;
 import java.util.Map;
 
-import com.bc.heal.vo.Board;
 import com.bc.heal.common.util.PageInfo;
+import com.bc.heal.vo.Board;
 
 public interface BoardService {
 	List<Board> selectByMember(int no);

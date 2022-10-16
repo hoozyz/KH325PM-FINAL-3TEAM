@@ -17,7 +17,6 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.TransactionSuspensionNotSupportedException;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,11 +26,13 @@ import com.bc.heal.air.service.AirService;
 import com.bc.heal.bus.service.BusService;
 import com.bc.heal.camp.service.CampService;
 import com.bc.heal.common.util.PageInfo;
+import com.bc.heal.review.service.ReviewService;
 import com.bc.heal.train.service.TrainService;
 import com.bc.heal.vo.Air;
 import com.bc.heal.vo.Bus;
 import com.bc.heal.vo.Camp;
 import com.bc.heal.vo.EndStation;
+import com.bc.heal.vo.Review;
 import com.bc.heal.vo.Train;
 import com.bc.heal.vo.Weather;
 import com.bc.heal.weather.service.WeatherService;
@@ -54,6 +55,9 @@ public class CampController {
 
 	@Autowired
 	private WeatherService weaService;
+
+	@Autowired
+	private ReviewService revService;
 
 	@GetMapping("/campMain")
 	public String main(Model model) {
@@ -81,18 +85,59 @@ public class CampController {
 		model.addAttribute("campList", campList);
 		model.addAttribute("param", param);
 		model.addAttribute("pageInfo", pageInfo);
-		
+
 		System.out.println(campList);
 
 		return "/camp/campSearch";
 	}
 
-
 	@GetMapping("/campDetail")
-	public String detail(Model model /* int no */) { // 캠핑장 상세정보, 기차/비행기/버스 도착역 리스트
-		Camp camp = campService.findByNo(57); // 테스트 -> 공항있는 캠핑장
+	public String detail(Model model, int no) { // 캠핑장 상세정보, 기차/비행기/버스 도착역 리스트
+		Camp camp = campService.findByNo(no); // 테스트 -> 공항있는 캠핑장
+
+		// 최근 본 캠핑장 -> no 0 인 곳에 차례로 번호 넣기
+		List<Camp> lastList = new ArrayList<>(); // 최신 4개 리스트
+		lastList.add(camp); // 지금 들어가는게 최신
+
+		Camp zero = campService.findByNo(0); // name, lineintro, intro, aria 순서로 없을 시 넣기 -> name가 최근
+		if (zero.getName() == null) { // 초기값
+			zero.setName("1337");
+		}
+		if (zero.getLineintro() == null) {
+			zero.setLineintro("17");
+		}
+		if (zero.getIntro() == null) {
+			zero.setIntro("77");
+		}
+		String threeNo = "";
+		String fourNo = "";
+		// 4개 넣어놓고 -> name에 최신 한 칸씩 뒤로 옮기기
+		String twoNo = zero.getName();
+		if (twoNo.equals("" + no)) { // 이미 최신에 현재 캠핑장이 있을 때
+			twoNo = zero.getLineintro();
+			threeNo = zero.getIntro();
+			fourNo = zero.getAria();
+		} else {
+			threeNo = zero.getLineintro();
+			fourNo = zero.getIntro();
+		}
+
+		lastList.add(campService.findByNo(Integer.parseInt(twoNo)));
+		lastList.add(campService.findByNo(Integer.parseInt(threeNo)));
+		lastList.add(campService.findByNo(Integer.parseInt(fourNo)));
+
+		campService.updateCamp("" + no, twoNo, threeNo, fourNo); // update
+
+		model.addAttribute("lastList", lastList);
 
 		// 리뷰
+		PageInfo pageInfo = new PageInfo(1, 5, revService.getCount(), 2);
+		List<Review> revList = new ArrayList<>();
+		String sort = "new";
+		revList = revService.selectRevCamp(no, pageInfo, sort); // 캠프번호, 페이지, 정렬
+
+		model.addAttribute("revList", revList);
+		model.addAttribute("pageInfo", pageInfo);
 
 		// 날씨
 		List<Weather> weaList = new ArrayList<>();
@@ -103,21 +148,28 @@ public class CampController {
 		if (camp.getAddr().contains("면")) {
 			check = camp.getAddr().split("면")[0]; // 면 기준 앞에만 자르기
 			checkArr = check.split(" ");
-			dong = checkArr[checkArr.length - 1] + "면";
+			dong = checkArr[checkArr.length - 1];
 
 		} else if (camp.getAddr().contains("읍")) {
 			check = camp.getAddr().split("읍")[0];
 			checkArr = check.split(" ");
-			dong = checkArr[checkArr.length - 1] + "읍";
+			dong = checkArr[checkArr.length - 1];
 
 		} else if (camp.getAddr().contains("동")) {
 			check = camp.getAddr().split("동")[0];
 			checkArr = check.split(" ");
-			dong = checkArr[checkArr.length - 1] + "동";
+			dong = checkArr[checkArr.length - 1];
 		}
 
 		try {
-			weaList = weatherApi(weaService.selectByDong(dong).getNx(), weaService.selectByDong(dong).getNy()); 
+			if (dong != null) {
+				if (weatherApi(weaService.selectByDong(dong).getNx(), weaService.selectByDong(dong).getNy()) == null) {
+					dong = dong.substring(0, dong.length());
+					weaList = weatherApi(weaService.selectByDong(dong).getNx(), weaService.selectByDong(dong).getNy());
+				} else {
+					weaList = weatherApi(weaService.selectByDong(dong).getNx(), weaService.selectByDong(dong).getNy());
+				}
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ParseException e) {
@@ -126,15 +178,15 @@ public class CampController {
 		Weather today = new Weather(); // 오늘
 		Weather one = new Weather(); // 내일
 		Weather two = new Weather(); // 모레
-		
+
 		today = weaList.get(0);
 		one = weaList.get(1);
 		two = weaList.get(2);
-		
+
 		model.addAttribute("today", today);
 		model.addAttribute("one", one);
 		model.addAttribute("two", two);
-		
+
 		// 교통
 		String lat = camp.getLat(); // 캠핑장 위도
 		String lng = camp.getLng(); // 캠핑장 경도
@@ -308,19 +360,19 @@ public class CampController {
 		if (time.equals("0000") || time.equals("0100") || time.equals("0200")) { // 00시, 01시, 02시 면 전날로 바꿈
 			time = "0300";
 			oneDate = date;
-			
+
 			cal.add(Calendar.DATE, -1);
 			date = sdf.format(cal.getTime()).split(" ")[0];
 			cal.add(Calendar.DATE, 2);
 			twoDate = sdf.format(cal.getTime()).split(" ")[0];
-			
+
 		} else {
 			cal.add(Calendar.DATE, 1); // 하루 추가
 			oneDate = sdf.format(cal.getTime()).split(" ")[0]; // 내일 날짜
 			cal.add(Calendar.DATE, 1); // 하루 추가
 			twoDate = sdf.format(cal.getTime()).split(" ")[0]; // 모레 날짜
 		}
-		
+
 		String urlStr = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?"
 				+ "serviceKey=1n4THo6i88dAniTj3VQPQLc%2BKj8AhB%2BjrA2WmJxMjKlcpkoi%2BsxoUiHXhe%2Fhrp8NY9BQOoPu1Vdj8UuQH4g2Dg%3D%3D"
 				+ "&pageNo=1&numOfRows=1000&dataType=json&base_date=" + date + "&base_time=0200&nx=" + nx + "&ny=" + ny;

@@ -73,5 +73,13 @@
 		ORDER BY NO DESC
 	</select>
 	
+	<update id="updateCamp" parameterType="string">
+		UPDATE TBL_CAMP
+		SET NAME = #{no1},
+			LINEINTRO = #{no2},
+			INTRO = #{no3},
+			ARIA = #{no4}
+		WHERE NO = ${0}
+	</update>
 	
 </mapper>

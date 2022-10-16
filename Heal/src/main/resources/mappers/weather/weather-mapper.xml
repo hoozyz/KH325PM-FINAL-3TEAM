@@ -14,7 +14,7 @@
 	<select id="selectByDong" parameterType="string" resultMap="weatherResultMap">
  		SELECT * 
  		FROM TBL_WEATHER
- 		WHERE DONG = #{dong}
+ 		WHERE DONG LIKE #{dong}
 	</select>
 	
 </mapper>
