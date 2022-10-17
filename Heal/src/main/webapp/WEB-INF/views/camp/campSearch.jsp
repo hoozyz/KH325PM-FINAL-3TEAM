@@ -20,7 +20,7 @@
 
 <main>
 <!-- Page container-->
-      <div class="container mt-5 pt-5 p-0" style="width: 75%">
+      <div class="container-fluid mt-5 pt-5 p-0" style="width: 75%">
         <div class="row g-0 mt-n3">
           <!-- Filters sidebar (Offcanvas on mobile)-->
           <aside class="col-lg-4 col-xl-3 border-top-lg border-end-lg shadow-sm px-3">
@@ -190,8 +190,7 @@
 		                    </c:if>
 		                    </div>
 		                    <a class="img-overlay" href="${path}/camp/campDetail?no=${camp.no}"></a>
-		                     <div class="tns-carousel-inner"  style=" width: 430px;  height:  290px;  background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Jezero_no.svg/1200px-Jezero_no.svg.png);
- 																background-size: cover;  background-position: center;  background-repeat: no-repeat;">
+		                     <div class="tns-carousel-inner"  style="height: 300px;">
 			                    <c:if test="${empty camp.image}">
 				                   <img src="${path}/resources/image/campImg<%=Math.round(Math.random()*4 + 1)%>.jpg" alt="Image" style="width: 100%;  height: 100%;  object-fit: cover;">
 			                    </c:if>

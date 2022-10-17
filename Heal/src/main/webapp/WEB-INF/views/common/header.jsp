@@ -106,6 +106,50 @@
     
     <!-- Main Theme Styles + Bootstrap-->       
     <link rel="stylesheet" media="screen" href="${path}/resources/css/theme.min.css">
+    
+    
+    
+
+    <style>
+    		/* 폰트추가  */
+    	@font-face {
+		  font-family : 'DalseoDarling';
+		  src: url('${path}/resources/fonts/DalseoDarling.woff') format('woff');
+		}
+		@font-face {
+		    font-family: 'MICEGothic Bold';
+		    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEGothic Bold.woff2') format('woff2');
+		    font-weight: 400;
+		    font-style: normal;
+		}    
+    	@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+	
+			/* 달서달링~  */
+		h1{
+			font-family : 'DalseoDarling';
+		}
+
+			/* MICE폰트 (기본) */
+    	*{
+    		 font-family: 'MICEGothic Bold';
+    	}
+    		/* Noto Sans(세부 내용) */
+    	.Noto{
+	    	font-family: 'Noto Sans KR', sans-serif;
+    	}
+    	
+    	
+    	
+    	
+    	#NSR{
+    		font-size: 25px;
+    		
+    	}
+    </style>
+    
+    
+    
+    
   </head>
   <!-- Body-->
   
@@ -126,19 +170,19 @@
                     <div class="modal-body">
                         <button class="btn-close position-absolute top-0 end-0 mt-3 me-3" type="button" data-bs-dismiss="modal"></button>
                             <div>
-                               <img class="d-block mx-auto" src="${path}/resources/images/logo/pjlogo11.png" width="344" alt="Illustartion">
+                               <img class="d-block mx-auto" src=" " width="344" alt="Illustartion">
                             </div>
                             <div>
                                 <form class="needs-validation" action="${path}/login" method="POST">
                                     <div class="mb-4">
                                    		<div class="d-flex align-items-center justify-content-between mb-1">
-                                       		<label class="form-label ms-3 mb-0" for="signin-email" style="font-size:20px;font-weight:700;font-family:'NanumSquareRound', sans-serif;">아이디</label>
+                                       		<label class="form-label ms-3 mb-0" for="signin-email" style="font-size:20px;">아이디</label>
                                         </div>
                                         <input class="form-control" type="text" name="userId" id="signin-id" placeholder="아이디를 입력해주세요." required>
                                     </div>
                                     <div class="mb-5">
                                         <div class="d-flex align-items-center justify-content-between mb-2">
-                                            <label class="form-label ms-3 mb-0" for="signin-password" style="font-size:20px;font-weight:700;font-family:'NanumSquareRound', sans-serif;">비밀번호</label>
+                                            <label class="form-label ms-3 mb-0" for="signin-password" style="font-size:20px;">비밀번호</label>
                                         </div>
                                         <div class="password-toggle">
                                             <input class="form-control" type="password" name="userPwd" id="signin-password" placeholder="비밀번호를 입력해주세요" required>
@@ -154,7 +198,7 @@
                                     <div class="px-3">Or</div>
                                     <hr class="w-100">
                                 </div>
-                            	<a style="width: 150%;height: 50px;margin-bottom: 15px;" href="javascript:void(0);" onclick="kakaoLogin();"><img src="/Show/resources/images/kakao_login_medium_wide.png" style=" width:400px;"></a>
+                            	<a style="width: 150%;height: 50px;margin-bottom: 15px;" href="javascript:void(0);" onclick="kakaoLogin();"><img src="${path}/resources/images/kakao_login_medium_wide.png" style=" width:400px;"></a>
                                 <div class="mt-4 mt-sm-5">계정이 없으신가요? <a href="#signup-modal" data-bs-toggle="modal" data-bs-dismiss="modal">회원가입</a></div>
                             </div>
                     </div>
@@ -169,7 +213,7 @@
                         <button class="btn-close position-absolute top-0 end-0 mt-3 me-3" type="button" data-bs-dismiss="modal"></button>
                         <div class="mx-0 align-items-center">
                             <div>
-                               <img class="d-block mx-auto" src="${path}/resources/images/logo/pjlogo2.png" width="344" alt="Illustartion">
+                               <img class="d-block mx-auto" src="${path}/resources/image/" width="344" alt="Illustartion">
                             </div>
                             <div class="px-4 pb-4 px-sm-5 pb-sm-5">
                                 <form class="needs-validation" action="${path}/member/enroll" method="POST" novalidate>
@@ -226,7 +270,7 @@
         <!-- Navbar-->
         <header class="navbar navbar-expand-lg navbar-light bg-light fixed-top py-0" data-scroll-header>
             <div class="container">
-                <a class="navbar-brand me-3 me-xl-4" href="${path}/"><img class="d-block" src="${path}/resources/image/pjlogo10.png" width="220" alt="SCENE"></a>
+                <a class="navbar-brand me-3 me-xl-4" href="${path}/"><img class="d-block" src="${path}/resources/image/pjlogo10.png" width="220" alt="화이팅!"></a>
                 <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 				<!-- 로그인 아닐 때 -->
 				<c:if test="${loginMember == null}">
@@ -235,22 +279,17 @@
                 </c:if>
                 <!-- 로그인 일 때 -->
                 <c:if test="${loginMember != null }">
-               		 <button class="btn btn-sm  d none d-lg-block order-lg-3 mt-3" onclick="location.href='${path}/member/myInfo'" data-bs-toggle="modal" style="color:#0B398E;font-size:20px"><i class="fi-user me-2"></i>마이페이지</button>
+               		 <button class="btn btn-sm  d none d-lg-block order-lg-3" onclick="location.href='${path}/member/myInfo'" data-bs-toggle="modal" style="color:#0B398E;font-size:20px"><i class="fi-user me-2"></i>마이페이지</button>
                 	 <button class="btn btn-sm  d-none d-lg-block order-lg-3" onclick="location.href='${path}/logout'" data-bs-toggle="modal" style="color:#0B398E;font-size:20px"><i class="fi-user me-2"></i>로그아웃</button>
                 </c:if>
-                <div class="collapse navbar-collapse order-lg-2 mt-3" id="navbarNav">
+                <div class="collapse navbar-collapse order-lg-2 mx-auto mt-2 " style="flex-grow:0;" id="navbarNav">
                     <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
                         <!-- Menu items-->
                         <li class="nav-item px-3 "><a class="nav-link" href="${path}/camp/campMain" role="button" aria-expanded="false" id="NSR">캠핑장</a></li>
-                        <li class="nav-item px-3 "><a class="nav-link" href="${path}/camp/detail" role="button"  aria-expanded="false" id="NSR">캠핑장상세</a></li>
-                        <li class="nav-item pe-1"><a class="nav-link" href="${path}/park/parkMain" role="button" aria-expanded="false" id="NSR">공원</a></li>
+                        <li class="nav-item pe-3"><a class="nav-link" href="${path}/park/parkMain" role="button" aria-expanded="false" id="NSR">공원</a></li>
                         <li class="nav-item pe-3"><a class="nav-link" href="${path}/festival/festivalMain" role="button" aria-expanded="false" id="NSR">축제</a></li>
-
-
                         
-                        <li class="nav-item px-3"><a class="nav-link" href="${path}/food/main" role="button" aria-expanded="false" id="NSR">주변 시설</a></li> <!-- 주변시설은 음식점이 메인 -->
-                        
-                        <li class="nav-item dropdown px-3 "><a class="nav-link dropdown" href="${path}/food/main" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="NSR">주변시설</a>
+                        <li class="nav-item dropdown px-2 "><a class="nav-link dropdown" href="${path}/food/main" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="NSR">주변시설</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="${path}/near/nearFood">음식점</a></li>
                                 <li><a class="dropdown-item" href="${path}/near/nearHotel">숙박</a></li>
