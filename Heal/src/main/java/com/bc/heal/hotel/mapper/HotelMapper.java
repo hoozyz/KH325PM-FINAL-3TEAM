@@ -13,4 +13,5 @@ public interface HotelMapper {
 	Hotel selectHotelByNo(int no);
 	List<Hotel> selectHotelList(RowBounds rowBounds, Map<String, String> map);
 	int selectHotelCount(Map<String, String> map);
+	List<Hotel> selectNearHotelList(String addr);
 }

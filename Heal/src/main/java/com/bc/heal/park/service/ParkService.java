@@ -9,9 +9,7 @@ import com.bc.heal.vo.Park;
 
 public interface ParkService {
 	Park findByNo(int no);
-	
 	List<Park> getParkList(PageInfo pageInfo, Map<String, String> param);
-
 	int getParkCount(Map<String, String> param);
-	
+
 }

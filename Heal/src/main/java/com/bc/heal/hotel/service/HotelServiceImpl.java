@@ -34,4 +34,9 @@ public class HotelServiceImpl implements HotelService{
 		return mapper.selectHotelList(rowBounds, param);
 	}
 	
+	@Override
+	public List<Hotel> getNearHotelList(String addr) {
+		return mapper.selectNearHotelList(addr);
+	}
+	
 }
