@@ -5,7 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 
-<jsp:include page="/WEB-INF/views/common/headerTest.jsp">
+<jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param value="숙박검색" name="hotel"/>
 </jsp:include>
 

@@ -20,7 +20,7 @@
 
 <main>
 <!-- Page container-->
-      <div class="container-fluid mt-5 pt-5 p-0" style="width: 75%">
+      <div class="container mt-5 pt-5 p-0" style="width: 75%">
         <div class="row g-0 mt-n3">
           <!-- Filters sidebar (Offcanvas on mobile)-->
           <aside class="col-lg-4 col-xl-3 border-top-lg border-end-lg shadow-sm px-3">
@@ -67,18 +67,18 @@
                   <h3 class="h6">테마</h3>
                   <select class="form-select mb-2" name="theme">
                     <option value="" selected disabled>테마</option>
-                    <option value="일몰명소">일몰명소</option>
-                    <option value="일출명소">일출명소</option>
-                    <option value="낚시">낚시</option>
-                    <option value="물놀이">물놀이</option>
-                    <option value="단풍명소">단풍명소</option>
-                    <option value="눈꽃명소">눈꽃명소</option>
-                    <option value="걷기길">걷기길</option>
-                    <option value="액티비티">액티비티</option>
-                    <option value="수상레저">수상레저</option>
-                    <option value="봄꽃여행">봄꽃여행</option>
-                    <option value="스키">스키</option>
-                    <option value="항공레저">항공레저</option>
+                    <option value="일몰명소">	일몰명소		</option>
+                    <option value="일출명소">	일출명소		</option>
+                    <option value="낚시">		낚시		</option>
+                    <option value="물놀이">	물놀이		</option>
+                    <option value="단풍명소">	단풍명소			</option>
+                    <option value="눈꽃명소">	눈꽃명소			</option>
+                    <option value="걷기길">	걷기길		</option>
+                    <option value="액티비티">	액티비티		</option>
+                    <option value="수상레저">	수상레저		</option>
+                    <option value="봄꽃여행">	봄꽃여행		</option>
+                    <option value="스키">		스키		</option>
+                    <option value="항공레저">	항공레저			</option>
                   </select>
                 </div>
                 
@@ -190,12 +190,16 @@
 		                    </c:if>
 		                    </div>
 		                    <a class="img-overlay" href="${path}/camp/campDetail?no=${camp.no}"></a>
-		                    <c:if test="${empty camp.image}">
-			                    <div class="tns-carousel-inner"><img src="${path}/resources/image/campImg<%=Math.round(Math.random()*4 + 1)%>.jpg" alt="Image" style="width:400px;height:260px"></div>
-		                    </c:if>
-		                    <c:if test="${!empty camp.image}">
-			                    <div class="tns-carousel-inner"><img src="${camp.image}" style="width:400px;height:260px" alt="Image"></div>
-		                    </c:if>
+		                     <div class="tns-carousel-inner"  style=" width: 430px;  height:  290px;  background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Jezero_no.svg/1200px-Jezero_no.svg.png);
+ 																background-size: cover;  background-position: center;  background-repeat: no-repeat;">
+			                    <c:if test="${empty camp.image}">
+				                   <img src="${path}/resources/image/campImg<%=Math.round(Math.random()*4 + 1)%>.jpg" alt="Image" style="width: 100%;  height: 100%;  object-fit: cover;">
+			                    </c:if>
+			                    
+			                    <c:if test="${!empty camp.image}">
+				                    <img src="${camp.image}" alt="Image" style="width: 100%;  height: 100%;  object-fit: cover;" >
+			                    </c:if>
+		                    </div>
 		                    
 		                  </div>
 		                  <div class="card-body">
@@ -232,6 +236,7 @@
               
             </div>
              <!-- Pagination-->
+             
             <nav class="border-top pb-md-4 pt-4 mt-2" aria-label="Pagination">
               <ul class="pagination mb-1">
                 <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 5</span></li>

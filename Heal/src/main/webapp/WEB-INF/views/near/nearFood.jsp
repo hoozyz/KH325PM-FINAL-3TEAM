@@ -177,41 +177,30 @@
             <nav class="border-top pb-md-4 pt-4 mt-2" aria-label="Pagination">
               <ul class="pagination mb-1">
                 <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 5</span></li>
-				<c:forEach begin="${pageInfo.startPage}" end="${pageInfo.endPage}" step="1" varStatus="status">			
-				<c:if test="${pageInfo.currentPage != status.current}">					
-				<li class="page-item d-none d-sm-block"><a class="page-link" href="${path}/near/nearFood?page=${status.current}">
-				<c:out value="${status.current}"/></a></li>		
-				</c:if>
-				</c:forEach>		
-                <li class="page-item d-none d-sm-block">...</li>
-                <li class="page-item d-none d-sm-block"><a class="page-link" href="${path}/near/nearFood?page=${pageInfo.maxPage}">${pageInfo.maxPage}</a></li>
-                <li class="page-item"><a class="page-link" href="${path}/near/nearFood?page=${pageInfo.nextPage}" aria-label="Next"><i class="fi-chevron-right"></i></a></li>
-              </ul>
-            </nav> 
-			</div>			
-			 <!-- page부 시작 -->
-		<div align="center">
-			<!-- 맨 처음으로 -->
-			<button onclick="movePage('${path}/near/nearFood?page=1');">&lt;&lt;</button>
-			<!-- 이전 페이지 -->
-			<button onclick="movePage('${path}/near/nearFood?page=${pageInfo.prevPage}');">&lt;</button>			
-			<!-- 10개 페이지 목록 -->
-			<c:forEach begin="${pageInfo.startPage}" end="${pageInfo.endPage}" step="1" varStatus="status">
-				<c:if test="${pageInfo.currentPage == status.current}">
-					<button disabled ><c:out value="${status.current}"/></button>
-				</c:if>
-				<c:if test="${pageInfo.currentPage != status.current}">
-					<button onclick="movePage('${path}/near/nearFood?page=${status.current}');">
-						<c:out value="${status.current}"/>
-					</button>
-				</c:if>
-			</c:forEach>		
-			<!-- 다음 페이지 -->
-			<button onclick="movePage('${path}/near/nearFood?page=${pageInfo.nextPage}');">&gt;</button>		
-			<!-- 마지막 페이지 -->
-			<button onclick="movePage('${path}/near/nearFood?page=${pageInfo.maxPage}');">&gt;&gt;</button>		
-		</div>
-		<!-- page부 종료 -->			
+                <!-- 맨 처음으로 -->
+                <li class="page-item"><a class="page-link" onclick="movePage('${path}/near/nearFood?page=1');" aria-label="Next"><i class="fi-chevrons-left"></i></a></li>
+				<!-- 이전 페이지 -->
+                <li class="page-item"><a class="page-link" onclick="movePage('${path}/near/nearFood?page=${pageInfo.prevPage}');" aria-label="Next"><i class="fi-chevron-left"></i></a></li>
+	                
+	            <!-- 10개 페이지 목록 -->
+				<c:forEach begin="${pageInfo.startPage}" end="${pageInfo.endPage}" step="1" varStatus="status">
+					<c:if test="${pageInfo.currentPage == status.current}">
+	               		 <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link"><c:out value="${status.current}"/><span class="visually-hidden">(current)</span></span></li>
+					</c:if>
+					<c:if test="${pageInfo.currentPage != status.current}">
+						<li class="page-item d-none d-sm-block"><a class="page-link" onclick="movePage('${path}/near/nearFood?page=${status.current}');"><c:out value="${status.current}"/></a></li>
+					</c:if>
+				</c:forEach>    
+	                
+	            <!-- 다음 페이지 -->
+				 <li class="page-item"><a class="page-link" onclick="movePage('${path}/near/nearFood?page=${pageInfo.nextPage}');" aria-label="Next"><i class="fi-chevron-right"></i></a></li>
+				<!-- 마지막 페이지 -->
+             	<li class="page-item"><a class="page-link" onclick="movePage('${path}/near/nearFood?page=${pageInfo.maxPage}');" aria-label="Next"><i class="fi-chevrons-right"></i></a></li>
+				</ul>
+				</nav>
+				
+			</div>		
+				
         </div>
       </div>
     </main>

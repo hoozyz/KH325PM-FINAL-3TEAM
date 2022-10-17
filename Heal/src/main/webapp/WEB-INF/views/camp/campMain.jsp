@@ -161,14 +161,18 @@
                                         <button class="btn btn-lg btn-link dropdown-toggle ps-2 ps-sm-3" type="button" data-bs-toggle="dropdown"><i class="fi-map-pin me-2"></i><span class="dropdown-toggle-label">분류 선택</span></button>
                                         <input type="hidden" name="theme">
                                         <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">해변</span></a></li>
-                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">섬</span></a></li>
-                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">산</span></a></li>
-                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">숲</span></a></li>
-                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">계곡</span></a></li>
-                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">강</span></a></li>
-                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">호수</span></a></li>
-                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">도심</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">일몰명소	</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">일출명소</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">낚시	</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">물놀이	</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">단풍명소	</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">눈꽃명소</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">걷기길		</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">액티비티	</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">수상레저	</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">봄꽃여행	</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">스키		</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">항공레저	</span></a></li>
                                         </ul>
                                     </div>  
 <!--                                     <input class="form-control" name="category" type="hidden"> -->
@@ -232,9 +236,44 @@
             <h2 class="mb-2 pb-2 " style="color: white ;">인기 <span style="color:#f7b202">캠핑장</span> <span class="h2_span">어디로 갈지 고민이라면!</span></h2>
         </section>
         <!-- Top agents (lnked carousel)-->
-        <section class="container-fluid mb-5 pb-2 pb-lg-4" style="width: 1400px">
+        <section class="container-fluid mb-5 pb-2 pb-lg-4  mt-4" style="width: 1400px">
             <div class="tns-carousel-wrapper">
                 <div class="tns-carousel-inner" data-carousel-options="{&quot;items&quot;: 1, &quot;mode&quot;: &quot;gallery&quot;, &quot;controlsContainer&quot;: &quot;#agents-carousel-controls&quot;, &quot;nav&quot;: false}">
+                    
+                     <div>
+                        <div class="row align-items-center">
+                            <div class="col-xl-4 d-none d-xl-block"><img class="rounded-3" src="${path}/resources/image/campReview1.jpg" alt="Agent picture"></div>
+                            <div class="col-xl-4 col-md-5 col-sm-4"><img class="rounded-3" src="${path}/resources/image/campReview2.jpg" alt="Agent picture"></div>
+                            <div class="col-xl-4 col-md-7 col-sm-8 px-4 px-sm-3 px-md-0 ms-md-n4 mt-n5 mt-sm-0 py-3">
+                                <div class="card border-0 shadow-sm ms-sm-n5">
+                                    <blockquote class="blockquote card-body">
+                                        <h4 style="max-width: 22rem;">&quot;평창 보물섬 캠핑장&quot;</h4>
+                                         <div class="text-muted fw-normal fs-sm mb-3">강원도 평창군 봉평면 유포리 61-2</div>
+                                        <p class="d-sm-none d-lg-block">기억에 남는 캠핑이였습니다. 두분 너무 친절 하시고 맘 편히 잘 있다가 왔습니다. 아기자기한 캠핑장 분위기와 특히 야경이 너무 좋았습니다 그리고 강아지..ㅎ 넘 귀여웠습니다</p>
+                                        <footer class="d-flex justify-content-between">
+                                            <div class="pe-3 ">
+                                                <a class="text-decoration-none" href="${path}/camp/campDetail?no=6811">
+                                                    <h6 class="mb-0">캠핑초보</h6>
+                                                </a>
+	                                                <div class="my-3">
+	                                                <a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" onclick="return flase;"><i class="fi-facebook"></i></a>
+	                                                <a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2"  onclick="return flase;"><i class="fi-twitter"></i></a>
+	                                               	<a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" onclick="return flase;"><i class="fi-linkedin"></i></a>
+	                                               	</div>
+                                               </div>
+                                            <div>
+                                            <span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
+                                                <div class="text-muted fs-sm mt-1"> 2022/10/11</div>
+                                            </div>
+                                        </footer>
+                                    </blockquote>
+                                </div>
+                                <div>
+                                    <button class="btn btn-primary d-block mb-4" style="position: absolute; bottom: -22px; right: 50px; " type="button" onclick="location.href='${path}/camp/campDetail?no=6811');">&nbsp&nbsp<i class="fi-checkbox-checked-alt me-2"></i>캠핑장 상세보기&nbsp&nbsp&nbsp&nbsp</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div>
                         <div class="row align-items-center">
                             <div class="col-xl-4 d-none d-xl-block"><img class="rounded-3" src="${path}/resources/image/pCamp5.png" alt="Agent picture"></div>
@@ -242,55 +281,33 @@
                             <div class="col-xl-4 col-md-7 col-sm-8 px-4 px-sm-3 px-md-0 ms-md-n4 mt-n5 mt-sm-0 py-3">
                                 <div class="card border-0 shadow-sm ms-sm-n5">
                                     <blockquote class="blockquote card-body">
-                                        <h4 style="max-width: 22rem;">&quot;I will select the best accommodation for you&quot;</h4>
-                                        <p class="d-sm-none d-lg-block">Amet libero morbi venenatis ut est. Iaculis leo ultricies nunc id ante adipiscing. Vel metus odio at faucibus ac. Neque id placerat et id ut. Scelerisque eu mi ullamcorper sit urna. Est volutpat dignissim nec.</p>
+                                        <h4 style="max-width: 22rem;">&quot;별빛마루 글램핑&카라반&quot;</h4>
+                                          <div class="text-muted fw-normal fs-sm mb-3">경상북도 경주시 천북면 화산리 93-6 월정사부근</div>
+                                        <p class="d-sm-none d-lg-block">너무 친절하시고 깨끗해요! 카라반 내부는 물론이고 화장실, 식기류.. 침구에선 향기도 나더라고요~~ 고기세트까지 예약해서 먹었는데 진짜 구성이 괜찮아서 장 볼 땐 주류나 음료만 사가도 돼요~~ 매점도 있어서 그냥 맨몸으로 가셔도 될 듯 ㅋㅋㅋ 잘 놀고 잘 쉬다 왔습니당ㅎㅎ</p>
                                         <footer class="d-flex justify-content-between">
                                             <div class="pe-3">
-                                                <a class="text-decoration-none" href="real-estate-vendor-properties.html">
-                                                    <h6 class="mb-0">Floyd Miles</h6>
-                                                    <div class="text-muted fw-normal fs-sm mb-3">Imperial Property Group Agent</div>
-                                                </a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" onclick="return flase;"><i class="fi-facebook"></i></a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2"
-                                                    onclick="return flase;"><i class="fi-twitter"></i></a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" onclick="return flase;"><i class="fi-linkedin"></i></a></div>
+                                               	<a class="text-decoration-none" href="${path}/camp/campDetail?no=1337 ">
+                                                    <h6 class="mb-0">캠핑초보</h6>
+                                                </a>
+                                                <div class="my-3">
+	                                                <a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" onclick="return flase;"><i class="fi-facebook"></i></a>
+	                                                <a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2"  onclick="return flase;"><i class="fi-twitter"></i></a>
+	                                               	<a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" onclick="return flase;"><i class="fi-linkedin"></i></a>
+                                              	</div>
+                                           	</div>
                                             <div><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
-                                                <div class="text-muted fs-sm mt-1">45 reviews</div>
+                                                <div class="text-muted fs-sm mt-1">22 reviews</div>
                                             </div>
                                         </footer>
                                     </blockquote>
                                 </div>
-                                <div>
-                                    <button class="btn btn-primary d-block mb-4" style="position: absolute; bottom: -22px; right: 50px; " type="submit">&nbsp&nbsp<i class="fi-checkbox-checked-alt me-2"></i>캠핑장 상세보기&nbsp&nbsp&nbsp&nbsp</button>
+                                <div>	
+                                    <button class="btn btn-primary d-block mb-4" style="position: absolute; bottom: -22px; right: 50px; " type="button" onclick="location.href='${path}/camp/campDetail?no=1337');">&nbsp&nbsp<i class="fi-checkbox-checked-alt me-2"></i>캠핑장 상세보기&nbsp&nbsp&nbsp&nbsp</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <div class="row align-items-center">
-                            <div class="col-xl-4 d-none d-xl-block"><img class="rounded-3" src="${path}/resources/image/pCamp7.jpg" alt="Agent picture"></div>
-                            <div class="col-xl-4 col-md-5 col-sm-4"><img class="rounded-3" src="${path}/resources/image/pCamp8.jpg" alt="Agent picture"></div>
-                            <div class="col-xl-4 col-md-7 col-sm-8 px-4 px-sm-3 px-md-0 ms-md-n4 mt-n5 mt-sm-0 py-3">
-                                <div class="card border-0 shadow-sm ms-sm-n5">
-                                    <blockquote class="blockquote card-body">
-                                        <h4 style="max-width: 22rem;">&quot;I will select the best accommodation for you&quot;</h4>
-                                        <p class="d-sm-none d-lg-block">Amet libero morbi venenatis ut est. Iaculis leo ultricies nunc id ante adipiscing. Vel metus odio at faucibus ac. Neque id placerat et id ut. Scelerisque eu mi ullamcorper sit urna. Est volutpat dignissim nec.</p>
-                                        <footer class="d-flex justify-content-between">
-                                            <div class="pe-3">
-                                                <a class="text-decoration-none" href="real-estate-vendor-properties.html">
-                                                    <h6 class="mb-0">Floyd Miles</h6>
-                                                    <div class="text-muted fw-normal fs-sm mb-3">Imperial Property Group Agent</div>
-                                                </a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" onclick="return flase;"><i class="fi-facebook"></i></a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2"
-                                                    onclick="return flase;"><i class="fi-twitter"></i></a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" onclick="return flase;"><i class="fi-linkedin"></i></a></div>
-                                            <div><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
-                                                <div class="text-muted fs-sm mt-1">45 reviews</div>
-                                            </div>
-                                        </footer>
-                                    </blockquote>
-                                </div>
-                                <div>
-                                    <button class="btn btn-primary d-block mb-4" style="position: absolute; bottom: -22px; right: 50px; " type="submit">&nbsp&nbsp<i class="fi-checkbox-checked-alt me-2"></i>캠핑장 상세보기&nbsp&nbsp&nbsp&nbsp</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                   
                 </div>
             </div>
             <div class="tns-carousel-controls justify-content-center justify-content-md-start md-4" id="agents-carousel-controls">
@@ -305,76 +322,214 @@
         <section class="container pb-4 pt-1 mb-5">
             <div class="d-flex align-items-end align-items-lg-center justify-content-between">
                 <div class="d-flex align-items-center justify-content-between justify-content-lg-start">
-
-                    <h2 class="mb-2 pb-2 " style="color: white ;">주요 <span style="color:#FD5D08">캠핑장</span> <span class="h2_span">전국 주요 캠핑장을 소개합니다!</span></h2>
-                    <div class="dropdown d-md-none" data-bs-toggle="select">
-                        <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"><span class="dropdown-toggle-label">Houses</span></button>
-                        <input type="hidden">
-                        <div class="dropdown-menu"><a class="dropdown-item" onclick="return flase;"><span class="dropdown-item-label">Apartments</span></a><a class="dropdown-item" onclick="return flase;"><span class="dropdown-item-label">Houses</span></a><a class="dropdown-item" onclick="return flase;"><span class="dropdown-item-label">Rooms</span></a>
-                            <a class="dropdown-item" href="#"><span class="dropdown-item-label">Commercial</span></a>
+                <h2 class="mb-2 pb-2 " style="color: white ;">주요 <span style="color:#FD5D08">캠핑장</span> <span class="h2_span">전국 주요 캠핑장을 소개합니다!</span></h2>
+           </div>
+           		<nav>
+	                <div class="nav nav-tabs d-none d-md-flex ps-lg-2 mb-0" role="tablist">
+                    	<button class="nav-link  fs-sm active  mb-2 mb-md-0 me-1" id="gyeonggi-tab" data-bs-toggle="tab" data-bs-target="#gyeonggi" type="button" role="tab" aria-controls="gyeonggi" aria-selected="true">경기도</button>
+                    	<button class="nav-link  fs-sm   mb-2 mb-md-0 me-1" id="gangwon-tab" data-bs-toggle="tab" data-bs-target="#gangwon" type="button" role="tab" aria-controls="gangwon" aria-selected="true">강원도</button>
+                    	<button class="nav-link  fs-sm   mb-2 mb-md-0 me-1" id="chungcheong-tab" data-bs-toggle="tab" data-bs-target="#chungcheong" type="button" role="tab" aria-controls="chungcheong" aria-selected="true">충청도</button>
+                    	<button class="nav-link  fs-sm   mb-2 mb-md-0 me-1" id="gyeongsang-tab" data-bs-toggle="tab" data-bs-target="#gyeongsang" type="button" role="tab" aria-controls="gyeongsang" aria-selected="true">경상도</button>
+	               	</div>
+             	</nav>
+            </div>
+            
+<!--             경기@@@@@@@ -->
+		<div class="tab-content" id="myTabContent">
+             <div class="tab-pane fade show active " id="gyeonggi" role="tabpanel" aria-labelledby="gyeonggi-tab">
+                <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card bg-size-cover bg-position-center border-0 overflow-hidden h-100" style="background-image: url(https://gocamping.or.kr/upload/camp/7079/thumb/thumb_720_4383GIAI3xkzGniAyKqwUhA0.jpg);"><span class="img-gradient-overlay" style="opacity:0.6!important" ></span>
+                        <div class="card-body content-overlay pb-0"><div class="d-flex">   
+                        <div class="d-flex"><span class="d-table badge bg-success fs-sm me-2">일반야영장</span> </div> </div>                       </div>
+                        <div class="card-footer content-overlay border-0 pt-0 pb-4">
+                            <div class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5">
+                                <a class="text-decoration-none text-light pe-2" href="${path}/camp/campDetail?no=7079">
+                                    <h3 class="h5 text-light mb-1">파인힐빌리지 캠핑장</h3>
+                                    <div class="fs-sm opacity-70"><i class="fi-map-pin me-1"></i>경기도 동두천시 안흥로 65-42 (안흥동)</div>
+                                </a>
+                                <div class="btn-group ms-n2 ms-sm-0 mt-3"><a class="btn btn-primary px-3" href="${path}/camp/campDetail?no=7079" style="height: 2.75rem;"><fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="180000" /></a></div>
+                            </div>
                         </div>
                     </div>
-
                 </div>
-                <ul class="nav nav-tabs d-none d-md-flex ps-lg-2 mb-0">
-                    <li class="nav-item"><a class="nav-link fs-sm mb-2 mb-md-0" href="#">가평</a></li>
-                    <li class="nav-item"><a class="nav-link fs-sm active mb-2 mb-md-0" href="#">태안</a></li>
-                    <li class="nav-item"><a class="nav-link fs-sm mb-2 mb-md-0" href="#">Rooms</a></li>
-                    <li class="nav-item"><a class="nav-link fs-sm mb-2 mb-md-0" href="#">Commercial</a></li>
-                </ul>
-
+                <div class="col-md-6">
+                    <div class="card bg-size-cover bg-position-center border-0 overflow-hidden mb-4" style="background-image: url(https://gocamping.or.kr/upload/camp/1118/thumb/thumb_720_13753jwo0U339HQTe0BIPfKR.jpg);"><span class="img-gradient-overlay" style="opacity:0.6!important"></span>
+                        <div class="card-body content-overlay pb-0">  <span class="d-table badge bg-success mb-1 ">일반야영장</span><span class="d-table badge bg-warning">자동차야영장</span></div>
+                        <div class="card-footer content-overlay border-0 pt-0 pb-4">
+                            <div class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5">
+                                <a class="text-decoration-none text-light pe-2" href="${path}/camp/campDetail?no=1118">
+                                    <h3 class="h5 text-light mb-1">무지개 서는 마을</h3>
+                                    <div class="fs-sm opacity-70"><i class="fi-map-pin me-1"></i>경기도 가평군 북면 가화로 1725 무지개서는 마을 </div>
+                                </a>
+                                <div class="btn-group ms-n2 ms-sm-0 mt-3"><a class="btn btn-primary px-3" href="${path}/camp/campDetail?no=1118" style="height: 2.75rem;"><fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="120000" /></a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card bg-size-cover bg-position-center border-0 overflow-hidden" style="background-image: url(https://gocamping.or.kr/upload/camp/2034/thumb/thumb_720_9010rPaYI1oUMTSDZ97V90Ay.png;"><span class="img-gradient-overlay" style="opacity:0.6!important"></span>
+                        <div class="card-body content-overlay pb-0"><span class="d-table badge bg-info mb-1">카라반</span><span class="d-table badge bg-warning">자동차야영장</span></div>
+                        <div class="card-footer content-overlay border-0 pt-0 pb-4">
+                            <div class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5">
+                                <a class="text-decoration-none text-light pe-2" href="${path}/camp/campDetail?no=2034">
+                                    <h3 class="h5 text-light mb-1">알멕스랜드캠핑장</h3>
+                                    <div class="fs-sm opacity-70"><i class="fi-map-pin me-1"></i>경기도 연천군 왕징면 왕산로 218번길 25-100 </div>
+                                </a>
+                                <div class="btn-group ms-n2 ms-sm-0 mt-3"><a class="btn btn-primary px-3" href="${path}/camp/campDetail?no=2034" style="height: 2.75rem;"><fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="150000" /></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+            </div>
+<!--             강원@@@@@@@ -->
+            <div class="tab-pane fade" id="gangwon" role="tabpanel" aria-labelledby="gangwon-tab">
             <div class="row g-4">
                 <div class="col-md-6">
-                    <div class="card bg-size-cover bg-position-center border-0 overflow-hidden h-100" style="background-image: url(${path}/resources/image/camp2.jpg);"><span class="img-gradient-overlay"></span>
+                    <div class="card bg-size-cover bg-position-center border-0 overflow-hidden h-100" style="background-image: url(https://gocamping.or.kr/upload/camp/6975/thumb/thumb_720_8864VHhvenUMGtZByAoSmY82.jpg);"><span class="img-gradient-overlay" style="opacity:0.6!important" ></span>
                         <div class="card-body content-overlay pb-0">
-                            <div class="d-flex"><span class="badge bg-info fs-sm">글램핑</span></div>
+                        <div class="d-flex"><div class="d-flex"> <span class="d-table badge bg-warning fs-sm me-2">자동차야영장</span></div></div>
                         </div>
                         <div class="card-footer content-overlay border-0 pt-0 pb-4">
                             <div class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5">
-                                <a class="text-decoration-none text-light pe-2" href="real-estate-single-v1.html">
-                                    <h3 class="h5 text-light mb-1">별숲 글램핑</h3>
-                                    <div class="fs-sm opacity-70"><i class="fi-map-pin me-1"></i>경남 창녕군 성산면 구연화길 62</div>
+                                <a class="text-decoration-none text-light pe-2" href="${path}/camp/campDetail?no=6975" >
+                                    <h3 class="h5 text-light mb-1">동강전망휴양림 오토캠핑장</h3>
+                                    <div class="fs-sm opacity-70"><i class="fi-map-pin me-1"></i>강원도 정선군 신동읍 동강로 916-212</div>
                                 </a>
-                                <div class="btn-group ms-n2 ms-sm-0 mt-3"><a class="btn btn-primary px-3" href="real-estate-single-v1.html" style="height: 2.75rem;">From $3,850</a>
-                                    <button class="btn btn-primary btn-icon border-end-0 border-top-0 border-bottom-0 border-light fs-sm" type="button"><i class="fi-heart"></i></button>
-                                </div>
+                                <div class="btn-group ms-n2 ms-sm-0 mt-3"><a class="btn btn-primary px-3" href="${path}/camp/campDetail?no=6975" style="height: 2.75rem;"><fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="180000" /></a></div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="card bg-size-cover bg-position-center border-0 overflow-hidden mb-4" style="background-image: url(${path}/resources/image/campHero5.jpg);"><span class="img-gradient-overlay"></span>
-                        <div class="card-body content-overlay pb-0"><span class="badge bg-info fs-sm">글램핑</span><span class="badge bg-success fs-sm me-2">펜션</span></div>
+                    <div class="card bg-size-cover bg-position-center border-0 overflow-hidden mb-4" style="background-image: url(https://gocamping.or.kr/upload/camp/2672/thumb/thumb_720_8622MUgbQjvlvxxPtpZckjRE.jpg);"><span class="img-gradient-overlay" style="opacity:0.6!important"></span>
+                        <div class="card-body content-overlay pb-0">   <span class="d-table badge bg-info mb-1">카라반</span><span class="d-table badge bg-success mb-1">일반야영장</span><span class="d-table badge bg-warning">자동차야영장</span></div>
                         <div class="card-footer content-overlay border-0 pt-0 pb-4">
                             <div class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5">
-                                <a class="text-decoration-none text-light pe-2" href="real-estate-single-v1.html">
-                                    <h3 class="h5 text-light mb-1">별빛마루</h3>
-                                    <div class="fs-sm opacity-70"><i class="fi-map-pin me-1"></i>경북 경주시 천북면 새터흥림길 1-72</div>
+                                <a class="text-decoration-none text-light pe-2" href="${path}/camp/campDetail?no=2672">
+                                    <h3 class="h5 text-light mb-1">장호비치 캠핑장</h3>
+                                    <div class="fs-sm opacity-70"><i class="fi-map-pin me-1"></i>강원도 삼척시 근덕면 삼척로 2116</div>
                                 </a>
-                                <div class="btn-group ms-n2 ms-sm-0 mt-3"><a class="btn btn-primary px-3" href="real-estate-single-v1.html" style="height: 2.75rem;">$200,410</a>
-                                    <button class="btn btn-primary btn-icon border-end-0 border-top-0 border-bottom-0 border-light fs-sm" type="button"><i class="fi-heart"></i></button>
-                                </div>
+                                <div class="btn-group ms-n2 ms-sm-0 mt-3"><a class="btn btn-primary px-3" href="${path}/camp/campDetail?no=2672" style="height: 2.75rem;"><fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="30000" /></a></div>
                             </div>
                         </div>
                     </div>
-                    <div class="card bg-size-cover bg-position-center border-0 overflow-hidden" style="background-image: url(${path}/resources/image/camp1.jpg);"><span class="img-gradient-overlay"></span>
-                        <div class="card-body content-overlay pb-0"><span class="badge bg-info fs-sm">New</span></div>
+                    <div class="card bg-size-cover bg-position-center border-0 overflow-hidden" style="background-image: url(https://gocamping.or.kr/upload/camp/2775/thumb/thumb_720_6453Ij6RkaSAk8Hv2Ba4uVbH.jpg;"><span class="img-gradient-overlay" style="opacity:0.6!important"></span>
+                        <div class="card-body content-overlay pb-0"><span class="d-table badge bg-info mb-1">카라반</span><span class="d-table badge bg-warning">자동차야영장</span></div>
                         <div class="card-footer content-overlay border-0 pt-0 pb-4">
                             <div class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5">
-                                <a class="text-decoration-none text-light pe-2" href="real-estate-single-v1.html">
-                                    <h3 class="h5 text-light mb-1">Country House</h3>Top real estate agents
-                                    <div class="fs-sm opacity-70"><i class="fi-map-pin me-1"></i>6954 Grand AveMaspeth, NY 11378</div>
+                                <a class="text-decoration-none text-light pe-2" href="${path}/camp/campDetail?no=2775">
+                                    <h3 class="h5 text-light mb-1">양양 죽도오토캠핑장</h3>
+                                    <div class="fs-sm opacity-70"><i class="fi-map-pin me-1"></i>강원도 양양군 현남면 인구중앙길 88 죽도오토캠핑장 </div>
                                 </a>
-                                <div class="btn-group ms-n2 ms-sm-0 mt-3"><a class="btn btn-primary px-3" href="real-estate-single-v1.html" style="height: 2.75rem;">$162,000</a>
-                                    <button class="btn btn-primary btn-icon border-end-0 border-top-0 border-bottom-0 border-light fs-sm" type="button"><i class="fi-heart"></i></button>
+                                <div class="btn-group ms-n2 ms-sm-0 mt-3"><a class="btn btn-primary px-3" href="${path}/camp/campDetail?no=2775" style="height: 2.75rem;"><fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="60000" /></a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            </div>
+            
+            <!--             충청@@@@@@@ -->
+            <div class="tab-pane fade" id="chungcheong" role="tabpanel" aria-labelledby="chungcheong-tab">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card bg-size-cover bg-position-center border-0 overflow-hidden h-100" style="background-image: url(https://gocamping.or.kr/upload/camp/3002/thumb/thumb_720_3972rV7TWeyR3LBxjYBWevz2.jpg);"><span class="img-gradient-overlay" style="opacity:0.6!important" ></span>
+                        <div class="card-body content-overlay pb-0">        <div class="d-flex">                    <div class="d-table badge bg-primary fs-sm me-2">글램핑</div><div class="d-table badge bg-warning">자동차야영장</div></div></div>
+                        
+                        <div class="card-footer content-overlay border-0 pt-0 pb-4">
+                            <div class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5">
+                                <a class="text-decoration-none text-light pe-2" href="${path}/camp/campDetail?no=3002" >
+                                    <h3 class="h5 text-light mb-1">충주호캠핑월드</h3>
+                                    <div class="fs-sm opacity-70"><i class="fi-map-pin me-1"></i>충청북도 충주시 동량면 호반로 696-1 충주호캠핑장 </div>
+                                </a>
+                                <div class="btn-group ms-n2 ms-sm-0 mt-3"><a class="btn btn-primary px-3" href="${path}/camp/campDetail?no=3002" style="height: 2.75rem;"><fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="90000" /></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                	<div class="card bg-size-cover bg-position-center border-0 overflow-hidden" style="background-image: url(https://gocamping.or.kr/upload/camp/3139/thumb/thumb_720_0154EvDBQbPWa9tWMentKPn9.jpg;"><span class="img-gradient-overlay" style="opacity:0.6!important"></span>
+                        <div class="card-body content-overlay pb-0"><span class="d-table badge bg-success">일반야영장</span></div>
+                        <div class="card-footer content-overlay border-0 pt-0 pb-4">
+                            <div class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5">
+                                <a class="text-decoration-none text-light pe-2" href="${path}/camp/campDetail?no=3139">
+                                    <h3 class="h5 text-light mb-1">태안둘레길캠핑장</h3>
+                                    <div class="fs-sm opacity-70"><i class="fi-map-pin me-1"></i>충청남도 태안군 이원면 내리 503 </div>
+                                </a>
+                                <div class="btn-group ms-n2 ms-sm-0 mt-3"><a class="btn btn-primary px-3" href="${path}/camp/campDetail?no=3139" style="height: 2.75rem;"><fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="120000" /></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card bg-size-cover bg-position-center border-0 overflow-hidden mb-4" style="background-image: url(https://gocamping.or.kr/upload/camp/2999/thumb/thumb_720_82851Qgoj9tciPOJB9BUSZaB.jpg);"><span class="img-gradient-overlay" style="opacity:0.6!important"></span>
+                        <div class="card-body content-overlay pb-0"><span class="d-table badge bg-success">일반야영장</span></div>
+                        <div class="card-footer content-overlay border-0 pt-0 pb-4">
+                            <div class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5">
+                                <a class="text-decoration-none text-light pe-2" href="${path}/camp/campDetail?no=2999">
+                                    <h3 class="h5 text-light mb-1">충주카누캠핑장 </h3>
+                                    <div class="fs-sm opacity-70"><i class="fi-map-pin me-1"></i>충청북도 충주시 동량면 화암리 340 </div>
+                                </a>
+                                <div class="btn-group ms-n2 ms-sm-0 mt-3"><a class="btn btn-primary px-3" href="${path}/camp/campDetail?no=2999" style="height: 2.75rem;"><fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="210000" /></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!--             경상@@@@@@@ -->
+             <div class="tab-pane fade" id="gyeongsang" role="tabpanel" aria-labelledby="gyeongsang-tab">
+             <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card bg-size-cover bg-position-center border-0 overflow-hidden h-100" style="background-image: url(https://gocamping.or.kr/upload/camp/2217/thumb/thumb_720_4587ZwAbjie8wZF6iPj1SZ10.jpg);"><span class="img-gradient-overlay" style="opacity:0.6!important" ></span>
+                        <div class="card-body content-overlay pb-0">  <div class="d-flex"><span class="badge bg-info fs-sm me-2">카라반</span><span class="badge bg-success fs-sm me-2">일반야영장</span><div class=" badge bg-warning">자동차야영장</div></div></div>
+                        
+                        <div class="card-footer content-overlay border-0 pt-0 pb-4">
+                            <div class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5">
+                                <a class="text-decoration-none text-light pe-2" href="${path}/camp/campDetail?no=2217" >
+                                    <h3 class="h5 text-light mb-1">영덕 고래불 국민 야영장</h3>
+                                    <div class="fs-sm opacity-70"><i class="fi-map-pin me-1"></i>경상북도 영덕군 병곡면 고래불로 12</div>
+                                </a>
+                                <div class="btn-group ms-n2 ms-sm-0 mt-3"><a class="btn btn-primary px-3" href="${path}/camp/campDetail?no=2217" style="height: 2.75rem;"><fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="60000" /></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card bg-size-cover bg-position-center border-0 overflow-hidden mb-4" style="background-image: url(https://gocamping.or.kr/upload/camp/2999/thumb/thumb_720_82851Qgoj9tciPOJB9BUSZaB.jpg);"><span class="img-gradient-overlay" style="opacity:0.6!important"></span>
+                        <div class="card-body content-overlay pb-0"><span class=" badge bg-success">일반야영장</span></div>
+                        <div class="card-footer content-overlay border-0 pt-0 pb-4">
+                            <div class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5">
+                                <a class="text-decoration-none text-light pe-2" href="${path}/camp/campDetail?no=2999">
+                                    <h3 class="h5 text-light mb-1">충주카누캠핑장 </h3>
+                                    <div class="fs-sm opacity-70"><i class="fi-map-pin me-1"></i>충청북도 충주시 동량면 화암리 340 </div>
+                                </a>
+                                <div class="btn-group ms-n2 ms-sm-0 mt-3"><a class="btn btn-primary px-3" href="${path}/camp/campDetail?no=2999" style="height: 2.75rem;"><fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="210000" /></a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card bg-size-cover bg-position-center border-0 overflow-hidden" style="background-image: url(https://gocamping.or.kr/upload/camp/1601/thumb/thumb_720_8911lowhx24u5bD0ECfCy8wC.jpg;"><span class="img-gradient-overlay" style="opacity:0.6!important"></span>
+                        <div class="card-body content-overlay pb-0"><span class=" badge bg-success">일반야영장</span></div>
+                        <div class="card-footer content-overlay border-0 pt-0 pb-4">
+                            <div class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5">
+                                <a class="text-decoration-none text-light pe-2" href="${path}/camp/campDetail?no=1601">
+                                    <h3 class="h5 text-light mb-1">생림 오토 캠핑장  </h3>
+                                    <div class="fs-sm opacity-70"><i class="fi-map-pin me-1"></i>경상남도 김해시 생림면 마사리 1322-6  </div>
+                                </a>
+                                <div class="btn-group ms-n2 ms-sm-0 mt-3"><a class="btn btn-primary px-3" href="${path}/camp/campDetail?no=1601" style="height: 2.75rem;"><fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="150000" /></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+           </div>
         </section>
+        
+        
+        
 
         <!-- Top offers (carousel)-->
         <div class="container ">
@@ -387,140 +542,36 @@
         <section class="container-fluid mb-5 " style="width: 1500px; ">
             <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside tns-nav-outside-flush mx-n2 ">
                 <div class="tns-carousel-inner row gx-4 mx-0 pt-3 pb-4 " data-carousel-options="{&quot;items&quot;: 6, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3},&quot;992&quot;:{&quot;items&quot;:4},&quot;1242&quot;:{&quot;items&quot;:5},&quot;1498&quot;:{&quot;items&quot;:6}}} ">
+             <c:forEach begin="1" end="8" step="1">
                    <!-- Item-->
                     <div class="col">
                         <div class="card shadow-sm card-hover border-0 h-100 ">
                             <div class="card-img-top card-img-hover ">
-                                <a class="img-overlay " href="real-estate-single-v1.html "></a>
-                                <div class="position-absolute start-0 top-0 pt-3 ps-3 "><span class="d-table badge bg-success mb-1 ">Verified</span><span class="d-table badge bg-info ">New</span></div>
+                                <a class="img-overlay " href="#"></a>
+                                <div class="position-absolute start-0 top-0 pt-3 ps-3 ">
+                                
+                                <span class=" badge bg-success mb-1 ">뭘</span>
+                                
+                                <span class=" badge bg-info ">넣을까</span></div>
+                                
+                                
                                 <div class="content-overlay end-0 top-0 pt-3 pe-3 ">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle " type="button" data-bs-toggle="tooltip " data-bs-placement="left " title="Add to Wishlist "><i class="fi-heart "></i></button>
+                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle " type="button" data-bs-toggle="tooltip " data-bs-placement="left " title="Add to Wishlist "></button>
                                 </div><img src="${path}/resources/image/shop1.jpg" alt="Image ">
                             </div>
                             <div class="card-body position-relative pb-3 ">
                                 <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary ">For rent</h4>
-                                <h3 class="h6 mb-2 fs-base "><a class="nav-link stretched-link " href="real-estate-single-v1.html ">3-bed Apartment | 67 sq.m</a></h3>
+                                <h3 class="h6 mb-2 fs-base "><a class="nav-link stretched-link " href="real-estate-single-v1.html ">이름</a></h3>
                                 <p class="mb-2 fs-sm text-muted ">3811 Ditmars Blvd Astoria, NY 11105</p>
                                 <div class="fw-bold "><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70 "></i>$1,629</div>
                             </div>
                         </div>
                     </div>
-                   <!-- Item-->
-                    <div class="col">
-                        <div class="card shadow-sm card-hover border-0 h-100 ">
-                            <div class="card-img-top card-img-hover ">
-                                <a class="img-overlay " href="real-estate-single-v1.html "></a>
-                                <div class="position-absolute start-0 top-0 pt-3 ps-3 "><span class="d-table badge bg-success mb-1 ">Verified</span><span class="d-table badge bg-info ">New</span></div>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3 ">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle " type="button" data-bs-toggle="tooltip " data-bs-placement="left " title="Add to Wishlist "><i class="fi-heart "></i></button>
-                                </div><img src="${path}/resources/image/shop1.jpg" alt="Image ">
-                            </div>
-                            <div class="card-body position-relative pb-3 ">
-                                <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary ">For rent</h4>
-                                <h3 class="h6 mb-2 fs-base "><a class="nav-link stretched-link " href="real-estate-single-v1.html ">3-bed Apartment | 67 sq.m</a></h3>
-                                <p class="mb-2 fs-sm text-muted ">3811 Ditmars Blvd Astoria, NY 11105</p>
-                                <div class="fw-bold "><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70 "></i>$1,629</div>
-                            </div>
-                        </div>
-                    </div>
-                   <!-- Item-->
-                    <div class="col">
-                        <div class="card shadow-sm card-hover border-0 h-100 ">
-                            <div class="card-img-top card-img-hover ">
-                                <a class="img-overlay " href="real-estate-single-v1.html "></a>
-                                <div class="position-absolute start-0 top-0 pt-3 ps-3 "><span class="d-table badge bg-success mb-1 ">Verified</span><span class="d-table badge bg-info ">New</span></div>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3 ">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle " type="button" data-bs-toggle="tooltip " data-bs-placement="left " title="Add to Wishlist "><i class="fi-heart "></i></button>
-                                </div><img src="${path}/resources/image/shop1.jpg" alt="Image ">
-                            </div>
-                            <div class="card-body position-relative pb-3 ">
-                                <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary ">For rent</h4>
-                                <h3 class="h6 mb-2 fs-base "><a class="nav-link stretched-link " href="real-estate-single-v1.html ">3-bed Apartment | 67 sq.m</a></h3>
-                                <p class="mb-2 fs-sm text-muted ">3811 Ditmars Blvd Astoria, NY 11105</p>
-                                <div class="fw-bold "><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70 "></i>$1,629</div>
-                            </div>
-                        </div>
-                    </div>
-                   <!-- Item-->
-                    <div class="col">
-                        <div class="card shadow-sm card-hover border-0 h-100 ">
-                            <div class="card-img-top card-img-hover ">
-                                <a class="img-overlay " href="real-estate-single-v1.html "></a>
-                                <div class="position-absolute start-0 top-0 pt-3 ps-3 "><span class="d-table badge bg-success mb-1 ">Verified</span><span class="d-table badge bg-info ">New</span></div>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3 ">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle " type="button" data-bs-toggle="tooltip " data-bs-placement="left " title="Add to Wishlist "><i class="fi-heart "></i></button>
-                                </div><img src="${path}/resources/image/shop1.jpg" alt="Image ">
-                            </div>
-                            <div class="card-body position-relative pb-3 ">
-                                <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary ">For rent</h4>
-                                <h3 class="h6 mb-2 fs-base "><a class="nav-link stretched-link " href="real-estate-single-v1.html ">3-bed Apartment | 67 sq.m</a></h3>
-                                <p class="mb-2 fs-sm text-muted ">3811 Ditmars Blvd Astoria, NY 11105</p>
-                                <div class="fw-bold "><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70 "></i>$1,629</div>
-                            </div>
-                        </div>
-                    </div>
-                   <!-- Item-->
-                    <div class="col">
-                        <div class="card shadow-sm card-hover border-0 h-100 ">
-                            <div class="card-img-top card-img-hover ">
-                                <a class="img-overlay " href="real-estate-single-v1.html "></a>
-                                <div class="position-absolute start-0 top-0 pt-3 ps-3 "><span class="d-table badge bg-success mb-1 ">Verified</span><span class="d-table badge bg-info ">New</span></div>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3 ">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle " type="button" data-bs-toggle="tooltip " data-bs-placement="left " title="Add to Wishlist "><i class="fi-heart "></i></button>
-                                </div><img src="${path}/resources/image/shop1.jpg" alt="Image ">
-                            </div>
-                            <div class="card-body position-relative pb-3 ">
-                                <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary ">For rent</h4>
-                                <h3 class="h6 mb-2 fs-base "><a class="nav-link stretched-link " href="real-estate-single-v1.html ">3-bed Apartment | 67 sq.m</a></h3>
-                                <p class="mb-2 fs-sm text-muted ">3811 Ditmars Blvd Astoria, NY 11105</p>
-                                <div class="fw-bold "><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70 "></i>$1,629</div>
-                            </div>
-                        </div>
-                    </div>
-                   <!-- Item-->
-                    <div class="col">
-                        <div class="card shadow-sm card-hover border-0 h-100 ">
-                            <div class="card-img-top card-img-hover ">
-                                <a class="img-overlay " href="real-estate-single-v1.html "></a>
-                                <div class="position-absolute start-0 top-0 pt-3 ps-3 "><span class="d-table badge bg-success mb-1 ">Verified</span><span class="d-table badge bg-info ">New</span></div>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3 ">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle " type="button" data-bs-toggle="tooltip " data-bs-placement="left " title="Add to Wishlist "><i class="fi-heart "></i></button>
-                                </div><img src="${path}/resources/image/shop1.jpg" alt="Image ">
-                            </div>
-                            <div class="card-body position-relative pb-3 ">
-                                <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary ">For rent</h4>
-                                <h3 class="h6 mb-2 fs-base "><a class="nav-link stretched-link " href="real-estate-single-v1.html ">3-bed Apartment | 67 sq.m</a></h3>
-                                <p class="mb-2 fs-sm text-muted ">3811 Ditmars Blvd Astoria, NY 11105</p>
-                                <div class="fw-bold "><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70 "></i>$1,629</div>
-                            </div>
-                        </div>
-                    </div>
-                   <!-- Item-->
-                    <div class="col">
-                        <div class="card shadow-sm card-hover border-0 h-100 ">
-                            <div class="card-img-top card-img-hover ">
-                                <a class="img-overlay " href="real-estate-single-v1.html "></a>
-                                <div class="position-absolute start-0 top-0 pt-3 ps-3 "><span class="d-table badge bg-success mb-1 ">Verified</span><span class="d-table badge bg-info ">New</span></div>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3 ">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle " type="button" data-bs-toggle="tooltip " data-bs-placement="left " title="Add to Wishlist "><i class="fi-heart "></i></button>
-                                </div><img src="${path}/resources/image/shop1.jpg" alt="Image ">
-                            </div>
-                            <div class="card-body position-relative pb-3 ">
-                                <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary ">For rent</h4>
-                                <h3 class="h6 mb-2 fs-base "><a class="nav-link stretched-link " href="real-estate-single-v1.html ">3-bed Apartment | 67 sq.m</a></h3>
-                                <p class="mb-2 fs-sm text-muted ">3811 Ditmars Blvd Astoria, NY 11105</p>
-                                <div class="fw-bold "><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70 "></i>$1,629</div>
-                            </div>
-                        </div>
-                    </div>
+                 </c:forEach>
                     <!--  @@@@@@ 아이템끝-->
-                    
-
-
-                </div>
+                    </div>
             </div>
         </section>
-    </main>
 	<script src="${path}/resources/vendor/bootstrap/dist/js/bootstrap.bundle.min.js "></script>
     <script src="${path}/resources/vendor/simplebar/dist/simplebar.min.js "></script>
     <script src="${path}/resources/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js "></script>
