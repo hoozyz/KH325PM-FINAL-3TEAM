@@ -55,7 +55,11 @@
                 font-size: 22px;
                 font-weight: bold;
                 margin: 5px;
+                overflow:hidden;
+                text-overflow:ellipsis;
+                white-space:nowrap;
             }
+            
             
             .rate {
                 color: #ff0038;
@@ -172,38 +176,38 @@
             <div class="row row-cols-lg-6 row-cols-sm-3 row-cols-2 g-3 g-xl-4">
                 <div class="col">
                     <a class="icon-box card card-body h-100 border-0 shadow-sm card-hover h-100 text-center" href="real-estate-catalog-rent.html">
-                        <div class="icon-box-media bg-faded-primary text-primary rounded-circle mb-3 mx-auto"><i class="fi-real-estate-house" style="margin-top: 10px;"></i></div>
+                        <div class="icon-box-media bg-faded-primary text-primary rounded-circle mb-3 mx-auto"><i class="fi-real-estate-house" style="margin-top: 11px;"></i></div>
                         <h3 class="icon-box-title fs-base mb-0">텐트/침낭</h3>
                     </a>
                 </div>
                 <div class="col">
                     <a class="icon-box card card-body h-100 border-0 shadow-sm card-hover h-100 text-center" href="real-estate-catalog-sale.html">
-                        <div class="icon-box-media bg-faded-primary text-primary rounded-circle mb-3 mx-auto"><i class="fi-apartment"></i></div>
+                        <div class="icon-box-media bg-faded-primary text-primary rounded-circle mb-3 mx-auto"><i class="fi-apartment" style="margin-top: 11px;"></i></div>
                         <h3 class="icon-box-title fs-base mb-0">음식</h3>
                     </a>
                 </div>
                 <div class="col">
                     <a class="icon-box card card-body h-100 border-0 shadow-sm card-hover h-100 text-center" href="real-estate-catalog-rent.html">
-                        <div class="icon-box-media bg-faded-primary text-primary rounded-circle mb-3 mx-auto"><i class="fi-shop"></i></div>
+                        <div class="icon-box-media bg-faded-primary text-primary rounded-circle mb-3 mx-auto"><i class="fi-shop" style="margin-top: 12px;"></i></div>
                         <h3 class="icon-box-title fs-base mb-0">가구</h3>
                     </a>
                 </div>
                 <div class="col">
                     <a class="icon-box card card-body h-100 border-0 shadow-sm card-hover h-100 text-center" href="real-estate-catalog-sale.html">
-                        <div class="icon-box-media bg-faded-primary text-primary rounded-circle mb-3 mx-auto"><i class="fi-rent"></i></div>
+                        <div class="icon-box-media bg-faded-primary text-primary rounded-circle mb-3 mx-auto"><i class="fi-rent" style="margin-top: 12px;"></i></div>
                         <h3 class="icon-box-title fs-base mb-0">도구</h3>
                     </a>
                 </div>
                 <div class="col">
                     <a class="icon-box card card-body h-100 border-0 shadow-sm card-hover h-100 text-center" href="real-estate-catalog-rent.html">
-                        <div class="icon-box-media bg-faded-primary text-primary rounded-circle mb-3 mx-auto"><i class="fi-house-chosen"></i></div>
+                        <div class="icon-box-media bg-faded-primary text-primary rounded-circle mb-3 mx-auto"><i class="fi-house-chosen" style="margin-top: 12px;"></i></div>
                         <h3 class="icon-box-title fs-base mb-0">차량용</h3>
                     </a>
                 </div>
                 <div class="col">
                     <div class="dropdown h-100">
                         <a class="icon-box card card-body h-100 border-0 shadow-sm card-hover text-center" href="#" data-bs-toggle="dropdown">
-                            <div class="icon-box-media bg-faded-primary text-primary rounded-circle mb-3 mx-auto"><i class="fi-dots-horisontal"></i></div>
+                            <div class="icon-box-media bg-faded-primary text-primary rounded-circle mb-3 mx-auto"><i class="fi-dots-horisontal" style="margin-top: 12px;"></i></div>
                             <h3 class="icon-box-title fs-base mb-0">ETC</h3>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end my-1"><a class="dropdown-item fw-bold" href="real-estate-catalog-sale.html"><i class="fi-single-bed fs-base opacity-60 me-2"></i>Room</a><a class="dropdown-item fw-bold" href="real-estate-catalog-rent.html"><i class="fi-computer fs-base opacity-60 me-2"></i>Office</a>
@@ -219,11 +223,12 @@
             <div class="container-fluid mb-5 pt-5 mt-n3 mt-lg-0" style="width: 1500px;;">
                 <h2>시선집중</h2>
                 <div class="row ">
+                
                     <div class="col-4 ">
                         <div class="card ">
                         	<a href="${saleList.get(0).link}" style="text-decoration: none;">
                             <img src="${saleList.get(0).image}" class="card-img-top " style="height: 200px;" alt="Card image ">
-                            <div class="card-body ">
+                            <div class="card-body">
                                 <div class="c-flag">
                                     <div class="c-flag_body">
                                         <span class="c-flag__item">시선집중</span>
@@ -236,7 +241,7 @@
                                     </span>
                                     
                                     <c:set var="price0" value="${saleList.get(0).price * 0.8}" />
-                                    <fmt:parseNumber var= "price0" integerOnly= "true" value= "${fn:replace(price0,'.0','')}"/>
+                                    <fmt:parseNumber var= "price0" integerOnly= "true" value= "${fn:replace(price,'.0','')}"/>
                                     <span class="price">
                                         <span class="value">${price0}</span><span class="unit">원</span>
                                     </span>
@@ -244,7 +249,7 @@
                                         <span class="value">${saleList.get(0).price}</span><span class="unit">원</span>
                                     </span>
                                 </div>
-                                </a>
+                                  </a>
                                 <div class="cover">
                                     <c:set var="saleTitle0" value="${saleList.get(0).title}"/>
 
@@ -258,10 +263,13 @@
                                 	<c:set var="ran"><%= java.lang.Math.round(java.lang.Math.random() * 500) %></c:set> <!-- 랜덤 숫자 -->
                                     <span class="prd_count"><span class="number">${ran}</span>개 구매</span>
                                 </div>
-                            </div>
+                            </div> 
                             <div class="card-footer text-muted" style="font-size :16px;">ㅁㅁㅁ추천 상품</div>
-                        </div>
+                          
+                       </div>
                     </div>
+                
+                    
                     <div class="col-4 ">
                         <div class="card ">
                         	<a href="${saleList.get(1).link}" style="text-decoration: none;">
@@ -303,8 +311,10 @@
                                 </div>
                             </div>
                             <div class="card-footer text-muted" style="font-size :16px;">ㅁㅁㅁ추천 상품</div>
+                            
                         </div>
                     </div>
+                    
                     <div class="col-4 ">
                         <div class="card ">
                         	<a href="${saleList.get(2).link}" style="text-decoration: none;">
@@ -343,14 +353,16 @@
                                 	<c:set var="ran"><%= java.lang.Math.round(java.lang.Math.random() * 500) %></c:set> <!-- 랜덤 숫자 -->
                                     <span class="prd_count"><span class="number">${ran}</span>개 구매</span>
                                 </div>
+
                             </div>
-                            <div class="card-footer text-muted" style="font-size :16px;">ㅁㅁㅁ추천 상품</div>
+                              <div class="card-footer text-muted" style="font-size :16px;">ㅁㅁㅁ추천 상품</div>
+                        </div>
+                   </div>
+                          
                         </div>
                     </div>
 
-                </div>
-            </div>
-        </section>
+        </section>  
 
 
 
@@ -434,13 +446,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
-
-
-
                 </div>
             </div>
             <!-- Carousel custom controls-->
@@ -457,7 +462,7 @@
 
             // 0d 00h 00m 00s
             function getClock1() {
-               const masTime = new Date("2022-11-03");
+               const masTime = new Date("2022-11-03 00:00:00");
                 const todayTime = new Date();
                 
                 const diff = masTime - todayTime;
@@ -470,7 +475,6 @@
                 clock1.innerText = diffHour + ' : ' + diffMin + ' : ' + diffSec;
                 clock2.innerText = diffHour + ' : ' + diffMin + ' : ' + diffSec;
                
-                console.log(diffHour + ':' + diffMin + ':' + diffSec);
             }
 
             getClock1();
@@ -491,13 +495,15 @@
                     	<c:forEach var="i" begin="0" end="${foodList.size() - 1}">
                     		<div class="col">
                         <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="card-img-top card-img-hover">
+                            <div class="card-img-top card-img-hover" style="height:300px;">
                                 <a class="img-overlay" href="real-estate-single-v1.html"></a>
+                                 <img src="${foodList.get(i).image}" style="width: 100%;  height: 100%;  object-fit: cover; alt="Image">
                                 <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">${foodList.get(i).cate2}</span><span class="d-table badge bg-info">${foodList.get(i).cate3}</span></div>
                                 <div class="content-overlay end-0 top-0 pt-3 pe-3">
                                     <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                </div><img src="${foodList.get(i).image}" alt="Image">
+                                </div>
                             </div>
+                                <hr>
                             <div class="card-body position-relative pb-3">
                                 <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">${foodList.get(i).mall}</h4>
                                 <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">${foodList.get(i).title}</a></h3>
@@ -529,8 +535,9 @@
                                 <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">${supList.get(i).cate2}</span><span class="d-table badge bg-info">${supList.get(i).cate3}</span></div>
                                 <div class="content-overlay end-0 top-0 pt-3 pe-3">
                                     <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                </div><img src="${supList.get(i).image}" alt="Image">
+                                </div><img src="${supList.get(i).image}" style="min-height: 300px"  alt="Image">
                             </div>
+                                <hr>
                             <div class="card-body position-relative pb-3">
                                 <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">${supList.get(i).mall}</h4>
                                 <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">${supList.get(i).title}</a></h3>
