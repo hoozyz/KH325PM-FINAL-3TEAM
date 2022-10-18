@@ -16,17 +16,29 @@ public interface ReviewService {
 	int getLike(int no);
 
 	int insert(Map<String, String> param);
-	
+
 	// 캠핑
 	List<Review> selectRevCamp(int no, PageInfo pageInfo, String sort);
+
 	int getCountByCamp(int campNo);
-	
+
 	// 상현
 	List<Review> selectRevFood(int no, PageInfo pageInfo, String sort);
+
 	int selectRevByFoodCnt(int no);
 
 	// 우성(hotel)
 	List<Review> selectRevHotel(int no, PageInfo pageInfo, String sort);
+
 	int selectRevByHotelCnt(int no);
-	
+
+	// 정우
+	List<Review> selectRevFestival(int no, PageInfo pageInfo, String sort);
+
+	int getCountByFestival(int no);
+
+	// 세은
+	List<Review> selectRevPark(int no, PageInfo pageInfo, String sort);
+
+	int selectRevByParkCnt(int no);
 }

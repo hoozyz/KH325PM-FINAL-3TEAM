@@ -38,24 +38,25 @@ public class ReviewServiceImpl implements ReviewService {
 	public int getLike(int no) {
 		return mapper.getLike(no);
 	}
+
 	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public int insert(Map<String, String> param) {
-		
-		String type = (String)param.get("type");
 
-		if(type.equals("hotel")) {
+		String type = (String) param.get("type");
+
+		if (type.equals("hotel")) {
 			param.put("hotelNo", param.get("no"));
-		}else if(type.equals("camp")) {
+		} else if (type.equals("camp")) {
 			param.put("campNo", param.get("no"));
-		}else if(type.equals("festival")) {
+		} else if (type.equals("festival")) {
 			param.put("festivalNo", param.get("no"));
-		}else if(type.equals("food")) {
+		} else if (type.equals("food")) {
 			param.put("foodNo", param.get("no"));
-		}else if(type.equals("park")) {
+		} else if (type.equals("park")) {
 			param.put("parkNo", param.get("no"));
 		}
-		
+
 //		switch (type) {
 //		case "hotel":
 //			param.put("hotelNo", param.get("no"));
@@ -80,7 +81,6 @@ public class ReviewServiceImpl implements ReviewService {
 		Map<String, String> searchMap = new HashMap<String, String>();
 		searchMap.put("no", "" + no); // ${}
 		searchMap.put("sort", sort);
-		System.out.println("----" + sort);
 		// 정렬은 쿼리에서 if문
 		return mapper.selectRevCamp(rowBounds, searchMap);
 	}
@@ -117,14 +117,51 @@ public class ReviewServiceImpl implements ReviewService {
 		Map<String, String> searchMap = new HashMap<String, String>();
 		searchMap.put("no", "" + no); // ${}
 		searchMap.put("sort", sort);
-		System.out.println("----" + sort);
 
-		return mapper.selectRevFood(rowBounds, searchMap);
+		return mapper.selectRevHotel(rowBounds, searchMap);
 	}
 
 	@Override
 	public int selectRevByHotelCnt(int no) {
 
 		return mapper.selectRevByHotelCnt(no);
+	}
+
+	// 정우
+	@Override
+	public List<Review> selectRevFestival(int no, PageInfo pageInfo, String sort) {
+		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit(); // 앞에서 뺄 수
+		RowBounds rowBounds = new RowBounds(offset, pageInfo.getListLimit());
+
+		Map<String, String> searchMap = new HashMap<String, String>();
+		searchMap.put("no", "" + no);
+		searchMap.put("sort", sort);
+		return mapper.selectRevFestival(rowBounds, searchMap);
+	}
+
+	@Override
+	public int getCountByFestival(int no) {
+		return mapper.getCountByFestival(no);
+	}
+
+	// 세은(공원)
+	@Override
+	public List<Review> selectRevPark(int no, PageInfo pageInfo, String sort) {
+		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
+		RowBounds rowBounds = new RowBounds(offset, pageInfo.getListLimit());
+
+		Map<String, String> searchMap = new HashMap<String, String>();
+		searchMap.put("no", "" + no); // ${}
+		searchMap.put("sort", sort);
+		System.out.println("----" + sort);
+
+		return mapper.selectRevPark(rowBounds, searchMap);
+
+	}
+
+	@Override
+	public int selectRevByParkCnt(int no) {
+
+		return mapper.selectRevByParkCnt(no);
 	}
 }

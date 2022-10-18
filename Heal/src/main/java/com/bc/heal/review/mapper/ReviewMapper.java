@@ -23,13 +23,26 @@ public interface ReviewMapper {
 
 	// 캠핑
 	List<Review> selectRevCamp(RowBounds rowBounds, Map<String, String> searchMap);
+
 	int getCountByCamp(int no);
 
 	// 상현(food)
 	List<Review> selectRevFood(RowBounds rowBounds, Map<String, String> searchMap);
+
 	int selectRevByFoodCnt(int no);
 
 	// 우성(hotel)
-	List<Review> selectRevByHotel(RowBounds rowBounds, Map<String, String> map);
+	List<Review> selectRevHotel(RowBounds rowBounds, Map<String, String> searchMap);
+
 	int selectRevByHotelCnt(int no);
+
+	// 정우(축제)
+	List<Review> selectRevFestival(RowBounds rowBounds, Map<String, String> searchMap);
+
+	int getCountByFestival(int no);
+
+	// 세은(공원)
+	List<Review> selectRevPark(RowBounds rowBounds, Map<String, String> map);
+
+	int selectRevByParkCnt(int no);
 }

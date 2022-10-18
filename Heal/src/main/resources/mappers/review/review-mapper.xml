@@ -213,6 +213,60 @@
 	</select>
 <!-- 	@@@호텔@@@ -->
 
+<!-- @@@ 축제 -->
+	<select id="selectRevFestival" parameterType="map" resultMap="reviewIdMap">
+ 		SELECT R.*, M.ID
+ 		FROM TBL_REVIEW R
+ 		JOIN TBL_MEMBER M ON (R.MEMBERNO = M.NO)
+ 		AND R.FESTIVALNO = ${no} <!-- ${} -> '' 안붙음 -> 정수가능 -->
+ 		<if test='sort.equals("new")'> <!-- 최신순 -->
+ 			ORDER BY R.NO DESC
+ 		</if>
+ 		<if test='sort.equals("old")'>
+ 			ORDER BY R.NO ASC
+ 		</if>
+ 		<if test='sort.equals("star")'>
+ 			ORDER BY R.REVSTAR DESC	
+ 		</if>
+ 		<if test='sort.equals("like")'>
+ 			ORDER BY R.REVLIKE DESC
+ 		</if>
+	</select>
+	
+	<select id="getCountByFestival" resultType="int" parameterType="int">
+		SELECT COUNT(*)
+		FROM TBL_REVIEW
+		WHERE FESTIVALNO = #{no}
+	</select>
+<!-- @@@ 축제 -->
+
+<!-- 	@@@공원@@@ -->
+	<select id="selectRevPark" parameterType="map" resultMap="reviewIdMap">
+			SELECT R.*, M.ID
+			FROM TBL_REVIEW R
+			JOIN TBL_MEMBER M ON (R.MEMBERNO = M.NO)
+			WHERE R.PARKNO = ${no} <!-- ${} -> '' 안붙음 -> 정수가능 -->
+		<if test='sort.equals("new")'> <!-- 최신순 -->
+ 			ORDER BY R.NO DESC
+ 		</if>
+ 		<if test='sort.equals("old")'>
+ 			ORDER BY R.NO ASC
+ 		</if>
+ 		<if test='sort.equals("star")'>
+ 			ORDER BY R.REVSTAR DESC
+ 		</if>
+ 		<if test='sort.equals("like")'>
+ 			ORDER BY R.REVLIKE DESC
+ 		</if>
+	</select>
+	
+	<select id="selectRevByParkCnt" resultType="int" parameterType="int">
+	 	SELECT COUNT(*)
+	 		FROM TBL_REVIEW 
+	 		WHERE PARKNO = ${no}
+	</select>
+<!-- 	@@@공원@@@ -->
+
 	<select id="getLike" parameterType="int" resultType="int">
 		SELECT REVLIKE
 		FROM TBL_REVIEW
