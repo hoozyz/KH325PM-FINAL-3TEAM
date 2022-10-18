@@ -53,12 +53,31 @@ public class ShopController {
 //		wordList.add("침낭");    
 //		wordList.add("장작");
 //		wordList.add("입장권");
+//		wordList.add("새우");
 //		insert(wordList);
 		
-		
-		List<Shop> saleList = new ArrayList<>(); // 여행상품 200개 중 3개
+		// 여행상품 200개 중 3개
+		List<Shop> saleList = new ArrayList<>(); 
 		saleList = service.selectByTrip(); // 리스트 3개
 		model.addAttribute("saleList", saleList);
+		
+		// 타임딜 - 고기 , 새우
+		Shop meat = service.selectByMeat();
+		Shop shrimp = service.selectByShrimp();
+		model.addAttribute("meat", meat);
+		model.addAttribute("shrimp", shrimp);
+		
+		// 음식 리스트
+		List<Shop> foodList = new ArrayList<>();
+		foodList = service.selectByFood(); // 10개
+		model.addAttribute("foodList", foodList);
+		
+		// 용품 리스트
+		List<Shop> supList = new ArrayList<>();
+		supList = service.selectBySup(); // 10개
+		model.addAttribute("supList", supList);
+		
+			
 		return "shop/shopMain";
 	}
 

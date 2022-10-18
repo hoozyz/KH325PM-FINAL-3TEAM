@@ -57,4 +57,48 @@
 		WHERE ROWNUM <![CDATA[<=]]> 3
 	</select>
 	
+	<select id="selectByMeat" resultType="Shop">
+		SELECT * 
+		FROM (
+			SELECT * 
+			FROM TBL_SHOP
+			WHERE CATE3 LIKE '%'||'고기'||'%'
+			ORDER BY DBMS_RANDOM.VALUE
+		)
+		WHERE ROWNUM <![CDATA[=]]> 1
+	</select>
+	
+	<select id="selectByShrimp" resultType="Shop">
+		SELECT * 
+		FROM (
+			SELECT * 
+			FROM TBL_SHOP
+			WHERE CATE2 LIKE '%'||'수산'||'%'
+			ORDER BY DBMS_RANDOM.VALUE
+		)
+		WHERE ROWNUM <![CDATA[=]]> 1
+	</select>
+	
+	<select id="selectByFood" resultMap="shopResultMap">
+		SELECT * 
+		FROM (
+			SELECT * 
+			FROM TBL_SHOP
+			WHERE (CATE3 LIKE '%'||'고기'||'%' OR CATE2 LIKE '%'||'수산'||'%')
+			ORDER BY DBMS_RANDOM.VALUE
+		)
+		WHERE ROWNUM <![CDATA[<=]]> 10
+	</select>
+	
+	<select id="selectBySup" resultMap="shopResultMap">
+		SELECT * 
+		FROM (
+			SELECT * 
+			FROM TBL_SHOP
+			WHERE (CATE3 LIKE '%'||'용품'||'%' OR CATE3 LIKE '%'||'팬'||'%' OR CATE3 LIKE '%'||'그릴'||'%' OR CATE3 LIKE '%'||'박스'||'%')
+			ORDER BY DBMS_RANDOM.VALUE
+		)
+		WHERE ROWNUM <![CDATA[<=]]> 10
+	</select>
+	
 </mapper>

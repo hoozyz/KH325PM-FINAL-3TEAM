@@ -12,5 +12,13 @@ public interface ShopMapper {
 	void insert(Shop shop);
 
 	List<Shop> selectByTrip();
+
+	List<Shop> selectByFood();
+
+	List<Shop> selectBySup();
+
+	Shop selectByMeat();
+
+	Shop selectByShrimp();
 	
 }

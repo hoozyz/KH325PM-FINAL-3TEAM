@@ -370,12 +370,12 @@
                         <div class="row">
                             <div class="col-6 mb-md-0 mb-3">
                                 <div class="position-relative pe-lg-5">
-                                    <div class="position-absolute top-0 start-0 zindex-1 m-3 p-1"></div><img class="rounded-3 zindex-5" style="width: 550px;height: 270px;" src="${path}/resources/image/shopTimer.jpg" alt="Article image">
+                                    <div class="position-absolute top-0 start-0 zindex-1 m-3 p-1"></div><img class="rounded-3 zindex-5" style="width: 550px;height: 270px;" src="${meat.image}" alt="Article image">
                                 </div>
                             </div>
 
                             <div class="col-6 ">
-                                    <span style="color:#ff0038" id="clock1"></span>
+                                    <span style="color:#ff0038;  font-size: 25px;" id="clock1"></span>
                                 <div class="timer">
                                 </div>
                                 <span class="badge bg-accent fs-sm me-2 ">타임딜</span>
@@ -385,10 +385,12 @@
                                 <div class="from-start delay-2">
                                     <div style="margin-bottom: 20px;">
                                         <div>캠핑갈때 즐거운 고.기.파티</div>
-                                        <h4>특수부위 6종 모듬세트 1.2kg (냉동) 캠핑고기</h4>
-                                        <span class="discount-rate">35%</span>
-                                        <span class="sales-price">19,450원</span>
-                                        <span class="dimmed-price">29,900원</span>
+                                        <h4>${meat.title}</h4>
+                                        <span class="discount-rate">30%</span>
+                                        <c:set var="price1" value="${meat.price * 0.7}"/>
+                                        <fmt:parseNumber var="price1" integerOnly="true" value= "${price1}" />
+                                        <span class="sales-price">${price1}원</span>
+                                        <span class="dimmed-price">${meat.price}원</span>
                                     </div>
 
                                 </div>
@@ -402,13 +404,13 @@
                         <div class="row">
                             <div class="col-6 mb-md-0 mb-3">
                                 <div class="position-relative pe-lg-5">
-                                    <div class="position-absolute top-0 start-0 zindex-1 m-3 p-1"></div><img class="rounded-3 zindex-5" style="width: 550px;height: 270px;" src="${path}/resources/image/showTimer2.jpg" alt="Article image">
+                                    <div class="position-absolute top-0 start-0 zindex-1 m-3 p-1"></div><img class="rounded-3 zindex-5" style="width: 550px;height: 270px;" src="${shrimp.image}" alt="Article image">
                                 </div>
                             </div>
 
                             <div class="col-6 ">
                                 <div class="timer">
-                                    <span style="color:#ff0038" id="clock2"></span>
+                                    <span style="color:#ff0038; font-size: 25px;" id="clock2"></span>
                                 </div>
                                 <span class="badge bg-accent fs-sm me-2 ">타임딜</span>
                                 <!-- 타이머 -->
@@ -416,11 +418,13 @@
 
                                 <div class="from-start delay-2">
                                     <div style="margin-bottom: 20px;">
-                                        <div>캠핑갈때 즐거운 고.기.파티</div>
-                                        <h4>국산 제철 특대 활새우1kg 대(25-30미내외)왕새우 흰다리새우 통통하고 달달한맛</h4>
+                                        <div>캠핑갈때 즐거운 새.우.파티</div>
+                                        <h4>${shrimp.title}</h4>
                                         <span class="discount-rate">30%</span>
-                                        <span class="sales-price">21,600원</span>
-                                        <span class="dimmed-price">30,900원</span>
+                                        <c:set var="price2" value="${shrimp.price * 0.7}"/>
+                                        <fmt:parseNumber var="price2" integerOnly="true" value="${price2}" />
+                                        <span class="sales-price">${price2}원</span>
+                                        <span class="dimmed-price">${shrimp.price}원</span>
                                     </div>
 
                                 </div>
@@ -447,168 +451,62 @@
         </section>
 
         ​​​​
-        <script>
-            const clock = document.querySelector('#clock1');
+         <script>
+        const  clock1 = document.querySelector('#clock1');
+        const  clock2 = document.querySelector('#clock2');
 
             // 0d 00h 00m 00s
             function getClock1() {
-                const nowDate = new Date();
-                const nowYear = nowDate.getFullYear();
-                const dDate = new Date(`${nowYear + 1}/1/1`);
-                const dDay = dDate.getTime() - nowDate.getTime();
-                const day = Math.floor(dDay / (1000 * 60 * 60 * 24));
-                const hours = String(Math.floor((dDay % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, "0");
-                const minutes = String(Math.floor((dDay % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, "0");
-                const seconds = String(Math.floor((dDay % (1000 * 60)) / 1000)).padStart(2, "0");
+               const masTime = new Date("2022-11-03");
+                const todayTime = new Date();
                 
-                clock1.innerText = `${hours}:${minutes}:${seconds}`;
+                const diff = masTime - todayTime;
+
+                const diffDay = String(Math.floor(diff / (1000*60*60*24)));
+                const diffHour =String( Math.floor((diff / (1000*60*60)) % 24)).padStart(2,"0");
+                const diffMin = String(Math.floor((diff / (1000*60)) % 60)).padStart(2,"0");
+                const diffSec = String(Math.floor(diff / 1000 % 60)).padStart(2,"0");
+                
+                clock1.innerText = diffHour + ' : ' + diffMin + ' : ' + diffSec;
+                clock2.innerText = diffHour + ' : ' + diffMin + ' : ' + diffSec;
+               
+                console.log(diffHour + ':' + diffMin + ':' + diffSec);
             }
 
-            getClock();
-            setInterval(getClock, 1000);
-            const clock2 = document.querySelector("#clock2");
+            getClock1();
+            setInterval(getClock1, 1000);
 
-            // 0d 00h 00m 00s
-           	function getClock2() {
-                const nowDate = new Date();
-                const nowYear = nowDate.getFullYear();
-                const dDate = new Date(`${nowYear + 1}/1/1`);
-                const dDay = dDate.getTime() - nowDate.getTime();
-                const day = Math.floor(dDay / (1000 * 60 * 60 * 24));
-                const hours = String(Math.floor((dDay % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, "0");
-                const minutes = String(Math.floor((dDay % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, "0");
-                const seconds = String(Math.floor((dDay % (1000 * 60)) / 1000)).padStart(2, "0");
-                clock2.innerText = `${hours}:${minutes}:${seconds}`;
-            }
-
-            getClock2();
-            setInterval(getClock2, 1000);
         </script>
 
         <!-- Top offers (carousel)-->
         <section class="container mb-5 pb-md-4">
             <div class="d-flex align-items-center justify-content-between mb-3">
-                <h2 class="mb-0">캠핑을 부탁해</h2>
+                <h2 class="mb-0">인생은 먹는 재미</h2>
                 <a class="btn btn-link fw-normal p-0" href="real-estate-catalog-rent.html">View all<i class="fi-arrow-long-right ms-2"></i></a>
             </div>
             <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside tns-nav-outside-flush mx-n2">
                 <div class="tns-carousel-inner row gx-4 mx-0 pt-3 pb-4" data-carousel-options="{&quot;items&quot;: 4, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3},&quot;992&quot;:{&quot;items&quot;:4}}}">
-                    <!-- Item-->
-                    <div class="col">
+                    <!-- Item 6개 -->
+                    <c:if test="${!empty foodList}"> <!-- 음식 리스트 -->
+                    	<c:forEach var="i" begin="0" end="${foodList.size() - 1}">
+                    		<div class="col">
                         <div class="card shadow-sm card-hover border-0 h-100">
                             <div class="card-img-top card-img-hover">
                                 <a class="img-overlay" href="real-estate-single-v1.html"></a>
-                                <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">Verified</span><span class="d-table badge bg-info">New</span></div>
+                                <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">${foodList.get(i).cate2}</span><span class="d-table badge bg-info">${foodList.get(i).cate3}</span></div>
                                 <div class="content-overlay end-0 top-0 pt-3 pe-3">
                                     <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                </div><img src="${path}/resources/img/real-estate/catalog/01.jpg" alt="Image">
+                                </div><img src="${foodList.get(i).image}" alt="Image">
                             </div>
                             <div class="card-body position-relative pb-3">
-                                <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For rent</h4>
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">3-bed Apartment | 67 sq.m</a></h3>
-                                <p class="mb-2 fs-sm text-muted">3811 Ditmars Blvd Astoria, NY 11105</p>
-                                <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>$1,629</div>
+                                <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">${foodList.get(i).mall}</h4>
+                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">${foodList.get(i).title}</a></h3>
+                                <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>${foodList.get(i).price}원</div>
                             </div>
-                            <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"><span class="d-inline-block mx-1 px-2 fs-sm">3<i class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-car ms-1 mt-n1 fs-lg text-muted"></i></span></div>
                         </div>
                     </div>
-                    <!-- Item-->
-                    <div class="col">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" href="real-estate-single-v1.html"></a>
-                                <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">Verified</span><span class="d-table badge bg-danger">Featured</span></div>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                </div><img src="${path}/resources/img/real-estate/catalog/02.jpg" alt="Image">
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For sale</h4>
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">Family Home| 120 sq.m</a></h3>
-                                <p class="mb-2 fs-sm text-muted">67-04 Myrtle Ave Glendale, NY 11385</p>
-                                <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>$84,000</div>
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"><span class="d-inline-block mx-1 px-2 fs-sm">4<i class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-car ms-1 mt-n1 fs-lg text-muted"></i></span></div>
-                        </div>
-                    </div>
-                    <!-- Item-->
-                    <div class="col">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" href="real-estate-single-v1.html"></a>
-                                <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">Verified</span><span class="d-table badge bg-info">New</span></div>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                </div><img src="${path}/resources/img/real-estate/catalog/01.jpg" alt="Image">
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For rent</h4>
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">3-bed Apartment | 67 sq.m</a></h3>
-                                <p class="mb-2 fs-sm text-muted">3811 Ditmars Blvd Astoria, NY 11105</p>
-                                <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>$1,629</div>
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"><span class="d-inline-block mx-1 px-2 fs-sm">3<i class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-car ms-1 mt-n1 fs-lg text-muted"></i></span></div>
-                        </div>
-                    </div>
-                    <!-- Item-->
-                    <div class="col">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" href="real-estate-single-v1.html"></a>
-                                <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">Verified</span><span class="d-table badge bg-danger">Featured</span></div>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                </div><img src="${path}/resources/img/real-estate/catalog/02.jpg" alt="Image">
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For sale</h4>
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">Family Home| 120 sq.m</a></h3>
-                                <p class="mb-2 fs-sm text-muted">67-04 Myrtle Ave Glendale, NY 11385</p>
-                                <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>$84,000</div>
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"><span class="d-inline-block mx-1 px-2 fs-sm">4<i class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-car ms-1 mt-n1 fs-lg text-muted"></i></span></div>
-                        </div>
-                    </div>
-                    <!-- Item-->
-                    <div class="col">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" href="real-estate-single-v1.html"></a>
-                                <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">Verified</span><span class="d-table badge bg-info">New</span></div>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                </div><img src="${path}/resources/img/real-estate/catalog/01.jpg" alt="Image">
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For rent</h4>
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">3-bed Apartment | 67 sq.m</a></h3>
-                                <p class="mb-2 fs-sm text-muted">3811 Ditmars Blvd Astoria, NY 11105</p>
-                                <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>$1,629</div>
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"><span class="d-inline-block mx-1 px-2 fs-sm">3<i class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-car ms-1 mt-n1 fs-lg text-muted"></i></span></div>
-                        </div>
-                    </div>
-                    <!-- Item-->
-                    <div class="col">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" href="real-estate-single-v1.html"></a>
-                                <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">Verified</span><span class="d-table badge bg-danger">Featured</span></div>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                </div><img src="${path}/resources/img/real-estate/catalog/02.jpg" alt="Image">
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For sale</h4>
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">Family Home| 120 sq.m</a></h3>
-                                <p class="mb-2 fs-sm text-muted">67-04 Myrtle Ave Glendale, NY 11385</p>
-                                <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>$84,000</div>
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"><span class="d-inline-block mx-1 px-2 fs-sm">4<i class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-car ms-1 mt-n1 fs-lg text-muted"></i></span></div>
-                        </div>
-                    </div>
-
-
+                    	</c:forEach>
+                    </c:if>
 
 
                 </div>
@@ -617,129 +515,31 @@
         <!-- Top offers (carousel)-->
         <section class="container mb-5 pb-md-4">
             <div class="d-flex align-items-center justify-content-between mb-3">
-                <h2 class=" mb-0">캠핑의 기본</h2><a class="btn btn-link fw-normal p-0" href="real-estate-catalog-rent.html">View all<i class="fi-arrow-long-right ms-2"></i></a>
+                <h2 class=" mb-0">요리는 도구빨</h2><a class="btn btn-link fw-normal p-0" href="real-estate-catalog-rent.html">View all<i class="fi-arrow-long-right ms-2"></i></a>
             </div>
             <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside tns-nav-outside-flush mx-n2">
                 <div class="tns-carousel-inner row gx-4 mx-0 pt-3 pb-4" data-carousel-options="{&quot;items&quot;: 4, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3},&quot;992&quot;:{&quot;items&quot;:4}}}">
-                  <!-- Item-->
-                    <div class="col">
+                  <!-- Item 6개 -->
+                    <c:if test="${!empty supList}"> <!-- 용품 리스트 -->
+                    	<c:forEach var="i" begin="0" end="${supList.size() - 1}">
+                    		<div class="col">
                         <div class="card shadow-sm card-hover border-0 h-100">
                             <div class="card-img-top card-img-hover">
                                 <a class="img-overlay" href="real-estate-single-v1.html"></a>
-                                <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">Verified</span><span class="d-table badge bg-info">New</span></div>
+                                <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">${supList.get(i).cate2}</span><span class="d-table badge bg-info">${supList.get(i).cate3}</span></div>
                                 <div class="content-overlay end-0 top-0 pt-3 pe-3">
                                     <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                </div><img src="${path}/resources/img/real-estate/catalog/01.jpg" alt="Image">
+                                </div><img src="${supList.get(i).image}" alt="Image">
                             </div>
                             <div class="card-body position-relative pb-3">
-                                <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For rent</h4>
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">3-bed Apartment | 67 sq.m</a></h3>
-                                <p class="mb-2 fs-sm text-muted">3811 Ditmars Blvd Astoria, NY 11105</p>
-                                <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>$1,629</div>
+                                <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">${supList.get(i).mall}</h4>
+                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">${supList.get(i).title}</a></h3>
+                                <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>${supList.get(i).price}원</div>
                             </div>
-                            <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"><span class="d-inline-block mx-1 px-2 fs-sm">3<i class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-car ms-1 mt-n1 fs-lg text-muted"></i></span></div>
                         </div>
                     </div>
-                    <!-- Item-->
-                    <div class="col">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" href="real-estate-single-v1.html"></a>
-                                <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">Verified</span><span class="d-table badge bg-danger">Featured</span></div>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                </div><img src="${path}/resources/img/real-estate/catalog/02.jpg" alt="Image">
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For sale</h4>
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">Family Home| 120 sq.m</a></h3>
-                                <p class="mb-2 fs-sm text-muted">67-04 Myrtle Ave Glendale, NY 11385</p>
-                                <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>$84,000</div>
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"><span class="d-inline-block mx-1 px-2 fs-sm">4<i class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-car ms-1 mt-n1 fs-lg text-muted"></i></span></div>
-                        </div>
-                    </div>
-                    <!-- Item-->
-                    <div class="col">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" href="real-estate-single-v1.html"></a>
-                                <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">Verified</span><span class="d-table badge bg-info">New</span></div>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                </div><img src="${path}/resources/img/real-estate/catalog/01.jpg" alt="Image">
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For rent</h4>
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">3-bed Apartment | 67 sq.m</a></h3>
-                                <p class="mb-2 fs-sm text-muted">3811 Ditmars Blvd Astoria, NY 11105</p>
-                                <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>$1,629</div>
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"><span class="d-inline-block mx-1 px-2 fs-sm">3<i class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-car ms-1 mt-n1 fs-lg text-muted"></i></span></div>
-                        </div>
-                    </div>
-                    <!-- Item-->
-                    <div class="col">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" href="real-estate-single-v1.html"></a>
-                                <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">Verified</span><span class="d-table badge bg-danger">Featured</span></div>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                </div><img src="${path}/resources/img/real-estate/catalog/02.jpg" alt="Image">
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For sale</h4>
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">Family Home| 120 sq.m</a></h3>
-                                <p class="mb-2 fs-sm text-muted">67-04 Myrtle Ave Glendale, NY 11385</p>
-                                <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>$84,000</div>
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"><span class="d-inline-block mx-1 px-2 fs-sm">4<i class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-car ms-1 mt-n1 fs-lg text-muted"></i></span></div>
-                        </div>
-                    </div>
-                    <!-- Item-->
-                    <div class="col">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" href="real-estate-single-v1.html"></a>
-                                <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">Verified</span><span class="d-table badge bg-info">New</span></div>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                </div><img src="${path}/resources/img/real-estate/catalog/01.jpg" alt="Image">
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For rent</h4>
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">3-bed Apartment | 67 sq.m</a></h3>
-                                <p class="mb-2 fs-sm text-muted">3811 Ditmars Blvd Astoria, NY 11105</p>
-                                <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>$1,629</div>
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"><span class="d-inline-block mx-1 px-2 fs-sm">3<i class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-car ms-1 mt-n1 fs-lg text-muted"></i></span></div>
-                        </div>
-                    </div>
-                    <!-- Item-->
-                    <div class="col">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" href="real-estate-single-v1.html"></a>
-                                <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">Verified</span><span class="d-table badge bg-danger">Featured</span></div>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                </div><img src="${path}/resources/img/real-estate/catalog/02.jpg" alt="Image">
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">For sale</h4>
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">Family Home| 120 sq.m</a></h3>
-                                <p class="mb-2 fs-sm text-muted">67-04 Myrtle Ave Glendale, NY 11385</p>
-                                <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>$84,000</div>
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"><span class="d-inline-block mx-1 px-2 fs-sm">4<i class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i></span><span class="d-inline-block mx-1 px-2 fs-sm">2<i class="fi-car ms-1 mt-n1 fs-lg text-muted"></i></span></div>
-                        </div>
-                    </div>
-                    
-
-
-
-
+                    	</c:forEach>
+                    </c:if>
 
 
 

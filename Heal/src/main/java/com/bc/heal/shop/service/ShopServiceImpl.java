@@ -30,4 +30,24 @@ public class ShopServiceImpl implements ShopService{
 	public List<Shop> selectByTrip() {
 		return mapper.selectByTrip();
 	}
+
+	@Override
+	public List<Shop> selectByFood() {
+		return mapper.selectByFood();
+	}
+
+	@Override
+	public List<Shop> selectBySup() {
+		return mapper.selectBySup();
+	}
+
+	@Override
+	public Shop selectByMeat() {
+		return mapper.selectByMeat();
+	}
+
+	@Override
+	public Shop selectByShrimp() {
+		return mapper.selectByShrimp();
+	}
 }

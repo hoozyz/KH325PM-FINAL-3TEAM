@@ -9,4 +9,12 @@ public interface ShopService {
 	void insert(List<Shop> list);
 
 	List<Shop> selectByTrip();
+
+	List<Shop> selectByFood();
+
+	List<Shop> selectBySup();
+
+	Shop selectByMeat();
+
+	Shop selectByShrimp();
 }
