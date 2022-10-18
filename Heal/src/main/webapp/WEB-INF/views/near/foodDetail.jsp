@@ -1453,7 +1453,9 @@
                                                 	&nbsp&nbsp흐림
                                                 </c:if>
                                                 </span>
-                                                <span class="lowtem">${today.tmn}</span>/<span class="hightem">${today.tmx}</span>
+                                                <c:set var="tmn" value="${today.tmn}" />
+                                                <c:set var="tmx" value="${today.tmx}" />
+                                                <span class="lowtem">${fn:replace(tmn,'.0','')}</span>/<span class="hightem">${fn:replace(tmx,'.0','')}</span>
                                             </p>
                                         </div>
                                         <div>
