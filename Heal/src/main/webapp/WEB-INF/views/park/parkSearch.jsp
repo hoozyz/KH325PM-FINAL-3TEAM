@@ -144,16 +144,16 @@
 		                    <div class="tns-carousel-inner">
 		                    	<c:set var="parkCategory" value="${park.category}"/>
 		                    	<c:if test="${fn:contains(parkCategory, '어린이')}">
-		                    		<img src="${path}/resources/image/pSearchKids/searchKids<%=Math.round(Math.random()*6 + 1)%>.png" alt="Image" style="min-height: 260px; max-height: 260px;">
+		                    		<img src="${path}/resources/image/pSearchKids/searchKids<%=Math.round(Math.random()*10 + 1)%>.png" alt="Image" style="min-height: 260px; max-height: 260px;">
 		                    	</c:if>
 		                    	<c:if test="${fn:contains(parkCategory, '수변')}">
-		                    		<img src="${path}/resources/image/pSearchWater/searchWater<%=Math.round(Math.random()*5 + 1)%>.png" alt="Image" style="min-height: 260px; max-height: 260px;">
+		                    		<img src="${path}/resources/image/pSearchWater/searchWater<%=Math.round(Math.random()*10 + 1)%>.png" alt="Image" style="min-height: 260px; max-height: 260px;">
 		                    	</c:if>
 		                    	<c:if test="${fn:contains(parkCategory, '역사')}">
-		                    		<img src="${path}/resources/image/psearchHis/searchHis<%=Math.round(Math.random()*5 + 1)%>.png" alt="Image" style="min-height: 260px; max-height: 260px;">
+		                    		<img src="${path}/resources/image/psearchHis/searchHis<%=Math.round(Math.random()*10 + 1)%>.png" alt="Image" style="min-height: 260px; max-height: 260px;">
 		                    	</c:if>
 		                    	<c:if test="${!fn:contains(parkCategory, '수변') && !fn:contains(parkCategory, '어린이') && !fn:contains(parkCategory, '역사')}">
-		                    		<img src="${path}/resources/image/pSearchOther/park<%=Math.round(Math.random()*12 + 1)%>.png" alt="Image" style="min-height: 260px; max-height: 260px;">
+		                    		<img src="${path}/resources/image/pSearchOther/park<%=Math.round(Math.random()*13 + 1)%>.png" alt="Image" style="min-height: 260px; max-height: 260px;">
 		                    	</c:if>
 		                    </div>
 		                  </div>
