@@ -7,7 +7,6 @@
  <link rel="stylesheet" media="screen" href="${path}/resources/vendor/simplebar/dist/simplebar.min.css" />
  <link rel="stylesheet" media="screen" href="${path}/resources/vendor/tiny-slider/dist/tiny-slider.css" />
 
-
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param value="메인 홈페이지" name="title"/>
 </jsp:include>
@@ -64,44 +63,36 @@
                 </h1>
             </div>
             <div class="container" style="max-width: 1000px;">
-                <form class="form-group rounded-md-pill" style="padding: 0px;" name="MainSearch" action="${path}/#/#" method="post">
+                <form class="form-group rounded-md-pill" style="padding: 0px;" name="MainSearch" id="searchFrm" action="" method="GET">
                     <div class="input-group input-group-lg border-end-md"><span class="input-group-text text-muted rounded-pill ps-5"><i class="fi-search"></i></span>
-                        <input class="form-control" name="name" type="text" placeholder="가보고 싶은 곳이 있으세요?">
+                        <input class="form-control" name="keyword" type="text" placeholder="가보고 싶은 곳이 있으세요?">
                     </div>
                     <hr class="d-md-none my-2">
                     <div class="d-sm-flex">
-                        <div class="dropdown w-100 mb-sm-0 mb-3 border-end-md" data-bs-toggle="select">
-                            <button class="btn btn-link btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" style="width: 200px; padding-left:0; padding-right: 80px;"><i class="fi-map-pin me-2"></i><span class="dropdown-toggle-label">지역/도</span></button>
-                            <input type="hidden" name="city">
-                            <ul class="dropdown-menu">
-                                  <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">서울특별시</span></a></li>
-                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">부산광역시</span></a></li>
-                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">대구광역시</span></a></li>
-                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">부산광역시</span></a></li>
-                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">인천광역시</span></a></li>
-                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">광주광역시</span></a></li>
-                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">대전광역시</span></a></li>
-                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">울산광역시</span></a></li>
-                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">세종특별시</span></a></li>
-                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">경기도</span></a></li>
-                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">강원도</span></a></li>
-                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">충청북도</span></a></li>
-                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">충청남도</span></a></li>
-                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">전라북도</span></a></li>
-                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">전라남도</span></a></li>
-                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">경상북도</span></a></li>
-                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">경상남도</span></a></li>
-                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">제주도</span></a></li>
-                            </ul>
+                    <div class="dropdown w-100 mb-sm-0 mb-3 border-end-md">      	
+                    <select class="form-select mb-2" name="city">			
+					<option value="" selected disabled>도/시</option>
+                    <option value="서울특별시">서울특별시</option>                                             
+                    <option value="부산광역시">부산광역시</option>
+                    <option value="대구광역시">대구광역시</option>
+                    <option value="인천광역시">인천광역시</option>
+                    <option value="광주광역시">광주광역시</option>
+                    <option value="대전광역시">대전광역시</option>
+                    <option value="울산광역시">울산광역시</option>
+                    <option value="경기도">경기도</option>
+                    <option value="강원도">강원도</option>
+                    <option value="충청도">충청도</option>
+                    <option value="전라도">전라도</option>
+                    <option value="경상도">경상도</option>
+                    <option value="제주특별자치도">제주특별자치도</option>                
+                 	 </select>                
                         </div>
-                        <div class="dropdown w-100 mb-sm-0 mb-3" data-bs-toggle="select">
-                            <button class="btn btn-link btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" style="width: 180px; padding-left:0; padding-right:45px;"><i class="fi-list me-2"></i><span class="dropdown-toggle-label">카테고리</span></button>
-                            <input type="hidden" name="category">
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#"><i class="#"></i><span class="dropdown-item-label">캠핑장</span></a></li>
-                                <li><a class="dropdown-item" href="#"><i class="#"></i><span class="dropdown-item-label">공원</span></a></li>
-                                <li><a class="dropdown-item" href="#"><i class="#"></i><span class="dropdown-item-label">축제</span></a></li>
-                            </ul>
+                        <div class="dropdown w-100 mb-sm-0 mb-3" data-bs-toggle="select">                       
+                    <select class="form-select mb-2" name="typeCtg" onchange="setType(this.value);">			
+					<option value="캠핑장">캠핑장</option>
+                    <option value="공원">공원</option>                                             
+                    <option value="축제">축제</option>
+                    </select>                         
                         </div>
                         <input class="btn btn-primary btn-lg rounded-pill w-100 w-md-auto ms-sm-3" type="submit" value="Search"/>
                     </div>
@@ -109,6 +100,33 @@
             </div>
         </div>
     </section>
+    
+    <!-- 카테고리 검색 ~ 액션태그 --> 
+    <script>
+function setType(param){
+
+alert(param);
+
+if(param == "캠핑장"){
+	$("#searchFrm").attr("action","${path}/camp/campSearch")
+	}
+	
+else if(param == "공원"){
+	$("#searchFrm").attr("action","${path}/park/parkList")
+	}
+	
+else if(param == "축제"){
+	$("#searchFrm").attr("action","${path}/festival/festivalSearch")
+	}
+	
+else{
+	$("#searchFrm").attr("action", "")
+	}
+
+}
+</script>
+    
+    
     <!-- Top properties-->
     <section class="container-main">
         <div class="d-flex align-items-end align-items-lg-center justify-content-between mb-4 pb-md-2">
@@ -251,7 +269,7 @@
     <section class="container-fluid mb-5 mt-n3 mt-lg-0 pt-3" style="background: #e4dabe; height:500px;">
         <section class="container mb-5 pb-2">
             <div class="d-flex align-items-center justify-content-between mb-3">
-                <h2 class="h3 mb-0">진행중인 축제</h2><a class="btn btn-link fw-normal ms-md-3 pb-0" href="real-estate-catalog-rent.html">View all<i class="fi-arrow-long-right ms-2"></i></a>
+                <h2 class="h3 mb-0">진행중인</h2><a class="btn btn-link fw-normal ms-md-3 pb-0" href="real-estate-catalog-rent.html">View all<i class="fi-arrow-long-right ms-2"></i></a>
             </div>
             <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside tns-nav-outside-flush mx-n2">
                 <div class="tns-carousel-inner row gx-4 mx-0 py-md-4 py-3" data-carousel-options="{&quot;items&quot;: 4, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3},&quot;992&quot;:{&quot;items&quot;:4}}}">
@@ -432,7 +450,7 @@
                             <!-- Item-->
                             <div class="d-flex align-items-start position-relative mb-4"><img class="me-3 rounded-3" style="width: 130px; height: 130px;" src="${path}/resources/image/food2.png" alt="Brand logo">
                                 <div>
-                                    <h3 class="mb-1 fs-lg"><a class="nav-link stretched-link" href="city-guide-single.html">삼겹 구운 야채구이</a></h3>
+                                    <h3 class="mb-1 fs-lg"><a class="nav-link stretched-link" href="${path}/near/foodDetail?no=63399">삼겹 구운 야채구이</a></h3>
                                     <h5 class="mb-2 fs-sm">강화 새우젓과 생와사비를 곁들인 삼겹살 야채구이</h5>
                                     <ul class="list-unstyled mb-0 fs-xs">
                                         <li><i class="fi-star-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b>5.0</b><span class="text-muted">&nbsp;(48)</span></li>
