@@ -41,35 +41,8 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Transactional(rollbackFor = Exception.class)
 	@Override
-	public int insert(Map<String, String> param) {
-
-		String type = (String) param.get("type");
-
-		if (type.equals("hotel")) {
-			param.put("hotelNo", param.get("no"));
-		} else if (type.equals("camp")) {
-			param.put("campNo", param.get("no"));
-		} else if (type.equals("festival")) {
-			param.put("festivalNo", param.get("no"));
-		} else if (type.equals("food")) {
-			param.put("foodNo", param.get("no"));
-		} else if (type.equals("park")) {
-			param.put("parkNo", param.get("no"));
-		}
-
-//		switch (type) {
-//		case "hotel":
-//			param.put("hotelNo", param.get("no"));
-//		case "camp":
-//			param.put("campNo", param.get("no"));
-//		case "festival":
-//			param.put("festivalNo", param.get("no"));
-//		case "food":
-//			param.put("foodNo", param.get("no"));
-//		case "park":
-//			param.put("parkNo", param.get("no"));
-//		}
-		return mapper.insert(param);
+	public int insertReview(Review rev) {
+		return mapper.insertReview(rev);
 	}
 
 	// 캠핑

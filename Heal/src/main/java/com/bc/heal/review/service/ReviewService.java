@@ -15,7 +15,7 @@ public interface ReviewService {
 
 	int getLike(int no);
 
-	int insert(Map<String, String> param);
+	int insertReview(Review rev);
 
 	// 캠핑
 	List<Review> selectRevCamp(int no, PageInfo pageInfo, String sort);

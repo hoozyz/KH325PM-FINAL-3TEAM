@@ -1,35 +1,26 @@
 package com.bc.heal.review.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
-import com.bc.heal.camp.service.CampService;
-import com.bc.heal.common.util.PageInfo;
-import com.bc.heal.festival.service.FestivalService;
-import com.bc.heal.food.service.FoodService;
-import com.bc.heal.hotel.service.HotelService;
-import com.bc.heal.park.service.ParkService;
 import com.bc.heal.reply.service.ReplyService;
 import com.bc.heal.review.service.ReviewService;
 import com.bc.heal.vo.Member;
 import com.bc.heal.vo.Reply;
 import com.bc.heal.vo.Review;
 
-import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 @RequestMapping("/review")
@@ -59,15 +50,29 @@ public class ReviewController {
 	}
 
 	@PostMapping("/write")
-	public String write(Model model, @RequestParam Map<String, String> param,
+	public String write(Model model, Review rev, String type,  @Param("no") int no,
 			@SessionAttribute(name = "loginMember", required = false) Member loginMember, HttpServletRequest req) {
 		String location = req.getHeader("Referer");
 		
-		String memNo = ""+loginMember.getNo();
-		param.put("memNo", memNo);
-		int result = 0;
+		int memNo = loginMember.getNo();
 		
-		result = revService.insert(param);
+		if (type.equals("hotel")) {
+			rev.setHotelno(no);
+		} else if (type.equals("camp")) {
+			rev.setCampno(no);
+		} else if (type.equals("festival")) {
+			rev.setFestivalno(no);
+		} else if (type.equals("food")) {
+			rev.setFoodno(no);
+		} else if (type.equals("park")) {
+			rev.setParkno(no);
+		}
+		rev.setMemberno(memNo);
+		
+		
+		
+		int result = 0;
+		result = revService.insertReview(rev);
 		
 		if(result > 0) {
 			model.addAttribute("msg", "작성에 성공하셨습니다.");

@@ -19,7 +19,7 @@ public interface ReviewMapper {
 
 	int getLike(int no);
 
-	int insert(Map<String, String> param);
+	int insertReview(Review rev);
 
 	// 캠핑
 	List<Review> selectRevCamp(RowBounds rowBounds, Map<String, String> searchMap);
