@@ -35,13 +35,31 @@ public class ShopController {
 
 	@GetMapping("/main")
 	public String main(Model model) throws UnsupportedEncodingException {
+		// 초반 db 넣기 처음만 코드 실행
+//		List<String> wordList = new ArrayList<>();
+//		wordList.add("호텔");
+//		wordList.add("캠핑음식");
+//		wordList.add("텐트");    
+//		wordList.add("캠핑고기");  
+//		wordList.add("캠핑테이블"); 
+//		wordList.add("캠핑의자");  
+//		wordList.add("조명");    
+//		wordList.add("그릴");    
+//		wordList.add("버너");    
+//		wordList.add("팬");     
+//		wordList.add("코펠");    
+//		wordList.add("아이스박스"); 
+//		wordList.add("차량용");   
+//		wordList.add("바베큐");   
+//		wordList.add("침낭");    
+//		wordList.add("장작");
+//		wordList.add("입장권");
+//		insert(wordList);
+		
+		
 		List<Shop> saleList = new ArrayList<>(); // 여행상품 200개 중 3개
-		Random ran = new Random();
 		saleList = service.selectByTrip(); // 리스트 3개
-		
-		
 		model.addAttribute("saleList", saleList);
-//		insert("입장권"); // db넣기
 		return "shop/shopMain";
 	}
 
@@ -157,26 +175,7 @@ public class ShopController {
 		return rtnObj;
 	}
 
-	public void insert(String word) throws UnsupportedEncodingException {
-		List<String> wordList = new ArrayList<>();
-		wordList.add(word);
-//		wordList.add("호텔");
-//		wordList.add("캠핑음식");
-//		wordList.add("텐트");    
-//		wordList.add("캠핑고기");  
-//		wordList.add("캠핑테이블"); 
-//		wordList.add("캠핑의자");  
-//		wordList.add("조명");    
-//		wordList.add("그릴");    
-//		wordList.add("버너");    
-//		wordList.add("팬");     
-//		wordList.add("코펠");    
-//		wordList.add("아이스박스"); 
-//		wordList.add("차량용");   
-//		wordList.add("바베큐");   
-//		wordList.add("침낭");    
-//		wordList.add("장작");    
-		
+	public void insert(List<String> wordList) throws UnsupportedEncodingException {
 		List<Shop> list = new ArrayList<>();
 		for(int i = 0; i < wordList.size(); i++) {
 			String keyword = URLEncoder.encode(wordList.get(i), "UTF-8");
