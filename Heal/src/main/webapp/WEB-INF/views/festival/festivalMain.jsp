@@ -87,85 +87,14 @@
                     <!-- Item-->
                     <div style="width:250px; ">
                         <div class="card shadow-sm card-hover border-0 h-100 ">
-                            <div class="card-img-top card-img-hover " style="width:226px; height:320px; background-image: url(${path}/resources/image/festivalPoster6.jpg); background-size: cover; ">
-                                <a class="img-overlay " href="real-estate-single-v1.html "></a>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3 ">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle " type="button " data-bs-toggle="tooltip " data-bs-placement="left " title="Add to Wishlist "><i class="fi-heart "></i></button>
-                                </div>
-                            </div>
-                            <div class="card-body position-relative pb-3 ">
-                                <h3 class="h6 mb-2 fs-base "><a class="nav-link stretched-link " href="real-estate-single-v1.html " style="text-align: center; ">부산 낙동강 유채꽃 축제</a></h3>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Item-->
-                    <div style="width:250px; ">
-                        <div class="card shadow-sm card-hover border-0 h-100 ">
-                            <div class="card-img-top card-img-hover " style="width:226px; height:320px; background-image: url(${path}/resources/image/festivalPoster7.jpg); background-size: cover; ">
-                                <a class="img-overlay " href="real-estate-single-v1.html "></a>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3 ">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle " type="button " data-bs-toggle="tooltip " data-bs-placement="left " title="Add to Wishlist "><i class="fi-heart "></i></button>
-                                </div>
-                            </div>
-                            <div class="card-body position-relative pb-3 ">
-                                <h3 class="h6 mb-2 fs-base ">
-                                    <a class="nav-link stretched-link " href="real-estate-single-v1.html " style="text-align: center; ">재즈 축제</a></h3>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Item-->
-                    <div style="width:250px; ">
-                        <div class="card shadow-sm card-hover border-0 h-100 ">
-                            <div class="card-img-top card-img-hover " style="width:226px; height:320px; background-image: url(${path}/resources/image/festivalPoster8.jpg); background-size: cover; ">
-                                <a class="img-overlay " href="real-estate-single-v1.html "></a>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3 ">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle " type="button " data-bs-toggle="tooltip " data-bs-placement="left " title="Add to Wishlist "><i class="fi-heart "></i></button>
-                                </div>
-                            </div>
-                            <div class="card-body position-relative pb-3 ">
-                                <h3 class="h6 mb-2 fs-base "><a class="nav-link stretched-link " href="real-estate-single-v1.html " style="text-align: center; ">보름달 축제</a></h3>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Item-->
-                    <div style="width:250px; ">
-                        <div class="card shadow-sm card-hover border-0 h-100 ">
-                            <div class="card-img-top card-img-hover " style="width:226px; height:320px; background-image: url(${path}/resources/image/festivalPoster9.jpg); background-size: cover; ">
-                                <a class="img-overlay " href="real-estate-single-v1.html "></a>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3 ">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle " type="button " data-bs-toggle="tooltip " data-bs-placement="left " title="Add to Wishlist "><i class="fi-heart "></i></button>
-                                </div>
-                            </div>
-                            <div class="card-body position-relative pb-3 ">
-                                <h3 class="h6 mb-2 fs-base "><a class="nav-link stretched-link " href="real-estate-single-v1.html " style="text-align: center; ">우면산 별밤 축제</a></h3>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Item-->
-                    <div style="width:250px; ">
-                        <div class="card shadow-sm card-hover border-0 h-100 ">
-                            <div class="card-img-top card-img-hover " style="width:226px; height:320px; background-image: url(${path}/resources/image/festivalPoster10.jpg); background-size: cover; ">
-                                <a class="img-overlay " href="real-estate-single-v1.html "></a>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3 ">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle " type="button " data-bs-toggle="tooltip " data-bs-placement="left " title="Add to Wishlist "><i class="fi-heart "></i></button>
-                                </div>
-                            </div>
-                            <div class="card-body position-relative pb-3 ">
-                                <h3 class="h6 mb-2 fs-base "><a class="nav-link stretched-link " href="real-estate-single-v1.html " style="text-align: center; ">자연산 전어/꽃게 축제</a></h3>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Item-->
-                    <div style="width:250px; ">
-                        <div class="card shadow-sm card-hover border-0 h-100 ">
                             <div class="card-img-top card-img-hover " style="width:226px; height:320px; background-image: url(${path}/resources/image/festivalPoster1.jpg); background-size: cover; ">
-                                <a class="img-overlay " href="real-estate-single-v1.html "></a>
+                                <a class="img-overlay " href="${path}/festival/festivalDetail?no=2967"></a>
                                 <div class="content-overlay end-0 top-0 pt-3 pe-3 ">
                                     <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle " type="button " data-bs-toggle="tooltip " data-bs-placement="left " title="Add to Wishlist "><i class="fi-heart "></i></button>
                                 </div>
                             </div>
                             <div class="card-body position-relative pb-3 ">
-                                <h3 class="h6 mb-2 fs-base "><a class="nav-link stretched-link " href="real-estate-single-v1.html " style="text-align: center; ">부산 낙동강 유채꽃 축제</a></h3>
+                                <h3 class="h6 mb-2 fs-base "><a class="nav-link stretched-link " href="${path}/festival/festivalDetail?no=2967" style="text-align: center; ">2022 하영올레 걷기 축제</a></h3>
                             </div>
                         </div>
                     </div>
@@ -173,14 +102,14 @@
                     <div style="width:250px; ">
                         <div class="card shadow-sm card-hover border-0 h-100 ">
                             <div class="card-img-top card-img-hover " style="width:226px; height:320px; background-image: url(${path}/resources/image/festivalPoster2.jpg); background-size: cover; ">
-                                <a class="img-overlay " href="real-estate-single-v1.html "></a>
+                                <a class="img-overlay " href="${path}/festival/festivalDetail?no=3258"></a>
                                 <div class="content-overlay end-0 top-0 pt-3 pe-3 ">
                                     <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle " type="button " data-bs-toggle="tooltip " data-bs-placement="left " title="Add to Wishlist "><i class="fi-heart "></i></button>
                                 </div>
                             </div>
                             <div class="card-body position-relative pb-3 ">
                                 <h3 class="h6 mb-2 fs-base ">
-                                    <a class="nav-link stretched-link " href="real-estate-single-v1.html " style="text-align: center; ">재즈 축제</a></h3>
+                                    <a class="nav-link stretched-link " href="${path}/festival/festivalDetail?no=3258" style="text-align: center; ">부산자갈치축제</a></h3>
                             </div>
                         </div>
                     </div>
@@ -188,13 +117,13 @@
                     <div style="width:250px; ">
                         <div class="card shadow-sm card-hover border-0 h-100 ">
                             <div class="card-img-top card-img-hover " style="width:226px; height:320px; background-image: url(${path}/resources/image/festivalPoster3.jpg); background-size: cover; ">
-                                <a class="img-overlay " href="real-estate-single-v1.html "></a>
+                                <a class="img-overlay " href="${path}/festival/festivalDetail?no=3722"></a>
                                 <div class="content-overlay end-0 top-0 pt-3 pe-3 ">
                                     <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle " type="button " data-bs-toggle="tooltip " data-bs-placement="left " title="Add to Wishlist "><i class="fi-heart "></i></button>
                                 </div>
                             </div>
                             <div class="card-body position-relative pb-3 ">
-                                <h3 class="h6 mb-2 fs-base "><a class="nav-link stretched-link " href="real-estate-single-v1.html " style="text-align: center; ">보름달 축제</a></h3>
+                                <h3 class="h6 mb-2 fs-base "><a class="nav-link stretched-link " href="${path}/festival/festivalDetail?no=3722" style="text-align: center; ">부산고등어축제</a></h3>
                             </div>
                         </div>
                     </div>
@@ -202,27 +131,98 @@
                     <div style="width:250px; ">
                         <div class="card shadow-sm card-hover border-0 h-100 ">
                             <div class="card-img-top card-img-hover " style="width:226px; height:320px; background-image: url(${path}/resources/image/festivalPoster4.jpg); background-size: cover; ">
-                                <a class="img-overlay " href="real-estate-single-v1.html "></a>
+                                <a class="img-overlay " href="${path}/festival/festivalDetail?no=3656"></a>
                                 <div class="content-overlay end-0 top-0 pt-3 pe-3 ">
                                     <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle " type="button " data-bs-toggle="tooltip " data-bs-placement="left " title="Add to Wishlist "><i class="fi-heart "></i></button>
                                 </div>
                             </div>
                             <div class="card-body position-relative pb-3 ">
-                                <h3 class="h6 mb-2 fs-base "><a class="nav-link stretched-link " href="real-estate-single-v1.html " style="text-align: center; ">우면산 별밤 축제</a></h3>
+                                <h3 class="h6 mb-2 fs-base "><a class="nav-link stretched-link " href="${path}/festival/festivalDetail?no=3656" style="text-align: center; ">서면메티컬스트리트 축제</a></h3>
                             </div>
                         </div>
                     </div>
                     <!-- Item-->
                     <div style="width:250px; ">
                         <div class="card shadow-sm card-hover border-0 h-100 ">
-                            <div class="card-img-top card-img-hover " style="width:226px; height:320px; background-image: url(${path}/resources/image/festivalPoster5.jpg); background-size: cover; ">
-                                <a class="img-overlay " href="real-estate-single-v1.html "></a>
+                            <div class="card-img-top card-img-hover " style="width:226px; height:320px; background-image: url(${path}/resources/image/festivalPoster5.png); background-size: cover; ">
+                                <a class="img-overlay " href="${path}/festival/festivalDetail?no=3261"></a>
                                 <div class="content-overlay end-0 top-0 pt-3 pe-3 ">
                                     <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle " type="button " data-bs-toggle="tooltip " data-bs-placement="left " title="Add to Wishlist "><i class="fi-heart "></i></button>
                                 </div>
                             </div>
                             <div class="card-body position-relative pb-3 ">
-                                <h3 class="h6 mb-2 fs-base "><a class="nav-link stretched-link " href="real-estate-single-v1.html " style="text-align: center; ">자연산 전어/꽃게 축제</a></h3>
+                                <h3 class="h6 mb-2 fs-base "><a class="nav-link stretched-link " href="${path}/festival/festivalDetail?no=3261" style="text-align: center; ">광주 프린지 페스티벌</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item-->
+                    <div style="width:250px; ">
+                        <div class="card shadow-sm card-hover border-0 h-100 ">
+                            <div class="card-img-top card-img-hover " style="width:226px; height:320px; background-image: url(${path}/resources/image/festivalPoster6.jpg); background-size: cover; ">
+                                <a class="img-overlay " href="${path}/festival/festivalDetail?no=3561"></a>
+                                <div class="content-overlay end-0 top-0 pt-3 pe-3 ">
+                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle " type="button " data-bs-toggle="tooltip " data-bs-placement="left " title="Add to Wishlist "><i class="fi-heart "></i></button>
+                                </div>
+                            </div>
+                            <div class="card-body position-relative pb-3 ">
+                                <h3 class="h6 mb-2 fs-base "><a class="nav-link stretched-link " href="${path}/festival/festivalDetail?no=3561" style="text-align: center; ">제 13회 광주비엔날레</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item-->
+                    <div style="width:250px; ">
+                        <div class="card shadow-sm card-hover border-0 h-100 ">
+                            <div class="card-img-top card-img-hover " style="width:226px; height:320px; background-image: url(${path}/resources/image/festivalPoster7.jpg); background-size: cover; ">
+                                <a class="img-overlay " href="${path}/festival/festivalDetail?no=3566"></a>
+                                <div class="content-overlay end-0 top-0 pt-3 pe-3 ">
+                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle " type="button " data-bs-toggle="tooltip " data-bs-placement="left " title="Add to Wishlist "><i class="fi-heart "></i></button>
+                                </div>
+                            </div>
+                            <div class="card-body position-relative pb-3 ">
+                                <h3 class="h6 mb-2 fs-base ">
+                                    <a class="nav-link stretched-link " href="${path}/festival/festivalDetail?no=3566" style="text-align: center; ">충장축제</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item-->
+                    <div style="width:250px; ">
+                        <div class="card shadow-sm card-hover border-0 h-100 ">
+                            <div class="card-img-top card-img-hover " style="width:226px; height:320px; background-image: url(${path}/resources/image/festivalPoster8.jpg); background-size: cover; ">
+                                <a class="img-overlay " href="${path}/festival/festivalDetail?no=3770"></a>
+                                <div class="content-overlay end-0 top-0 pt-3 pe-3 ">
+                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle " type="button " data-bs-toggle="tooltip " data-bs-placement="left " title="Add to Wishlist "><i class="fi-heart "></i></button>
+                                </div>
+                            </div>
+                            <div class="card-body position-relative pb-3 ">
+                                <h3 class="h6 mb-2 fs-base "><a class="nav-link stretched-link " href="${path}/festival/festivalDetail?no=3770" style="text-align: center; ">탐라문화제</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item-->
+                    <div style="width:250px; ">
+                        <div class="card shadow-sm card-hover border-0 h-100 ">
+                            <div class="card-img-top card-img-hover " style="width:226px; height:320px; background-image: url(${path}/resources/image/festivalPoster9.jpg); background-size: cover; ">
+                                <a class="img-overlay " href="${path}/festival/festivalDetail?no=3753"></a>
+                                <div class="content-overlay end-0 top-0 pt-3 pe-3 ">
+                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle " type="button " data-bs-toggle="tooltip " data-bs-placement="left " title="Add to Wishlist "><i class="fi-heart "></i></button>
+                                </div>
+                            </div>
+                            <div class="card-body position-relative pb-3 ">
+                                <h3 class="h6 mb-2 fs-base "><a class="nav-link stretched-link " href="${path}/festival/festivalDetail?no=3753" style="text-align: center; ">제19회 사상강변축제</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item-->
+                    <div style="width:250px; ">
+                        <div class="card shadow-sm card-hover border-0 h-100 ">
+                            <div class="card-img-top card-img-hover " style="width:226px; height:320px; background-image: url(${path}/resources/image/festivalPoster10.jpg); background-size: cover; ">
+                                <a class="img-overlay " href="${path}/festival/festivalDetail?no=3645"></a>
+                                <div class="content-overlay end-0 top-0 pt-3 pe-3 ">
+                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle " type="button " data-bs-toggle="tooltip " data-bs-placement="left " title="Add to Wishlist "><i class="fi-heart "></i></button>
+                                </div>
+                            </div>
+                            <div class="card-body position-relative pb-3 ">
+                                <h3 class="h6 mb-2 fs-base "><a class="nav-link stretched-link " href="${path}/festival/festivalDetail?no=3645" style="text-align: center; ">울산옹기축제</a></h3>
                             </div>
                         </div>
                     </div>
@@ -241,13 +241,13 @@
             </div>
         </section>
         <!-- <section class="container-fluid mb-5 mt-n3 mt-lg-0 pt-3" style="background: #e4dabe; height:350px;"> -->
-        <section class="container mb-5 mt-n3 mt-lg-0 pt-3" style="background-image: url(${path}/resources/image/festival3_1.jpg); background-size: cover; background-position: center; height:350px;">
+        <section class="container mb-5 mt-n3 mt-lg-0 pt-3" style="background-image: url(${path}/resources/image/festival1_1.png); background-size: cover; background-position: center; height:350px;">
             <section class="container mb-5 pb-2">
                 <div class="row align-items-center">
-                    <div class="col-md-6 col-lg-6 pt-4 pt-md-0 pe-4"><img class="d-block me-md-0 mt-4" src="${path}/resources/image/festival3.jpg" alt="Illustration" style="width:500px; height:350px;"></div>
+                    <div class="col-md-6 col-lg-6 pt-4 pt-md-0 pe-4"><img class="d-block me-md-0 mt-4" src="${path}/resources/image/festival1.jpg" alt="Illustration" style="width:500px; height:350px;"></div>
                     <div class="col-md-6 col-lg-6 text-center text-md-start">
-                        <h2 class="mb-md-4 text-light">연천 코스모스 축제 & 메밀꽃축제</h2>
-                        <p class="fs-lg p-2 pb-md-3 text-light">가을풍경으로 물든 연천 들판! 연천 코스모스 축제 & 메밀꽃 축제 속으로<br> 경기도 연천군 연천읍 차탄리 129-4</p><a class="btn btn-primary btn-lg rounded-pill ms-sm-auto" href="job-board-post-resume-1.html">축제 둘러보기<i class="fi-chevron-right fs-sm ms-2"></i></a>
+                        <h2 class="mb-md-4 text-light">2022 제주유채꽃축제</h2>
+                        <p class="fs-lg p-2 pb-md-3 text-light">노란색배경으로 물든 제주 들판! 제주유채꽃축제 & 유채꽃 축제 속으로<br> 제주특별자치도 서귀포시 표선면 녹산로 381-15</p><a class="btn btn-primary btn-lg rounded-pill ms-sm-auto" href="${path}/festival/festivalDetail?no=2969">축제 둘러보기<i class="fi-chevron-right fs-sm ms-2"></i></a>
                     </div>
                 </div>
             </section>
@@ -280,64 +280,48 @@
                             <!-- Item-->
                             <div>
                                 <div class="position-relative ">
-                                    <div class="position-relative mb-3 ">
-                                        <button class="btn btn-icon btn-light-primary btn-xs text-primary rounded-circle position-absolute top-0 end-0 m-3 zindex-5 " type="button " data-bs-toggle="tooltip " data-bs-placement="left " title="Add to Favorites
-                        "><i class="fi-heart "></i></button>
-                                        <img class="rounded-3 " src="${path}/resources/image/01.jpg " alt="Image " style="width:300px; height:300px; ">
+                                    <div class="card-img-top card-img-hover pb-3">
+                                        <a class="img-overlay" href="${path}/festival/festivalDetail?no=3632"></a>
+                                        <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info mb-1">가족</span></div>
+                                        <div class="content-overlay end-0 top-0 pt-3 pe-3">
+                                            <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
+                                        </div><img src="${path}/resources/image/family1.jpg" alt="Image" style="width:300px; height:300px; ">
                                     </div>
-                                    <h3 class="mb-2 fs-lg "><a class="nav-link stretched-link " href="city-guide-single.html ">Berlin Business Hotel</a></h3>
+                                    <h3 class="mb-2 fs-lg "><a class="nav-link stretched-link " href="${path}/festival/festivalDetail?no=3632">해운대모래축제</a></h3>
                                     <ul class="list-inline mb-0 fs-xs ">
-                                        <li class="list-inline-item pe-1 "><i class="fi-star-filled mt-n1 me-1 fs-base text-warning align-middle "></i><b>5.0</b><span class="text-muted ">&nbsp;(48)</span></li>
-                                        <li class="list-inline-item pe-1 "><i class="fi-credit-card mt-n1 me-1 fs-base text-muted align-middle "></i>$$</li>
-                                        <li class="list-inline-item pe-1 "><i class="fi-map-pin mt-n1 me-1 fs-base text-muted align-middle "></i>1.4 km from center</li>
+                                        <li class="list-inline-item pe-1 "><i class="fi-map-pin mt-n1 me-1 fs-base text-muted align-middle "></i>부산광역시 해운대구 중동 1415-49</li>
                                     </ul>
                                 </div>
                             </div>
                             <!-- Item-->
                             <div>
                                 <div class="position-relative ">
-                                    <div class="position-relative mb-3 ">
-                                        <button class="btn btn-icon btn-light-primary btn-xs text-primary rounded-circle position-absolute top-0 end-0 m-3 zindex-5 " type="button " data-bs-toggle="tooltip " data-bs-placement="left " title="Add to Favorites
-                        "><i class="fi-heart "></i></button>
-                                        <img class="rounded-3 " src="${path}/resources/image/01.jpg " alt="Image " style="width:300px; height:300px; ">
+                                    <div class="card-img-top card-img-hover pb-3">
+                                        <a class="img-overlay" href="${path}/festival/festivalDetail?no=3752"></a>
+                                        <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-danger mb-1">연인</span></div>
+                                        <div class="content-overlay end-0 top-0 pt-3 pe-3">
+                                            <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
+                                        </div><img src="${path}/resources/image/couple.jpg" alt="Image" style="width:300px; height:300px; ">
                                     </div>
-                                    <h3 class="mb-2 fs-lg "><a class="nav-link stretched-link " href="city-guide-single.html ">Big Tree Cottage</a></h3>
+                                    <h3 class="mb-2 fs-lg "><a class="nav-link stretched-link " href="${path}/festival/festivalDetail?no=3752">삼락벚꽃축제</a></h3>
                                     <ul class="list-inline mb-0 fs-xs ">
-                                        <li class="list-inline-item pe-1 "><i class="fi-star-filled mt-n1 me-1 fs-base text-warning align-middle "></i><b>4.8</b><span class="text-muted ">&nbsp;(24)</span></li>
-                                        <li class="list-inline-item pe-1 "><i class="fi-credit-card mt-n1 me-1 fs-base text-muted align-middle "></i>$$$</li>
-                                        <li class="list-inline-item pe-1 "><i class="fi-map-pin mt-n1 me-1 fs-base text-muted align-middle "></i>0.5 km from center</li>
+                                        <li class="list-inline-item pe-1 "><i class="fi-map-pin mt-n1 me-1 fs-base text-muted align-middle "></i>부산광역시 사상구 낙동대로 1310번길 19(삼락동)</li>
                                     </ul>
                                 </div>
-                            </div>
+                            </div>	
                             <!-- Item-->
                             <div>
                                 <div class="position-relative ">
-                                    <div class="position-relative mb-3 ">
-                                        <button class="btn btn-icon btn-light-primary btn-xs text-primary rounded-circle position-absolute top-0 end-0 m-3 zindex-5 " type="button " data-bs-toggle="tooltip " data-bs-placement="left " title="Add to Favorites
-                        "><i class="fi-heart "></i></button>
-                                        <img class="rounded-3 " src="${path}/resources/image/01.jpg " alt="Image " style="width:300px; height:300px; ">
+                                    <div class="card-img-top card-img-hover pb-3">
+                                        <a class="img-overlay" href="${path}/festival/festivalDetail?no=3335"></a>
+                                        <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">친구</span></div>
+                                        <div class="content-overlay end-0 top-0 pt-3 pe-3">
+                                            <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
+                                        </div><img src="${path}/resources/image/friend.jpg" alt="Image" style="width:300px; height:300px; ">
                                     </div>
-                                    <h3 class="mb-2 fs-lg "><a class="nav-link stretched-link " href="city-guide-single.html ">Grand Resort &amp; Spa</a></h3>
+                                    <h3 class="mb-2 fs-lg "><a class="nav-link stretched-link " href="${path}/festival/festivalDetail?no=3334">부산바다축제</a></h3>
                                     <ul class="list-inline mb-0 fs-xs ">
-                                        <li class="list-inline-item pe-1 "><i class="fi-star-filled mt-n1 me-1 fs-base text-warning align-middle "></i><b>4.9</b><span class="text-muted ">&nbsp;(43)</span></li>
-                                        <li class="list-inline-item pe-1 "><i class="fi-credit-card mt-n1 me-1 fs-base text-muted align-middle "></i>$$$</li>
-                                        <li class="list-inline-item pe-1 "><i class="fi-map-pin mt-n1 me-1 fs-base text-muted align-middle "></i>1.8 km from center</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- Item-->
-                            <div>
-                                <div class="position-relative ">
-                                    <div class="position-relative mb-3 ">
-                                        <button class="btn btn-icon btn-light-primary btn-xs text-primary rounded-circle position-absolute top-0 end-0 m-3 zindex-5 " type="button " data-bs-toggle="tooltip " data-bs-placement="left " title="Add to Favorites
-                        "><i class="fi-heart "></i></button>
-                                        <img class="rounded-3 " src="${path}/resources/image/01.jpg " alt="Image " style="width:300px; height:300px; ">
-                                    </div>
-                                    <h3 class="mb-2 fs-lg "><a class="nav-link stretched-link " href="city-guide-single.html ">Merry Berry Motel</a></h3>
-                                    <ul class="list-inline mb-0 fs-xs ">
-                                        <li class="list-inline-item pe-1 "><i class="fi-star-filled mt-n1 me-1 fs-base text-warning align-middle "></i><b>4.5</b><span class="text-muted ">&nbsp;(13)</span></li>
-                                        <li class="list-inline-item pe-1 "><i class="fi-credit-card mt-n1 me-1 fs-base text-muted align-middle "></i>$$</li>
-                                        <li class="list-inline-item pe-1 "><i class="fi-map-pin mt-n1 me-1 fs-base text-muted align-middle "></i>0.4 km from center</li>
+                                        <li class="list-inline-item pe-1 "><i class="fi-map-pin mt-n1 me-1 fs-base text-muted align-middle "></i>부산광역시 연제구 연산동 1000</li>
                                     </ul>
                                 </div>
                             </div>

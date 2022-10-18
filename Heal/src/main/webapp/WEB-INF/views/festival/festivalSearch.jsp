@@ -191,9 +191,9 @@
               <ul class="pagination mb-1">
                 <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 5</span></li>
                 <!-- 맨 처음으로 -->
-                <li class="page-item"><a class="page-link" onclick="movePage('${path}/camp/campSearch?page=1');" aria-label="Next"><i class="fi-chevrons-left"></i></a></li>
+                <li class="page-item"><a class="page-link" onclick="movePage('${path}/festival/festivalSearch?page=1');" aria-label="Next"><i class="fi-chevrons-left"></i></a></li>
 				<!-- 이전 페이지 -->
-                <li class="page-item"><a class="page-link" onclick="movePage('${path}/camp/campSearch?page=${pageInfo.prevPage}');" aria-label="Next"><i class="fi-chevron-left"></i></a></li>
+                <li class="page-item"><a class="page-link" onclick="movePage('${path}/festival/festivalSearch?page=${pageInfo.prevPage}');" aria-label="Next"><i class="fi-chevron-left"></i></a></li>
 	                
 	            <!-- 10개 페이지 목록 -->
 				<c:forEach begin="${pageInfo.startPage}" end="${pageInfo.endPage}" step="1" varStatus="status">
@@ -201,14 +201,14 @@
 	               		 <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link"><c:out value="${status.current}"/><span class="visually-hidden">(current)</span></span></li>
 					</c:if>
 					<c:if test="${pageInfo.currentPage != status.current}">
-						<li class="page-item d-none d-sm-block"><a class="page-link" onclick="movePage('${path}/camp/campSearch?page=${status.current}');"><c:out value="${status.current}"/></a></li>
+						<li class="page-item d-none d-sm-block"><a class="page-link" onclick="movePage('${path}/festival/festivalSearch?page=${status.current}');"><c:out value="${status.current}"/></a></li>
 					</c:if>
 				</c:forEach>    
 	                
 	            <!-- 다음 페이지 -->
-				 <li class="page-item"><a class="page-link" onclick="movePage('${path}/camp/campSearch?page=${pageInfo.nextPage}');" aria-label="Next"><i class="fi-chevron-right"></i></a></li>
+				 <li class="page-item"><a class="page-link" onclick="movePage('${path}/festival/festivalSearch?page=${pageInfo.nextPage}');" aria-label="Next"><i class="fi-chevron-right"></i></a></li>
 				<!-- 마지막 페이지 -->
-             	<li class="page-item"><a class="page-link" onclick="movePage('${path}/camp/campSearch?page=${pageInfo.maxPage}');" aria-label="Next"><i class="fi-chevrons-right"></i></a></li>
+             	<li class="page-item"><a class="page-link" onclick="movePage('${path}/festival/festivalSearch?page=${pageInfo.maxPage}');" aria-label="Next"><i class="fi-chevrons-right"></i></a></li>
 				</ul>
 			</nav>
           </div>
