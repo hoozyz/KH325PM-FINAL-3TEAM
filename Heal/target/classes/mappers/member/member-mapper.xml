@@ -38,6 +38,10 @@
 		WHERE ID = #{id}
 	</select>
 	
+	<select id="selectByNo" parameterType="int" resultType="Member">
+		<include refid="selectMemberSql"/>
+		WHERE NO = #{no}
+	</select>
 	
 	<insert id="insertMember" parameterType="Member"
 			useGeneratedKeys="true" keyColumn="NO" keyProperty="no">

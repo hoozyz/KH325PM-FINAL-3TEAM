@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.bc.heal.member.service.MemberService;
+import com.bc.heal.vo.Board;
 import com.bc.heal.vo.Member;
+import com.bc.heal.vo.Photo;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -119,20 +121,22 @@ public class MemberController {
 	}
 	
 	// 관리자 영역
-	@RequestMapping("/admin/member") // 유저 탈퇴
-	public String delete(Model model) {
-		List<Member> memberList = new ArrayList<>(); // 전체 유저 리스트
-		memberList = service.allList();
-		
-		if(memberList.size() > 0) {
-			model.addAttribute("memberList", memberList);
-			
-			return "/admin/member"; // 만들 예정
+	@RequestMapping("/member/admin") // 유저 탈퇴
+	public String admin(Model model, String no) {
+		List<Member> list = new ArrayList<>(); 
+		// 유저 번호가 들어오면 탈퇴
+		if(no != null) {
+			service.delete(Integer.parseInt(no));
+		}
+		list = service.allList();
+		list.remove(0); // 관리자 빼기
+		if(list.size() > 0) {
+			model.addAttribute("list", list);
+			return "admin/member";
 		} else { // 유저가 없을 때
-			model.addAttribute("msg", "회원이 없습니다.");
+			model.addAttribute("msg", "멤버가 없습니다.");
 			model.addAttribute("location", "/admin/member");
 			return "common/msg";
 		}
 	}
-	
 }

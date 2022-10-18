@@ -5,7 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <jsp:include page="/WEB-INF/views/common/header.jsp">
-	<jsp:param value="나의 포토게시글" name="title"/>
+	<jsp:param value="포토게시판 관리" name="title"/>
 </jsp:include>
 
 <!-- Page content-->
@@ -15,7 +15,7 @@
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="real-estate-home-v1.html">Home</a></li>
             <li class="breadcrumb-item"><a href="real-estate-account-info.html">마이페이지</a></li>
-            <li class="breadcrumb-item active" aria-current="page">나의 게시글</li>
+            <li class="breadcrumb-item active" aria-current="page">포토게시판 관리</li>
           </ol>
         </nav>
         <!-- Page content-->
@@ -26,34 +26,27 @@
             <div class="card card-body border-0 shadow-sm pb-1 me-lg-1">
               <div class="d-flex d-md-block d-lg-flex align-items-start pt-lg-2 mb-4"><img class="rounded-circle" src="img/avatars/03.jpg" width="48" alt="Annette Black">
                 <div class="pt-md-2 pt-lg-0 ps-3 ps-md-0 ps-lg-3">
-                  <h2 class="fs-lg mb-0">${loginMember.name}</h2>
+                  <h2 class="fs-lg mb-0">관리자</h2>
                   <ul class="list-unstyled fs-sm mt-3 mb-0">
-                    <li><a class="nav-link fw-normal p-0"><i class="fi-phone opacity-60 me-2"></i>${loginMember.phone}</a></li>
-                    <li><a class="nav-link fw-normal p-0"><i class="fi-mail opacity-60 me-2"></i>${loginMember.email}</a></li>
+                    <li><a class="nav-link fw-normal p-0"><i class="fi-phone opacity-60 me-2"></i>-----</a></li>
+                    <li><a class="nav-link fw-normal p-0"><i class="fi-mail opacity-60 me-2"></i>admin@admin.com</a></li>
                   </ul>
                 </div>
               </div>
               <div class="collapse d-md-block mt-3" id="account-nav">
                 <div class="card-nav">
-                  <a class="card-nav-link" href="${path}/member/myInfo"><i class="fi-user opacity-60 me-2"></i>나의 정보</a>
-                  <a class="card-nav-link" href="${path}/reserve/myCamp"><i class="fi-home opacity-60 me-2"></i>나의 예약</a>
-                  <a class="card-nav-link active" href="${path}/photo/myPhoto"><i class="fi-home opacity-60 me-2"></i>나의 게시글</a>
-                  <a class="card-nav-link" href="${path}/shop/myShop"><i class="fi-bell opacity-60 me-2"></i>나의 쇼핑</a>
-                  <a class="card-nav-link" href="${path}/like/myLike"><i class="fi-heart opacity-60 me-2"></i>나의 찜</a>
-                  <a class="card-nav-link" href="${path}/review/myReview"><i class="fi-star opacity-60 me-2"></i>나의 리뷰/댓글</a>
+                  <a class="card-nav-link" href="${path}/member/admin"><i class="fi-user opacity-60 me-2"></i>멤버 관리</a>
+                  <a class="card-nav-link" href="${path}/board/admin"><i class="fi-home opacity-60 me-2"></i>자유게시판 관리</a>
+                  <a class="card-nav-link active" href="${path}/photo/admin"><i class="fi-home opacity-60 me-2"></i>포토게시판 관리</a>
               </div>
+            </div>
             </div>
           </aside>
           <!-- Content-->
           <div class="col-lg-8 col-md-7 mb-5">
             <div class="d-flex align-items-center justify-content-between mb-3">
-            <h1>나의 포토게시글</h1>
+            <h1>포토게시판 관리</h1>
             </div>
-            <!-- Nav tabs-->
-            <ul class="nav nav-tabs border-bottom mb-4" role="tablist">
-              <li class="nav-item mb-3"><a class="nav-link active" href="${path}/photo/myPhoto" role="tab" aria-selected="true"><i class="fi-file fs-base me-2"></i>포토게시판</a></li>
-              <li class="nav-item mb-3"><a class="nav-link" href="${path}/board/myBoard" role="tab" aria-selected="false"><i class="fi-file-clean fs-base me-2"></i>자유게시판</a></li>
-            </ul>
             <!-- Item-->
             <c:if test="${!empty photoList}">
             	<c:forEach var="i" begin="0" end="${photoList.size() - 1}">
@@ -91,4 +84,10 @@
    			}
    	</script>
 
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+ <script src="${path}/resources/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="${path}/resources/vendor/simplebar/dist/simplebar.min.js"></script>
+    <script src="${path}/resources/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+    <!-- Main theme script-->
+    <script src="${path}/resources/js/theme.min.js"></script>
+    
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>

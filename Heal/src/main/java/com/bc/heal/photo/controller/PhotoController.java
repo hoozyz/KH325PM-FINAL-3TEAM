@@ -75,4 +75,18 @@ public class PhotoController {
 
 		return "/common/msg";
 	}
+	
+	// 관리자
+	@RequestMapping("/admin")
+	public String admin(Model model) {
+		List<Photo> list = new ArrayList<>();
+		if(list.size() > 0) {
+			model.addAttribute("list", list);
+			return "/admin/board";
+		} else { // 유저가 없을 때
+			model.addAttribute("msg", "자유게시글이 없습니다.");
+			model.addAttribute("location", "/admin/board");
+			return "common/msg";
+		}
+	}
 }

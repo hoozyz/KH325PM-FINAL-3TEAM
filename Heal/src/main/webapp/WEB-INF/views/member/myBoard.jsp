@@ -4,8 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
-<jsp:include page="/WEB-INF/views/common/headerTest.jsp">
-	<jsp:param value="나의 게시글" name="title"/>
+<jsp:include page="/WEB-INF/views/common/header.jsp">
+	<jsp:param value="나의 자유게시글" name="title"/>
 </jsp:include>
 
 <!-- Page content-->

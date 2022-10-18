@@ -14,4 +14,6 @@ public interface MemberService {
 	int delete(int no);
 
 	List<Member> allList();
+
+	Member selectByNo(int no);
 }

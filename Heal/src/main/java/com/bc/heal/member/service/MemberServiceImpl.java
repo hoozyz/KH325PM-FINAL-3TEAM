@@ -61,4 +61,9 @@ public class MemberServiceImpl implements MemberService{
 	public List<Member> allList() {
 		return mapper.selectAll();
 	}
+
+	@Override
+	public Member selectByNo(int no) {
+		return mapper.selectByNo(no);
+	}
 }

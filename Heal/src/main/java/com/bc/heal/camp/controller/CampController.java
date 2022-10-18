@@ -202,7 +202,7 @@ public class CampController {
 		try {
 			if (dong != null) {
 				if (weatherApi(weaService.selectByDong(dong).getNx(), weaService.selectByDong(dong).getNy()) == null) {
-					dong = dong.substring(0, dong.length());
+					dong = dong.substring(0, 2);
 					weaList = weatherApi(weaService.selectByDong(dong).getNx(), weaService.selectByDong(dong).getNy());
 				} else {
 					weaList = weatherApi(weaService.selectByDong(dong).getNx(), weaService.selectByDong(dong).getNy());

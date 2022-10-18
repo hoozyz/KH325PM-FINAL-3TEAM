@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
-<jsp:include page="/WEB-INF/views/common/headerTest.jsp">
+<jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param value="나의 찜" name="title"/>
 </jsp:include>
 

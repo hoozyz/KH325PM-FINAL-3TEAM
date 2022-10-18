@@ -13,4 +13,5 @@ public interface MemberMapper {
 	int updateMember(Member member);
 	int deleteMember(int no);
 	List<Member> selectAll();
+	Member selectByNo(int no);
 }
