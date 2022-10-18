@@ -239,7 +239,6 @@
         <section class="container-fluid mb-5 pb-2 pb-lg-4  mt-4" style="width: 1400px">
             <div class="tns-carousel-wrapper">
                 <div class="tns-carousel-inner" data-carousel-options="{&quot;items&quot;: 1, &quot;mode&quot;: &quot;gallery&quot;, &quot;controlsContainer&quot;: &quot;#agents-carousel-controls&quot;, &quot;nav&quot;: false}">
-                    
                      <div>
                         <div class="row align-items-center">
                             <div class="col-xl-4 d-none d-xl-block"><img class="rounded-3" src="${path}/resources/image/campReview1.jpg" alt="Agent picture"></div>
@@ -269,7 +268,7 @@
                                     </blockquote>
                                 </div>
                                 <div>
-                                    <button class="btn btn-primary d-block mb-4" style="position: absolute; bottom: -22px; right: 50px; " type="button" onclick="location.href='${path}/camp/campDetail?no=6811');">&nbsp&nbsp<i class="fi-checkbox-checked-alt me-2"></i>캠핑장 상세보기&nbsp&nbsp&nbsp&nbsp</button>
+                                    <button class="btn btn-primary d-block mb-4" style="position: absolute; bottom: -22px; right: 50px; " type="button" onclick="location.href='${path}/camp/campDetail?no=6811';">&nbsp&nbsp<i class="fi-checkbox-checked-alt me-2"></i>캠핑장 상세보기&nbsp&nbsp&nbsp&nbsp</button>
                                 </div>
                             </div>
                         </div>
@@ -302,7 +301,7 @@
                                     </blockquote>
                                 </div>
                                 <div>	
-                                    <button class="btn btn-primary d-block mb-4" style="position: absolute; bottom: -22px; right: 50px; " type="button" onclick="location.href='${path}/camp/campDetail?no=1337');">&nbsp&nbsp<i class="fi-checkbox-checked-alt me-2"></i>캠핑장 상세보기&nbsp&nbsp&nbsp&nbsp</button>
+                                    <button class="btn btn-primary d-block mb-4" style="position: absolute; bottom: -22px; right: 50px; " type="button" onclick="location.href='${path}/camp/campDetail?no=1337';">&nbsp&nbsp<i class="fi-checkbox-checked-alt me-2"></i>캠핑장 상세보기&nbsp&nbsp&nbsp&nbsp</button>
                                 </div>
                             </div>
                         </div>
