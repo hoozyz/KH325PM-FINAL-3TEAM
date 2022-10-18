@@ -19,4 +19,19 @@ public class LikeServiceImpl implements LikeService{
 		return mapper.selectNew(no);
 	}
 
+	@Override
+	public int insertLike(Like like) {
+		return mapper.insertLike(like);
+	}
+
+	@Override
+	public int deleteLike(int no) {
+		return mapper.deleteLike(no);
+	}
+
+	@Override
+	public int deleteLikeById(int memberNo, int no) {
+		return mapper.deleteLikeById(memberNo, no);
+	}
+
 }

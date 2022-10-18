@@ -8,6 +8,12 @@
 	<jsp:param value="캠핑장 상세" name="title"/>
 </jsp:include>
 
+
+<c:set var="campNo" value="${camp.no}" />
+<c:set var="likeCheck" value="0" />
+
+
+
 <style>
     .weather_area {
         position: relative;
@@ -1114,7 +1120,7 @@
        </script>
             
             
-        <!-- Page header-->
+        <!-- Page header 페이지 시작-->
         <section class="container pt-5 mt-5">
             <!-- Breadcrumb-->
             <nav class="mb-3 pt-md-3" aria-label="breadcrumb">
@@ -1127,8 +1133,16 @@
             <!-- Features + Sharing-->
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h1 class="h2 mb-2">${camp.name}</h1>
-                <div class="text-nowrap">
-                    <button class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle ms-2 mb-2" type="button" data-bs-toggle="tooltip" title="Add to Wishlist"><i class="fi-heart"></i></button>
+                <div class="text-nowrap" id="like_button">
+                	<c:if test="${likeCheck == 0}">
+                		<button class="btn btn-icon btn-light-primary btn shadow-sm rounded-circle ms-2 mb-2" onclick="like_Plus(${campNo})" type="button" data-bs-toggle="tooltip" title="찜하기"><i class="fi-heart"></i></button>
+                	</c:if>
+                	<c:if test="${likeCheck == 1} ">
+                		<button class="btn btn-icon btn-light-primary btn shadow-sm rounded-circle ms-2 mb-2" onclick="like_Minus(${campNo})" type="button" data-bs-toggle="tooltip" title="찜 취소하기"><i class="fi-heart-filled"></i></button>  
+                	</c:if>
+                	
+                
+                    
                     <div class="dropdown d-inline-block" data-bs-toggle="tooltip" title="Share">
                         <button class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle ms-2 mb-2" type="button" data-bs-toggle="dropdown"><i class="fi-share"></i></button>
                         <div class="dropdown-menu dropdown-menu-end my-1">
@@ -1140,6 +1154,109 @@
                 </div>
             </div>
         </section>
+        
+        <script>
+        
+        
+        function like_Plus(likeNo) {
+        	
+        	var type = "camp";
+        	var likeCheck = 1;
+        	$.ajax({
+     			url: "/like/like",
+     			type: "POST",
+     			dataType: "text",
+     			data: { "likeNo": likeNo ,
+     					"likeCheck" : likeCheck /* 찜체크 */
+     					"type" : type 	 /*ㅍㅔ이지체크 ㅍ */
+				},
+     			progress: true,
+         	
+     			success: function(list) {
+     				var like = JSON.parse(list);
+     				console.log("like_Plus.");
+     				
+     				str = "";
+					$.each(like, (i, obj) => {
+						var likeNo = obj.likeNo;
+						
+						str += '<button class="btn btn-icon btn-light-primary btn shadow-sm rounded-circle ms-2 mb-2" onclick="like_Minus(' + likeNo + ')" type="button" data-bs-toggle="tooltip" title="찜 취소하기"><i class="fi-heart-filled bg-white"></i></button>                  '
+         				str += '<div class="dropdown d-inline-block" data-bs-toggle="tooltip" title="공유하기">                                                                                                                                                           '
+         				str += '    <button class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle ms-2 mb-2" type="button" data-bs-toggle="dropdown"><i class="fi-share"></i></button>                                                                '
+         				str += '    <div class="dropdown-menu dropdown-menu-end my-1">                                                                                                                                                                                  '
+         				str += '        <button class="dropdown-item" type="button"><i class="fi-facebook fs-base opacity-75 me-2"></i>Facebook</button>                                                                                                                '
+         				str += '        <button class="dropdown-item" type="button"><i class="fi-twitter fs-base opacity-75 me-2"></i>Twitter</button>                                                                                                                  '
+         				str += '        <button class="dropdown-item" type="button"><i class="fi-instagram fs-base opacity-75 me-2"></i>Instagram</button>                                                                                                              '
+         				str += '    </div>                                                                                                                                                                                                                              '
+         				str += '</div>                                                                                                                                                                                                                                '
+						});         
+       				$('#like_button').html(str);
+      			}
+					error:function(e) {
+      				console.log(e)
+      			}
+     		});	
+         }        
+                            
+        function like_Minus(likeNo) {
+        	
+        	var type = "camp";
+        	var likeCheck = 0;
+        	$.ajax({
+     			url: "/like/like",
+     			type: "POST",
+     			dataType: "text",
+     			data: { "likeNo": likeNo ,
+ 						"likeCheck" : likeCheck /* 찜체크 */
+ 						"type" : type 	 /*ㅍㅔ이지체크 ㅍ */
+     			},
+     			progress: true,
+         	
+     			success: function(list) {
+    				var like = JSON.parse(list);
+     				console.log("like_Minus");
+     				
+     				str = "";
+     				$.each(like, (i, obj) => {
+						var likeNo = obj.likeNo;
+						
+						str += '<button class="btn btn-icon btn-light-primary btn shadow-sm rounded-circle ms-2 mb-2" onclick="like_Plus(' + likeNo + ')" type="button" data-bs-toggle="tooltip" title="찜하기"><i class="fi-heart"></i></button>                '
+         				str += '<div class="dropdown d-inline-block" data-bs-toggle="tooltip" title="공유하기">                                                                                                                                                           '
+         				str += '    <button class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle ms-2 mb-2" type="button" data-bs-toggle="dropdown"><i class="fi-share"></i></button>                                                                '
+         				str += '    <div class="dropdown-menu dropdown-menu-end my-1">                                                                                                                                                                                  '
+         				str += '        <button class="dropdown-item" type="button"><i class="fi-facebook fs-base opacity-75 me-2"></i>Facebook</button>                                                                                                                '
+         				str += '        <button class="dropdown-item" type="button"><i class="fi-twitter fs-base opacity-75 me-2"></i>Twitter</button>                                                                                                                  '
+         				str += '        <button class="dropdown-item" type="button"><i class="fi-instagram fs-base opacity-75 me-2"></i>Instagram</button>                                                                                                              '
+         				str += '    </div>                                                                                                                                                                                                                              '
+         				str += '</div>                                                                                                                                                                                                                                '
+						});         
+       				$('#like_button').html(str);
+      			}
+     		});	
+         }      
+		</script>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <!-- Gallery-->
         <section class="container overflow-auto mb-4 pb-3" data-simplebar>
             <div class="row g-2 g-md-3 gallery" data-thumbnails="true" style="min-width: 30rem;">
@@ -1272,6 +1389,12 @@
                 </div>
                 
                 <script>
+                
+                
+                
+                
+                
+                
                 	$("#sort").change(function() {
                 		goPage(1);
                 	});

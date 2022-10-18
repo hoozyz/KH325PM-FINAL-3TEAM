@@ -38,4 +38,64 @@
 	
 	<!-- <![CDATA[]]> 내부에 문자 그대로 DB에 입력가능함 -->
 	
+	<!-- 찜하기  -->
+	<insert id="insertLike" parameterType="Like" >
+		INSERT INTO TBL_REVIEW (
+			NO, 
+			MEMBERNO, 
+			HOTELNO, 
+			CAMPNO, 
+			FESTIVALNO, 
+			FOODNO, 
+			PARKNO 		
+		) VALUES (
+			REVIEW_SEQ.NEXTVAL,
+ 			#{memberno},
+			<if test="hotelno != null">
+				#{hotelno},
+			</if>
+			<if test="campno != null">
+				#{campno},
+			</if>
+			<if test="festivalno != null">
+				#{festivalno},
+			</if>
+			<if test="foodno != null">
+				#{foodno},
+			</if>
+			<if test="parkno != null">
+				#{parkno}
+			</if>
+					
+ 		)
+	</insert>
+ 		
+	<!-- 찜삭 FK(no), id -->
+	<delete id="deleteLikeById" parameterType="int">
+ 		DELETE TBL_LIKE 
+ 		WHERE #{memberno},
+ 			<if test="hotelno != null">
+				#{hotelno},
+			</if>
+			<if test="campno != null">
+				#{campno},
+			</if>
+			<if test="festivalno != null">
+				#{festivalno},
+			</if>
+			<if test="foodno != null">
+				#{foodno},
+			</if>
+			<if test="parkno != null">
+				#{parkno}
+			</if>
+		
+	</delete>
+	
+	<!-- 찜삭 no -->
+	<delete id="deleteLike" parameterType="int">
+ 		DELETE TBL_LIKE WHERE NO=#{no} 
+	</delete>
+	
+	
 </mapper>
