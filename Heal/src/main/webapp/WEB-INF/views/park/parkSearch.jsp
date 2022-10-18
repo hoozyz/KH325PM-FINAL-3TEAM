@@ -39,8 +39,7 @@
                     <input class="form-control" type="text" name="keyword" placeholder="검색어를 입력하세요">
                   </div>
                   <input class="btn btn-primary rounded-pill d-lg-inline-block d-none" type="submit" value="검색">
-                  <button class="btn btn-icon btn-primary rounded-circle flex-shrink-0 d-lg-none d-inline-flex" type="button"><i
-                      class="fi-search mt-n2"></i></button>
+                  <button class="btn btn-icon btn-primary rounded-circle flex-shrink-0 d-lg-none d-inline-flex" type="button"><i class="fi-search mt-n2"></i></button>
                 </div>
               <div class="offcanvas-body py-lg-4">
                 <div class="pb-4">
@@ -142,7 +141,21 @@
 		                <div class="card card-light card-hover h-100">
 		                  <div class="card-img-top card-img-hover"style="border: 1px;">
 		                    <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info"><c:out value="${park.category}"/></span></div>
-		                    <div class="tns-carousel-inner"><img src="${path}/resources/image/park<%=Math.round(Math.random()*12 + 1)%>.png" alt="Image" style="min-height: 260px;"></div>
+		                    <div class="tns-carousel-inner">
+		                    	<c:set var="parkCategory" value="${park.category}"/>
+		                    	<c:if test="${fn:contains(parkCategory, '어린이')}">
+		                    		<img src="${path}/resources/image/pSearchKids/searchKids<%=Math.round(Math.random()*6 + 1)%>.png" alt="Image" style="min-height: 260px; max-height: 260px;">
+		                    	</c:if>
+		                    	<c:if test="${fn:contains(parkCategory, '수변')}">
+		                    		<img src="${path}/resources/image/pSearchWater/searchWater<%=Math.round(Math.random()*5 + 1)%>.png" alt="Image" style="min-height: 260px; max-height: 260px;">
+		                    	</c:if>
+		                    	<c:if test="${fn:contains(parkCategory, '역사')}">
+		                    		<img src="${path}/resources/image/psearchHis/searchHis<%=Math.round(Math.random()*5 + 1)%>.png" alt="Image" style="min-height: 260px; max-height: 260px;">
+		                    	</c:if>
+		                    	<c:if test="${!fn:contains(parkCategory, '수변') && !fn:contains(parkCategory, '어린이') && !fn:contains(parkCategory, '역사')}">
+		                    		<img src="${path}/resources/image/pSearchOther/park<%=Math.round(Math.random()*12 + 1)%>.png" alt="Image" style="min-height: 260px; max-height: 260px;">
+		                    	</c:if>
+		                    </div>
 		                  </div>
 		                  <div class="card-body">
 		                    <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm me-3" style="color: black;"><c:out value="${park.category}"/></span>

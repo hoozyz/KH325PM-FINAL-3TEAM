@@ -345,7 +345,7 @@
                                             <span class="secondary">강수량 </span><span class="secondaryInfo">${today.pcp}</span>
                                         </div>
                                     </div>
-                                <div class="btn-group btn-group-lg scale-up delay-3" role="group" aria-label="Buy now or add to wishlist" style="margin-left: 40px"><a class="btn" href="real-estate-single-v2.html" style="background-color: #424B0D; color:#ffffff;">공원 상세로 이동하기</a>
+                                <div class="btn-group btn-group-lg scale-up delay-3" role="group" aria-label="Buy now or add to wishlist" style="margin-left: 40px"><a class="btn" href="${path}/park/parkDetail?no=36228" style="background-color: #424B0D; color:#ffffff;">공원 상세로 이동하기</a>
                                     <button class="btn border-start border-light" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Wishlist" style="background-color: #424B0D; color:#ffffff;"><i class="fi-heart fs-5"></i></button>
                                 </div>
                             </div>
@@ -417,7 +417,7 @@
                                             <span class="secondary">강수량 </span><span class="secondaryInfo">${today.pcp}</span>
                                         </div>
                                     </div>
-                                <div class="btn-group btn-group-lg scale-up delay-3" role="group" aria-label="Buy now or add to wishlist" style="margin-left: 40px"><a class="btn" href="real-estate-single-v2.html" style="background-color: #424B0D; color:#ffffff;">공원 상세로 이동하기</a>
+                                <div class="btn-group btn-group-lg scale-up delay-3" role="group" aria-label="Buy now or add to wishlist" style="margin-left: 40px"><a class="btn" href="${path}/park/parkDetail?no=53216" style="background-color: #424B0D; color:#ffffff;">공원 상세로 이동하기</a>
                                     <button class="btn border-start border-light" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Wishlist" style="background-color: #424B0D; color:#ffffff;"><i class="fi-heart fs-5"></i></button>
                                 </div>
                             </div>
@@ -540,7 +540,7 @@
                 <div class="d-flex align-items-end justify-content-between">
                     <h2 class="h3 mb-0" style="color:#687519">공원&nbsp;</h2>
                     <h2 class="h3 mb-0">둘러보기</h2>
-                </div><a class="btn btn-link fw-normal ms-2 p-0" href="real-estate-catalog-sale.html">View all<i class="fi-arrow-long-right ms-2"></i></a>
+                </div><a class="btn btn-link fw-normal ms-2 p-0" href="${path}/park/parkList">View all<i class="fi-arrow-long-right ms-2"></i></a>
             </div>
             <!-- No image-->
             <div class="card border-0 shadow-sm">
@@ -566,16 +566,15 @@
 
 
                             <div class="card p-0" style="max-width: 32rem; border: none; float: left; background:none;">
-                                <div class="card-body p-0" style="text-align: center; cursor:pointer; width:480px; height:280px;">
+                                <div class="card-body p-0" OnClick="location.href ='${path}/park/parkDetail?no=36495'" style="text-align: center; cursor:pointer; width:480px; height:280px;">
                                     <img class="card shadow-lg border-0 w-100 border-0 hover-animate" style="width:480px; height:240px;" src="${path}/resources/image/neighbor3.png">
-                                    <p style="font-size:15pt; margin-top:10px; margin-bottom: 10px; font-weight: 800;">여의도 한강공원</p>
+                                    <p style="font-size:15pt; margin-top:10px; margin-bottom: 10px; font-weight: 800;">신송공원</p>
                                 </div>
                             </div>
                             <div class="card p-0" style="max-width: 32rem; border: none; float: left; background:none;">
-                                <div class="card-body p-0" style="text-align: center; cursor:pointer; width:480px; height:280px;">
+                                <div class="card-body p-0" OnClick="location.href ='${path}/park/parkDetail?no=36051'" style="text-align: center; cursor:pointer; width:480px; height:280px;">
                                     <img class="card shadow-lg border-0 w-100 border-0 hover-animate" style="width:480px; height:240px;" src="${path}/resources/image/neighbor4.png">
-                                    <p style="font-size:15pt; margin-top:10px; margin-bottom: 10px; font-weight: 800;">여의도 한강공원</p>
-
+                                    <p style="font-size:15pt; margin-top:10px; margin-bottom: 10px; font-weight: 800;">비둘기공원</p>
                                 </div>
                             </div>
                         </div>
@@ -583,25 +582,23 @@
 
 
                         <div class="tab-pane fade row" id="pe" role="tabpanel">
-                            <div class="card py-5 px-0" style="max-width: 15rem; border: none; float: left; background:none;">
                                 <div class="card py-5 px-0" style="max-width: 15rem; border: none; float: left; background:none;">
                                     <div class="card-body" style="text-align: center; ">
                                         <P style="color:#2841b1; font-size: 20pt;">체육공원</P>
                                     </div>
-                                </div>
-                            </div>
+                           		</div>
 
 
                             <div class="card p-0" style="max-width: 32rem; border: none; float: left; background:none;">
-                                <div class="card-body p-0" style="text-align: center; cursor:pointer; width:500px; height:270px;">
-                                    <img class="card shadow-lg border-0 w-100 border-0 hover-animate" style="width:500px; height:270px;" src="${path}/resources/image/pe1.png">
-                                    <p style="font-size:15pt; margin-top:10px; margin-bottom: 10px; font-weight: 800;">여의도 한강공원</p>
+                                <div class="card-body p-0" OnClick="location.href ='${path}/park/parkDetail?no=51259'" style="text-align: center; cursor:pointer; width:480px; height:280px;">
+                                    <img class="card shadow-lg border-0 w-100 border-0 hover-animate" style="width:480px; height:240px;" src="${path}/resources/image/pe1.png">
+                                    <p style="font-size:15pt; margin-top:10px; margin-bottom: 10px; font-weight: 800;">율하체육공원</p>
                                 </div>
                             </div>
                             <div class="card p-0" style="max-width: 32rem; border: none; float: left; background:none;">
-                                <div class="card-body p-0" style="text-align: center; cursor:pointer; width:500px; height:270px;">
-                                    <img class="card shadow-lg border-0 w-100 border-0 hover-animate" style="width:500px; height:270px;" src="${path}/resources/image/pe2.png">
-                                    <p style="font-size:15pt; margin-top:10px; margin-bottom: 10px; font-weight: 800;">여의도 한강공원</p>
+                                <div class="card-body p-0" OnClick="location.href ='${path}/park/parkDetail?no=40317'" style="text-align: center; cursor:pointer; width:480px; height:280px;">
+                                    <img class="card shadow-lg border-0 w-100 border-0 hover-animate" style="width:480px; height:240px;" src="${path}/resources/image/pe2.png">
+                                    <p style="font-size:15pt; margin-top:10px; margin-bottom: 10px; font-weight: 800;">용담체육공원</p>
                                 </div>
                             </div>
                         </div>
@@ -618,15 +615,15 @@
 
 
                             <div class="card p-0" style="max-width: 32rem; border: none; float: left; background:none;">
-                                <div class="card-body p-0" style="text-align: center; cursor:pointer; width:500px; height:270px;">
-                                    <img class="card shadow-lg border-0 w-100 border-0 hover-animate" style="width:500px; height:270px;" src="${path}/resources/image/kids1.png">
-                                    <p style="font-size:15pt; margin-top:10px; margin-bottom: 10px; font-weight: 800;">여의도 한강공원</p>
+                                <div class="card-body p-0" OnClick="location.href ='${path}/park/parkDetail?no=36162'" style="text-align: center; cursor:pointer; width:480px; height:280px;">
+                                    <img class="card shadow-lg border-0 w-100 border-0 hover-animate" style="width:480px; height:240px;" src="${path}/resources/image/kids3.jpg">
+                                    <p style="font-size:15pt; margin-top:10px; margin-bottom: 10px; font-weight: 800;">해바라기공원</p>
                                 </div>
                             </div>
                             <div class="card p-0" style="max-width: 32rem; border: none; float: left; background:none;">
-                                <div class="card-body p-0" style="text-align: center; cursor:pointer; width:500px; height:270px;">
-                                    <img class="card shadow-lg border-0 w-100 border-0 hover-animate" style="width:500px; height:270px;" src="${path}/resources/image/kids2.png">
-                                    <p style="font-size:15pt; margin-top:10px; margin-bottom: 10px; font-weight: 800;">여의도 한강공원</p>
+                                <div class="card-body p-0" OnClick="location.href ='${path}/park/parkDetail?no=36609'" style="text-align: center; cursor:pointer; width:480px; height:280px;">
+                                    <img class="card shadow-lg border-0 w-100 border-0 hover-animate" style="width:480px; height:240px;" src="${path}/resources/image/kids2.png">
+                                    <p style="font-size:15pt; margin-top:10px; margin-bottom: 10px; font-weight: 800;">하늘어린이공원</p>
                                 </div>
                             </div>
                         </div>
@@ -641,15 +638,15 @@
                             </div>
 
                             <div class="card p-0" style="max-width: 32rem; border: none; float: left; background:none;">
-                                <div class="card-body p-0" style="text-align: center; cursor:pointer; width:500px; height:270px;">
-                                    <img class="card shadow-lg border-0 w-100 border-0 hover-animate" style="width:500px; height:270px;" src="${path}/resources/image/history1.png">
-                                    <p style="font-size:15pt; margin-top:10px; margin-bottom: 10px; font-weight: 800;">여의도 한강공원</p>
+                                <div class="card-body p-0" OnClick="location.href ='${path}/park/parkDetail?no=35721'" style="text-align: center; cursor:pointer; width:480px; height:280px;">
+                                    <img class="card shadow-lg border-0 w-100 border-0 hover-animate" style="width:480px; height:240px;" src="${path}/resources/image/history1.png">
+                                    <p style="font-size:15pt; margin-top:10px; margin-bottom: 10px; font-weight: 800;">화산공원</p>
                                 </div>
                             </div>
                             <div class="card p-0" style="max-width: 32rem; border: none; float: left; background:none;">
-                                <div class="card-body p-0" style="text-align: center; cursor:pointer; width:500px; height:270px;">
-                                    <img class="card shadow-lg border-0 w-100 border-0 hover-animate" style="width:500px; height:270px;" src="${path}/resources/image/history2.png">
-                                    <p style="font-size:15pt; margin-top:10px; margin-bottom: 10px; font-weight: 800;">여의도 한강공원</p>
+                                <div class="card-body p-0" OnClick="location.href ='${path}/park/parkDetail?no=37862'" style="text-align: center; cursor:pointer; width:480px; height:280px;">
+                                    <img class="card shadow-lg border-0 w-100 border-0 hover-animate" style="width:480px; height:240px;" src="${path}/resources/image/history2.png">
+                                    <p style="font-size:15pt; margin-top:10px; margin-bottom: 10px; font-weight: 800;">호국공원</p>
                                 </div>
                             </div>
                         </div>
@@ -665,15 +662,15 @@
 
 
                             <div class="card p-0" style="max-width: 32rem; border: none; float: left; background:none;">
-                                <div class="card-body p-0" style="text-align: center; cursor:pointer; width:500px; height:270px;">
-                                    <img class="card shadow-lg border-0 w-100 border-0 hover-animate" style="width:500px; height:270px;" src="${path}/resources/image/small1.png">
-                                    <p style="font-size:15pt; margin-top:10px; margin-bottom: 10px; font-weight: 800;">여의도 한강공원</p>
+                                <div class="card-body p-0" OnClick="location.href ='${path}/park/parkDetail?no=35990'" style="text-align: center; cursor:pointer; width:480px; height:280px;">
+                                    <img class="card shadow-lg border-0 w-100 border-0 hover-animate" style="width:480px; height:240px;" src="${path}/resources/image/small1.png">
+                                    <p style="font-size:15pt; margin-top:10px; margin-bottom: 10px; font-weight: 800;">평산공원</p>
                                 </div>
                             </div>
                             <div class="card p-0" style="max-width: 32rem; border: none; float: left; background:none;">
-                                <div class="card-body p-0" style="text-align: center; cursor:pointer; width:500px; height:270px;">
-                                    <img class="card shadow-lg border-0 w-100 border-0 hover-animate" style="width:500px; height:270px;" src="${path}/resources/image/small2.png">
-                                    <p style="font-size:15pt; margin-top:10px; margin-bottom: 10px; font-weight: 800;">여의도 한강공원</p>
+                                <div class="card-body p-0" OnClick="location.href ='${path}/park/parkDetail?no=36263'" style="text-align: center; cursor:pointer; width:480px; height:280px;">
+                                    <img class="card shadow-lg border-0 w-100 border-0 hover-animate" style="width:480px; height:240px;" src="${path}/resources/image/small2.png">
+                                    <p style="font-size:15pt; margin-top:10px; margin-bottom: 10px; font-weight: 800;">송원공원</p>
                                 </div>
                             </div>
                         </div>
@@ -689,15 +686,15 @@
 
 
                             <div class="card p-0" style="max-width: 32rem; border: none; float: left; background:none;">
-                                <div class="card-body p-0" style="text-align: center; cursor:pointer; width:500px; height:270px;">
-                                    <img class="card shadow-lg border-0 w-100 border-0 hover-animate" style="width:500px; height:270px;" src="${path}/resources/image/culture1.png">
-                                    <p style="font-size:15pt; margin-top:10px; margin-bottom: 10px; font-weight: 800;">여의도 한강공원</p>
+                                <div class="card-body p-0" OnClick="location.href ='${path}/park/parkDetail?no=35766'" style="text-align: center; cursor:pointer; width:480px; height:280px;">
+                                    <img class="card shadow-lg border-0 w-100 border-0 hover-animate" style="width:480px; height:240px;" src="${path}/resources/image/culture2.png">
+                                    <p style="font-size:15pt; margin-top:10px; margin-bottom: 10px; font-weight: 800;">팔복문화공원</p>
                                 </div>
                             </div>
                             <div class="card p-0" style="max-width: 32rem; border: none; float: left; background:none;">
-                                <div class="card-body p-0" style="text-align: center; cursor:pointer; width:500px; height:270px;">
-                                    <img class="card shadow-lg border-0 w-100 border-0 hover-animate" style="width:500px; height:270px;" src="${path}/resources/image/culture2.png">
-                                    <p style="font-size:15pt; margin-top:10px; margin-bottom: 10px; font-weight: 800;">여의도 한강공원</p>
+                                <div class="card-body p-0" OnClick="location.href ='${path}/park/parkDetail?no=40809'" style="text-align: center; cursor:pointer; width:480px; height:280px;">
+                                    <img class="card shadow-lg border-0 w-100 border-0 hover-animate" style="width:480px; height:240px;" src="${path}/resources/image/culture1.png">
+                                    <p style="font-size:15pt; margin-top:10px; margin-bottom: 10px; font-weight: 800;">점말문화공원</p>
                                 </div>
                             </div>
                         </div>
@@ -713,15 +710,15 @@
 
 
                             <div class="card p-0" style="max-width: 32rem; border: none; float: left; background:none;">
-                                <div class="card-body p-0" style="text-align: center; cursor:pointer; width:500px; height:270px;">
-                                    <img class="card shadow-lg border-0 w-100 border-0 hover-animate" style="width:500px; height:270px;" src="${path}/resources/image/water1.png">
-                                    <p style="font-size:15pt; margin-top:10px; margin-bottom: 10px; font-weight: 800;">여의도 한강공원</p>
+                                <div class="card-body p-0" OnClick="location.href ='${path}/park/parkDetail?no=36394'" style="text-align: center; cursor:pointer; width:480px; height:280px;">
+                                    <img class="card shadow-lg border-0 w-100 border-0 hover-animate" style="width:480px; height:240px;" src="${path}/resources/image/water1.png">
+                                    <p style="font-size:15pt; margin-top:10px; margin-bottom: 10px; font-weight: 800;">윗맹골공원</p>
                                 </div>
                             </div>
                             <div class="card p-0" style="max-width: 32rem; border: none; float: left; background:none;">
-                                <div class="card-body p-0" style="text-align: center; cursor:pointer; width:500px; height:270px;">
-                                    <img class="card shadow-lg border-0 w-100 border-0 hover-animate" style="width:500px; height:270px;" src="${path}/resources/image/water2.png">
-                                    <p style="font-size:15pt; margin-top:10px; margin-bottom: 10px; font-weight: 800;">여의도 한강공원</p>
+                                <div class="card-body p-0" OnClick="location.href ='${path}/park/parkDetail?no=38590'" style="text-align: center; cursor:pointer; width:480px; height:280px;">
+                                    <img class="card shadow-lg border-0 w-100 border-0 hover-animate" style="width:480px; height:240px;" src="${path}/resources/image/water2.png">
+                                    <p style="font-size:15pt; margin-top:10px; margin-bottom: 10px; font-weight: 800;">가람울공원</p>
                                 </div>
                             </div>
                         </div>
