@@ -105,7 +105,8 @@
     <script>
 function setType(param){
 
-	
+alert(param);
+
 if(param == "캠핑장"){
 	$("#searchFrm").attr("action","${path}/camp/campSearch")
 	}
