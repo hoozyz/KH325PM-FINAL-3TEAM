@@ -216,7 +216,14 @@ public class FestivalController {
 		}
 		
 		try {
-			weaList = weatherApi(weaService.selectByDong(dong).getNx(), weaService.selectByDong(dong).getNy()); 
+			if (dong != null) {
+				if (weatherApi(weaService.selectByDong(dong).getNx(), weaService.selectByDong(dong).getNy()) == null) {
+					dong = dong.substring(0, 2);
+					weaList = weatherApi(weaService.selectByDong(dong).getNx(), weaService.selectByDong(dong).getNy());
+				} else {
+					weaList = weatherApi(weaService.selectByDong(dong).getNx(), weaService.selectByDong(dong).getNy());
+				}
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ParseException e) {

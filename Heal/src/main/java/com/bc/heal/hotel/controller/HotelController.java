@@ -39,15 +39,13 @@ import com.bc.heal.vo.Train;
 import com.bc.heal.vo.Weather;
 import com.bc.heal.weather.service.WeatherService;
 
-
-
 @Controller
 @RequestMapping("/near")
 public class HotelController {
-	
+
 	@Autowired
 	private HotelService hotelService;
-	
+
 	@Autowired
 	private TrainService trainService;
 
@@ -59,13 +57,13 @@ public class HotelController {
 
 	@Autowired
 	private WeatherService weaService;
-	
+
 	@Autowired
 	private ReviewService revService;
-	
+
 	@GetMapping("/nearHotel")
 	String list(Model model, @RequestParam Map<String, String> param) {
-			
+
 		int page = 1;
 		if (param.containsKey("page") == true) {
 			try {
@@ -73,22 +71,22 @@ public class HotelController {
 			} catch (Exception e) {
 			}
 		}
-		
+
 		int listCount = hotelService.getHotelCount(param);
 		System.out.println("총 게시글 수  : " + listCount);
 		model.addAttribute("listCount", listCount);
-		
+
 		PageInfo pageInfo = new PageInfo(page, 10, listCount, 6);
 		List<Hotel> hotelList = hotelService.getHotelList(pageInfo, param);
-		
+
 		System.out.println(hotelList);
-		
+
 		model.addAttribute("HotelList", hotelList);
 		model.addAttribute("param", param);
-		model.addAttribute("pageInfo", pageInfo);	
-			
+		model.addAttribute("pageInfo", pageInfo);
+
 		return "/near/nearHotel";
-		
+
 	}
 
 //	@GetMapping("/rev")
@@ -101,23 +99,23 @@ public class HotelController {
 
 		List<Review> list = new ArrayList<>();
 		String sort = param.get("sort");
-		
-		if(sort.contains("최신")) {
+
+		if (sort.contains("최신")) {
 			sort = "new";
 		}
-		if(sort.contains("오래")) {
+		if (sort.contains("오래")) {
 			sort = "old";
 		}
-		if(sort.contains("좋아")) {
+		if (sort.contains("좋아")) {
 			sort = "like";
 		}
-		if(sort.contains("별점")) {
+		if (sort.contains("별점")) {
 			sort = "star";
 		}
 
 		int hotelNo = Integer.parseInt(param.get("hotel"));
 		PageInfo pageInfo = new PageInfo(page, 5, revService.selectRevByHotelCnt(hotelNo), 2);
-		
+
 		list = revService.selectRevHotel(hotelNo, pageInfo, sort); // 캠프번호, 페이지, 정렬
 
 		map.put("list", list);
@@ -125,22 +123,20 @@ public class HotelController {
 
 		return map;
 	}
-		
+
 	@GetMapping("/hotelDetail")
 	public String detail(Model model, int no) {
-		Hotel hotel = hotelService.findByNo(no);	
-		
+		Hotel hotel = hotelService.findByNo(no);
+
 		// 리뷰
 		PageInfo pageInfo = new PageInfo(1, 5, revService.selectRevByHotelCnt(no), 2);
 		List<Review> revList = new ArrayList<>();
 		String sort = "new";
-		
-		
-		
+
 		revList = revService.selectRevHotel(no, pageInfo, sort); // 캠프번호, 페이지, 정렬
-		
+
 		System.out.println(revList);
-		
+
 		model.addAttribute("revList", revList);
 		model.addAttribute("pageInfo", pageInfo);
 
@@ -167,7 +163,14 @@ public class HotelController {
 		}
 
 		try {
-			weaList = weatherApi(weaService.selectByDong(dong).getNx(), weaService.selectByDong(dong).getNy()); 
+			if (dong != null) {
+				if (weatherApi(weaService.selectByDong(dong).getNx(), weaService.selectByDong(dong).getNy()) == null) {
+					dong = dong.substring(0, 2);
+					weaList = weatherApi(weaService.selectByDong(dong).getNx(), weaService.selectByDong(dong).getNy());
+				} else {
+					weaList = weatherApi(weaService.selectByDong(dong).getNx(), weaService.selectByDong(dong).getNy());
+				}
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ParseException e) {
@@ -176,17 +179,15 @@ public class HotelController {
 		Weather today = new Weather(); // 오늘
 		Weather one = new Weather(); // 내일
 		Weather two = new Weather(); // 모레
-		
+
 		today = weaList.get(0);
 		one = weaList.get(1);
 		two = weaList.get(2);
-		
+
 		model.addAttribute("today", today);
 		model.addAttribute("one", one);
 		model.addAttribute("two", two);
-		
-		
-		
+
 		// 교통
 		String lat = hotel.getLat(); // 캠핑장 위도
 		String lng = hotel.getLng(); // 캠핑장 경도
@@ -309,7 +310,6 @@ public class HotelController {
 
 		return "/near/hotelDetail";
 	}
-
 
 	// 사이의 거리
 	private static double distance(double lat1, double lon1, double lat2, double lon2) {
@@ -495,23 +495,23 @@ public class HotelController {
 				}
 				if (category.equals("TMX")) { // 최고기온 시간필요없음
 					if (dateCheck.equals(date)) { // 오늘
-					tmx = (String) jsonItem.get("fcstValue");
-					today.setTmx(tmx);
-				} else if (dateCheck.equals(oneDate)) { // 내일
-					tmx = (String) jsonItem.get("fcstValue");
-					one.setTmx(tmx);
-				} else { // 모레
-					tmx = (String) jsonItem.get("fcstValue");
-					two.setTmx(tmx);
+						tmx = (String) jsonItem.get("fcstValue");
+						today.setTmx(tmx);
+					} else if (dateCheck.equals(oneDate)) { // 내일
+						tmx = (String) jsonItem.get("fcstValue");
+						one.setTmx(tmx);
+					} else { // 모레
+						tmx = (String) jsonItem.get("fcstValue");
+						two.setTmx(tmx);
+					}
 				}
 			}
 		}
+
+		list.add(today);
+		list.add(one);
+		list.add(two);
+
+		return list;
 	}
-
-	list.add(today);
-	list.add(one);
-	list.add(two);
-
-	return list;
-}
 }

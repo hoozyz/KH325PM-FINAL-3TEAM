@@ -180,9 +180,15 @@ public class ParkController {
 			dong = checkArr[checkArr.length - 1] + "동";
 		}
 
-		System.out.println(park.getAddr().split(dong));
 		try {
-			weaList = weatherApi(weaService.selectByDong(dong).getNx(), weaService.selectByDong(dong).getNy()); 
+			if (dong != null) {
+				if (weatherApi(weaService.selectByDong(dong).getNx(), weaService.selectByDong(dong).getNy()) == null) {
+					dong = dong.substring(0, 2);
+					weaList = weatherApi(weaService.selectByDong(dong).getNx(), weaService.selectByDong(dong).getNy());
+				} else {
+					weaList = weatherApi(weaService.selectByDong(dong).getNx(), weaService.selectByDong(dong).getNy());
+				}
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ParseException e) {

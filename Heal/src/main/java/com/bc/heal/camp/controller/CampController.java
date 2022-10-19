@@ -92,7 +92,7 @@ public class CampController {
 
 		return "/camp/campSearch";
 	}
-	
+
 	@GetMapping("/rev")
 	@ResponseBody
 	public Map<String, Object> list(@RequestParam Map<String, String> param) {
@@ -102,23 +102,23 @@ public class CampController {
 
 		List<Review> list = new ArrayList<>();
 		String sort = param.get("sort");
-		
-		if(sort.contains("최신")) {
+
+		if (sort.contains("최신")) {
 			sort = "new";
 		}
-		if(sort.contains("오래")) {
+		if (sort.contains("오래")) {
 			sort = "old";
 		}
-		if(sort.contains("좋아")) {
+		if (sort.contains("좋아")) {
 			sort = "like";
 		}
-		if(sort.contains("별점")) {
+		if (sort.contains("별점")) {
 			sort = "star";
 		}
 
 		int campNo = Integer.parseInt(param.get("camp"));
 		PageInfo pageInfo = new PageInfo(page, 5, revService.getCountByCamp(campNo), 2);
-		
+
 		list = revService.selectRevCamp(campNo, pageInfo, sort); // 캠프번호, 페이지, 정렬
 
 		map.put("list", list);
@@ -149,8 +149,6 @@ public class CampController {
 		String fourNo = "";
 		// 4개 넣어놓고 -> name에 최신 한 칸씩 뒤로 옮기기
 		String twoNo = zero.getName();
-		System.out.println(""+no);
-		System.out.println(twoNo);
 		if (twoNo.equals("" + no)) { // 이미 최신에 현재 캠핑장이 있을 때
 			twoNo = zero.getLineintro();
 			threeNo = zero.getIntro();
@@ -305,7 +303,7 @@ public class CampController {
 		airList = airService.selectListByEnd(airEnd);
 
 		for (int i = 0; i < trainList.size(); i++) {
-			if(trainList.get(0).getGeneralprice() == 0) {
+			if (trainList.get(0).getGeneralprice() == 0) {
 				trainList.get(i).setGeneralprice(15500);
 			}
 			if (trainList.get(i).getGeneralprice() == 0) { // 가격이 없을 때

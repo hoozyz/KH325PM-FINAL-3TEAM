@@ -23,6 +23,11 @@ public class PhotoController {
 
 	@Autowired
 	private PhotoService service;
+	
+	@GetMapping("/main")
+	public String main(Model model) {
+		return "board/photoMain";
+	}
 
 	@GetMapping("/myPhoto")
 	public String myPhoto(Model model, @SessionAttribute(name = "loginMember", required = false) Member loginMember) {
