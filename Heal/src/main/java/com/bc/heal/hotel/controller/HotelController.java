@@ -164,7 +164,7 @@ public class HotelController {
 
 		try {
 			if (dong != null) {
-				if (weatherApi(weaService.selectByDong(dong).getNx(), weaService.selectByDong(dong).getNy()) == null) {
+				if (weaService.selectByDong(dong) == null) {
 					dong = dong.substring(0, 2);
 					weaList = weatherApi(weaService.selectByDong(dong).getNx(), weaService.selectByDong(dong).getNy());
 				} else {
