@@ -108,22 +108,19 @@
                 
                 <div class="pb-4">
                   <h3 class="h6">소형기준 1박 가격</h3>
-                  <div class="range-slider" data-start-min="50000" data-start-max="100000" data-min="30000" data-max="300000" data-step="10000">
-                    <div class="range-slider-ui"></div>
-                    <div class="d-flex align-items-center">
-                      <div class="w-50 pe-2">
-                        <div class="input-group"><span class="input-group-text fs-base">원</span>
-                          <input class="form-control range-slider-value-min" type="text">
+                  <div class="ps-2" style="width:180px;">
+                        <div class="input-group">
+                          <input class="form-control range-slider-value-min" type="text" name="money">
+                          <span class="input-group-text fs-base">원</span>
                         </div>
                       </div>
-                      <div class="text-muted">&mdash;</div>
-                      <div class="w-50 ps-2">
-                        <div class="input-group"><span class="input-group-text fs-base">원</span>
-                          <input class="form-control range-slider-value-max" type="text">
+                      <div class="text-muted" style="margin-left: 90px;">~</div>
+                      <div class="ps-2" style="width:180px;">
+                        <div class="input-group">
+                          <input class="form-control" type="text" name="money">
+                          <span class="input-group-text fs-base">원</span>
                         </div>
                       </div>
-                    </div>
-                  </div>
                 </div>
                 <div class="border-top py-4">
                 </div>
