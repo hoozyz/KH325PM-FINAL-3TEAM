@@ -163,15 +163,15 @@
         <section class="container mb-5">
             <div class="col-xl-8 col-lg-9 col-md-10 mx-auto px-0">
                 <!-- Search form-->
-                <form class="form-group d-block d-md-flex position-relative rounded-md-pill mb-2 mb-sm-4 mb-lg-5">
-                    <div class="input-group input-group-lg border-end-md"><span class="input-group-text text-muted rounded-pill ps-3"><i class="fi-search"></i></span>
-                        <input class="form-control" type="text" placeholder="검색어를 입력해주세요">
-                    </div>
-                    <hr class="d-md-none my-2">
-                    <div class="d-sm-flex">
-                        <button class="btn btn-primary btn-lg rounded-pill w-100 w-md-auto ms-sm-3" type="button">검색</button>
-                    </div>
-                </form>
+                <div class="form-group d-block d-md-flex position-relative rounded-md-pill mb-2 mb-sm-4 mb-lg-5">
+                <div class="input-group input-group-lg border-end-md"><span class="input-group-text text-muted rounded-pill ps-3"><i class="fi-search"></i></span>
+                    <input class="form-control" type="text" id="keyword" placeholder="검색어를 입력해주세요">
+                </div>
+                <hr class="d-md-none my-2">
+                <div class="d-sm-flex">
+                    <button class="btn btn-primary btn-lg rounded-pill w-100 w-md-auto ms-sm-3" type="button" id="search">검색</button>
+                </div>
+                </div>
             </div>
             <div class="row row-cols-lg-6 row-cols-sm-3 row-cols-2 g-3 g-xl-4">
                 <div class="col">
@@ -216,9 +216,72 @@
                 </div>
             </div>
         </section>
+        
+        
+        
+        <script>
+   			$(document).ready(() => {
+   				$("#search").click(function() {
+   					var keyword = $("#keyword").val();
+   					
+   					$.ajax({
+   						type: 'GET',
+   						url: '/shop/search',
+   						data: {
+   							keyword: keyword
+   						},
+   						
+   						success:function(list) {
+   							console.log(list)
+   							str = "";
+   							
+	   						str += '	<div><h2 class="h3 mb-sm-0" style="display:inline;">'+ keyword +'</h2></div>                                                                                                                                                                                                                        '
+	   				        str += '<div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside tns-nav-outside-flush mx-n2">                                                                                                                                                                                     '
+	   				        str += '    <div class=row gx-4 mx-0 pt-3 pb-4" data-carousel-options="{&quot;items&quot;: 4, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3},&quot;992&quot;:{&quot;items&quot;:4}}}">'
+   							$.each(list, function (i, obj) {
+   								if(i == 4 || i == 8) {
+	   				       			str += '<div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside tns-nav-outside-flush mx-n2">                                                                                                                                                                                     '
+	   				        		str += '<div class="row gx-4 mx-0 pt-3 pb-4" data-carousel-options="{&quot;items&quot;: 4, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3},&quot;992&quot;:{&quot;items&quot;:4}}}">'
+   								}
+	   				            str += '  <div class="col">                                                                                                                                                '
+	   				            str += '         <div class="card shadow-sm card-hover border-0 h-100">                                                                                                                                                '
+	   				            str += '             <div class="card-img-top card-img-hover">                                                                                                                                                '
+	   				            str += '                 <a class="img-overlay" href="'+ obj.link+'"></a>                                                                                                                                                '
+	   				            str += '                 <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">'+obj.cate2+'</span><span class="d-table badge bg-info">'+obj.cate3+'</span></div>                                                                                                              '
+	   				            str += '                 <div class="content-overlay end-0 top-0 pt-3 pe-3">                                                                                                                                                '
+	   				            str += '                 </div><img src="'+obj.image+'" style="min-height: 300px"  alt="Image">                                                                                                                                                '
+	   				            str += '             </div>                                                                                                                                                '
+	   				            str += '                 <hr>                                                                                                                                    '
+	   				            str += '             <div class="card-body position-relative pb-3">                                                                                                      '
+	   				            str += '                 <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">'+ obj.mall +'</h4>                                                                                                                                                '
+	   				            str += '                 <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="'+obj.link+'">'+obj.title+'</a></h3>                                                                                                                                                '
+	   				            str += '                 <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>'+obj.price+'원</div>                                                                                                                                                '
+	   				            str += '             </div>                                                                                                                                                '
+	   				            str += '         </div>                                                                                                                          '
+	   				            str += '     </div>                                                                                                                                                '
+   								if(i==3 || i == 7) {
+   									str += '    </div>                                                                                                                                                                                                                                                                                  '
+   			   				        str += '</div>'
+   								}
+   							});
+	   				     	str += '    </div>                                                                                                                                                                                                                                                                                  '
+		   				    str += '</div>'
+   							
+   							$("#shopSection").addClass("container mb-5 pb-2 pb-lg-4");
+   							$("#shopSection").html(str);
+   						},
+   						
+   						error:function(e) {
+   							console.log(e)
+   						}
+   					})
+   				})
+   			});
+   		</script>
 
 
-        <!-- Services-->
+        <section id="shopSection">
+        	<!-- Services-->
         <section class="container-fluid mb-5 mt-n3 mt-lg-0" style="background: #f6f7fb; height:550px;">
             <div class="container-fluid mb-5 pt-5 mt-n3 mt-lg-0" style="width: 1500px;;">
                 <h2>시선집중</h2>
@@ -241,7 +304,7 @@
                                     </span>
                                     
                                     <c:set var="price0" value="${saleList.get(0).price * 0.8}" />
-                                    <fmt:parseNumber var= "price0" integerOnly= "true" value= "${fn:replace(price,'.0','')}"/>
+                                    <fmt:parseNumber var="price0" integerOnly="true" value="${fn:replace(price0,'.0','')}"/>
                                     <span class="price">
                                         <span class="value">${price0}</span><span class="unit">원</span>
                                     </span>
@@ -287,7 +350,7 @@
                                     </span>
                                     
                                     <c:set var="price1" value="${saleList.get(1).price * 0.75}" />
-                                    <fmt:parseNumber var= "price1" integerOnly= "true" value= "${fn:replace(price1,'.0','')}"/>
+                                    <fmt:parseNumber var="price1" integerOnly= "true" value= "${fn:replace(price1,'.0','')}"/>
                                     <span class="price">
                                         <span class="value">${price1}</span><span class="unit">원</span>
                                     </span>
@@ -513,8 +576,6 @@
                     </div>
                     	</c:forEach>
                     </c:if>
-
-
                 </div>
             </div>
         </section>
@@ -547,13 +608,10 @@
                     </div>
                     	</c:forEach>
                     </c:if>
-
-
-
                 </div>
             </div>
         </section>
-
+        </section>
     </main>
     
      <!-- Vendor scrits: js libraries and plugins-->

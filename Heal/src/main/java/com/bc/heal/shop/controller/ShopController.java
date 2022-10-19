@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -21,6 +22,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bc.heal.shop.service.ShopService;
 import com.bc.heal.vo.Shop;
@@ -55,66 +58,85 @@ public class ShopController {
 //		wordList.add("입장권");
 //		wordList.add("새우");
 //		insert(wordList);
-		
+
 		// 여행상품 200개 중 3개
-		List<Shop> saleList = new ArrayList<>(); 
+		List<Shop> saleList = new ArrayList<>();
 		saleList = service.selectByTrip(); // 리스트 3개
 		model.addAttribute("saleList", saleList);
-		
+
 		// 타임딜 - 고기 , 새우
 		Shop meat = service.selectByMeat();
 		Shop shrimp = service.selectByShrimp();
 		model.addAttribute("meat", meat);
 		model.addAttribute("shrimp", shrimp);
-		
+
 		// 음식 리스트
 		List<Shop> foodList = new ArrayList<>();
 		foodList = service.selectByFood(); // 10개
 		model.addAttribute("foodList", foodList);
-		
+
 		// 용품 리스트
 		List<Shop> supList = new ArrayList<>();
 		supList = service.selectBySup(); // 10개
 		model.addAttribute("supList", supList);
-		
-			
+
 		return "shop/shopMain";
 	}
 
 	@GetMapping("/search") // 쇼핑 검색
-	public String search(String keyword, Model model) throws UnsupportedEncodingException {
+	@ResponseBody
+	public List<Shop> search(@RequestParam("keyword") String keyword, Model model) throws UnsupportedEncodingException {
+		List<Shop> list1 = new ArrayList<>();
 		List<Shop> list = new ArrayList<>();
-		
-		keyword = URLEncoder.encode(keyword, "UTF-8");
-		String shopResponse = shopSearch(keyword);
-		String[] fields = { "title", "link", "image", "lprice", "mallName", "productId", "maker", "category1",
-				"category2", "category3", "category4" }; // 가져올 정보 키값
-		Map<String, Object> shopResult = getResult(shopResponse, fields);
 
-		if (shopResult.size() > 0) {
-			List<Map<String, Object>> shopItems = (List<Map<String, Object>>) shopResult.get("result");
+		if (keyword != null) {
+			keyword = URLEncoder.encode(keyword, "UTF-8");
+			String shopResponse = shopSearch(keyword);
+			String[] fields = { "title", "link", "image", "lprice", "mallName", "productId", "maker", "category1",
+					"category2", "category3", "category4" }; // 가져올 정보 키값
+			Map<String, Object> shopResult = getResult(shopResponse, fields);
 
-			for (Map<String, Object> shopItem : shopItems) {
-				String id = (String) shopItem.get("productId");
-				String title = (String) shopItem.get("title");
-				title = title.replace("<b>", ""); // b태그 없애기
-				title = title.replace("</b>", ""); // b태그 없애기
-				String link = (String) shopItem.get("link");
-				String image = (String) shopItem.get("image");
-				int price = Integer.parseInt((String) shopItem.get("lprice"));
-				String mallName = (String) shopItem.get("mallName");
-				String maker = (String) shopItem.get("maker");
-				String cate1 = (String) shopItem.get("category1");
-				String cate2 = (String) shopItem.get("category2");
-				String cate3 = (String) shopItem.get("category3");
-				String cate4 = (String) shopItem.get("category4");
+			if (shopResult.size() > 0) {
+				List<Map<String, Object>> shopItems = (List<Map<String, Object>>) shopResult.get("result");
 
-				Shop shop = new Shop(id, title, link, image, price, mallName, maker, cate1, cate2, cate3, cate4);
-				list.add(shop);
+				for (Map<String, Object> shopItem : shopItems) {
+					String id = (String) shopItem.get("productId");
+					String title = (String) shopItem.get("title");
+					title = title.replace("<b>", ""); // b태그 없애기
+					title = title.replace("</b>", ""); // b태그 없애기
+					String link = (String) shopItem.get("link");
+					String image = (String) shopItem.get("image");
+					int price = Integer.parseInt((String) shopItem.get("lprice"));
+					String mallName = (String) shopItem.get("mallName");
+					String maker = (String) shopItem.get("maker");
+					String cate1 = (String) shopItem.get("category1");
+					String cate2 = (String) shopItem.get("category2");
+					String cate3 = (String) shopItem.get("category3");
+					String cate4 = (String) shopItem.get("category4");
+
+					Shop shop = new Shop(id, title, link, image, price, mallName, maker, cate1, cate2, cate3, cate4);
+					list1.add(shop);
+				}
+			}
+		}
+		int count = 12; // 난수 생성 갯수
+		int a[] = new int[count];
+		Random r = new Random();
+
+		for (int i = 0; i < count; i++) {
+			a[i] = r.nextInt(100); // 0 ~ 99
+			for (int j = 0; j < i; j++) {
+				if (a[i] == a[j]) {
+					i--;
+				}
 			}
 		}
 		
-		return "";
+		for(int i = 0; i < a.length; i++) {
+			list.add(list1.get(a[i]));
+		}
+		
+		return list;
 	}
 
 	// 네이버 쇼핑 API
@@ -195,16 +217,17 @@ public class ShopController {
 
 	public void insert(List<String> wordList) throws UnsupportedEncodingException {
 		List<Shop> list = new ArrayList<>();
-		for(int i = 0; i < wordList.size(); i++) {
+		for (int i = 0; i < wordList.size(); i++) {
 			String keyword = URLEncoder.encode(wordList.get(i), "UTF-8");
 			String shopResponse = shopSearch(keyword);
-			String[] fields = { "title", "link", "image", "lprice", "mallName", "productId", "maker", "category1", "category2", "category3", "category4"}; // 가져올 정보 키값 
+			String[] fields = { "title", "link", "image", "lprice", "mallName", "productId", "maker", "category1",
+					"category2", "category3", "category4" }; // 가져올 정보 키값
 			Map<String, Object> shopResult = getResult(shopResponse, fields);
-	
+
 			if (shopResult.size() > 0) {
 				List<Map<String, Object>> shopItems = (List<Map<String, Object>>) shopResult.get("result");
-				
-				for(Map<String, Object> shopItem : shopItems) {
+
+				for (Map<String, Object> shopItem : shopItems) {
 					String id = (String) shopItem.get("productId");
 					String title = (String) shopItem.get("title");
 					title = title.replace("<b>", ""); // b태그 없애기
@@ -218,13 +241,13 @@ public class ShopController {
 					String cate2 = (String) shopItem.get("category2");
 					String cate3 = (String) shopItem.get("category3");
 					String cate4 = (String) shopItem.get("category4");
-					
+
 					Shop shop = new Shop(id, title, link, image, price, mallName, maker, cate1, cate2, cate3, cate4);
 					list.add(shop);
 				}
 			}
 		}
 		service.insert(list);
-		
+
 	}
 }

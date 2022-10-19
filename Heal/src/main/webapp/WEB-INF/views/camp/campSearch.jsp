@@ -129,16 +129,9 @@
             </div>
           </aside>
 
-          <script>
-
-          </script>
           <!-- Page content-->
           <div class="col-lg-8 col-xl-9 position-relative overflow-hidden pb-5 pt-4 px-3 px-xl-4 px-xxl-5">
             <!-- Map popup-->
-            <div class="map-popup invisible" id="map">
-              <button class="btn btn-icon btn-light btn-sm shadow-sm rounded-circle" type="button" data-bs-toggle-class="invisible" data-bs-target="#map"><i class="fi-x fs-xs"></i></button>
-              <div class="interactive-map" data-map-options-json="json/map-options-real-estate-rent.json"></div>
-            </div>
             <!-- Breadcrumb-->
             <nav class="mb-3 pt-md-2" aria-label="Breadcrumb">
               <ol class="breadcrumb">
@@ -148,12 +141,13 @@
             </nav>
             <!-- Title--> 
             <div class="d-sm-flex align-items-center justify-content-between pb-3 pb-sm-4">
-              <h1 class="h2 mb-sm-0">캠핑장 검색 결과</h1><a class="d-inline-block fw-bold text-decoration-none py-1" href="#map" data-bs-toggle-class="invisible" data-bs-target="#map"><i class="fi-map me-2"></i>위치 보기</a>
+              <h1 class="h2 mb-sm-0">캠핑장 검색 결과</h1>
+              <a class="d-inline-block fw-bold text-decoration-none py-1" id="mapOpen"><i class="fi-map me-2"></i>위치 보기</a>
             </div>
             <!-- Sorting-->
-            <div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch my-2">
-              <div class="d-flex align-items-center flex-shrink-0">
-              </div>
+            <div id="map" style="width: 980px; height: 1490px; border-radius:2%; display: none;"></div>
+            <div id="rightSide" style="">
+            	<div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch my-2">
               <hr class="d-none d-sm-block w-100 mx-4">
               <div class="d-none d-sm-flex align-items-center flex-shrink-0 text-muted"><i class="fi-check-circle me-2"></i><span class="fs-sm mt-n1">${listCount} 개</span></div>
             </div>
@@ -212,24 +206,7 @@
 					</c:forEach>
 	            </c:if>
 	            
-              <%-- <!-- Item-->
-              <div class="col-sm-6">
-                <div class="card card-light card-hover h-100">
-                  <div class="card-img-top card-img-hover"style="border: 1px;">
-                    <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info">도/시</span></div>
-                    <div class="tns-carousel-inner"><img src="img/car-finder/catalog/01.jpg" alt="Image"></div>
-                  </div>
-                  <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm me-3" style="color: black;">${Camp.lineintro}</span>
-                    </div>
-                    <h3 class="h5" style="margin-bottom: 10px;"><a class="nav-link" href="car-finder-single.html">${Camp.name}</a></h3>
-                    <div class="h6 fw-bold" style="margin-bottom: 20px;"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>60000원 / 소형 </div>
-                    <hr>
-                    <div class="h6 card-footer align-items-center justify-content-center">카테고리 아이콘</div>
-                  </div>
-                </div>
-              </div> --%>
-              
+            </div>
             </div>
              <!-- Pagination-->
              
@@ -258,9 +235,95 @@
 				</ul>
 				</nav>
 	          </div>    
-            
           </div>
     </main>
+    <script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=8cddaf5bb7b88f487cf47627b52b649b"></script>
+    <script>
+         	 $(document).ready(() => {
+         		$(document).on('click',"#mapOpen",function() {
+         			$("#map").css('display','');
+					$("#rightSide").css('display','none')         			
+         			$(this).html('위치 닫기');
+         			$(this).attr('id','mapClose');
+         			
+         			var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
+			              mapOption = { 
+			                  center: new kakao.maps.LatLng(36.13961603184461, 128.11362285164773), // 지도의 중심좌표
+			                  level: 13 // 지도의 확대 레벨
+			              };
+			          var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+			           
+			          // 마커를 표시할 위치와 title 객체 배열입니다 
+			         var positions = [
+					    {
+					    	content: '<div>${campList.get(0).name}</div>', 
+					        latlng: new kakao.maps.LatLng('${campList.get(0).lat}', '${campList.get(0).lng}')
+					    },
+					    {
+					    	content: '<div>${campList.get(1).name}</div>', 
+					        latlng: new kakao.maps.LatLng('${campList.get(1).lat}', '${campList.get(1).lng}')
+					    },
+					    {
+					    	content: '<div>${campList.get(2).name}</div>', 
+					        latlng: new kakao.maps.LatLng('${campList.get(2).lat}', '${campList.get(2).lng}')
+					    },
+					    {
+					    	content: '<div>${campList.get(3).name}</div>', 
+					        latlng: new kakao.maps.LatLng('${campList.get(3).lat}', '${campList.get(3).lng}')
+					    },
+					    {
+					    	content: '<div>${campList.get(4).name}</div>', 
+					        latlng: new kakao.maps.LatLng('${campList.get(4).lat}', '${campList.get(4).lng}')
+					    },
+					    {
+					    	content: '<div>${campList.get(5).name}</div>', 
+					        latlng: new kakao.maps.LatLng('${campList.get(5).lat}', '${campList.get(5).lng}')
+					    }
+					];
+					 
+			          for (var i = 0; i < positions.length; i ++) {
+					    // 마커를 생성합니다
+					    var marker = new kakao.maps.Marker({
+					        map: map, // 마커를 표시할 지도
+					        position: positions[i].latlng // 마커의 위치
+					    });
+					
+					    // 마커에 표시할 인포윈도우를 생성합니다 
+					    var infowindow = new kakao.maps.InfoWindow({
+					        content: positions[i].content // 인포윈도우에 표시할 내용
+					    });
+					
+					    // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+					    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
+					    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+					    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+					    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+					}
+					
+					// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+					function makeOverListener(map, marker, infowindow) {
+					    return function() {
+					        infowindow.open(map, marker);
+					    };
+					}
+					
+					// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+					function makeOutListener(infowindow) {
+					    return function() {
+					        infowindow.close();
+					    };
+					}
+         		});
+         		
+         	 });
+         	 
+         	$(document).on('click','#mapClose',function() {
+     			$("#map").css('display','none');
+				$("#rightSide").css('display','');
+				$(this).html('<i class="fi-map me-2"></i>위치 보기');
+     			$(this).attr('id','mapOpen');
+     		});
+          </script>
     <script>
 	function movePage(pageUrl){
 		var keyword = document.getElementById("keyword"); 

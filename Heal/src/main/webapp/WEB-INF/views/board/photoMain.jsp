@@ -30,7 +30,7 @@
                     <!-- Title-->
                     <div class="d-sm-flex align-items-center justify-content-between pb-3 pb-sm-4">
                         <h1 class="h2 mb-sm-0">포토 게시판</h1>
-                        <a class="d-inline-block fw-bold text-decoration-none py-1" href="#" data-bs-toggle-class="invisible" data-bs-target="#map"></a>
+                        
                     </div>
                     <!-- Sorting-->
                     <form class="form-group d-block d-md-flex position-relative rounded-md-pill mb-2 mb-sm-4 mb-lg-5">

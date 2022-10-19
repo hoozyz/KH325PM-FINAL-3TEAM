@@ -103,8 +103,7 @@
 		</div>
 		</aside>
 		<!-- Page content-->
-		<div
-			class="col-lg-8 col-xl-9 position-relative overflow-hidden pb-5 pt-4 px-3 px-xl-4 px-xxl-5">
+		<div class="col-lg-8 col-xl-9 position-relative overflow-hidden pb-5 pt-4 px-3 px-xl-4 px-xxl-5">
 			<!-- Map popup-->
 			<div class="map-popup invisible" id="map">
 				<button
