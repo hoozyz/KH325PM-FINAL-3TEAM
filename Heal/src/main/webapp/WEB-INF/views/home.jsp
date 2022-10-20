@@ -126,25 +126,23 @@ else{
 }
 </script> 
     <!-- Top properties-->
-    <section class="container-main">
+    <section class="container-main mb-2">
         <div class="d-flex align-items-end align-items-lg-center justify-content-between mb-4 pb-md-2">
             <div class="d-flex w-100 align-items-center justify-content-between justify-content-lg-start">
                 <h2 class="h3 mb-0 me-md-4 text-center">추천 캠핑장</h2>
            		<nav>
 	                <div class="nav nav-tabs d-none d-md-flex ps-lg-2 mb-0" role="tablist">
-                    	<button class="nav-link  fs-sm active  mb-2 mb-md-0 me-1" id="campsite-tab" data-bs-toggle="tab" data-bs-target="#campsite" type="button" role="tab" aria-controls="campsite" aria-selected="true">일반 야영장</button>
+                    	<button class="nav-link  fs-sm   mb-2 mb-md-0 me-1" id="campsite-tab" data-bs-toggle="tab" data-bs-target="#campsite" type="button" role="tab" aria-controls="campsite" aria-selected="true">일반 야영장</button>
                     	<button class="nav-link  fs-sm   mb-2 mb-md-0 me-1" id="carcampsite-tab" data-bs-toggle="tab" data-bs-target="#carcampsite" type="button" role="tab" aria-controls="carcampsite" aria-selected="true">자동차 야영장</button>
                     	<button class="nav-link  fs-sm   mb-2 mb-md-0 me-1" id="glamping-tab" data-bs-toggle="tab" data-bs-target="#glamping" type="button" role="tab" aria-controls="glamping" aria-selected="true">글램핑</button>
                     	<button class="nav-link  fs-sm   mb-2 mb-md-0 me-1" id="caravan-tab" data-bs-toggle="tab" data-bs-target="#caravan" type="button" role="tab" aria-controls="caravan" aria-selected="true">카라반</button>
 	               	</div>
              	</nav> 
-            </div><a class="btn btn-link fw-normal d-none d-lg-block p-0" href="${path}/camp/campMain">View all<i class="fi-arrow-long-right ms-2"></i></a>
+           	</div><a class="btn btn-link fw-normal d-none d-lg-block p-0" href="${path}/camp/campMain">View all<i class="fi-arrow-long-right ms-2"></i></a>
         </div>
-		<div class="tns-carousel-wrapper tns-nav-outside tns-nav-outside-flush mx-n2">
 			
-			<div class="tab-content" id="myTabContent">
-				<div class="tab-pane fade show active " id="campsite"
-					role="tabpanel" aria-labelledby="campsite-tab">
+             	
+    	<div class="tns-carousel-wrapper tns-nav-outside tns-nav-outside-flush mx-n2">
 					<div class="tns-carousel-inner row gx-4 mx-0"
 						data-carousel-options="{&quot;nav&quot;: false, &quot;autoHeight&quot;: true, &quot;controlsContainer&quot;: &quot;#carousel-controls-tp&quot;, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;1320&quot;:{&quot;items&quot;:2}}}">
 						<!-- Carousel item-->
@@ -154,43 +152,40 @@ else{
 									<a class="text-decoration-none text-light card bg-size-cover bg-position-center border-0 overflow-hidden h-100"
 										href="real-estate-single-v1.html"
 										style="background-image: url(${path}/resources/image/c01.jpg); height:600px;"><span
-										class="img-gradient-overlay"></span>
+											class="img-gradient-overlay"></span>
 										<div class="card-body content-overlay pb-0"></div>
 										<div class="card-footer content-overlay border-0 pt-0 pb-4">
-											<div
-												class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5">
+											<div class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5">
 												<div class="pe-2">
 													<h3 class="h5 text-light mb-1"></h3>
 													<div class="fs-sm opacity-70">
-														<i class="fi-map-pin me-1"></i></div>
+														<i class="fi-map-pin me-1"></i>
+													</div>
 												</div>
 											</div>
-										</div> </a>
+										</div>
+									</a>
 								</div>
 								<div class="col-md-5">
 									<a class="card border-0 overflow-hidden mb-sm-4 mb-3 text-decoration-none text-light"
 										href="real-estate-single-v2.html">
 										<div class="card-body p-0 position-relative">
-											<img src="${path}/resources/image/c02.png"
-												style="height: 270px;" alt="Article image"><span
+											<img src="${path}/resources/image/c02.png" style="height: 270px;" alt="Article image"><span
 												class="img-gradient-overlay zindex-1"></span>
-											<div
-												class="position-absolute start-0 bottom-0 m-n1 p-4 zindex-5">
+											<div class="position-absolute start-0 bottom-0 m-n1 p-4 zindex-5">
 												<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
 												<div class="fs-sm opacity-70">
 													<i class="fi-map-pin me-1"></i># 캠핑장 주소
 												</div>
 											</div>
 										</div>
-									</a> <a
-										class="card border-0 overflow-hidden text-decoration-none text-light"
+									</a>
+									<a class="card border-0 overflow-hidden text-decoration-none text-light"
 										href="real-estate-single-v2.html">
 										<div class="card-body p-0 position-relative">
-											<img src="${path}/resources/image/c03.jpg"
-												style="height: 150px;" alt="Article image"><span
+											<img src="${path}/resources/image/c03.jpg" style="height: 150px;" alt="Article image"><span
 												class="img-gradient-overlay zindex-1"></span>
-											<div
-												class="position-absolute start-0 bottom-0 m-n1 p-4 zindex-5">
+											<div class="position-absolute start-0 bottom-0 m-n1 p-4 zindex-5">
 												<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
 												<div class="fs-sm opacity-70">
 													<i class="fi-map-pin me-1"></i># 캠핑장 주소
@@ -205,15 +200,13 @@ else{
 						<div class="col">
 							<div class="row gy-md-0 gy-sm-4 gy-3 gx-sm-4 gx-0">
 								<div class="col-md-7">
-									<a
-										class="text-decoration-none text-light card bg-size-cover bg-position-center border-0 overflow-hidden h-100"
+									<a class="text-decoration-none text-light card bg-size-cover bg-position-center border-0 overflow-hidden h-100"
 										href="real-estate-single-v1.html"
 										style="background-image: url(${path}/resources/image/c04.png); height:600px;"><span
-										class="img-gradient-overlay"></span>
+											class="img-gradient-overlay"></span>
 										<div class="card-body content-overlay pb-0"></div>
 										<div class="card-footer content-overlay border-0 pt-0 pb-4">
-											<div
-												class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5">
+											<div class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5">
 												<div class="pe-2">
 													<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
 													<div class="fs-sm opacity-70">
@@ -221,33 +214,29 @@ else{
 													</div>
 												</div>
 											</div>
-										</div> </a>
+										</div>
+									</a>
 								</div>
 								<div class="col-md-5">
-									<a
-										class="card border-0 overflow-hidden mb-sm-4 mb-3 text-decoration-none text-light"
+									<a class="card border-0 overflow-hidden mb-sm-4 mb-3 text-decoration-none text-light"
 										href="real-estate-single-v2.html">
 										<div class="card-body p-0 position-relative">
-											<img src="${path}/resources/image/c05.jpg"
-												style="height: 270px;" alt="Article image"><span
+											<img src="${path}/resources/image/c05.jpg" style="height: 270px;" alt="Article image"><span
 												class="img-gradient-overlay zindex-1"></span>
-											<div
-												class="position-absolute start-0 bottom-0 m-n1 p-4 zindex-5">
+											<div class="position-absolute start-0 bottom-0 m-n1 p-4 zindex-5">
 												<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
 												<div class="fs-sm opacity-70">
 													<i class="fi-map-pin me-1"></i># 캠핑장 주소
 												</div>
 											</div>
 										</div>
-									</a> <a
-										class="card border-0 overflow-hidden text-decoration-none text-light"
+									</a>
+									<a class="card border-0 overflow-hidden text-decoration-none text-light"
 										href="real-estate-single-v2.html">
 										<div class="card-body p-0 position-relative">
-											<img src="${path}/resources/image/c06.jpg"
-												style="height: 150px;" alt="Article image"><span
+											<img src="${path}/resources/image/c06.jpg" style="height: 150px;" alt="Article image"><span
 												class="img-gradient-overlay zindex-1"></span>
-											<div
-												class="position-absolute start-0 bottom-0 m-n1 p-4 zindex-5">
+											<div class="position-absolute start-0 bottom-0 m-n1 p-4 zindex-5">
 												<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
 												<div class="fs-sm opacity-70">
 													<i class="fi-map-pin me-1"></i># 캠핑장 주소
@@ -262,15 +251,13 @@ else{
 						<div class="col">
 							<div class="row gy-md-0 gy-sm-4 gy-3 gx-sm-4 gx-0">
 								<div class="col-md-7">
-									<a
-										class="text-decoration-none text-light card bg-size-cover bg-position-center border-0 overflow-hidden h-100"
+									<a class="text-decoration-none text-light card bg-size-cover bg-position-center border-0 overflow-hidden h-100"
 										href="real-estate-single-v1.html"
 										style="background-image: url(${path}/resources/image/c07.jpg); height:600px;"><span
-										class="img-gradient-overlay"></span>
+											class="img-gradient-overlay"></span>
 										<div class="card-body content-overlay pb-0"></div>
 										<div class="card-footer content-overlay border-0 pt-0 pb-4">
-											<div
-												class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5">
+											<div class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5">
 												<div class="pe-2">
 													<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
 													<div class="fs-sm opacity-70">
@@ -278,33 +265,28 @@ else{
 													</div>
 												</div>
 											</div>
-										</div> </a>
+										</div>
+									</a>
 								</div>
 								<div class="col-md-5">
-									<a
-										class="card border-0 overflow-hidden mb-sm-4 mb-3 text-decoration-none text-light"
+									<a class="card border-0 overflow-hidden mb-sm-4 mb-3 text-decoration-none text-light"
 										href="real-estate-single-v2.html">
 										<div class="card-body p-0 position-relative">
-											<img src="${path}/resources/image/c08.jpg"
-												style="height: 270px;" alt="Article image"><span
+											<img src="${path}/resources/image/c08.jpg" style="height: 270px;" alt="Article image"><span
 												class="img-gradient-overlay zindex-1"></span>
-											<div
-												class="position-absolute start-0 bottom-0 m-n1 p-4 zindex-5">
+											<div class="position-absolute start-0 bottom-0 m-n1 p-4 zindex-5">
 												<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
 												<div class="fs-sm opacity-70">
 													<i class="fi-map-pin me-1"></i># 캠핑장 주소
 												</div>
 											</div>
 										</div>
-									</a> <a
-										class="card border-0 overflow-hidden text-decoration-none text-light"
+									</a> <a class="card border-0 overflow-hidden text-decoration-none text-light"
 										href="real-estate-single-v2.html">
 										<div class="card-body p-0 position-relative">
-											<img src="${path}/resources/image/c09.jpg"
-												style="height: 150px;" alt="Article image"><span
+											<img src="${path}/resources/image/c09.jpg" style="height: 150px;" alt="Article image"><span
 												class="img-gradient-overlay zindex-1"></span>
-											<div
-												class="position-absolute start-0 bottom-0 m-n1 p-4 zindex-5">
+											<div class="position-absolute start-0 bottom-0 m-n1 p-4 zindex-5">
 												<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
 												<div class="fs-sm opacity-70">
 													<i class="fi-map-pin me-1"></i># 캠핑장 주소
@@ -318,545 +300,10 @@ else{
 					</div>
 				</div>
 				
-
-				<!-- 두번째 -->
-				<div class="tab-pane fade" id="carcampsite" role="tabpanel"
-					aria-labelledby="carcampsite-tab">
-					<div class="tns-carousel-inner row gx-4 mx-0"
-						data-carousel-options="{&quot;nav&quot;: false, &quot;autoHeight&quot;: true, &quot;controlsContainer&quot;: &quot;#carousel-controls-tp&quot;, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;1320&quot;:{&quot;items&quot;:2}}}">
-						<!-- Carousel item-->
-						<div class="col">
-							<div class="row gy-md-0 gy-sm-4 gy-3 gx-sm-4 gx-0">
-								<div class="col-md-7">
-									<a
-										class="text-decoration-none text-light card bg-size-cover bg-position-center border-0 overflow-hidden h-100"
-										href="real-estate-single-v1.html"
-										style="background-image: url(${path}/resources/image/c01.jpg); height:600px;"><span
-										class="img-gradient-overlay"></span>
-										<div class="card-body content-overlay pb-0"></div>
-										<div class="card-footer content-overlay border-0 pt-0 pb-4">
-											<div
-												class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5">
-												<div class="pe-2">
-													<h3 class="h5 text-light mb-1">두번째</h3>
-													<div class="fs-sm opacity-70">
-														<i class="fi-map-pin me-1"></i>두번째
-													</div>
-												</div>
-											</div>
-										</div> </a>
-								</div>
-								<div class="col-md-5">
-									<a
-										class="card border-0 overflow-hidden mb-sm-4 mb-3 text-decoration-none text-light"
-										href="real-estate-single-v2.html">
-										<div class="card-body p-0 position-relative">
-											<img src="${path}/resources/image/c02.png"
-												style="height: 270px;" alt="Article image"><span
-												class="img-gradient-overlay zindex-1"></span>
-											<div
-												class="position-absolute start-0 bottom-0 m-n1 p-4 zindex-5">
-												<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
-												<div class="fs-sm opacity-70">
-													<i class="fi-map-pin me-1"></i># 캠핑장 주소
-												</div>
-											</div>
-										</div>
-									</a> <a
-										class="card border-0 overflow-hidden text-decoration-none text-light"
-										href="real-estate-single-v2.html">
-										<div class="card-body p-0 position-relative">
-											<img src="${path}/resources/image/c03.jpg"
-												style="height: 150px;" alt="Article image"><span
-												class="img-gradient-overlay zindex-1"></span>
-											<div
-												class="position-absolute start-0 bottom-0 m-n1 p-4 zindex-5">
-												<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
-												<div class="fs-sm opacity-70">
-													<i class="fi-map-pin me-1"></i># 캠핑장 주소
-												</div>
-											</div>
-										</div>
-									</a>
-								</div>
-							</div>
-						</div>
-						<!-- Carousel item-->
-						<div class="col">
-							<div class="row gy-md-0 gy-sm-4 gy-3 gx-sm-4 gx-0">
-								<div class="col-md-7">
-									<a
-										class="text-decoration-none text-light card bg-size-cover bg-position-center border-0 overflow-hidden h-100"
-										href="real-estate-single-v1.html"
-										style="background-image: url(${path}/resources/image/c04.png); height:600px;"><span
-										class="img-gradient-overlay"></span>
-										<div class="card-body content-overlay pb-0"></div>
-										<div class="card-footer content-overlay border-0 pt-0 pb-4">
-											<div
-												class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5">
-												<div class="pe-2">
-													<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
-													<div class="fs-sm opacity-70">
-														<i class="fi-map-pin me-1"></i># 캠핑장 주소
-													</div>
-												</div>
-											</div>
-										</div> </a>
-								</div>
-								<div class="col-md-5">
-									<a
-										class="card border-0 overflow-hidden mb-sm-4 mb-3 text-decoration-none text-light"
-										href="real-estate-single-v2.html">
-										<div class="card-body p-0 position-relative">
-											<img src="${path}/resources/image/c05.jpg"
-												style="height: 270px;" alt="Article image"><span
-												class="img-gradient-overlay zindex-1"></span>
-											<div
-												class="position-absolute start-0 bottom-0 m-n1 p-4 zindex-5">
-												<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
-												<div class="fs-sm opacity-70">
-													<i class="fi-map-pin me-1"></i># 캠핑장 주소
-												</div>
-											</div>
-										</div>
-									</a> <a
-										class="card border-0 overflow-hidden text-decoration-none text-light"
-										href="real-estate-single-v2.html">
-										<div class="card-body p-0 position-relative">
-											<img src="${path}/resources/image/c06.jpg"
-												style="height: 150px;" alt="Article image"><span
-												class="img-gradient-overlay zindex-1"></span>
-											<div
-												class="position-absolute start-0 bottom-0 m-n1 p-4 zindex-5">
-												<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
-												<div class="fs-sm opacity-70">
-													<i class="fi-map-pin me-1"></i># 캠핑장 주소
-												</div>
-											</div>
-										</div>
-									</a>
-								</div>
-							</div>
-						</div>
-						<!-- Carousel item-->
-						<div class="col">
-							<div class="row gy-md-0 gy-sm-4 gy-3 gx-sm-4 gx-0">
-								<div class="col-md-7">
-									<a
-										class="text-decoration-none text-light card bg-size-cover bg-position-center border-0 overflow-hidden h-100"
-										href="real-estate-single-v1.html"
-										style="background-image: url(${path}/resources/image/c07.jpg); height:600px;"><span
-										class="img-gradient-overlay"></span>
-										<div class="card-body content-overlay pb-0"></div>
-										<div class="card-footer content-overlay border-0 pt-0 pb-4">
-											<div
-												class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5">
-												<div class="pe-2">
-													<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
-													<div class="fs-sm opacity-70">
-														<i class="fi-map-pin me-1"></i># 캠핑장 주소
-													</div>
-												</div>
-											</div>
-										</div> </a>
-								</div>
-								<div class="col-md-5">
-									<a
-										class="card border-0 overflow-hidden mb-sm-4 mb-3 text-decoration-none text-light"
-										href="real-estate-single-v2.html">
-										<div class="card-body p-0 position-relative">
-											<img src="${path}/resources/image/c08.jpg"
-												style="height: 270px;" alt="Article image"><span
-												class="img-gradient-overlay zindex-1"></span>
-											<div
-												class="position-absolute start-0 bottom-0 m-n1 p-4 zindex-5">
-												<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
-												<div class="fs-sm opacity-70">
-													<i class="fi-map-pin me-1"></i># 캠핑장 주소
-												</div>
-											</div>
-										</div>
-									</a> <a
-										class="card border-0 overflow-hidden text-decoration-none text-light"
-										href="real-estate-single-v2.html">
-										<div class="card-body p-0 position-relative">
-											<img src="${path}/resources/image/c09.jpg"
-												style="height: 150px;" alt="Article image"><span
-												class="img-gradient-overlay zindex-1"></span>
-											<div
-												class="position-absolute start-0 bottom-0 m-n1 p-4 zindex-5">
-												<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
-												<div class="fs-sm opacity-70">
-													<i class="fi-map-pin me-1"></i># 캠핑장 주소
-												</div>
-											</div>
-										</div>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<!-- 세번째 -->
-				<div class="tab-pane fade" id="glamping" role="tabpanel"
-					aria-labelledby="glamping-tab">
-					<div class="tns-carousel-inner row gx-4 mx-0"
-						data-carousel-options="{&quot;nav&quot;: false, &quot;autoHeight&quot;: true, &quot;controlsContainer&quot;: &quot;#carousel-controls-tp&quot;, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;1320&quot;:{&quot;items&quot;:2}}}">
-						<!-- Carousel item-->
-						<div class="col">
-							<div class="row gy-md-0 gy-sm-4 gy-3 gx-sm-4 gx-0">
-								<div class="col-md-7">
-									<a
-										class="text-decoration-none text-light card bg-size-cover bg-position-center border-0 overflow-hidden h-100"
-										href="real-estate-single-v1.html"
-										style="background-image: url(${path}/resources/image/c01.jpg); height:600px;"><span
-										class="img-gradient-overlay"></span>
-										<div class="card-body content-overlay pb-0"></div>
-										<div class="card-footer content-overlay border-0 pt-0 pb-4">
-											<div
-												class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5">
-												<div class="pe-2">
-													<h3 class="h5 text-light mb-1">세번째</h3>
-													<div class="fs-sm opacity-70">
-														<i class="fi-map-pin me-1"></i>세번째
-													</div>
-												</div>
-											</div>
-										</div> </a>
-								</div>
-								<div class="col-md-5">
-									<a
-										class="card border-0 overflow-hidden mb-sm-4 mb-3 text-decoration-none text-light"
-										href="real-estate-single-v2.html">
-										<div class="card-body p-0 position-relative">
-											<img src="${path}/resources/image/c02.png"
-												style="height: 270px;" alt="Article image"><span
-												class="img-gradient-overlay zindex-1"></span>
-											<div
-												class="position-absolute start-0 bottom-0 m-n1 p-4 zindex-5">
-												<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
-												<div class="fs-sm opacity-70">
-													<i class="fi-map-pin me-1"></i># 캠핑장 주소
-												</div>
-											</div>
-										</div>
-									</a> <a
-										class="card border-0 overflow-hidden text-decoration-none text-light"
-										href="real-estate-single-v2.html">
-										<div class="card-body p-0 position-relative">
-											<img src="${path}/resources/image/c03.jpg"
-												style="height: 150px;" alt="Article image"><span
-												class="img-gradient-overlay zindex-1"></span>
-											<div
-												class="position-absolute start-0 bottom-0 m-n1 p-4 zindex-5">
-												<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
-												<div class="fs-sm opacity-70">
-													<i class="fi-map-pin me-1"></i># 캠핑장 주소
-												</div>
-											</div>
-										</div>
-									</a>
-								</div>
-							</div>
-						</div>
-						<!-- Carousel item-->
-						<div class="col">
-							<div class="row gy-md-0 gy-sm-4 gy-3 gx-sm-4 gx-0">
-								<div class="col-md-7">
-									<a
-										class="text-decoration-none text-light card bg-size-cover bg-position-center border-0 overflow-hidden h-100"
-										href="real-estate-single-v1.html"
-										style="background-image: url(${path}/resources/image/c04.png); height:600px;"><span
-										class="img-gradient-overlay"></span>
-										<div class="card-body content-overlay pb-0"></div>
-										<div class="card-footer content-overlay border-0 pt-0 pb-4">
-											<div
-												class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5">
-												<div class="pe-2">
-													<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
-													<div class="fs-sm opacity-70">
-														<i class="fi-map-pin me-1"></i># 캠핑장 주소
-													</div>
-												</div>
-											</div>
-										</div> </a>
-								</div>
-								<div class="col-md-5">
-									<a
-										class="card border-0 overflow-hidden mb-sm-4 mb-3 text-decoration-none text-light"
-										href="real-estate-single-v2.html">
-										<div class="card-body p-0 position-relative">
-											<img src="${path}/resources/image/c05.jpg"
-												style="height: 270px;" alt="Article image"><span
-												class="img-gradient-overlay zindex-1"></span>
-											<div
-												class="position-absolute start-0 bottom-0 m-n1 p-4 zindex-5">
-												<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
-												<div class="fs-sm opacity-70">
-													<i class="fi-map-pin me-1"></i># 캠핑장 주소
-												</div>
-											</div>
-										</div>
-									</a> <a
-										class="card border-0 overflow-hidden text-decoration-none text-light"
-										href="real-estate-single-v2.html">
-										<div class="card-body p-0 position-relative">
-											<img src="${path}/resources/image/c06.jpg"
-												style="height: 150px;" alt="Article image"><span
-												class="img-gradient-overlay zindex-1"></span>
-											<div
-												class="position-absolute start-0 bottom-0 m-n1 p-4 zindex-5">
-												<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
-												<div class="fs-sm opacity-70">
-													<i class="fi-map-pin me-1"></i># 캠핑장 주소
-												</div>
-											</div>
-										</div>
-									</a>
-								</div>
-							</div>
-						</div>
-						<!-- Carousel item-->
-						<div class="col">
-							<div class="row gy-md-0 gy-sm-4 gy-3 gx-sm-4 gx-0">
-								<div class="col-md-7">
-									<a
-										class="text-decoration-none text-light card bg-size-cover bg-position-center border-0 overflow-hidden h-100"
-										href="real-estate-single-v1.html"
-										style="background-image: url(${path}/resources/image/c07.jpg); height:600px;"><span
-										class="img-gradient-overlay"></span>
-										<div class="card-body content-overlay pb-0"></div>
-										<div class="card-footer content-overlay border-0 pt-0 pb-4">
-											<div
-												class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5">
-												<div class="pe-2">
-													<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
-													<div class="fs-sm opacity-70">
-														<i class="fi-map-pin me-1"></i># 캠핑장 주소
-													</div>
-												</div>
-											</div>
-										</div> </a>
-								</div>
-								<div class="col-md-5">
-									<a
-										class="card border-0 overflow-hidden mb-sm-4 mb-3 text-decoration-none text-light"
-										href="real-estate-single-v2.html">
-										<div class="card-body p-0 position-relative">
-											<img src="${path}/resources/image/c08.jpg"
-												style="height: 270px;" alt="Article image"><span
-												class="img-gradient-overlay zindex-1"></span>
-											<div
-												class="position-absolute start-0 bottom-0 m-n1 p-4 zindex-5">
-												<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
-												<div class="fs-sm opacity-70">
-													<i class="fi-map-pin me-1"></i># 캠핑장 주소
-												</div>
-											</div>
-										</div>
-									</a> <a
-										class="card border-0 overflow-hidden text-decoration-none text-light"
-										href="real-estate-single-v2.html">
-										<div class="card-body p-0 position-relative">
-											<img src="${path}/resources/image/c09.jpg"
-												style="height: 150px;" alt="Article image"><span
-												class="img-gradient-overlay zindex-1"></span>
-											<div
-												class="position-absolute start-0 bottom-0 m-n1 p-4 zindex-5">
-												<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
-												<div class="fs-sm opacity-70">
-													<i class="fi-map-pin me-1"></i># 캠핑장 주소
-												</div>
-											</div>
-										</div>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<!-- 네번째 -->
-				<div class="tab-pane fade" id="caravan" role="tabpanel"
-					aria-labelledby="caravan-tab">
-					<div class="tns-carousel-inner row gx-4 mx-0"
-						data-carousel-options="{&quot;nav&quot;: false, &quot;autoHeight&quot;: true, &quot;controlsContainer&quot;: &quot;#carousel-controls-tp&quot;, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;1320&quot;:{&quot;items&quot;:2}}}">
-						<!-- Carousel item-->
-						<div class="col">
-							<div class="row gy-md-0 gy-sm-4 gy-3 gx-sm-4 gx-0">
-								<div class="col-md-7">
-									<a
-										class="text-decoration-none text-light card bg-size-cover bg-position-center border-0 overflow-hidden h-100"
-										href="real-estate-single-v1.html"
-										style="background-image: url(${path}/resources/image/c01.jpg); height:600px;"><span
-										class="img-gradient-overlay"></span>
-										<div class="card-body content-overlay pb-0"></div>
-										<div class="card-footer content-overlay border-0 pt-0 pb-4">
-											<div
-												class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5">
-												<div class="pe-2">
-													<h3 class="h5 text-light mb-1">네번째</h3>
-													<div class="fs-sm opacity-70">
-														<i class="fi-map-pin me-1"></i>네번째
-													</div>
-												</div>
-											</div>
-										</div> </a>
-								</div>
-								<div class="col-md-5">
-									<a
-										class="card border-0 overflow-hidden mb-sm-4 mb-3 text-decoration-none text-light"
-										href="real-estate-single-v2.html">
-										<div class="card-body p-0 position-relative">
-											<img src="${path}/resources/image/c02.png"
-												style="height: 270px;" alt="Article image"><span
-												class="img-gradient-overlay zindex-1"></span>
-											<div
-												class="position-absolute start-0 bottom-0 m-n1 p-4 zindex-5">
-												<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
-												<div class="fs-sm opacity-70">
-													<i class="fi-map-pin me-1"></i># 캠핑장 주소
-												</div>
-											</div>
-										</div>
-									</a> <a
-										class="card border-0 overflow-hidden text-decoration-none text-light"
-										href="real-estate-single-v2.html">
-										<div class="card-body p-0 position-relative">
-											<img src="${path}/resources/image/c03.jpg"
-												style="height: 150px;" alt="Article image"><span
-												class="img-gradient-overlay zindex-1"></span>
-											<div
-												class="position-absolute start-0 bottom-0 m-n1 p-4 zindex-5">
-												<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
-												<div class="fs-sm opacity-70">
-													<i class="fi-map-pin me-1"></i># 캠핑장 주소
-												</div>
-											</div>
-										</div>
-									</a>
-								</div>
-							</div>
-						</div>
-						<!-- Carousel item-->
-						<div class="col">
-							<div class="row gy-md-0 gy-sm-4 gy-3 gx-sm-4 gx-0">
-								<div class="col-md-7">
-									<a
-										class="text-decoration-none text-light card bg-size-cover bg-position-center border-0 overflow-hidden h-100"
-										href="real-estate-single-v1.html"
-										style="background-image: url(${path}/resources/image/c04.png); height:600px;"><span
-										class="img-gradient-overlay"></span>
-										<div class="card-body content-overlay pb-0"></div>
-										<div class="card-footer content-overlay border-0 pt-0 pb-4">
-											<div
-												class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5">
-												<div class="pe-2">
-													<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
-													<div class="fs-sm opacity-70">
-														<i class="fi-map-pin me-1"></i># 캠핑장 주소
-													</div>
-												</div>
-											</div>
-										</div> </a>
-								</div>
-								<div class="col-md-5">
-									<a
-										class="card border-0 overflow-hidden mb-sm-4 mb-3 text-decoration-none text-light"
-										href="real-estate-single-v2.html">
-										<div class="card-body p-0 position-relative">
-											<img src="${path}/resources/image/c05.jpg"
-												style="height: 270px;" alt="Article image"><span
-												class="img-gradient-overlay zindex-1"></span>
-											<div
-												class="position-absolute start-0 bottom-0 m-n1 p-4 zindex-5">
-												<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
-												<div class="fs-sm opacity-70">
-													<i class="fi-map-pin me-1"></i># 캠핑장 주소
-												</div>
-											</div>
-										</div>
-									</a> <a
-										class="card border-0 overflow-hidden text-decoration-none text-light"
-										href="real-estate-single-v2.html">
-										<div class="card-body p-0 position-relative">
-											<img src="${path}/resources/image/c06.jpg"
-												style="height: 150px;" alt="Article image"><span
-												class="img-gradient-overlay zindex-1"></span>
-											<div
-												class="position-absolute start-0 bottom-0 m-n1 p-4 zindex-5">
-												<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
-												<div class="fs-sm opacity-70">
-													<i class="fi-map-pin me-1"></i># 캠핑장 주소
-												</div>
-											</div>
-										</div>
-									</a>
-								</div>
-							</div>
-						</div>
-						<!-- Carousel item-->
-						<div class="col">
-							<div class="row gy-md-0 gy-sm-4 gy-3 gx-sm-4 gx-0">
-								<div class="col-md-7">
-									<a
-										class="text-decoration-none text-light card bg-size-cover bg-position-center border-0 overflow-hidden h-100"
-										href="real-estate-single-v1.html"
-										style="background-image: url(${path}/resources/image/c07.jpg); height:600px;"><span
-										class="img-gradient-overlay"></span>
-										<div class="card-body content-overlay pb-0"></div>
-										<div class="card-footer content-overlay border-0 pt-0 pb-4">
-											<div
-												class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5">
-												<div class="pe-2">
-													<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
-													<div class="fs-sm opacity-70">
-														<i class="fi-map-pin me-1"></i># 캠핑장 주소
-													</div>
-												</div>
-											</div>
-										</div> </a>
-								</div>
-								<div class="col-md-5">
-									<a
-										class="card border-0 overflow-hidden mb-sm-4 mb-3 text-decoration-none text-light"
-										href="real-estate-single-v2.html">
-										<div class="card-body p-0 position-relative">
-											<img src="${path}/resources/image/c08.jpg"
-												style="height: 270px;" alt="Article image"><span
-												class="img-gradient-overlay zindex-1"></span>
-											<div
-												class="position-absolute start-0 bottom-0 m-n1 p-4 zindex-5">
-												<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
-												<div class="fs-sm opacity-70">
-													<i class="fi-map-pin me-1"></i># 캠핑장 주소
-												</div>
-											</div>
-										</div>
-									</a> <a
-										class="card border-0 overflow-hidden text-decoration-none text-light"
-										href="real-estate-single-v2.html">
-										<div class="card-body p-0 position-relative">
-											<img src="${path}/resources/image/c09.jpg"
-												style="height: 150px;" alt="Article image"><span
-												class="img-gradient-overlay zindex-1"></span>
-											<div
-												class="position-absolute start-0 bottom-0 m-n1 p-4 zindex-5">
-												<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
-												<div class="fs-sm opacity-70">
-													<i class="fi-map-pin me-1"></i># 캠핑장 주소
-												</div>
-											</div>
-										</div>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+				
+				
+				
+				
 
 		<!-- Carousel custom controls-->
         <div class="tns-carousel-controls justify-content-center pt-md-2 mt-4" id="carousel-controls-tp">
@@ -865,17 +312,17 @@ else{
         </div>
     </section>
 
-    <section class="container-fluid mb-5 mt-n3 mt-lg-0 pt-3" style="background: #e4dabe; height:500px;">
+    <section class="container-fluid mb-5 mt-n3 mt-lg-0 pt-4" style="background: #e4dabe; height:550px;">
         <section class="container mb-5 pb-2">
             <div class="d-flex align-items-center justify-content-between mb-3">
                 <h2 class="h3 mb-0">진행중인 축제</h2><a class="btn btn-link fw-normal ms-md-3 pb-0" href="${path}/festival/festivalMain">View all<i class="fi-arrow-long-right ms-2"></i></a>
             </div>
             <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside tns-nav-outside-flush mx-n2">
-                <div class="tns-carousel-inner row gx-4 mx-0 py-md-4 py-3" data-carousel-options="{&quot;items&quot;: 4, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3},&quot;992&quot;:{&quot;items&quot;:4}}}">
+                <div class="tns-carousel-inner row gx-4 mx-0 pb-md-4 pb-3" data-carousel-options="{&quot;items&quot;: 4, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3},&quot;992&quot;:{&quot;items&quot;:4}}}">
                     <!-- Item-->
                     <div class="col">
                         <a class="card shadow-sm card-hover border-0" href="${path}/festival/festivalDetail?no=3787">
-                            <div class="card-img-top card-img-hover"><span class="img-overlay opacity-65"></span><img src="${path}/resources/image/festival-main4.jpg" alt="New York" style="height:200pt; width:100%;">
+                            <div class="card-img-top card-img-hover"><span class="img-overlay opacity-65"></span><img src="${path}/resources/image/festival-main4.jpg" alt="New York" style="height:250pt; width:100%;">
                             </div>
                             <div class="card-body text-center">
                                 <h3 class="mb-0 fs-base text-nav">굿모닝양림축제 </h3>
@@ -887,7 +334,7 @@ else{
                     <!-- Item-->
                     <div class="col">
                         <a class="card shadow-sm card-hover border-0" href="${path}/festival/festivalDetail?no=3775">
-                            <div class="card-img-top card-img-hover"><span class="img-overlay opacity-65"></span><img src="${path}/resources/image/festival-main2.jpg" alt="Chicago" style="height:200pt; width:100%;">
+                            <div class="card-img-top card-img-hover"><span class="img-overlay opacity-65"></span><img src="${path}/resources/image/festival-main2.jpg" alt="Chicago" style="height:250pt; width:100%;">
 
                             </div>
                             <div class="card-body text-center">
@@ -899,7 +346,7 @@ else{
                     <!-- Item-->
                     <div class="col">
                         <a class="card shadow-sm card-hover border-0" href="${path}/festival/festivalDetail?no=3352">
-                            <div class="card-img-top card-img-hover"><span class="img-overlay opacity-65"></span><img src="${path}/resources/image/festival-main.jpg" alt="Los Angeles" style="height:200pt; width:100%;">
+                            <div class="card-img-top card-img-hover"><span class="img-overlay opacity-65"></span><img src="${path}/resources/image/festival-main.jpg" alt="Los Angeles" style="height:250pt; width:100%;">
                                 <div class="content-overlay start-0 top-0 d-flex align-items-center justify-content-center w-100 h-100 p-3">
 
                                 </div>
@@ -913,7 +360,7 @@ else{
                     <!-- Item-->
                     <div class="col">
                         <a class="card shadow-sm card-hover border-0" href="${path}/festival/festivalDetail?no=3256">
-                            <div class="card-img-top card-img-hover"><span class="img-overlay opacity-65"></span><img src="${path}/resources/image/festival-main5.jpg" alt="San Diego" style="height:200pt; width:100%;">
+                            <div class="card-img-top card-img-hover"><span class="img-overlay opacity-65"></span><img src="${path}/resources/image/festival-main5.jpg" alt="San Diego" style="height:250pt; width:100%;">
                                 <div class="content-overlay start-0 top-0 d-flex align-items-center justify-content-center w-100 h-100 p-3">
 
                                 </div>
@@ -927,7 +374,7 @@ else{
                     <!-- Item-->
                     <div class="col">
                         <a class="card shadow-sm card-hover border-0" href="${path}/festival/festivalDetail?no=3654">
-                            <div class="card-img-top card-img-hover"><span class="img-overlay opacity-65"></span><img src="${path}/resources/image/festival-main3.jpg" alt="Dallas" style="height:200pt; width:100%;">
+                            <div class="card-img-top card-img-hover"><span class="img-overlay opacity-65"></span><img src="${path}/resources/image/festival-main3.jpg" alt="Dallas" style="height:250pt; width:100%;">
                                 <div class="content-overlay start-0 top-0 d-flex align-items-center justify-content-center w-100 h-100 p-3">
 
                                 </div>
@@ -1048,35 +495,35 @@ else{
                     <div class="row">
                         <div class="col-sm-12">
                             <!-- Item-->
-                            <div class="d-flex align-items-start position-relative mb-4"><img class="me-3 rounded-3" style="width: 130px; height: 130px;" src="${path}/resources/image/food-main.jpg" alt="Brand logo">
+                            <div class="d-flex align-items-start position-relative " style="margin-top:9px"><img class="me-3 rounded-3" style="width: 140px; height: 140px;" src="${path}/resources/image/food-main.jpg" alt="Brand logo">
                                 <div>
                                     <h3 class="mb-1 fs-lg"><a class="nav-link stretched-link" href="${path}/near/foodDetail?no=62612">갈치찜</a></h3>
                                     <h5 class="mb-2 fs-sm">고소함과 양념장이 어우러진 요리</h5>
                                     <ul class="list-unstyled mb-0 fs-xs">
                                          <li> 한식 </li>
-                                        <li>₩ 12,000 </li>
+                                        <li><i class="fi-cash me-1 fs-sm align-middle opacity-70"> </i> 12,000 </li>
                                     </ul>
                                 </div>
                             </div>
                             <!-- Item-->
-                            <div class="d-flex align-items-start position-relative mb-4"><img class="me-3 rounded-3" style="width: 130px; height: 130px;" src="${path}/resources/image/food-main2.jpg" alt="Brand logo">
+                            <div class="d-flex align-items-start position-relative " style="margin-top: 18px"><img class="me-3 rounded-3" style="width: 140px; height: 140px;" src="${path}/resources/image/food-main2.jpg" alt="Brand logo">
                                 <div>
                                     <h3 class="mb-1 fs-lg"><a class="nav-link stretched-link" href="${path}/near/foodDetail?no=62612">고등어구이(조림)</a></h3>
                                     <h5 class="mb-2 fs-sm">고소함과 양념장이 어우러진 요리</h5>
                                     <ul class="list-unstyled mb-0 fs-xs">
                                          <li> 한식 </li>
-                                        <li>₩ 11,000 </li>
+                                        <li><i class="fi-cash me-1 fs-sm align-middle opacity-70"> </i> 11,000 </li>
                                     </ul>
                                 </div>
                             </div>
                             <!-- Item-->
-                            <div class="d-flex align-items-start position-relative"><img class="me-3 rounded-3" style="width: 130px; height: 130px;" src="${path}/resources/image/food-main3.jpg" alt="Brand logo">
+                            <div class="d-flex align-items-start position-relative" style="margin-top: 18px"><img class="me-3 rounded-3" style="width: 140px; height: 140px;" src="${path}/resources/image/food-main3.jpg" alt="Brand logo">
                                 <div>
                                     <h3 class="mb-1 fs-lg"><a class="nav-link stretched-link" href="${path}/near/foodDetail?no=62612">물회</a></h3>
                                     <h5 class="mb-2 fs-sm">고소함과 양념장이 어우러진 요리</h5>
                                     <ul class="list-unstyled mb-0 fs-xs">
                                         <li> 한식 </li>
-                                        <li>₩ 14,000 </li>
+                                        <li><i class="fi-cash me-1 fs-sm align-middle opacity-70"> </i>14,000 </li>
                                     </ul>
                                 </div>
                             </div>
@@ -1086,22 +533,31 @@ else{
                 </div>
                 
                 
-                <div class="card-active col-xl-5 col-lg-6" style="background: #eceefa; border-radius: 10px;">
-                    <br>
-                    <c:forEach var= "i"  begin="0" end="${shopList.size() - 1}">
-                    <article class="d-flex align-items-start" style="max-width: 640px;">
-                        <a class="d-none d-sm-block flex-shrink-0 me-sm-4 mb-sm-0 mb-3" href="real-estate-blog-single.html"><img class="rounded-3" src="${shopList.get(i).image}" width="100" alt="Blog post"></a>
-                        <div>
-                            <h5 class="mb-2 fs-base"><a class="nav-link" href="real-estate-blog-single.html">${shopList.get(i).cate3}</a></h5>
-                            <p class="mb-2 fs-sm">${shopList.get(i).title}</p>
-                            <a class="nav-link nav-link-muted d-inline-block me-3 p-0 fs-xs fw-normal" href="#"><i class="fi-cash mt-n1 me-1 fs-sm align-middle opacity-70"></i>${shopList.get(i).price}원</a>
-                        </div>
-                    </article>
-                    <c:if test="${i < 2}">
-                         <hr class="text-dark opacity-10 my-4">
+                <div class="card-active col-xl-5 col-lg-6 pt-3" style="background: #eceefa; border-radius: 10px;">
+                	<c:if test="${!empty shopList}">
+	                    <c:forEach var= "i"  begin="0" end="${shopList.size() - 1}">
+	                    <article class="d-flex align-items-start" style="max-width: 640px;">
+	                        <a class="d-none d-sm-block flex-shrink-0 me-sm-4 mb-sm-0 mb-3" href="real-estate-blog-single.html"><img class="rounded-3" src="${shopList.get(i).image}" style="width:130px; height: 130px; " alt="여행"></a>
+	                        <div>
+	                            <h5 class="fs-base mt-1" style="margin-bottom: 10px">
+		                            <c:if test="${shopList.get(i).cate3 eq '액티비티'}">
+			                            <span class="d-table badge bg-info">${shopList.get(i).cate3}</span>
+		                            </c:if>
+		                            <c:if test="${shopList.get(i).cate3 eq '국내숙박'}">
+			                            <span class="d-table badge bg-success">${shopList.get(i).cate3}</span>
+		                            </c:if>
+	                            </h5>
+	                            <p class="mb-2 fs-sm"><a class="nav-link" href="real-estate-blog-single.html" style="padding: 0;">${shopList.get(i).title}</a></p>
+	                            <a class="nav-link nav-link-muted d-inline-block me-3 p-0 fs-xs fw-normal" href="#"><i class="fi-cash mt-n1 me-1 fs-sm align-middle opacity-70"></i>${shopList.get(i).price}원</a>
+	                        </div>
+	                    </article>
+	                    <c:if test="${i < 2}">
+	                         <hr class="text-dark opacity-10 my-3">
+	                    </c:if>
+	                    </c:forEach>
                     </c:if>
-                    </c:forEach>
                 </div>
+                
                 
                 
             </div>
