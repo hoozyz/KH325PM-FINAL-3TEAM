@@ -87,9 +87,6 @@
 		WHERE NO = #{no}
 	</update>
 
-
-
-
 <!-- 	@@@캠핑@@@ -->		
 	<select id="selectRevCamp" parameterType="map" resultMap="reviewIdMap">
  		SELECT R.*, M.ID

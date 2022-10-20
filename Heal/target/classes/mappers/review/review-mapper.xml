@@ -6,8 +6,7 @@
 <mapper namespace="com.bc.heal.review.mapper.ReviewMapper">
 	<resultMap type="Review" id="reviewIdMap">
 		<id property="no" column="NO"/>
-		<result property="id" column="ID"/>
-		<result property="title" column="TITLE"/>
+		<result property="id" column="TITLE"/>
 		<result property="cont" column="CONT"/>
 		<result property="revstar" column="REVSTAR"/>
 		<result property="revlike" column="REVLIKE"/>
@@ -20,22 +19,7 @@
 		<result property="parkno" column="PARKNO"/>
 	</resultMap>
 	
-	<resultMap type="Review" id="reviewResultMap">
-		<id property="no" column="NO"/>
-		<result property="title" column="TITLE"/>
-		<result property="cont" column="CONT"/>
-		<result property="revstar" column="REVSTAR"/>
-		<result property="revlike" column="REVLIKE"/>
-		<result property="createdate" column="CREATEDATE"/>
-		<result property="memberno" column="MEMBERNO"/>
-		<result property="hotelno" column="HOTELNO"/>
-		<result property="campno" column="CAMPNO"/>
-		<result property="festivalno" column="FESTIVALNO"/>
-		<result property="foodno" column="FOODNO"/>
-		<result property="parkno" column="PARKNO"/>
-	</resultMap>
-	
-	<select id="selectNew" parameterType="int" resultMap="reviewResultMap">
+	<select id="selectNew" parameterType="int" resultMap="reviewIdMap">
  		SELECT * 
  		FROM (SELECT ROWNUM NUM, 
  					 NO, 
@@ -56,7 +40,7 @@
 		WHERE NUM <![CDATA[<=]]> 5 AND MEMBERNO = #{no}
 	</select>
 	
-	<insert id="insert" parameterType="map" >
+	<insert id="insertReview" parameterType="Review" >
 		INSERT INTO TBL_REVIEW (
  			NO,
             TITLE,
@@ -74,50 +58,26 @@
 			REVIEW_SEQ.NEXTVAL,
 			NULL,
 			#{cont},
- 			#{star},
+ 			#{revstar},
  			${0},
  			SYSDATE,
- 			#{memNo},
- 			<choose>
-				<when test="hotelNo != null">
-					#{hotelNo},
-				</when>
-				<otherwise>
-					NULL,
-				</otherwise>
-			</choose>
- 			<choose>
-				<when test="campNo != null">
-					#{campNo},
-				</when>
-				<otherwise>
-					NULL,
-				</otherwise>
-			</choose>
- 			<choose>
-				<when test="festivalNo != null">
-					#{festivalNo},
-				</when>
-				<otherwise>
-					NULL,
-				</otherwise>
-			</choose>
- 			<choose>
-				<when test="foodNo != null">
-					#{foodNo},
-				</when>
-				<otherwise>
-					NULL,
-				</otherwise>
-			</choose>
- 			<choose>
-				<when test="parkNo != null">
-					#{parkNo}
-				</when>
-				<otherwise>
-					NULL
-				</otherwise>
-			</choose>
+ 			#{memberno},
+			<if test="hotelno != null">
+				#{hotelno},
+			</if>
+			<if test="campno != null">
+				#{campno},
+			</if>
+			<if test="festivalno != null">
+				#{festivalno},
+			</if>
+			<if test="foodno != null">
+				#{foodno},
+			</if>
+			<if test="parkno != null">
+				#{parkno}
+			</if>
+					
  		)
 	</insert>
 	
@@ -126,9 +86,6 @@
 		SET REVLIKE = #{like}
 		WHERE NO = #{no}
 	</update>
-
-
-
 
 <!-- 	@@@캠핑@@@ -->		
 	<select id="selectRevCamp" parameterType="map" resultMap="reviewIdMap">

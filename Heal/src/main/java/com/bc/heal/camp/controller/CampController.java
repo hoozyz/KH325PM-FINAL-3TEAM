@@ -65,24 +65,22 @@ public class CampController {
 
 	@Autowired
 	private ReviewService revService;
-	
+
 	@Autowired
 	private ShopService showService;
-	
+
 	@Autowired
 	private LikeService likeService;
 
-	
 	@GetMapping("/campMain")
 	public String main(Model model) {
-		
-			List<Shop> shopList = new ArrayList<>();
-			shopList = showService.selectByCamp(); // 10개
-			model.addAttribute("shopList", shopList);
-				
+
+		List<Shop> shopList = new ArrayList<>();
+		shopList = showService.selectByCamp(); // 10개
+		model.addAttribute("shopList", shopList);
+
 		return "/camp/campMain";
 	}
-	
 
 	@GetMapping("/campSearch")
 	String search(Model model, @RequestParam Map<String, String> param) {
@@ -144,22 +142,26 @@ public class CampController {
 	}
 
 	@GetMapping("/campDetail")
-	public String detail(Model model, int no, @SessionAttribute(name = "loginMember", required = false) Member loginMember) { // 캠핑장 상세정보, 기차/비행기/버스 도착역 리스트
+	public String detail(Model model, int no,
+			@SessionAttribute(name = "loginMember", required = false) Member loginMember) { // 캠핑장 상세정보, 기차/비행기/버스 도착역
+																							// 리스트
 		Camp camp = campService.findByNo(no); // 테스트 -> 공항있는 캠핑장
-		
+
 		Map<String, String> map = new HashMap<>();
 		map.put("check", "1");
 		map.put("type", "camp");
-		map.put("likeNo", ""+no);
+		map.put("likeNo", "" + no);
 		int likeCheck = 0;
-		int likeSer = likeService.selectNo(loginMember.getNo(), map);
-		if(likeSer > 0) {
+		int likeSer = 0;
+		if (loginMember != null) {
+			likeSer = likeService.selectNo(loginMember.getNo(), map);
+		}
+		if (likeSer > 0) {
 			System.out.println("----");
 			likeCheck = 1;
-			model.addAttribute("likeCheck", likeCheck);
 			model.addAttribute("likeNo", likeSer);
 		}
-
+		model.addAttribute("likeCheck", likeCheck);
 		// 최근 본 캠핑장 -> no 0 인 곳에 차례로 번호 넣기
 		List<Camp> lastList = new ArrayList<>(); // 최신 4개 리스트
 		lastList.add(camp); // 지금 들어가는게 최신
@@ -176,7 +178,7 @@ public class CampController {
 		}
 		String threeNo = "";
 		String fourNo = "";
-		
+
 		// 4개 넣어놓고 -> name에 최신 한 칸씩 뒤로 옮기기
 		String twoNo = zero.getName();
 		if (twoNo.equals("" + no)) { // 이미 최신에 현재 캠핑장이 있을 때

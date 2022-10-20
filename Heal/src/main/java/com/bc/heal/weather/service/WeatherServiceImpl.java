@@ -18,4 +18,10 @@ public class WeatherServiceImpl implements WeatherService{
 		return mapper.selectByDong(dong);
 	}
 
+	@Override
+	public WeatherCoor selectByGu(String dong) {
+		dong = "%" + dong + "%";
+		return mapper.selectByGu(dong);
+	}
+
 }

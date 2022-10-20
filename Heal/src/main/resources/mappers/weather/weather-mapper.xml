@@ -18,4 +18,11 @@
  		AND ROWNUM <![CDATA[=]]> 1
 	</select>
 	
+	<select id="selectByGu" parameterType="string" resultMap="weatherResultMap">
+ 		SELECT * 
+ 		FROM TBL_WEATHER
+ 		WHERE GU LIKE #{dong} 
+ 		AND ROWNUM <![CDATA[=]]> 1
+	</select>
+	
 </mapper>
