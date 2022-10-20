@@ -300,7 +300,7 @@
         		var keyword = $("#keyword").val();
         		
         		$.ajax({
-        			url: "${path}/board/list",
+        			url: "/board/list",
         			type: 'GET',
         			data: {
         				page: 1,

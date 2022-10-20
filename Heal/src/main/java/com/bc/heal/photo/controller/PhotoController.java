@@ -1,6 +1,7 @@
 package com.bc.heal.photo.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,14 +15,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.bc.heal.member.service.MemberService;
 import com.bc.heal.photo.service.PhotoService;
+import com.bc.heal.vo.Board;
 import com.bc.heal.vo.Member;
 import com.bc.heal.vo.PageInfo;
 import com.bc.heal.vo.Photo;
+import com.bc.heal.vo.Review;
 
 @Controller
 @RequestMapping("/photo")
@@ -29,6 +34,9 @@ public class PhotoController {
 
 	@Autowired
 	private PhotoService service;
+	
+	@Autowired
+	private MemberService memService;
 
 	@GetMapping("/main")
 	public String main(Model model, Map<String, String> param) {
@@ -55,6 +63,50 @@ public class PhotoController {
 		model.addAttribute("pageInfo", pageInfo);
 
 		return "/board/photoMain";
+	}
+	
+	@GetMapping("/list")
+	public Map<String, Object> list(@RequestParam Map<String, String> param) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		int page = 1;
+		if (param.containsKey("page")) {
+			try {
+				page = Integer.parseInt(param.get("page"));
+			} catch (Exception e) {
+			}
+		}
+
+		String keyword = "";
+
+		List<Photo> photoList = new ArrayList<>();
+		List<Member> memList = new ArrayList<>();
+
+		PageInfo pageInfo = null;
+		if (param.containsKey("keyword")) {
+			try {
+				keyword = param.get("keyword");
+			} catch (Exception e) {
+			}
+			pageInfo = new PageInfo(page, 5, service.getPhotoCount(keyword), 10); // 검색어 가지고 개수 가져오기 -> 제목/내용
+			photoList = service.selectPhotoList(pageInfo, param);
+		} else {
+			if(param.containsKey("type")) {
+				pageInfo = new PageInfo(page, 5, service.getPhotoCountAll(), 5); // 관리자 페이지
+				photoList = service.selectPhotoList(pageInfo, param);
+				for(int i = 0; i < photoList.size(); i++) {
+					memList.add(memService.selectByNo(photoList.get(i).getMemberno()));
+				}
+				map.put("memList", memList);
+			} else {
+				pageInfo = new PageInfo(page, 5, service.getPhotoCountAll(), 10);
+				photoList = service.selectPhotoList(pageInfo, param);
+			}
+		}
+		
+		map.put("list", photoList);
+		map.put("pageInfo", pageInfo);
+		
+		return map;
 	}
 
 	@PostMapping("/write")

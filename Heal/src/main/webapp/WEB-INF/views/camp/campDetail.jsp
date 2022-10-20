@@ -1314,12 +1314,6 @@
                 </div>
                 
                 <script>
-                
-                
-                
-                
-                
-                
                 	$("#sort").change(function() {
                 		goPage(1);
                 	});

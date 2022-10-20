@@ -290,7 +290,7 @@ public class HotelController {
 				airStartList.add(airList.get(i).getStartsta());
 			}
 		}
-
+		
 		int airCheck = 1;
 		if (airList.isEmpty()) { // 공항 없음
 			airCheck = 0;

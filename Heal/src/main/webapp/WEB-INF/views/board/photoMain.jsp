@@ -148,16 +148,16 @@
                         </c:if>                 
                     </div>
                     <!-- Pagination-->
-                    <nav class="border-top pb-md-4 pt-4 mt-2" aria-label="Pagination">
-                        <ul class="pagination mb-1">
-                            <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 5</span></li>
-                            <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="visually-hidden">(current)</span></span>
-                            </li>
-                            <li class="page-item d-none d-sm-block"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item d-none d-sm-block">...</li>
-                            <li class="page-item d-none d-sm-block"><a class="page-link" href="#">8</a></li>
-                            <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="fi-chevron-right"></i></a></li>
+                    <nav class="mt-2 mb-4" aria-label="Photo pagination">
+                        <ul class="pagination">
+                            <li class="page-item active d-none d-sm-block" aria-current="page"><a class="page-link" id="page(1)" onclick="goPage(1); return false;">1</a></li>
+                            <c:if test="${pageInfo.getEndPage() > 1}">
+	                			<c:forEach var="i" begin="2" end="${pageInfo.getEndPage()}">
+	                				<li class="page-item d-none d-sm-block"><a class="page-link" id="page(${i})" onclick="goPage(${i}); return false;">${i}</a></li>
+	                			</c:forEach>
+	                		</c:if>
+                            <li class="page-item"><a class="page-next" onclick="goPage(${pageInfo.getNextPage()}); return false;" aria-label="Next"><i class="fi-chevron-right"></i></a></li>
+                            <li class="page-item"><a class="page-end" onclick="goPage(${pageInfo.getMaxPage()}); return false;" aria-label="Next"><i class="fi-chevrons-right"></i></a></li>
                         </ul>
                     </nav>
                 </div>
@@ -170,6 +170,92 @@
 	$(document).ready(function() {
 		$(".tns-liveregion").html('');
 	});
+
+	function goPage(no) {
+		var camp = '${camp.no}'; // 캠핑장 번호
+		
+		console.log(sort)
+		
+		$.ajax({
+			type: 'GET',
+			url: "/camp/rev",
+			data: {
+				no: no,
+				sort: sort,
+				camp: camp
+			},
+			
+			success:function(map) {
+				var list = map.list;
+				var pageInfo = map.pageInfo;
+				console.log(list)
+				
+				str = "";
+				$.each(list, function (i, obj) { // list.get(i) = obj   
+					str += '<div class="col-sm-6 col-xl-4">                                                                                                                   '
+                    str += '<div class="card shadow-sm card-hover border-0 h-100">                                                                                            '
+                    str += '    <div class="tns-carousel-wrapper card-img-top card-img-hover">                                                                                '
+                    str += '        <a class="img-overlay" href="real-estate-single-v1.html"></a>                                                                             '
+                    str += '        <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">${list.get(i).category}</span></div>   '
+                    str += '      	<div class="tns-carousel-inner">                                                                                                          '
+                    str += '        	<c:if test="${fn:contains(renamefile,',')}">                                                                                          '
+                    str += '        	<c:set var="split" value="${fn:split(renamefile,',')}"/>                                                                              '
+                    str += '        	<c:set var="length" value="${fn:length(split)}"/>                                                                                     '
+                    str += '        	<c:forEach var="i" begin="0" end="${length-1}">                                                                                       '
+                    str += '        		<img src="${path}/resources/upload/image/${split[i]}" alt="Image" style="width:100%; height:265px">                               '
+                    str += '        	</c:forEach>                                                                                                                          '
+                    str += '        </c:if>                                                                                                                                   '
+                    str += '        <c:if test="${not fn:contains(renamefile,',')}">                                                                                          '
+                    str += '        	<img src="${path}/resources/upload/image/${list.get(i).renamefile}" alt="Image" style="width:100%; height:265px">                     '
+                    str += '        </c:if>                                                                                                                                   '
+                    str += '        </div>                                                                                                                                    '
+                    str += '        </div>                                                                                                                                    '
+                    str += '    <div class="card-body position-relative pb-3">                                                                                                '
+                    str += '        <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">${list.get(i).title}</a></h3>            '
+                    str += '    </div>                                                                                                                                        '
+                    str += '    </div>                                                                                                                                        '
+                    str += '</div>                                                                                                                                            '
+				});                                                                                                                                                           '                                                                                
+				
+				$("#revDiv").html(str);
+				
+				str = "";
+				
+				var maxPage =     pageInfo.maxPage     ;
+     			var startPage =   pageInfo.startPage   ;
+     			var endPage =     pageInfo.endPage     ;
+     			var currentPage = pageInfo.currentPage ;
+     			var prevPage =    pageInfo.prevPage    ;
+     			var nextPage =    pageInfo.nextPage    ;
+     			var startList =   pageInfo.startList   ;
+     			var endList =     pageInfo.endList     ;
+     			
+     			if(currentPage != 1) {
+	            		str += '<li class="page-item"><a class="page-first" onclick="goPage(1); return false;" aria-label="Next"><i class="fi-chevrons-left"></i></a></li>';
+	            		str += '<li class="page-item"><a class="page-prev" onclick="goPage('+ prevPage +'}); return false;" aria-label="Next"><i class="fi-chevron-left"></i></a></li>';
+	            	} 
+	
+	            	for (var i = startPage; i <= endPage; i++) { // 페이지 5개마다 페이지 바뀜
+	            		if(i == currentPage) {
+	            			str += '<li class="page-item active d-none d-sm-block"><a class="page-link" id="page('+ i +')" onclick="goPage('+ i +'); return false;">'+ i +'</a></li>';
+	            		} else {
+	            			str += '<li class="page-item d-none d-sm-block"><a class="page-link" id="page('+ i +')" onclick="goPage('+ i +'); return false;">'+ i +'</a></li>';
+	            		}
+	            	}
+	
+	            	if(currentPage != maxPage) {
+	            		str += '<li class="page-item"><a class="page-next" onclick="goPage('+ nextPage +'); return false;" aria-label="Next"><i class="fi-chevron-right"></i></a></li>';
+	            		str += '<li class="page-item"><a class="page-end" onclick="goPage('+ endPage +'); return false;" aria-label="Next"><i class="fi-chevrons-right"></i></a></li>';
+	            	}
+     			
+     			$('.pagination').html(str);
+			},
+			
+			error:function(e) {
+				console.log(e)
+			}
+		});
+	}
 </script>
 
 <script src="${path}/resources/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

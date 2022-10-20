@@ -172,8 +172,29 @@
         background-image: url(https://ssl.pstatic.net/static/weather/image/sp_weather_1746dae0.png);
         background-size: 965px 883px;
     }
+    
+    .btn-group-sm .on {
+    	background-color: black;
+    	color: white;
+    }
+    .btn-group-sm .on:active {
+    	background-color: black;
+    	color: white;
+    }
+     .btn-group-sm>button:hover {
+    	background-color: black;
+    	color: white;
+    }
 </style>
-
+		<!-- Vendor Styles-->
+	    <link rel="stylesheet" media="screen" href="${path}/resources/vendor/simplebar/dist/simplebar.min.css" />
+	    <link rel="stylesheet" media="screen" href="${path}/resources/vendor/nouislider/dist/nouislider.min.css" />
+	    <link rel="stylesheet" media="screen" href="${path}/resources/vendor/tiny-slider/dist/tiny-slider.css" />.
+	    <!-- Main Theme Styles + Bootstrap-->
+	    <link rel="stylesheet" media="screen" href="${path}/resources/css/theme.min.css">
+	    
+	    <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+		
 		<!-- Review modal 리뷰남기기-->
         <form name="writeForm" action="${path}/review/write" method="POST">
         	<div class="modal fade" id="modal-review" tabindex="-1" aria-hidden="true">
@@ -372,14 +393,19 @@
 	       				
 	       				str += '<option value="" selected disabled hidden>출발공항</option>                            '
 	       				
-	       				<c:forEach var="i" begin="0" end="${airStartList.size() - 1}">
-	       					var item = '${airStartList.get(i)}';
-	       					str += '<option value="i">'+ item +'</option>'
-	       				</c:forEach>
+	       				<c:if test="${!empty airStartList}">
+       						<c:forEach var="i" begin="0" end="${airStartList.size() - 1}">
+   								var item = '${airStartList.get(i)}';
+   								str += '<option value="i">'+ item +'</option>'
+   							</c:forEach>
+       					</c:if>
 	       					
 						$("#airStartSta").html(str);     				
 	       				
-						var end = '${airList.get(0).endsta}';
+						var end = "";
+						<c:if test="${!empty airList}">
+							end = '${airList.get(0).endsta}';
+						</c:if>
         				$("#airEndSta").html('<option value="" selected>'+end+'</option>');
         				
         				$("#airCount").html('<option value="" selected disabled hidden>인원</option>' 
@@ -1372,7 +1398,7 @@
                         
                         <!--Map-->
                         <div id="map" style="width: 480px; height: 300px; border-radius:2%;"></div>
-                        <script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=b8e0ebf5d4b4881bb423dd05b37fe951"></script>
+                        <script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=8cddaf5bb7b88f487cf47627b52b649b"></script>
                         <script>
                             var container = document.getElementById('map');
                             var options = {

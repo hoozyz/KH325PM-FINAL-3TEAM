@@ -214,7 +214,7 @@ public class FestivalController {
 			checkArr = check.split(" ");
 			dong = checkArr[checkArr.length - 1] + "동";
 		}
-		System.out.println(festival.getAddr());
+		
 		try {
 			if (dong != null) {
 				if (weaService.selectByDong(dong) == null) {
@@ -350,14 +350,15 @@ public class FestivalController {
 				airStartList.add(airList.get(i).getStartsta());
 			}
 		}
-
+		
+		System.out.println("--"+festival.getAddr());
+		System.out.println("----"+airList);
+		
 		int airCheck = 1;
 		if (airList.isEmpty()) { // 공항 없음
 			airCheck = 0;
 		}
-
-		System.out.println(airStartList);
-		
+		System.out.println(airCheck);
 		model.addAttribute("airEnd", airEnd);
 		model.addAttribute("trainEnd", trainEnd);
 		model.addAttribute("busEnd", busEnd);
