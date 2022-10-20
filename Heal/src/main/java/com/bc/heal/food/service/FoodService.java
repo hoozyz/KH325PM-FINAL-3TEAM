@@ -11,5 +11,7 @@ public interface FoodService {
 	List<Food> getFoodList(PageInfo pageInfo, Map<String, String> param);
 	int getFoodCount(Map<String, String> param);
 	void updateFood(String no1, String no2, String no3, String no4);
+	
+	List<Food> selectByGu(String gu);
 
 }

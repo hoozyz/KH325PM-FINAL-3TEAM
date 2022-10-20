@@ -27,12 +27,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.bc.heal.air.service.AirService;
 import com.bc.heal.bus.service.BusService;
 import com.bc.heal.common.util.PageInfo;
+import com.bc.heal.food.service.FoodService;
 import com.bc.heal.park.service.ParkService;
 import com.bc.heal.review.service.ReviewService;
 import com.bc.heal.train.service.TrainService;
 import com.bc.heal.vo.Air;
 import com.bc.heal.vo.Bus;
 import com.bc.heal.vo.EndStation;
+import com.bc.heal.vo.Food;
 import com.bc.heal.vo.Park;
 import com.bc.heal.vo.Review;
 import com.bc.heal.vo.Train;
@@ -60,6 +62,9 @@ public class ParkController {
 	
 	@Autowired
 	private ReviewService revService;
+	
+	@Autowired
+	private FoodService foodService;
 
 	@GetMapping("/parkMain")
 	public String park(Model model) throws IOException, ParseException {
@@ -329,6 +334,27 @@ public class ParkController {
 		
 		// 근처 음식점
 		
+		List<Food> foodlist = new ArrayList<>();
+		
+		String findGu = "";
+		String gu = "";
+		
+		if (park.getAddr().contains("구")) {
+			findGu = park.getAddr().split("구")[0]; // 구 기준 앞에만 자르기
+		} else if (park.getAddr().contains("군")) {
+			findGu = park.getAddr().split("군")[0];
+		} else if(park.getAddr().contains("시")) {
+			findGu = park.getAddr().split("시")[0];
+		}
+		
+		System.out.println(park.getAddr());
+		System.out.println("gu : " + gu);
+		System.out.println("findGu : " + findGu);
+		
+		foodlist = foodService.selectByGu(findGu);
+		System.out.println("foodlist : " + foodlist);
+		
+		model.addAttribute("foodlist", foodlist);
 		
 		return "/park/parkDetail";
 	}

@@ -1619,101 +1619,29 @@
             </div>
             <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside tns-nav-outside-flush mx-n2">
                 <div class="tns-carousel-inner row gx-4 mx-0 pt-3 pb-4" data-carousel-options="{&quot;items&quot;: 4, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3},&quot;992&quot;:{&quot;items&quot;:4}}}">
-                    <!-- Item-->
-                    <div class="col">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" href="#"></a>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                </div><img src="${path}/resources/image/nearFood6.jpg" alt="Image">
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="#">비원</a></h3>
-                                <p class="mb-2 fs-sm text-muted">제주특별자치도 제주시 노형동 100</p>
-                                <div class="fw-bold">064-744-1919</div>
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap">
-                                <p class="mb-2 fs-sm text-muted">#한식&nbsp;&nbsp;#한우등심&nbsp;&nbsp;#흑돼지&nbsp;&nbsp;#삼계탕</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Item-->
-                    <div class="col">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" href="#"></a>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                </div><img src="${path}/resources/image/nearFood7.jpg" alt="Image">
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="#">우정횟집</a></h3>
-                                <p class="mb-2 fs-sm text-muted">제주특별자치도 제주시 건입동 1319</p>
-                                <div class="fw-bold">064-757-4202</div>
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap">
-                                <p class="mb-2 fs-sm text-muted">#일식&nbsp;&nbsp;#활어회</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Item-->
-                    <div class="col">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" href="#"></a>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                </div><img src="${path}/resources/image/nearFood8.jpg" alt="Image">
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="#">만부정</a></h3>
-                                <p class="mb-2 fs-sm text-muted">제주특별자치도 제주시 연동 298-9</p>
-                                <div class="fw-bold">064-743-1119</div>
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap">
-                                <p class="mb-2 fs-sm text-muted">#한식&nbsp;&nbsp;#복어요리</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Item-->
-                    <div class="col">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" href="#"></a>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                </div><img src="${path}/resources/image/nearFood9.jpg" alt="Image">
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="#">흑돼지가있는풍경</a></h3>
-                                <p class="mb-2 fs-sm text-muted">제주특별자치도 제주시 노형동 668</p>
-                                <div class="fw-bold">064-742-1108</div>
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap">
-                                <p class="mb-2 fs-sm text-muted">#한식&nbsp;&nbsp;#흑돼지</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Item-->
-                    <div class="col">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" href="#"></a>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                </div><img src="${path}/resources/image/nearFood10.jpg" alt="Image">
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="#">탑동산호전복</a></h3>
-                                <p class="mb-2 fs-sm text-muted">제주특별자치도 제주시 삼도이동 1206</p>
-                                <div class="fw-bold">064-758-0123</div>
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap">
-                                <p class="mb-2 fs-sm text-muted">#한식&nbsp;&nbsp;#전복죽</p>
-                            </div>
-                        </div>
-                    </div>
+                    <c:if test="${!empty foodlist}">
+                    	<c:forEach var="i" begin="0" end="4">
+                    		<!-- Item-->
+                    		<div class="col">
+                        		<div class="card shadow-sm card-hover border-0 h-100">
+                            		<div class="card-img-top card-img-hover">
+                                		<a class="img-overlay" href="#"></a>
+                                		<div class="content-overlay end-0 top-0 pt-3 pe-3">
+                                    		<button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
+                                		</div><img src="${path}/resources/image/nearFood6.jpg" alt="Image">
+                            		</div>
+                            		<div class="card-body position-relative pb-3">
+                                		<h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="#">${foodlist.get(i).name}</a></h3>
+                                		<p class="mb-2 fs-sm text-muted">${foodlist.get(i).addr}</p>
+                                		<div class="fw-bold">${foodlist.get(i).phone}</div>
+                            		</div>
+                            		<div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap">
+                                		<p class="mb-2 fs-sm text-muted"># ${foodlist.get(i).type}&nbsp;&nbsp;# ${foodlist.get(i).main}&nbsp;&nbsp;</p>
+                            		</div>
+                        		</div>
+                    		</div>	
+                    	</c:forEach>
+                    </c:if>
                 </div>
             </div>
         </section>

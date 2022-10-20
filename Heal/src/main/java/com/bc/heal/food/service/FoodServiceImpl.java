@@ -40,4 +40,12 @@ public class FoodServiceImpl implements FoodService{
 	public void updateFood(String no1, String no2, String no3, String no4) {
 		mapper.updateFood(no1,no2,no3,no4);
 	}
+
+	// ---
+
+	@Override
+	public List<Food> selectByGu(String gu) {
+		return mapper.selectByGu(gu);
+	}
+	
 }

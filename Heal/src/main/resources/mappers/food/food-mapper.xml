@@ -63,4 +63,12 @@
 		WHERE NO = ${0}
 	</update>
 	
+	
+	<select id="selectByGu" parameterType="string" resultMap="foodResultMap">
+		SELECT *
+		FROM TBL_FOOD
+		WHERE ADDR LIKE '%'||#{gu}||'%'
+		AND ROWNUM <![CDATA[<=]]> 5
+		
+	</select>
 </mapper>

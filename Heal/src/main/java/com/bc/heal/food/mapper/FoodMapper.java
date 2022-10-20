@@ -16,4 +16,5 @@ public interface FoodMapper {
 	int selectFoodCount(Map<String, String> map);
 	void updateFood(@Param("no1") String no1, @Param("no2") String no2, @Param("no3") String no3, @Param("no4") String no4);
 	
+	List<Food> selectByGu(String gu);
 }
