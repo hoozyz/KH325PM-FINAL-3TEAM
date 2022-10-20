@@ -88,8 +88,6 @@ public class CampController {
 		model.addAttribute("param", param);
 		model.addAttribute("pageInfo", pageInfo);
 
-		System.out.println(campList);
-
 		return "/camp/campSearch";
 	}
 

@@ -50,7 +50,7 @@
 	
 	<insert id="insert" parameterType="Photo"
 			useGeneratedKeys="true" keyProperty="no" keyColumn="NO">
-		INSERT INTO TBL_BOARD (
+		INSERT INTO TBL_PHOTO (
 			NO,
 			TITLE,
 			CONT,
@@ -69,8 +69,8 @@
 			#{category},
 			#{originalfile},
 			#{renamefile},
-			#{createdate},
-			#{modifydate},
+			SYSDATE,
+			SYSDATE,
 			#{memberno}
 		)
 	</insert>

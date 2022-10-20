@@ -29,12 +29,12 @@ public class MemberController {
 
 	@Autowired
 	private MemberService service;
-	
+
 	@RequestMapping("/login")
 	public String login(Model model, String userId, String userPwd, HttpServletRequest req) {
 		log.info("id : " + userId + ", pw : " + userPwd);
 		Member loginMember = service.login(userId, userPwd);
-		
+
 		String location = req.getHeader("Referer");
 
 		if (loginMember != null) {
@@ -42,20 +42,19 @@ public class MemberController {
 			return "redirect:" + location; // 가져가는 정보 없이 전 페이지로 보내기
 		} else {
 			model.addAttribute("msg", "아이디나 패스워드가 잘못되었습니다.");
-			model.addAttribute("location", location);
-			return "common/msg";
+			return location;
 		}
 	}
 
 	@RequestMapping("/logout")
 	public String logout(SessionStatus status, HttpServletRequest req) {
 		status.setComplete();
-		
+
 		String location = req.getHeader("Referer");
-		
+
 		return "redirect:" + location;
 	}
-	
+
 	@PostMapping("/member/enroll")
 	public String enroll(Model model, Member member) {
 		int result = 0;
@@ -67,12 +66,10 @@ public class MemberController {
 
 		if (result > 0) {
 			model.addAttribute("msg", "회원가입에 성공하였습니다.");
-			model.addAttribute("location", "/");
 		} else {
 			model.addAttribute("msg", "회원가입에 실패하였습니다. 다시 시도해주세요.");
-			model.addAttribute("location", "/");
 		}
-		return "common/msg";
+		return "/";
 	}
 
 	@GetMapping("/member/myInfo")
@@ -86,23 +83,20 @@ public class MemberController {
 		// 세션으로 가지고 있는 로그인 멤버 가지고 오는거
 		if (loginMember == null || loginMember.getId().equals(member.getId()) == false) {
 			model.addAttribute("msg", "잘못된 접근입니다.");
-			model.addAttribute("location", "/");
-			return "common/msg";
+			return "/";
 		}
-		
+
 		member.setNo(loginMember.getNo());
 		int result = service.save(member);
 
 		if (result > 0) {
 			model.addAttribute("loginMember", service.findById(member.getId())); // DB에 있는 값을 다시 세션으로 업데이트
 			model.addAttribute("msg", "회원정보를 수정하였습니다.");
-			model.addAttribute("location", "/member/myInfo");
 		} else {
 			model.addAttribute("msg", "회원정보를 수정을 실패하였습니다.");
-			model.addAttribute("location", "/member/myInfo");
 		}
 
-		return "common/msg";
+		return "/member/myInfo";
 	}
 
 	@GetMapping("/member/delete")
@@ -111,32 +105,29 @@ public class MemberController {
 
 		if (result > 0) {
 			model.addAttribute("msg", "정상적으로 탈퇴 되었습니다.");
-			model.addAttribute("location", "/logout");
+			return "/logout";
 		} else {
 			model.addAttribute("msg", "회원탈퇴에 실패하였습니다.");
-			model.addAttribute("location", "/member/myInfo");
+			return "/member/myInfo";
 		}
-
-		return "common/msg";
 	}
-	
+
 	// 관리자 영역
 	@RequestMapping("/member/admin") // 유저 탈퇴
 	public String admin(Model model, String no) {
-		List<Member> list = new ArrayList<>(); 
+		List<Member> list = new ArrayList<>();
 		// 유저 번호가 들어오면 탈퇴
-		if(no != null) {
+		if (no != null) {
 			service.delete(Integer.parseInt(no));
+			model.addAttribute("msg", "멤버 탈퇴가 성공하였습니다");
 		}
 		list = service.allList();
 		list.remove(0); // 관리자 빼기
-		if(list.size() > 0) {
+		if (list.size() > 0) {
 			model.addAttribute("list", list);
-			return "admin/member";
 		} else { // 유저가 없을 때
 			model.addAttribute("msg", "멤버가 없습니다.");
-			model.addAttribute("location", "/admin/member");
-			return "common/msg";
 		}
+		return "admin/member";
 	}
 }

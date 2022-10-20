@@ -9,6 +9,65 @@
 	<jsp:param value="포토게시판" name="title"/>
 </jsp:include>
 
+        <!-- 글쓰기 팝업-->
+        <div class="modal fade" id="write-modal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered p-2 my-0" style="margin-right: 730px;">
+                <div class="modal-content" style="width: 1200px;">
+                    <div class="modal-body px-0 py-2 py-sm-0" style="height: 700px; width:1200px">
+                        <button class="btn-close position-absolute top-0 end-0 mt-3 me-3" type="button" data-bs-dismiss="modal"></button>
+                        <div class="row mx-0 align-items-center">
+                			<div class="col-md-6 pb-4 pt-md-5 border-end-md" style="width: 550px;padding-left: 48px;">
+                                <form class="needs-validation" action="${path}/photo/write" method="POST" enctype="multipart/form-data">
+                                    <div class="mb-4">
+                                        <label class="form-label mb-2" for="signin-name">아이디</label>
+                                        <input class="form-control" name="id" type="text" style="width:430px" value="${loginMember.id}" readonly>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="form-label mb-2" for="signin-title" style="float: left;">제목</label>
+                                        <select id="category" name="category" style="margin-left: 250px; width:150px; float: left; height:40px; margin-bottom: 10px;" class="form-control form-select">
+                    			<option value="" selected disabled hidden>카테고리</option>
+                    				<option value="캠핑장">캠핑장</option>
+                    				<option value="공원">공원</option>
+                    				<option value="축제">축제</option>
+			                      </select>
+                                        <input class="form-control" name="title" style="width:430px" type="text" placeholder="제목을 입력해주세요" required>
+                                    </div>
+                                    <div class="mb-4" style="height: 350px;">
+                                        <label class="form-label mb-2" for="signin-content">내용</label>
+                                        <input type="file" value="" style="margin-left: 150px;width: 250px;" name="file" id="writeFile" accept="image/gif, image/jpg, image/jpeg, image/png"> <!-- 사진만 첨부 가능 -->
+                                        <textarea class="form-control" style="height:320px; width:430px; word_wrap:break-word;" name="cont" id="signin-content" placeholder="내용을 입력해주세요" required></textarea>
+                                    </div>
+                                    <div style="margin-left: 60px;">
+                                        <input class="btn btn-lg rounded-pill" id="write" style="width:70%; color: #D9E2F2;background-color:#201627;" type="submit" value="게시글 작성">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-6" style="width: 570px;margin-left: 20px;">
+                            	<div>이미지 미리보기</div>
+                            	<div style="width: 570px;height: 480px; margin-top: 20px;"><img id="image" style="width: 570px;height: 480px;" src=""></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script>
+        	$("#writeFile").on('change', function() {
+        		readURL(this);        		
+        	});
+        	
+        	function readURL(input) {
+                if (input.files && input.files[0]) {
+                   var reader = new FileReader();
+                   reader.onload = function (e) {
+                      $('#image').attr('src', e.target.result);
+                   }
+                   reader.readAsDataURL(input.files[0]);
+                }
+            }
+        </script>
+
 <body class="fixed-bottom-btn">
     <main class="page-wrapper">
         <div class="container-fluid mt-5 pt-5 p-0">
@@ -30,7 +89,12 @@
                     <!-- Title-->
                     <div class="d-sm-flex align-items-center justify-content-between pb-3 pb-sm-4">
                         <h1 class="h2 mb-sm-0">포토 게시판</h1>
-                        
+                        <c:if test="${loginMember != null }">
+                        	<a href="#write-modal" data-bs-toggle="modal" data-bs-dismiss="modal" style="float: right; text-decoration: none;">게시글 작성</a>
+                        </c:if>
+                        <c:if test="${loginMember == null }">
+                        	<a href="#signin-modal" data-bs-toggle="modal" data-bs-dismiss="modal" style="float: right; text-decoration: none;">게시글 작성</a>
+                        </c:if>
                     </div>
                     <!-- Sorting-->
                     <form class="form-group d-block d-md-flex position-relative rounded-md-pill mb-2 mb-sm-4 mb-lg-5">

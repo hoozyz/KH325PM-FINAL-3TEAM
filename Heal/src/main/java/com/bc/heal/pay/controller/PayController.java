@@ -180,24 +180,11 @@ public class PayController {
 
 		if (result > 1) {
 			model.addAttribute("msg", "예약이 완료되었습니다.");
-			model.addAttribute("location", location);
 		} else {
 			model.addAttribute("msg", "예약이 실패하였습니다.");
-			model.addAttribute("location", location);
 		}
 
-		return "common/msg"; // 예약정보 저장
+		return location; // 예약정보 저장
 	}
 
-	// 결제 취소시 실행 url
-	@GetMapping("/cancel")
-	public String payCancel() {
-		return "redirect:/carts";
-	}
-
-	// 결제 실패시 실행 url
-	@GetMapping("/fail")
-	public String payFail() {
-		return "redirect:/carts";
-	}
 }
