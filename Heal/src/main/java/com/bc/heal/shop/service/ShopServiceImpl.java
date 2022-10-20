@@ -50,4 +50,9 @@ public class ShopServiceImpl implements ShopService{
 	public Shop selectByShrimp() {
 		return mapper.selectByShrimp();
 	}
+
+	@Override
+	public List<Shop> selectByCamp() {
+		return mapper.selectByCamp();
+	}
 }

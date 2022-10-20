@@ -541,7 +541,8 @@
         <section class="container-fluid mb-5 " style="width: 1500px; ">
             <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside tns-nav-outside-flush mx-n2 ">
                 <div class="tns-carousel-inner row gx-4 mx-0 pt-3 pb-4 " data-carousel-options="{&quot;items&quot;: 6, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3},&quot;992&quot;:{&quot;items&quot;:4},&quot;1242&quot;:{&quot;items&quot;:5},&quot;1498&quot;:{&quot;items&quot;:6}}} ">
-             <c:forEach begin="1" end="8" step="1">
+              <c:if test="${!empty shopList}"> <!-- 용품 리스트 -->
+				<c:forEach var= "i"  begin="0" end="${shopList.size() - 1}">
                    <!-- Item-->
                     <div class="col">
                         <div class="card shadow-sm card-hover border-0 h-100 ">
@@ -549,24 +550,25 @@
                                 <a class="img-overlay " href="#"></a>
                                 <div class="position-absolute start-0 top-0 pt-3 ps-3 ">
                                 
-                                <span class=" badge bg-success mb-1 ">뭘</span>
+<%--                                 <span class=" badge bg-success mb-1 ">${shopList.get(i).cate2}</span> 캠핑이라 제거 --%>
                                 
-                                <span class=" badge bg-info ">넣을까</span></div>
+                                <span class=" badge bg-info ">${shopList.get(i).cate3}</span></div>
                                 
                                 
                                 <div class="content-overlay end-0 top-0 pt-3 pe-3 ">
                                     <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle " type="button" data-bs-toggle="tooltip " data-bs-placement="left " title="Add to Wishlist "></button>
-                                </div><img src="${path}/resources/image/shop1.jpg" alt="Image ">
+                                </div><img src="${shopList.get(i).image}" style="min-height: 230px" alt="Image ">
                             </div>
+                            <hr>
                             <div class="card-body position-relative pb-3 ">
-                                <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary ">For rent</h4>
-                                <h3 class="h6 mb-2 fs-base "><a class="nav-link stretched-link " href="real-estate-single-v1.html ">이름</a></h3>
-                                <p class="mb-2 fs-sm text-muted ">3811 Ditmars Blvd Astoria, NY 11105</p>
-                                <div class="fw-bold "><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70 "></i>$1,629</div>
+                                <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary ">${shopList.get(i).mall}</h4>
+                                <h3 class="h6 mb-2 fs-base "><a class="nav-link stretched-link " href="real-estate-single-v1.html ">${shopList.get(i).title}</a></h3>
+                                <div class="fw-bold "><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70 "></i>${shopList.get(i).price}원</div>
                             </div>
                         </div>
                     </div>
                  </c:forEach>
+                </c:if>
                     <!--  @@@@@@ 아이템끝-->
                     </div>
             </div>

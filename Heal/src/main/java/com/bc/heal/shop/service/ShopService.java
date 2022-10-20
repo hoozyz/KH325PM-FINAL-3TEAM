@@ -17,4 +17,8 @@ public interface ShopService {
 	Shop selectByMeat();
 
 	Shop selectByShrimp();
+	
+	
+	List<Shop> selectByCamp();
+	
 }

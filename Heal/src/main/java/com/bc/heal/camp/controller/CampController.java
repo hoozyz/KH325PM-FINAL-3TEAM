@@ -29,12 +29,14 @@ import com.bc.heal.bus.service.BusService;
 import com.bc.heal.camp.service.CampService;
 import com.bc.heal.common.util.PageInfo;
 import com.bc.heal.review.service.ReviewService;
+import com.bc.heal.shop.service.ShopService;
 import com.bc.heal.train.service.TrainService;
 import com.bc.heal.vo.Air;
 import com.bc.heal.vo.Bus;
 import com.bc.heal.vo.Camp;
 import com.bc.heal.vo.EndStation;
 import com.bc.heal.vo.Review;
+import com.bc.heal.vo.Shop;
 import com.bc.heal.vo.Train;
 import com.bc.heal.vo.Weather;
 import com.bc.heal.weather.service.WeatherService;
@@ -60,11 +62,21 @@ public class CampController {
 
 	@Autowired
 	private ReviewService revService;
+	
+	@Autowired
+	private ShopService showService;
 
+	
 	@GetMapping("/campMain")
 	public String main(Model model) {
+		
+			List<Shop> shopList = new ArrayList<>();
+			shopList = showService.selectByCamp(); // 10개
+			model.addAttribute("shopList", shopList);
+				
 		return "/camp/campMain";
 	}
+	
 
 	@GetMapping("/campSearch")
 	String search(Model model, @RequestParam Map<String, String> param) {
