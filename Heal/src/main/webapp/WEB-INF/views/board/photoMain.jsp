@@ -116,7 +116,7 @@
                         </div>
                     </form>
                     <!-- Catalog grid-->
-                    <div class="row g-4 py-4">
+                    <div class="row g-4 py-4" id="photoDiv">
                         <!-- 아이템 ::::: 세로 4 x 가로 3... 12개 임의지정-->
                         <c:if test="${!empty list}">
                         	<c:forEach var="i" begin="0" end="${list.size() - 1}">
@@ -124,7 +124,7 @@
                         		<div class="col-sm-6 col-xl-4">
                             <div class="card shadow-sm card-hover border-0 h-100">
                                 <div class="tns-carousel-wrapper card-img-top card-img-hover">
-                                    <a class="img-overlay" href="real-estate-single-v1.html"></a>
+                                    <a class="img-overlay" id="photoView(${list.get(i).no})"></a>
                                     <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">${list.get(i).category}</span></div>
                                   	<div class="tns-carousel-inner">
                                     	<c:if test="${fn:contains(renamefile,',')}">
@@ -165,12 +165,12 @@
         </div>
     </main>
 </body>
-
 <script>
-	$(document).ready(function() {
-		$(".tns-liveregion").html('');
-	});
-
+$(document).ready(function() {
+	$(".tns-liveregion").html('');
+});	
+</script>
+<script>
 	function goPage(no) {
 		var camp = '${camp.no}'; // 캠핑장 번호
 		
@@ -192,32 +192,34 @@
 				
 				str = "";
 				$.each(list, function (i, obj) { // list.get(i) = obj   
+					var file = obj.renamefile;
+					
 					str += '<div class="col-sm-6 col-xl-4">                                                                                                                   '
                     str += '<div class="card shadow-sm card-hover border-0 h-100">                                                                                            '
                     str += '    <div class="tns-carousel-wrapper card-img-top card-img-hover">                                                                                '
-                    str += '        <a class="img-overlay" href="real-estate-single-v1.html"></a>                                                                             '
-                    str += '        <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">${list.get(i).category}</span></div>   '
+                    str += '        <a class="img-overlay" href="photoView('+obj.no+')"></a>                                                                             '
+                    str += '        <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">'+obj.category+'</span></div>   '
                     str += '      	<div class="tns-carousel-inner">                                                                                                          '
-                    str += '        	<c:if test="${fn:contains(renamefile,',')}">                                                                                          '
-                    str += '        	<c:set var="split" value="${fn:split(renamefile,',')}"/>                                                                              '
-                    str += '        	<c:set var="length" value="${fn:length(split)}"/>                                                                                     '
-                    str += '        	<c:forEach var="i" begin="0" end="${length-1}">                                                                                       '
-                    str += '        		<img src="${path}/resources/upload/image/${split[i]}" alt="Image" style="width:100%; height:265px">                               '
-                    str += '        	</c:forEach>                                                                                                                          '
-                    str += '        </c:if>                                                                                                                                   '
-                    str += '        <c:if test="${not fn:contains(renamefile,',')}">                                                                                          '
-                    str += '        	<img src="${path}/resources/upload/image/${list.get(i).renamefile}" alt="Image" style="width:100%; height:265px">                     '
-                    str += '        </c:if>                                                                                                                                   '
+                    
+                    if(file.indexOf(',') > 0) { // 파일 여러개
+                    	var split = file.split(',');
+                    	for (var files in split) {
+                        	str += '<img src="${path}/resources/upload/image/'+files+'" alt="Image" style="width:100%; height:265px">'
+                        }
+                    } else if (file.indexOf(',') < 0) {
+                    	str += '<img src="${path}/resources/upload/image/'+file+'" alt="Image" style="width:100%; height:265px">'
+                    }
+                    
                     str += '        </div>                                                                                                                                    '
                     str += '        </div>                                                                                                                                    '
                     str += '    <div class="card-body position-relative pb-3">                                                                                                '
-                    str += '        <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">${list.get(i).title}</a></h3>            '
+                    str += '        <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="photoView('+obj.no+')">'+obj.title+'</a></h3>            '
                     str += '    </div>                                                                                                                                        '
                     str += '    </div>                                                                                                                                        '
                     str += '</div>                                                                                                                                            '
 				});                                                                                                                                                           '                                                                                
 				
-				$("#revDiv").html(str);
+				$("#photoDiv").html(str);
 				
 				str = "";
 				
