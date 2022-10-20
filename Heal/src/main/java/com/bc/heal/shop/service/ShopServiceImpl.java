@@ -55,4 +55,11 @@ public class ShopServiceImpl implements ShopService{
 	public List<Shop> selectByCamp() {
 		return mapper.selectByCamp();
 	}
+	
+	@Override
+	public List<Shop> selectByMain() {
+		return mapper.selectByMain();
+	}
+	
+	
 }

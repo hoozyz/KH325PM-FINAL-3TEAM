@@ -21,4 +21,5 @@ public interface ShopService {
 	
 	List<Shop> selectByCamp();
 	
+	List<Shop> selectByMain();
 }

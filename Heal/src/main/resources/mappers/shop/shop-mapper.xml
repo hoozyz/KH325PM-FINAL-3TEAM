@@ -113,4 +113,17 @@
 		WHERE ROWNUM <![CDATA[<=]]> 10
 	</select>
 	
+	<select id="selectByMain" resultMap="shopResultMap">
+		SELECT * 
+		    FROM (
+		        SELECT * 
+		        FROM TBL_SHOP
+		        WHERE CATE2 like '%' || '여행' || '%'
+		        ORDER BY DBMS_RANDOM.VALUE
+		    )
+		WHERE ROWNUM <![CDATA[<=]]> 3
+	</select>
+	
+	
+	
 </mapper>

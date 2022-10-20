@@ -23,4 +23,5 @@ public interface ShopMapper {
 	
 	List<Shop> selectByCamp();
 	
+	List<Shop> selectByMain();
 }
