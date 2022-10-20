@@ -183,10 +183,14 @@ public class FestivalController {
 			addArr = sido.split(" ");
 			addr = addArr[addArr.length - 1] + "시";
 			
-		} else if (festival.getAddr().contains("도")) {
-			sido = festival.getAddr().split("도")[0];
+		} else if (festival.getAddr().contains("군")) {
+			sido = festival.getAddr().split("군")[0];
 			addArr = sido.split(" ");
-			addr = addArr[addArr.length - 1] + "도";
+			addr = addArr[addArr.length - 1] + "군";
+		} else if (festival.getAddr().contains("구")) {
+			sido = festival.getAddr().split("구")[0];
+			addArr = sido.split(" ");
+			addr = addArr[addArr.length - 1] + "구";
 		}
 		
 		List<Hotel> hotelList = hotelService.getNearHotelList(addr);
@@ -216,14 +220,7 @@ public class FestivalController {
 		}
 		
 		try {
-			if (dong != null) {
-				if (weaService.selectByDong(dong) == null) {
-					dong = dong.substring(0, 2);
-					weaList = weatherApi(weaService.selectByDong(dong).getNx(), weaService.selectByDong(dong).getNy());
-				} else {
-					weaList = weatherApi(weaService.selectByDong(dong).getNx(), weaService.selectByDong(dong).getNy());
-				}
-			}
+			weaList = weatherApi(weaService.selectByDong(dong).getNx(), weaService.selectByDong(dong).getNy()); 
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ParseException e) {

@@ -1094,8 +1094,8 @@
             <!-- Breadcrumb-->
             <nav class="mb-3 pt-md-3" aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">홈페이지</a></li>
-                    <li class="breadcrumb-item"><a href="#">축제</a></li>
+                    <li class="breadcrumb-item"><a href="${path}/">홈페이지</a></li>
+                    <li class="breadcrumb-item"><a href="${path}/festival/festivalMain">축제</a></li>
                     <li class="breadcrumb-item active" aria-current="page">${festival.name}</li>
                 </ol>
             </nav>
@@ -1372,7 +1372,7 @@
                         
                         <!--Map-->
                         <div id="map" style="width: 480px; height: 300px; border-radius:2%;"></div>
-                        <script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=8cddaf5bb7b88f487cf47627b52b649b"></script>
+                        <script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=b8e0ebf5d4b4881bb423dd05b37fe951"></script>
                         <script>
                             var container = document.getElementById('map');
                             var options = {
@@ -1561,13 +1561,13 @@
                     <div class="col">
                         <div class="card shadow-sm card-hover border-0 h-100">
                             <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" href="#"></a>
+                                <a class="img-overlay" href="${path}/near/hotelDetail?no=${hotelList.get(0).no}"></a>
                                 <div class="content-overlay end-0 top-0 pt-3 pe-3">
                                     <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
                                 </div><img src="${path}/resources/image/nearHotel1.jpg" alt="Image">
                             </div>
                             <div class="card-body position-relative pb-3">
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="#">${hotelList.get(0).name}</a></h3>
+                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="${path}/near/hotelDetail?no=${hotelList.get(0).no}">${hotelList.get(0).name}</a></h3>
                                 <p class="mb-2 fs-sm text-muted">${hotelList.get(0).addr}</p>
                                 <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>${hotelList.get(0).price}</div>
                             </div>
@@ -1577,13 +1577,13 @@
                     <div class="col">
                         <div class="card shadow-sm card-hover border-0 h-100">
                             <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" href="#"></a>
+                                <a class="img-overlay" href="${path}/near/hotelDetail?no=${hotelList.get(1).no}"></a>
                                 <div class="content-overlay end-0 top-0 pt-3 pe-3">
                                     <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
                                 </div><img src="${path}/resources/image/nearHotel2.jpg" alt="Image">
                             </div>
                             <div class="card-body position-relative pb-3">
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="#">${hotelList.get(1).name}</a></h3>
+                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="${path}/near/hotelDetail?no=${hotelList.get(1).no}">${hotelList.get(1).name}</a></h3>
                                 <p class="mb-2 fs-sm text-muted">${hotelList.get(1).addr}</p>
                                 <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>${hotelList.get(1).price}</div>
                             </div>
@@ -1593,13 +1593,13 @@
                     <div class="col">
                         <div class="card shadow-sm card-hover border-0 h-100">
                             <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" href="#"></a>
+                                <a class="img-overlay" href="${path}/near/hotelDetail?no=${hotelList.get(2).no}"></a>
                                 <div class="content-overlay end-0 top-0 pt-3 pe-3">
                                     <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
                                 </div><img src="${path}/resources/image/nearHotel3.jpg" alt="Image">
                             </div>
                             <div class="card-body position-relative pb-3">
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="#">${hotelList.get(2).name}</a></h3>
+                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="${path}/near/hotelDetail?no=${hotelList.get(2).no}">${hotelList.get(2).name}</a></h3>
                                 <p class="mb-2 fs-sm text-muted">${hotelList.get(2).addr}</p>
                                 <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>${hotelList.get(2).price}</div>
                             </div>
@@ -1609,13 +1609,13 @@
                     <div class="col">
                         <div class="card shadow-sm card-hover border-0 h-100">
                             <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" href="#"></a>
+                                <a class="img-overlay" href="${path}/near/hotelDetail?no=${hotelList.get(3).no}"></a>
                                 <div class="content-overlay end-0 top-0 pt-3 pe-3">
                                     <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
                                 </div><img src="${path}/resources/image/nearHotel4.jpg" alt="Image">
                             </div>
                             <div class="card-body position-relative pb-3">
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="#">${hotelList.get(3).name}</a></h3>
+                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="${path}/near/hotelDetail?no=${hotelList.get(3).no}">${hotelList.get(3).name}</a></h3>
                                 <p class="mb-2 fs-sm text-muted">${hotelList.get(3).addr}</p>
                                 <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>${hotelList.get(3).price}</div>
                             </div>

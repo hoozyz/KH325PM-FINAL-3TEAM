@@ -172,15 +172,15 @@
                     <!-- Item-->
                     <div style="width:250px; ">
                         <div class="card shadow-sm card-hover border-0 h-100 ">
-                            <div class="card-img-top card-img-hover " style="width:226px; height:320px; background-image: url(${path}/resources/image/festivalPoster7.jpg); background-size: cover; ">
-                                <a class="img-overlay " href="${path}/festival/festivalDetail?no=3566"></a>
+                            <div class="card-img-top card-img-hover " style="width:226px; height:320px; background-image: url(${path}/resources/image/festivalPoster_7.jpg); background-size: cover; ">
+                                <a class="img-overlay " href="${path}/festival/festivalDetail?no=3332"></a>
                                 <div class="content-overlay end-0 top-0 pt-3 pe-3 ">
                                     <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle " type="button " data-bs-toggle="tooltip " data-bs-placement="left " title="Add to Wishlist "><i class="fi-heart "></i></button>
                                 </div>
                             </div>
                             <div class="card-body position-relative pb-3 ">
                                 <h3 class="h6 mb-2 fs-base ">
-                                    <a class="nav-link stretched-link " href="${path}/festival/festivalDetail?no=3566" style="text-align: center; ">충장축제</a></h3>
+                                    <a class="nav-link stretched-link " href="${path}/festival/festivalDetail?no=3332" style="text-align: center; ">부산시민의종 타종식</a></h3>
                             </div>
                         </div>
                     </div>
