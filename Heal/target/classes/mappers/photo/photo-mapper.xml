@@ -22,6 +22,28 @@
  		WHERE MEMBERNO = #{no}
 	</select>
 	
+	<select id="selectPhotoList" parameterType="map" resultMap="photoResultMap">
+ 		SELECT *
+ 		FROM TBL_PHOTO
+ 		WHERE 1=1
+ 		<if test="keyword != null">
+ 			AND TITLE LIKE '%'||#{keyword}||'%'
+ 			OR CONT LIKE '%'||#{keyword}||'%'
+ 		</if>
+ 		ORDER BY NO DESC
+	</select>
+	
+	<select id="getPhotoCount" parameterType="string" resultType="int">
+ 		SELECT COUNT(*)
+ 		FROM TBL_PHOTO
+ 		WHERE TITLE LIKE #{keyword} OR CONT LIKE #{keyword}
+	</select>
+	
+	<select id="getPhotoCountAll" parameterType="string" resultType="int">
+ 		SELECT COUNT(*)
+ 		FROM TBL_PHOTO
+	</select>
+	
 	<select id="selectByThree" resultMap="photoResultMap"> <!-- 최신 3개 가져오기 -->
  		SELECT NO,
 			TITLE,

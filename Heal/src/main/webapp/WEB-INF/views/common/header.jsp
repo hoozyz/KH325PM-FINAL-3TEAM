@@ -89,6 +89,11 @@
     </style>
    <!-- Page loading scripts-->
     <script>
+    	<c:if test="${msg != null}">
+    		var msg = '${msg}';
+    		alert(msg);
+    	</c:if>
+    
       (function () {
         window.onload = function () {
           var preloader = document.querySelector('.page-loading');

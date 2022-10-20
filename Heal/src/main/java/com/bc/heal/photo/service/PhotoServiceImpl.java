@@ -3,13 +3,17 @@ package com.bc.heal.photo.service;
 import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.bc.heal.photo.mapper.PhotoMapper;
+import com.bc.heal.vo.PageInfo;
 import com.bc.heal.vo.Photo;
 
 @Service
@@ -63,6 +67,30 @@ public class PhotoServiceImpl implements PhotoService{
 		}
 		
 		return reNameFileName;
+	}
+
+	@Override
+	public int getPhotoCount(String keyword) {
+		return mapper.getPhotoCount(keyword);
+	}
+
+	@Override
+	public int getPhotoCountAll() {
+		return mapper.getPhotoCountAll();
+	}
+
+	@Override
+	public List<Photo> selectPhotoList(PageInfo pageInfo, Map<String, String> param) {
+		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit(); // 앞에서 뺄 수 
+		RowBounds rowBounds = new RowBounds(offset, pageInfo.getListLimit());
+		
+		Map<String, String> searchMap = new HashMap<String, String>();
+		String keyword = param.get("keyword");
+		if (keyword != null && keyword.length() > 0) {
+			searchMap.put("keyword", keyword);
+		}
+		
+		return mapper.selectPhotoList(rowBounds, searchMap);
 	}
 
 }

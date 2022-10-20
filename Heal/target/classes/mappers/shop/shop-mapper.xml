@@ -101,4 +101,29 @@
 		WHERE ROWNUM <![CDATA[<=]]> 10
 	</select>
 	
+	
+	<select id="selectByCamp" resultMap="shopResultMap">
+		SELECT * 
+		    FROM (
+		        SELECT * 
+		        FROM TBL_SHOP
+		        WHERE CATE2 = '캠핑' and ( cate3 ='캠핑가구' or cate3 ='텐트' or cate3 ='침낭' or cate4 like  '%' || '그릴' || '%')
+		        ORDER BY DBMS_RANDOM.VALUE
+		    )
+		WHERE ROWNUM <![CDATA[<=]]> 10
+	</select>
+	
+	<select id="selectByMain" resultMap="shopResultMap">
+		SELECT * 
+		    FROM (
+		        SELECT * 
+		        FROM TBL_SHOP
+		        WHERE CATE2 like '%' || '여행' || '%'
+		        ORDER BY DBMS_RANDOM.VALUE
+		    )
+		WHERE ROWNUM <![CDATA[<=]]> 3
+	</select>
+	
+	
+	
 </mapper>

@@ -23,11 +23,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.bc.heal.air.service.AirService;
 import com.bc.heal.bus.service.BusService;
 import com.bc.heal.camp.service.CampService;
 import com.bc.heal.common.util.PageInfo;
+import com.bc.heal.like.service.LikeService;
 import com.bc.heal.review.service.ReviewService;
 import com.bc.heal.shop.service.ShopService;
 import com.bc.heal.train.service.TrainService;
@@ -35,6 +37,7 @@ import com.bc.heal.vo.Air;
 import com.bc.heal.vo.Bus;
 import com.bc.heal.vo.Camp;
 import com.bc.heal.vo.EndStation;
+import com.bc.heal.vo.Member;
 import com.bc.heal.vo.Review;
 import com.bc.heal.vo.Shop;
 import com.bc.heal.vo.Train;
@@ -65,6 +68,9 @@ public class CampController {
 	
 	@Autowired
 	private ShopService showService;
+	
+	@Autowired
+	private LikeService likeService;
 
 	
 	@GetMapping("/campMain")
@@ -138,8 +144,21 @@ public class CampController {
 	}
 
 	@GetMapping("/campDetail")
-	public String detail(Model model, int no) { // 캠핑장 상세정보, 기차/비행기/버스 도착역 리스트
+	public String detail(Model model, int no, @SessionAttribute(name = "loginMember", required = false) Member loginMember) { // 캠핑장 상세정보, 기차/비행기/버스 도착역 리스트
 		Camp camp = campService.findByNo(no); // 테스트 -> 공항있는 캠핑장
+		
+		Map<String, String> map = new HashMap<>();
+		map.put("check", "1");
+		map.put("type", "camp");
+		map.put("likeNo", ""+no);
+		int likeCheck = 0;
+		int likeSer = likeService.selectNo(loginMember.getNo(), map);
+		if(likeSer > 0) {
+			System.out.println("----");
+			likeCheck = 1;
+			model.addAttribute("likeCheck", likeCheck);
+			model.addAttribute("likeNo", likeSer);
+		}
 
 		// 최근 본 캠핑장 -> no 0 인 곳에 차례로 번호 넣기
 		List<Camp> lastList = new ArrayList<>(); // 최신 4개 리스트
@@ -157,6 +176,7 @@ public class CampController {
 		}
 		String threeNo = "";
 		String fourNo = "";
+		
 		// 4개 넣어놓고 -> name에 최신 한 칸씩 뒤로 옮기기
 		String twoNo = zero.getName();
 		if (twoNo.equals("" + no)) { // 이미 최신에 현재 캠핑장이 있을 때

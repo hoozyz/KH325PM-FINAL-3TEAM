@@ -25,7 +25,7 @@
                                     <div class="mb-4">
                                         <label class="form-label mb-2" for="signin-title" style="float: left;">제목</label>
                                         <select id="category" name="category" style="margin-left: 250px; width:150px; float: left; height:40px; margin-bottom: 10px;" class="form-control form-select">
-                    			<option value="" selected disabled hidden>카테고리</option>
+                    			<option value="" selected disabled hidden>카테고리</option> <!-- select 는 name하고 옵션에 value값 적은게 modelattribute로 넘어감 -->
                     				<option value="캠핑장">캠핑장</option>
                     				<option value="공원">공원</option>
                     				<option value="축제">축제</option>
@@ -33,8 +33,8 @@
                                         <input class="form-control" name="title" style="width:430px" type="text" placeholder="제목을 입력해주세요" required>
                                     </div>
                                     <div class="mb-4" style="height: 350px;">
-                                        <label class="form-label mb-2" for="signin-content">내용</label>
-                                        <input type="file" value="" style="margin-left: 150px;width: 250px;" name="file" id="writeFile" accept="image/gif, image/jpg, image/jpeg, image/png"> <!-- 사진만 첨부 가능 -->
+                 						<label class="form-label mb-2" for="signin-content">내용</label>
+                                        <input type="file" value="" style="margin-left: 150px;width: 250px;" multiple="multiple" name="files" id="writeFile" accept="image/gif, image/jpg, image/jpeg, image/png"> <!-- 사진만 첨부 가능 -->
                                         <textarea class="form-control" style="height:320px; width:430px; word_wrap:break-word;" name="cont" id="signin-content" placeholder="내용을 입력해주세요" required></textarea>
                                     </div>
                                     <div style="margin-left: 60px;">
@@ -118,19 +118,34 @@
                     <!-- Catalog grid-->
                     <div class="row g-4 py-4">
                         <!-- 아이템 ::::: 세로 4 x 가로 3... 12개 임의지정-->
-                        <div class="col-sm-6 col-xl-4">
+                        <c:if test="${!empty list}">
+                        	<c:forEach var="i" begin="0" end="${list.size() - 1}">
+                        		<c:set var="renamefile" value="${list.get(i).renamefile}"/>
+                        		<div class="col-sm-6 col-xl-4">
                             <div class="card shadow-sm card-hover border-0 h-100">
                                 <div class="tns-carousel-wrapper card-img-top card-img-hover">
                                     <a class="img-overlay" href="real-estate-single-v1.html"></a>
-                                    <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">캠핑장</span></div>
-                                    <div class="tns-carousel-inner"><img src="resource/image/photo/001.jpg" alt="Image" style="width:100%; height:265px"><img src="resource/image/photo/001.jpg" alt="Image" style="width:100%; height:265px"></div>
-                                </div>
+                                    <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">${list.get(i).category}</span></div>
+                                  	<div class="tns-carousel-inner">
+                                    	<c:if test="${fn:contains(renamefile,',')}">
+                                    	<c:set var="split" value="${fn:split(renamefile,',')}"/>
+                                    	<c:set var="length" value="${fn:length(split)}"/>
+                                    	<c:forEach var="i" begin="0" end="${length-1}">
+                                    		<img src="${path}/resources/upload/image/${split[i]}" alt="Image" style="width:100%; height:265px">
+                                    	</c:forEach>
+                                    </c:if>
+                                    <c:if test="${not fn:contains(renamefile,',')}">
+                                    	<img src="${path}/resources/upload/image/${list.get(i).renamefile}" alt="Image" style="width:100%; height:265px">
+                                    </c:if>
+                                    </div>
+                                    </div>
                                 <div class="card-body position-relative pb-3">
-                                    <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">게시글 제목</a></h3>
+                                    <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">${list.get(i).title}</a></h3>
+                                </div>    
                                 </div>
-
                             </div>
-                        </div>                 
+                        	</c:forEach>
+                        </c:if>                 
                     </div>
                     <!-- Pagination-->
                     <nav class="border-top pb-md-4 pt-4 mt-2" aria-label="Pagination">
@@ -150,6 +165,12 @@
         </div>
     </main>
 </body>
+
+<script>
+	$(document).ready(function() {
+		$(".tns-liveregion").html('');
+	});
+</script>
 
 <script src="${path}/resources/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="${path}/resources/vendor/simplebar/dist/simplebar.min.js"></script>

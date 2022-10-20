@@ -254,33 +254,19 @@
 			          var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 			           
 			          // 마커를 표시할 위치와 title 객체 배열입니다 
-			         var positions = [
-					    {
-					    	content: '<div>${campList.get(0).name}</div>', 
-					        latlng: new kakao.maps.LatLng('${campList.get(0).lat}', '${campList.get(0).lng}')
-					    },
-					    {
-					    	content: '<div>${campList.get(1).name}</div>', 
-					        latlng: new kakao.maps.LatLng('${campList.get(1).lat}', '${campList.get(1).lng}')
-					    },
-					    {
-					    	content: '<div>${campList.get(2).name}</div>', 
-					        latlng: new kakao.maps.LatLng('${campList.get(2).lat}', '${campList.get(2).lng}')
-					    },
-					    {
-					    	content: '<div>${campList.get(3).name}</div>', 
-					        latlng: new kakao.maps.LatLng('${campList.get(3).lat}', '${campList.get(3).lng}')
-					    },
-					    {
-					    	content: '<div>${campList.get(4).name}</div>', 
-					        latlng: new kakao.maps.LatLng('${campList.get(4).lat}', '${campList.get(4).lng}')
-					    },
-					    {
-					    	content: '<div>${campList.get(5).name}</div>', 
-					        latlng: new kakao.maps.LatLng('${campList.get(5).lat}', '${campList.get(5).lng}')
-					    }
-					];
-					 
+			          var positions = [];
+		        	  
+						<c:forEach items="${campList}" var="item">
+							var name = "${item.name}";
+							var lat = "${item.lat}";
+							var lng = "${item.lng}";
+							var position = {
+								content: '<div>'+name+'</div>', 
+								latlng: new kakao.maps.LatLng(lat, lng)
+							}
+					       	positions.push(position);
+						</c:forEach>
+		        	  
 			          for (var i = 0; i < positions.length; i ++) {
 					    // 마커를 생성합니다
 					    var marker = new kakao.maps.Marker({

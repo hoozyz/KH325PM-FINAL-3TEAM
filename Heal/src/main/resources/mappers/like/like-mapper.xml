@@ -40,7 +40,7 @@
 	
 	<!-- 찜하기  -->
 	<insert id="insertLike" parameterType="Like" >
-		INSERT INTO TBL_REVIEW (
+		INSERT INTO TBL_LIKE (
 			NO, 
 			MEMBERNO, 
 			HOTELNO, 
@@ -89,8 +89,49 @@
 			<if test="parkno != null">
 				#{parkno}
 			</if>
-		
 	</delete>
+	
+	<select id="selectNo" parameterType="map" resultType="int">
+		SELECT NO
+		FROM TBL_LIKE
+		WHERE MEMBERNO = #{no}
+		<if test="hotelno != null">
+			AND HOTELNO = #{hotelno}
+		</if>
+		<if test="campno != null">
+			AND CAMPNO = #{campno}
+		</if>
+		<if test="festivalno != null">
+			AND FESTIVALNO = #{festivalno}
+		</if>
+		<if test="foodno != null">
+			AND FOODNO = #{foodno}
+		</if>
+		<if test="parkno != null">
+			AND PARKNO = #{parkno}
+		</if> 
+	</select>
+	
+	<select id="checkNo" parameterType="map" resultType="int">
+		SELECT COUNT(NO)
+		FROM TBL_LIKE
+		WHERE MEMBERNO = #{no}
+		<if test="hotelno != null">
+			AND HOTELNO = #{hotelno}
+		</if>
+		<if test="campno != null">
+			AND CAMPNO = #{campno}
+		</if>
+		<if test="festivalno != null">
+			AND FESTIVALNO = #{festivalno}
+		</if>
+		<if test="foodno != null">
+			AND FOODNO = #{foodno}
+		</if>
+		<if test="parkno != null">
+			AND PARKNO = #{parkno}
+		</if> 
+	</select>
 	
 	<!-- 찜삭 no -->
 	<delete id="deleteLike" parameterType="int">

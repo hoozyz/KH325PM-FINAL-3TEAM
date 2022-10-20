@@ -1,9 +1,11 @@
 package com.bc.heal.photo.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.bc.heal.vo.PageInfo;
 import com.bc.heal.vo.Photo;
 
 public interface PhotoService {
@@ -16,4 +18,10 @@ public interface PhotoService {
 	List<Photo> selectByMember(int no);
 
 	String saveFile(MultipartFile file, String savePath);
+
+	int getPhotoCount(String keyword);
+
+	int getPhotoCountAll();
+
+	List<Photo> selectPhotoList(PageInfo pageInfo, Map<String, String> param);
 }

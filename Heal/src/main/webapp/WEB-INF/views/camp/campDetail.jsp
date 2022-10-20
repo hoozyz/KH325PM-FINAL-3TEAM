@@ -10,9 +10,6 @@
 
 
 <c:set var="campNo" value="${camp.no}" />
-<c:set var="likeCheck" value="0" />
-
-
 
 <style>
     .weather_area {
@@ -1134,14 +1131,14 @@
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h1 class="h2 mb-2">${camp.name}</h1>
                 <div class="text-nowrap" id="like_button">
-                	<c:if test="${likeCheck == 0}">
-                		<button class="btn btn-icon btn-light-primary btn shadow-sm rounded-circle ms-2 mb-2" onclick="like_Plus(${campNo})" type="button" data-bs-toggle="tooltip" title="찜하기"><i class="fi-heart"></i></button>
-                	</c:if>
-                	<c:if test="${likeCheck == 1} ">
-                		<button class="btn btn-icon btn-light-primary btn shadow-sm rounded-circle ms-2 mb-2" onclick="like_Minus(${campNo})" type="button" data-bs-toggle="tooltip" title="찜 취소하기"><i class="fi-heart-filled"></i></button>  
-                	</c:if>
-                	
-                
+                	<div id="likeDiv">
+                		<c:if test="${likeCheck == 0}">
+                			<button class="btn btn-icon btn-light-primary btn shadow-sm rounded-circle ms-2 mb-2" id="likePlus1" onclick="like_Plus(${campNo})" type="button" data-bs-toggle="tooltip"><i class="fi-heart"></i></button>
+                		</c:if>
+                		<c:if test="${likeCheck == 1}">
+                			<button class="btn btn-icon btn-light-primary btn shadow-sm rounded-circle ms-2 mb-2" id="likeMinus1" onclick="like_Minus(${likeNo})" type="button" data-bs-toggle="tooltip"><i class="fi-heart-filled"></i></button>
+                		</c:if>
+                	</div>
                     
                     <div class="dropdown d-inline-block" data-bs-toggle="tooltip" title="Share">
                         <button class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle ms-2 mb-2" type="button" data-bs-toggle="dropdown"><i class="fi-share"></i></button>
@@ -1157,41 +1154,23 @@
         
         <script>
         
-        
-        function like_Plus(likeNo) {
-        	
+        function like_Plus(no) {
+        	$("#likePlus1").attr('onclick','like_Minus('+no+')')
         	var type = "camp";
-        	var likeCheck = 1;
         	$.ajax({
      			url: "/like/like",
      			type: "POST",
      			dataType: "text",
-     			data: { "likeNo": likeNo ,
-     					"likeCheck" : likeCheck /* 찜체크 */
-     					"type" : type 	 /*ㅍㅔ이지체크 ㅍ */
+     			data: { likeNo: no,
+     					type: type /*ㅍㅔ이지체크 ㅍ */
 				},
-     			progress: true,
          	
-     			success: function(list) {
-     				var like = JSON.parse(list);
+     			success: function(likeNo) {
+     				console.log(likeNo)
      				console.log("like_Plus.");
+		        	$("#likeDiv").html('<button class="btn btn-icon btn-light-primary btn shadow-sm rounded-circle ms-2 mb-2" id="likeMinus1" onclick="like_Minus('+likeNo+')" type="button" data-bs-toggle="tooltip"><i class="fi-heart-filled"></i></button>')
      				
-     				str = "";
-					$.each(like, (i, obj) => {
-						var likeNo = obj.likeNo;
-						
-						str += '<button class="btn btn-icon btn-light-primary btn shadow-sm rounded-circle ms-2 mb-2" onclick="like_Minus(' + likeNo + ')" type="button" data-bs-toggle="tooltip" title="찜 취소하기"><i class="fi-heart-filled bg-white"></i></button>                  '
-         				str += '<div class="dropdown d-inline-block" data-bs-toggle="tooltip" title="공유하기">                                                                                                                                                           '
-         				str += '    <button class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle ms-2 mb-2" type="button" data-bs-toggle="dropdown"><i class="fi-share"></i></button>                                                                '
-         				str += '    <div class="dropdown-menu dropdown-menu-end my-1">                                                                                                                                                                                  '
-         				str += '        <button class="dropdown-item" type="button"><i class="fi-facebook fs-base opacity-75 me-2"></i>Facebook</button>                                                                                                                '
-         				str += '        <button class="dropdown-item" type="button"><i class="fi-twitter fs-base opacity-75 me-2"></i>Twitter</button>                                                                                                                  '
-         				str += '        <button class="dropdown-item" type="button"><i class="fi-instagram fs-base opacity-75 me-2"></i>Instagram</button>                                                                                                              '
-         				str += '    </div>                                                                                                                                                                                                                              '
-         				str += '</div>                                                                                                                                                                                                                                '
-						});         
-       				$('#like_button').html(str);
-      			}
+      			},
 					error:function(e) {
       				console.log(e)
       			}
@@ -1199,63 +1178,29 @@
          }        
                             
         function like_Minus(likeNo) {
-        	
+        	var no = ${camp.no};
+        	$("#likeMinus1").attr('onclick','like_Plus('+no+')')
+        	$("#likeDiv").html('<button class="btn btn-icon btn-light-primary btn shadow-sm rounded-circle ms-2 mb-2" id="likePlus1" onclick="like_Plus('+no+')" type="button" data-bs-toggle="tooltip"><i class="fi-heart"></i></button>')
         	var type = "camp";
-        	var likeCheck = 0;
         	$.ajax({
      			url: "/like/like",
      			type: "POST",
      			dataType: "text",
-     			data: { "likeNo": likeNo ,
- 						"likeCheck" : likeCheck /* 찜체크 */
- 						"type" : type 	 /*ㅍㅔ이지체크 ㅍ */
-     			},
-     			progress: true,
+     			data: { 
+     				no: likeNo,
+     				type: type
+				},
          	
-     			success: function(list) {
-    				var like = JSON.parse(list);
-     				console.log("like_Minus");
-     				
-     				str = "";
-     				$.each(like, (i, obj) => {
-						var likeNo = obj.likeNo;
-						
-						str += '<button class="btn btn-icon btn-light-primary btn shadow-sm rounded-circle ms-2 mb-2" onclick="like_Plus(' + likeNo + ')" type="button" data-bs-toggle="tooltip" title="찜하기"><i class="fi-heart"></i></button>                '
-         				str += '<div class="dropdown d-inline-block" data-bs-toggle="tooltip" title="공유하기">                                                                                                                                                           '
-         				str += '    <button class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle ms-2 mb-2" type="button" data-bs-toggle="dropdown"><i class="fi-share"></i></button>                                                                '
-         				str += '    <div class="dropdown-menu dropdown-menu-end my-1">                                                                                                                                                                                  '
-         				str += '        <button class="dropdown-item" type="button"><i class="fi-facebook fs-base opacity-75 me-2"></i>Facebook</button>                                                                                                                '
-         				str += '        <button class="dropdown-item" type="button"><i class="fi-twitter fs-base opacity-75 me-2"></i>Twitter</button>                                                                                                                  '
-         				str += '        <button class="dropdown-item" type="button"><i class="fi-instagram fs-base opacity-75 me-2"></i>Instagram</button>                                                                                                              '
-         				str += '    </div>                                                                                                                                                                                                                              '
-         				str += '</div>                                                                                                                                                                                                                                '
-						});         
-       				$('#like_button').html(str);
+     			success: function(likeNo) {
+     				console.log(likeNo)
+     				console.log("like_Plus.");
+      			},
+					error:function(e) {
+      				console.log(e)
       			}
-     		});	
+     		});		
          }      
 		</script>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         <!-- Gallery-->
         <section class="container overflow-auto mb-4 pb-3" data-simplebar>
@@ -1326,51 +1271,31 @@
                     		리뷰내역이 없습니다.
                     	</c:if>
                     	<c:if test="${!empty revList}">
-                    		<div class="mb-4 pb-4 border-bottom"><div class="d-flex justify-content-between mb-3"><div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/i3.jpg" width="48" alt="Avatar">
-                                <div class="ps-2"><h6 class="fs-base mb-i">${revList.get(0).id}</h6>
+                    		<c:forEach var="i" begin="0" end="${revList.size() - 1}">
+                    			<div class="mb-4 pb-4 border-bottom"><div class="d-flex justify-content-between mb-3"><div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/i3.jpg" width="48" alt="Avatar">
+                                <div class="ps-2"><h6 class="fs-base mb-i">${revList.get(i).id}</h6>
                                     <span class="star-rating">
-	                                    <c:if test="${revList.get(0).revstar == 5}">
+	                                    <c:if test="${revList.get(i).revstar == 5}">
 	                                    	<i class="star-rating-icon fi-star-filled active"></i>
 	                                    	<i class="star-rating-icon fi-star-filled active"></i>
 	                                    	<i class="star-rating-icon fi-star-filled active"></i>
 	                                    	<i class="star-rating-icon fi-star-filled active"></i>
 	                                    	<i class="star-rating-icon fi-star-filled active"></i>
 	                                    </c:if>
-	                                    <c:if test="${revList.get(0).revstar < 5}">
-	                                    	<c:forEach var="i" begin="1" end="${revList.get(0).revstar}">
+	                                    <c:if test="${revList.get(i).revstar < 5}">
+	                                    	<c:forEach var="i" begin="1" end="${revList.get(i).revstar}">
 	                                    		<i class="star-rating-icon fi-star-filled active"></i>
 	                                   	 	</c:forEach>
-	                                    	<c:forEach var="i" begin="${revList.get(0).revstar + 1}" end="5">
+	                                    	<c:forEach var="i" begin="${revList.get(i).revstar + 1}" end="5">
 	                                    		<i class="star-rating-icon fi-star"></i>
 	                                    	</c:forEach>
 	                                    </c:if>
                                     </span></div>
-                            </div><span class="text-muted fs-sm">${revList.get(0).createdate}</span></div><p>${revList.get(0).cont}</p>
-                        <div class="d-flex align-items-center" id="like${revList.get(0).no}"><button class="btn-like" type="button" onclick="likePlus(${revList.get(0).no})"><i class="fi-heart"></i>(<span id="revLike${revList.get(0).no}">${revList.get(0).revlike}</span>)</button>
+                            </div><span class="text-muted fs-sm">${revList.get(i).createdate}</span></div><p>${revList.get(i).cont}</p>
+                        <div class="d-flex align-items-center" id="like${revList.get(i).no}"><button class="btn-like" type="button" onclick="likePlus(${revList.get(i).no})"><i class="fi-heart"></i>(<span id="revLike${revList.get(i).no}">${revList.get(i).revlike}</span>)</button>
                         </div></div>
+                    		</c:forEach>
                         
-                        <div class="mb-4 pb-4 border-bottom"><div class="d-flex justify-content-between mb-3"><div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/03.jpg" width="48" alt="Avatar">
-                                <div class="ps-2"><h6 class="fs-base mb-0">${revList.get(1).id}</h6>
-                                    <span class="star-rating">
-	                                    <c:if test="${revList.get(1).revstar == 5}">
-	                                    	<i class="star-rating-icon fi-star-filled active"></i>
-	                                    	<i class="star-rating-icon fi-star-filled active"></i>
-	                                    	<i class="star-rating-icon fi-star-filled active"></i>
-	                                    	<i class="star-rating-icon fi-star-filled active"></i>
-	                                    	<i class="star-rating-icon fi-star-filled active"></i>
-	                                    </c:if>
-	                                    <c:if test="${revList.get(1).revstar < 5}">
-	                                    	<c:forEach var="i" begin="1" end="${revList.get(1).revstar}">
-	                                    		<i class="star-rating-icon fi-star-filled active"></i>
-	                                   	 	</c:forEach>
-	                                    	<c:forEach var="i" begin="${revList.get(1).revstar + 1}" end="5">
-	                                    		<i class="star-rating-icon fi-star"></i>
-	                                    	</c:forEach>
-	                                    </c:if>
-                                    </span></div>
-                            </div><span class="text-muted fs-sm">${revList.get(1).createdate}</span></div><p>${revList.get(1).cont}</p>
-                        <div class="d-flex align-items-center" id="like${revList.get(1).no}"><button class="btn-like" type="button" onclick="likePlus(${revList.get(1).no})"><i class="fi-heart"></i>(<span id="revLike${revList.get(1).no}">${revList.get(1).revlike}</span>)</button>
-                        </div></div>
                    	 	</c:if>
                     </div>
                     <!-- Pagination-->

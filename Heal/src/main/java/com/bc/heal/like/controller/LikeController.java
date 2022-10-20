@@ -90,54 +90,19 @@ public class LikeController {
 	
 	@PostMapping("/like")
 	@ResponseBody
-	public Map<String, Object> write(Model model, @RequestParam Map<String, String> param,
+	public int write(Model model, @RequestParam Map<String, String> param,
 			@SessionAttribute(name = "loginMember", required = false) Member loginMember, HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		String location = req.getHeader("Referer");
+//		int memNo = loginMember.getNo();
+		int memNo = 2;
+		int no = 0;
 		
-		Map<String, Object> map = new HashMap<String, Object>();
-		Like like = new Like();
-		
-		int memNo = loginMember.getNo();
-		like.setMemberno(memNo);
-		
-		String type = param.get("camp");
-		if (type.equals("hotel")) {
-			like.setHotelno(Integer.parseInt(param.get("likeNo")));
-		} else if (type.equals("camp")) {
-			like.setCampno(Integer.parseInt(param.get("likeNo")));
-		} else if (type.equals("festival")) {
-			like.setFestivalno(Integer.parseInt(param.get("likeNo")));
-		} else if (type.equals("food")) {
-			like.setFoodno(Integer.parseInt(param.get("likeNo")));
-		} else if (type.equals("park")) {
-			like.setParkno(Integer.parseInt(param.get("likeNo")));
+		if(param.containsKey("no")) {
+			no = Integer.parseInt(param.get("no"));
+			likeService.deleteLike(no);
+		} else { // 찜하기
+			no = likeService.selectNo(memNo, param);
 		}
-		
-		System.out.println(like);
-		
-		int result = 0;
-		result = likeService.insertLike(like);
-		
-		
-		for( Entry<String, Object> element : map.entrySet() ){
-		    String key = element.getKey();
-		    Object value = element.getValue();
-		    System.out.println( String.format("키 : "+key+" 값 : "+value));
-		}
-		
-		
-		if(result > 0) {
-			model.addAttribute("msg", "찜하기.");
-			model.addAttribute("location", location);
-
-			
-		} else {
-			model.addAttribute("msg", "찜 취소.");
-			model.addAttribute("location", location);
-		}
-		
-		
-		return map;
+		return no;
 	}
 	
 	

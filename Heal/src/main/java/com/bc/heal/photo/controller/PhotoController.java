@@ -2,6 +2,7 @@ package com.bc.heal.photo.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,12 +14,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.bc.heal.photo.service.PhotoService;
 import com.bc.heal.vo.Member;
+import com.bc.heal.vo.PageInfo;
 import com.bc.heal.vo.Photo;
 
 @Controller
@@ -29,28 +31,60 @@ public class PhotoController {
 	private PhotoService service;
 
 	@GetMapping("/main")
-	public String main(Model model) {
+	public String main(Model model, Map<String, String> param) {
+		int page = 1;
+		String keyword = "";
+
+		PageInfo pageInfo = null;
+		if (param.containsKey("keyword")) {
+			try {
+				keyword = param.get("keyword");
+			} catch (Exception e) {
+			}
+			pageInfo = new PageInfo(page, 5, service.getPhotoCount(keyword), 12); // 검색어 가지고 개수 가져오기 -> 제목/내용
+
+		} else {
+			pageInfo = new PageInfo(page, 5, service.getPhotoCountAll(), 12);
+		}
+		
+		List<Photo> list = new ArrayList<>();
+
+		list = service.selectPhotoList(pageInfo, param);
+
+		model.addAttribute("list", list);
+		model.addAttribute("pageInfo", pageInfo);
+
 		return "/board/photoMain";
 	}
 
 	@PostMapping("/write")
-	public String write(Model model, @RequestParam("file") MultipartFile file, @ModelAttribute Photo photo,
+	public String write(Model model, MultipartHttpServletRequest files, @ModelAttribute Photo photo,
 			@SessionAttribute(name = "loginMember", required = false) Member loginMember, HttpSession session) {
 
 		photo.setMemberno(loginMember.getNo());
+		List<MultipartFile> list = files.getFiles("files");
+		String originalNameStr = "";
+		String reNameStr = "";
+		
+		if (!list.isEmpty()) {
+			for (int i = 0; i < list.size(); i++) { // 파일 개수만큼 저장하기
+				MultipartFile file = list.get(i);
+				String rootPath = "D:\\dev\\git\\final\\Heal\\src\\main\\webapp\\resources";
+				String savePath = rootPath + "/upload/image/";
+				String renamedFileName = service.saveFile(file, savePath); // 실제 파일을 저장하는 코드
 
-		if (file != null && file.isEmpty() == false) {
-			String rootPath = session.getServletContext().getRealPath("resources");
-			String savePath = rootPath + "/upload/image";
-			String renamedFileName = service.saveFile(file, savePath); // 실제 파일을 저장하는 코드
-
-			System.out.println(renamedFileName);
-			if (renamedFileName != null) {
-				photo.setOriginalfile(file.getOriginalFilename());
-				photo.setRenamefile(renamedFileName);
+				if (renamedFileName != null && i < list.size() - 1) { // 마지막 전까지만 , 넣기
+					originalNameStr += file.getOriginalFilename() + ",";
+					reNameStr += renamedFileName + ",";
+				} else {
+					originalNameStr += file.getOriginalFilename();
+					reNameStr += renamedFileName;
+				}
 			}
+			photo.setOriginalfile(originalNameStr);
+			photo.setRenamefile(reNameStr);
 		}
-		System.out.println(photo);
+		
 		int result = service.save(photo);
 
 		if (result > 0) {
@@ -59,7 +93,7 @@ public class PhotoController {
 			model.addAttribute("msg", "게시글 작성에 실패하였습니다.");
 		}
 
-		return "/board/photoMain";
+		return "redirect: /photo/main";
 	}
 
 	@GetMapping("/myPhoto")
