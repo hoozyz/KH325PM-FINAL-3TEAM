@@ -140,19 +140,19 @@
 		                <div class="card card-light card-hover h-100">
 		                  <div class="card-img-top card-img-hover"style="border: 1px;">
 		                    <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info"><c:out value="${park.category}"/></span></div>
-		                    <div class="tns-carousel-inner">
+		                    <div class="tns-carousel-inner" style="height:300px;">
 		                    	<c:set var="parkCategory" value="${park.category}"/>
 		                    	<c:if test="${fn:contains(parkCategory, '어린이')}">
-		                    		<img src="${path}/resources/image/pSearchKids/searchKids<%=Math.round(Math.random()*9 + 1)%>.png" alt="Image" style="min-height: 260px; max-height: 260px;">
+		                    		<img src="${path}/resources/image/pSearchKids/searchKids<%=Math.round(Math.random()*9 + 1)%>.png" alt="Image" style="width: 100%;  height: 100%;  object-fit: cover;">
 		                    	</c:if>
 		                    	<c:if test="${fn:contains(parkCategory, '수변')}">
-		                    		<img src="${path}/resources/image/pSearchWater/searchWater<%=Math.round(Math.random()*9 + 1)%>.png" alt="Image" style="min-height: 260px; max-height: 260px;">
+		                    		<img src="${path}/resources/image/pSearchWater/searchWater<%=Math.round(Math.random()*9 + 1)%>.png" alt="Image" style="width: 100%;  height: 100%;  object-fit: cover;">
 		                    	</c:if>
 		                    	<c:if test="${fn:contains(parkCategory, '역사')}">
-		                    		<img src="${path}/resources/image/psearchHis/searchHis<%=Math.round(Math.random()*9 + 1)%>.png" alt="Image" style="min-height: 260px; max-height: 260px;">
+		                    		<img src="${path}/resources/image/psearchHis/searchHis<%=Math.round(Math.random()*9 + 1)%>.png" alt="Image" style="width: 100%;  height: 100%;  object-fit: cover;">
 		                    	</c:if>
 		                    	<c:if test="${!fn:contains(parkCategory, '수변') && !fn:contains(parkCategory, '어린이') && !fn:contains(parkCategory, '역사')}">
-		                    		<img src="${path}/resources/image/pSearchOther/park<%=Math.round(Math.random()*12 + 1)%>.png" alt="Image" style="min-height: 260px; max-height: 260px;">
+		                    		<img src="${path}/resources/image/pSearchOther/park<%=Math.round(Math.random()*12 + 1)%>.png" alt="Image" style="width: 100%;  height: 100%;  object-fit: cover;">
 		                    	</c:if>
 		                    </div>
 		                  </div>
