@@ -467,9 +467,8 @@
                                         <span class="sales-price">${price1}원</span>
                                         <span class="dimmed-price">${meat.price}원</span>
                                     </div>
-
                                 </div>
-                                <div class="btn-group btn-group-lg scale-up delay-3" role="group" aria-label="Buy now or add to wishlist"><a class="btn btn-primary" href="real-estate-single-v2.html">상세보기</a>
+                                <div class="btn-group btn-group-lg scale-up delay-3" role="group" aria-label="Buy now or add to wishlist"><a class="btn btn-primary" href="${meat.link}">구매하기</a>
                                 </div>
                             </div>
                         </div>
@@ -503,8 +502,7 @@
                                     </div>
 
                                 </div>
-                                <div class="btn-group btn-group-lg scale-up delay-3" role="group" aria-label="Buy now or add to wishlist"><a class="btn btn-primary" href="real-estate-single-v2.html">Sale for $16,850</a>
-                                    <button class="btn btn-primary px-3 border-start border-light" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Wishlist"><i class="fi-heart fs-5"></i></button>
+                                <div class="btn-group btn-group-lg scale-up delay-3" role="group" aria-label="Buy now or add to wishlist"><a class="btn btn-primary" href="${shrimp.link}">구매하기</a>
                                 </div>
                             </div>
                         </div>
@@ -545,6 +543,7 @@
 
         </script>
 
+
         <!-- Top offers (carousel)-->
         <section class="container mb-5 pb-md-4">
             <div class="d-flex align-items-center justify-content-between mb-3">
@@ -553,32 +552,36 @@
             </div>
             <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside tns-nav-outside-flush mx-n2">
                 <div class="tns-carousel-inner row gx-4 mx-0 pt-3 pb-4" data-carousel-options="{&quot;items&quot;: 4, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3},&quot;992&quot;:{&quot;items&quot;:4}}}">
-                    <!-- Item 6개 -->
-                    <c:if test="${!empty foodList}"> <!-- 음식 리스트 -->
-                    	<c:forEach var="i" begin="0" end="${foodList.size() - 1}">
-                    		<div class="col">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="card-img-top card-img-hover" style="height:300px;">
-                                <a class="img-overlay" href="real-estate-single-v1.html"></a>
-                                 <img src="${foodList.get(i).image}" style="width: 100%;  height: 100%;  object-fit: cover; alt="Image">
-                                <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">${foodList.get(i).cate2}</span><span class="d-table badge bg-info">${foodList.get(i).cate3}</span></div>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                </div>
-                            </div>
-                                <hr>
-                            <div class="card-body position-relative pb-3">
-                                <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">${foodList.get(i).mall}</h4>
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">${foodList.get(i).title}</a></h3>
-                                <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>${foodList.get(i).price}원</div>
-                            </div>
-                        </div>
-                    </div>
-                    	</c:forEach>
+                     
+                     
+                     <c:if test="${!empty foodList}"> <!-- 용품 리스트 -->
+                   	  	<c:forEach items="${foodList}" var="food" varStatus="status">
+               	  			<div class="col">
+		                        <div class="card shadow-sm card-hover border-0 h-100">
+		                            <div class="card-img-top card-img-hover">
+		                                <a class="img-overlay" href="${food.link}"></a>
+		                                <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">${food.cate2}</span><span class="d-table badge bg-info">${food.cate3}</span></div>
+		                                <div class="content-overlay end-0 top-0 pt-3 pe-3">
+		                                </div><img src="${food.image}" style="min-height: 300px"  alt="Image">
+		                            </div>
+		                                <hr>
+		                            <div class="card-body position-relative pb-3">
+		                                <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">${food.mall}</h4>
+		                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="${food.link}">${food.title}</a></h3>
+		                                <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>${food.price}원</div>
+		                            </div>
+		                        </div>
+		                    </div>
+	                   	 	</c:forEach>
                     </c:if>
+                    
+                    
+                    
                 </div>
             </div>
         </section>
+        
+        
         <!-- Top offers (carousel)-->
         <section class="container mb-5 pb-md-4">
             <div class="d-flex align-items-center justify-content-between mb-3">
@@ -588,31 +591,39 @@
                 <div class="tns-carousel-inner row gx-4 mx-0 pt-3 pb-4" data-carousel-options="{&quot;items&quot;: 4, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3},&quot;992&quot;:{&quot;items&quot;:4}}}">
                   <!-- Item 6개 -->
                     <c:if test="${!empty supList}"> <!-- 용품 리스트 -->
-                    	<c:forEach var="i" begin="0" end="${supList.size() - 1}">
-                    		<div class="col">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" href="real-estate-single-v1.html"></a>
-                                <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">${supList.get(i).cate2}</span><span class="d-table badge bg-info">${supList.get(i).cate3}</span></div>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                </div><img src="${supList.get(i).image}" style="min-height: 300px"  alt="Image">
-                            </div>
-                                <hr>
-                            <div class="card-body position-relative pb-3">
-                                <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">${supList.get(i).mall}</h4>
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">${supList.get(i).title}</a></h3>
-                                <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>${supList.get(i).price}원</div>
-                            </div>
-                        </div>
-                    </div>
-                    	</c:forEach>
+                   	  	<c:forEach items="${supList}" var="item" varStatus="status">
+               	  			<div class="col">
+		                        <div class="card shadow-sm card-hover border-0 h-100">
+		                            <div class="card-img-top card-img-hover">
+		                                <a class="img-overlay" href="${item.link}"></a>
+		                                <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">${item.cate2}</span><span class="d-table badge bg-info">${item.cate3}</span></div>
+		                                <div class="content-overlay end-0 top-0 pt-3 pe-3">
+		                                </div><img src="${item.image}" style="min-height: 300px"  alt="Image">
+		                            </div>
+		                                <hr>
+		                            <div class="card-body position-relative pb-3">
+		                                <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">${item.mall}</h4>
+		                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="${item.link}">${item.title}</a></h3>
+		                                <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>${item.price}원</div>
+		                            </div>
+		                        </div>
+		                    </div>
+                   	 	</c:forEach>
                     </c:if>
                 </div>
             </div>
         </section>
-        </section>
+       </section>	
+        
+        	
+        
+        
+        
+        
+        
     </main>
+    
+    
     
      <!-- Vendor scrits: js libraries and plugins-->
     <script src="${path}/resources/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
