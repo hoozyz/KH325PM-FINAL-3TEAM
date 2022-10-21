@@ -47,4 +47,6 @@ public interface ReviewMapper {
 	int selectRevByParkCnt(int no);
 
 	int getStarByCamp(int no);
+	
+	int getStarByFood(int no);
 }

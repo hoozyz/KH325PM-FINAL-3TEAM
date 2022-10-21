@@ -147,6 +147,13 @@
 	 		FROM TBL_REVIEW 
 	 		WHERE FOODNO = ${no}
 	</select>
+	
+	<select id="getStarByFood" parameterType="int" resultType="int">
+		SELECT SUM(REVSTAR)
+		FROM TBL_REVIEW
+		WHERE FOODNO = #{no}
+	</select>
+	
 <!-- 	@@@푸드@@@ -->
 
 <!-- 	@@@호텔@@@ -->

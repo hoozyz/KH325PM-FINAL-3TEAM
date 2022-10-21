@@ -22,10 +22,14 @@ public interface ReviewService {
 
 	int getCountByCamp(int campNo);
 
+	int getStarByCamp(int no);
+	
 	// 상현
 	List<Review> selectRevFood(int no, PageInfo pageInfo, String sort);
 
 	int selectRevByFoodCnt(int no);
+	
+	int getStarByFood (int no);
 
 	// 우성(hotel)
 	List<Review> selectRevHotel(int no, PageInfo pageInfo, String sort);
@@ -42,5 +46,5 @@ public interface ReviewService {
 
 	int selectRevByParkCnt(int no);
 
-	int getStarByCamp(int no);
+	
 }

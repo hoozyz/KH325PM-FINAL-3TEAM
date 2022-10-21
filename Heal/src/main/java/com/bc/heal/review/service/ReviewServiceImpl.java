@@ -142,4 +142,9 @@ public class ReviewServiceImpl implements ReviewService {
 	public int getStarByCamp(int no) {
 		return mapper.getStarByCamp(no);
 	}
+
+	@Override
+	public int getStarByFood(int no) {
+		return mapper.getStarByFood(no);
+	}
 }
