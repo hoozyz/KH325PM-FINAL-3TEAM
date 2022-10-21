@@ -41,4 +41,6 @@ public interface ReviewService {
 	List<Review> selectRevPark(int no, PageInfo pageInfo, String sort);
 
 	int selectRevByParkCnt(int no);
+
+	int getStarByCamp(int no);
 }

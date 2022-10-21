@@ -112,6 +112,12 @@
 		FROM TBL_REVIEW
 		WHERE CAMPNO = #{no}
 	</select>
+	
+	<select id="getStarByCamp" parameterType="int" resultType="int">
+		SELECT SUM(REVSTAR)
+		FROM TBL_REVIEW
+		WHERE CAMPNO = #{no}
+	</select>
 <!-- 	@@@캠핑@@@ -->	
 	
 	

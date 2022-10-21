@@ -45,4 +45,6 @@ public interface ReviewMapper {
 	List<Review> selectRevPark(RowBounds rowBounds, Map<String, String> map);
 
 	int selectRevByParkCnt(int no);
+
+	int getStarByCamp(int no);
 }

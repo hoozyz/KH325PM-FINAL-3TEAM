@@ -199,7 +199,15 @@ public class CampController {
 		model.addAttribute("lastList", lastList);
 
 		// 리뷰
-		PageInfo pageInfo = new PageInfo(1, 5, revService.getCountByCamp(no), 2);
+		int revCount = revService.getCountByCamp(no); 
+		int revStarAdd = 0; // 별점 합
+			if(revCount > 0) { // 리뷰가 있을때
+				revStarAdd = revService.getStarByCamp(no);
+			}
+		model.addAttribute("revCount", revCount);
+		model.addAttribute("revStarAdd", revStarAdd);
+		
+		PageInfo pageInfo = new PageInfo(1, 5, revCount, 2);
 		List<Review> revList = new ArrayList<>();
 		String sort = "new";
 		revList = revService.selectRevCamp(no, pageInfo, sort); // 캠프번호, 페이지, 정렬

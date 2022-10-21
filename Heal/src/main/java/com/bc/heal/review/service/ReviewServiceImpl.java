@@ -137,4 +137,9 @@ public class ReviewServiceImpl implements ReviewService {
 
 		return mapper.selectRevByParkCnt(no);
 	}
+
+	@Override
+	public int getStarByCamp(int no) {
+		return mapper.getStarByCamp(no);
+	}
 }
