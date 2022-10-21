@@ -180,11 +180,13 @@ public class PayController {
 
 		if (result > 1) {
 			model.addAttribute("msg", "예약이 완료되었습니다.");
+			model.addAttribute("location", location);
 		} else {
 			model.addAttribute("msg", "예약이 실패하였습니다.");
+			model.addAttribute("location", location);
 		}
 
-		return location; // 예약정보 저장
+		return "common/msg"; // 예약정보 저장
 	}
 
 }

@@ -126,11 +126,13 @@ public class BoardController {
 
 		if (result > 0) {
 			model.addAttribute("msg", "수정에 성공하였습니다.");
+			model.addAttribute("location", location);
 		} else {
 			model.addAttribute("msg", "수정에 실패하였습니다.");
+			model.addAttribute("location", location);
 		}
 
-		return location;
+		return "common/msg";
 	}
 	
 	@GetMapping("/view") // ajax
@@ -154,11 +156,13 @@ public class BoardController {
 
 		if (result > 0) {
 			model.addAttribute("msg", "삭제에 성공하였습니다.");
+			model.addAttribute("location", location);
 		} else {
 			model.addAttribute("msg", "삭제에 실패하였습니다.");
+			model.addAttribute("location", location);
 		}
 
-		return location;
+		return "common/msg";
 	}
 
 	@PostMapping("/write")
@@ -177,19 +181,21 @@ public class BoardController {
 
 		if (result > 0) {
 			model.addAttribute("msg", "작성에 성공하였습니다.");
+			model.addAttribute("location", location);
 		} else {
 			model.addAttribute("msg", "작성에 실패하였습니다.");
+			model.addAttribute("location", location);
 		}
 
-		return location;
+		return "common/msg";
 	}
 	
 	// 관리자
 	@RequestMapping("/admin")
-	public String board(Model model, String no) {
+	public String board(Model model, String no, HttpServletRequest req) {
 		List<Board> list = new ArrayList<>();
 		List<Member> memList = new ArrayList<>();
-		
+		String location = req.getHeader("Referer");
 		if(no != null) {
 			service.delete(Integer.parseInt(no)); // no 오면 삭제
 		}
@@ -211,7 +217,8 @@ public class BoardController {
 			return "/admin/board";
 		} else { // 유저가 없을 때
 			model.addAttribute("msg", "자유게시글이 없습니다.");
-			return "/admin/board";
+			model.addAttribute("location", location);
+			return "common/msg";
 		}
 	}
 }

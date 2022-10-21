@@ -214,7 +214,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="review-rating">평점<span class='text-danger'>*</span></label>
-                                <select class="form-control form-select" id="review-rating" name="star" required>
+                                <select class="form-control form-select" id="review-rating" name="revstar" required>
                       <option value="" selected disabled hidden>평점 선택</option>
                       <option value="5">5점</option>
                       <option value="4">4점</option>

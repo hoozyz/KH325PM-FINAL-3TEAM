@@ -60,11 +60,13 @@ public class ReserveController {
 
 		if (result > 0) {
 			model.addAttribute("msg", "예약에 성공하였습니다.");
+			model.addAttribute("location", location);
 		} else {
 			model.addAttribute("msg", "예약에 실패하였습니다.");
+			model.addAttribute("location", location);
 		}
 
-		return location; // 이전 페이지로 보내기
+		return "common/msg"; // 이전 페이지로 보내기
 	}
 
 	@GetMapping("/myCamp") // 캠핑장, 숙박업소
@@ -92,6 +94,8 @@ public class ReserveController {
 			model.addAttribute("hotelList", hotelList);
 		} else {
 			model.addAttribute("msg", "캠핑장 예약내역이 없습니다.");
+			model.addAttribute("location", "/member/myCamp");
+			return "common/msg";
 		}
 		return "/member/myCamp";
 	}
@@ -129,6 +133,8 @@ public class ReserveController {
 			model.addAttribute("airList", airList);
 		} else {
 			model.addAttribute("msg", "교통 예약내역이 없습니다.");
+			model.addAttribute("location", "/member/myTraffic");
+			return "common/msg";
 		}
 		return "/member/myTraffic";
 	}
@@ -143,10 +149,12 @@ public class ReserveController {
 
 		if (result > 0) {
 			model.addAttribute("msg", "삭제에 성공하였습니다.");
+			model.addAttribute("location", location);
 		} else {
 			model.addAttribute("msg", "삭제에 실패하였습니다.");
+			model.addAttribute("location", location);
 		}
 
-		return location;
+		return "common/msg";
 	}
 }

@@ -42,7 +42,8 @@ public class MemberController {
 			return "redirect:" + location; // 가져가는 정보 없이 전 페이지로 보내기
 		} else {
 			model.addAttribute("msg", "아이디나 패스워드가 잘못되었습니다.");
-			return location;
+			model.addAttribute("location", location);
+			return "common/msg";
 		}
 	}
 
@@ -66,10 +67,12 @@ public class MemberController {
 
 		if (result > 0) {
 			model.addAttribute("msg", "회원가입에 성공하였습니다.");
+			model.addAttribute("location", "/");
 		} else {
 			model.addAttribute("msg", "회원가입에 실패하였습니다. 다시 시도해주세요.");
+			model.addAttribute("location", "/");
 		}
-		return "/";
+		return "common/msg";
 	}
 
 	@GetMapping("/member/myInfo")
@@ -92,11 +95,13 @@ public class MemberController {
 		if (result > 0) {
 			model.addAttribute("loginMember", service.findById(member.getId())); // DB에 있는 값을 다시 세션으로 업데이트
 			model.addAttribute("msg", "회원정보를 수정하였습니다.");
+			model.addAttribute("location", "/member/myInfo");
 		} else {
 			model.addAttribute("msg", "회원정보를 수정을 실패하였습니다.");
+			model.addAttribute("location", "/member/myInfo");
 		}
 
-		return "/member/myInfo";
+		return "common/msg";
 	}
 
 	@GetMapping("/member/delete")
@@ -105,11 +110,13 @@ public class MemberController {
 
 		if (result > 0) {
 			model.addAttribute("msg", "정상적으로 탈퇴 되었습니다.");
-			return "/logout";
+			model.addAttribute("location", "logout");
 		} else {
 			model.addAttribute("msg", "회원탈퇴에 실패하였습니다.");
-			return "/member/myInfo";
+			model.addAttribute("location", "/member/myInfo");
 		}
+		
+		return "common/msg";
 	}
 
 	// 관리자 영역
@@ -119,15 +126,16 @@ public class MemberController {
 		// 유저 번호가 들어오면 탈퇴
 		if (no != null) {
 			service.delete(Integer.parseInt(no));
-			model.addAttribute("msg", "멤버 탈퇴가 성공하였습니다");
 		}
 		list = service.allList();
 		list.remove(0); // 관리자 빼기
 		if (list.size() > 0) {
 			model.addAttribute("list", list);
+			return "/admin/member";
 		} else { // 유저가 없을 때
 			model.addAttribute("msg", "멤버가 없습니다.");
+			model.addAttribute("location", "/admin/member");
+			return "common/msg";
 		}
-		return "admin/member";
 	}
 }

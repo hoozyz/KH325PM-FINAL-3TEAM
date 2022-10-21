@@ -68,9 +68,6 @@ public class ReviewController {
 			rev.setParkno(no);
 		}
 		rev.setMemberno(memNo);
-		
-		
-		
 		int result = 0;
 		result = revService.insertReview(rev);
 		
@@ -83,9 +80,6 @@ public class ReviewController {
 		}
 		return "common/msg";
 	}
-	
-	
-	
 
 	@GetMapping("/delete")
 	public String delete(Model model, int no, HttpServletRequest req) {

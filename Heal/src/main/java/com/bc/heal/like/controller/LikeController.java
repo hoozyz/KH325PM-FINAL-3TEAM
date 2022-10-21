@@ -92,8 +92,8 @@ public class LikeController {
 		String location = req.getHeader("Referer");
 		
 		likeService.deleteLike(no);
-		
-		return location;
+		model.addAttribute("location", location);
+		return "common/msg";
 	}
 
 	

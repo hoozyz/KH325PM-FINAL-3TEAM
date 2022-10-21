@@ -6,7 +6,8 @@
 <mapper namespace="com.bc.heal.review.mapper.ReviewMapper">
 	<resultMap type="Review" id="reviewIdMap">
 		<id property="no" column="NO"/>
-		<result property="id" column="TITLE"/>
+		<result property="id" column="ID"/>
+		<result property="title" column="TITLE"/>
 		<result property="cont" column="CONT"/>
 		<result property="revstar" column="REVSTAR"/>
 		<result property="revlike" column="REVLIKE"/>
@@ -77,7 +78,6 @@
 			<if test="parkno != null">
 				#{parkno}
 			</if>
-					
  		)
 	</insert>
 	
