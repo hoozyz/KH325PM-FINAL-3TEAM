@@ -215,7 +215,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="review-rating">평점 <span class='text-danger'>*</span></label>
-                                <select class="form-control form-select" id="review-rating" name="star" required>
+                                <select class="form-control form-select" id="review-rating" name="revstar" required>
                       <option value="" selected disabled hidden>평점 선택</option>
                       <option value="5">5점</option>
                       <option value="4">4점</option>
@@ -1934,9 +1934,9 @@
                         <div class="d-flex align-items-center justify-content-between mb-2">
                             <span class="badge bg-danger me-2 mb-1">한식</span>
                             <div class="text-nowrap">
-                                <button class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle ms-2 mb-2" type="button" data-bs-toggle="tooltip" title="Add to Wishlist"><i class="fi-heart"></i></button>
+                                <button class="btn btn-icon btn-light-primary btn shadow-sm rounded-circle ms-2 mb-2" type="button" data-bs-toggle="tooltip" title="Add to Wishlist"><i class="fi-heart"></i></button>
                                 <div class="dropdown d-inline-block" data-bs-toggle="tooltip" title="Share">
-                                    <button class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle ms-2 mb-2" type="button" data-bs-toggle="dropdown"><i class="fi-share"></i></button>
+                                    <button class="btn btn-icon btn-light-primary btn shadow-sm rounded-circle ms-2 mb-2" type="button" data-bs-toggle="dropdown"><i class="fi-share"></i></button>
                                     <div class="dropdown-menu dropdown-menu-end my-1">
                                         <button class="dropdown-item" type="button"><i class="fi-facebook fs-base opacity-75 me-2"></i>Facebook</button>
                                         <button class="dropdown-item" type="button"><i class="fi-twitter fs-base opacity-75 me-2"></i>Twitter</button>
@@ -1958,12 +1958,18 @@
                             </div>
                         </div>
                         
-                        <h3 class="h4">이 음식점으로 갈사람 사세요</h3>
-        				<div style="height: 100px;"> <!-- 교통 예매 div --> <!-- 팝업으로 이동 -->
-	        				<a class="" href="#modal-air" data-bs-toggle="modal" style="border-radius: 50%; width:50px; height: 50px;"><img src="/resources/image/airplane.png" style="border-radius: 50%; width:80px;height: 80px;margin-left: 40px;margin-right: 50px;"></a>
-	        				<a class="" href="#modal-train" data-bs-toggle="modal" style="border-radius: 50%; width:50px; height: 50px;"><img src="/resources/image/train.png" style="border-radius: 50%; width:80px;height: 80px;margin-right: 50px;"></a>
-	        				<a class="" href="#modal-bus" data-bs-toggle="modal" style="border-radius: 50%; width:50px; height: 50px;"><img src="/resources/image/school-bus.png" style="width:80px; height: 80px;"></a>
-        				</div>
+                         <!-- 교통 -->    
+                        <h6 class="mb-1">• 교통편 확인하기</h6>
+	        			<div style="height: 110px; background-color:#F5F4F8; border-radius:10px; margin-bottom:20px;"> <!-- 교통 예매 div --> <!-- 팝업으로 이동 -->
+	        				<div class="p-3">
+	        				<a class="" href="#modal-air" data-bs-toggle="modal" style="border-radius: 50%; width:30px; height: 30px;"><img src="/resources/image/airplane.png" style="border: 6px solid #676D8E; border-radius: 50%; width:80px;height: 80px;margin-left: 30px;"></a>
+	        				<a style="margin-left: 25px; margin-right: 25px; font-size:20pt;">/</a>
+	        				<a class="" href="#modal-train" data-bs-toggle="modal" style="border-radius: 50%; width:30px; height: 30px;"><img src="/resources/image/train.png" style="border: 6px solid #676D8E; border-radius: 50%; width:80px;height: 80px;"></a>
+	        				<a style="margin-left: 25px; margin-right: 25px; font-size:20pt;">/</a>
+	        				<a class="" href="#modal-bus" data-bs-toggle="modal" style="border-radius: 50%; width:30px; height: 30px;"><img src="/resources/image/school-bus.png" style="border: 6px solid #676D8E; border-radius: 50%; width:80px; height: 80px;"></a>
+	        				</div>
+	        			</div>
+        			
                         
                         <!--Map-->
                         <div id="map" style="width: 480px; height: 300px; border-radius:2%;"></div>
@@ -1974,7 +1980,7 @@
                                 center: new kakao.maps.LatLng('${food.lat}','${food.lng}'),
                                 level: 3
                             };
-
+	
                             var map = new kakao.maps.Map(container, options);
 
                             var markerPosition = new kakao.maps.LatLng('${food.lat}','${food.lng}');

@@ -3,88 +3,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
- <link rel="stylesheet" media="screen" href="${path}/resources/vendor/simplebar/dist/simplebar.min.css" />
- <link rel="stylesheet" media="screen" href="${path}/resources/vendor/tiny-slider/dist/tiny-slider.css" />
-
-<jsp:include page="/WEB-INF/views/common/header.jsp">
+<jsp:include page="/WEB-INF/views/common/headerCamp.jsp">
 	<jsp:param value="캠핑 메인" name="title"/>
 </jsp:include>
-<!-- dark버전-->
-	    <style>
-	        .page-loading {
-	            position: fixed;
-	            top: 0;
-	            right: 0;
-	            bottom: 0;
-	            left: 0;
-	            width: 100%;
-	            height: 100%;
-	            -webkit-transition: all .4s .2s ease-in-out;
-	            transition: all .4s .2s ease-in-out;
-	            background-color: #1f1b2d;
-	            opacity: 0;
-	            visibility: hidden;
-	            z-index: 9999;
-	        }
-	        
-	        .page-loading.active {
-	            opacity: 1;
-	            visibility: visible;
-	        }
-	        
-	        .page-loading-inner {
-	            position: absolute;
-	            top: 50%;
-	            left: 0;
-	            width: 100%;
-	            text-align: center;
-	            -webkit-transform: translateY(-50%);
-	            transform: translateY(-50%);
-	            -webkit-transition: opacity .2s ease-in-out;
-	            transition: opacity .2s ease-in-out;
-	            opacity: 0;
-	        }
-	        
-	        .page-loading.active>.page-loading-inner {
-	            opacity: 1;
-	        }
-	        
-	        .page-loading-inner>span {
-	            display: block;
-	            font-size: 1rem;
-	            font-weight: normal;
-	            color: #fff;
-	            ;
-	        }
-	        
-	        .page-spinner {
-	            display: inline-block;
-	            width: 2.75rem;
-	            height: 2.75rem;
-	            margin-bottom: .75rem;
-	            vertical-align: text-bottom;
-	            border: .15em solid #9691a4;
-	            border-right-color: transparent;
-	            border-radius: 50%;
-	            -webkit-animation: spinner .75s linear infinite;
-	            animation: spinner .75s linear infinite;
-	        }
-	        
-	        @-webkit-keyframes spinner {
-	            100% {
-	                -webkit-transform: rotate(360deg);
-	                transform: rotate(360deg);
-	            }
-	        }
-	        
-	        @keyframes spinner {
-	            100% {
-	                -webkit-transform: rotate(360deg);
-	                transform: rotate(360deg);
-	            }
-	        }
-	    </style>
-	
+
+
+ <link rel="stylesheet" media="screen" href="${path}/resources/vendor/simplebar/dist/simplebar.min.css" />
+ <link rel="stylesheet" media="screen" href="${path}/resources/vendor/tiny-slider/dist/tiny-slider.css" />
+  <!-- Main Theme Styles + Bootstrap-->
+  <link rel="stylesheet" media="screen" href="${path}/css/theme.min.css">
+  
+  
 		<!-- @@@@@@@@@@@campMain.css -->
 		<style>
 		    * {
@@ -107,10 +36,11 @@
 		        color: #fff;
 		    }
 		    
-		    body {
-		        --bs-bg-opacity: 1;
-		        background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
-		    }
+		    .navbar-dark .navbar-nav .nav-link {
+			    color: rgba(255,255,255,0.8);
+			}
+
+		    
 		</style>
 
 

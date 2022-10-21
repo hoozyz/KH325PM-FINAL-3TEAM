@@ -193,13 +193,26 @@
 		                    
 		                  </div>
 		                  <div class="card-body">
-		                    <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm me-3" style="color: black;">${camp.lineintro}</span>
+		                    <div class="d-flex align-items-center justify-content-between pb-1">
+		                    	<c:if test="${camp.lineintro == null}">
+		                    		<span class="fs-sm me-3" style="color: black;">&nbsp;</span>
+		                    	</c:if>
+		                    		<span class="fs-sm me-3" style="color: black;">${camp.lineintro}</span>
 		                    </div>
 		                    <h4 class="" style="margin-bottom: 10px;"><a class="nav-link" href="${path}/camp/campDetail?no=${camp.no}">${camp.name}</a></h4>
 		                    
 		                    <div class="h6 fw-bold" style="margin-bottom: 20px;"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>${camp.price}원</div>
 		                    <hr>
-		                    <div class="h6 card-footer align-items-center justify-content-center">카테고리 아이콘</div>
+		                    <div class="h6 card-footer align-items-center justify-content-center mb-2 fs-sm text-muted  Noto">
+		                    <c:if test="${camp.theme == null}">
+		                    	#걷기 길
+		                    </c:if>
+		                    
+		                    <c:forEach var="foot" items="${camp.theme}">
+								#${foot}&nbsp;
+		                    </c:forEach>
+		                    
+							</div>
 		                  </div>
 		                </div>
 		              </div>

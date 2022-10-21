@@ -1535,14 +1535,20 @@
         					});
         				});
         			</script>
-        			
-        			<h3 class="h4">이 캠핑장으로 갈사람 사세요</h3>
-        			<div style="height: 100px;"> <!-- 교통 예매 div --> <!-- 팝업으로 이동 -->
-        				<a class="" href="#modal-air" data-bs-toggle="modal" style="border-radius: 50%; width:50px; height: 50px;"><img src="/resources/image/airplane.png" style="border-radius: 50%; width:80px;height: 80px;margin-left: 40px;margin-right: 50px;"></a>
-        				<a class="" href="#modal-train" data-bs-toggle="modal" style="border-radius: 50%; width:50px; height: 50px;"><img src="/resources/image/train.png" style="border-radius: 50%; width:80px;height: 80px;margin-right: 50px;"></a>
-        				<a class="" href="#modal-bus" data-bs-toggle="modal" style="border-radius: 50%; width:50px; height: 50px;"><img src="/resources/image/school-bus.png" style="width:80px; height: 80px;"></a>
+
+                    <h6 class="mb-1">• 교통편 확인하기</h6>
+        			<div style="height: 110px; background-color:#F5F4F8; border-radius:10px; margin-bottom:20px;"> <!-- 교통 예매 div --> <!-- 팝업으로 이동 -->
+        				<div class="p-3" style="text-align: center;">
+        				<a class="" href="#modal-air" data-bs-toggle="modal" style="border-radius: 50%; width:30px; height: 30px;"><img src="/resources/image/airplane.png" style="border: 6px solid #676D8E; border-radius: 50%; width:80px;height: 80px;"></a>
+        				<a style="margin-left: 20px; margin-right: 20px; font-size:20pt;">/</a>
+        				<a class="" href="#modal-train" data-bs-toggle="modal" style="border-radius: 50%; width:30px; height: 30px;"><img src="/resources/image/train.png" style="border: 6px solid #676D8E; border-radius: 50%; width:80px;height: 80px;"></a>
+        				<a style="margin-left: 20px; margin-right: 20px; font-size:20pt;">/</a>
+        				<a class="" href="#modal-bus" data-bs-toggle="modal" style="border-radius: 50%; width:30px; height: 30px;"><img src="/resources/image/school-bus.png" style="border: 6px solid #676D8E; border-radius: 50%; width:80px; height: 80px;"></a>
+        				</div>
         			</div>
-                    
+        			
+        			
+        			
                     <!--Map-->
                     <div id="map" style="width: 415px; height: 300px; border-radius:2%;"></div>
                     <script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=8cddaf5bb7b88f487cf47627b52b649b"></script>
