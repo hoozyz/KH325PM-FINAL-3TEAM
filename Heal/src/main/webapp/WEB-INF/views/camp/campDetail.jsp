@@ -1283,10 +1283,10 @@
 	                                    	<i class="star-rating-icon fi-star-filled active"></i>
 	                                    </c:if>
 	                                    <c:if test="${revList.get(i).revstar < 5}">
-	                                    	<c:forEach var="i" begin="1" end="${revList.get(i).revstar}">
+	                                    	<c:forEach var="j" begin="1" end="${revList.get(j).revstar}">
 	                                    		<i class="star-rating-icon fi-star-filled active"></i>
 	                                   	 	</c:forEach>
-	                                    	<c:forEach var="i" begin="${revList.get(i).revstar + 1}" end="5">
+	                                    	<c:forEach var="j" begin="${revList.get(j).revstar + 1}" end="5">
 	                                    		<i class="star-rating-icon fi-star"></i>
 	                                    	</c:forEach>
 	                                    </c:if>

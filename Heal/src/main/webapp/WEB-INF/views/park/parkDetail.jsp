@@ -224,7 +224,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="review-rating">평점 <span class='text-danger'>*</span></label>
-                                <select class="form-control form-select" id="review-rating" name="star" required>
+                                <select class="form-control form-select" id="review-rating" name="revstar" required>
                       <option value="" selected disabled hidden>평점 선택</option>
                       <option value="5">5점</option>
                       <option value="4">4점</option>
@@ -236,7 +236,7 @@
                             </div>
                             <div class="mb-4">
                                 <label class="form-label" for="review-text">공원후기 <span class='text-danger'>*</span></label>
-                                <textarea class="form-control" id="review-text" rows="5" placeholder="공원 어떠셨나요?" required></textarea>
+                                <textarea class="form-control" id="review-text" rows="5" name="cont" placeholder="공원 어떠셨나요?" required></textarea>
                                 <div class="invalid-feedback">Please write your review.</div>
                             </div>
                             <input class="btn btn-primary d-block w-100 mb-4" type="submit" value="후기 등록">
@@ -1202,52 +1202,34 @@
                     		리뷰내역이 없습니다.
                     	</c:if>
                     	<c:if test="${!empty revList}">
-                    <div class="mb-4 pb-4 border-bottom">
+                    		<c:forEach var="i" begin="0" end="${revList.size() - 1}">
+                    			<div class="mb-4 pb-4 border-bottom">
                         <div class="d-flex justify-content-between mb-3">
                             <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/03.jpg" width="48" alt="Avatar">
                                 <div class="ps-2">
-                                    <h6 class="fs-base mb-0">${revList.get(0).id}</h6>
+                                    <h6 class="fs-base mb-0">${revList.get(i).id}</h6>
                                     	<span class="star-rating">
-                                    		<c:if test="${revList.get(0).revstar == 5}">
+                                    		<c:if test="${revList.get(i).revstar == 5}">
                                     			<i class="star-rating-icon fi-star-filled active"></i>
                                     			<i class="star-rating-icon fi-star-filled active"></i>
                                     			<i class="star-rating-icon fi-star-filled active"></i>
                                     			<i class="star-rating-icon fi-star-filled active"></i>
                                     			<i class="star-rating-icon fi-star-filled active"></i>
                                     		</c:if>
-                                    		<c:if test="${revList.get(0).revstar < 5}">
-                                    			<c:forEach var="i" begin="1" end="${revList.get(0).revstar}">
+                                    		<c:if test="${revList.get(i).revstar < 5}">
+                                    			<c:forEach var="i" begin="1" end="${revList.get(i).revstar}">
                                     				<i class="star-rating-icon fi-star-filled active"></i>
                                     			</c:forEach>
+                                    			<c:forEach var="i" begin="${revList.get(i).revstar + 1}" end="5">
+	                                    		<i class="star-rating-icon fi-star"></i>
+	                                    	</c:forEach>
                                     		</c:if>
                                     	</span>
                                 </div>
-                            </div><span class="text-muted fs-sm">${revList.get(0).createdate}</span></div><p>${revList.get(0).cont}</p>
-                        <div class="d-flex align-items-center" id="like${revList.get(0).no}"><button class="btn-like" type="button" onclick="likePlus(${revList.get(0).no})"><i class="fi-heart"></i>(<span id="revLike${revList.get(0).no}">${revList.get(0).revlike}</span>)</button>
+                            </div><span class="text-muted fs-sm">${revList.get(i).createdate}</span></div><p>${revList.get(i).cont}</p>
+                        <div class="d-flex align-items-center" id="like${revList.get(i).no}"><button class="btn-like" type="button" onclick="likePlus(${revList.get(i).no})"><i class="fi-heart"></i>(<span id="revLike${revList.get(i).no}">${revList.get(i).revlike}</span>)</button>
                         </div></div>
-                        
-                        <div class="mb-4 pb-4 border-bottom"><div class="d-flex justify-content-between mb-3"><div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/03.jpg" width="48" alt="Avatar">
-                                <div class="ps-2"><h6 class="fs-base mb-0">${revList.get(1).id}</h6>
-                                    <span class="star-rating">
-	                                    <c:if test="${revList.get(1).revstar == 5}">
-	                                    	<i class="star-rating-icon fi-star-filled active"></i>
-	                                    	<i class="star-rating-icon fi-star-filled active"></i>
-	                                    	<i class="star-rating-icon fi-star-filled active"></i>
-	                                    	<i class="star-rating-icon fi-star-filled active"></i>
-	                                    	<i class="star-rating-icon fi-star-filled active"></i>
-	                                    </c:if>
-	                                    <c:if test="${revList.get(1).revstar < 5}">
-	                                    	<c:forEach var="i" begin="1" end="${revList.get(1).revstar}">
-	                                    		<i class="star-rating-icon fi-star-filled active"></i>
-	                                   	 	</c:forEach>
-	                                    	<c:forEach var="i" begin="${revList.get(1).revstar + 1}" end="5">
-	                                    		<i class="star-rating-icon fi-star"></i>
-	                                    	</c:forEach>
-	                                    </c:if>
-                                    </span></div>
-                            </div><span class="text-muted fs-sm">${revList.get(1).createdate}</span></div><p>${revList.get(1).cont}</p>
-                        <div class="d-flex align-items-center" id="like${revList.get(1).no}"><button class="btn-like" type="button" onclick="likePlus(${revList.get(1).no})"><i class="fi-heart"></i>(<span id="revLike${revList.get(1).no}">${revList.get(1).revlike}</span>)</button>
-                        </div></div>
+                    		</c:forEach>
                    	 	</c:if>
                     </div>
                     <!-- Pagination-->
