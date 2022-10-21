@@ -1425,7 +1425,7 @@
                         <h6 class="mb-0">• 교통편 확인하기</h6>
         			<div style="height: 110px; background-color:#F5F4F8; border-radius:10px; margin-bottom:20px;"> <!-- 교통 예매 div --> <!-- 팝업으로 이동 -->
         				<div class="p-3">
-        				<a class="" href="#modal-air" data-bs-toggle="modal" style="border-radius: 50%; width:30px; height: 30px;"><img src="/resources/image/airplane.png" style="border: 6px solid #676D8E; border-radius: 50%; width:80px;height: 80px;margin-left: 40px;"></a>
+        				<a class="" href="#modal-air" data-bs-toggle="modal" style="border-radius: 50%; width:30px; height: 30px;"><img src="/resources/image/airplane.png" style="border: 6px solid #676D8E; border-radius: 50%; width:80px;height: 80px;margin-left: 30px;"></a>
         				<a style="margin-left: 25px; margin-right: 25px; font-size:20pt;">/</a>
         				<a class="" href="#modal-train" data-bs-toggle="modal" style="border-radius: 50%; width:30px; height: 30px;"><img src="/resources/image/train.png" style="border: 6px solid #676D8E; border-radius: 50%; width:80px;height: 80px;"></a>
         				<a style="margin-left: 25px; margin-right: 25px; font-size:20pt;">/</a>
