@@ -86,14 +86,22 @@ public class LikeController {
 
 		return "/member/myLike";
 	}
+	
+	@GetMapping("/delete")
+	public String delete(Model model, int no, HttpServletRequest req) {
+		String location = req.getHeader("Referer");
+		
+		likeService.deleteLike(no);
+		
+		return location;
+	}
 
 	
 	@PostMapping("/like")
 	@ResponseBody
 	public int write(Model model, @RequestParam Map<String, String> param,
 			@SessionAttribute(name = "loginMember", required = false) Member loginMember, HttpServletRequest req, HttpServletResponse resp) throws IOException {
-//		int memNo = loginMember.getNo();
-		int memNo = 2;
+		int memNo = loginMember.getNo();
 		int no = 0;
 		
 		if(param.containsKey("no")) {
