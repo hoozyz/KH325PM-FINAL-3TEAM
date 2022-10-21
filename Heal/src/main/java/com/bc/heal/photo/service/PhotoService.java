@@ -24,4 +24,8 @@ public interface PhotoService {
 	int getPhotoCountAll();
 
 	List<Photo> selectPhotoList(PageInfo pageInfo, Map<String, String> param);
+
+	void addCount(int no);
+
+	void update(Photo photo);
 }

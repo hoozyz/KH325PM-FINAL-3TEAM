@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.bc.heal.member.service.MemberService;
 import com.bc.heal.photo.service.PhotoService;
+import com.bc.heal.reply.service.ReplyService;
 import com.bc.heal.vo.Member;
 import com.bc.heal.vo.PageInfo;
 import com.bc.heal.vo.Photo;
@@ -35,6 +36,9 @@ public class PhotoController {
 
 	@Autowired
 	private MemberService memService;
+	
+	@Autowired
+	private ReplyService repService;
 
 	@GetMapping("/main")
 	public String main(Model model, Map<String, String> param) {
@@ -44,7 +48,7 @@ public class PhotoController {
 		List<Photo> list = new ArrayList<>();
 
 		list = service.selectPhotoList(pageInfo, param);
-
+		
 		model.addAttribute("list", list);
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("param", param);
@@ -56,9 +60,11 @@ public class PhotoController {
 	public String view(Model model, int no) {
 		Photo photo = service.findByNo(no);
 		
+		service.addCount(no); // readcount + 1
+		
 		List<Reply> repList = new ArrayList<>();
-		
-		
+		PageInfo pageInfo = new PageInfo(1, 5, repService.getCount(no), 5);
+		repList = repService.selectListByPhoto(no, pageInfo);
 		
 		model.addAttribute("photo", photo);
 		model.addAttribute("repList", repList);
@@ -126,7 +132,7 @@ public class PhotoController {
 		return "redirect: /photo/main";
 	}
 
-	@GetMapping("/myPhoto")
+	@PostMapping("/myPhoto")
 	public String myPhoto(Model model, @SessionAttribute(name = "loginMember", required = false) Member loginMember) {
 		List<Photo> list = new ArrayList<>();
 
@@ -139,41 +145,20 @@ public class PhotoController {
 		return "/member/myPhoto";
 	}
 
-	@GetMapping("/delete")
+	@PostMapping("/delete")
 	public String delete(Model model, int no, HttpServletRequest req) { // 이전페이지 필요하면 req
-		int result = 0;
+		service.delete(no);
 
-		result = service.delete(no);
-		String location = req.getHeader("Referer");
-
-		if (result > 0) {
-			model.addAttribute("msg", "삭제에 성공하였습니다.");
-		} else {
-			model.addAttribute("msg", "삭제에 실패하였습니다.");
-		}
-
-		return location;
+		return "redirect: /photo/main";
 	}
 
-	@PostMapping("/save")
-	public String save(Model model, Photo photo, HttpServletRequest req) {
-		int result = 0;
-		if (photo == null) {
-			model.addAttribute("msg", "잘못된 접근입니다.");
-		}
-
-		result = service.save(photo);
-		String location = req.getHeader("Referer");
-
-		if (result > 0) {
-			model.addAttribute("msg", "작성에 성공하였습니다.");
-		} else {
-			model.addAttribute("msg", "작성에 실패하였습니다.");
-		}
-
-		return location;
+	@PostMapping("/update") 
+	public String update(@ModelAttribute Photo photo) {
+		System.out.println(photo);
+		service.update(photo);
+		String no = ""+photo.getNo();
+		return "redirect: /photo/view?no="+no;
 	}
-
 	// 관리자
 	@RequestMapping("/admin")
 	public String admin(Model model) {

@@ -78,7 +78,7 @@ public class PhotoServiceImpl implements PhotoService{
 	public List<Photo> selectPhotoList(PageInfo pageInfo, Map<String, String> param) {
 		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit(); // 앞에서 뺄 수 
 		RowBounds rowBounds = new RowBounds(offset, pageInfo.getListLimit());
-		
+
 		Map<String, String> searchMap = new HashMap<String, String>();
 		String keyword = param.get("keyword");
 		if (keyword != null && keyword.length() > 0) {
@@ -88,6 +88,7 @@ public class PhotoServiceImpl implements PhotoService{
 		if (category != null && category.length() > 0) {
 			searchMap.put("category", category);
 		}
+
 		return mapper.selectPhotoList(rowBounds, searchMap);
 	}
 
@@ -104,6 +105,16 @@ public class PhotoServiceImpl implements PhotoService{
 		}
 		System.out.println(searchMap);
 		return mapper.getPhotoCount(searchMap);
+	}
+
+	@Override
+	public void addCount(int no) {
+		mapper.addCount(no);
+	}
+
+	@Override
+	public void update(Photo photo) {
+		mapper.update(photo);
 	}
 
 }

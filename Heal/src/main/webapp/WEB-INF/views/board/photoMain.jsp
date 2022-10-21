@@ -136,8 +136,8 @@
                                     	<c:if test="${fn:contains(renamefile,',')}">
                                     	<c:set var="split" value="${fn:split(renamefile,',')}"/>
                                     	<c:set var="length" value="${fn:length(split)}"/>
-                                    	<c:forEach var="i" begin="0" end="${length-1}">
-                                    		<img src="/resources/upload/image/${split[i]}" style="width:100%; height:265px">
+                                    	<c:forEach var="j" begin="0" end="${length-1}">
+                                    		<img src="/resources/upload/image/${split[j]}" style="width:100%; height:265px">
                                     	</c:forEach>
                                     	</c:if>
                                     	<c:if test="${not fn:contains(renamefile,',')}">
@@ -159,7 +159,7 @@
                         	<c:choose>
                         		<c:when test="${pageInfo.currentPage != 1}">
                         			<li class="page-item"><a class="page-first" onclick="goPage(1); return false;" aria-label="Next"><i class="fi-chevrons-left"></i></a></li>
-             	            		<li class="page-item"><a class="page-prev" onclick="goPage('+ prevPage +'}); return false;" aria-label="Next"><i class="fi-chevron-left"></i></a></li>
+             	            		<li class="page-item"><a class="page-prev" onclick="goPage(${pageInfo.getPrevPage()}}); return false;" aria-label="Next"><i class="fi-chevron-left"></i></a></li>
                         		</c:when>
                         		<c:otherwise>
                             		<li class="page-item active d-none d-sm-block" aria-current="page"><a class="page-link" id="page(1)" onclick="goPage(1); return false;">1</a></li>

@@ -6,7 +6,16 @@
 <mapper namespace="com.bc.heal.reply.mapper.ReplyMapper">
 	<resultMap type="Reply" id="replyResultMap">
 		<id property="no" column="NO"/>
-		<result property="title" column="TITLE"/>
+		<result property="cont" column="CONT"/>
+		<result property="createdate" column="CREATEDATE"/>
+		<result property="modifydate" column="MODIFYDATE"/>
+		<result property="memberno" column="MEMBERNO"/>
+		<result property="photono" column="PHOTONO"/>
+	</resultMap>
+	
+	<resultMap type="Reply" id="replyIdMap">
+		<id property="no" column="NO"/>
+		<result property="id" column="ID"/>
 		<result property="cont" column="CONT"/>
 		<result property="createdate" column="CREATEDATE"/>
 		<result property="modifydate" column="MODIFYDATE"/>
@@ -18,7 +27,6 @@
  		SELECT * 
  		FROM (SELECT ROWNUM NUM, 
  					 NO, 
- 					 TITLE,
  					 CONT,
  					 CREATEDATE,
  					 MODIFYDATE,
@@ -29,6 +37,39 @@
  			  		ORDER BY NO DESC))
 		WHERE NUM <![CDATA[<=]]> 5 AND MEMBERNO = #{no}
 	</select>
+	
+	<select id="getCount" parameterType="int" resultType="int">
+		SELECT COUNT(*)
+		FROM TBL_REPLY
+		WHERE PHOTONO = #{no}
+	</select>
+	
+	<select id="selectListByPhoto" parameterType="int" resultMap="replyIdMap">
+		SELECT R.*, M.ID
+		FROM TBL_REPLY R
+		JOIN TBL_MEMBER M ON (M.NO = R.MEMBERNO)
+		WHERE R.PHOTONO = #{no}
+		ORDER BY R.NO DESC
+	</select>
+	
+	<insert id="insert" parameterType="Reply" 
+			useGeneratedKeys="true" keyProperty="no" keyColumn="NO">
+		INSERT INTO TBL_REPLY (
+			NO,
+			CONT,
+			CREATEDATE,
+			MODIFYDATE,
+			MEMBERNO,
+			PHOTONO		
+		) VALUES (
+			REPLY_SEQ.NEXTVAL,
+			#{cont},
+			SYSDATE,
+			SYSDATE,
+			#{memberno},
+			#{photono}
+		)
+	</insert>
 	
 	<delete id="delete" parameterType="int">
  		DELETE  

@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 public class Reply {
 	private int no;
 	private String id;
-	private String title;
 	private String cont;
 	private String createdate;
 	private String modifydate;

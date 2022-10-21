@@ -23,4 +23,8 @@ public interface PhotoMapper {
 	int getPhotoCountAll();
 
 	List<Photo> selectPhotoList(RowBounds rowBounds, Map<String, String> searchMap);
+
+	void addCount(int no);
+
+	void update(Photo photo);
 }

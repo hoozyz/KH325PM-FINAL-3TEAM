@@ -42,6 +42,12 @@
  		WHERE MEMBERNO = #{no}
 	</select>
 	
+	<update id="update" parameterType="Photo">
+		UPDATE TBL_PHOTO
+		SET TITLE = #{title}, CONT = #{cont}
+		WHERE NO = #{no}
+	</update>
+	
 	<select id="selectPhotoList" parameterType="map" resultMap="photoResultMap">
  		SELECT *
  		FROM TBL_PHOTO
@@ -68,6 +74,12 @@
  			AND CATEGORY = #{category}
  		</if>
 	</select>
+	
+	<update id="addCount" parameterType="int">
+		UPDATE TBL_PHOTO
+		SET READCOUNT = READCOUNT + 1
+		WHERE NO = #{no}
+	</update>
 	
 	<select id="selectByThree" resultMap="photoResultMap"> <!-- 최신 3개 가져오기 -->
  		SELECT NO,
