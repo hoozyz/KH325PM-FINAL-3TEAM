@@ -183,7 +183,7 @@
 		                    <a class="img-overlay" href="${path}/camp/campDetail?no=${camp.no}"></a>
 		                     <div class="tns-carousel-inner"  style="height: 300px;">
 			                    <c:if test="${empty camp.image}">
-				                   <img src="${path}/resources/image/campImg<%=Math.round(Math.random()*4 + 1)%>.jpg" alt="Image" style="width: 100%;  height: 100%;  object-fit: cover;">
+				                   <img src="${path}/resources/image/campImg<%=Math.round(Math.random()*9 + 1)%>.jpg" alt="Image" style="width: 100%;  height: 100%;  object-fit: cover;">
 			                    </c:if>
 			                    
 			                    <c:if test="${!empty camp.image}">

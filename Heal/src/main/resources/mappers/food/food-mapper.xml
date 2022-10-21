@@ -34,6 +34,7 @@
 			<if test="type != null">
 				AND TYPE LIKE '%'||#{type}||'%'
 			</if>
+			ORDER BY NO
 	</select>
 	
 	

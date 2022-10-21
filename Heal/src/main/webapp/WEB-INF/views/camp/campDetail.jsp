@@ -1131,17 +1131,17 @@
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h1 class="h2 mb-2">${camp.name}</h1>
                 <div class="text-nowrap" id="like_button">
-                	<div id="likeDiv">
+                	<span id="likeDiv">
                 		<c:if test="${likeCheck == 0}">
                 			<button class="btn btn-icon btn-light-primary btn shadow-sm rounded-circle ms-2 mb-2" id="likePlus1" onclick="like_Plus(${campNo})" type="button" data-bs-toggle="tooltip"><i class="fi-heart"></i></button>
                 		</c:if>
                 		<c:if test="${likeCheck == 1}">
                 			<button class="btn btn-icon btn-light-primary btn shadow-sm rounded-circle ms-2 mb-2" id="likeMinus1" onclick="like_Minus(${likeNo})" type="button" data-bs-toggle="tooltip"><i class="fi-heart-filled"></i></button>
                 		</c:if>
-                	</div>
+                	</span>
                     
                     <div class="dropdown d-inline-block" data-bs-toggle="tooltip" title="Share">
-                        <button class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle ms-2 mb-2" type="button" data-bs-toggle="dropdown"><i class="fi-share"></i></button>
+                        <button class="btn btn-icon btn-light-primary btn shadow-sm rounded-circle ms-2 mb-2" type="button" data-bs-toggle="dropdown"><i class="fi-share"></i></button>
                         <div class="dropdown-menu dropdown-menu-end my-1">
                             <button class="dropdown-item" type="button"><i class="fi-facebook fs-base opacity-75 me-2"></i>Facebook</button>
                             <button class="dropdown-item" type="button"><i class="fi-twitter fs-base opacity-75 me-2"></i>Twitter</button>
@@ -1203,7 +1203,7 @@
 		</script>
         
         <!-- Gallery-->
-        <section class="container overflow-auto mb-4 pb-3" data-simplebar>
+        <section class="container  mb-4 pb-3" data-simplebar>
             <div class="row g-2 g-md-3 gallery" data-thumbnails="true" style="min-width: 30rem;">
                 <div class="col-8">
                     <a class="gallery-item rounded rounded-md-3" href="https://gocamping.or.kr/upload/camp/4/8460x14p2wteha7SjLLANUhu.jpg" data-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt;Bathroom&lt;/h6&gt;"><img src="https://gocamping.or.kr/upload/camp/4/8460x14p2wteha7SjLLANUhu.jpg" alt="Gallery thumbnail"></a>
@@ -1233,7 +1233,7 @@
                         <a class="collapse-label collapsed" href="#seeMoreOverview" data-bs-toggle="collapse" data-bs-label-collapsed="더보기" data-bs-label-expanded="줄이기" role="button" aria-expanded="false" aria-controls="seeMoreOverview"></a>
                     </div>
                     <!-- Property Details-->
-                    <div class="mb-4 pb-md-3 border-bottom">
+                    <div class="mb-4 pb-md-3 border-bottom Noto">
                         <h3 class="h4">상세정보</h3>
                         <ul class="list-unstyled mb-0">
                             <li><b>테마 : 
@@ -1247,7 +1247,7 @@
 							</li>
                             <li><b>주소 : </b>${camp.addr}</li>
                             <li><b>전화번호 : </b>${camp.phone}</li>
-                            <li><b>홈페이지 : </b>${camp.homepage}</li>
+                            <li><a href="${camp.homepage}" style="text-decoration: none;  color: black;"><b>홈페이지 : </b>${camp.homepage}</a></li>
                         </ul>
                     </div>
                     <!-- Reviews-->
@@ -1730,12 +1730,18 @@
                     <!-- Item-->
                     <c:if test="${!empty lastList}">
                     	<c:forEach var="i" begin="0" end="${lastList.size() -1}">
-                    		<div class="col">
+               		<div class="col">
                         <div class="card shadow-sm card-hover border-0 h-100">
                             <div class="card-img-top card-img-hover">
                                 <a class="img-overlay" href="${path}/camp/campDetail?no=${lastList.get(i).no}"></a>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                </div><img src="${lastList.get(i).image}" alt="Image">
+                                <div style="width: 300px; height:190px;">
+	                                <c:if test="${empty lastList.get(i).image}">
+	                                	 <img src="${path}/resources/image/campImg<%=Math.round(Math.random()*9 + 1)%>.jpg" alt="Image" style="width: 100%; height: 100%;  object-fit: cover;">
+	                                </c:if>
+	                                <c:if test="${!empty lastList.get(i).image}">
+                                		<img src="${lastList.get(i).image}" alt="Image" style="width: 100%; height: 100%;  object-fit: cover;">
+                                	</c:if>
+                              	 </div>
                             </div>
                             <div class="card-body position-relative pb-3">
                                 <span class="badge bg-info me-2 mb-2">${lastList.get(i).category}</span>

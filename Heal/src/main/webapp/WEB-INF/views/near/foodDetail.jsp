@@ -1986,8 +1986,8 @@
                             marker.setMap(map);
                         </script>
                         <br>
-                         <div style="margin-bottom:30px;">
-	                                <p id="weaStr" style="float: left; color: black; font-weight:600;">현재 음식점의 날씨는?${weaList }</p> 
+                        		 <div style="margin-bottom:30px;">
+	                                <p id="weaStr" style="float: left; color: black; font-weight:600;">현재 음식점의 날씨는?${weaList}</p> 
 	                               	<div style="margin-left: 265px;width: 150px;text-align: center;">
 	                               		<div class="btn-group btn-group-sm" role="group" style="width:150px;">
 	                               			<button class="btn btn-outline-secondary on" id="today" type="button" style="padding-left: 10px;padding-right: 10px;padding-top: 4px;padding-bottom: 4px;">오늘</button>
@@ -1996,6 +1996,7 @@
 	                               		</div>
 	                               	</div>
                                 </div>
+                          		
                     <div class="weather_area m-0 p-0">
                                         <div class="weather_now m-0 p-0">
                                             <div class="summary_img m-0 p-0">
@@ -2157,11 +2158,29 @@
                     <div class="col">
                         <div class="card shadow-sm card-hover border-0 h-100">
                             <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" href="#"></a>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                </div><img src="${path}/resources/image/nearFood${i+1}.jpg"alt="Image">
-                            </div>
+                           		<a class="img-overlay"  href="${path}/near/foodDetail?no=${lastList.get(i).no}"></a>
+                           		<c:set var="foodType" value="${lastList.get(i).type}"/>
+                           		<c:choose>
+                           			<c:when test="${fn:contains(foodType, '한식')}">
+                           				<img src="${path}/resources/image/pFood/kor<%=Math.round(Math.random()*4 + 1)%>.png" alt="Image" style="width: 100%; height:200px; object-fit: cover;">
+                      				</c:when>
+                          			<c:when test="${fn:contains(lastList, '일식')}">
+                          				<img src="${path}/resources/image/pFood/jap<%=Math.round(Math.random()*1 + 1)%>.png" alt="Image" style="width: 100%; height:200px; object-fit: cover;">
+                          			</c:when>
+                          			<c:when test="${fn:contains(lastList, '중식')}">
+                      					<img src="${path}/resources/image/pFood/chi<%=Math.round(Math.random()*2 + 1)%>.png" alt="Image" style="width: 100%; height:200px; object-fit: cover;">
+                          			</c:when>
+                          			<c:when test="${fn:contains(lastList, '분식')}">
+                     					<img src="${path}/resources/image/pFood/boon1.png" alt="Image" style="width: 100%; height:200px; object-fit: cover;">
+                          			</c:when>
+                          			<c:when test="${fn:contains(lastList, '뷔페')}">
+                          				<img src="${path}/resources/image/pFood/buf1.png" alt="Image" style="width: 100%; height:200px; object-fit: cover;">
+                          			</c:when>
+									<c:otherwise>
+										<img src="${path}/resources/image/pFood/res1.png" alt="Image" style="height:200px;">
+									</c:otherwise>
+								</c:choose>
+                      		</div>
                             <div class="card-body position-relative pb-3">
                                 <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="#">${lastList.get(i).name}</a></h3>
                                 <p class="mb-2 fs-sm text-muted">${lastList.get(i).addr}</p>
@@ -2174,118 +2193,11 @@
                     </div>
                     	</c:forEach>
                     </c:if>
-                    
                 </div>
             </div>
         </section>
         
         
-        <!-- Recently viewed-->
-        <section class="container mb-5 pb-2 pb-lg-4">
-            <div>
-                <h2 class=" mb-sm-0" style="display:inline;">최근 본 </h2>
-                <h2 class=" mb-sm-0" style="display:inline; color: #F7B202;"> 음식점</h2>
-            </div>
-            <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside tns-nav-outside-flush mx-n2">
-                <div class="tns-carousel-inner row gx-4 mx-0 pt-3 pb-4" data-carousel-options="{&quot;items&quot;: 4, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3},&quot;992&quot;:{&quot;items&quot;:4}}}">
-                    <!-- Item-->
-                    <div class="col">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" href="#"></a>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                </div><img src="${path}/resources/image/nearFood1.jpg" alt="Image">
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="#">곱창하우스</a></h3>
-                                <p class="mb-2 fs-sm text-muted">서울특별시 성동구 행당동 1-50</p>
-                                <div class="fw-bold">02-2292-4978</div>
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap">
-                                <p class="mb-2 fs-sm text-muted">#한식&nbsp;&nbsp;#곱창요리</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Item-->
-                    <div class="col">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" href="#"></a>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                </div><img src="${path}/resources/image/nearFood2.jpg" alt="Image">
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="#">진짜루</a></h3>
-                                <p class="mb-2 fs-sm text-muted">서울특별시 노원구 월계동 402-19</p>
-                                <div class="fw-bold">02-918-6282</div>
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap">
-                                <p class="mb-2 fs-sm text-muted">#중식&nbsp;&nbsp;#짜장면</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Item-->
-                    <div class="col">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" href="#"></a>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                </div><img src="${path}/resources/image/nearFood3.jpg" alt="Image">
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="#">도도야</a></h3>
-                                <p class="mb-2 fs-sm text-muted">서울특별시 종로구 동숭동 1-153</p>
-                                <div class="fw-bold">02-741-5959</div>
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap">
-                                <p class="mb-2 fs-sm text-muted">#일식&nbsp;&nbsp;#송이솥밥</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Item-->
-                    <div class="col">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" href="#"></a>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                </div><img src="${path}/resources/image/nearFood4.jpg" alt="Image">
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="#">셰프테이너</a></h3>
-                                <p class="mb-2 fs-sm text-muted">서울특별시 용산구 이태원동 135-55</p>
-                                <div class="fw-bold">02-794-9172</div>
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap">
-                                <p class="mb-2 fs-sm text-muted">#양식&nbsp;&nbsp;#등심스테이크</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Item-->
-                    <div class="col">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" href="#"></a>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                </div><img src="${path}/resources/image/nearFood5.jpg" alt="Image">
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="#">성수찜닭</a></h3>
-                                <p class="mb-2 fs-sm text-muted">서울특별시 성동구 성수동2가 289-4</p>
-                                <div class="fw-bold">064-733-8500</div>
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap">
-                                <p class="mb-2 fs-sm text-muted">#한식&nbsp;&nbsp;#찜닭&nbsp;&nbsp;#닭볶음탕</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
         
         <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
         
