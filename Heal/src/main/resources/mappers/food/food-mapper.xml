@@ -24,17 +24,16 @@
 	<select id="selectFoodList" parameterType="map" resultMap="foodResultMap">
 		SELECT  *
 		FROM TBL_FOOD
-		WHERE 1=1
-		<if test="keyword != null">
-			AND NAME LIKE '%'||#{keyword}||'%'
-		</if>
-			<if test="city != null">
-			AND ADDR LIKE '%'||#{city}||'%'
-		</if>
-		<if test="type != null">
-			AND TYPE LIKE '%'||#{type}||'%'
-		</if>
-		ORDER BY NO DESC
+		WHERE NO <![CDATA[>=]]> 3
+			<if test="keyword != null">
+				AND NAME LIKE '%'||#{keyword}||'%'
+			</if>
+				<if test="city != null">
+				AND ADDR LIKE '%'||#{city}||'%'
+			</if>
+			<if test="type != null">
+				AND TYPE LIKE '%'||#{type}||'%'
+			</if>
 	</select>
 	
 	
@@ -51,7 +50,6 @@
 		<if test="type != null">
 			AND TYPE LIKE '%'||#{type}||'%'
 		</if>	
-		ORDER BY NO DESC
 	</select> 
 	
 	<update id="updateFood" parameterType="string">

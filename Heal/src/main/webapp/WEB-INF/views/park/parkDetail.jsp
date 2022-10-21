@@ -1422,11 +1422,15 @@
                         
                         
                     <!-- 교통 -->    
-                        <h3 class="h4">이 캠핑장으로 갈사람 사세요</h3>
-        			<div style="height: 100px;"> <!-- 교통 예매 div --> <!-- 팝업으로 이동 -->
-        				<a class="" href="#modal-air" data-bs-toggle="modal" style="border-radius: 50%; width:50px; height: 50px;"><img src="/resources/image/airplane.png" style="border-radius: 50%; width:80px;height: 80px;margin-left: 40px;margin-right: 50px;"></a>
-        				<a class="" href="#modal-train" data-bs-toggle="modal" style="border-radius: 50%; width:50px; height: 50px;"><img src="/resources/image/train.png" style="border-radius: 50%; width:80px;height: 80px;margin-right: 50px;"></a>
-        				<a class="" href="#modal-bus" data-bs-toggle="modal" style="border-radius: 50%; width:50px; height: 50px;"><img src="/resources/image/school-bus.png" style="width:80px; height: 80px;"></a>
+                        <h6 class="mb-0">• 교통편 확인하기</h6>
+        			<div style="height: 110px; background-color:#F5F4F8; border-radius:10px; margin-bottom:20px;"> <!-- 교통 예매 div --> <!-- 팝업으로 이동 -->
+        				<div class="p-3">
+        				<a class="" href="#modal-air" data-bs-toggle="modal" style="border-radius: 50%; width:30px; height: 30px;"><img src="/resources/image/airplane.png" style="border: 6px solid #676D8E; border-radius: 50%; width:80px;height: 80px;margin-left: 30px;"></a>
+        				<a style="margin-left: 25px; margin-right: 25px; font-size:20pt;">/</a>
+        				<a class="" href="#modal-train" data-bs-toggle="modal" style="border-radius: 50%; width:30px; height: 30px;"><img src="/resources/image/train.png" style="border: 6px solid #676D8E; border-radius: 50%; width:80px;height: 80px;"></a>
+        				<a style="margin-left: 25px; margin-right: 25px; font-size:20pt;">/</a>
+        				<a class="" href="#modal-bus" data-bs-toggle="modal" style="border-radius: 50%; width:30px; height: 30px;"><img src="/resources/image/school-bus.png" style="border: 6px solid #676D8E; border-radius: 50%; width:80px; height: 80px;"></a>
+        				</div>
         			</div>
         			
         			
@@ -1628,7 +1632,26 @@
                                 		<a class="img-overlay" href="#"></a>
                                 		<div class="content-overlay end-0 top-0 pt-3 pe-3">
                                     		<button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                		</div><img src="${path}/resources/image/nearFood6.jpg" alt="Image">
+                                		</div>
+                                		<c:set var="foodType" value="${foodlist.get(i).type}"/>
+					                    	<c:if test="${fn:contains(foodType, '한식')}">
+					                    		<img src="${path}/resources/image/pFood/kor<%=Math.round(Math.random()*4 + 1)%>.png" alt="Image" style="width: 100%; height:200px; object-fit: cover;">
+					                    	</c:if>
+					                    	<c:if test="${fn:contains(foodType, '일식')}">
+					                    		<img src="${path}/resources/image/pFood/jap<%=Math.round(Math.random()*1 + 1)%>.png" alt="Image" style="width: 100%; height:200px; object-fit: cover;">
+					                    	</c:if>
+					                    	<c:if test="${fn:contains(foodType, '중식')}">
+					                    		<img src="${path}/resources/image/pFood/chi<%=Math.round(Math.random()*2 + 1)%>.png" alt="Image" style="width: 100%; height:200px; object-fit: cover;">
+					                    	</c:if>
+					                    	<c:if test="${fn:contains(foodType, '분식')}">
+					                    		<img src="${path}/resources/image/pFood/boon1.png" alt="Image" style="width: 100%; height:200px; object-fit: cover;">
+					                    	</c:if>
+					                    	<c:if test="${fn:contains(foodType, '뷔페')}">
+					                    		<img src="${path}/resources/image/pFood/buf1.png" alt="Image" style="width: 100%; height:200px; object-fit: cover;">
+					                    	</c:if>
+					                    	<c:if test="${!fn:contains(foodType, '한식') && !fn:contains(foodType, '일식') && !fn:contains(foodType, '중식') && !fn:contains(foodType, '분식') && !fn:contains(foodType, '뷔페')}">
+					                    		<img src="${path}/resources/image/pFood/res1.png" alt="Image" style="height:200px;">
+					                    	</c:if>
                             		</div>
                             		<div class="card-body position-relative pb-3">
                                 		<h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="#">${foodlist.get(i).name}</a></h3>
