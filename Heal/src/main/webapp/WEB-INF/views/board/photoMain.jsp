@@ -4,7 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
-
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param value="포토게시판" name="title"/>
 </jsp:include>
@@ -99,20 +98,27 @@
                     <!-- Sorting-->
                     <form class="form-group d-block d-md-flex position-relative rounded-md-pill mb-2 mb-sm-4 mb-lg-5">
                         <div class="input-group input-group-lg border-end-md"><span class="input-group-text text-muted rounded-pill ps-3"><i class="fi-search"></i></span>
-                            <input class="form-control" type="text" placeholder="What are you looking for?">
+                            <input class="form-control" type="text" id="keyword" placeholder="What are you looking for?">
                         </div>
                         <hr class="d-md-none my-2">
                         <div class="d-sm-flex">
                             <div class="dropdown w-100 mb-sm-0 mb-3" data-bs-toggle="select">
-                                <button class="btn btn-link btn-lg dropdown-toggle ps-2 ps-sm-3" type="button" data-bs-toggle="dropdown"><i class="fi-list me-2"></i><span class="dropdown-toggle-label">All categories</span></button>
-                                <input type="hidden">
+                                <button class="btn btn-link btn-lg dropdown-toggle ps-2 ps-sm-3" type="button" data-bs-toggle="dropdown"><i class="fi-list me-2"></i>
+                                <c:if test="${param.get('category') == null}">
+                                	<span class="dropdown-toggle-label">All categories</span>
+                                </c:if>
+                                <c:if test="${param.get('category') != null}">
+                                	<span class="dropdown-toggle-label">${param.get('category')}</span>
+                                </c:if>
+                                </button>
+                                <input type="hidden" id="category1" value="${param.get('category')}">
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="#"><i class="fi-bed fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">캠핑장</span></a></li>
                                     <li><a class="dropdown-item" href="#"><i class="fi-cafe fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">공원</span></a></li>
                                     <li><a class="dropdown-item" href="#"><i class="fi-shopping-bag fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">축제</span></a></li>
                                 </ul>
                             </div>
-                            <button class="btn btn-primary btn-lg rounded-pill w-100 w-md-auto ms-sm-3" type="button">Search</button>
+                            <button class="btn btn-primary btn-lg rounded-pill w-100 w-md-auto ms-sm-3" type="button" id="search">Search</button>
                         </div>
                     </form>
                     <!-- Catalog grid-->
@@ -124,23 +130,23 @@
                         		<div class="col-sm-6 col-xl-4">
                             <div class="card shadow-sm card-hover border-0 h-100">
                                 <div class="tns-carousel-wrapper card-img-top card-img-hover">
-                                    <a class="img-overlay" id="photoView(${list.get(i).no})"></a>
+                                    <a class="img-overlay" href="${path}/photo/view?no=${list.get(i).no}"></a>
                                     <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">${list.get(i).category}</span></div>
                                   	<div class="tns-carousel-inner">
                                     	<c:if test="${fn:contains(renamefile,',')}">
                                     	<c:set var="split" value="${fn:split(renamefile,',')}"/>
                                     	<c:set var="length" value="${fn:length(split)}"/>
                                     	<c:forEach var="i" begin="0" end="${length-1}">
-                                    		<img src="${path}/resources/upload/image/${split[i]}" alt="Image" style="width:100%; height:265px">
+                                    		<img src="/resources/upload/image/${split[i]}" style="width:100%; height:265px">
                                     	</c:forEach>
-                                    </c:if>
-                                    <c:if test="${not fn:contains(renamefile,',')}">
-                                    	<img src="${path}/resources/upload/image/${list.get(i).renamefile}" alt="Image" style="width:100%; height:265px">
-                                    </c:if>
+                                    	</c:if>
+                                    	<c:if test="${not fn:contains(renamefile,',')}">
+                                    		<img src="/resources/upload/image/${list.get(i).renamefile}" style="width:100%; height:265px">
+                                    	</c:if>
                                     </div>
                                     </div>
                                 <div class="card-body position-relative pb-3">
-                                    <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">${list.get(i).title}</a></h3>
+                                    <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="${path}/photo/view?no=${list.get(i).no}">${list.get(i).title}</a></h3>
                                 </div>    
                                 </div>
                             </div>
@@ -150,14 +156,34 @@
                     <!-- Pagination-->
                     <nav class="mt-2 mb-4" aria-label="Photo pagination">
                         <ul class="pagination">
-                            <li class="page-item active d-none d-sm-block" aria-current="page"><a class="page-link" id="page(1)" onclick="goPage(1); return false;">1</a></li>
+                        	<c:choose>
+                        		<c:when test="${pageInfo.currentPage != 1}">
+                        			<li class="page-item"><a class="page-first" onclick="goPage(1); return false;" aria-label="Next"><i class="fi-chevrons-left"></i></a></li>
+             	            		<li class="page-item"><a class="page-prev" onclick="goPage('+ prevPage +'}); return false;" aria-label="Next"><i class="fi-chevron-left"></i></a></li>
+                        		</c:when>
+                        		<c:otherwise>
+                            		<li class="page-item active d-none d-sm-block" aria-current="page"><a class="page-link" id="page(1)" onclick="goPage(1); return false;">1</a></li>
+                        		</c:otherwise>
+                        	</c:choose>
                             <c:if test="${pageInfo.getEndPage() > 1}">
-	                			<c:forEach var="i" begin="2" end="${pageInfo.getEndPage()}">
-	                				<li class="page-item d-none d-sm-block"><a class="page-link" id="page(${i})" onclick="goPage(${i}); return false;">${i}</a></li>
+	                			<c:forEach var="i" begin="${pageInfo.getStartPage()}" end="${pageInfo.getEndPage()}">
+	                				<c:choose>
+		                        		<c:when test="${pageInfo.currentPage == 1 && i == 1}">
+		                        			
+		                        		</c:when>
+		                        		<c:when test="${pageInfo.currentPage == i}">
+		                            		<li class="page-item active d-none d-sm-block" aria-current="page"><a class="page-link" id="page(${i})" onclick="goPage(${i}); return false;">${i}</a></li>
+		                        		</c:when>
+		                        		<c:otherwise>
+	                						<li class="page-item d-none d-sm-block"><a class="page-link" id="page(${i})" onclick="goPage(${i}); return false;">${i}</a></li>
+		                        		</c:otherwise>
+		                        	</c:choose>
 	                			</c:forEach>
 	                		</c:if>
-                            <li class="page-item"><a class="page-next" onclick="goPage(${pageInfo.getNextPage()}); return false;" aria-label="Next"><i class="fi-chevron-right"></i></a></li>
-                            <li class="page-item"><a class="page-end" onclick="goPage(${pageInfo.getMaxPage()}); return false;" aria-label="Next"><i class="fi-chevrons-right"></i></a></li>
+	                		<c:if test="${pageInfo.currentPage != pageInfo.getMaxPage()}">
+	                			<li class="page-item"><a class="page-next" onclick="goPage(${pageInfo.getNextPage()}); return false;" aria-label="Next"><i class="fi-chevron-right"></i></a></li>
+                            	<li class="page-item"><a class="page-end" onclick="goPage(${pageInfo.getMaxPage()}); return false;" aria-label="Next"><i class="fi-chevrons-right"></i></a></li>
+	                		</c:if>
                         </ul>
                     </nav>
                 </div>
@@ -171,92 +197,17 @@ $(document).ready(function() {
 });	
 </script>
 <script>
+	$("#search").on('click', function() {
+		var keyword = $("#keyword").val();
+		var category = $("#category1").val();
+		location.href='${path}/photo/list?page=1&keyword='+keyword+'&category='+category;
+	});
+
 	function goPage(no) {
-		var camp = '${camp.no}'; // 캠핑장 번호
-		
-		console.log(sort)
-		
-		$.ajax({
-			type: 'GET',
-			url: "/camp/rev",
-			data: {
-				no: no,
-				sort: sort,
-				camp: camp
-			},
-			
-			success:function(map) {
-				var list = map.list;
-				var pageInfo = map.pageInfo;
-				console.log(list)
-				
-				str = "";
-				$.each(list, function (i, obj) { // list.get(i) = obj   
-					var file = obj.renamefile;
-					
-					str += '<div class="col-sm-6 col-xl-4">                                                                                                                   '
-                    str += '<div class="card shadow-sm card-hover border-0 h-100">                                                                                            '
-                    str += '    <div class="tns-carousel-wrapper card-img-top card-img-hover">                                                                                '
-                    str += '        <a class="img-overlay" href="photoView('+obj.no+')"></a>                                                                             '
-                    str += '        <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">'+obj.category+'</span></div>   '
-                    str += '      	<div class="tns-carousel-inner">                                                                                                          '
-                    
-                    if(file.indexOf(',') > 0) { // 파일 여러개
-                    	var split = file.split(',');
-                    	for (var files in split) {
-                        	str += '<img src="${path}/resources/upload/image/'+files+'" alt="Image" style="width:100%; height:265px">'
-                        }
-                    } else if (file.indexOf(',') < 0) {
-                    	str += '<img src="${path}/resources/upload/image/'+file+'" alt="Image" style="width:100%; height:265px">'
-                    }
-                    
-                    str += '        </div>                                                                                                                                    '
-                    str += '        </div>                                                                                                                                    '
-                    str += '    <div class="card-body position-relative pb-3">                                                                                                '
-                    str += '        <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="photoView('+obj.no+')">'+obj.title+'</a></h3>            '
-                    str += '    </div>                                                                                                                                        '
-                    str += '    </div>                                                                                                                                        '
-                    str += '</div>                                                                                                                                            '
-				});                                                                                                                                                           '                                                                                
-				
-				$("#photoDiv").html(str);
-				
-				str = "";
-				
-				var maxPage =     pageInfo.maxPage     ;
-     			var startPage =   pageInfo.startPage   ;
-     			var endPage =     pageInfo.endPage     ;
-     			var currentPage = pageInfo.currentPage ;
-     			var prevPage =    pageInfo.prevPage    ;
-     			var nextPage =    pageInfo.nextPage    ;
-     			var startList =   pageInfo.startList   ;
-     			var endList =     pageInfo.endList     ;
-     			
-     			if(currentPage != 1) {
-	            		str += '<li class="page-item"><a class="page-first" onclick="goPage(1); return false;" aria-label="Next"><i class="fi-chevrons-left"></i></a></li>';
-	            		str += '<li class="page-item"><a class="page-prev" onclick="goPage('+ prevPage +'}); return false;" aria-label="Next"><i class="fi-chevron-left"></i></a></li>';
-	            	} 
-	
-	            	for (var i = startPage; i <= endPage; i++) { // 페이지 5개마다 페이지 바뀜
-	            		if(i == currentPage) {
-	            			str += '<li class="page-item active d-none d-sm-block"><a class="page-link" id="page('+ i +')" onclick="goPage('+ i +'); return false;">'+ i +'</a></li>';
-	            		} else {
-	            			str += '<li class="page-item d-none d-sm-block"><a class="page-link" id="page('+ i +')" onclick="goPage('+ i +'); return false;">'+ i +'</a></li>';
-	            		}
-	            	}
-	
-	            	if(currentPage != maxPage) {
-	            		str += '<li class="page-item"><a class="page-next" onclick="goPage('+ nextPage +'); return false;" aria-label="Next"><i class="fi-chevron-right"></i></a></li>';
-	            		str += '<li class="page-item"><a class="page-end" onclick="goPage('+ endPage +'); return false;" aria-label="Next"><i class="fi-chevrons-right"></i></a></li>';
-	            	}
-     			
-     			$('.pagination').html(str);
-			},
-			
-			error:function(e) {
-				console.log(e)
-			}
-		});
+		var keyword = $("#keyword").val();
+		var category = $("#category1").val();
+		console.log(keyword)
+		location.href='${path}/photo/list?page='+no+'&keyword='+keyword+'&category='+category;
 	}
 </script>
 

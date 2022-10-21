@@ -4,6 +4,19 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bc.heal.photo.mapper.PhotoMapper">
+	<resultMap type="Photo" id="photoIdMap">
+		<id property="no" column="NO"/>
+		<result property="id" column="ID"/>
+		<result property="title" column="TITLE"/>
+		<result property="cont" column="CONT"/>
+		<result property="readcount" column="READCOUNT"/>
+		<result property="originalfile" column="ORIGINALFILE"/>
+		<result property="renamefile" column="RENAMEFILE"/>
+		<result property="createdate" column="CREATEDATE"/>
+		<result property="modifydate" column="MODIFYDATE"/>
+		<result property="memberno" column="MEMBERNO"/>
+	</resultMap>
+	
 	<resultMap type="Photo" id="photoResultMap">
 		<id property="no" column="NO"/>
 		<result property="title" column="TITLE"/>
@@ -15,6 +28,13 @@
 		<result property="modifydate" column="MODIFYDATE"/>
 		<result property="memberno" column="MEMBERNO"/>
 	</resultMap>
+	
+	<select id="selectByNo" parameterType="int" resultMap="photoIdMap">
+		SELECT P.*, M.ID
+		FROM TBL_PHOTO P
+		JOIN TBL_MEMBER M ON (P.MEMBERNO = M.NO)
+		WHERE P.NO = #{no}
+	</select>
 	
 	<select id="selectMember" parameterType="int" resultMap="photoResultMap">
  		SELECT * 
@@ -30,18 +50,23 @@
  			AND TITLE LIKE '%'||#{keyword}||'%'
  			OR CONT LIKE '%'||#{keyword}||'%'
  		</if>
+ 		<if test="category != null">
+ 			AND CATEGORY = #{category}
+ 		</if>
  		ORDER BY NO DESC
 	</select>
 	
-	<select id="getPhotoCount" parameterType="string" resultType="int">
+	<select id="getPhotoCount" parameterType="map" resultType="int">
  		SELECT COUNT(*)
  		FROM TBL_PHOTO
- 		WHERE TITLE LIKE #{keyword} OR CONT LIKE #{keyword}
-	</select>
-	
-	<select id="getPhotoCountAll" parameterType="string" resultType="int">
- 		SELECT COUNT(*)
- 		FROM TBL_PHOTO
+ 		WHERE 1=1
+ 		<if test="keyword != null">
+ 			AND TITLE LIKE '%'||#{keyword}||'%'
+ 			OR CONT LIKE '%'||#{keyword}||'%'
+ 		</if>
+ 		<if test="category != null">
+ 			AND CATEGORY = #{category}
+ 		</if>
 	</select>
 	
 	<select id="selectByThree" resultMap="photoResultMap"> <!-- 최신 3개 가져오기 -->

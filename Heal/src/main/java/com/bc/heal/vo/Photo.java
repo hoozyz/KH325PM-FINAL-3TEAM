@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Photo {
 	private int no;
+	private String id;
 	private String title;
 	private String cont;
 	private int readcount;

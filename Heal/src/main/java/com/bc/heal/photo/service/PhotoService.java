@@ -19,7 +19,7 @@ public interface PhotoService {
 
 	String saveFile(MultipartFile file, String savePath);
 
-	int getPhotoCount(String keyword);
+	int getPhotoCount(Map<String, String> param);
 
 	int getPhotoCountAll();
 

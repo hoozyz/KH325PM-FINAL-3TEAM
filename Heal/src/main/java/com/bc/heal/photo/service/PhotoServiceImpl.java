@@ -70,11 +70,6 @@ public class PhotoServiceImpl implements PhotoService{
 	}
 
 	@Override
-	public int getPhotoCount(String keyword) {
-		return mapper.getPhotoCount(keyword);
-	}
-
-	@Override
 	public int getPhotoCountAll() {
 		return mapper.getPhotoCountAll();
 	}
@@ -89,8 +84,26 @@ public class PhotoServiceImpl implements PhotoService{
 		if (keyword != null && keyword.length() > 0) {
 			searchMap.put("keyword", keyword);
 		}
-		
+		String category = param.get("category");
+		if (category != null && category.length() > 0) {
+			searchMap.put("category", category);
+		}
 		return mapper.selectPhotoList(rowBounds, searchMap);
+	}
+
+	@Override
+	public int getPhotoCount(Map<String, String> param) {
+		Map<String, String> searchMap = new HashMap<String, String>();
+		String keyword = param.get("keyword");
+		if (keyword != null && keyword.length() > 0) {
+			searchMap.put("keyword", keyword);
+		}
+		String category = param.get("category");
+		if (category != null && category.length() > 0) {
+			searchMap.put("category", category);
+		}
+		System.out.println(searchMap);
+		return mapper.getPhotoCount(searchMap);
 	}
 
 }

@@ -233,7 +233,18 @@ public class CampController {
 			if (dong != null) {
 				if (weaService.selectByDong(dong) == null) {
 					dong = dong.substring(0, 2);
-					weaList = weatherApi(weaService.selectByDong(dong).getNx(), weaService.selectByDong(dong).getNy());
+					if(weaService.selectByDong(dong) == null) {
+						if (camp.getAddr().contains("구")) {
+							check = camp.getAddr().split("구")[0]; // 면 기준 앞에만 자르기
+							checkArr = check.split(" ");
+							dong = checkArr[checkArr.length - 1] + "구";
+						} else {
+							weaList = null;
+						}
+						weaList = weatherApi(weaService.selectByGu(dong).getNx(), weaService.selectByGu(dong).getNy());
+					} else {
+						weaList = weatherApi(weaService.selectByDong(dong).getNx(), weaService.selectByDong(dong).getNy());
+					}
 				} else {
 					weaList = weatherApi(weaService.selectByDong(dong).getNx(), weaService.selectByDong(dong).getNy());
 				}

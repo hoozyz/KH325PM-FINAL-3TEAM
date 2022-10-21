@@ -18,7 +18,7 @@ public interface PhotoMapper {
 
 	List<Photo> selectMember(int no);
 
-	int getPhotoCount(String keyword);
+	int getPhotoCount(Map<String, String> param);
 
 	int getPhotoCountAll();
 
