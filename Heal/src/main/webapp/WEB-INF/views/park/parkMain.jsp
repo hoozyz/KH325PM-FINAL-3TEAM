@@ -560,7 +560,6 @@
                         <div class="tab-pane fade row active show" id="neighbor" role="tabpanel">
                             <div class="card py-5 px-0" style="max-width: 15rem; border: none; float: left; background:none;">
                                 <div class="card-body" style="text-align: center; ">
-                                    <P style="color:#2841b1; font-size: 20pt;">근린공원</P>
                                 </div>
                             </div>
 
@@ -584,7 +583,6 @@
                         <div class="tab-pane fade row" id="pe" role="tabpanel">
                                 <div class="card py-5 px-0" style="max-width: 15rem; border: none; float: left; background:none;">
                                     <div class="card-body" style="text-align: center; ">
-                                        <P style="color:#2841b1; font-size: 20pt;">체육공원</P>
                                     </div>
                            		</div>
 
@@ -609,7 +607,6 @@
                         <div class="tab-pane fade row" id="kids" role="tabpanel">
                             <div class="card py-5 px-0" style="max-width: 15rem; border: none; float: left; background:none;">
                                 <div class="card-body" style="text-align: center; ">
-                                    <P style="color:#2841b1; font-size: 20pt;">어린이공원</P>
                                 </div>
                             </div>
 
@@ -633,7 +630,6 @@
                         <div class="tab-pane fade row" id="history" role="tabpanel">
                             <div class="card py-5 px-0" style="max-width: 15rem; border: none; float: left; background:none;">
                                 <div class="card-body" style="text-align: center; ">
-                                    <P style="color:#2841b1; font-size: 20pt;">역사공원</P>
                                 </div>
                             </div>
 
@@ -656,7 +652,6 @@
                         <div class="tab-pane fade row" id="small" role="tabpanel">
                             <div class="card py-5 px-0" style="max-width: 15rem; border: none; float: left; background:none;">
                                 <div class="card-body" style="text-align: center; ">
-                                    <P style="color:#2841b1; font-size: 20pt;">소공원</P>
                                 </div>
                             </div>
 
@@ -680,7 +675,6 @@
                         <div class="tab-pane fade row" id="culture" role="tabpanel">
                             <div class="card py-5 px-0" style="max-width: 15rem; border: none; float: left; background:none;">
                                 <div class="card-body" style="text-align: center; ">
-                                    <P style="color:#2841b1; font-size: 20pt;">문화공원</P>
                                 </div>
                             </div>
 
@@ -704,7 +698,6 @@
                         <div class="tab-pane fade row" id="water" role="tabpanel">
                             <div class="card py-5 px-0" style="max-width: 15rem; border: none; float: left; background:none;">
                                 <div class="card-body" style="text-align: center; ">
-                                    <P style="color:#2841b1; font-size: 20pt;">수변공원</P>
                                 </div>
                             </div>
 
