@@ -15,8 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.bc.heal.camp.service.CampService;
+import com.bc.heal.festival.service.FestivalService;
+import com.bc.heal.food.service.FoodService;
+import com.bc.heal.hotel.service.HotelService;
+import com.bc.heal.park.service.ParkService;
 import com.bc.heal.reply.service.ReplyService;
 import com.bc.heal.review.service.ReviewService;
+import com.bc.heal.vo.Hotel;
 import com.bc.heal.vo.Member;
 import com.bc.heal.vo.Reply;
 import com.bc.heal.vo.Review;
@@ -31,6 +37,21 @@ public class ReviewController {
 
 	@Autowired
 	private ReplyService repService;
+	
+	@Autowired
+	private HotelService hotelService;
+	
+	@Autowired
+	private CampService campService;
+	
+	@Autowired
+	private FestivalService fesService;
+	
+	@Autowired
+	private FoodService foodService;
+	
+	@Autowired
+	private ParkService parkService;
 	
 	@GetMapping("/myReview")
 	public String myLike(Model model, @SessionAttribute(name = "loginMember", required = false) Member loginMember) {
@@ -50,12 +71,12 @@ public class ReviewController {
 	}
 
 	@PostMapping("/write")
-	public String write(Model model, Review rev, String type,  @Param("no") int no,
+	public String write(Model model, Review rev, String type,  @Param("no") int no, @Param("title") String title,
 			@SessionAttribute(name = "loginMember", required = false) Member loginMember, HttpServletRequest req) {
 		String location = req.getHeader("Referer");
 		
 		int memNo = loginMember.getNo();
-		
+		rev.setTitle(title); // title에 명 넣기
 		if (type.equals("hotel")) {
 			rev.setHotelno(no);
 		} else if (type.equals("camp")) {
