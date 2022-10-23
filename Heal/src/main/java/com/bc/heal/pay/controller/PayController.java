@@ -61,13 +61,13 @@ public class PayController {
 		model.addAttribute("location", location);
 
 		if (type.equals("camp")) { // 캠핑장 예약일때
-			Reserve reserve = new Reserve(0, "", start, "", readyResponse.getTid(), itemName, totalAmount,
+			Reserve reserve1 = new Reserve(0, "", start, "", readyResponse.getTid(), itemName, totalAmount,
 					loginMember.getNo(), 0, no, 0, 0, 0);
-			model.addAttribute("reserve", reserve);
+			model.addAttribute("reserve1", reserve1);
 		} else {
-			Reserve reserve = new Reserve(0, "", start, "", readyResponse.getTid(), itemName, totalAmount,
+			Reserve reserve1 = new Reserve(0, "", start, "", readyResponse.getTid(), itemName, totalAmount,
 					loginMember.getNo(), no, 0, 0, 0, 0);
-			model.addAttribute("reserve", reserve);
+			model.addAttribute("reserve1", reserve1);
 		}
 
 		return readyResponse; // 클라이언트에 보냄.(tid,next_redirect_pc_url이 담겨있음.)

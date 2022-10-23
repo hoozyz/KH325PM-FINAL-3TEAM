@@ -175,7 +175,7 @@
                     <div class="modal-body">
                         <button class="btn-close position-absolute top-0 end-0 mt-3 me-3" type="button" data-bs-dismiss="modal"></button>
                             <div>
-                               <img class="d-block mx-auto" src=" " width="344" alt="Illustartion">
+                               <img class="d-block mx-auto" src="" width="344" alt="Illustartion">
                             </div>
                             <div>
                                 <form class="needs-validation" action="${path}/login" method="POST">
@@ -203,7 +203,7 @@
                                     <div class="px-3">Or</div>
                                     <hr class="w-100">
                                 </div>
-                            	<a style="width: 150%;height: 50px;margin-bottom: 15px;" href="javascript:void(0);" onclick="kakaoLogin();"><img src="${path}/resources/images/kakao_login_medium_wide.png" style=" width:400px;"></a>
+                            	<a style="width: 150%;height: 50px;margin-bottom: 15px;" href="javascript:void(0);" onclick="kakaoLogin();"><img src="${path}/resources/image/kakao_login_medium_wide.png" style=" width:400px;"></a>
                                 <div class="mt-4 mt-sm-5">계정이 없으신가요? <a href="#signup-modal" data-bs-toggle="modal" data-bs-dismiss="modal">회원가입</a></div>
                             </div>
                     </div>

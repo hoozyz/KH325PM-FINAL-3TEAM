@@ -64,23 +64,23 @@ function kakaoLogin() {
     Kakao.Auth.login({
       success: function (response) {
        	Kakao.Auth.setAccessToken(response.access_token);
-       	console.log(Kakao.Auth.getAccessToken())
         Kakao.API.request({
           url: '/v2/user/me',
           success: function (response) {
         	  var id = response.id;
         	  
         	  $.ajax({
-        		  url: "<%=request.getContextPath()%>/kakao",
+        		  url: "/kakao",
        			  type: "POST",
-       			  dataType: "text",
-       			  data: { "userId" : id },
-       			  progress: true,
+       			  data: { 
+       				  id : id 
+       			  },
                 	  
-                  success: function(user) {
-                	  location.href= "http://localhost/Show/";
+                  success: function(location) {
                   }
         	  })
+        	  console.log(location)
+              location.href=location;
           },
           fail: function (error) {
             console.log(error)
@@ -99,9 +99,8 @@ function kakaoLogout() {
      url: '/v1/user/unlink',
      success: function (response) {
     	 $.ajax({
-   		  url: "<%=request.getContextPath()%>/logout",
+   		  url: "/logout",
   			  type: "POST",
-  			  dataType: "text",
   			  progress: true,
            	  
              success: function(user) {

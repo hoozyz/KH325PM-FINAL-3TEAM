@@ -1,7 +1,9 @@
 package com.bc.heal.member.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,14 +13,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.bc.heal.member.service.MemberService;
-import com.bc.heal.vo.Board;
 import com.bc.heal.vo.Member;
-import com.bc.heal.vo.Photo;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -42,6 +44,24 @@ public class MemberController {
 			return "redirect:" + location; // 가져가는 정보 없이 전 페이지로 보내기
 		} else {
 			model.addAttribute("msg", "아이디나 패스워드가 잘못되었습니다.");
+			model.addAttribute("location", location);
+			return "common/msg";
+		}
+	}
+	
+	@RequestMapping("/kakao")
+	@ResponseBody
+	public String kakao(HttpServletRequest req, Model model, @RequestParam("id") String id) {
+		String location = req.getHeader("Referer");
+		
+		Member member = new Member(0, id, "", "kakao", "", "", ""); // 카카오는 이름을 kakao로 정함
+		int result = service.save(member);
+		
+		if(result > 0) {
+			model.addAttribute("loginMember", member);
+			return location;
+		} else {
+			model.addAttribute("msg", "카카오 로그인에 실패하였습니다.");
 			model.addAttribute("location", location);
 			return "common/msg";
 		}
