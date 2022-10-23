@@ -175,44 +175,40 @@
             </div>
             <div class="row row-cols-lg-6 row-cols-sm-3 row-cols-2 g-3 g-xl-4">
                 <div class="col">
-                    <a class="icon-box card card-body h-100 border-0 shadow-sm card-hover h-100 text-center" href="real-estate-catalog-rent.html">
+                    <a class="icon-box card card-body h-100 border-0 shadow-sm card-hover h-100 text-center" onclick="search1()">
                         <div class="icon-box-media bg-faded-primary text-primary rounded-circle mb-3 mx-auto"><i class="fi-real-estate-house" style="margin-top: 11px;"></i></div>
                         <h3 class="icon-box-title fs-base mb-0">텐트/침낭</h3>
                     </a>
                 </div>
                 <div class="col">
-                    <a class="icon-box card card-body h-100 border-0 shadow-sm card-hover h-100 text-center" href="real-estate-catalog-sale.html">
+                    <a class="icon-box card card-body h-100 border-0 shadow-sm card-hover h-100 text-center" onclick="search2()">
                         <div class="icon-box-media bg-faded-primary text-primary rounded-circle mb-3 mx-auto"><i class="fi-apartment" style="margin-top: 11px;"></i></div>
                         <h3 class="icon-box-title fs-base mb-0">음식</h3>
                     </a>
                 </div>
                 <div class="col">
-                    <a class="icon-box card card-body h-100 border-0 shadow-sm card-hover h-100 text-center" href="real-estate-catalog-rent.html">
+                    <a class="icon-box card card-body h-100 border-0 shadow-sm card-hover h-100 text-center" onclick="search3()">
                         <div class="icon-box-media bg-faded-primary text-primary rounded-circle mb-3 mx-auto"><i class="fi-shop" style="margin-top: 12px;"></i></div>
                         <h3 class="icon-box-title fs-base mb-0">가구</h3>
                     </a>
                 </div>
                 <div class="col">
-                    <a class="icon-box card card-body h-100 border-0 shadow-sm card-hover h-100 text-center" href="real-estate-catalog-sale.html">
+                    <a class="icon-box card card-body h-100 border-0 shadow-sm card-hover h-100 text-center" onclick="search4()">
                         <div class="icon-box-media bg-faded-primary text-primary rounded-circle mb-3 mx-auto"><i class="fi-rent" style="margin-top: 12px;"></i></div>
                         <h3 class="icon-box-title fs-base mb-0">도구</h3>
                     </a>
                 </div>
                 <div class="col">
-                    <a class="icon-box card card-body h-100 border-0 shadow-sm card-hover h-100 text-center" href="real-estate-catalog-rent.html">
+                    <a class="icon-box card card-body h-100 border-0 shadow-sm card-hover h-100 text-center" onclick="search5()">
                         <div class="icon-box-media bg-faded-primary text-primary rounded-circle mb-3 mx-auto"><i class="fi-house-chosen" style="margin-top: 12px;"></i></div>
                         <h3 class="icon-box-title fs-base mb-0">차량용</h3>
                     </a>
                 </div>
                 <div class="col">
-                    <div class="dropdown h-100">
-                        <a class="icon-box card card-body h-100 border-0 shadow-sm card-hover text-center" href="#" data-bs-toggle="dropdown">
-                            <div class="icon-box-media bg-faded-primary text-primary rounded-circle mb-3 mx-auto"><i class="fi-dots-horisontal" style="margin-top: 12px;"></i></div>
-                            <h3 class="icon-box-title fs-base mb-0">ETC</h3>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end my-1"><a class="dropdown-item fw-bold" href="real-estate-catalog-sale.html"><i class="fi-single-bed fs-base opacity-60 me-2"></i>Room</a><a class="dropdown-item fw-bold" href="real-estate-catalog-rent.html"><i class="fi-computer fs-base opacity-60 me-2"></i>Office</a>
-                            <a class="dropdown-item fw-bold" href="real-estate-catalog-sale.html"><i class="fi-real-estate-buy fs-base opacity-60 me-2"></i>Land</a><a class="dropdown-item fw-bold" href="real-estate-catalog-rent.html"><i class="fi-parking fs-base opacity-60 me-2"></i>Parking lot</a></div>
-                    </div>
+                    <a class="icon-box card card-body h-100 border-0 shadow-sm card-hover h-100 text-center" onclick="search6()">
+                        <div class="icon-box-media bg-faded-primary text-primary rounded-circle mb-3 mx-auto"><i class="fi-house-chosen" style="margin-top: 12px;"></i></div>
+                        <h3 class="icon-box-title fs-base mb-0">입장권</h3>
+                    </a>
                 </div>
             </div>
         </section>
@@ -220,9 +216,50 @@
         
         
         <script>
-   			$(document).ready(() => {
-   				$("#search").click(function() {
-   					var keyword = $("#keyword").val();
+   				function search1() {
+   					var keyword = '텐트/침낭'
+   	        		$("#keyword").val(keyword);
+   	        		
+   					$("#search").trigger('click');
+   	        	}
+   				
+   				function search2() {
+   					var keyword = '캠핑음식'
+   	        		$("#keyword").val(keyword);
+   	        		
+   					$("#search").trigger('click');
+   	        	}
+   				
+   				function search3() {
+   					var keyword = '캠핑가구'
+   	        		$("#keyword").val(keyword);
+   	        		
+   					$("#search").trigger('click');
+   	        	}
+   				
+   				function search4() {
+   					var keyword = '캠핑도구'
+   	        		$("#keyword").val(keyword);
+   	        		
+   					$("#search").trigger('click');
+   	        	}
+   				
+   				function search5() {
+   					var keyword = '차량용'
+   	        		$("#keyword").val(keyword);
+   	        		
+   					$("#search").trigger('click');
+   	        	}
+   				
+   				function search6() {
+   					var keyword = '입장권'
+   	        		$("#keyword").val(keyword);
+   	        		
+   					$("#search").trigger('click');
+   	        	}
+   				
+   				$("#search").on('click', function() {
+					var keyword = $("#keyword").val();
    					
    					$.ajax({
    						type: 'GET',
@@ -274,9 +311,8 @@
    						error:function(e) {
    							console.log(e)
    						}
-   					})
-   				})
-   			});
+   					});
+   				}); 
    		</script>
 
 

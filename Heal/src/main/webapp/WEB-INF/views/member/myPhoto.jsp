@@ -56,11 +56,19 @@
             <!-- Item-->
             <c:if test="${!empty photoList}">
             	<c:forEach var="i" begin="0" end="${photoList.size() - 1}">
-           			<div class="card card-hover card-horizontal border-0 shadow-sm mb-4"><a class="card-img-top" href="#" style="background-image: url(${path}/resources/img/campTest.jpg);">
+           			<div class="card card-hover card-horizontal border-0 shadow-sm mb-4">
+           			<c:set var="renamefile" value="${list.get(i).renamefile}"/>
+           			<c:if test="${fn:contains(renamefile,',')}">
+                        <c:set var="split" value="${fn:split(renamefile,',')}"/>
+                        <a class="card-img-top" href="${path}/photo/view?no=${photoList.get(i).no}" style="background-image: url(/resources/upload/image/${split[0]});">
+                    </c:if>
+                    <c:if test="${not fn:contains(renamefile,',')}">
+                    	<a class="card-img-top" href="${path}/photo/view?no=${photoList.get(i).no}" style="background-image: url(/resources/upload/image/${photoList.get(i).renamefile});">
+                    </c:if>
              		   <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info">${photoList.get(i).category}</span></div></a>
 		         		<div class="card-body position-relative pb-3">
-		                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">${photoList.get(i).title}</a></h3>
-		                <p class="mb-2 fs-sm text-muted" style="word-break:break-all;"><%-- ${photoList.get(i).cont} --%> 길이가 매ㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐ우 긴 내용</p>
+		                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="${path}/photo/view?no=${photoList.get(i).no}">${photoList.get(i).title}</a></h3>
+		                <p class="mb-2 fs-sm text-muted" style="word-break:break-all;">${photoList.get(i).cont}</p>
 		                <div class="d-flex align-items-center justify-content-center justify-content-sm-start border-top pt-3 pb-2 mt-3 text-nowrap">
 		                <span class="d-inline-block me-4 fs-sm">조회수 : ${photoList.get(i).readcount}</span>
 		                <span class="d-inline-block me-4 fs-sm">작성일 : ${photoList.get(i).modifydate}</span>
@@ -89,5 +97,11 @@
    				}
    			}
    	</script>
+   	
+   	<script src="${path}/resources/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="${path}/resources/vendor/simplebar/dist/simplebar.min.js"></script>
+    <script src="${path}/resources/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+    <!-- Main theme script-->
+    <script src="${path}/resources/js/theme.min.js"></script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

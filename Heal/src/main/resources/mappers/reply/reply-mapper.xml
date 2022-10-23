@@ -6,6 +6,7 @@
 <mapper namespace="com.bc.heal.reply.mapper.ReplyMapper">
 	<resultMap type="Reply" id="replyResultMap">
 		<id property="no" column="NO"/>
+		<result property="title" column="TITLE"/>
 		<result property="cont" column="CONT"/>
 		<result property="createdate" column="CREATEDATE"/>
 		<result property="modifydate" column="MODIFYDATE"/>
@@ -16,6 +17,7 @@
 	<resultMap type="Reply" id="replyIdMap">
 		<id property="no" column="NO"/>
 		<result property="id" column="ID"/>
+		<result property="title" column="TITLE"/>
 		<result property="cont" column="CONT"/>
 		<result property="createdate" column="CREATEDATE"/>
 		<result property="modifydate" column="MODIFYDATE"/>

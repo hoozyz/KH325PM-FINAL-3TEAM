@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -69,9 +70,10 @@ public class ReplyController {
 	}
 	
 	@PostMapping("/write")
-	public String write(Model model, @ModelAttribute Reply reply,
+	public String write(Model model, @ModelAttribute Reply reply, @Param("title") String title,
 			@SessionAttribute(name = "loginMember", required = false) Member loginMember) {
 		reply.setMemberno(loginMember.getNo());
+		reply.setTitle(title);
 		service.save(reply);
 		String no = ""+reply.getPhotono();
 		
