@@ -69,9 +69,9 @@
                     <option value="" selected disabled>카테고리</option>
                     <option value="근린공원">근린공원</option>
                     <option value="어린이공원">어린이공원</option>
+                    <option value="체육공원">체육공원</option>
                     <option value="도시자연공원">도시자연공원</option>
                     <option value="수변공원">수변공원</option>
-                    <option value="체육공원">체육공원</option>
                     <option value="소공원">소공원</option>
                     <option value="마을마당">마을마당</option>
                     <option value="역사공원">역사공원</option>
