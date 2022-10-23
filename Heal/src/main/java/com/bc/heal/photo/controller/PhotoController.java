@@ -132,7 +132,7 @@ public class PhotoController {
 		return "redirect: /photo/main";
 	}
 
-	@PostMapping("/myPhoto")
+	@GetMapping("/myPhoto")
 	public String myPhoto(Model model, @SessionAttribute(name = "loginMember", required = false) Member loginMember) {
 		List<Photo> list = new ArrayList<>();
 

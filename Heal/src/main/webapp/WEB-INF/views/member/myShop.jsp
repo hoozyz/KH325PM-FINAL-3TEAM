@@ -37,7 +37,7 @@
                 <div class="card-nav">
                   <a class="card-nav-link" href="${path}/member/myInfo"><i class="fi-user opacity-60 me-2"></i>나의 정보</a>
                   <a class="card-nav-link" href="${path}/reserve/camp"><i class="fi-home opacity-60 me-2"></i>나의 예약</a>
-                  <a class="card-nav-link" href="${path}/board/myPost"><i class="fi-home opacity-60 me-2"></i>나의 게시글</a>
+                  <a class="card-nav-link" href="${path}/photo/myPost"><i class="fi-home opacity-60 me-2"></i>나의 게시글</a>
                   <a class="card-nav-link active" href="${path}/shop/myShop"><i class="fi-bell opacity-60 me-2"></i>나의 쇼핑</a>
                   <a class="card-nav-link" href="${path}/like/myLike"><i class="fi-heart opacity-60 me-2"></i>나의 찜</a>
                   <a class="card-nav-link" href="${path}/review/myReview"><i class="fi-star opacity-60 me-2"></i>나의 리뷰/댓글</a>
@@ -137,5 +137,11 @@
         </div>
       </div>
     </main>
+    
+    <script src="${path}/resources/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="${path}/resources/vendor/simplebar/dist/simplebar.min.js"></script>
+    <script src="${path}/resources/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+    <!-- Main theme script-->
+    <script src="${path}/resources/js/theme.min.js"></script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

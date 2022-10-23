@@ -38,7 +38,7 @@
                 <div class="card-nav">
                   <a class="card-nav-link" href="${path}/member/myInfo"><i class="fi-user opacity-60 me-2"></i>나의 정보</a>
                   <a class="card-nav-link" href="${path}/reserve/myCamp"><i class="fi-home opacity-60 me-2"></i>나의 예약</a>
-                  <a class="card-nav-link" href="${path}/board/myPhoto"><i class="fi-home opacity-60 me-2"></i>나의 게시글</a>
+                  <a class="card-nav-link" href="${path}/photo/myPhoto"><i class="fi-home opacity-60 me-2"></i>나의 게시글</a>
                   <a class="card-nav-link active" href="${path}/like/myLike"><i class="fi-heart opacity-60 me-2"></i>나의 찜</a>
                   <a class="card-nav-link" href="${path}/review/myReview"><i class="fi-star opacity-60 me-2"></i>나의 리뷰/댓글</a>
               </div>
@@ -49,6 +49,10 @@
 			  <h1>나의 찜</h1>
 			  </div>
           <!-- Content-->
+          <c:if test="${empty allList}">
+          	찜내역이 없습니다.
+          </c:if>
+          
           <c:if test="${!empty allList}">
             	<c:forEach var="i" begin="0" end="${allList.size() - 1}">
 			        <c:if test="${allList.get(i).getClass().toString().contains('Camp')}"> <!-- 캠핑장에 대한 찜일때 -->

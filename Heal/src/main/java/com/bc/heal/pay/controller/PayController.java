@@ -88,7 +88,7 @@ public class PayController {
 		String location = req.getHeader("Referer"); // 결제 이전페이지 미리 받기.
 		model.addAttribute("location", location);
 
-		Reserve reserve2 = new Reserve();
+		Reserve reserve2 = new Reserve(-1, "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0);
 		// 오는편 예매
 		if(type.equals("airRound")) { // 왕복일 때
 			Air air = airService.selectByStartTime(start, end, time);
@@ -142,7 +142,6 @@ public class PayController {
 			reserve2.setTid(readyResponse.getTid()); // 왕복일 때만 오는편 가능
 		}
 		model.addAttribute("reserve2", reserve2);
-		
 		// reserve1 은 가는거 , reserve2 는 오는거
 		// 아래는 가는편 예매
 		if (type.contains("air")) {

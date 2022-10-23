@@ -8,6 +8,12 @@
 	<jsp:param value="나의 리뷰" name="title"/>
 </jsp:include>
 
+<style>
+	a{
+		text-decoration: none;
+	}
+</style>
+
 <!-- Page content-->
       <div class="container pt-5 pb-lg-4 mt-5 mb-sm-2">
         <!-- Breadcrumb-->
@@ -37,7 +43,7 @@
                 <div class="card-nav">
                   <a class="card-nav-link" href="${path}/member/myInfo"><i class="fi-user opacity-60 me-2"></i>나의 정보</a>
                   <a class="card-nav-link" href="${path}/reserve/myCamp"><i class="fi-home opacity-60 me-2"></i>나의 예약</a>
-                  <a class="card-nav-link" href="${path}/board/myPhoto"><i class="fi-home opacity-60 me-2"></i>나의 게시글</a>
+                  <a class="card-nav-link" href="${path}/photo/myPhoto"><i class="fi-home opacity-60 me-2"></i>나의 게시글</a>
                   <a class="card-nav-link" href="${path}/like/myLike"><i class="fi-heart opacity-60 me-2"></i>나의 찜</a>
                   <a class="card-nav-link active" href="${path}/review/myReview"><i class="fi-star opacity-60 me-2"></i>나의 리뷰/댓글</a>
               </div>
@@ -57,6 +63,9 @@
               <div class="tab-pane fade show active" id="review" role="tabpanel">
                 <div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch justify-content-between pb-4 mb-2 mb-md-3">
                 </div>
+                <c:if test="${empty revList}">
+                	리뷰내역이 없습니다.
+                </c:if>
                 <c:if test="${!empty revList}">
             		<c:forEach var="i" begin="0" end="${revList.size() - 1}">
 			        	<c:if test="${revList.get(i).getCampno() != 0}"> <!-- 캠프에 관한 리뷰 -->
@@ -261,5 +270,11 @@
    				}
    			}
    	</script>
+   	
+   	<script src="${path}/resources/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="${path}/resources/vendor/simplebar/dist/simplebar.min.js"></script>
+    <script src="${path}/resources/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+    <!-- Main theme script-->
+    <script src="${path}/resources/js/theme.min.js"></script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
