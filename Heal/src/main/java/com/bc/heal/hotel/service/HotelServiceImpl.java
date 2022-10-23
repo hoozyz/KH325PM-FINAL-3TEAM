@@ -38,5 +38,10 @@ public class HotelServiceImpl implements HotelService{
 	public List<Hotel> getNearHotelList(String addr) {
 		return mapper.selectNearHotelList(addr);
 	}
+
+	@Override
+	public void updateHotel(String no1, String no2, String no3, String no4) {
+		mapper.updateHotel(no1,no2,no3,no4);
+	}
 	
 }

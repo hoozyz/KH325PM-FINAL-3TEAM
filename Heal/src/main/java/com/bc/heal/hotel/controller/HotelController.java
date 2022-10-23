@@ -23,17 +23,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.bc.heal.air.service.AirService;
 import com.bc.heal.bus.service.BusService;
 import com.bc.heal.common.util.PageInfo;
+import com.bc.heal.food.service.FoodService;
 import com.bc.heal.hotel.service.HotelService;
+import com.bc.heal.like.service.LikeService;
 import com.bc.heal.review.service.ReviewService;
 import com.bc.heal.train.service.TrainService;
 import com.bc.heal.vo.Air;
 import com.bc.heal.vo.Bus;
+import com.bc.heal.vo.Camp;
 import com.bc.heal.vo.EndStation;
 import com.bc.heal.vo.Hotel;
+import com.bc.heal.vo.Member;
 import com.bc.heal.vo.Review;
 import com.bc.heal.vo.Train;
 import com.bc.heal.vo.Weather;
@@ -61,6 +66,9 @@ public class HotelController {
 	@Autowired
 	private ReviewService revService;
 
+	@Autowired
+	private LikeService likeService;
+	
 	@GetMapping("/nearHotel")
 	String list(Model model, @RequestParam Map<String, String> param) {
 
@@ -125,9 +133,64 @@ public class HotelController {
 	}
 
 	@GetMapping("/hotelDetail")
-	public String detail(Model model, int no) {
+	public String detail(Model model, int no,
+			@SessionAttribute(name = "loginMember", required = false) Member loginMember) {
 		Hotel hotel = hotelService.findByNo(no);
+		
+		Map<String, String> map = new HashMap<>();
+		map.put("check", "1");
+		map.put("type", "hotel");
+		map.put("likeNo", "" + no);
+		int likeCheck = 0;
+		int likeSer = 0;
+		if (loginMember != null) {
+			likeSer = likeService.selectNo(loginMember.getNo(), map);
+		}
+		if (likeSer > 0) {
+			System.out.println("----");
+			likeCheck = 1;
+			model.addAttribute("likeNo", likeSer);
+		}
+		model.addAttribute("likeCheck", likeCheck);
+		
 
+		// 최근 본 캠핑장 -> no 0 인 곳에 차례로 번호 넣기
+		List<Hotel> lastList = new ArrayList<>(); // 최신 4개 리스트
+		lastList.add(hotel); // 지금 들어가는게 최신
+
+		Hotel zero = hotelService.findByNo(0); // name, lineintro, intro, aria 순서로 없을 시 넣기 -> name가 최근
+		if (zero.getName() == null) { // 초기값
+			zero.setName("1337");
+		}
+		if (zero.getPhone() == null) {
+			zero.setPhone("17");
+		}
+		if (zero.getAddr() == null) {
+			zero.setAddr("77");
+		}
+		String threeNo = "";
+		String fourNo = "";
+
+		// 4개 넣어놓고 -> name에 최신 한 칸씩 뒤로 옮기기
+		String twoNo = zero.getName();
+		if (twoNo.equals("" + no)) { // 이미 최신에 현재 캠핑장이 있을 때
+			twoNo = zero.getPhone();
+			threeNo = zero.getAddr();
+			fourNo = zero.getName();
+		} else {
+			threeNo = zero.getPhone();
+			fourNo = zero.getAddr();
+		}
+
+		lastList.add(hotelService.findByNo(Integer.parseInt(twoNo)));
+		lastList.add(hotelService.findByNo(Integer.parseInt(threeNo)));
+		lastList.add(hotelService.findByNo(Integer.parseInt(fourNo)));
+
+		hotelService.updateHotel("" + no, twoNo, threeNo, fourNo); // update
+
+		model.addAttribute("lastList", lastList);
+				
+				
 		// 리뷰	
 		
 		int revCount = revService.selectRevByHotelCnt(no); 
