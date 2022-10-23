@@ -191,6 +191,7 @@ public class HotelController {
 		model.addAttribute("lastList", lastList);
 				
 				
+		
 		// 리뷰	
 		
 		int revCount = revService.selectRevByHotelCnt(no); 

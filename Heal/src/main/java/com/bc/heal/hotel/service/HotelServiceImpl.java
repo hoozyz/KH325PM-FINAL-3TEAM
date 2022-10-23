@@ -44,4 +44,5 @@ public class HotelServiceImpl implements HotelService{
 		mapper.updateHotel(no1,no2,no3,no4);
 	}
 	
+	
 }

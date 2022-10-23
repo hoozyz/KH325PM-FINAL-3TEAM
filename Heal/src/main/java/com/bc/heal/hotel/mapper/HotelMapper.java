@@ -16,4 +16,5 @@ public interface HotelMapper {
 	int selectHotelCount(Map<String, String> map);
 	List<Hotel> selectNearHotelList(String addr);
 	void updateHotel(@Param("no1") String no1, @Param("no2") String no2, @Param("no3") String no3, @Param("no4") String no4);
+	
 }
