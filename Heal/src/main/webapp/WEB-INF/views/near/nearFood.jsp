@@ -155,9 +155,6 @@
 											<span class="d-table badge bg-success mb-1">${food.type}</span><span class="d-table badge bg-info">${food.main}</span>
 										</div>
 										<div class="content-overlay end-0 top-0 pt-3 pe-3">
-											<button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist">
-												<i class="fi-heart"></i>
-											</button>
 										</div>						
 										<div class="">
 										<c:set var = "foodType" value = "${FoodList.get(i).type}" scope="session"/>

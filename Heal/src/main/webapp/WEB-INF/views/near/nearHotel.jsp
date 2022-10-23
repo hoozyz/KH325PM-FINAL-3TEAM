@@ -124,9 +124,6 @@
 								<div class="tns-carousel-wrapper card-img-top card-img-hover">
 									<a class="img-overlay" href="real-estate-single-v1.html"></a>
 									<div class="content-overlay end-0 top-0 pt-3 pe-3">
-										<button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist">
-											<i class="fi-heart"></i>
-										</button>
 									</div>
 									<div class="">
 									<!-- 이미지는 임시, 페이징 다 끝내면 디폴트로 첫 페이지는 임의로 12개 구성 -->
