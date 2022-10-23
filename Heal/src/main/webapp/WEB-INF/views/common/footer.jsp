@@ -79,7 +79,6 @@ function kakaoLogin() {
                   success: function(location) {
                   }
         	  })
-        	  console.log(location)
               location.href=location;
           },
           fail: function (error) {
@@ -106,7 +105,7 @@ function kakaoLogout() {
              success: function(user) {
              }
    	  	})
-      	location.href= "http://localhost/Show/";
+      	location.href= "http://localhost/";
        },
        fail: function (error) {
          console.log(error)

@@ -116,7 +116,7 @@
                 <div class="d-flex align-items-center justify-content-between">
                   <div class="pe-2">
                     <label class="form-label fw-bold">이름</label>
-                    <div id="name-value">홍길동</div>
+                    <div id="name-value">${loginMember.name}</div>
                   </div>
                   <div class="me-n3" data-bs-toggle="tooltip" title="Edit"><a class="nav-link py-0" href="#name-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
                 </div>
@@ -164,8 +164,10 @@
                 </div>
               </div>
               <div class="d-flex align-items-center justify-content-between border-top mt-4 pt-4 pb-1">
-              <input class="btn btn-primary px-3 px-sm-4" type="submit" value="정보 변경" id="updateMember">
-              <i class="fi-trash me-2">&nbsp<input class="btn btn-link btn-sm px-0" type="button" id="deleteMember" value="회원 탈퇴"></i>
+              <c:if test="${loginMember.name != 'kakao'}"> <!-- 카카오 계정은 변경, 탈퇴 불가 -->
+              	<input class="btn btn-primary px-3 px-sm-4" type="submit" value="정보 변경" id="updateMember">
+              	<i class="fi-trash me-2">&nbsp<input class="btn btn-link btn-sm px-0" type="button" id="deleteMember" value="회원 탈퇴"></i>
+              </c:if>
             </div>
             </form>
             </div>

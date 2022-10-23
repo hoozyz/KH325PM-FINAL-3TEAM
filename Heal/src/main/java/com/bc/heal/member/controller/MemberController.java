@@ -48,16 +48,19 @@ public class MemberController {
 			return "common/msg";
 		}
 	}
-	
+
 	@RequestMapping("/kakao")
 	@ResponseBody
 	public String kakao(HttpServletRequest req, Model model, @RequestParam("id") String id) {
 		String location = req.getHeader("Referer");
-		
+
 		Member member = new Member(0, id, "", "kakao", "", "", ""); // 카카오는 이름을 kakao로 정함
-		int result = service.save(member);
-		
-		if(result > 0) {
+		int result = 0;
+		if (service.findById(id) == null) {
+			result = service.save(member);
+		}
+
+		if (result > 0 || member.getId() != null) {
 			model.addAttribute("loginMember", member);
 			return location;
 		} else {
@@ -135,7 +138,7 @@ public class MemberController {
 			model.addAttribute("msg", "회원탈퇴에 실패하였습니다.");
 			model.addAttribute("location", "/member/myInfo");
 		}
-		
+
 		return "common/msg";
 	}
 

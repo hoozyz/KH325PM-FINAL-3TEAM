@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.bc.heal.air.service.AirService;
 import com.bc.heal.bus.service.BusService;
+import com.bc.heal.member.service.MemberService;
 import com.bc.heal.pay.service.PayService;
 import com.bc.heal.reserve.service.ReserveService;
 import com.bc.heal.train.service.TrainService;
@@ -44,6 +45,9 @@ public class PayController {
 
 	@Autowired
 	private TrainService trainService;
+	
+	@Autowired
+	private MemberService memService;
 
 	// 카카오페이결제 요청
 	@GetMapping("/camp") // 캠핑장, 호텔 결제
@@ -59,7 +63,8 @@ public class PayController {
 
 		String location = req.getHeader("Referer"); // 결제 이전페이지 미리 받기.
 		model.addAttribute("location", location);
-
+		loginMember = memService.findById(loginMember.getId());
+		System.out.println(loginMember);
 		if (type.equals("camp")) { // 캠핑장 예약일때
 			Reserve reserve1 = new Reserve(0, "", start, "", readyResponse.getTid(), itemName, totalAmount,
 					loginMember.getNo(), 0, no, 0, 0, 0);
@@ -69,6 +74,8 @@ public class PayController {
 					loginMember.getNo(), no, 0, 0, 0, 0);
 			model.addAttribute("reserve1", reserve1);
 		}
+		Reserve reserve2 = new Reserve(-1, "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0);
+		model.addAttribute("reserve2", reserve2);
 
 		return readyResponse; // 클라이언트에 보냄.(tid,next_redirect_pc_url이 담겨있음.)
 	}
@@ -175,10 +182,13 @@ public class PayController {
 		payService.payApprove(loginMember, itemName, tid, pgToken);
 
 		int result = 0;
-		result = resService.save(reserve2);
+		if(reserve2.getNo() != -1) { // 예약 2번째 -> 오는편이 있을때
+			result = resService.save(reserve2);
+		}
+		System.out.println(reserve1);
 		result += resService.save(reserve1); // 가는편이 먼저보이게
 
-		if (result > 1) {
+		if (result > 0) {
 			model.addAttribute("msg", "예약이 완료되었습니다.");
 			model.addAttribute("location", location);
 		} else {
