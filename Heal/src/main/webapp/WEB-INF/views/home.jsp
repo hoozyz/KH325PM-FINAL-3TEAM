@@ -132,10 +132,10 @@ else{
                 <h2 class="h3 mb-0 me-md-4 text-center">추천 캠핑장</h2>
            		<nav>
 	                <div class="nav nav-tabs d-none d-md-flex ps-lg-2 mb-0" role="tablist">
-                    	<button class="nav-link  fs-sm   mb-2 mb-md-0 me-1" id="campsite-tab" data-bs-toggle="tab" data-bs-target="#campsite" type="button" role="tab" aria-controls="campsite" aria-selected="true">일반 야영장</button>
-                    	<button class="nav-link  fs-sm   mb-2 mb-md-0 me-1" id="carcampsite-tab" data-bs-toggle="tab" data-bs-target="#carcampsite" type="button" role="tab" aria-controls="carcampsite" aria-selected="true">자동차 야영장</button>
-                    	<button class="nav-link  fs-sm   mb-2 mb-md-0 me-1" id="glamping-tab" data-bs-toggle="tab" data-bs-target="#glamping" type="button" role="tab" aria-controls="glamping" aria-selected="true">글램핑</button>
-                    	<button class="nav-link  fs-sm   mb-2 mb-md-0 me-1" id="caravan-tab" data-bs-toggle="tab" data-bs-target="#caravan" type="button" role="tab" aria-controls="caravan" aria-selected="true">카라반</button>
+                    	<button class="nav-link  fs-sm   mb-2 mb-md-0 me-1" id="campsite-tab" data-bs-toggle="tab" data-bs-target="#campsite" type="button" onclick="location.href='${path}/camp/campSearch?category=일반야영장';">일반 야영장</button>
+                    	<button class="nav-link  fs-sm   mb-2 mb-md-0 me-1" id="carcampsite-tab" data-bs-toggle="tab" data-bs-target="#carcampsite" type="button" onclick="location.href='${path}/camp/campSearch?category=자동차야영장';">자동차 야영장</button>
+                    	<button class="nav-link  fs-sm   mb-2 mb-md-0 me-1" id="glamping-tab" data-bs-toggle="tab" data-bs-target="#glamping" type="button" onclick="location.href='${path}/camp/campSearch?category=글램핑';">글램핑</button>
+                    	<button class="nav-link  fs-sm   mb-2 mb-md-0 me-1" id="caravan-tab" data-bs-toggle="tab" data-bs-target="#caravan" type="button" onclick="location.href='${path}/camp/campSearch?category=카라반';">카라반</button>
 	               	</div>
              	</nav> 
            	</div><a class="btn btn-link fw-normal d-none d-lg-block p-0" href="${path}/camp/campMain">View all<i class="fi-arrow-long-right ms-2"></i></a>
