@@ -23,11 +23,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.bc.heal.air.service.AirService;
 import com.bc.heal.bus.service.BusService;
 import com.bc.heal.common.util.PageInfo;
 import com.bc.heal.food.service.FoodService;
+import com.bc.heal.like.service.LikeService;
 import com.bc.heal.review.service.ReviewService;
 import com.bc.heal.train.service.TrainService;
 import com.bc.heal.vo.Air;
@@ -36,6 +38,7 @@ import com.bc.heal.vo.Camp;
 import com.bc.heal.vo.EndStation;
 import com.bc.heal.vo.Train;
 import com.bc.heal.vo.Food;
+import com.bc.heal.vo.Member;
 import com.bc.heal.vo.Review;
 import com.bc.heal.vo.Weather;
 import com.bc.heal.weather.service.WeatherService;
@@ -61,6 +64,9 @@ public class FoodController {
 
 	@Autowired
 	private ReviewService revService;
+	
+	@Autowired
+	private LikeService likeService;
 
 	@GetMapping("/nearFood")
 	String list(Model model, @RequestParam Map<String, String> param) {
@@ -122,9 +128,29 @@ public class FoodController {
 	}
 
 	@GetMapping("/foodDetail")
-	public String detail(Model model, int no) {
+	public String detail(Model model, int no,
+			@SessionAttribute(name = "loginMember", required = false) Member loginMember) {
+		
 		Food food = foodService.findByNo(no);// 테스트 -> 공항있는 캠핑장
 
+		Map<String, String> map = new HashMap<>();
+		map.put("check", "1");
+		map.put("type", "food");
+		map.put("likeNo", "" + no);
+		int likeCheck = 0;
+		int likeSer = 0;
+		if (loginMember != null) {
+			likeSer = likeService.selectNo(loginMember.getNo(), map);
+		}
+		if (likeSer > 0) {
+			likeCheck = 1;
+			model.addAttribute("likeNo", likeSer);
+		}
+		model.addAttribute("likeCheck", likeCheck);
+		model.addAttribute("loginMember", loginMember);
+		
+		
+		
 		// 최근 본 캠핑장 -> no 0 인 곳에 차례로 번호 넣기
 		List<Food> lastList = new ArrayList<>(); // 최신 4개 리스트
 		lastList.add(food); // 지금 들어가는게 최신

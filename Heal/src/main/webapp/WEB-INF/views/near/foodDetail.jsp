@@ -1756,7 +1756,7 @@
                     <!-- 리뷰-->
       	 		<div id="revDiv">	  
                      <c:if test="${empty revList}">
-                     	<div>리뷰가 없습니다</div>
+                     	<div>리뷰내역이 없습니다</div>
                      </c:if>
                      
 		            
@@ -1942,7 +1942,16 @@
                         <div class="d-flex align-items-center justify-content-between mb-2">
                             <span class="badge bg-danger me-2 mb-1">한식</span>
                             <div class="text-nowrap">
-                                <button class="btn btn-icon btn-light-primary btn shadow-sm rounded-circle ms-2 mb-2" type="button" data-bs-toggle="tooltip" title="Add to Wishlist"><i class="fi-heart"></i></button>
+                            	<c:if test="${loginMember != null}">
+	                                <span id="likeDiv">
+				                		<c:if test="${likeCheck == 0}">
+				                			<button class="btn btn-icon btn-light-primary btn shadow-sm rounded-circle ms-2 mb-2" id="likePlus1" onclick="like_Plus(${food.no})" type="button" data-bs-toggle="tooltip"><i class="fi-heart"></i></button>
+				                		</c:if>
+				                		<c:if test="${likeCheck == 1}">
+				                			<button class="btn btn-icon btn-light-primary btn shadow-sm rounded-circle ms-2 mb-2" id="likeMinus1" onclick="like_Minus(${likeNo})" type="button" data-bs-toggle="tooltip"><i class="fi-heart-filled"></i></button>
+				                		</c:if>
+				                	</span>
+                               	</c:if>
                                 <div class="dropdown d-inline-block" data-bs-toggle="tooltip" title="Share">
                                     <button class="btn btn-icon btn-light-primary btn shadow-sm rounded-circle ms-2 mb-2" type="button" data-bs-toggle="dropdown"><i class="fi-share"></i></button>
                                     <div class="dropdown-menu dropdown-menu-end my-1">
@@ -1953,6 +1962,59 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        
+        <script>
+        
+        function like_Plus(no) {
+        	$("#likePlus1").attr('onclick','like_Minus('+no+')')
+        	var type = "food";
+        	$.ajax({
+     			url: "/like/like",
+     			type: "POST",
+     			dataType: "text",
+     			data: { likeNo: no,
+     					type: type /*ㅍㅔ이지체크 ㅍ */
+				},
+         	
+     			success: function(likeNo) {
+     				console.log(likeNo)
+     				console.log("like_Plus.");
+		        	$("#likeDiv").html('<button class="btn btn-icon btn-light-primary btn shadow-sm rounded-circle ms-2 mb-2" id="likeMinus1" onclick="like_Minus('+likeNo+')" type="button" data-bs-toggle="tooltip"><i class="fi-heart-filled"></i></button>')
+     				
+      			},
+					error:function(e) {
+      				console.log(e)
+      			}
+     		});	
+         }        
+                            
+        function like_Minus(likeNo) {
+        	var no = ${food.no};
+        	$("#likeMinus1").attr('onclick','like_Plus('+no+')')
+        	$("#likeDiv").html('<button class="btn btn-icon btn-light-primary btn shadow-sm rounded-circle ms-2 mb-2" id="likePlus1" onclick="like_Plus('+no+')" type="button" data-bs-toggle="tooltip"><i class="fi-heart"></i></button>')
+        	var type = "food";
+        	$.ajax({
+     			url: "/like/like",
+     			type: "POST",
+     			dataType: "text",
+     			data: { 
+     				no: likeNo,
+     				type: type
+				},
+         	
+     			success: function(likeNo) {
+     				console.log(likeNo)
+      			},
+					error:function(e) {
+      				console.log(e)
+      			}
+     		});		
+         }      
+		</script>
+		
+       
+                        
                         
                         <h2 class="">${food.name}</h2>
                         <!-- Property details-->
@@ -2059,6 +2121,7 @@
                 </aside>
             </div>
         </section>
+      
         
         <script>
         	$(document).ready(function() {
@@ -2196,7 +2259,7 @@
 								</c:choose>
                       		</div>
                             <div class="card-body position-relative pb-3">
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="#">${lastList.get(i).name}</a></h3>
+                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="${path}/near/foodDetail?no=${lastList.get(i).no}">${lastList.get(i).name}</a></h3>
                                 <p class="mb-2 fs-sm text-muted">${lastList.get(i).addr}</p>
                                 <div class="fw-bold">${lastList.get(i).phone}</div>
                             </div>
