@@ -11,10 +11,12 @@
 <c:set var="keyword" value="${param.keyword}"/>
 <c:set var="city" value="${param.city}"/>
 <c:set var="category" value="${param.category}"/>
+<c:set var="sport" value="${param.sport}"/>
 
 <input type="hidden" id="keyword" value="${keyword}" > 
 <input type="hidden" id="city" value="${city}" >  
 <input type="hidden" id="category" value="${category}" >
+<input type="hidden" id="sport" value="${sport}" >
 
 
 <style>
@@ -85,17 +87,17 @@
                   <h3 class="h6">운동시설</h3>
                   <div class="overflow-auto" data-simplebar data-simplebar-auto-hide="false" style="height: 11rem;">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" name="sport" value="yes">
-                      <label class="form-check-label fs-sm" for="house">있음</label>
+                      <input class="form-check-input" type="checkbox" name="sport" value="yes" onclick='checkOnlyOne(this)'>
+                      <label class="form-check-label fs-sm">있음</label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" name="sport" value="no">
-                      <label class="form-check-label fs-sm" for="apartment">없음</label>
+                      <input class="form-check-input" type="checkbox" name="sport" value="no" onclick='checkOnlyOne(this)'>
+                      <label class="form-check-label fs-sm">없음</label>
                     </div>
                   </div>
                 </div>
                 <div class="border-top py-4">
-                  <button class="btn btn-outline-primary" type="button"><i class="fi-rotate-right me-2"></i>조건 새로고침</button>
+                  <button class="btn btn-outline-primary" type="button" onclick="window.location.reload()"><i class="fi-rotate-right me-2"></i>조건 새로고침</button>
                 </div>
               </div>
             </form>
@@ -125,7 +127,19 @@
               <hr class="d-none d-sm-block w-100 mx-4">
               <div class="d-none d-sm-flex align-items-center flex-shrink-0 text-muted"><i class="fi-check-circle me-2"></i><span class="fs-sm mt-n1">${searchCount} result</span></div>
             </div>
-            
+
+			<script type="text/javascript">
+				function checkOnlyOne(element){
+					const checkboxes = document.getElementsByName("sport");
+					
+					checkboxes.forEach((cb) => {
+						cb.checked = false;
+					})
+					
+					element.checked = true;
+				}
+				
+			</script>            
             
             <!-- image 리스트 -->
             <div class="row g-4 py-4">
@@ -293,8 +307,9 @@
 				var keyword = document.getElementById("keyword");
 				var city = document.getElementById("city");
 				var category = document.getElementById("category");
+				var sport = document.getElementById("sport");
 				
-				pageUrl = pageUrl + '&keyword=' + keyword.value + '&city=' + city.value + '&category=' + category.value; 
+				pageUrl = pageUrl + '&keyword=' + keyword.value + '&city=' + city.value + '&category=' + category.value + '&sport=' + sport.value; 
 				
 				location.href = encodeURI(pageUrl);	
 			}

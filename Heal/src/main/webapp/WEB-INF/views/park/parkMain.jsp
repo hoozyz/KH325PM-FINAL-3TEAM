@@ -218,7 +218,6 @@
                                             <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">서울특별시</span></a></li>
                                             <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">부산광역시</span></a></li>
                                             <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">대구광역시</span></a></li>
-                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">부산광역시</span></a></li>
                                             <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">인천광역시</span></a></li>
                                             <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">광주광역시</span></a></li>
                                             <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">대전광역시</span></a></li>
@@ -247,6 +246,13 @@
                                             <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">소공원</span></a></li>
                                             <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">문화공원</span></a></li>
                                             <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">수변공원</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">도시자연공원</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">마을마당</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">묘지공원</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">주제공원</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">마을숲</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">도시농업공원</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">기타</span></a></li>
                                         </ul>
                                     </div>
                                 </div>

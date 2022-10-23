@@ -217,6 +217,7 @@
                         <form class="needs-validation" action="${path}/review/write" method="POST">
                         <input type="hidden" name="type" value="park">
                         <input type="hidden" name="no" value="${park.no}">
+                        <input type="hidden" name="title" value="${park.name}">
                             <div class="mb-3">
                                 <label class="form-label" for="review-name">이름 <span class='text-danger'>*</span></label>
                                 <input class="form-control" type="text" id="review-id" name="id" value="${loginMember.id}" readonly>
@@ -1149,8 +1150,8 @@
             <!-- Breadcrumb-->
             <nav class="mb-3 pt-md-3" aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="real-estate-home-v1.html">홈페이지</a></li>
-                    <li class="breadcrumb-item"><a href="real-estate-catalog-rent.html">공원</a></li>
+                    <li class="breadcrumb-item"><a href="/">HEALING</a></li>
+                    <li class="breadcrumb-item"><a href="${path}/park/parkList">공원</a></li>
                     <li class="breadcrumb-item active" aria-current="page">칠십리공원</li>
                 </ol>
             </nav>
@@ -1181,14 +1182,24 @@
                             </ul>
                         </div>
                     </div>
+                    
+                    
                     <!-- Reviews-->
                     <div class="mb-4 pb-4 border-bottom">
-                        <h3 class="h4 pb-3"><i class="fi-star-filled mt-n1 me-2 lead align-middle text-warning"></i>4,9 (32 후기)</h3>
+                        <h3 class="h4 pb-3"><i class="fi-star-filled mt-n1 me-2 lead align-middle text-warning"></i>
+                        <c:if test="${revCount > 0}">
+                    		<c:set var="revStarAvg" value="${revStarAdd / revCount}"/>
+                        	<fmt:formatNumber value="${revStarAvg}" pattern=".0"/> (${revCount} 후기)
+                        </c:if>
+                        <c:if test="${revCount == 0}">
+                        	0 (0 후기)
+                        </c:if>
+                        </h3>
                         <div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch justify-content-between"><a class="btn btn-outline-primary mb-sm-0 mb-3" href="#modal-review" data-bs-toggle="modal"><i class="fi-edit me-1"></i>후기 등록</a>
                             <div class="d-flex align-items-center ms-sm-4">
-                                <label class="me-2 pe-1 text-nowrap" for="reviews-sorting"><i class="fi-arrows-sort text-muted mt-n1 me-2"></i>정렬순:</label>
-                                <select class="form-select" id="reviews-sorting">
-                      <option id="new">최신순</option>
+                                <label class="me-2 pe-1 text-nowrap" for="reviewSort"><i class="fi-arrows-sort text-muted mt-n1 me-2"></i>정렬순:</label>
+                                <select class="form-select" id="sort">
+                      <option id="new" selected>최신순</option>
                       <option id="old">오래된순</option>
                       <option id="like">좋아요순</option>
                       <option id="star">별점 높은순</option>
@@ -1201,6 +1212,8 @@
                     	<c:if test="${empty revList}">
                     		리뷰내역이 없습니다.
                     	</c:if>
+                    	
+                    	
                     	<c:if test="${!empty revList}">
                     		<c:forEach var="i" begin="0" end="${revList.size() - 1}">
                     			<div class="mb-4 pb-4 border-bottom">
@@ -1217,19 +1230,20 @@
                                     			<i class="star-rating-icon fi-star-filled active"></i>
                                     		</c:if>
                                     		<c:if test="${revList.get(i).revstar < 5}">
-                                    			<c:forEach var="i" begin="1" end="${revList.get(i).revstar}">
-                                    				<i class="star-rating-icon fi-star-filled active"></i>
-                                    			</c:forEach>
-                                    			<c:forEach var="i" begin="${revList.get(i).revstar + 1}" end="5">
-	                                    		<i class="star-rating-icon fi-star"></i>
-	                                    	</c:forEach>
-                                    		</c:if>
+	                                    		<c:forEach var="j" begin="1" end="${revList.get(i).revstar}">
+	                                    			<i class="star-rating-icon fi-star-filled active"></i>
+	                                   	 		</c:forEach>
+	                                    		<c:forEach var="j" begin="${revList.get(i).revstar + 1}" end="5">
+	                                    			<i class="star-rating-icon fi-star"></i>
+	                                    		</c:forEach>
+	                                   	 	</c:if>
                                     	</span>
                                 </div>
                             </div><span class="text-muted fs-sm">${revList.get(i).createdate}</span></div><p>${revList.get(i).cont}</p>
                         <div class="d-flex align-items-center" id="like${revList.get(i).no}"><button class="btn-like" type="button" onclick="likePlus(${revList.get(i).no})"><i class="fi-heart"></i>(<span id="revLike${revList.get(i).no}">${revList.get(i).revlike}</span>)</button>
                         </div></div>
                     		</c:forEach>
+                    		
                    	 	</c:if>
                     </div>
                     <!-- Pagination-->
@@ -1378,8 +1392,16 @@
                     <div class="ps-lg-5">
                         <div class="d-flex align-items-center justify-content-between mb-3">
                             <span class="badge bg-success me-2"><c:out value="${park.category}"/></span>
-                            <div class="text-nowrap">
-                                <button class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle ms-2 mb-2" type="button" data-bs-toggle="tooltip" title="Add to Wishlist"><i class="fi-heart"></i></button>
+                            <div class="text-nowrap" id="like_button">
+								<span id="likeDiv">
+                					<c:if test="${likeCheck == 0}">
+                						<button class="btn btn-icon btn-light-primary btn shadow-sm rounded-circle ms-2 mb-2" id="likePlus1" onclick="like_Plus(${campNo})" type="button" data-bs-toggle="tooltip"><i class="fi-heart"></i></button>
+                					</c:if>
+                					<c:if test="${likeCheck == 1}">
+                						<button class="btn btn-icon btn-light-primary btn shadow-sm rounded-circle ms-2 mb-2" id="likeMinus1" onclick="like_Minus(${likeNo})" type="button" data-bs-toggle="tooltip"><i class="fi-heart-filled"></i></button>
+                					</c:if>
+                				</span>
+                				
                                 <div class="dropdown d-inline-block" data-bs-toggle="tooltip" title="Share">
                                     <button class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle ms-2 mb-2" type="button" data-bs-toggle="dropdown"><i class="fi-share"></i></button>
                                     <div class="dropdown-menu dropdown-menu-end my-1">
@@ -1390,6 +1412,57 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        <script>
+        
+				        function like_Plus(no) {
+				        	$("#likePlus1").attr('onclick','like_Minus('+no+')')
+				        	var type = "camp";
+				        	$.ajax({
+				     			url: "/like/like",
+				     			type: "POST",
+				     			dataType: "text",
+				     			data: { likeNo: no,
+				     					type: type /*ㅍㅔ이지체크 ㅍ */
+								},
+				         	
+				     			success: function(likeNo) {
+				     				console.log(likeNo)
+				     				console.log("like_Plus.");
+						        	$("#likeDiv").html('<button class="btn btn-icon btn-light-primary btn shadow-sm rounded-circle ms-2 mb-2" id="likeMinus1" onclick="like_Minus('+likeNo+')" type="button" data-bs-toggle="tooltip"><i class="fi-heart-filled"></i></button>')
+				     				
+				      			},
+									error:function(e) {
+				      				console.log(e)
+				      			}
+				     		});	
+				         }        
+				                            
+				        function like_Minus(likeNo) {
+				        	var no = ${camp.no};
+				        	$("#likeMinus1").attr('onclick','like_Plus('+no+')')
+				        	$("#likeDiv").html('<button class="btn btn-icon btn-light-primary btn shadow-sm rounded-circle ms-2 mb-2" id="likePlus1" onclick="like_Plus('+no+')" type="button" data-bs-toggle="tooltip"><i class="fi-heart"></i></button>')
+				        	var type = "camp";
+				        	$.ajax({
+				     			url: "/like/like",
+				     			type: "POST",
+				     			dataType: "text",
+				     			data: { 
+				     				no: likeNo,
+				     				type: type
+								},
+				         	
+				     			success: function(likeNo) {
+				     				console.log(likeNo)
+				     				console.log("like_Plus.");
+				      			},
+									error:function(e) {
+				      				console.log(e)
+				      			}
+				     		});		
+				         }      
+						</script>
+		
                         <!-- Property details-->
                         <h2 class="h2"><c:out value="${park.name}"/></h2>
                         <div class="card border-0 bg-secondary mb-4">

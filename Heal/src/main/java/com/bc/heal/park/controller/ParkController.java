@@ -108,6 +108,9 @@ public class ParkController {
 		model.addAttribute("param", param);
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("searchCount", searchCount);
+		
+		String sport = param.get("sport");
+		System.out.println("sport : " + sport);
 		return "/park/parkSearch";
 	}
 	
@@ -137,7 +140,7 @@ public class ParkController {
 		int parkNo = Integer.parseInt(param.get("park"));
 		PageInfo pageInfo = new PageInfo(page, 5, revService.selectRevByParkCnt(parkNo), 2);
 		
-		list = revService.selectRevPark(parkNo, pageInfo, sort); // 캠프번호, 페이지, 정렬
+		list = revService.selectRevPark(parkNo, pageInfo, sort); // 공원번호, 페이지, 정렬
 		
 		map.put("list", list);
 		map.put("pageInfo", pageInfo);
