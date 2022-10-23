@@ -49,4 +49,6 @@ public interface ReviewMapper {
 	int getStarByCamp(int no);
 	
 	int getStarByFood(int no);
+	
+	int getStarByHotel(int no);
 }

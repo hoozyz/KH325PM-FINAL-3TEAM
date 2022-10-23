@@ -128,17 +128,27 @@ public class HotelController {
 	public String detail(Model model, int no) {
 		Hotel hotel = hotelService.findByNo(no);
 
-		// 리뷰
-		PageInfo pageInfo = new PageInfo(1, 5, revService.selectRevByHotelCnt(no), 2);
+		// 리뷰	
+		
+		int revCount = revService.selectRevByHotelCnt(no); 
+		int revStarAdd = 0; // 별점 합
+			if(revCount > 0) { // 리뷰가 있을때
+				revStarAdd = revService.getStarByHotel(no);
+			}
+		model.addAttribute("revCount", revCount);
+		model.addAttribute("revStarAdd", revStarAdd);
+
+		PageInfo pageInfo = new PageInfo(1, 5, revCount, 2);
+		
 		List<Review> revList = new ArrayList<>();
 		String sort = "new";
 
-		revList = revService.selectRevHotel(no, pageInfo, sort); // 캠프번호, 페이지, 정렬
-
+		revList = revService.selectRevHotel(no, pageInfo, sort);
 		System.out.println(revList);
 
 		model.addAttribute("revList", revList);
 		model.addAttribute("pageInfo", pageInfo);
+		
 
 		// 날씨
 		List<Weather> weaList = new ArrayList<>();

@@ -35,6 +35,8 @@ public interface ReviewService {
 	List<Review> selectRevHotel(int no, PageInfo pageInfo, String sort);
 
 	int selectRevByHotelCnt(int no);
+	
+	int getStarByHotel(int no);
 
 	// 정우
 	List<Review> selectRevFestival(int no, PageInfo pageInfo, String sort);

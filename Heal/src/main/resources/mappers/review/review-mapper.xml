@@ -181,6 +181,12 @@
 	 		FROM TBL_REVIEW 
 	 		WHERE HOTELNO = ${no}
 	</select>
+	
+	<select id="getStarByHotel" parameterType="int" resultType="int">
+		SELECT SUM(REVSTAR)
+		FROM TBL_REVIEW
+		WHERE HOTELNO = #{no}
+	</select>
 <!-- 	@@@호텔@@@ -->
 
 <!-- @@@ 축제 -->

@@ -130,7 +130,7 @@
 									</div>
 									<div class="">
 									<!-- 이미지는 임시, 페이징 다 끝내면 디폴트로 첫 페이지는 임의로 12개 구성 -->
-										<img src="img/real-estate/catalog/06.jpg" alt="Image">
+										<img src="${path}/resources/image/hotelhotel<%=Math.round(Math.random()* 9 + 1)%>.jpg" alt="Image" style="width: 100%;  height: 150px;  object-fit: cover;">
 									</div>
 								</div>
 								<div class="card-body position-relative pb-3"

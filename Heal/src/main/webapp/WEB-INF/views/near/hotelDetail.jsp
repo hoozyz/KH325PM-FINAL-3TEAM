@@ -215,7 +215,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="review-rating">평점 <span class='text-danger'>*</span></label>
-                                <select class="form-control form-select" id="review-rating" name="star" required>
+                                <select class="form-control form-select" id="review-rating" name="revstar" required>
                       <option value="" selected disabled hidden>평점 선택</option>
                       <option value="5">5점</option>
                       <option value="4">4점</option>
@@ -276,7 +276,19 @@
                     <br>
                     <!-- Reviews-->
                     <div class="mb-4 pb-4 border-bottom">
-                        <h3 class="h4 pb-3"><i class="fi-star-filled mt-n1 me-2 lead align-middle text-warning"></i>4,9 (32 후기)</h3>
+                        
+                        
+                        <h3 class="h4 pb-3"><i class="fi-star-filled mt-n1 me-2 lead align-middle text-warning"></i>
+                        	<c:if test="${revCount > 0}">
+                    		<c:set var="revStarAvg" value="${revStarAdd / revCount}"/>
+                        		<fmt:formatNumber value="${revStarAvg}" pattern=".0"/> (${revCount} 후기)
+	                        </c:if>
+	                        <c:if test="${revCount == 0}">
+	                        	0 (0 후기)
+	                        </c:if>
+                        </h3>
+                        
+                        
                         <div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch justify-content-between"><a class="btn btn-outline-primary mb-sm-0 mb-3" href="#modal-review" data-bs-toggle="modal"><i class="fi-edit me-1"></i>후기 등록</a>
                             <div class="d-flex align-items-center ms-sm-4">
                                 <label class="me-2 pe-1 text-nowrap" for="reviewSort"><i class="fi-arrows-sort text-muted mt-n1 me-2"></i>정렬순:</label>
