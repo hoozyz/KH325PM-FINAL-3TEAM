@@ -19,4 +19,10 @@ public interface TrainMapper {
 	List<Train> selectTimeBySta(@Param("start") String start, @Param("end") String end);
 
 	Train selectByStartTime(@Param("start") String start, @Param("end") String end, @Param("time") String time);
+
+	List<String> selectStart();
+
+	List<String> selectEnd();
+
+	List<String> selectListByStart(String start);
 }

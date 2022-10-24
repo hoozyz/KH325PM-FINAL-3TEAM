@@ -13,4 +13,10 @@ public interface BusService {
 	List<Bus> selectListByEnd(String busEnd);
 
 	Bus selectTimeBySta(String start, String end);
+
+	List<String> selectStart();
+
+	List<String> selectEnd();
+
+	List<String> selectListByStart(String start);
 }

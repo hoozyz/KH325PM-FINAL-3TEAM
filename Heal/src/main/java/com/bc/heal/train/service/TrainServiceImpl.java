@@ -39,5 +39,20 @@ public class TrainServiceImpl implements TrainService{
 	public Train selectByStartTime(String start, String end, String time) {
 		return mapper.selectByStartTime(start, end, time);
 	}
+
+	@Override
+	public List<String> selectStart() {
+		return mapper.selectStart();
+	}
+
+	@Override
+	public List<String> selectEnd() {
+		return mapper.selectEnd();
+	}
+
+	@Override
+	public List<String> selectListByStart(String start) {
+		return mapper.selectListByStart(start);
+	}
 	
 }

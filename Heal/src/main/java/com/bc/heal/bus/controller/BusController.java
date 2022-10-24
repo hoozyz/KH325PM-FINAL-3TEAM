@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bc.heal.bus.service.BusService;
+import com.bc.heal.vo.Air;
 import com.bc.heal.vo.Bus;
 
 @Controller
@@ -24,29 +25,42 @@ public class BusController {
 	@ResponseBody
 	public List<String> time(Model model, String start, String end) {
 		List<String> list = new ArrayList<>();
-		
+
 		Bus bus = service.selectTimeBySta(start, end);
-		
-		String time = bus.getSchedule(); 
-		
+		String time = "";
+		if (bus != null) {
+			time = bus.getSchedule();
+		} else {
+			return null;
+		}
+
 		list.add(bus.getWastetime()); // 첫 번째 소요시간 넣기
-		if(bus.getNormalprice() == 0) { // 두 번째 가격 넣기
+		if (bus.getNormalprice() == 0) { // 두 번째 가격 넣기
 			list.add("10500");
 		} else {
 			list.add(Integer.toString(bus.getNormalprice()));
 		}
-		
+
 		int count = 0;
-		while(true) { 
+		while (true) {
 			count = time.indexOf(":", count);
-			if(count == -1) {
+			if (count == -1) {
 				break;
 			}
-			
+
 			list.add(time.substring(count - 2, count + 3)); // 5글자씩 자르기
-			
+
 			count++;
 		}
+
+		return list;
+	}
+
+	@GetMapping("/start")
+	@ResponseBody
+	public List<String> start(String start, String type) {
+		List<String> list = new ArrayList<>();
+		list = service.selectListByStart(start);
 		
 		return list;
 	}

@@ -183,6 +183,7 @@ public class PayController {
 		int result = 0;
 		if(reserve2.getNo() != -1) { // 예약 2번째 -> 오는편이 있을때
 			result = resService.save(reserve2);
+			reserve1.setPrice(reserve1.getPrice() / 2);
 		}
 		System.out.println(reserve1);
 		result += resService.save(reserve1); // 가는편이 먼저보이게

@@ -11,39 +11,49 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bc.heal.train.service.TrainService;
+import com.bc.heal.vo.Air;
 import com.bc.heal.vo.Train;
 
 @Controller
 @RequestMapping("/train")
 public class TrainController {
-	
+
 	@Autowired
 	private TrainService service;
-	
+
 	@GetMapping("/time") // ajax
 	@ResponseBody
 	public List<Train> time(Model model, String start, String end, String time) {
 		List<Train> list = new ArrayList<>();
-		
-		if(time == null) {
+
+		if (time == null) {
 			list = service.selectTimeBySta(start, end);
 		} else { // 출발시간 있을때
 			list.add(service.selectByStartTime(start, end, time));
 		}
-		
-		for(int i = 0; i < list.size(); i++) {
-			if(i == 0) {
-				if(list.get(i).getGeneralprice() == 0) { // 가격이 없을 때
+
+		for (int i = 0; i < list.size(); i++) {
+			if (i == 0) {
+				if (list.get(i).getGeneralprice() == 0) { // 가격이 없을 때
 					list.get(i).setGeneralprice(10500);
 				}
-				
+
 				continue;
 			}
-			
-			if(list.get(i).getGeneralprice() == 0) { // 가격이 없을 때
-				list.get(i).setGeneralprice(list.get(i-1).getGeneralprice());
+
+			if (list.get(i).getGeneralprice() == 0) { // 가격이 없을 때
+				list.get(i).setGeneralprice(list.get(i - 1).getGeneralprice());
 			}
 		}
+
+		return list;
+	}
+
+	@GetMapping("/start")
+	@ResponseBody
+	public List<String> start(String start) {
+		List<String> list = new ArrayList<>();
+		list = service.selectListByStart(start);
 		
 		return list;
 	}

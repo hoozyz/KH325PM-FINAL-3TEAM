@@ -21,10 +21,31 @@
  		WHERE NO = #{no}
 	</select>
 	
+	<select id="selectStart" resultType="String">
+		SELECT STARTSTA
+		FROM TBL_AIR
+		WHERE STARTSTA IS NOT NULL
+		GROUP BY STARTSTA
+	</select>
+	
+	<select id="selectEnd" resultType="String">
+		SELECT ENDSTA
+		FROM TBL_AIR
+		WHERE ENDSTA IS NOT NULL
+		GROUP BY ENDSTA
+	</select>
+	
 	<select id="selectListByEnd" parameterType="string" resultMap="airResultMap">
  		SELECT *
  		FROM TBL_AIR
  		WHERE ENDSTA = #{airEnd}
+	</select>
+	
+	<select id="selectListByStart" parameterType="string" resultType="String">
+ 		SELECT ENDSTA 
+ 		FROM TBL_AIR
+ 		WHERE STARTSTA = #{start}
+ 		GROUP BY ENDSTA
 	</select>
 	
 	<select id="selectTimeBySta" parameterType="string" resultMap="airResultMap">
@@ -36,7 +57,7 @@
 	<select id="selectByStartTime" parameterType="string" resultMap="airResultMap">
  		SELECT *
  		FROM TBL_AIR
- 		WHERE STARTSTA = #{start} AND ENDSTA = #{end} AND STARTTIME = #{time}
+ 		WHERE STARTSTA = #{start} AND ENDSTA = #{end} AND STARTTIME = #{time} AND ROWNUM = 1
 	</select>
 	
 </mapper>

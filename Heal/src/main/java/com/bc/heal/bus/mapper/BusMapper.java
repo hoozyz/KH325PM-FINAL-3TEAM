@@ -17,4 +17,10 @@ public interface BusMapper {
 	List<Bus> selectListByEnd(String busEnd);
 
 	Bus selectTimeBySta(@Param("start") String start, @Param("end") String end);
+
+	List<String> selectStart();
+
+	List<String> selectEnd();
+
+	List<String> selectListByStart(String start);
 }

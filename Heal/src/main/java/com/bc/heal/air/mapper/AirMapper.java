@@ -16,4 +16,10 @@ public interface AirMapper {
 	List<Air> selectTimeBySta(@Param("start") String start, @Param("end") String end);
 
 	Air selectByStartTime(@Param("start") String start, @Param("end") String end, @Param("time") String time);
+
+	List<String> selectEnd();
+
+	List<String> selectStart();
+
+	List<String> selectListByStart(String start);
 }

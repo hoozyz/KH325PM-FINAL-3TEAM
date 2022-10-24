@@ -31,6 +31,20 @@
  		WHERE NO = #{no}
 	</select>
 	
+	<select id="selectStart" resultType="String">
+		SELECT STARTSTA
+		FROM TBL_BUS
+		WHERE STARTSTA IS NOT NULL
+		GROUP BY STARTSTA
+	</select>
+	
+	<select id="selectEnd" resultType="String">
+		SELECT ENDSTA
+		FROM TBL_BUS
+		WHERE ENDSTA IS NOT NULL
+		GROUP BY ENDSTA
+	</select>
+	
 	<select id="selectListByEndSta" resultMap="endStaResultMap">
  		SELECT ENDSTA,
  			   ENDLAT,
@@ -44,6 +58,13 @@
  		SELECT * 
  		FROM TBL_BUS
  		WHERE ENDSTA = #{busEnd}
+	</select>
+	
+	<select id="selectListByStart" parameterType="string" resultType="String">
+ 		SELECT ENDSTA 
+ 		FROM TBL_BUS
+ 		WHERE STARTSTA = #{start}
+ 		GROUP BY ENDSTA
 	</select>
 	
 	<select id="selectTimeBySta" parameterType="string" resultMap="busResultMap">

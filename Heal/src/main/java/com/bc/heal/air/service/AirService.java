@@ -12,4 +12,10 @@ public interface AirService {
 	List<Air> selectTimeBySta(String start, String end);
 
 	Air selectByStartTime(String start, String end, String time);
+
+	List<String> selectStart();
+
+	List<String> selectEnd();
+
+	List<String> selectListByStart(String start);
 }

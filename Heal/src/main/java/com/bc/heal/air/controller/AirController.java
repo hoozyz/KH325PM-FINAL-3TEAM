@@ -19,19 +19,26 @@ public class AirController {
 
 	@Autowired
 	private AirService service;
-	
+
 	@GetMapping("/time") // 출발시간 도착시간 세트로 가져가기 -> ajax
 	@ResponseBody
 	public List<Air> time(Model model, String start, String end, String time) {
 		List<Air> list = new ArrayList<>();
-		
-		if(time == null) {
+
+		if (time == null) {
 			list = service.selectTimeBySta(start, end);
 		} else { // 출발시간 있을때
 			list.add(service.selectByStartTime(start, end, time));
 		}
-		
+
 		return list;
 	}
 
+	@GetMapping("/start")
+	@ResponseBody
+	public List<String> start(String start) {
+		List<String> list = new ArrayList<>();
+		list = service.selectListByStart(start);
+		return list;
+	}
 }

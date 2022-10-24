@@ -35,4 +35,19 @@ public class BusServiceImpl implements BusService{
 		return mapper.selectTimeBySta(start, end);
 	}
 
+	@Override
+	public List<String> selectStart() {
+		return mapper.selectStart();
+	}
+
+	@Override
+	public List<String> selectEnd() {
+		return mapper.selectEnd();
+	}
+
+	@Override
+	public List<String> selectListByStart(String start) {
+		return mapper.selectListByStart(start);
+	}
+
 }
