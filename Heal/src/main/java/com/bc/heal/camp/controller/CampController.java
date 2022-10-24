@@ -181,7 +181,7 @@ public class CampController {
 
 		// 4개 넣어놓고 -> name에 최신 한 칸씩 뒤로 옮기기
 		String twoNo = zero.getName();
-		if (twoNo.equals("" + no)) { // 이미 최신에 현재 캠핑장이 있을 때
+		if (twoNo.equals("" + no) || threeNo.equals("" + no) || fourNo.equals("" + no)) { // 이미 최신에 현재 캠핑장이 있을 때
 			twoNo = zero.getLineintro();
 			threeNo = zero.getIntro();
 			fourNo = zero.getAria();

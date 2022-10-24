@@ -1748,10 +1748,10 @@
                		<div class="col">
                         <div class="card shadow-sm card-hover border-0 h-100">
                             <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" href="${path}/hotel/hotel?no=${lastList.get(i).no}"></a>
+                                <a class="img-overlay" href="${path}/camp/campDetail?no=${lastList.get(i).no}"></a>
                                 <div style="width: 300px; height:190px;">
 	                                <c:if test="${empty lastList.get(i).image}">
-	                                	 <img src="${path}/resources/image/hotelhotel<%=Math.round(Math.random()*10 + 1)%>.jpg" alt="Image" style="width: 100%; height: 100%;  object-fit: cover;">
+	                                	 <img src="${path}/resources/image/campImg<%=Math.round(Math.random()*18 + 1)%>.jpg" alt="Image" style="width: 100%; height: 100%;  object-fit: cover;">
 	                                </c:if>
 	                                <c:if test="${!empty lastList.get(i).image}">
                                 		<img src="${lastList.get(i).image}" alt="Image" style="width: 100%; height: 100%;  object-fit: cover;">
