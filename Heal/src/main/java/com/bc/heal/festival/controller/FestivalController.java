@@ -23,20 +23,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.bc.heal.air.service.AirService;
 import com.bc.heal.bus.service.BusService;
 import com.bc.heal.common.util.PageInfo;
 import com.bc.heal.festival.service.FestivalService;
 import com.bc.heal.hotel.service.HotelService;
+import com.bc.heal.like.service.LikeService;
 import com.bc.heal.review.service.ReviewService;
 import com.bc.heal.train.service.TrainService;
 import com.bc.heal.vo.Air;
 import com.bc.heal.vo.Bus;
-import com.bc.heal.vo.Camp;
 import com.bc.heal.vo.EndStation;
 import com.bc.heal.vo.Festival;
 import com.bc.heal.vo.Hotel;
+import com.bc.heal.vo.Member;
 import com.bc.heal.vo.Review;
 import com.bc.heal.vo.Train;
 import com.bc.heal.vo.Weather;
@@ -67,6 +69,9 @@ public class FestivalController {
 	@Autowired
 	private HotelService hotelService;
 	
+	@Autowired
+	private LikeService likeService;
+	
 	@GetMapping("/festivalMain")
 	public String main(Model model) {
 		return "/festival/festivalMain";
@@ -74,10 +79,13 @@ public class FestivalController {
 
 	@GetMapping("/festivalSearch")
 	public String search(Model model, @RequestParam Map<String, String> param) {
-		for(String mapkey : param.keySet()) {
-			System.out.println("key:"+mapkey+",value:"+param.get(mapkey));
+		String keyword = "축제";
+		if(param.containsKey("keyword") == true) {
+			try {
+				keyword = param.get("keyword");
+			} catch (Exception e) {}
 		}
-
+		
 		int page = 1;
 		if(param.containsKey("page") == true) {
 			try {
@@ -154,23 +162,41 @@ public class FestivalController {
 	}
 	
 	@GetMapping("/festivalDetail")
-	public String detail(Model model, int no) {
+	public String detail(Model model, int no,
+			@SessionAttribute(name = "loginMember", required = false) Member loginMember) {
 		System.out.println(no);
 		Festival festival = service.findByNo(no); // 테스트 -> 공항있는 캠핑장
+		
+		Map<String, String> map = new HashMap<>();
+		map.put("check", "1");
+		map.put("type", "festival");
+		map.put("likeNo", "" + no);
+		int likeCheck = 0;
+		int likeSer = 0;
+		if (loginMember != null) {
+			likeSer = likeService.selectNo(loginMember.getNo(), map);
+		}
+		if (likeSer > 0) {
+			System.out.println("----");
+			likeCheck = 1;
+			model.addAttribute("likeNo", likeSer);
+		}
+		model.addAttribute("likeCheck", likeCheck);
 
 		// 리뷰
-		int page = 1;
-		String sort = "new";
-		int revCount = 0;
+		int revCount = revService.getCountByCamp(no); 
+		int revStarAdd = 0; // 별점 합
+			if(revCount > 0) { // 리뷰가 있을때
+				revStarAdd = revService.getStarByCamp(no);
+			}
+		model.addAttribute("revCount", revCount);
+		model.addAttribute("revStarAdd", revStarAdd);
 		
-		PageInfo pageInfo = null;
+		PageInfo pageInfo = new PageInfo(1, 5, revCount, 2);
 		List<Review> revList = new ArrayList<>();
-	
-		revCount = revService.getCountByFestival(no);
-	
-		pageInfo = new PageInfo(page, 5, revCount, 2);
-		revList = revService.selectRevFestival(no, pageInfo, sort);
-		
+		String sort = "new";
+		revList = revService.selectRevCamp(no, pageInfo, sort); // 캠프번호, 페이지, 정렬
+
 		model.addAttribute("revList", revList);
 		model.addAttribute("pageInfo", pageInfo);
 		
@@ -219,18 +245,7 @@ public class FestivalController {
 			if (dong != null) {
 				if (weaService.selectByDong(dong) == null) {
 					dong = dong.substring(0, 2);
-					if(weaService.selectByDong(dong) == null) {
-						if (festival.getAddr().contains("구")) {
-							check = festival.getAddr().split("구")[0]; // 면 기준 앞에만 자르기
-							checkArr = check.split(" ");
-							dong = checkArr[checkArr.length - 1] + "구";
-						} else {
-							weaList = null;
-						}
-						weaList = weatherApi(weaService.selectByGu(dong).getNx(), weaService.selectByGu(dong).getNy());
-					} else {
-						weaList = weatherApi(weaService.selectByDong(dong).getNx(), weaService.selectByDong(dong).getNy());
-					}
+					weaList = weatherApi(weaService.selectByDong(dong).getNx(), weaService.selectByDong(dong).getNy());
 				} else {
 					weaList = weatherApi(weaService.selectByDong(dong).getNx(), weaService.selectByDong(dong).getNy());
 				}
@@ -350,15 +365,14 @@ public class FestivalController {
 				airStartList.add(airList.get(i).getStartsta());
 			}
 		}
-		
-		System.out.println("--"+festival.getAddr());
-		System.out.println("----"+airList);
-		
+
 		int airCheck = 1;
 		if (airList.isEmpty()) { // 공항 없음
 			airCheck = 0;
 		}
-		System.out.println(airCheck);
+
+		System.out.println(airStartList);
+		
 		model.addAttribute("airEnd", airEnd);
 		model.addAttribute("trainEnd", trainEnd);
 		model.addAttribute("busEnd", busEnd);

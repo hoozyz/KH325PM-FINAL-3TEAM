@@ -172,35 +172,15 @@
         background-image: url(https://ssl.pstatic.net/static/weather/image/sp_weather_1746dae0.png);
         background-size: 965px 883px;
     }
-    
-    .btn-group-sm .on {
-    	background-color: black;
-    	color: white;
-    }
-    .btn-group-sm .on:active {
-    	background-color: black;
-    	color: white;
-    }
-     .btn-group-sm>button:hover {
-    	background-color: black;
-    	color: white;
-    }
 </style>
-		<!-- Vendor Styles-->
-	    <link rel="stylesheet" media="screen" href="${path}/resources/vendor/simplebar/dist/simplebar.min.css" />
-	    <link rel="stylesheet" media="screen" href="${path}/resources/vendor/nouislider/dist/nouislider.min.css" />
-	    <link rel="stylesheet" media="screen" href="${path}/resources/vendor/tiny-slider/dist/tiny-slider.css" />.
-	    <!-- Main Theme Styles + Bootstrap-->
-	    <link rel="stylesheet" media="screen" href="${path}/resources/css/theme.min.css">
-	    
-	    <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-		
+
 		<!-- Review modal 리뷰남기기-->
         <form name="writeForm" action="${path}/review/write" method="POST">
         	<div class="modal fade" id="modal-review" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
             	<input name="no" value="${festival.no}" type="hidden">
             	<input name="type" value="festival" type="hidden">
+            	<input name="title" value="${festival.name }" type="hidden">
                 <div class="modal-content">
                     <div class="modal-header d-block position-relative border-0 pb-0 px-sm-5 px-4">
                         <h3 class="modal-title mt-4 text-center">축제후기 등록 </h3>
@@ -208,13 +188,13 @@
                     </div>
                     <div class="modal-body px-sm-5 px-4">
                             <div class="mb-3">
-                                <label class="form-label" for="review-name">닉네임 <span class='text-danger'>*</span></label>
-                                <input class="form-control" name="revId" type="text" id="review-name" name="name" value="${loginMember.name}" readonly>
-                                <div class="invalid-feedback">닉네임을 입력해주세요.</div>
+                                <label class="form-label" for="review-name">아이디 <span class='text-danger'>*</span></label>
+                                <input class="form-control" type="text" id="review-name" name="id" value="${loginMember.id}" readonly>
+                                <div class="invalid-feedback">아이디를 입력해주세요.</div>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="review-rating">평점 <span class='text-danger'>*</span></label>
-                                <select class="form-control form-select" name="star" id="review-rating" required>
+                                <select class="form-control form-select" name="revstar" id="review-rating" required>
                     <option value="" selected disabled hidden>평점 선택</option>
                     <option value="5">5점</option>
                     <option value="4">4점</option>
@@ -393,19 +373,14 @@
 	       				
 	       				str += '<option value="" selected disabled hidden>출발공항</option>                            '
 	       				
-	       				<c:if test="${!empty airStartList}">
-       						<c:forEach var="i" begin="0" end="${airStartList.size() - 1}">
-   								var item = '${airStartList.get(i)}';
-   								str += '<option value="i">'+ item +'</option>'
-   							</c:forEach>
-       					</c:if>
+	       				<c:forEach var="i" begin="0" end="${airStartList.size() - 1}">
+	       					var item = '${airStartList.get(i)}';
+	       					str += '<option value="i">'+ item +'</option>'
+	       				</c:forEach>
 	       					
 						$("#airStartSta").html(str);     				
 	       				
-						var end = "";
-						<c:if test="${!empty airList}">
-							end = '${airList.get(0).endsta}';
-						</c:if>
+						var end = '${airList.get(0).endsta}';
         				$("#airEndSta").html('<option value="" selected>'+end+'</option>');
         				
         				$("#airCount").html('<option value="" selected disabled hidden>인원</option>' 
@@ -1153,16 +1128,25 @@
                         </div>
                     </div>
                     <br>
-                    <!-- Add review btn + Reviews sort-->
+                    <!-- Reviews-->
+                    <div class="mb-4 pb-4 border-bottom">
+                        <h3 class="h4 pb-3"><i class="fi-star-filled mt-n1 me-2 lead align-middle text-warning"></i>
+                        <c:if test="${revCount > 0}">
+                    		<c:set var="revStarAvg" value="${revStarAdd / revCount}"/>
+                        	<fmt:formatNumber value="${revStarAvg}" pattern=".0"/> (${revCount} 후기)
+                        </c:if>
+                        <c:if test="${revCount == 0}">
+                        	0 (0 후기)
+                        </c:if>
+                        </h3>
+                        <div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch justify-content-between">
                     <c:if test="${loginMember != null}">
-                    	<div class="d-flex flex-sm-row flex-column align-items-sm-center justify-content-between mb-4 pb-4 border-bottom ">
-                    	<a class="btn rounded-pill mb-sm-0 mb-3 "style="color:#201627; border:2px solid #201627; font-size:17pt; font-weight:800; color:#201627;" href="#modal-review" data-bs-toggle="modal" data-bs-dismiss="modal">
-                    	<i class="fi-edit mt-n1 me-2 align-middle "></i>후기 등록</a>
+                        <a class="btn btn-outline-primary mb-sm-0 mb-3" href="#modal-review" data-bs-toggle="modal">
+                        <i class="fi-edit me-1"></i>후기 등록</a>
                     </c:if>
                     <c:if test="${loginMember == null}">
-                    	<div class="d-flex flex-sm-row flex-column align-items-sm-center justify-content-between mb-4 pb-4 border-bottom ">
-                    	<a class="btn rounded-pill mb-sm-0 mb-3" style="color:#201627; border:2px solid #201627; font-size:17pt; font-weight:800; color:#201627;" href="#signin-modal" data-bs-toggle="modal" data-bs-dismiss="modal">
-                    	<i class="fi-edit mt-n1 me-2 align-middle "></i>후기 등록</a>
+                    	<a class="btn btn-outline-primary mb-sm-0 mb-3" href="#signin-modal" data-bs-toggle="modal">
+                        <i class="fi-edit me-1"></i>후기 등록</a>
                     </c:if>
 						<div class="d-flex align-items-center ms-sm-4">
                              <label class="me-2 pe-1 text-nowrap" for="reviewSort"><i class="fi-arrows-sort text-muted mt-n1 me-2"></i>정렬순:</label>
@@ -1172,6 +1156,7 @@
                       			<option id="like">좋아요순</option>
                       			<option id="star">별점 높은순</option>
                     		</select>
+                    		</div>
                     	</div>
                     </div>
                     	
@@ -1203,7 +1188,6 @@
 		                        <p>${revList.cont}</p>
 
 		                        <div class="d-flex align-items-center" id="like${revList.no}"><!-- 좋아요  -->
-		                            <button class="btn-like" type="button" onclick="likePlus(${revList.no})"><i class="fi-like"></i><span>(<span id="revLike${revList.no}">${revList.revlike}</span>)</span></button>
 		                            <button class="btn-like" type="button" onclick="likePlus(${revList.no})"><i class="fi-heart"></i><span>(<span id="revLike${revList.no}">${revList.revlike}</span>)</span></button>
 		                        </div>
 		                    </div>
@@ -1355,8 +1339,15 @@
                     <div class="ps-lg-5">
                         <div class="d-flex align-items-center justify-content-between mb-2">
                             <h2 class="h3">${festival.name}</h2>
-                            <div class="text-nowrap">
-                                <button class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle ms-2 mb-2" type="button" data-bs-toggle="tooltip" title="Add to Wishlist"><i class="fi-heart"></i></button>
+                            <div class="text-nowrap" id="like_button">
+                            	<span id="likeDiv">
+			                		<c:if test="${likeCheck == 0}">
+			                			<button class="btn btn-icon btn-light-primary btn shadow-sm rounded-circle ms-2 mb-2" id="likePlus1" onclick="like_Plus(${festivalNo})" type="button" data-bs-toggle="tooltip"><i class="fi-heart"></i></button>
+			                		</c:if>
+			                		<c:if test="${likeCheck == 1}">
+			                			<button class="btn btn-icon btn-light-primary btn shadow-sm rounded-circle ms-2 mb-2" id="likeMinus1" onclick="like_Minus(${likeNo})" type="button" data-bs-toggle="tooltip"><i class="fi-heart-filled"></i></button>
+			                		</c:if>
+			                	</span>
                                 <div class="dropdown d-inline-block" data-bs-toggle="tooltip" title="Share">
                                     <button class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle ms-2 mb-2" type="button" data-bs-toggle="dropdown"><i class="fi-share"></i></button>
                                     <div class="dropdown-menu dropdown-menu-end my-1">
@@ -1367,6 +1358,55 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        <script>
+					        function like_Plus(no) {
+					        	$("#likePlus1").attr('onclick','like_Minus('+no+')')
+					        	var type = "camp";
+					        	$.ajax({
+					     			url: "/like/like",
+					     			type: "POST",
+					     			dataType: "text",
+					     			data: { likeNo: no,
+					     					type: type /*ㅍㅔ이지체크 ㅍ */
+									},
+					         	
+					     			success: function(likeNo) {
+					     				console.log(likeNo)
+					     				console.log("like_Plus.");
+							        	$("#likeDiv").html('<button class="btn btn-icon btn-light-primary btn shadow-sm rounded-circle ms-2 mb-2" id="likeMinus1" onclick="like_Minus('+likeNo+')" type="button" data-bs-toggle="tooltip"><i class="fi-heart-filled"></i></button>')
+					     				
+					      			},
+										error:function(e) {
+					      				console.log(e)
+					      			}
+					     		});	
+					         }        
+					                            
+					        function like_Minus(likeNo) {
+					        	var no = ${camp.no};
+					        	$("#likeMinus1").attr('onclick','like_Plus('+no+')')
+					        	$("#likeDiv").html('<button class="btn btn-icon btn-light-primary btn shadow-sm rounded-circle ms-2 mb-2" id="likePlus1" onclick="like_Plus('+no+')" type="button" data-bs-toggle="tooltip"><i class="fi-heart"></i></button>')
+					        	var type = "camp";
+					        	$.ajax({
+					     			url: "/like/like",
+					     			type: "POST",
+					     			dataType: "text",
+					     			data: { 
+					     				no: likeNo,
+					     				type: type
+									},
+					         	
+					     			success: function(likeNo) {
+					     				console.log(likeNo)
+					     				console.log("like_Plus.");
+					      			},
+										error:function(e) {
+					      				console.log(e)
+					      			}
+					     		});		
+					         }      
+						</script>
                         <!-- Property details-->
                         <div class="card border-0 bg-secondary mb-4">
                             <div class="card-body">
@@ -1389,16 +1429,21 @@
                             </div>
                         </div>
                         
-                        <h3 class="h4">이 축제로 갈사람 사세요</h3>
-        				<div style="height: 100px;"> <!-- 교통 예매 div --> <!-- 팝업으로 이동 -->
-        					<a class="" href="#modal-air" data-bs-toggle="modal" style="border-radius: 50%; width:50px; height: 50px;"><img src="/resources/image/airplane.png" style="border-radius: 50%; width:80px;height: 80px;margin-left: 40px;margin-right: 50px;"></a>
-        					<a class="" href="#modal-train" data-bs-toggle="modal" style="border-radius: 50%; width:50px; height: 50px;"><img src="/resources/image/train.png" style="border-radius: 50%; width:80px;height: 80px;margin-right: 50px;"></a>
-        					<a class="" href="#modal-bus" data-bs-toggle="modal" style="border-radius: 50%; width:50px; height: 50px;"><img src="/resources/image/school-bus.png" style="width:80px; height: 80px;"></a>
+                         <!-- 교통 -->    
+                        <h6 class="mb-0">• 교통편 확인하기</h6>
+        				<div style="height: 110px; background-color:#F5F4F8; border-radius:10px; margin-bottom:20px;"> <!-- 교통 예매 div --> <!-- 팝업으로 이동 -->
+	        				<div class="p-3">
+		        				<a class="" href="#modal-air" data-bs-toggle="modal" style="border-radius: 50%; width:30px; height: 30px;"><img src="/resources/image/airplane.png" style="border: 6px solid #676D8E; border-radius: 50%; width:80px;height: 80px;margin-left: 30px;"></a>
+		        				<a style="margin-left: 25px; margin-right: 25px; font-size:20pt;">/</a>
+		        				<a class="" href="#modal-train" data-bs-toggle="modal" style="border-radius: 50%; width:30px; height: 30px;"><img src="/resources/image/train.png" style="border: 6px solid #676D8E; border-radius: 50%; width:80px;height: 80px;"></a>
+		        				<a style="margin-left: 25px; margin-right: 25px; font-size:20pt;">/</a>
+		        				<a class="" href="#modal-bus" data-bs-toggle="modal" style="border-radius: 50%; width:30px; height: 30px;"><img src="/resources/image/school-bus.png" style="border: 6px solid #676D8E; border-radius: 50%; width:80px; height: 80px;"></a>
+	        				</div>
         				</div>
                         
                         <!--Map-->
                         <div id="map" style="width: 480px; height: 300px; border-radius:2%;"></div>
-                        <script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=8cddaf5bb7b88f487cf47627b52b649b"></script>
+                        <script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=b8e0ebf5d4b4881bb423dd05b37fe951"></script>
                         <script>
                             var container = document.getElementById('map');
                             var options = {

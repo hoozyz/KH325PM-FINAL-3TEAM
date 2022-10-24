@@ -33,7 +33,7 @@
                                     	<input class="form-control date-picker" type="date" name="enddate" placeholder="To date" data-datepicker-options='{"altInput": true, "altFormat": "F j, Y", "dateFormat": "Y-m-d"}' id="end-date">
                                 	</div>
                                 	<div class="input-group input-group-lg border-end-md"><span class="input-group-text text-muted rounded-pill ps-3"><i class="fi-search"></i></span>
-                                    	<input class="form-control" name="keyword" type="text" placeholder="공원명을 검색하세요">
+                                    	<input class="form-control" name="keyword" type="text" placeholder="축제명을 검색하세요">
                                 	</div>
                                		<hr class="d-sm-none my-2">
                                 	<div class="dropdown w-sm-50 border-end-sm" data-bs-toggle="select">

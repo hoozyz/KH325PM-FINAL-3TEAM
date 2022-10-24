@@ -27,7 +27,7 @@
                     </div>
                 </div>
         </section>
-	<div class="container mt-5 pt-5 p-0" style="width: 75%;">
+	<div class="container-fluid mt-5 pt-5 p-0" style="width: 75%;">
 		<div class="row g-0 mt-n3">
 			<!-- Filters sidebar (Offcanvas on mobile)-->
 			<aside
@@ -44,7 +44,7 @@
 							<div class="input-group">
 								<span class="input-group-text text-muted"><i
 									class="fi-search"></i></span> <input class="form-control" type="text"
-									name="keyword" placeholder="검색어를 입력하세요">
+									name="keyword" value="${param.keyword}" placeholder="검색어를 입력하세요">
 							</div>
 							<input
 								class="btn btn-primary rounded-pill d-lg-inline-block d-none"
@@ -59,7 +59,7 @@
 							<div class="pb-4 mb-2">
 								<h3 class="h6">위치</h3>
 								<select class="form-select mb-2" name="addr">
-									<option value="" selected disabled>도/시</option>
+									<option value="${param.addr}" selected disabled>${param.addr}</option>
 									<option value="서울특별시">서울특별시</option>
 									<option value="부산광역시">부산광역시</option>
 									<option value="대구광역시">대구광역시</option>
@@ -85,11 +85,11 @@
 							<div class="input-group input-daterange pb-3"
 								style="width: 300px; right: 15px;">
 								<input class="form-control date-picker rounded-pill "
-									name="startdate" type="date" placeholder="날짜를 선택해주세요 "
+									name="startdate" value="${param.startdate}" type="date" placeholder="날짜를 선택해주세요 "
 									data-datepicker-options="{&quot;altInput&quot;: true, &quot;altFormat&quot;: &quot;Y. m. d &quot;, &quot;dateFormat&quot;: &quot;Y-m-d&quot;, &quot;language&quot;: &quot;ko&quot;} ">
-								<div class="input-group-addon">to</div>
+									<div class="mt-2">&nbsp;~&nbsp;</div>
 								<input class="form-control date-picker rounded-pill pi-5 "
-									name="enddate" type="date" placeholder="날짜를 선택해주세요 "
+									name="enddate" value="${param.enddate}" type="date" placeholder="날짜를 선택해주세요 "
 									data-datepicker-options="{&quot;altInput&quot;: true, &quot;altFormat&quot;: &quot;Y. m. d &quot;, &quot;dateFormat&quot;: &quot;Y-m-d&quot;, &quot;language&quot;: &quot;ko&quot;} ">
 							</div>
 							<!-- calendar End-->
@@ -105,22 +105,11 @@
 		<!-- Page content-->
 		<div class="col-lg-8 col-xl-9 position-relative overflow-hidden pb-5 pt-4 px-3 px-xl-4 px-xxl-5">
 			<!-- Map popup-->
-			<div class="map-popup invisible" id="map">
-				<button
-					class="btn btn-icon btn-light btn-sm shadow-sm rounded-circle"
-					type="button" data-bs-toggle-class="invisible"
-					data-bs-target="#map">
-					<i class="fi-x fs-xs"></i>
-				</button>
-				<div class="interactive-map"
-					data-map-options-json="json/map-options-real-estate-rent.json"></div>
-			</div>
 			<!-- Breadcrumb-->
 			<nav class="mb-3 pt-md-2" aria-label="Breadcrumb">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="/">HEALING</a></li>
-					<li class="breadcrumb-item active" aria-current="page">축제 검색
-						결과</li>
+					<li class="breadcrumb-item active" aria-current="page">축제 검색 결과</li>
 				</ol>
 			</nav>
 			<!-- Title-->
@@ -130,16 +119,14 @@
 				<a class="d-inline-block fw-bold text-decoration-none py-1" id="mapOpen"><i class="fi-map me-2"></i>위치 보기</a>
 			</div>
 			<!-- Sorting-->
-			<div
-				class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch my-2">
-				<div class="d-flex align-items-center flex-shrink-0"></div>
-				<hr class="d-none d-sm-block w-100 mx-4">
-				<div
-					class="d-none d-sm-flex align-items-center flex-shrink-0 text-muted">
-					<i class="fi-check-circle me-2"></i> <span class="fs-sm mt-n1">
-						${listCount} 건</span>
-				</div>
-			</div>
+            <div id="map" style="width: 980px; height: 1490px; border-radius:2%; display: none;"></div>
+            <div id="rightSide" style="">
+            <div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch my-2">
+              <div class="d-flex align-items-center flex-shrink-0">
+              </div>
+              <hr class="d-none d-sm-block w-100 mx-4">
+              <div class="d-none d-sm-flex align-items-center flex-shrink-0 text-muted"><i class="fi-check-circle me-2"></i><span class="fs-sm mt-n1">${listCount} 건</span></div>
+            </div>
 			<!-- Catalog grid-->
 			<div class="search-data row g-4 py-4">
 
@@ -211,7 +198,7 @@
           </div>
         </div>
     </main>
-    <script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=8cddaf5bb7b88f487cf47627b52b649b"></script>
+    <script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=b8e0ebf5d4b4881bb423dd05b37fe951"></script>
     <script>
          	 $(document).ready(() => {
          		$(document).on('click',"#mapOpen",function() {
@@ -297,17 +284,17 @@
 				$(this).html('<i class="fi-map me-2"></i>위치 보기');
      			$(this).attr('id','mapOpen');
      		});
-          </script>
-    <script>
-    	function movePage(pageUrl){
-			var keyword = document.getElementById("keyword"); 
- 			var addr = document.getElementById("addr");  
- 			var startdate = document.getElementById("startdate");  
- 			var enddate = document.getElementById("enddate");  
-		
-			pageUrl = pageUrl + '&keyword='+ keyword.value + '&addr=' + addr.value + '&startdate=' + startdate.value + '&enddate=' + enddate.value;  
-		
-			location.href = encodeURI(pageUrl);	
-		}
-    </script>
+        </script>
+    	<script type="text/javascript" charset="UTF-8">
+	    	function movePage(pageUrl){
+				var keyword = document.getElementById("keyword"); 
+	 			var addr = document.getElementById("addr");  
+	 			var startdate = document.getElementById("startdate");  
+	 			var enddate = document.getElementById("enddate");  
+			
+				pageUrl = pageUrl + '&keyword='+ keyword.value + '&addr=' + addr.value + '&startdate=' + startdate.value + '&enddate=' + enddate.value;  
+			
+				location.href = encodeURI(pageUrl);	
+			}
+		</script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
