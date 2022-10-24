@@ -287,23 +287,17 @@
 	                        	0 (0 후기)
 	                        </c:if>
                         </h3>
-						 <div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch justify-content-between">
-	                        <c:if test="${loginMember != null}">
-		                        <a class="btn btn-outline-primary mb-sm-0 mb-3" href="#modal-review" data-bs-toggle="modal">
-		                        <i class="fi-edit me-1"></i>후기 등록</a>
-		                    </c:if>
-		                    <c:if test="${loginMember == null}">
-		                    	<a class="btn btn-outline-primary mb-sm-0 mb-3" href="#signin-modal" data-bs-toggle="modal">
-		                        <i class="fi-edit me-1"></i>후기 등록</a>
-		                    </c:if>                        
+                        
+                        
+                        <div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch justify-content-between"><a class="btn btn-outline-primary mb-sm-0 mb-3" href="#modal-review" data-bs-toggle="modal"><i class="fi-edit me-1"></i>후기 등록</a>
                             <div class="d-flex align-items-center ms-sm-4">
                                 <label class="me-2 pe-1 text-nowrap" for="reviewSort"><i class="fi-arrows-sort text-muted mt-n1 me-2"></i>정렬순:</label>
                                 <select class="form-select" id="sort">
-			                      <option id="new" selected>최신순</option>
-			                      <option id="old">오래된순</option>
-			                      <option id="like">좋아요순</option>
-			                      <option id="star">별점 높은순</option>
-			                    </select>
+                      <option id="new" selected>최신순</option>
+                      <option id="old">오래된순</option>
+                      <option id="like">좋아요순</option>
+                      <option id="star">별점 높은순</option>
+                    </select>
                             </div>
                         </div>
                     </div>
@@ -1978,12 +1972,13 @@
                                         <option value="2인">2인</option>
                                         <option value="4인">4인</option>
                                         <option value="6인">6인</option>
+                                        <option value="8인">8인</option>
                                     </select>
                                     </div>
                                 </div>
                                 <h3 class="h3">합계 :  <span class="h3" id="total"> 
                                 <fmt:formatNumber value="${hotel.price}" pattern="#,###"/>
-                                </span>원 / <span class="h3" id="day">2</span> 박</h3>
+                                </span>원 / <span class="h3" id="day">1</span> 박</h3>
                                 <button class="btn btn-lg btn-primary d-block w-100" id="hotelPay" type="submit">
                                 <img style="margin-right: 20px;" src="${path}/resources/image/payment_icon_yellow_small.png">예매하기</button>
                         </div>
@@ -2000,21 +1995,34 @@
         						
         						var second = endDate.getTime() - startDate.getTime();
         						var day = second / (1000*60*60*24);
-        						
         						$("#day").html(day);
         					});
+        					
         					
         					$("#item").change(function() { // 총액 변경
         						var item = $("#item option:selected").text();
         						
+        						var start = $("#datepicker1").val();
+								var end = $("#datepicker2").val();
+								var startDate = new Date(start);
+        						var endDate = new Date(end);
+        						var second = endDate.getTime() - startDate.getTime();
+        						var day = second / (1000*60*60*24);
+        						var hPrice = ${hotel.price};
+        						var hDayPrice = day*hPrice;
+        						console.log(hDayPrice);
+        						
         						if(item == '2인') {
-        							$("#total").html(${hotel.price});
+        							$("#total").html(hDayPrice);
         						}
 								if(item == '4인') {
-									$("#total").html(${hotel.price * 2});
+									$("#total").html(hDayPrice * 2);
         						}
 								if(item == '6인') {
-									$("#total").html(${hotel.price * 4});
+									$("#total").html(hDayPrice * 3);
+								}
+								if(item == '8인') {
+									$("#total").html(hDayPrice * 4);
 								}
         					});
         					
