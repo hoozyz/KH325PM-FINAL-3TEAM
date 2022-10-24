@@ -537,7 +537,7 @@ else{
                 	<c:if test="${!empty shopList}">
 	                    <c:forEach var= "i"  begin="0" end="${shopList.size() - 1}">
 	                    <article class="d-flex align-items-start" style="max-width: 640px;">
-	                        <a class="d-none d-sm-block flex-shrink-0 me-sm-4 mb-sm-0 mb-3" href="real-estate-blog-single.html"><img class="rounded-3" src="${shopList.get(i).image}" style="width:130px; height: 130px; " alt="여행"></a>
+	                        <a class="d-none d-sm-block flex-shrink-0 me-sm-4 mb-sm-0 mb-3" href="${shopList.get(i).link}"><img class="rounded-3" src="${shopList.get(i).image}" style="width:130px; height: 130px; " alt="여행"></a>
 	                        <div>
 	                            <h5 class="fs-base mt-1" style="margin-bottom: 10px">
 		                            <c:if test="${shopList.get(i).cate3 eq '액티비티'}">
@@ -547,7 +547,7 @@ else{
 			                            <span class="d-table badge bg-success">${shopList.get(i).cate3}</span>
 		                            </c:if>
 	                            </h5>
-	                            <p class="mb-2 fs-sm"><a class="nav-link" href="real-estate-blog-single.html" style="padding: 0;">${shopList.get(i).title}</a></p>
+	                            <p class="mb-2 fs-sm"><a class="nav-link" href="${shopList.get(i).link}" style="padding: 0;">${shopList.get(i).title}</a></p>
 	                            <a class="nav-link nav-link-muted d-inline-block me-3 p-0 fs-xs fw-normal" href="#"><i class="fi-cash mt-n1 me-1 fs-sm align-middle opacity-70"></i>${shopList.get(i).price}원</a>
 	                        </div>
 	                    </article>

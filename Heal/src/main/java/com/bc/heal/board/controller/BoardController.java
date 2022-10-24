@@ -29,7 +29,7 @@ public class BoardController {
 
 	@Autowired
 	private BoardService service;
-	
+
 	@Autowired
 	private MemberService memService;
 
@@ -50,7 +50,7 @@ public class BoardController {
 	public String main(Model model, Map<String, String> param) { // pageNo,
 		int page = 1;
 		String keyword = "";
-		
+
 		PageInfo pageInfo = null;
 		if (param.containsKey("keyword")) {
 			try {
@@ -99,10 +99,10 @@ public class BoardController {
 			pageInfo = new PageInfo(page, 5, service.getBoardCount(keyword), 10); // 검색어 가지고 개수 가져오기 -> 제목/내용
 			boardList = service.selectBoardList(pageInfo, param);
 		} else {
-			if(param.containsKey("type")) {
+			if (param.containsKey("type")) {
 				pageInfo = new PageInfo(page, 5, service.getBoardCountAll(), 5); // 관리자 페이지
 				boardList = service.selectBoardList(pageInfo, param);
-				for(int i = 0; i < boardList.size(); i++) {
+				for (int i = 0; i < boardList.size(); i++) {
 					memList.add(memService.selectByNo(boardList.get(i).getMemberno()));
 				}
 				map.put("memList", memList);
@@ -111,12 +111,12 @@ public class BoardController {
 				boardList = service.selectBoardList(pageInfo, param);
 			}
 		}
-		
+
 		map.put("list", boardList);
 		map.put("pageInfo", pageInfo);
 		return map;
 	}
-	
+
 	@PostMapping("/update")
 	public String update(Model model, Board board, HttpServletRequest req) {
 		int result = 0;
@@ -134,16 +134,16 @@ public class BoardController {
 
 		return "common/msg";
 	}
-	
+
 	@GetMapping("/view") // ajax
 	@ResponseBody
 	public Board view(int no) {
 		Board board = service.selectByNo(no);
-		
+
 		// 조회수 증가
 		int count = board.getReadcount() + 1;
 		service.countPlus(count, no);
-		
+
 		return board;
 	}
 
@@ -166,16 +166,16 @@ public class BoardController {
 	}
 
 	@PostMapping("/write")
-	public String write(Model model, Board board, HttpServletRequest req, 
+	public String write(Model model, Board board, HttpServletRequest req,
 			@SessionAttribute(name = "loginMember", required = false) Member loginMember) {
 		int result = 0;
 		if (board == null) {
 			model.addAttribute("msg", "잘못된 접근입니다.");
 		}
-		
+
 		board.setId(loginMember.getId());
 		board.setMemberno(loginMember.getNo());
-		
+
 		result = service.save(board);
 		String location = req.getHeader("Referer");
 
@@ -189,27 +189,27 @@ public class BoardController {
 
 		return "common/msg";
 	}
-	
+
 	// 관리자
 	@RequestMapping("/admin")
 	public String board(Model model, String no, HttpServletRequest req) {
 		List<Board> list = new ArrayList<>();
 		List<Member> memList = new ArrayList<>();
 		String location = req.getHeader("Referer");
-		if(no != null) {
+		if (no != null) {
 			service.delete(Integer.parseInt(no)); // no 오면 삭제
 		}
 		
-		PageInfo pageInfo = new PageInfo(1, 5, service.getBoardCountAll(), 5);
+		int count = service.getBoardCountAll();
+		PageInfo pageInfo = new PageInfo(1, 5, count, 5);
 		Map<String, String> param = new HashMap<>();
 		list = service.selectBoardList(pageInfo, param); // 멤버와 조인해서 가져오기
-		
-		if(list.size() > 0) {
-			for(int i = 0; i < list.size(); i++) {
+
+		if (list.size() > 0) {
+			for (int i = 0; i < list.size(); i++) {
 				memList.add(memService.selectByNo(list.get(i).getMemberno()));
 			}
-			int count = service.getBoardCountAll();
-			
+
 			model.addAttribute("count", count);
 			model.addAttribute("memList", memList);
 			model.addAttribute("pageInfo", pageInfo);

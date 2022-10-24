@@ -1,6 +1,7 @@
 package com.bc.heal.photo.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -22,6 +24,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.bc.heal.member.service.MemberService;
 import com.bc.heal.photo.service.PhotoService;
 import com.bc.heal.reply.service.ReplyService;
+import com.bc.heal.vo.Board;
 import com.bc.heal.vo.Member;
 import com.bc.heal.vo.PageInfo;
 import com.bc.heal.vo.Photo;
@@ -81,8 +84,6 @@ public class PhotoController {
 			}
 		}
 
-		System.out.println(service.getPhotoCount(param));
-		System.out.println(param);
 		List<Photo> photoList = new ArrayList<>();
 		PageInfo pageInfo = new PageInfo(page, 5, service.getPhotoCount(param), 12); // 검색어 가지고 개수 가져오기 -> 제목/내용
 		photoList = service.selectPhotoList(pageInfo, param);
@@ -91,6 +92,35 @@ public class PhotoController {
 		model.addAttribute("param", param);
 
 		return "/board/photoMain";
+	}
+	
+	@GetMapping("ajax")
+	@ResponseBody
+	public Map<String, Object> ajax(Model model, @RequestParam Map<String, String> param) {
+		int page = 1;
+		if (param.containsKey("page")) {
+			try {
+				page = Integer.parseInt(param.get("page"));
+			} catch (Exception e) {
+			}
+		}
+
+		List<Photo> photoList = new ArrayList<>();
+		List<Member> memList = new ArrayList<>();
+		Map<String, Object> map = new HashMap<>();
+
+		PageInfo pageInfo = null;
+		
+		pageInfo = new PageInfo(page, 5, service.getPhotoCountAll(), 5); // 관리자 페이지
+		photoList = service.selectPhotoList(pageInfo, param);
+		for(int i = 0; i < photoList.size(); i++) {
+			memList.add(memService.selectByNo(photoList.get(i).getMemberno()));
+		}
+		map.put("memList", memList);
+		
+		map.put("list", photoList);
+		map.put("pageInfo", pageInfo);
+		return map;
 	}
 
 	@PostMapping("/write")
@@ -154,20 +184,40 @@ public class PhotoController {
 
 	@PostMapping("/update") 
 	public String update(@ModelAttribute Photo photo) {
-		System.out.println(photo);
 		service.update(photo);
 		String no = ""+photo.getNo();
 		return "redirect: /photo/view?no="+no;
 	}
+	
 	// 관리자
 	@RequestMapping("/admin")
-	public String admin(Model model) {
+	public String admin(Model model, String no, HttpServletRequest req) {
 		List<Photo> list = new ArrayList<>();
+		List<Member> memList = new ArrayList<>();
+		String location = req.getHeader("Referer");
+		if (no != null) {
+			service.delete(Integer.parseInt(no)); // no 오면 삭제
+		}
+		
+		int count = service.getPhotoCountAll();
+		PageInfo pageInfo = new PageInfo(1, 5, count, 5);
+		Map<String, String> param = new HashMap<>();
+		list = service.selectPhotoList(pageInfo, param); // 멤버와 조인해서 가져오기
+		System.out.println(list);
 		if (list.size() > 0) {
+			for (int i = 0; i < list.size(); i++) {
+				memList.add(memService.selectByNo(list.get(i).getMemberno()));
+			}
+
+			model.addAttribute("count", count);
+			model.addAttribute("memList", memList);
+			model.addAttribute("pageInfo", pageInfo);
 			model.addAttribute("list", list);
+			return "/admin/photo";
 		} else { // 유저가 없을 때
 			model.addAttribute("msg", "자유게시글이 없습니다.");
+			model.addAttribute("location", location);
+			return "common/msg";
 		}
-		return "/admin/board";
 	}
 }
