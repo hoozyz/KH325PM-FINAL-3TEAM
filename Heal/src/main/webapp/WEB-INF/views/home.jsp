@@ -4,9 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
- <link rel="stylesheet" media="screen" href="${path}/resources/vendor/simplebar/dist/simplebar.min.css" />
- <link rel="stylesheet" media="screen" href="${path}/resources/vendor/tiny-slider/dist/tiny-slider.css" />
-
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param value="메인 홈페이지" name="title"/>
 </jsp:include>
@@ -49,6 +46,13 @@
                 background-image: url('D001.png');
             }
         </style>
+        
+         <link rel="stylesheet" media="screen" href="${path}/resources/vendor/simplebar/dist/simplebar.min.css" />
+ 			<link rel="stylesheet" media="screen" href="${path}/resources/vendor/tiny-slider/dist/tiny-slider.css" />
+ 			<link rel="stylesheet" media="screen" href="${path}/resources/css/sidebar.css" />
+ 			
+ 			<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	
 	<!-- 메인 페이지 시작 -->
 	<main>
@@ -140,8 +144,6 @@ else{
              	</nav> 
            	</div><a class="btn btn-link fw-normal d-none d-lg-block p-0" href="${path}/camp/campMain">View all<i class="fi-arrow-long-right ms-2"></i></a>
         </div>
-			
-             	
     	<div class="tns-carousel-wrapper tns-nav-outside tns-nav-outside-flush mx-n2">
 					<div class="tns-carousel-inner row gx-4 mx-0"
 						data-carousel-options="{&quot;nav&quot;: false, &quot;autoHeight&quot;: true, &quot;controlsContainer&quot;: &quot;#carousel-controls-tp&quot;, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;1320&quot;:{&quot;items&quot;:2}}}">
@@ -150,16 +152,16 @@ else{
 							<div class="row gy-md-0 gy-sm-4 gy-3 gx-sm-4 gx-0">
 								<div class="col-md-7">
 									<a class="text-decoration-none text-light card bg-size-cover bg-position-center border-0 overflow-hidden h-100"
-										href="real-estate-single-v1.html"
+										href="${path}camp/campDetail?no=100543"
 										style="background-image: url(${path}/resources/image/c01.jpg); height:600px;"><span
 											class="img-gradient-overlay"></span>
 										<div class="card-body content-overlay pb-0"></div>
 										<div class="card-footer content-overlay border-0 pt-0 pb-4">
 											<div class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5">
 												<div class="pe-2">
-													<h3 class="h5 text-light mb-1"></h3>
+													<h3 class="h5 text-light mb-1">반딧불 캠핑장</h3>
 													<div class="fs-sm opacity-70">
-														<i class="fi-map-pin me-1"></i>
+														<i class="fi-map-pin me-1">경기 안성시 금광면 연내동길 138-37</i>
 													</div>
 												</div>
 											</div>
@@ -168,27 +170,27 @@ else{
 								</div>
 								<div class="col-md-5">
 									<a class="card border-0 overflow-hidden mb-sm-4 mb-3 text-decoration-none text-light"
-										href="real-estate-single-v2.html">
+										href="${path}camp/campDetail?no=100400">
 										<div class="card-body p-0 position-relative">
 											<img src="${path}/resources/image/c02.png" style="height: 270px;" alt="Article image"><span
 												class="img-gradient-overlay zindex-1"></span>
 											<div class="position-absolute start-0 bottom-0 m-n1 p-4 zindex-5">
-												<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
+												<h3 class="h5 text-light mb-1">청도 사계절 캠핑장</h3>
 												<div class="fs-sm opacity-70">
-													<i class="fi-map-pin me-1"></i># 캠핑장 주소
+													<i class="fi-map-pin me-1"></i>경북 청도군 운문면 운문로 1436-23
 												</div>
 											</div>
 										</div>
 									</a>
 									<a class="card border-0 overflow-hidden text-decoration-none text-light"
-										href="real-estate-single-v2.html">
+										href="${path}camp/campDetail?no=100272">
 										<div class="card-body p-0 position-relative">
 											<img src="${path}/resources/image/c03.jpg" style="height: 150px;" alt="Article image"><span
 												class="img-gradient-overlay zindex-1"></span>
 											<div class="position-absolute start-0 bottom-0 m-n1 p-4 zindex-5">
-												<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
+												<h3 class="h5 text-light mb-1">더 하루만 캠핑장</h3>
 												<div class="fs-sm opacity-70">
-													<i class="fi-map-pin me-1"></i># 캠핑장 주소
+													<i class="fi-map-pin me-1"></i>충북 괴산군 청천면 괴산로상신5길 6-10
 												</div>
 											</div>
 										</div>
@@ -201,16 +203,16 @@ else{
 							<div class="row gy-md-0 gy-sm-4 gy-3 gx-sm-4 gx-0">
 								<div class="col-md-7">
 									<a class="text-decoration-none text-light card bg-size-cover bg-position-center border-0 overflow-hidden h-100"
-										href="real-estate-single-v1.html"
+										href="${path}camp/campDetail?no=8180"
 										style="background-image: url(${path}/resources/image/c04.png); height:600px;"><span
 											class="img-gradient-overlay"></span>
 										<div class="card-body content-overlay pb-0"></div>
 										<div class="card-footer content-overlay border-0 pt-0 pb-4">
 											<div class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5">
 												<div class="pe-2">
-													<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
+													<h3 class="h5 text-light mb-1">오색허브농원 캠핑장</h3>
 													<div class="fs-sm opacity-70">
-														<i class="fi-map-pin me-1"></i># 캠핑장 주소
+														<i class="fi-map-pin me-1"></i>강원 양양군 서면 송어길 38
 													</div>
 												</div>
 											</div>
@@ -219,27 +221,27 @@ else{
 								</div>
 								<div class="col-md-5">
 									<a class="card border-0 overflow-hidden mb-sm-4 mb-3 text-decoration-none text-light"
-										href="real-estate-single-v2.html">
+										href="${path}camp/campDetail?no=7924">
 										<div class="card-body p-0 position-relative">
 											<img src="${path}/resources/image/c05.jpg" style="height: 270px;" alt="Article image"><span
 												class="img-gradient-overlay zindex-1"></span>
 											<div class="position-absolute start-0 bottom-0 m-n1 p-4 zindex-5">
-												<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
+												<h3 class="h5 text-light mb-1">덕산참숯랜드</h3>
 												<div class="fs-sm opacity-70">
-													<i class="fi-map-pin me-1"></i># 캠핑장 주소
+													<i class="fi-map-pin me-1"></i>충남 예산군 덕산면 노곡길 59
 												</div>
 											</div>
 										</div>
 									</a>
 									<a class="card border-0 overflow-hidden text-decoration-none text-light"
-										href="real-estate-single-v2.html">
+										href="${path}camp/campDetail?no=7807">
 										<div class="card-body p-0 position-relative">
 											<img src="${path}/resources/image/c06.jpg" style="height: 150px;" alt="Article image"><span
 												class="img-gradient-overlay zindex-1"></span>
 											<div class="position-absolute start-0 bottom-0 m-n1 p-4 zindex-5">
-												<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
+												<h3 class="h5 text-light mb-1">화기애애 단풍 캠핑장</h3>
 												<div class="fs-sm opacity-70">
-													<i class="fi-map-pin me-1"></i># 캠핑장 주소
+													<i class="fi-map-pin me-1"></i>강원 평창군 봉평면 흥정계곡길 674-38
 												</div>
 											</div>
 										</div>
@@ -252,16 +254,16 @@ else{
 							<div class="row gy-md-0 gy-sm-4 gy-3 gx-sm-4 gx-0">
 								<div class="col-md-7">
 									<a class="text-decoration-none text-light card bg-size-cover bg-position-center border-0 overflow-hidden h-100"
-										href="real-estate-single-v1.html"
+										href="${path}camp/campDetail?no=7648"
 										style="background-image: url(${path}/resources/image/c07.jpg); height:600px;"><span
 											class="img-gradient-overlay"></span>
 										<div class="card-body content-overlay pb-0"></div>
 										<div class="card-footer content-overlay border-0 pt-0 pb-4">
 											<div class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5">
 												<div class="pe-2">
-													<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
+													<h3 class="h5 text-light mb-1">토일관광농원</h3>
 													<div class="fs-sm opacity-70">
-														<i class="fi-map-pin me-1"></i># 캠핑장 주소
+														<i class="fi-map-pin me-1"></i>경기 포천시 군내면 청군로 2857
 													</div>
 												</div>
 											</div>
@@ -270,26 +272,26 @@ else{
 								</div>
 								<div class="col-md-5">
 									<a class="card border-0 overflow-hidden mb-sm-4 mb-3 text-decoration-none text-light"
-										href="real-estate-single-v2.html">
+										href="${path}camp/campDetail?no=7788">
 										<div class="card-body p-0 position-relative">
 											<img src="${path}/resources/image/c08.jpg" style="height: 270px;" alt="Article image"><span
 												class="img-gradient-overlay zindex-1"></span>
 											<div class="position-absolute start-0 bottom-0 m-n1 p-4 zindex-5">
-												<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
+												<h3 class="h5 text-light mb-1">이화야영장</h3>
 												<div class="fs-sm opacity-70">
-													<i class="fi-map-pin me-1"></i># 캠핑장 주소
+													<i class="fi-map-pin me-1"></i>경북 칠곡군 지천면 황학4길 21
 												</div>
 											</div>
 										</div>
 									</a> <a class="card border-0 overflow-hidden text-decoration-none text-light"
-										href="real-estate-single-v2.html">
+										href="${path}camp/campDetail?no=7740">
 										<div class="card-body p-0 position-relative">
 											<img src="${path}/resources/image/c09.jpg" style="height: 150px;" alt="Article image"><span
 												class="img-gradient-overlay zindex-1"></span>
 											<div class="position-absolute start-0 bottom-0 m-n1 p-4 zindex-5">
-												<h3 class="h5 text-light mb-1">@ 캠핑장 이름</h3>
+												<h3 class="h5 text-light mb-1">더캠프</h3>
 												<div class="fs-sm opacity-70">
-													<i class="fi-map-pin me-1"></i># 캠핑장 주소
+													<i class="fi-map-pin me-1"></i>울산 울주군 상북면 삽재로 420
 												</div>
 											</div>
 										</div>
@@ -299,11 +301,6 @@ else{
 						</div>
 					</div>
 				</div>
-				
-				
-				
-				
-				
 
 		<!-- Carousel custom controls-->
         <div class="tns-carousel-controls justify-content-center pt-md-2 mt-4" id="carousel-controls-tp">
@@ -311,6 +308,18 @@ else{
             <button type="button"><i class="fi-chevron-right fs-xs"></i></button>
         </div>
     </section>
+    
+    <aside style="position: fixed; top:500px; left:89.999999%; opacity: 0.7;">
+					<div class="menu" >
+    <label for="expand-menu" style="height:36px;"><div>메뉴</div></label>
+    <input type="checkbox" id="expand-menu" name="expand-menu" style="padding-bottom: 30px;"> 
+    <ul>
+        <li><a href="#" class="item" style="height: 36px;"><div>비행기 예매</div></a></li>
+        <li><a href="#" class="item" style="height: 36px;"><div>기차 예매</div></a></li>
+        <li><a href="#" class="item" style="height: 36px;"><div>버스 예매</div></a></li>
+    </ul>
+</div>
+				</aside>
 
     <section class="container-fluid mb-5 mt-n3 mt-lg-0 pt-4" style="background: #e4dabe; height:550px;">
         <section class="container mb-5 pb-2">

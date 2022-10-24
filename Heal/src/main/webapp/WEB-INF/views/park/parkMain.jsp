@@ -731,19 +731,27 @@
         <!--@@@@@@@@@@ 포토갤러리 시작 @@@@@@@@@@-->
         <section class="container mb-5 pb-2">
             <div class="d-flex align-items-center justify-content-between mb-3">
-                <h2 class="h3 mb-0">포토갤러리</h2><a class="btn btn-link fw-normal ms-md-3 pb-0" href="real-estate-catalog-rent.html">View all<i class="fi-arrow-long-right ms-2"></i></a>
+                <h2 class="h3 mb-0">포토갤러리</h2><a class="btn btn-link fw-normal ms-md-3 pb-0" href="${path}/photo/main">View all<i class="fi-arrow-long-right ms-2"></i></a>
             </div>
             <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside tns-nav-outside-flush mx-n2">
                 <div class="tns-carousel-inner row gx-4 mx-0 py-md-4 py-3" data-carousel-options="{&quot;items&quot;: 4, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3},&quot;992&quot;:{&quot;items&quot;:4}}}">
-					<c:if test="${empty photoList}">
-						<c:forEach var="i" begin="0" end="4">
+					<c:if test="${!empty photoList}">
+						<c:forEach var="i" begin="0" end="5">
 		                    <!-- Item-->
 		                    <div class="col">
-		                        <a class="card shadow-sm card-hover border-0" href="real-estate-catalog-sale.html">
-		                            <div class="card-img-top card-img-hover"><span class="img-overlay opacity-65"></span><img src="${path}/resources/img/real-estate/city/new-york.jpg" alt="New York">
+		                        <a class="card shadow-sm card-hover border-0" href="${path}/photo/view?no=${photoList.get(i).no}">
+		                        	<c:set var="renamefile" value="${photoList.get(i).renamefile}"/>
+		                            <div class="card-img-top card-img-hover"><span class="img-overlay opacity-65"></span>
+		                            <c:if test="${fn:contains(renamefile,',')}">
+		                            	<c:set var="split" value="${fn:split(renamefile,',')}"/>
+                                    	<img src="/resources/upload/image/${split[0]}" style="width:100%; height:265px">
+                                    </c:if>
+		                            <c:if test="${not fn:contains(renamefile,',')}">
+		                            	<img src="/resources/upload/image/${photoList.get(i).renamefile}" style="width:100%; height:265px">
+		                            </c:if>
 		                            </div>
 		                            <div class="card-body text-center">
-		                                <h3 class="mb-0 fs-base text-nav">내용</h3>
+		                                <h3 class="mb-0 fs-base text-nav">${photoList.get(i).cont}</h3>
 		                            </div>
 		                        </a>
 		                    </div>

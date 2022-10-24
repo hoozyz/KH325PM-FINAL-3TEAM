@@ -172,7 +172,29 @@
         background-image: url(https://ssl.pstatic.net/static/weather/image/sp_weather_1746dae0.png);
         background-size: 965px 883px;
     }
+    
+    .btn-group-sm .on {
+    	background-color: black;
+    	color: white;
+    }
+    .btn-group-sm .on:active {
+    	background-color: black;
+    	color: white;
+    }
+     .btn-group-sm>button:hover {
+    	background-color: black;
+    	color: white;
+    }
 </style>
+
+<!-- Vendor Styles-->
+	    <link rel="stylesheet" media="screen" href="${path}/resources/vendor/simplebar/dist/simplebar.min.css" />
+	    <link rel="stylesheet" media="screen" href="${path}/resources/vendor/nouislider/dist/nouislider.min.css" />
+	    <link rel="stylesheet" media="screen" href="${path}/resources/vendor/tiny-slider/dist/tiny-slider.css" />.
+	    <!-- Main Theme Styles + Bootstrap-->
+	    <link rel="stylesheet" media="screen" href="${path}/resources/css/theme.min.css">
+    
+            <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 <c:set var="festivalNo" value="${festival.no}" />
 
@@ -1443,7 +1465,7 @@
                         
                         <!--Map-->
                         <div id="map" style="width: 480px; height: 300px; border-radius:2%;"></div>
-                        <script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=b8e0ebf5d4b4881bb423dd05b37fe951"></script>
+                        <script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=8cddaf5bb7b88f487cf47627b52b649b"></script>
                         <script>
                             var container = document.getElementById('map');
                             var options = {

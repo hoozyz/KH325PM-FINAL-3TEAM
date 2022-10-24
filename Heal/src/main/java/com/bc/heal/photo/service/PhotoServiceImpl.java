@@ -117,4 +117,22 @@ public class PhotoServiceImpl implements PhotoService{
 		mapper.update(photo);
 	}
 
+	@Override
+	public List<Photo> selectPhotoList(com.bc.heal.common.util.PageInfo pageInfo, Map<String, String> param) {
+		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit(); // 앞에서 뺄 수 
+		RowBounds rowBounds = new RowBounds(offset, pageInfo.getListLimit());
+
+		Map<String, String> searchMap = new HashMap<String, String>();
+		String keyword = param.get("keyword");
+		if (keyword != null && keyword.length() > 0) {
+			searchMap.put("keyword", keyword);
+		}
+		String category = param.get("category");
+		if (category != null && category.length() > 0) {
+			searchMap.put("category", category);
+		}
+
+		return mapper.selectPhotoList(rowBounds, searchMap);
+	}
+
 }

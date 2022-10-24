@@ -24,7 +24,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.bc.heal.member.service.MemberService;
 import com.bc.heal.photo.service.PhotoService;
 import com.bc.heal.reply.service.ReplyService;
-import com.bc.heal.vo.Board;
 import com.bc.heal.vo.Member;
 import com.bc.heal.vo.PageInfo;
 import com.bc.heal.vo.Photo;

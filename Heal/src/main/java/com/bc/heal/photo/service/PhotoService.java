@@ -28,4 +28,6 @@ public interface PhotoService {
 	void addCount(int no);
 
 	void update(Photo photo);
+
+	List<Photo> selectPhotoList(com.bc.heal.common.util.PageInfo pageInfo, Map<String, String> param);
 }

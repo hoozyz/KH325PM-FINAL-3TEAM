@@ -1,19 +1,13 @@
 package com.bc.heal.like.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.ibatis.annotations.Param;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,7 +26,6 @@ import com.bc.heal.like.service.LikeService;
 import com.bc.heal.park.service.ParkService;
 import com.bc.heal.vo.Like;
 import com.bc.heal.vo.Member;
-import com.bc.heal.vo.Review;
 
 @Controller
 @RequestMapping("/like")

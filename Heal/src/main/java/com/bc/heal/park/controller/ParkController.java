@@ -29,6 +29,7 @@ import com.bc.heal.bus.service.BusService;
 import com.bc.heal.common.util.PageInfo;
 import com.bc.heal.food.service.FoodService;
 import com.bc.heal.park.service.ParkService;
+import com.bc.heal.photo.service.PhotoService;
 import com.bc.heal.review.service.ReviewService;
 import com.bc.heal.train.service.TrainService;
 import com.bc.heal.vo.Air;
@@ -36,6 +37,7 @@ import com.bc.heal.vo.Bus;
 import com.bc.heal.vo.EndStation;
 import com.bc.heal.vo.Food;
 import com.bc.heal.vo.Park;
+import com.bc.heal.vo.Photo;
 import com.bc.heal.vo.Review;
 import com.bc.heal.vo.Train;
 import com.bc.heal.vo.Weather;
@@ -65,6 +67,9 @@ public class ParkController {
 	
 	@Autowired
 	private FoodService foodService;
+	
+	@Autowired
+	private PhotoService photoService;
 
 	@GetMapping("/parkMain")
 	public String park(Model model) throws IOException, ParseException {
@@ -79,7 +84,15 @@ public class ParkController {
 		Weather one = famousWeather.get(1);
 		Weather two = famousWeather.get(2);
 		
+		Map<String, String> param = new HashMap<>();
+		com.bc.heal.vo.PageInfo pageInfo = new com.bc.heal.vo.PageInfo(1, 5, photoService.getPhotoCount(param), 12); // 검색어 가지고 개수 가져오기 -> 제목/내용
+		List<Photo> photoList = new ArrayList<>();
 
+		photoList = photoService.selectPhotoList(pageInfo, param);
+		
+		model.addAttribute("photoList", photoList);
+		model.addAttribute("pageInfo", pageInfo);
+		model.addAttribute("param", param);
 		
 		model.addAttribute("famousPark1", famousPark1);
 		model.addAttribute("famousPark2", famousPark2);
