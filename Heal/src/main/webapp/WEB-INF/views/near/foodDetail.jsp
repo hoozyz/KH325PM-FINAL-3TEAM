@@ -208,6 +208,7 @@
                          <form class="needs-validation" action="${path}/review/write" method="POST">
                         	<input type="hidden" name="type" value="food">
                         	<input type="hidden" name="no" value="${food.no}">
+                        	<input type="hidden" name="title" value="${food.name}">
                             <div class="mb-3">
                                 <label class="form-label" for="review-name">아이디<span class='text-danger'>*</span></label>
                                 <input class="form-control" type="text" id="review-name" name="id" value="${loginMember.id}" readonly>
