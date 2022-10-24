@@ -56,5 +56,13 @@
 		ORDER BY NO DESC
 	</select>
 	
+	<update id="updateHotel" parameterType="string">
+		UPDATE TBL_HOTEL
+		SET PHONE = #{no1},
+			ADDR = #{no2},
+			NAME = #{no3},
+			LAT = #{no4}
+		WHERE NO = ${0}
+	</update>
 	
 </mapper>

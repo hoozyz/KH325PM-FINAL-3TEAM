@@ -2248,85 +2248,25 @@
             <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside tns-nav-outside-flush mx-n2">
                 <div class="tns-carousel-inner row gx-4 mx-0 pt-3 pb-4" data-carousel-options="{&quot;items&quot;: 4, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3},&quot;992&quot;:{&quot;items&quot;:4}}}">
                     <!-- Item-->
-                    <div class="col">
+                    <c:if test="${!empty lastList}">
+                    	<c:forEach var="i" begin="0" end="${lastList.size() -1}">
+               		<div class="col">
                         <div class="card shadow-sm card-hover border-0 h-100">
                             <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" href="#"></a>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                </div><img src="${path}/resources/image/hotel1.jpg" alt="Image">
+                                <a class="img-overlay" href="${path}/near/hotelDetail?no=${lastList.get(i).no}"></a>
+                                <div style="width: 300px; height:190px;">
+	                              	<img src="${path}/resources/image/campImg<%=Math.round(Math.random()*18 + 1)%>.jpg" alt="Image" style="width: 100%; height: 100%;  object-fit: cover;">
+                              	 </div>
                             </div>
                             <div class="card-body position-relative pb-3">
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="#">더블힐링펜션</a></h3>
-                                <p class="mb-2 fs-sm text-muted">전라북도 부안군 변산면 운산리 455</p>
-                                <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>60000원</div>
+                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="${path}/near/hotelDetail?no=${lastList.get(i).no}">${lastList.get(i).name}</a></h3>
+                                <p class="mb-2 fs-sm text-muted">${lastList.get(i).addr}</p>
+                                <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>${lastList.get(i).price}원</div>
                             </div>
                         </div>
                     </div>
-                    <!-- Item-->
-                    <div class="col">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" href="#"></a>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                </div><img src="${path}/resources/image/hotel2.jpg" alt="Image">
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="#">구름채</a></h3>
-                                <p class="mb-2 fs-sm text-muted">전라북도 무주군 설천면 삼공리 820</p>
-                                <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>210000원</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Item-->
-                    <div class="col">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" href="#"></a>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                </div><img src="${path}/resources/image/hotel3.jpg" alt="Image">
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="#">뉴서울호텔</a></h3>
-                                <p class="mb-2 fs-sm text-muted">서울특별시 중구 태평로1가 29-1</p>
-                                <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>150000원</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Item-->
-                    <div class="col">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" href="#"></a>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                </div><img src="${path}/resources/image/hotel4.jpg" alt="Image">
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="#">시그니엘 서울</a></h3>
-                                <p class="mb-2 fs-sm text-muted">서울특별시 송파구 신천동 29</p>
-                                <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>210000원</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Item-->
-                    <div class="col">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="card-img-top card-img-hover">
-                                <a class="img-overlay" href="#"></a>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                </div><img src="${path}/resources/image/hotel5.jpg" alt="Image">
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="#">시실리펜션</a></h3>
-                                <p class="mb-2 fs-sm text-muted">강원도 홍천군 북방면 장항리 118</p>
-                                <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>90000원</div>
-                            </div>
-                        </div>
-                    </div>
+                    	</c:forEach>
+                    </c:if>
                 </div>
             </div>
         </section>

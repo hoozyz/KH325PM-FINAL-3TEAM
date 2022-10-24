@@ -159,29 +159,29 @@ public class HotelController {
 		lastList.add(hotel); // 지금 들어가는게 최신
 
 		Hotel zero = hotelService.findByNo(0); // name, lineintro, intro, aria 순서로 없을 시 넣기 -> name가 최근
-		if (zero.getName() == null) { // 초기값
-			zero.setName("1337");
-		}
-		if (zero.getPhone() == null) {
-			zero.setPhone("17");
+		if (zero.getPhone() == null) { // 초기값
+			zero.setPhone("79262");
 		}
 		if (zero.getAddr() == null) {
-			zero.setAddr("77");
+			zero.setAddr("79323");
+		}
+		if (zero.getName() == null) {
+			zero.setName("79154");
 		}
 		String threeNo = "";
 		String fourNo = "";
 
 		// 4개 넣어놓고 -> name에 최신 한 칸씩 뒤로 옮기기
-		String twoNo = zero.getName();
+		String twoNo = zero.getPhone();
 		if (twoNo.equals("" + no)) { // 이미 최신에 현재 캠핑장이 있을 때
-			twoNo = zero.getPhone();
+			twoNo = zero.getAddr();
+			threeNo = zero.getName();
+			fourNo = zero.getLat();
+		} else {
 			threeNo = zero.getAddr();
 			fourNo = zero.getName();
-		} else {
-			threeNo = zero.getPhone();
-			fourNo = zero.getAddr();
 		}
-
+		
 		lastList.add(hotelService.findByNo(Integer.parseInt(twoNo)));
 		lastList.add(hotelService.findByNo(Integer.parseInt(threeNo)));
 		lastList.add(hotelService.findByNo(Integer.parseInt(fourNo)));
@@ -189,8 +189,6 @@ public class HotelController {
 		hotelService.updateHotel("" + no, twoNo, threeNo, fourNo); // update
 
 		model.addAttribute("lastList", lastList);
-				
-				
 		
 		// 리뷰	
 		
