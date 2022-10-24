@@ -123,7 +123,7 @@
 						<div class="col-sm-6 col-xl-4">
 							<div class="card shadow-sm card-hover border-0 h-100">
 								<div class="tns-carousel-wrapper card-img-top card-img-hover">
-									<a class="img-overlay" href="real-estate-single-v1.html"></a>
+									<a class="img-overlay" href="${path}/near/hotelDetail?no=${hotel.no}"></a>
 									<div class="content-overlay end-0 top-0 pt-3 pe-3">
 									</div>
 									<div class="">

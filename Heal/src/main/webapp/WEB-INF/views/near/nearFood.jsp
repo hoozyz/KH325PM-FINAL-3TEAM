@@ -145,7 +145,7 @@
 
 							<div class="col-sm-6 col-xl-4" style="margin-bottom: 20px;">
 								<div class="card shadow-sm card-hover border-0 h-100">
-									<div class="tns-carousel-wrapper card-img-top card-img-hover" style>
+									<div class="tns-carousel-wrapper card-img-top card-img-hover">
 										<a class="img-overlay" href="${path}/near/foodDetail?no=${food.no}"></a>
 										<div class="position-absolute start-0 top-0 pt-3 ps-3">
 											<span class="d-table badge bg-success mb-1">${food.type}</span><span class="d-table badge bg-info">${food.main}</span>
@@ -180,9 +180,9 @@
 										style="margin-top: 20px;">
 										<h3 class="h6 mb-2 fs-base" style="margin-bottom: 10px;">
 											<a class="nav-link stretched-link"
-												href="${path}/near/foodDetail?no=${food.no}">${food.addr}</a>
+												href="${path}/near/foodDetail?no=${food.no}">${food.name}</a>
 										</h3>
-										<p class="mb-2 fs-sm text-muted">${food.name}</p>
+										<p class="mb-2 fs-sm text-muted">${food.addr}</p>
 									</div>
 								</div>
 							</div>
