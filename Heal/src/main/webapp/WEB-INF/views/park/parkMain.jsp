@@ -735,66 +735,20 @@
             </div>
             <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside tns-nav-outside-flush mx-n2">
                 <div class="tns-carousel-inner row gx-4 mx-0 py-md-4 py-3" data-carousel-options="{&quot;items&quot;: 4, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3},&quot;992&quot;:{&quot;items&quot;:4}}}">
-                    <!-- Item-->
-                    <div class="col">
-                        <a class="card shadow-sm card-hover border-0" href="real-estate-catalog-sale.html">
-                            <div class="card-img-top card-img-hover"><span class="img-overlay opacity-65"></span><img src="${path}/resources/img/real-estate/city/new-york.jpg" alt="New York">
-                            </div>
-                            <div class="card-body text-center">
-                                <h3 class="mb-0 fs-base text-nav">내용</h3>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- Item-->
-                    <div class="col">
-                        <a class="card shadow-sm card-hover border-0" href="real-estate-catalog-sale.html">
-                            <div class="card-img-top card-img-hover"><span class="img-overlay opacity-65"></span><img src="${path}/resources/img/real-estate/city/new-york.jpg" alt="New York">
-                            </div>
-                            <div class="card-body text-center">
-                                <h3 class="mb-0 fs-base text-nav">내용</h3>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- Item-->
-                    <div class="col">
-                        <a class="card shadow-sm card-hover border-0" href="real-estate-catalog-sale.html">
-                            <div class="card-img-top card-img-hover"><span class="img-overlay opacity-65"></span><img src="${path}/resources/img/real-estate/city/new-york.jpg" alt="New York">
-                            </div>
-                            <div class="card-body text-center">
-                                <h3 class="mb-0 fs-base text-nav">내용</h3>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- Item-->
-                    <div class="col">
-                        <a class="card shadow-sm card-hover border-0" href="real-estate-catalog-sale.html">
-                            <div class="card-img-top card-img-hover"><span class="img-overlay opacity-65"></span><img src="${path}/resources/img/real-estate/city/new-york.jpg" alt="New York">
-                            </div>
-                            <div class="card-body text-center">
-                                <h3 class="mb-0 fs-base text-nav">내용</h3>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- Item-->
-                    <div class="col">
-                        <a class="card shadow-sm card-hover border-0" href="real-estate-catalog-sale.html">
-                            <div class="card-img-top card-img-hover"><span class="img-overlay opacity-65"></span><img src="${path}/resources/img/real-estate/city/new-york.jpg" alt="New York">
-                            </div>
-                            <div class="card-body text-center">
-                                <h3 class="mb-0 fs-base text-nav">내용</h3>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- Item-->
-                    <div class="col">
-                        <a class="card shadow-sm card-hover border-0" href="real-estate-catalog-sale.html">
-                            <div class="card-img-top card-img-hover"><span class="img-overlay opacity-65"></span><img src="${path}/resources/img/real-estate/city/new-york.jpg" alt="New York">
-                            </div>
-                            <div class="card-body text-center">
-                                <h3 class="mb-0 fs-base text-nav">내용</h3>
-                            </div>
-                        </a>
-                    </div>
+					<c:if test="${empty photoList}">
+						<c:forEach var="i" begin="0" end="4">
+		                    <!-- Item-->
+		                    <div class="col">
+		                        <a class="card shadow-sm card-hover border-0" href="real-estate-catalog-sale.html">
+		                            <div class="card-img-top card-img-hover"><span class="img-overlay opacity-65"></span><img src="${path}/resources/img/real-estate/city/new-york.jpg" alt="New York">
+		                            </div>
+		                            <div class="card-body text-center">
+		                                <h3 class="mb-0 fs-base text-nav">내용</h3>
+		                            </div>
+		                        </a>
+		                    </div>
+						</c:forEach>
+					</c:if>
                 </div>
             </div>
         </section>

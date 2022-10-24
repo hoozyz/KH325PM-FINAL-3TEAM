@@ -1152,7 +1152,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/">HEALING</a></li>
                     <li class="breadcrumb-item"><a href="${path}/park/parkList">공원</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">칠십리공원</li>
+                    <li class="breadcrumb-item active" aria-current="page">${park.name}</li>
                 </ol>
             </nav>
             <div class="row gy-5 pt-lg-2">
