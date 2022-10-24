@@ -184,10 +184,10 @@ public class FestivalController {
 		model.addAttribute("likeCheck", likeCheck);
 
 		// 리뷰
-		int revCount = revService.getCountByCamp(no); 
+		int revCount = revService.getCountByFestival(no); 
 		int revStarAdd = 0; // 별점 합
 			if(revCount > 0) { // 리뷰가 있을때
-				revStarAdd = revService.getStarByCamp(no);
+				revStarAdd = revService.getStarByFestival(no);
 			}
 		model.addAttribute("revCount", revCount);
 		model.addAttribute("revStarAdd", revStarAdd);
@@ -195,7 +195,7 @@ public class FestivalController {
 		PageInfo pageInfo = new PageInfo(1, 5, revCount, 2);
 		List<Review> revList = new ArrayList<>();
 		String sort = "new";
-		revList = revService.selectRevCamp(no, pageInfo, sort); // 캠프번호, 페이지, 정렬
+		revList = revService.selectRevFestival(no, pageInfo, sort);
 
 		model.addAttribute("revList", revList);
 		model.addAttribute("pageInfo", pageInfo);

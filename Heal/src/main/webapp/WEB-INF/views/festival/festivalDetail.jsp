@@ -174,13 +174,15 @@
     }
 </style>
 
+<c:set var="festivalNo" value="${festival.no}" />
+
 		<!-- Review modal 리뷰남기기-->
         <form name="writeForm" action="${path}/review/write" method="POST">
         	<div class="modal fade" id="modal-review" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
-            	<input name="no" value="${festival.no}" type="hidden">
             	<input name="type" value="festival" type="hidden">
-            	<input name="title" value="${festival.name }" type="hidden">
+            	<input name="no" value="${festival.no}" type="hidden">
+            	<input name="title" value="${festival.name}" type="hidden">
                 <div class="modal-content">
                     <div class="modal-header d-block position-relative border-0 pb-0 px-sm-5 px-4">
                         <h3 class="modal-title mt-4 text-center">축제후기 등록 </h3>
@@ -1166,33 +1168,31 @@
                     		리뷰내역이 없습니다.
                     	</c:if>
                     	<c:if test="${!empty revList}">
-		             	<c:forEach var="revList" items="${revList}">
-		                    <div class="mb-4 pb-4 border-bottom">
-		                        <div class="d-flex justify-content-between mb-3">
-		                            <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/03.jpg" width="48" alt="Avatar">
-		                                <div class="ps-2">
-		                                    <h6 class="fs-base mb-0">${revList.id}</h6>
-		                                    <span class="star-rating">
-		                                    	<c:forEach var="i" begin="1" end="5" step="1" varStatus="status">
-			                                    	<c:if test="${i <= revList.revstar}">
-													     <i class="star-rating-icon fi-star-filled active"></i>
-													</c:if>
-													<c:if test="${i > revList.revstar}">
-													   <i class="star-rating-icon fi-star"></i>
-													</c:if>
-												</c:forEach>
-		                                    </span>
-		                                </div>
-		                            </div><span class="text-muted fs-sm">${revList.createdate}</span>
-		                        </div>
-		                        <p>${revList.cont}</p>
-
-		                        <div class="d-flex align-items-center" id="like${revList.no}"><!-- 좋아요  -->
-		                            <button class="btn-like" type="button" onclick="likePlus(${revList.no})"><i class="fi-heart"></i><span>(<span id="revLike${revList.no}">${revList.revlike}</span>)</span></button>
-		                        </div>
-		                    </div>
-                    	</c:forEach>
-                    </c:if>
+	                    	<c:forEach var="i" begin="0" end="${revList.size() - 1}">
+	                    			<div class="mb-4 pb-4 border-bottom"><div class="d-flex justify-content-between mb-3"><div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/i3.jpg" width="48" alt="Avatar">
+	                                <div class="ps-2"><h6 class="fs-base mb-i">${revList.get(i).id}</h6>
+	                                    <span class="star-rating">
+		                                    <c:if test="${revList.get(i).revstar == 5}">
+		                                    	<i class="star-rating-icon fi-star-filled active"></i>
+		                                    	<i class="star-rating-icon fi-star-filled active"></i>
+		                                    	<i class="star-rating-icon fi-star-filled active"></i>
+		                                    	<i class="star-rating-icon fi-star-filled active"></i>
+		                                    	<i class="star-rating-icon fi-star-filled active"></i>
+		                                    </c:if>
+		                                    <c:if test="${revList.get(i).revstar < 5}">
+		                                    	<c:forEach var="j" begin="1" end="${revList.get(i).revstar}">
+		                                    		<i class="star-rating-icon fi-star-filled active"></i>
+		                                   	 	</c:forEach>
+		                                    	<c:forEach var="j" begin="${revList.get(i).revstar + 1}" end="5">
+		                                    		<i class="star-rating-icon fi-star"></i>
+		                                    	</c:forEach>
+		                                    </c:if>
+	                                    </span></div>
+	                            	</div><span class="text-muted fs-sm">${revList.get(i).createdate}</span></div><p>${revList.get(i).cont}</p>
+		                        <div class="d-flex align-items-center" id="like${revList.get(i).no}"><button class="btn-like" type="button" onclick="likePlus(${revList.get(i).no})"><i class="fi-heart"></i>(<span id="revLike${revList.get(i).no}">${revList.get(i).revlike}</span>)</button>
+		                        </div></div>
+	                    	</c:forEach>
+                    	</c:if>
                     </div>
                     <!-- Pagination-->
                     <nav class="mt-2 mb-4" aria-label="Reviews pagination">
@@ -1362,7 +1362,7 @@
                         <script>
 					        function like_Plus(no) {
 					        	$("#likePlus1").attr('onclick','like_Minus('+no+')')
-					        	var type = "camp";
+					        	var type = "festival";
 					        	$.ajax({
 					     			url: "/like/like",
 					     			type: "POST",
@@ -1384,10 +1384,10 @@
 					         }        
 					                            
 					        function like_Minus(likeNo) {
-					        	var no = ${camp.no};
+					        	var no = ${festival.no};
 					        	$("#likeMinus1").attr('onclick','like_Plus('+no+')')
 					        	$("#likeDiv").html('<button class="btn btn-icon btn-light-primary btn shadow-sm rounded-circle ms-2 mb-2" id="likePlus1" onclick="like_Plus('+no+')" type="button" data-bs-toggle="tooltip"><i class="fi-heart"></i></button>')
-					        	var type = "camp";
+					        	var type = "festival";
 					        	$.ajax({
 					     			url: "/like/like",
 					     			type: "POST",
