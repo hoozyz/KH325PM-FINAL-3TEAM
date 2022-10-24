@@ -256,7 +256,7 @@
 
 
         <!-- @@@@@@ 함께,축제 시작 @@@@@@-->
-        <section class="container mb-sm-5 mb-4 pb-lg-4" style="margin-top:120px;">
+        <section class="container mb-2" style="margin-top:80px;">
             <div class="d-sm-flex align-items-center justify-content-between mb-4 pb-2">
                 <div>
                     <h2 class="h3 mb-sm-0" style="display:inline; color: #F7B202;">함께</h2>
@@ -264,71 +264,75 @@
                     <h6 class="h6 mb-sm-0" style=display:inline;>행복한 순간 여기, 우리</h6>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-3">
-                    <div style="margin-top:140px;">
-                        <h2 class="mb-0">사랑하는 사람과</h2>
-                        <h2>함께하는 축제</h2>
-                        <h6 class="mb-0" style="margin-left:20px;">사랑하는 <span style="color:rgb(99, 138, 247);">가족</span>과,</h6>
-                        <h6 class="mb-0" style="text-align:center;"><span style="color:rgb(250, 109, 93);">연인</span>과,</h6>
-                        <h6 class="mb-0" style="margin-left:150px;"><span style="color:rgb(56, 113, 38);">친구</span>와 함께</h6>
-                    </div>
-                </div>
-                <div class="col-9 px-4 py-5 " style="background-color: #f4f3f9; ">
-                    <div class="tns-carousel-wrapper tns-controls-xxl tns-nav-outside ">
-                        <div class="tns-carousel-inner " data-carousel-options="{&quot;items&quot;: 3, &quot;gutter&quot;: 24, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1,&quot;nav&quot;:true},&quot;500&quot;:{&quot;items&quot;:2},&quot;850&quot;:{&quot;items&quot;:3},&quot;1400&quot;:{&quot;items&quot;:3,&quot;nav&quot;:false}}} ">
-                            <!-- Item-->
-                            <div>
-                                <div class="position-relative ">
-                                    <div class="card-img-top card-img-hover pb-3">
-                                        <a class="img-overlay" href="${path}/festival/festivalDetail?no=3632"></a>
-                                        <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info mb-1">가족</span></div>
-                                        <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                            <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                        </div><img src="${path}/resources/image/family1.jpg" alt="Image" style="width:300px; height:300px; ">
-                                    </div>
-                                    <h3 class="mb-2 fs-lg "><a class="nav-link stretched-link " href="${path}/festival/festivalDetail?no=3632">해운대모래축제</a></h3>
-                                    <ul class="list-inline mb-0 fs-xs ">
-                                        <li class="list-inline-item pe-1 "><i class="fi-map-pin mt-n1 me-1 fs-base text-muted align-middle "></i>부산광역시 해운대구 중동 1415-49</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- Item-->
-                            <div>
-                                <div class="position-relative ">
-                                    <div class="card-img-top card-img-hover pb-3">
-                                        <a class="img-overlay" href="${path}/festival/festivalDetail?no=3752"></a>
-                                        <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-danger mb-1">연인</span></div>
-                                        <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                            <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                        </div><img src="${path}/resources/image/couple.jpg" alt="Image" style="width:300px; height:300px; ">
-                                    </div>
-                                    <h3 class="mb-2 fs-lg "><a class="nav-link stretched-link " href="${path}/festival/festivalDetail?no=3752">삼락벚꽃축제</a></h3>
-                                    <ul class="list-inline mb-0 fs-xs ">
-                                        <li class="list-inline-item pe-1 "><i class="fi-map-pin mt-n1 me-1 fs-base text-muted align-middle "></i>부산광역시 사상구 낙동대로 1310번길 19(삼락동)</li>
-                                    </ul>
-                                </div>
-                            </div>	
-                            <!-- Item-->
-                            <div>
-                                <div class="position-relative ">
-                                    <div class="card-img-top card-img-hover pb-3">
-                                        <a class="img-overlay" href="${path}/festival/festivalDetail?no=3335"></a>
-                                        <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">친구</span></div>
-                                        <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                            <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                        </div><img src="${path}/resources/image/friend.jpg" alt="Image" style="width:300px; height:300px; ">
-                                    </div>
-                                    <h3 class="mb-2 fs-lg "><a class="nav-link stretched-link " href="${path}/festival/festivalDetail?no=3334">부산바다축제</a></h3>
-                                    <ul class="list-inline mb-0 fs-xs ">
-                                        <li class="list-inline-item pe-1 "><i class="fi-map-pin mt-n1 me-1 fs-base text-muted align-middle "></i>부산광역시 연제구 연산동 1000</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        </section>
+        <section class="container-fluid" style="background-color: rgb(196, 196, 196); height: 410px; margin-bottom: 100px;">
+            	<section class="container mb-5" style="height: 450px;">
+	            <div class="row">
+	                <div class="col-3">
+	                    <div style="margin-top:140px;">
+	                        <h2 class="mb-0">사랑하는 사람과</h2>
+	                        <h2>함께하는 축제</h2>
+	                        <h6 class="mb-0" style="margin-left:20px;">사랑하는 <span style="color:rgb(99, 138, 247);">가족</span>과,</h6>
+	                        <h6 class="mb-0" style="text-align:center;"><span style="color:rgb(250, 109, 93);">연인</span>과,</h6>
+	                        <h6 class="mb-0" style="margin-left:150px;"><span style="color:rgb(56, 113, 38);">친구</span>와 함께</h6>
+	                    </div>
+	                </div>
+	                <div class="col-9 px-4 py-5 " style="background-color: #f4f3f9; ">
+	                    <div class="tns-carousel-wrapper tns-controls-xxl tns-nav-outside ">
+	                        <div class="tns-carousel-inner " data-carousel-options="{&quot;items&quot;: 3, &quot;gutter&quot;: 24, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1,&quot;nav&quot;:true},&quot;500&quot;:{&quot;items&quot;:2},&quot;850&quot;:{&quot;items&quot;:3},&quot;1400&quot;:{&quot;items&quot;:3,&quot;nav&quot;:false}}} ">
+	                            <!-- Item-->
+	                            <div>
+	                                <div class="position-relative ">
+	                                    <div class="card-img-top card-img-hover pb-3">
+	                                        <a class="img-overlay" href="${path}/festival/festivalDetail?no=3632"></a>
+	                                        <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info mb-1">가족</span></div>
+	                                        <div class="content-overlay end-0 top-0 pt-3 pe-3">
+	                                            <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
+	                                        </div><img src="${path}/resources/image/family1.jpg" alt="Image" style="width:300px; height:300px; ">
+	                                    </div>
+	                                    <h3 class="mb-2 fs-lg "><a class="nav-link stretched-link " href="${path}/festival/festivalDetail?no=3632">해운대모래축제</a></h3>
+	                                    <ul class="list-inline mb-0 fs-xs ">
+	                                        <li class="list-inline-item pe-1 "><i class="fi-map-pin mt-n1 me-1 fs-base text-muted align-middle "></i>부산광역시 해운대구 중동 1415-49</li>
+	                                    </ul>
+	                                </div>
+	                            </div>
+	                            <!-- Item-->
+	                            <div>
+	                                <div class="position-relative ">
+	                                    <div class="card-img-top card-img-hover pb-3">
+	                                        <a class="img-overlay" href="${path}/festival/festivalDetail?no=3752"></a>
+	                                        <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-danger mb-1">연인</span></div>
+	                                        <div class="content-overlay end-0 top-0 pt-3 pe-3">
+	                                            <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
+	                                        </div><img src="${path}/resources/image/couple.jpg" alt="Image" style="width:300px; height:300px; ">
+	                                    </div>
+	                                    <h3 class="mb-2 fs-lg "><a class="nav-link stretched-link " href="${path}/festival/festivalDetail?no=3752">삼락벚꽃축제</a></h3>
+	                                    <ul class="list-inline mb-0 fs-xs ">
+	                                        <li class="list-inline-item pe-1 "><i class="fi-map-pin mt-n1 me-1 fs-base text-muted align-middle "></i>부산광역시 사상구 낙동대로 1310번길 19(삼락동)</li>
+	                                    </ul>
+	                                </div>
+	                            </div>	
+	                            <!-- Item-->
+	                            <div>
+	                                <div class="position-relative ">
+	                                    <div class="card-img-top card-img-hover pb-3">
+	                                        <a class="img-overlay" href="${path}/festival/festivalDetail?no=3335"></a>
+	                                        <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">친구</span></div>
+	                                        <div class="content-overlay end-0 top-0 pt-3 pe-3">
+	                                            <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
+	                                        </div><img src="${path}/resources/image/friend.jpg" alt="Image" style="width:300px; height:300px; ">
+	                                    </div>
+	                                    <h3 class="mb-2 fs-lg "><a class="nav-link stretched-link " href="${path}/festival/festivalDetail?no=3334">부산바다축제</a></h3>
+	                                    <ul class="list-inline mb-0 fs-xs ">
+	                                        <li class="list-inline-item pe-1 "><i class="fi-map-pin mt-n1 me-1 fs-base text-muted align-middle "></i>부산광역시 연제구 연산동 1000</li>
+	                                    </ul>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+            </section>
         </section>
         <!-- @@@@@@ 함께,축제 끝 @@@@@@-->
         

@@ -81,15 +81,15 @@
 							</div>
 							<!-- Date range -->
 							<!--calendar-->
-							<h3 class="h6">시작일 선택</h3>
+							<h3 class="h6">시작/종료일 선택</h3>
 							<div class="input-group input-daterange pb-3"
 								style="width: 300px; right: 15px;">
 								<input class="form-control date-picker rounded-pill "
-									name="startdate" value="${param.startdate}" type="date" placeholder="날짜를 선택해주세요 "
+									name="startdate" value="${param.startdate}" type="date" placeholder="날짜를 선택해주세요" style="font-size:15px;"
 									data-datepicker-options="{&quot;altInput&quot;: true, &quot;altFormat&quot;: &quot;Y. m. d &quot;, &quot;dateFormat&quot;: &quot;Y-m-d&quot;, &quot;language&quot;: &quot;ko&quot;} ">
 									<div class="mt-2">&nbsp;~&nbsp;</div>
 								<input class="form-control date-picker rounded-pill pi-5 "
-									name="enddate" value="${param.enddate}" type="date" placeholder="날짜를 선택해주세요 "
+									name="enddate" value="${param.enddate}" type="date" placeholder="날짜를 선택해주세요" style="font-size:15px;"
 									data-datepicker-options="{&quot;altInput&quot;: true, &quot;altFormat&quot;: &quot;Y. m. d &quot;, &quot;dateFormat&quot;: &quot;Y-m-d&quot;, &quot;language&quot;: &quot;ko&quot;} ">
 							</div>
 							<!-- calendar End-->
@@ -139,7 +139,25 @@
 							<div class="card card-light card-hover h-100">
 								<div class="card-img-top card-img-hover" style="border: 1px;">
 									<div class="tns-carousel-inner">
-										<img src="img/car-finder/catalog/01.jpg" alt="Image">
+									<c:set var="festivalName" value="${festival.name}"/>
+			                    	<c:if test="${fn:contains(festivalName, '제12회 삼락벚꽃축제')}">
+			                    		<img src="${path}/resources/image/festivalSearch1.jpg" alt="Image" style="width: 500px;  height: 300px;  object-fit: cover;">
+			                    	</c:if>
+			                    	<c:if test="${fn:contains(festivalName, '제19회 사상강변축제')}">
+			                    		<img src="${path}/resources/image/festivalSearch2.jpg" alt="Image" style="width: 500px;  height: 300px;  object-fit: cover;">
+			                    	</c:if>
+			                    	<c:if test="${fn:contains(festivalName, '제9회 낙동강 구포나루 축제(2022년 하반기 예정)')}">
+			                    		<img src="${path}/resources/image/festivalSearch3.jpg" alt="Image" style="width: 500px;  height: 300px;  object-fit: cover;">
+			                    	</c:if>
+			                    	<c:if test="${fn:contains(festivalName, '2022년 제18회 해운대모래축제')}">
+			                    		<img src="${path}/resources/image/festivalSearch4.jpg" alt="Image" style="width: 500px;  height: 300px;  object-fit: cover;">
+			                    	</c:if>
+			                    	<c:if test="${fn:contains(festivalName, '낙동강유채꽃축제')}">
+			                    		<img src="${path}/resources/image/festivalSearch5.jpg" alt="Image" style="width: 500px;  height: 300px;  object-fit: cover;">
+			                    	</c:if>
+			                    	<c:if test="${fn:contains(festivalName, '부산원도심골목길축제')}">
+			                    		<img src="${path}/resources/image/festivalSearch6.jpg" alt="Image" style="width: 500px;  height: 300px;  object-fit: cover;">
+			                    	</c:if>
 									</div>
 								</div>
 								<div class="card-body">
@@ -153,16 +171,6 @@
 									</h3>
 									<div class="h6 fw-bold" style="margin-bottom: 20px;">${festival.phone}</div>
 									<hr>
-									<div
-										class="h6 card-footer align-items-center justify-content-center">
-										<fmt:parseDate value="${festival.startdate}" var="startDate"
-											pattern="yyyy-MM-dd" />
-										<fmt:formatDate value="${startDate}" pattern="yyyy.MM.dd" />
-										~
-										<fmt:parseDate value="${festival.enddate}" var="enddate"
-											pattern="yyyy-MM-dd" />
-										<fmt:formatDate value="${enddate}" pattern="yyyy.MM.dd" />
-									</div>
 								</div>
 							</div>
 						</div>

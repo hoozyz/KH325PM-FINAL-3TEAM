@@ -1742,15 +1742,23 @@
 	                        	0 (0 후기)
 	                        </c:if>
                         </h3>
-                        <div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch justify-content-between"><a class="btn btn-outline-primary mb-sm-0 mb-3" href="#modal-review" data-bs-toggle="modal"><i class="fi-edit me-1"></i>후기 등록</a>
-                            <div class="d-flex align-items-center ms-sm-4">
+ 						<div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch justify-content-between">
+	                        <c:if test="${loginMember != null}">
+		                        <a class="btn btn-outline-primary mb-sm-0 mb-3" href="#modal-review" data-bs-toggle="modal">
+		                        <i class="fi-edit me-1"></i>후기 등록</a>
+		                    </c:if>
+		                    <c:if test="${loginMember == null}">
+		                    	<a class="btn btn-outline-primary mb-sm-0 mb-3" href="#signin-modal" data-bs-toggle="modal">
+		                        <i class="fi-edit me-1"></i>후기 등록</a>
+		                    </c:if>                            
+		                    <div class="d-flex align-items-center ms-sm-4">
                                 <label class="me-2 pe-1 text-nowrap" for="reviews-sorting"><i class="fi-arrows-sort text-muted mt-n1 me-2"></i>정렬순:</label>
                                 <select class="form-select" id="sort" >
-                      <option id="new" selected>최신순</option>
-                      <option id="old">오래된순</option>
-                      <option id="star">좋아요순</option>
-                      <option id="like">별점 높은순</option>
-                    </select>
+			                      <option id="new" selected>최신순</option>
+			                      <option id="old">오래된순</option>
+			                      <option id="star">좋아요순</option>
+			                      <option id="like">별점 높은순</option>
+			                    </select>
                             </div>
                         </div>
                     </div>
