@@ -479,7 +479,7 @@
                     <div class="col">
                         <div class="card shadow-sm card-hover border-0 h-100 ">
                             <div class="card-img-top card-img-hover ">
-                                <a class="img-overlay " href="#"></a>
+                                <a class="img-overlay " href="${shopList.get(i).link}"></a>
                                 <div class="position-absolute start-0 top-0 pt-3 ps-3 ">
                                 	<c:if test="${shopList.get(i).cate3 eq '캠핑가구'}">
                                 		<span class="badge bg-info ">${shopList.get(i).cate3}</span>
@@ -494,14 +494,12 @@
 		                            	<span class="badge bg-dark">${shopList.get(i).cate3}</span>
 	                            	</c:if>
                                 </div>
-                                <div class="content-overlay end-0 top-0 pt-3 pe-3 ">
-                                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle " type="button" data-bs-toggle="tooltip " data-bs-placement="left " title="Add to Wishlist "></button>
-                                </div><img src="${shopList.get(i).image}" style="min-height: 230px" alt="Image ">
+                                <img src="${shopList.get(i).image}" style="min-height: 230px" alt="Image ">
                             </div>
                             <hr>
                             <div class="card-body position-relative pb-3 ">
                                 <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary ">${shopList.get(i).mall}</h4>
-                                <h3 class="h6 mb-2 fs-base "><a class="nav-link stretched-link " href="real-estate-single-v1.html ">${shopList.get(i).title}</a></h3>
+                                <h3 class="h6 mb-2 fs-base "><a class="nav-link stretched-link " href="${shopList.get(i).link}">${shopList.get(i).title}</a></h3>
                                 <div class="fw-bold "><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70 "></i>  
                                 <fmt:formatNumber value="${shopList.get(i).price}" pattern="#,###"/> 원</div>
                             </div>
