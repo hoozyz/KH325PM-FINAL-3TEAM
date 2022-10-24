@@ -1478,7 +1478,7 @@
                                     </select>
                                     </div>
                                 </div>
-                                <h3 class="h3">합계 : <span class="h3" id="total">100000</span>원 / <span class="h3" id="day">2</span> 박</h3>
+                                <h3 class="h3">합계 : <span class="h3" id="total">${camp.price}</span>원 / <span class="h3" id="day">1</span> 박</h3>
                                 <button class="btn btn-lg btn-primary d-block w-100" id="campPay" type="submit">
                                 <img style="margin-right: 20px;" src="${path}/resources/image/payment_icon_yellow_small.png">예매하기</button>
                         </div>
@@ -1501,15 +1501,24 @@
         					
         					$("#item").change(function() { // 총액 변경
         						var item = $("#item option:selected").text();
+        					
+        						var start = $("#datepicker1").val();
+								var end = $("#datepicker2").val();
+								var startDate = new Date(start);
+        						var endDate = new Date(end);
+        						var second = endDate.getTime() - startDate.getTime();
+        						var day = second / (1000*60*60*24);
+        						var hPrice = ${camp.price};
+        						var hDayPrice = day*hPrice;
         						
         						if(item == '소형') {
-        							$("#total").html(${camp.price});
+        							$("#total").html(hDayPrice);
         						}
 								if(item == '중형') {
-									$("#total").html(${price});
+									$("#total").html(hDayPrice*1.5);
         						}
 								if(item == '대형') {
-									$("#total").html(${camp.price * 2});
+									$("#total").html(hDayPrice * 2);
 								}
         					});
         					

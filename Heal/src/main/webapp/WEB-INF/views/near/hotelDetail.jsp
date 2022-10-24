@@ -208,6 +208,7 @@
                     <form class="needs-validation" action="${path}/review/write" method="POST">
                         	<input type="hidden" name="type" value="hotel">
                         	<input type="hidden" name="no" value="${hotel.no}">
+                        	<input type="hidden" name="title" value="${hotel.name}">
                             <div class="mb-3">
                                 <label class="form-label" for="review-name">이름 <span class='text-danger'>*</span></label>
                                 <input class="form-control" type="text" id="review-name" name="id" value="${loginMember.name}" readonly>
@@ -2010,7 +2011,6 @@
         						var day = second / (1000*60*60*24);
         						var hPrice = ${hotel.price};
         						var hDayPrice = day*hPrice;
-        						console.log(hDayPrice);
         						
         						if(item == '2인') {
         							$("#total").html(hDayPrice);
