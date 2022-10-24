@@ -214,12 +214,6 @@
 		FROM TBL_REVIEW
 		WHERE FESTIVALNO = #{no}
 	</select>
-	
-	<select id="getStarByFestival" parameterType="int" resultType="int">
-		SELECT SUM(REVSTAR)
-		FROM TBL_REVIEW
-		WHERE FESTIVALNO = #{no}
-	</select>
 <!-- @@@ 축제 -->
 
 <!-- 	@@@공원@@@ -->
@@ -246,6 +240,12 @@
 	 	SELECT COUNT(*)
 	 		FROM TBL_REVIEW 
 	 		WHERE PARKNO = ${no}
+	</select>
+	
+	<select id="getStarByPark" parameterType="int" resultType="int">
+		SELECT SUM(REVSTAR)
+		FROM TBL_REVIEW
+		WHERE PARKNO = #{no}
 	</select>
 <!-- 	@@@공원@@@ -->
 

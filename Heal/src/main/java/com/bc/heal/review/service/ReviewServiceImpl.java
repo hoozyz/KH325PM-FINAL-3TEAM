@@ -154,7 +154,7 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 	
 	@Override
-	public int getStarByFestival(int no) {
-		return mapper.getStarByFestival(no);
+	public int getStarByPark(int no) {
+		return mapper.getStarByPark(no);
 	}
 }

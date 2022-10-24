@@ -29,7 +29,6 @@ import com.bc.heal.bus.service.BusService;
 import com.bc.heal.common.util.PageInfo;
 import com.bc.heal.food.service.FoodService;
 import com.bc.heal.park.service.ParkService;
-import com.bc.heal.photo.service.PhotoService;
 import com.bc.heal.review.service.ReviewService;
 import com.bc.heal.train.service.TrainService;
 import com.bc.heal.vo.Air;
@@ -37,7 +36,6 @@ import com.bc.heal.vo.Bus;
 import com.bc.heal.vo.EndStation;
 import com.bc.heal.vo.Food;
 import com.bc.heal.vo.Park;
-import com.bc.heal.vo.Photo;
 import com.bc.heal.vo.Review;
 import com.bc.heal.vo.Train;
 import com.bc.heal.vo.Weather;
@@ -49,9 +47,6 @@ public class ParkController {
 
 	@Autowired
 	private ParkService service;
-	
-	@Autowired
-	private PhotoService photoService;
 	
 	@Autowired
 	private TrainService trainService;
@@ -84,6 +79,7 @@ public class ParkController {
 		Weather one = famousWeather.get(1);
 		Weather two = famousWeather.get(2);
 		
+
 		
 		model.addAttribute("famousPark1", famousPark1);
 		model.addAttribute("famousPark2", famousPark2);
@@ -157,16 +153,22 @@ public class ParkController {
 	public String parkDetail(Model model, int no) {
 		Park park = service.findByNo(no);
 		
-		// 리뷰
-		PageInfo pageInfo = new PageInfo(1, 5, revService.selectRevByParkCnt(no), 2);
+		int revCount = revService.selectRevByParkCnt(no); 
+		int revStarAdd = 0; // 별점 합
+			if(revCount > 0) { // 리뷰가 있을때
+				revStarAdd = revService.getStarByPark(no);
+			}
+		model.addAttribute("revCount", revCount);
+		model.addAttribute("revStarAdd", revStarAdd);
+
+		PageInfo pageInfo = new PageInfo(1, 5, revCount, 2);
+		
 		List<Review> revList = new ArrayList<>();
 		String sort = "new";
-		
-		
-		
+
 		revList = revService.selectRevPark(no, pageInfo, sort);
 		System.out.println(revList);
-		
+
 		model.addAttribute("revList", revList);
 		model.addAttribute("pageInfo", pageInfo);
 		

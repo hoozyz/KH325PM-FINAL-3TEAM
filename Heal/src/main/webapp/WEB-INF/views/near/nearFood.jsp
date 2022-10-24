@@ -117,10 +117,6 @@
           <!-- Page content-->
           <div class="col-lg-8 col-xl-9 position-relative overflow-hidden pb-5 pt-4 px-3 px-xl-4 px-xxl-5">
             <!-- Map popup-->
-            <div class="map-popup invisible" id="map">
-              <button class="btn btn-icon btn-light btn-sm shadow-sm rounded-circle" type="button" data-bs-toggle-class="invisible" data-bs-target="#map"><i class="fi-x fs-xs"></i></button>
-              <div class="interactive-map" data-map-options-json="json/map-options-real-estate-rent.json"></div>
-            </div>
             <!-- Breadcrumb-->
             <nav class="mb-3 pt-md-2" aria-label="Breadcrumb">
               <ol class="breadcrumb">

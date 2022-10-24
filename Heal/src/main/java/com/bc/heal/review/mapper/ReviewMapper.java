@@ -51,6 +51,6 @@ public interface ReviewMapper {
 	int getStarByFood(int no);
 	
 	int getStarByHotel(int no);
-
-	int getStarByFestival(int no);
+	
+	int getStarByPark(int no);
 }

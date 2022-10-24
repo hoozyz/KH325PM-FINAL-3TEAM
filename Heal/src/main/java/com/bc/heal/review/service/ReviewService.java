@@ -42,13 +42,13 @@ public interface ReviewService {
 	List<Review> selectRevFestival(int no, PageInfo pageInfo, String sort);
 
 	int getCountByFestival(int no);
-	
-	int getStarByFestival(int no);
 
 	// 세은
 	List<Review> selectRevPark(int no, PageInfo pageInfo, String sort);
 
 	int selectRevByParkCnt(int no);
+	
+	int getStarByPark(int no);
 
 	
 }

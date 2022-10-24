@@ -94,10 +94,6 @@
           <!-- Page content-->
           <div class="col-lg-8 col-xl-9 position-relative overflow-hidden pb-5 pt-4 px-3 px-xl-4 px-xxl-5">
             <!-- Map popup-->
-            <div class="map-popup invisible" id="map">
-              <button class="btn btn-icon btn-light btn-sm shadow-sm rounded-circle" type="button" data-bs-toggle-class="invisible" data-bs-target="#map"><i class="fi-x fs-xs"></i></button>
-              <div class="interactive-map" data-map-options-json="json/map-options-real-estate-rent.json"></div>
-            </div>
             <!-- Breadcrumb-->
             <nav class="mb-3 pt-md-2" aria-label="Breadcrumb">
               <ol class="breadcrumb">
@@ -107,9 +103,14 @@
             </nav>
             <!-- Title--> <!-- 검색하면 결과 뒤에 붙음-->
             <div class="d-sm-flex align-items-center justify-content-between pb-3 pb-sm-4">
-              <h1 class="h2 mb-sm-0">숙박 업소 검색</h1><a class="d-inline-block fw-bold text-decoration-none py-1" href="#" data-bs-toggle-class="invisible" data-bs-target="#map"><i class="fi-map me-2"></i>위치 보기</a>
+              <h1 class="h2 mb-sm-0">숙박 검색</h1>
+               <a class="d-inline-block fw-bold text-decoration-none py-1" id="mapOpen"><i class="fi-map me-2"></i>위치 보기</a>
             </div>
             <!-- Sorting-->
+            <!--  map 출력 -->
+             <div id="map" style="width: 980px; height: 1490px; border-radius:2%; display: none;"></div>
+            <div id="rightSide" style="">
+            
             <div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch my-2">
               <hr class="d-none d-sm-block w-100 mx-4">
               <div class="d-none d-sm-flex align-items-center flex-shrink-0 text-muted"><i class="fi-check-circle me-2"></i><span class="fs-sm mt-n1">총 ${listCount}</span></div>
@@ -174,6 +175,81 @@
 		</div>
 		<!-- page부 종료 -->		
     </main>
+    
+    
+    <script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=8cddaf5bb7b88f487cf47627b52b649b"></script>
+    <script>
+         	 $(document).ready(() => {
+         		$(document).on('click',"#mapOpen",function() {
+         			$("#map").css('display','');
+					$("#rightSide").css('display','none')         			
+         			$(this).html('위치 닫기');
+         			$(this).attr('id','mapClose');
+         			
+         			var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
+			              mapOption = { 
+			                  center: new kakao.maps.LatLng(36.13961603184461, 128.11362285164773), // 지도의 중심좌표
+			                  level: 13 // 지도의 확대 레벨
+			              };
+			          var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+			           
+			          // 마커를 표시할 위치와 title 객체 배열입니다 
+			          var positions = [];
+		        	  
+						<c:forEach items="${HotelList}" var="hotel">
+							var name = "${hotel.name}";
+							var lat = "${hotel.lat}";
+							var lng = "${hotel.lng}";
+							var position = {
+								content: '<div>'+name+'</div>', 
+								latlng: new kakao.maps.LatLng(lat, lng)
+							}
+					       	positions.push(position);
+						</c:forEach>
+		        	  
+			          for (var i = 0; i < positions.length; i ++) {
+					    // 마커를 생성합니다
+					    var marker = new kakao.maps.Marker({
+					        map: map, // 마커를 표시할 지도
+					        position: positions[i].latlng // 마커의 위치
+					    });
+					
+					    // 마커에 표시할 인포윈도우를 생성합니다 
+					    var infowindow = new kakao.maps.InfoWindow({
+					        content: positions[i].content // 인포윈도우에 표시할 내용
+					    });
+					
+					    // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+					    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
+					    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+					    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+					    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+					}
+					
+					// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+					function makeOverListener(map, marker, infowindow) {
+					    return function() {
+					        infowindow.open(map, marker);
+					    };
+					}
+					
+					// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+					function makeOutListener(infowindow) {
+					    return function() {
+					        infowindow.close();
+					    };
+					}
+         		});
+         		
+         	 });
+         	 
+         	$(document).on('click','#mapClose',function() {
+     			$("#map").css('display','none');
+				$("#rightSide").css('display','');
+				$(this).html('<i class="fi-map me-2"></i>위치 보기');
+     			$(this).attr('id','mapOpen');
+     		});
+          </script>
 
 <script type="text/javascript" charset="UTF-8">
 	function movePage(pageUrl) {
