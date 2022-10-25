@@ -83,7 +83,7 @@ public class FoodController {
 		System.out.println("총 게시글 수  : " + listCount);
 		model.addAttribute("listCount", listCount);
 
-		PageInfo pageInfo = new PageInfo(page, 10, listCount, 6);
+		PageInfo pageInfo = new PageInfo(page, 10, listCount, 9);
 		List<Food> foodList = foodService.getFoodList(pageInfo, param);
 
 		System.out.println(foodList);
