@@ -275,7 +275,7 @@
         <!-- Navbar-->
         <header class="navbar navbar-expand-lg navbar-light bg-light fixed-top py-0" data-scroll-header>
             <div class="container">
-                <a class="navbar-brand me-3 me-xl-4" href="${path}/"><img class="d-block" src="${path}/resources/image/pjlogo10.png" width="220" alt="화이팅!"></a>
+                <a class="navbar-brand me-3 me-xl-4" href="${path}/"><img class="d-block" src="${path}/resources/image/logotest5.png" width="220" alt="화이팅!"></a>
                 <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 				<!-- 로그인 아닐 때 -->
 				<c:if test="${loginMember == null}">

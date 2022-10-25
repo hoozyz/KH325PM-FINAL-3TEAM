@@ -282,17 +282,17 @@
         <!-- Navbar-->
         <header class="navbar navbar-expand-lg navbar-dark fixed-top py-0" data-scroll-header>
             <div class="container">
-                <a class="navbar-brand me-3 me-xl-4" href="${path}/"><img class="d-block" src="${path}/resources/image/pjlogo10.png" width="220" alt="화이팅!"></a>
+                <a class="navbar-brand me-3 me-xl-4" href="${path}/"><img class="d-block" src="${path}/resources/image/logotest4.png" width="220" alt="화이팅!"></a>
                 <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 				<!-- 로그인 아닐 때 -->
 				<c:if test="${loginMember == null}">
-                	<a class="btn btn-sm  d-none d-lg-block order-lg-3 mt-2" href="#signin-modal" data-bs-toggle="modal"style="color:#0B398E;font-size:20px"><i class="fi-user me-2"></i>로그인</a>
-                	<a class="btn btn-sm  d-none d-lg-block order-lg-3 mt-2" href="#signup-modal" data-bs-toggle="modal"style="color:#0B398E;font-size:20px"><i class="fi-user me-2"></i>회원가입</a>
+                	<a class="btn btn-sm  d-none d-lg-block order-lg-3 mt-2" href="#signin-modal" data-bs-toggle="modal"style="color:#AB69DD;font-size:20px"><i class="fi-user me-2"></i>로그인</a>
+                	<a class="btn btn-sm  d-none d-lg-block order-lg-3 mt-2" href="#signup-modal" data-bs-toggle="modal"style="color:#AB69DD;font-size:20px"><i class="fi-user me-2"></i>회원가입</a>
                 </c:if>
                 <!-- 로그인 일 때 -->
                 <c:if test="${loginMember != null }">
-               		 <button class="btn btn-sm  d none d-lg-block order-lg-3" onclick="location.href='${path}/member/myInfo'" data-bs-toggle="modal" style="color:#0B398E;font-size:20px"><i class="fi-user me-2"></i>마이페이지</button>
-                	 <button class="btn btn-sm  d-none d-lg-block order-lg-3" onclick="location.href='${path}/logout'" data-bs-toggle="modal" style="color:#0B398E;font-size:20px"><i class="fi-user me-2"></i>로그아웃</button>
+               		 <button class="btn btn-sm  d none d-lg-block order-lg-3" onclick="location.href='${path}/member/myInfo'" data-bs-toggle="modal" style="color:#AB69DD;font-size:20px"><i class="fi-user me-2"></i>마이페이지</button>
+                	 <button class="btn btn-sm  d-none d-lg-block order-lg-3" onclick="location.href='${path}/logout'" data-bs-toggle="modal" style="color:#AB69DD;font-size:20px"><i class="fi-user me-2"></i>로그아웃</button>
                 </c:if>
                 <div class="collapse navbar-collapse order-lg-2 mx-auto mt-2 " style="flex-grow:0;" id="navbarNav">
                     <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">

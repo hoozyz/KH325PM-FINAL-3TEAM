@@ -76,7 +76,7 @@
                     <hr class="d-md-none my-2">
                     <div class="d-sm-flex">
                     <div class="dropdown w-100 mb-sm-0 mb-3 border-end-md">      	
-                    <select class="form-select mb-2" style="width:75pt" name="city">			
+                    <select class="form-select" style="width:75pt; margin-top:6px;" name="city">			
 					<option value="" selected disabled>도/시</option>
                     <option value="서울특별시">서울특별시</option>                                             
                     <option value="부산광역시">부산광역시</option>
@@ -94,7 +94,7 @@
                  	 </select>                
                         </div>
                         <div class="dropdown w-100 mb-sm-0 mb-3" data-bs-toggle="select">                       
-                    <select class="form-select mb-2" name="typeCtg" style="width:80pt" onchange="setType(this.value);">			
+                    <select class="form-select mb-2" name="typeCtg" style="width:80pt; margin-top:6px;" onchange="setType(this.value);">			
 					<option value="캠핑장">캠핑장</option>
                     <option value="공원">공원</option>                                             
                     <option value="축제">축제</option>
