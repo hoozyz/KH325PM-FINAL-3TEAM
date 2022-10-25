@@ -61,15 +61,6 @@
     .board-data > tr {
     	border-bottom: 1px solid lightgray; height: 70px;
     }
-    
-    
-    
-    h1 {
-             font-family: 'Gugi', cursive;
-            font-weight: 800;
-            color: black;
-            font-size:50px;
-   }
    a {
    	text-decoration: none;
    	color: black;
@@ -79,12 +70,6 @@
    text-decoration: none;
    	color: black;
    }
-   *{
-       font-family: 'NanumSquareRound', sans-serif;
-       font-weight: 500;
-   
-   }
-   
    .td-writer{
    text-align:center;
    }

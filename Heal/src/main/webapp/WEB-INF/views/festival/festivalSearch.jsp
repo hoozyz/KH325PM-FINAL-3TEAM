@@ -131,45 +131,28 @@
 			<div class="search-data row g-4 py-4">
 
 				<c:if test="${empty list}">
+				검색내역이 없습니다.
 				</c:if>
 				<c:if test="${!empty list}">
-					<c:forEach items="${list}" var="festival">
+					<c:forEach var="i" begin="0" end="${list.size() - 1}">
 						<!-- Item-->
 						<div class="col-sm-6 mb-4">
 							<div class="card card-light card-hover h-100">
 								<div class="card-img-top card-img-hover" style="border: 1px;">
 									<div class="tns-carousel-inner">
-									<c:set var="festivalName" value="${festival.name}"/>
-			                    	<c:if test="${fn:contains(festivalName, '제12회 삼락벚꽃축제')}">
-			                    		<img src="${path}/resources/image/festivalSearch1.jpg" alt="Image" style="width: 500px;  height: 300px;  object-fit: cover;">
-			                    	</c:if>
-			                    	<c:if test="${fn:contains(festivalName, '제19회 사상강변축제')}">
-			                    		<img src="${path}/resources/image/festivalSearch2.jpg" alt="Image" style="width: 500px;  height: 300px;  object-fit: cover;">
-			                    	</c:if>
-			                    	<c:if test="${fn:contains(festivalName, '제9회 낙동강 구포나루 축제(2022년 하반기 예정)')}">
-			                    		<img src="${path}/resources/image/festivalSearch3.jpg" alt="Image" style="width: 500px;  height: 300px;  object-fit: cover;">
-			                    	</c:if>
-			                    	<c:if test="${fn:contains(festivalName, '2022년 제18회 해운대모래축제')}">
-			                    		<img src="${path}/resources/image/festivalSearch4.jpg" alt="Image" style="width: 500px;  height: 300px;  object-fit: cover;">
-			                    	</c:if>
-			                    	<c:if test="${fn:contains(festivalName, '낙동강유채꽃축제')}">
-			                    		<img src="${path}/resources/image/festivalSearch5.jpg" alt="Image" style="width: 500px;  height: 300px;  object-fit: cover;">
-			                    	</c:if>
-			                    	<c:if test="${fn:contains(festivalName, '부산원도심골목길축제')}">
-			                    		<img src="${path}/resources/image/festivalSearch6.jpg" alt="Image" style="width: 500px;  height: 300px;  object-fit: cover;">
-			                    	</c:if>
+									<img src="${path}/resources/image/festivalSearch${i+1}.jpg" alt="Image" style="width: 500px;  height: 300px;  object-fit: cover;">
 									</div>
 								</div>
 								<div class="card-body">
 									<div
 										class="d-flex align-items-center justify-content-between pb-1">
-										<span class="fs-sm me-3" style="color: black;">${festival.addr}</span>
+										<span class="fs-sm me-3" style="color: black;">${list.get(i).addr}</span>
 									</div>
 									<h3 class="h5" style="margin-bottom: 10px;">
 										<a class="nav-link"
-											href="${path}/festival/festivalDetail?no=${festival.no}">${festival.name}</a>
+											href="${path}/festival/festivalDetail?no=${list.get(i).no}">${list.get(i).name}</a>
 									</h3>
-									<div class="h6 fw-bold" style="margin-bottom: 20px;">${festival.phone}</div>
+									<div class="h6 fw-bold" style="margin-bottom: 20px;">${list.get(i).phone}</div>
 									<hr>
 								</div>
 							</div>
@@ -206,7 +189,7 @@
           </div>
         </div>
     </main>
-    <script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=b8e0ebf5d4b4881bb423dd05b37fe951"></script>
+    <script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=8cddaf5bb7b88f487cf47627b52b649b"></script>
     <script>
          	 $(document).ready(() => {
          		$(document).on('click',"#mapOpen",function() {
