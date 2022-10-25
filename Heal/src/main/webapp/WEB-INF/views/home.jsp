@@ -1114,7 +1114,7 @@ else{
                     	<button class="nav-link  fs-sm   mb-2 mb-md-0 me-1" id="caravan-tab" data-bs-toggle="tab" data-bs-target="#caravan" type="button" onclick="location.href='${path}/camp/campSearch?category=카라반';">카라반</button>
 	               	</div>
              	</nav> 
-           	</div><a class="btn btn-link fw-normal d-none d-lg-block p-0" href="${path}/camp/campMain">View all<i class="fi-arrow-long-right ms-2"></i></a>
+           	</div><a class="btn btn-link fw-normal d-none d-lg-block p-0" style="margin-right: 20px;" href="${path}/camp/campMain">View all<i class="fi-arrow-long-right ms-2"></i></a>
         </div>
     	<div class="tns-carousel-wrapper tns-nav-outside tns-nav-outside-flush mx-n2">
 					<div class="tns-carousel-inner row gx-4 mx-0"
