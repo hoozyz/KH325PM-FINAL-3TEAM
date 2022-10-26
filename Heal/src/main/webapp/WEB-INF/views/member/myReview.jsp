@@ -72,9 +72,9 @@
 		                <!-- Review-->
 		                <div class="mb-4 pb-4 border-bottom">
 		                  <div class="d-flex justify-content-between mb-3">
-		                    <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/06.jpg" width="48" alt="Avatar">
+		                    <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="${path}/resources/image/avatar.png" width="48" alt="Avatar">
 		                      <div class="ps-2">
-		                        <a href="${path}/camp/detail?no=${revList.get(i).campno}"><h6 class="fs-base mb-0">캠핑장명&nbsp :&nbsp&nbsp ${revList.get(i).title}</h6></a>
+		                        <a href="${path}/camp/detail?no=${revList.get(i).campno}"><h6 class="fs-base mb-0"><span class="badge bg-primary">캠핑장명</span>&nbsp :&nbsp&nbsp ${revList.get(i).title}</h6></a>
 		                        <span class="star-rating">
 								<c:forEach var="j" begin="1" end="5"> <!-- 별점 숫자만큼 별개수 -->
 									<c:if test="${revList.get(i).revstar >= j}">
@@ -86,7 +86,7 @@
 								</c:forEach>
 		                        </span>
 		                      </div>
-		                    </div><span class="text-muted fs-sm">${revList.get(i).createdate}</span>
+		                    </div><span class="text-muted fs-sm"><fmt:formatDate value="${revList.get(i).createdate}" pattern="yyyy-MM-dd hh:mm:ss"/></span>
 		                  </div>
 		                  <p>${revList.get(i).cont}</p>
 		                  <div class="d-flex align-items-center">
@@ -104,9 +104,9 @@
 		                <!-- Review-->
 		                <div class="mb-4 pb-4 border-bottom">
 		                  <div class="d-flex justify-content-between mb-3">
-		                    <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/06.jpg" width="48" alt="Avatar">
+		                    <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="${path}/resources/image/avatar.png" width="48" alt="Avatar">
 		                      <div class="ps-2">
-		                        <a href="${path}/hotel/detail?no=${revList.get(i).hotelno}"><h6 class="fs-base mb-0">호텔명&nbsp :&nbsp&nbsp ${revList.get(i).title}</h6></a>
+		                        <a href="${path}/hotel/detail?no=${revList.get(i).hotelno}"><h6 class="fs-base mb-0"><span class="badge bg-secondary">호텔명</span>&nbsp :&nbsp&nbsp ${revList.get(i).title}</h6></a>
 		                        <span class="star-rating">
 								<c:forEach var="j" begin="1" end="5"> <!-- 별점 숫자만큼 별개수 -->
 									<c:if test="${revList.get(i).revstar >= j}">
@@ -118,7 +118,11 @@
 								</c:forEach>
 		                        </span>
 		                      </div>
-		                    </div><span class="text-muted fs-sm">${revList.get(i).createdate}</span>
+		                      
+		                      
+		                     </div><span class="text-muted fs-sm"><fmt:formatDate value="${revList.get(i).createdate}" pattern="yyyy-MM-dd hh:mm:ss"/></span>
+		                    
+		                    
 		                  </div>
 		                  <p>${revList.get(i).cont}</p>
 		                  <div class="d-flex align-items-center">
@@ -136,9 +140,9 @@
 		                <!-- Review-->
 		                <div class="mb-4 pb-4 border-bottom">
 		                  <div class="d-flex justify-content-between mb-3">
-		                    <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/06.jpg" width="48" alt="Avatar">
+		                    <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="${path}/resources/image/avatar.png" width="48" alt="Avatar">
 		                      <div class="ps-2">
-		                        <a href="${path}/festival/detail?no=${revList.get(i).festivalno}"><h6 class="fs-base mb-0">축제명&nbsp :&nbsp&nbsp ${revList.get(i).title}</h6></a>
+		                        <a href="${path}/festival/detail?no=${revList.get(i).festivalno}"><h6 class="fs-base mb-0"><span class="badge bg-warning">축제명</span>&nbsp :&nbsp&nbsp ${revList.get(i).title}</h6></a>
 		                        <span class="star-rating">
 								<c:forEach var="j" begin="1" end="5"> <!-- 별점 숫자만큼 별개수 -->
 									<c:if test="${revList.get(i).revstar >= j}">
@@ -150,7 +154,7 @@
 								</c:forEach>
 		                        </span>
 		                      </div>
-		                    </div><span class="text-muted fs-sm">${revList.get(i).createdate}</span>
+		                     </div><span class="text-muted fs-sm"><fmt:formatDate value="${revList.get(i).createdate}" pattern="yyyy-MM-dd hh:mm:ss"/></span>
 		                  </div>
 		                  <p>${revList.get(i).cont}</p>
 		                  <div class="d-flex align-items-center">
@@ -168,9 +172,9 @@
 		                <!-- Review-->
 		                <div class="mb-4 pb-4 border-bottom">
 		                  <div class="d-flex justify-content-between mb-3">
-		                    <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/06.jpg" width="48" alt="Avatar">
+		                    <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="${path}/resources/image/avatar.png" width="48" alt="Avatar">
 		                      <div class="ps-2">
-		                        <a href="${path}/food/detail?no=${revList.get(i).foodno}"><h6 class="fs-base mb-0">음식점명&nbsp :&nbsp&nbsp ${revList.get(i).title}</h6></a>
+		                        <a href="${path}/near/foodDetail?no=${revList.get(i).foodno}"><h6 class="fs-base mb-0"><span class="badge bg-info">음식점명</span>&nbsp :&nbsp&nbsp ${revList.get(i).title}</h6></a>
 		                        <span class="star-rating">
 								<c:forEach var="j" begin="1" end="5"> <!-- 별점 숫자만큼 별개수 -->
 									<c:if test="${revList.get(i).revstar >= j}">
@@ -182,7 +186,7 @@
 								</c:forEach>
 		                        </span>
 		                      </div>
-		                    </div><span class="text-muted fs-sm">${revList.get(i).createdate}</span>
+		                     </div><span class="text-muted fs-sm"><fmt:formatDate value="${revList.get(i).createdate}" pattern="yyyy-MM-dd hh:mm:ss"/></span>
 		                  </div>
 		                  <p>${revList.get(i).cont}</p>
 		                  <div class="d-flex align-items-center">
@@ -200,9 +204,9 @@
 		                <!-- Review-->
 		                <div class="mb-4 pb-4 border-bottom">
 		                  <div class="d-flex justify-content-between mb-3">
-		                    <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/06.jpg" width="48" alt="Avatar">
+		                    <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="${path}/resources/image/avatar.png" width="48" alt="Avatar">
 		                      <div class="ps-2">
-		                        <a href="${path}/park/detail?no=${revList.get(i).parkno}"><h6 class="fs-base mb-0">공원명&nbsp :&nbsp&nbsp ${revList.get(i).title}</h6></a>
+		                        <a href="${path}/park/detail?no=${revList.get(i).parkno}"><h6 class="fs-base mb-0"><span class="badge bg-success">공원명</span>&nbsp :&nbsp&nbsp ${revList.get(i).title}</h6></a>
 		                        <span class="star-rating">
 								<c:forEach var="j" begin="1" end="5"> <!-- 별점 숫자만큼 별개수 -->
 									<c:if test="${revList.get(i).revstar >= j}">
@@ -214,7 +218,7 @@
 								</c:forEach>
 		                        </span>
 		                      </div>
-		                    </div><span class="text-muted fs-sm">${revList.get(i).createdate}</span>
+		                    </div><span class="text-muted fs-sm"><fmt:formatDate value="${revList.get(i).createdate}" pattern="yyyy-MM-dd hh:mm:ss"/></span>
 		                  </div>
 		                  <p>${revList.get(i).cont}</p>
 		                  <div class="d-flex align-items-center">
