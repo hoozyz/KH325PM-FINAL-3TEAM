@@ -150,6 +150,20 @@
     		font-size: 25px;
     		
     	}
+    	
+    	
+/*     	소제목 css */
+    	 h2 {
+		        font-size: 35px
+		    }
+		    
+	    .h2_span {
+	        font-size: 17px;
+	        font-weight: 500;
+	    }
+/*     	소제목 css 끝 */
+		    
+		    
     </style>
     
     
