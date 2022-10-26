@@ -45,8 +45,8 @@
 	<div class="container mt-5 mb-md-4 pt-5">
         <nav class="mb-3 pt-md-3" aria-label="breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="real-estate-home-v1.html">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">About</li>
+            <li class="breadcrumb-item"><a href="real-estate-home-v1.html">HEALERS</a></li>
+            <li class="breadcrumb-item active" aria-current="page">포토게시판</li>
           </ol>
         </nav>
       </div>
@@ -60,7 +60,10 @@
 	            <div>
 	            	<div class="mb-4 h1" style="float: left;">제목</div>
 		            <div style="margin-left: 150px;">작성자 : ${photo.id}</div>
-		            <div style="margin-left: 150px;">작성일 : ${photo.modifydate}</div>
+		           		
+		           		<c:set var = "string1" value = "${photo.modifydate}"/>
+		            <div style="margin-left: 150px;">작성일 : ${fn:substring(string1, 0, 19)}</div>
+		            
 	            </div>
 	          	<c:if test="${loginMember.no == photo.memberno}">
 	          		<input class="form-control" name="title" type="text" value="${photo.title}">
