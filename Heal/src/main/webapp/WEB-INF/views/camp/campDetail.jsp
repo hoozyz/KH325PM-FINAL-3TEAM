@@ -1308,7 +1308,7 @@
 	                                    	</c:forEach>
 	                                    </c:if>
                                     </span></div>
-                            </div><span class="text-muted fs-sm">${revList.get(i).createdate}</span></div><p>${revList.get(i).cont}</p>
+                            </div><span class="text-muted fs-sm"><fmt:formatDate value="${revList.get(i).createdate}" pattern="yyyy-MM-dd hh:mm:ss"/></span></div><p>${revList.get(i).cont}</p>
                         <div class="d-flex align-items-center" id="like${revList.get(i).no}"><button class="btn-like" type="button" onclick="likePlus(${revList.get(i).no})"><i class="fi-heart"></i>(<span id="revLike${revList.get(i).no}">${revList.get(i).revlike}</span>)</button>
                         </div></div>
                     		</c:forEach>

@@ -1787,8 +1787,8 @@
 												</c:forEach>
 		                                    </span>
 		                                </div>
-<%-- 		                                <fmt:formatDate value="${parsedDate}" pattern="yyyy-MM-dd"/> --%>
-		                            </div><span class="text-muted fs-sm">${revList.createdate}</span>
+			                                
+		                            </div><span class="text-muted fs-sm"><fmt:formatDate value="${revList.createdate}" pattern="yyyy-MM-dd hh:mm:ss"/> </span>
 		                        </div>
 		                        <p>${revList.cont}</p>
 		                       

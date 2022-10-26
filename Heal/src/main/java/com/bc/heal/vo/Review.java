@@ -1,5 +1,7 @@
 package com.bc.heal.vo;
 
+import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,7 +16,7 @@ public class Review {
 	private String cont;
 	private int revstar;
 	private int revlike;
-	private String createdate;
+	private Date createdate;
 	private int memberno;
 	private int hotelno;
 	private int campno;
