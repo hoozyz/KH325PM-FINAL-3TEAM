@@ -45,6 +45,10 @@
             backg-img {
                 background-image: url('D001.png');
             }
+            * {
+		        margin: 0px;
+		        padding: 0px;
+		    }
         </style>
         
          <link rel="stylesheet" media="screen" href="${path}/resources/vendor/simplebar/dist/simplebar.min.css" />
@@ -100,7 +104,7 @@
                     <option value="축제">축제</option>
                     </select>                         
                         </div>
-                        <input class="btn btn-primary btn-lg rounded-pill w-100 w-md-auto ms-sm-3" type="submit" value="Search"/>
+                        <input class="btn btn-primary btn-lg rounded-pill w-100 w-md-auto ms-sm-3" type="submit" value="검색"/>
                     </div>
                 </form>
             </div>
@@ -1097,15 +1101,24 @@ else{
 	       		});
 	       	});
        </script>
-
-
+<!-- 사이드바 -->
+<aside style="position: fixed; top:530px; left:90%; opacity: 0.7;">
+               <div class="menu" >
+    <label for="expand-menu" style="height:36px;"><span class="material-symbols-outlined">list 빠른예매</span></label>
+    <input type="checkbox" id="expand-menu" name="expand-menu" style="padding-bottom: 30px;">     <ul>
+        <li><a class="" href="#modal-bus" data-bs-toggle="modal" style="height: 36px;"><span class="material-symbols-outlined">directions_bus 버스</span></a></li>
+        <li><a class="" href="#modal-train" data-bs-toggle="modal" style="height: 36px;"><span class="material-symbols-outlined">directions_railway 기차</span></a></li>
+        <li><a class="" href="#modal-air" data-bs-toggle="modal" style="height: 36px;"><span class="material-symbols-outlined">flight  비행기</span></a></li>
+    </ul>
+</div>
+</aside>
 
 
     <!-- Top properties-->
     <section class="container-main mb-2">
-        <div class="d-flex align-items-end align-items-lg-center justify-content-between mb-4 pb-md-2">
+        <div class="d-flex align-items-end align-items-lg-center justify-content-between mb-1 pb-md-2">
             <div class="d-flex w-100 align-items-center justify-content-between justify-content-lg-start">
-                <h2 class="h3 mb-0 me-md-4 text-center">추천 캠핑장</h2>
+                <h2 class=" mb-0 me-md-4 text-center">추천 <span style="color:#fd5d08">캠핑장</span> <span class="h2_span">어디로 갈지 고민이라면!</span></h2>
            		<nav>
 	                <div class="nav nav-tabs d-none d-md-flex ps-lg-2 mb-0" role="tablist">
                     	<button class="nav-link  fs-sm   mb-2 mb-md-0 me-1" id="campsite-tab" data-bs-toggle="tab" data-bs-target="#campsite" type="button" onclick="location.href='${path}/camp/campSearch?category=일반야영장';">일반 야영장</button>
@@ -1281,21 +1294,13 @@ else{
         </div>
     </section>
     
-    <aside style="position: fixed; top:530px; left:90%; opacity: 0.7;">
-               <div class="menu" >
-    <label for="expand-menu" style="height:36px;"><span class="material-symbols-outlined">list 빠른예매</span></label>
-    <input type="checkbox" id="expand-menu" name="expand-menu" style="padding-bottom: 30px;">     <ul>
-        <li><a class="" href="#modal-bus" data-bs-toggle="modal" style="height: 36px;"><span class="material-symbols-outlined">directions_bus 버스</span></a></li>
-        <li><a class="" href="#modal-train" data-bs-toggle="modal" style="height: 36px;"><span class="material-symbols-outlined">directions_railway 기차</span></a></li>
-        <li><a class="" href="#modal-air" data-bs-toggle="modal" style="height: 36px;"><span class="material-symbols-outlined">flight  비행기</span></a></li>
-    </ul>
-</div>
-</aside>
+   
 
     <section class="container-fluid mb-5 mt-n3 mt-lg-0 pt-4" style="background: #e4dabe; height:550px;">
         <section class="container mb-5 pb-2">
             <div class="d-flex align-items-center justify-content-between mb-3">
-                <h2 class="h3 mb-0">진행중인 축제</h2><a class="btn btn-link fw-normal ms-md-3 pb-0" href="${path}/festival/festivalMain">더보기<i class="fi-arrow-long-right ms-2"></i></a>
+                <h2 class="mb-0">진행중인 <span style="color:#f7b202">축제</span> <span class="h2_span">현재 진행중인 축제를 즐겨보세요!</span></h2>
+                <a class="btn btn-link fw-normal ms-md-3 pb-0" href="${path}/festival/festivalMain">더보기<i class="fi-arrow-long-right ms-2"></i></a>
             </div>
             <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside tns-nav-outside-flush mx-n2">
                 <div class="tns-carousel-inner row gx-4 mx-0 pb-md-4 pb-3" data-carousel-options="{&quot;items&quot;: 4, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3},&quot;992&quot;:{&quot;items&quot;:4}}}">
@@ -1371,8 +1376,8 @@ else{
     </section>
 
     <section class="container mb-5 pb-lg-2">
-        <div class="d-md-flex align-items-center justify-content-between mb-4 pb-md-2">
-            <h2 class="h3 w-100 mb-md-0">전국 주요 공원</h2>
+        <div class="d-md-flex align-items-center justify-content-between mb-2 pb-md-2">
+            <h2 class="w-100 mb-md-0">전국 주요 <span style="color:#687519">공원</span> <span class="h2_span">지금 바로, 떠나보세요!</span></h2>
             <!-- Sorting by date-->
             <a class="btn btn-link fw-normal ms-md-3 pb-0" href="${path}/park/parkMain">더보기<i class="fi-arrow-long-right ms-2"></i></a>
         </div>
@@ -1449,13 +1454,13 @@ else{
 
 
     <section class="width:200px; height:150px; margin-bottom:50px;">
-        <div class="container mb-5">
+        <div class="container mb-3">
             <div class="row">
                 <div class="col-lg-7">
-                    <h2 class="h3 w-100 mb-4">전국 맛집</h2>
+                    <h2 class="h3 w-100 ">전국 맛집</h2>
                 </div>
                 <div class="col-lg-5">
-                    <h2 class="h3 w-100 mb-4">H.Mall</h2>
+                    <h2 class="h3 w-100 ">H.Mall</h2>
                 </div>
             </div>
             <div class="row">

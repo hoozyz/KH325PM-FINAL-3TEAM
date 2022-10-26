@@ -22,11 +22,11 @@
 		    }
 		    
 		    h2 {
-		        font-size: 40px
+		        font-size: 35px
 		    }
 		    
 		    .h2_span {
-		        font-size: 20px;
+		        font-size: 17px;
 		        font-weight: 500;
 		    }
 		    
@@ -163,10 +163,10 @@
 
 
         <section class="container">
-            <h2 class="mb-2 pb-2 " style="color: white ;">인기 <span style="color:#f7b202">캠핑장</span> <span class="h2_span">어디로 갈지 고민이라면!</span></h2>
+            <h2 class="mb-0 pb-0 " style="color: white ;">인기 <span style="color:#f7b202">캠핑장</span> <span class="h2_span">어디로 갈지 고민이라면!</span></h2>
         </section>
         <!-- Top agents (lnked carousel)-->
-        <section class="container-fluid mb-5 pb-2 pb-lg-4  mt-4" style="width: 1400px">
+        <section class="container-fluid mb-5 pb-2 pb-lg-4" style="width: 1400px">
             <div class="tns-carousel-wrapper">
                 <div class="tns-carousel-inner" data-carousel-options="{&quot;items&quot;: 1, &quot;mode&quot;: &quot;gallery&quot;, &quot;controlsContainer&quot;: &quot;#agents-carousel-controls&quot;, &quot;nav&quot;: false}">
                      <div>
@@ -381,7 +381,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                	<div class="card bg-size-cover bg-position-center border-0 overflow-hidden" style="background-image: url(https://gocamping.or.kr/upload/camp/3139/thumb/thumb_720_0154EvDBQbPWa9tWMentKPn9.jpg;"><span class="img-gradient-overlay" style="opacity:0.6!important"></span>
+                	<div class="card bg-size-cover bg-position-center border-0 overflow-hidden mb-4" style="background-image: url(https://gocamping.or.kr/upload/camp/3139/thumb/thumb_720_0154EvDBQbPWa9tWMentKPn9.jpg;"><span class="img-gradient-overlay" style="opacity:0.6!important"></span>
                         <div class="card-body content-overlay pb-0"><span class="d-table badge bg-success">일반야영장</span></div>
                         <div class="card-footer content-overlay border-0 pt-0 pb-4">
                             <div class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5">
@@ -394,7 +394,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card bg-size-cover bg-position-center border-0 overflow-hidden mb-4" style="background-image: url(https://gocamping.or.kr/upload/camp/2999/thumb/thumb_720_82851Qgoj9tciPOJB9BUSZaB.jpg);"><span class="img-gradient-overlay" style="opacity:0.6!important"></span>
+                    <div class="card bg-size-cover bg-position-center border-0 overflow-hidden " style="background-image: url(https://gocamping.or.kr/upload/camp/2999/thumb/thumb_720_82851Qgoj9tciPOJB9BUSZaB.jpg);"><span class="img-gradient-overlay" style="opacity:0.6!important"></span>
                         <div class="card-body content-overlay pb-0"><span class="d-table badge bg-success">일반야영장</span></div>
                         <div class="card-footer content-overlay border-0 pt-0 pb-4">
                             <div class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5">
@@ -472,7 +472,7 @@
         </div>
         <section class="container-fluid mb-5 " style="width: 1500px; ">
             <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside tns-nav-outside-flush mx-n2 ">
-                <div class="tns-carousel-inner row gx-4 mx-0 pt-3 pb-4 " data-carousel-options="{&quot;items&quot;: 6, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3},&quot;992&quot;:{&quot;items&quot;:4},&quot;1242&quot;:{&quot;items&quot;:5},&quot;1498&quot;:{&quot;items&quot;:6}}} ">
+                <div class="tns-carousel-inner row gx-4 mx-0 pt-1 pb-4 " data-carousel-options="{&quot;items&quot;: 6, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3},&quot;992&quot;:{&quot;items&quot;:4},&quot;1242&quot;:{&quot;items&quot;:5},&quot;1498&quot;:{&quot;items&quot;:6}}} ">
               <c:if test="${!empty shopList}"> <!-- 용품 리스트 -->
 				<c:forEach var= "i"  begin="0" end="${shopList.size() - 1}">
                    <!-- Item-->
