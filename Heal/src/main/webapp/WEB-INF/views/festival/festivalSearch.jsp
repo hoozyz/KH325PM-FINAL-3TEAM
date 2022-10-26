@@ -85,7 +85,7 @@
 							</div>
 							<!-- calendar End-->
 							<div class="border-top py-4">
-								<button class="btn btn-outline-primary" type="button">
+								<button class="btn btn-outline-primary" type="button" onclick="window.location.reload()">
 									<i class="fi-rotate-right me-2"></i>조건 새로고침
 								</button>
 							</div>
@@ -122,7 +122,7 @@
 			<div class="search-data row g-4 py-4">
 
 				<c:if test="${empty list}">
-				검색내역이 없습니다.
+					<div>검색결과가 없습니다.</div>
 				</c:if>
 				<c:if test="${!empty list}">
 					<c:forEach var="i" begin="0" end="${list.size() - 1}">
@@ -197,33 +197,19 @@
 			          var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 			           
 			          // 마커를 표시할 위치와 title 객체 배열입니다 
-			         var positions = [
-					    {
-					    	content: '<div>${list.get(0).name}</div>', 
-					        latlng: new kakao.maps.LatLng('${list.get(0).lat}', '${list.get(0).lng}')
-					    },
-					    {
-					    	content: '<div>${list.get(1).name}</div>', 
-					        latlng: new kakao.maps.LatLng('${list.get(1).lat}', '${list.get(1).lng}')
-					    },
-					    {
-					    	content: '<div>${list.get(2).name}</div>', 
-					        latlng: new kakao.maps.LatLng('${list.get(2).lat}', '${list.get(2).lng}')
-					    },
-					    {
-					    	content: '<div>${list.get(3).name}</div>', 
-					        latlng: new kakao.maps.LatLng('${list.get(3).lat}', '${list.get(3).lng}')
-					    },
-					    {
-					    	content: '<div>${list.get(4).name}</div>', 
-					        latlng: new kakao.maps.LatLng('${list.get(4).lat}', '${list.get(4).lng}')
-					    },
-					    {
-					    	content: '<div>${list.get(5).name}</div>', 
-					        latlng: new kakao.maps.LatLng('${list.get(5).lat}', '${list.get(5).lng}')
-					    }
-					];
-					 
+			          var positions = [];
+		        	  
+						<c:forEach items="${list}" var="item">
+							var name = "${item.name}";
+							var lat = "${item.lat}";
+							var lng = "${item.lng}";
+							var position = {
+								content: '<div>'+name+'</div>', 
+								latlng: new kakao.maps.LatLng(lat, lng)
+							}
+					       	positions.push(position);
+						</c:forEach>
+		        	  
 			          for (var i = 0; i < positions.length; i ++) {
 					    // 마커를 생성합니다
 					    var marker = new kakao.maps.Marker({
@@ -266,7 +252,7 @@
 				$(this).html('<i class="fi-map me-2"></i>위치 보기');
      			$(this).attr('id','mapOpen');
      		});
-        </script>
+    </script>
     	<script type="text/javascript" charset="UTF-8">
 	    	function movePage(pageUrl){
 				var keyword = document.getElementById("keyword"); 
