@@ -23,7 +23,7 @@
 <div class="container mt-5 pt-5 p-0">
         <div class="row g-0 mt-n3">
           <!-- Filters sidebar (Offcanvas on mobile)-->
-          <aside class="col-lg-4 col-xl-3 border-top-lg border-end-lg shadow-sm px-3 px-xl-4 px-xxl-5 pt-lg-2">
+          <aside class="col-lg-4 col-xl-3 border-top-lg border-end-lg shadow-sm px-3 px-xl-4 px-xxl-3 pt-lg-2">
             <div class="offcanvas offcanvas-start offcanvas-collapse" id="filters-sidebar">
               <div class="offcanvas-header d-flex d-lg-none align-items-center">
                 <h2 class="h5 mb-0">Filters</h2>
@@ -84,7 +84,7 @@
                 </div>
                 <div class="border-top py-4">
                   <!-- ajax -->
-                  <button class="btn btn-outline-primary" type="button"><i class="fi-rotate-right me-2"></i>조건 새로고침</button>
+                  <button class="btn btn-outline-primary" type="button" onclick="window.location.reload()"><i class="fi-rotate-right me-2"></i>조건 새로고침</button>
                 </div>
                 </div>
               </form>
