@@ -57,7 +57,7 @@
  			PARKNO 
 		) VALUES (
 			REVIEW_SEQ.NEXTVAL,
-			NULL,
+			#{title},
 			#{cont},
  			#{revstar},
  			${0},

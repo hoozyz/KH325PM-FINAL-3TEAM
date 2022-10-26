@@ -77,6 +77,7 @@ public class ReviewController {
 		
 		int memNo = loginMember.getNo();
 		rev.setTitle(title); // title에 명 넣기
+		System.out.println("title: " + title);
 		if (type.equals("hotel")) {
 			rev.setHotelno(no);
 		} else if (type.equals("camp")) {
