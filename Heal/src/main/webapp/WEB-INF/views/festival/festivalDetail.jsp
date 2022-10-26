@@ -397,14 +397,16 @@
 	       				
 	       				str += '<option value="" selected disabled hidden>출발공항</option>                            '
 	       				
-	       				<c:forEach var="i" begin="0" end="${airStartList.size() - 1}">
-	       					var item = '${airStartList.get(i)}';
-	       					str += '<option value="i">'+ item +'</option>'
-	       				</c:forEach>
+	       				<c:if test="${!empty airStartList}">
+	       					<c:forEach var="i" begin="0" end="${airStartList.size() - 1}">
+       							var item = '${airStartList.get(i)}';
+       							str += '<option value="i">'+ item +'</option>'
+       						</c:forEach>
+	       				</c:if>
 	       					
 						$("#airStartSta").html(str);     				
 	       				
-						var end = '${airList.get(0).endsta}';
+						var end = $("#airEndSta option:selected").text();
         				$("#airEndSta").html('<option value="" selected>'+end+'</option>');
         				
         				$("#airCount").html('<option value="" selected disabled hidden>인원</option>' 

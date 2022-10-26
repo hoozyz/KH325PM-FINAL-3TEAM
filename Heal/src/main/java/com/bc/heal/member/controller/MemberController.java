@@ -63,8 +63,7 @@ public class MemberController {
 			return location;
 		} else {
 			model.addAttribute("msg", "카카오 로그인에 실패하였습니다.");
-			model.addAttribute("location", location);
-			return "common/msg";
+			return location;
 		}
 	}
 
@@ -152,11 +151,9 @@ public class MemberController {
 		list.remove(0); // 관리자 빼기
 		if (list.size() > 0) {
 			model.addAttribute("list", list);
-			return "/admin/member";
 		} else { // 유저가 없을 때
 			model.addAttribute("msg", "멤버가 없습니다.");
-			model.addAttribute("location", "/admin/member");
-			return "common/msg";
 		}
+		return "/admin/member";
 	}
 }

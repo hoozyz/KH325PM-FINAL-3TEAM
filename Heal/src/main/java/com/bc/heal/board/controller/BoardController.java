@@ -214,11 +214,9 @@ public class BoardController {
 			model.addAttribute("memList", memList);
 			model.addAttribute("pageInfo", pageInfo);
 			model.addAttribute("list", list);
-			return "/admin/board";
 		} else { // 유저가 없을 때
 			model.addAttribute("msg", "자유게시글이 없습니다.");
-			model.addAttribute("location", location);
-			return "common/msg";
 		}
+		return "/admin/board";
 	}
 }

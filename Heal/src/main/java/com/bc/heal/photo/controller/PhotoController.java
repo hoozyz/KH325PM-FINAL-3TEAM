@@ -212,11 +212,9 @@ public class PhotoController {
 			model.addAttribute("memList", memList);
 			model.addAttribute("pageInfo", pageInfo);
 			model.addAttribute("list", list);
-			return "/admin/photo";
 		} else { // 유저가 없을 때
 			model.addAttribute("msg", "자유게시글이 없습니다.");
-			model.addAttribute("location", location);
-			return "common/msg";
 		}
+		return "/admin/photo";
 	}
 }

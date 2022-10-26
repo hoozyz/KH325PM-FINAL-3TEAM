@@ -100,9 +100,6 @@ public class FestivalController {
 		PageInfo pageInfo = new PageInfo(page, 10, listCount, 6);
 		List<Festival> list = service.getFestivalList(pageInfo, param);
 		
-		
-		System.out.println(list);
-		
 		model.addAttribute("list", list);
 		model.addAttribute("param", param);
 		model.addAttribute("pageInfo", pageInfo);

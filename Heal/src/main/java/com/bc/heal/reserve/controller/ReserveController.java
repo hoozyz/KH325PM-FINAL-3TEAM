@@ -94,8 +94,6 @@ public class ReserveController {
 			model.addAttribute("hotelList", hotelList);
 		} else {
 			model.addAttribute("msg", "캠핑장 예약내역이 없습니다.");
-			model.addAttribute("location", "/member/myCamp");
-			return "common/msg";
 		}
 		return "/member/myCamp";
 	}
@@ -133,8 +131,6 @@ public class ReserveController {
 			model.addAttribute("airList", airList);
 		} else {
 			model.addAttribute("msg", "교통 예약내역이 없습니다.");
-			model.addAttribute("location", "/member/myTraffic");
-			return "common/msg";
 		}
 		return "/member/myTraffic";
 	}
