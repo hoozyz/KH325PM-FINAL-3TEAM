@@ -60,22 +60,19 @@
             <!-- Item-->
             	<c:if test="${!empty airList}">
             	<c:forEach var="i" begin="0" end="${airList.size() - 1}">
-		            <div class="card card-hover card-horizontal border-0 shadow-sm mb-4"><a class="card-img-top" href="real-estate-single-v1.html" style="background-image: url(img/real-estate/catalog/08.jpg);">
+		            <div class="card card-hover card-horizontal border-0 shadow-sm mb-4"><a class="card-img-top" onclick="return false;" style="background-image: url(/resources/image/myAir.jpg);">
 		                <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info">${airList.get(i).airline}</span></div></a> <!-- 항공사 명 -->
 		              <div class="card-body position-relative pb-3">
 		                <div class="dropdown position-absolute zindex-5 top-0 end-0 mt-3 me-3">
 		                  <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm" type="button" id="contextMenu" data-bs-toggle="dropdown" aria-expanded="false"><i class="fi-dots-vertical"></i></button>
 		                  <ul class="dropdown-menu my-1" aria-labelledby="contextMenu">
-		                  	<li> <!-- 역방향 예매 -->
-		                      <button class="dropdown-item" type="button" onclick=""><i class="fi-trash opacity-60 me-2"></i>돌아오는 교통 예매</button>
-		                    </li>
 		                    <li>
 		                      <button class="dropdown-item" type="button" onclick="deleteReserve(${airReserve.get(i).no})"><i class="fi-trash opacity-60 me-2"></i>삭제</button>
 		                    </li>
 		                  </ul>
 		                </div>
 		                <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">${fn:substring(airReserve.get(i).reservedate, 0, 10)}</h4>
-		                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">${airList.get(i).startsta} >> ${airList.get(i).endsta}</a></h3>
+		                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" onclick="return false;">${airList.get(i).startsta} >> ${airList.get(i).endsta}</a></h3>
 		                <p class="mb-2 fs-sm text-muted">${airList.get(i).starttime} ~ ${airList.get(i).endtime}</p>
 		                <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>${airReserve.get(i).price} 원 | ${airReserve.get(i).count} 명</div>
 		              </div>
@@ -85,22 +82,19 @@
             <!-- Item-->
             <c:if test="${!empty trainList}"> 
             	<c:forEach var="i" begin="0" end="${trainList.size() - 1}">
-		            <div class="card card-hover card-horizontal border-0 shadow-sm mb-4"><a class="card-img-top" href="real-estate-single-v1.html" style="background-image: url(img/real-estate/catalog/08.jpg);">
+		            <div class="card card-hover card-horizontal border-0 shadow-sm mb-4"><a class="card-img-top" onclick="return false;" style="background-image: url(/resources/image/myTrain.PNG);">
 		                <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info">${trainList.get(i).trainclass}</span></div></a>
 		              <div class="card-body position-relative pb-3">
 		                <div class="dropdown position-absolute zindex-5 top-0 end-0 mt-3 me-3">
 		                  <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm" type="button" id="contextMenu" data-bs-toggle="dropdown" aria-expanded="false"><i class="fi-dots-vertical"></i></button>
 		                  <ul class="dropdown-menu my-1" aria-labelledby="contextMenu">
-		                  	<li> <!-- 역방향 예매 -->
-		                      <button class="dropdown-item" type="button" onclick=""><i class="fi-trash opacity-60 me-2"></i>돌아오는 교통 예매</button>
-		                    </li>
 		                    <li>
 		                      <button class="dropdown-item" type="button" onclick="deleteReserve(${trainReserve.get(i).no})"><i class="fi-trash opacity-60 me-2"></i>삭제</button>
 		                    </li>
 		                  </ul>
 		                </div>
 		                <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">${fn:substring(trainReserve.get(i).reservedate, 0, 10)}</h4>
-		                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">${trainList.get(i).startsta} >> ${trainList.get(i).endsta}</a></h3>
+		                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" onclick="return false;">${trainList.get(i).startsta} >> ${trainList.get(i).endsta}</a></h3>
 		                <p class="mb-2 fs-sm text-muted">${trainList.get(i).starttime} ~ ${trainList.get(i).endtime}</p>
 		                <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>${trainReserve.get(i).price} 원 | ${trainReserve.get(i).count} 명</div>
 		              </div>
@@ -110,21 +104,18 @@
             <!-- Item-->
             <c:if test="${!empty busList}"> <!-- 버스  -->
             	<c:forEach var="i" begin="0" end="${busList.size() - 1}">
-		            <div class="card card-hover card-horizontal border-0 shadow-sm mb-4"><a class="card-img-top" href="real-estate-single-v1.html" style="background-image: url(img/real-estate/catalog/08.jpg);">
+		            <div class="card card-hover card-horizontal border-0 shadow-sm mb-4"><a class="card-img-top" onclick="return false;" style="background-image: url(/resources/image/myBus.jfif);">
 		              <div class="card-body position-relative pb-3">
 		                <div class="dropdown position-absolute zindex-5 top-0 end-0 mt-3 me-3">
 		                  <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm" type="button" id="contextMenu" data-bs-toggle="dropdown" aria-expanded="false"><i class="fi-dots-vertical"></i></button>
 		                  <ul class="dropdown-menu my-1" aria-labelledby="contextMenu">
-		                  	<li> <!-- 역방향 예매 -->
-		                      <button class="dropdown-item" type="button" onclick=""><i class="fi-trash opacity-60 me-2"></i>돌아오는 교통 예매</button>
-		                    </li>
 		                    <li>
 		                      <button class="dropdown-item" type="button" onclick="deleteReserve(${busReserve.get(i).no})"><i class="fi-trash opacity-60 me-2"></i>삭제</button>
 		                    </li>
 		                  </ul>
 		                </div>
 		                <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">${fn:substring(busReserve.get(i).reservedate, 0, 10)}</h4>
-		                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">${busList.get(i).startsta} >> ${busList.get(i).endsta}</a></h3>
+		                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" onclick="return false;">${busList.get(i).startsta} >> ${busList.get(i).endsta}</a></h3>
 		                <p class="mb-2 fs-sm text-muted">출발시간 : ${busReserve.get(i).starttime} | 소요시간 : ${busList.get(i).wastetime}</p>
 		                <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>${busReserve.get(i).price} 원 | ${busReserve.get(i).count} 명</div>
 		              </div>

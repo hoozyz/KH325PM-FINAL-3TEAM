@@ -62,7 +62,7 @@ public class HomeController {
 		trainEndList = trainService.selectEnd();
 		busEndList = busService.selectEnd();
 		airEndList = airService.selectEnd();
-
+		
 		// 출발역 리스트
 		List<String> trainStartList = new ArrayList<>();
 		List<String> busStartList = new ArrayList<>();
