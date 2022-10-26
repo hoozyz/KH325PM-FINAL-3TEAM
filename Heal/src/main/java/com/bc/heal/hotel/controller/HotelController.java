@@ -158,22 +158,22 @@ public class HotelController {
 		List<Hotel> lastList = new ArrayList<>(); // 최신 4개 리스트
 		lastList.add(hotel); // 지금 들어가는게 최신
 
-		Hotel zero = hotelService.findByNo(0); // name, lineintro, intro, aria 순서로 없을 시 넣기 -> name가 최근
+		Hotel zero = hotelService.findByNo(0); // phone, addr, name, lat 순서로 없을 시 넣기 -> name가 최근
 		if (zero.getPhone() == null) { // 초기값
-			zero.setPhone("79262");
+			zero.setPhone("33552");
 		}
 		if (zero.getAddr() == null) {
-			zero.setAddr("79323");
+			zero.setAddr("33354");
 		}
 		if (zero.getName() == null) {
-			zero.setName("79154");
+			zero.setName("32909");
 		}
 		String threeNo = "";
 		String fourNo = "";
 
 		// 4개 넣어놓고 -> name에 최신 한 칸씩 뒤로 옮기기
 		String twoNo = zero.getPhone();
-		if (twoNo.equals("" + no)) { // 이미 최신에 현재 캠핑장이 있을 때
+		if (twoNo.equals("" + no) || threeNo.equals("" + no) || fourNo.equals("" + no)) { // 이미 최신에 현재 캠핑장이 있을 때
 			twoNo = zero.getAddr();
 			threeNo = zero.getName();
 			fourNo = zero.getLat();
