@@ -1773,7 +1773,7 @@
 		             	<c:forEach var="revList" items="${revList}">
 		                    <div class="mb-4 pb-4 border-bottom">
 		                        <div class="d-flex justify-content-between mb-3">
-		                            <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/03.jpg" width="48" alt="Avatar">
+		                            <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="${path}/resources/image/avatar.png" width="48" alt="Avatar">
 		                                <div class="ps-2">
 		                                    <h6 class="fs-base mb-0">${revList.id}</h6>
 		                                    <span class="star-rating">

@@ -1193,7 +1193,7 @@
                     	</c:if>
                     	<c:if test="${!empty revList}">
 	                    	<c:forEach var="i" begin="0" end="${revList.size() - 1}">
-	                    			<div class="mb-4 pb-4 border-bottom"><div class="d-flex justify-content-between mb-3"><div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/i3.jpg" width="48" alt="Avatar">
+	                    			<div class="mb-4 pb-4 border-bottom"><div class="d-flex justify-content-between mb-3"><div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="${path}/resources/image/avatar.png" width="48" alt="Avatar">
 	                                <div class="ps-2"><h6 class="fs-base mb-i">${revList.get(i).id}</h6>
 	                                    <span class="star-rating">
 		                                    <c:if test="${revList.get(i).revstar == 5}">
