@@ -87,7 +87,7 @@
                     </nav>
                     <!-- Title-->
                     <div class="d-sm-flex align-items-center justify-content-between pb-3 pb-sm-4">
-                        <h1 class="h2 mb-sm-0">포토 게시판</h1>
+                        <h1 class=" mb-sm-0">포토 게시판</h1>
                         <c:if test="${loginMember != null }">
                         	<a href="#write-modal" data-bs-toggle="modal" data-bs-dismiss="modal" style="float: right; text-decoration: none;">게시글 작성</a>
                         </c:if>
@@ -98,14 +98,14 @@
                     <!-- Sorting-->
                     <form class="form-group d-block d-md-flex position-relative rounded-md-pill mb-2 mb-sm-4 mb-lg-5">
                         <div class="input-group input-group-lg border-end-md"><span class="input-group-text text-muted rounded-pill ps-3"><i class="fi-search"></i></span>
-                            <input class="form-control" type="text" id="keyword" placeholder="What are you looking for?">
+                            <input class="form-control" type="text" id="keyword" placeholder="무엇을 찾으시나요?">
                         </div>
                         <hr class="d-md-none my-2">
                         <div class="d-sm-flex">
                             <div class="dropdown w-100 mb-sm-0 mb-3" data-bs-toggle="select">
                                 <button class="btn btn-link btn-lg dropdown-toggle ps-2 ps-sm-3" type="button" data-bs-toggle="dropdown"><i class="fi-list me-2"></i>
                                 <c:if test="${param.get('category') == null}">
-                                	<span class="dropdown-toggle-label">All categories</span>
+                                	<span class="dropdown-toggle-label">카테고리</span>
                                 </c:if>
                                 <c:if test="${param.get('category') != null}">
                                 	<span class="dropdown-toggle-label">${param.get('category')}</span>

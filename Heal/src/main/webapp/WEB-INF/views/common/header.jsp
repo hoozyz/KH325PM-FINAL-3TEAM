@@ -294,7 +294,7 @@
                         <li class="nav-item pe-3"><a class="nav-link" href="${path}/park/parkMain" role="button" aria-expanded="false" id="NSR">공원</a></li>
                         <li class="nav-item pe-3"><a class="nav-link" href="${path}/festival/festivalMain" role="button" aria-expanded="false" id="NSR">축제</a></li>
                         
-                        <li class="nav-item dropdown px-2 "><a class="nav-link dropdown" href="${path}/food/main" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="NSR">주변시설</a>
+                        <li class="nav-item dropdown px-2 "><a class="nav-link dropdown" href="${path}/near/nearFood" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="NSR">주변시설</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="${path}/near/nearFood">음식점</a></li>
                                 <li><a class="dropdown-item" href="${path}/near/nearHotel">숙박</a></li>
@@ -303,7 +303,7 @@
                         
                         
                         <li class="nav-item px-3"><a class="nav-link" href="${path}/shop/main" role="button" aria-expanded="false" id="NSR">OO몰</a></li>
-                        <li class="nav-item dropdown px-3"><a class="nav-link dropdown" href="${path}/photo/main" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="NSR">게시판</a>
+                        <li class="nav-item dropdown px-3"><a class="nav-link dropdown" href="${path}/near/nearFood" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="NSR">게시판</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="${path}/photo/main">포토게시판</a></li>
                                 <li><a class="dropdown-item" href="${path}/board/main">자유게시판</a></li>

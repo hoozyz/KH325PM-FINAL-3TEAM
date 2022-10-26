@@ -141,7 +141,7 @@
             </nav>
             <!-- Title--> 
             <div class="d-sm-flex align-items-center justify-content-between pb-3 pb-sm-4">
-              <h1 class="h2 mb-sm-0">캠핑장 검색 결과</h1>
+              <h1 class=" mb-sm-0">캠핑장 검색 결과</h1>
               <a class="d-inline-block fw-bold text-decoration-none py-1" id="mapOpen"><i class="fi-map me-2"></i>위치 보기</a>
             </div>
             <!-- Sorting-->

@@ -1114,7 +1114,7 @@ else{
                     	<button class="nav-link  fs-sm   mb-2 mb-md-0 me-1" id="caravan-tab" data-bs-toggle="tab" data-bs-target="#caravan" type="button" onclick="location.href='${path}/camp/campSearch?category=카라반';">카라반</button>
 	               	</div>
              	</nav> 
-           	</div><a class="btn btn-link fw-normal d-none d-lg-block p-0" style="margin-right: 20px;" href="${path}/camp/campMain">View all<i class="fi-arrow-long-right ms-2"></i></a>
+           	</div><a class="btn btn-link fw-normal d-none d-lg-block p-0" style="margin-right: 20px;" href="${path}/camp/campMain">더보기<i class="fi-arrow-long-right ms-2"></i></a>
         </div>
     	<div class="tns-carousel-wrapper tns-nav-outside tns-nav-outside-flush mx-n2">
 					<div class="tns-carousel-inner row gx-4 mx-0"
@@ -1295,7 +1295,7 @@ else{
     <section class="container-fluid mb-5 mt-n3 mt-lg-0 pt-4" style="background: #e4dabe; height:550px;">
         <section class="container mb-5 pb-2">
             <div class="d-flex align-items-center justify-content-between mb-3">
-                <h2 class="h3 mb-0">진행중인 축제</h2><a class="btn btn-link fw-normal ms-md-3 pb-0" href="${path}/festival/festivalMain">View all<i class="fi-arrow-long-right ms-2"></i></a>
+                <h2 class="h3 mb-0">진행중인 축제</h2><a class="btn btn-link fw-normal ms-md-3 pb-0" href="${path}/festival/festivalMain">더보기<i class="fi-arrow-long-right ms-2"></i></a>
             </div>
             <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside tns-nav-outside-flush mx-n2">
                 <div class="tns-carousel-inner row gx-4 mx-0 pb-md-4 pb-3" data-carousel-options="{&quot;items&quot;: 4, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3},&quot;992&quot;:{&quot;items&quot;:4}}}">
@@ -1374,7 +1374,7 @@ else{
         <div class="d-md-flex align-items-center justify-content-between mb-4 pb-md-2">
             <h2 class="h3 w-100 mb-md-0">전국 주요 공원</h2>
             <!-- Sorting by date-->
-            <a class="btn btn-link fw-normal ms-md-3 pb-0" href="${path}/park/parkMain">View all<i class="fi-arrow-long-right ms-2"></i></a>
+            <a class="btn btn-link fw-normal ms-md-3 pb-0" href="${path}/park/parkMain">더보기<i class="fi-arrow-long-right ms-2"></i></a>
         </div>
         </div>
         <!-- Carousel-->
@@ -1455,7 +1455,7 @@ else{
                     <h2 class="h3 w-100 mb-4">전국 맛집</h2>
                 </div>
                 <div class="col-lg-5">
-                    <h2 class="h3 w-100 mb-4">00몰</h2>
+                    <h2 class="h3 w-100 mb-4">H.Mall</h2>
                 </div>
             </div>
             <div class="row">

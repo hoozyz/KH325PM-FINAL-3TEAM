@@ -148,8 +148,8 @@
             <div class="content-overlay container py-md-5">
                 <div class="mt-5 mb-md-5 py-5">
                     <div class="col-xl-6 col-lg-8 col-md-10 mx-auto mb-sm-5 mb-4 px-0 text-center">
-                        <h1 class="display-3 mt-sm-5 my-4">SHOPPING</h1>
-                        <p class="fs-lg text-white">Find great places to stay, eat, shop, or visit from our partners and local experts. Plan your trip with Finder now</p>
+                        <h1 class="display-1 mt-sm-5 mb-0">SHOPPING</h1>
+                        <p class="fs-lg text-white">&nbsp;&nbsp;&nbsp;&nbsp;현대보다 더 현대적인 H.Mall입니다.</p>
                     </div>
 
                 </div>
@@ -319,14 +319,14 @@
         <section id="shopSection">
         	<!-- Services-->
         <section class="container-fluid mb-5 mt-n3 mt-lg-0" style="background: #f6f7fb; height:550px;">
-            <div class="container-fluid mb-5 pt-5 mt-n3 mt-lg-0" style="width: 1500px;;">
+            <div class="container-fluid mb-5 pt-4 mt-n3 mt-lg-0" style="width: 1500px;;">
                 <h2>시선집중</h2>
                 <div class="row ">
                 
                     <div class="col-4 ">
                         <div class="card ">
                         	<a href="${saleList.get(0).link}" style="text-decoration: none;">
-                            <img src="${saleList.get(0).image}" class="card-img-top " style="height: 200px;" alt="Card image ">
+                            <img src="${saleList.get(0).image}" class="card-img-top " style="height: 230px;" alt="Card image ">
                             <div class="card-body">
                                 <div class="c-flag">
                                     <div class="c-flag_body">
@@ -363,7 +363,7 @@
                                     <span class="prd_count"><span class="number">${ran}</span>개 구매</span>
                                 </div>
                             </div> 
-                            <div class="card-footer text-muted" style="font-size :16px;">ㅁㅁㅁ추천 상품</div>
+                            <div class="card-footer text-muted" style="font-size :16px;">H.Mall 추천 상품</div>
                           
                        </div>
                     </div>
@@ -372,7 +372,7 @@
                     <div class="col-4 ">
                         <div class="card ">
                         	<a href="${saleList.get(1).link}" style="text-decoration: none;">
-                            <img src="${saleList.get(1).image}" class="card-img-top " style="height: 200px;" alt="Card image ">
+                            <img src="${saleList.get(1).image}" class="card-img-top " style="height: 230px;" alt="Card image ">
                             <div class="card-body ">
                                 <div class="c-flag">
                                     <div class="c-flag_body">
@@ -409,7 +409,7 @@
                                     <span class="prd_count"><span class="number">${ran}</span>개 구매</span>
                                 </div>
                             </div>
-                            <div class="card-footer text-muted" style="font-size :16px;">ㅁㅁㅁ추천 상품</div>
+                            <div class="card-footer text-muted" style="font-size :16px;">H.Mall 추천 상품</div>
                             
                         </div>
                     </div>
@@ -417,7 +417,7 @@
                     <div class="col-4 ">
                         <div class="card ">
                         	<a href="${saleList.get(2).link}" style="text-decoration: none;">
-                            <img src="${saleList.get(2).image}" class="card-img-top " style="height: 200px;" alt="Card image">
+                            <img src="${saleList.get(2).image}" class="card-img-top " style="height: 230px;" alt="Card image">
                             <div class="card-body ">
                                 <div class="c-flag">
                                     <div class="c-flag_body">
@@ -454,7 +454,7 @@
                                 </div>
 
                             </div>
-                              <div class="card-footer text-muted" style="font-size :16px;">ㅁㅁㅁ추천 상품</div>
+                              <div class="card-footer text-muted" style="font-size :16px;">H.Mall 추천 상품</div>
                         </div>
                    </div>
                           
