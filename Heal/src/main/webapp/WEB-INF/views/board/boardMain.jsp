@@ -168,7 +168,7 @@
          <div class="container content-overlay mt-5 mb-md-4 py-5">
          <nav class="mb-3 mb-md-4 pt-md-5" aria-label="Breadcrumb">
           <ol class="breadcrumb breadcrumb-light">
-            <li class="breadcrumb-item"><a href="${path}/">Home</a></li>
+            <li class="breadcrumb-item"><a href="${path}/">HEALING</a></li>
             <li class="breadcrumb-item active" aria-current="page"><a href="${path}/board/list">자유게시판</a></li>
           </ol>
         </nav>

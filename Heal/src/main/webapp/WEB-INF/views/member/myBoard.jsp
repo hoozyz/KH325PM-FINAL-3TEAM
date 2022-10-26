@@ -13,9 +13,9 @@
         <!-- Breadcrumb-->
         <nav class="mb-4 pt-md-3" aria-label="Breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="real-estate-home-v1.html">Home</a></li>
-            <li class="breadcrumb-item"><a href="real-estate-account-info.html">Account</a></li>
-            <li class="breadcrumb-item active" aria-current="page">나의 예약</li>
+            <li class="breadcrumb-item"><a href="/">HEALING</a></li>
+            <li class="breadcrumb-item"><a href="${path}/member/myInfo">마이페이지</a></li>
+            <li class="breadcrumb-item active" aria-current="page">나의 게시글</li>
           </ol>
         </nav>
         <!-- Page content-->
@@ -36,8 +36,8 @@
               <div class="collapse d-md-block mt-3" id="account-nav">
                 <div class="card-nav">
                   <a class="card-nav-link active" href="${path}/member/myInfo"><i class="fi-user opacity-60 me-2"></i>나의 정보</a>
-                  <a class="card-nav-link" href="${path}/reserve/myCamp"><i class="fi-home opacity-60 me-2"></i>나의 예약</a>
-                  <a class="card-nav-link" href="${path}/photo/myPhoto"><i class="fi-home opacity-60 me-2"></i>나의 게시글</a>
+                  <a class="card-nav-link" href="${path}/reserve/myCamp"><i class="fi-calendar opacity-60 me-2"></i>나의 예약</a>
+                  <a class="card-nav-link" href="${path}/photo/myPhoto"><i class="fi-file opacity-60 me-2"></i>나의 게시글</a>
                   <a class="card-nav-link" href="${path}/like/myLike"><i class="fi-heart opacity-60 me-2"></i>나의 찜</a>
                   <a class="card-nav-link" href="${path}/review/myReview"><i class="fi-star opacity-60 me-2"></i>나의 리뷰/댓글</a>
               </div>
@@ -50,10 +50,13 @@
             </div>
             <!-- Nav tabs-->
             <ul class="nav nav-tabs border-bottom mb-4" role="tablist">
-              <li class="nav-item mb-3"><a class="nav-link" href="${path}/photo/myPhoto" role="tab" aria-selected="false"><i class="fi-file fs-base me-2"></i>포토게시판</a></li>
-              <li class="nav-item mb-3"><a class="nav-link active" href="${path}/board/myBoard" role="tab" aria-selected="true"><i class="fi-file-clean fs-base me-2"></i>자유게시판</a></li>
+              <li class="nav-item mb-3"><a class="nav-link" href="${path}/photo/myPhoto" role="tab" aria-selected="false"><i class="fi-image fs-base me-2"></i>포토게시판</a></li>
+              <li class="nav-item mb-3"><a class="nav-link active" href="${path}/board/myBoard" role="tab" aria-selected="true"><i class="fi-file fs-base me-2"></i>자유게시판</a></li>
             </ul>
             <!-- Item-->
+            <c:if test="${empty boardList}">
+          		게시글내역이 없습니다.
+         	</c:if>
             <c:if test="${!empty boardList}">
             	<c:forEach var="i" begin="0" end="${boardList.size() - 1}">
 			            <div class="mb-4 pb-4 border-bottom">

@@ -19,8 +19,8 @@
         <!-- Breadcrumb-->
         <nav class="mb-4 pt-md-3" aria-label="Breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="real-estate-home-v1.html">Home</a></li>
-            <li class="breadcrumb-item"><a href="real-estate-account-info.html">마이페이지</a></li>
+            <li class="breadcrumb-item"><a href="/">HEALING</a></li>
+            <li class="breadcrumb-item"><a href="${path}/member/myInfo">마이페이지</a></li>
             <li class="breadcrumb-item active" aria-current="page">나의 리뷰</li>
           </ol>
         </nav>
@@ -42,8 +42,8 @@
               <div class="collapse d-md-block mt-3" id="account-nav">
                 <div class="card-nav">
                   <a class="card-nav-link" href="${path}/member/myInfo"><i class="fi-user opacity-60 me-2"></i>나의 정보</a>
-                  <a class="card-nav-link" href="${path}/reserve/myCamp"><i class="fi-home opacity-60 me-2"></i>나의 예약</a>
-                  <a class="card-nav-link" href="${path}/photo/myPhoto"><i class="fi-home opacity-60 me-2"></i>나의 게시글</a>
+                  <a class="card-nav-link" href="${path}/reserve/myCamp"><i class="fi-calendar opacity-60 me-2"></i>나의 예약</a>
+                  <a class="card-nav-link" href="${path}/photo/myPhoto"><i class="fi-file opacity-60 me-2"></i>나의 게시글</a>
                   <a class="card-nav-link" href="${path}/like/myLike"><i class="fi-heart opacity-60 me-2"></i>나의 찜</a>
                   <a class="card-nav-link active" href="${path}/review/myReview"><i class="fi-star opacity-60 me-2"></i>나의 리뷰/댓글</a>
               </div>
@@ -239,6 +239,9 @@
               <div class="tab-pane fade" id="reply" role="tabpanel">
                 <div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch justify-content-between pb-4 mb-2 mb-md-3">
                 </div>
+                <c:if test="${empty repList}">
+                	댓글내역이 없습니다.
+                </c:if>
                 <c:if test="${!empty repList}">
             		<c:forEach var="i" begin="0" end="${repList.size() - 1}">
 		                <!-- Review-->

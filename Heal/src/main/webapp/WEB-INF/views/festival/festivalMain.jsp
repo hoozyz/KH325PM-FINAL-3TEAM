@@ -74,7 +74,7 @@
         <!-- @@@@@@ Hero 끝 @@@@@@-->
         <!-- @@@@@@ 전국 방방곡곡 시작 @@@@@@-->
         <section class="container pt-5">
-            <div class="d-flex align-items-center justify-content-between mb-2">
+            <div class="d-flex align-items-center justify-content-between">
                 <div>
                     <h2 class="h3 mb-sm-0 " style="display:inline; color: #FD5D08; ">전국 방방곡곡 </h2>
                     <h2 class="h3 mb-sm-0 " style=display:inline;>축제 모아보기</h2>
@@ -233,11 +233,11 @@
         <!-- @@@@@@ 전국 방방곡곡 끝 @@@@@@-->
 
         <!-- Post vacancy CTA-->
-        <section class="container mb-4">
+        <section class="container mb-3">
             <div>
                 <h2 class="h3 mb-sm-0" style=display:inline;>이달의</h2>
                 <h2 class="h3 mb-sm-0" style="display:inline; color: #F7B202;">추천</h2>
-                <h6 class="h6 mb-sm-0" style=display:inline;>부천이 축제를 소개합니다!</h6>
+                <h6 class="h6 mb-sm-0" style=display:inline;>힐러가 축제를 추천합니다!</h6>
             </div>
         </section>
         <!-- <section class="container-fluid mb-5 mt-n3 mt-lg-0 pt-3" style="background: #e4dabe; height:350px;"> -->
@@ -257,7 +257,7 @@
 
         <!-- @@@@@@ 함께,축제 시작 @@@@@@-->
         <section class="container mb-2" style="margin-top:80px;">
-            <div class="d-sm-flex align-items-center justify-content-between mb-2 pb-2">
+            <div class="d-sm-flex align-items-center justify-content-between mb-2">
                 <div>
                     <h2 class="h3 mb-sm-0" style="display:inline; color: #F7B202;">함께</h2>
                     <h2 class="h3 mb-sm-0" style=display:inline;>, 축제</h2>
