@@ -258,7 +258,7 @@
                                 </div>
                                 <hr class="d-md-none mt-2">
                                 <div class="col-md-2 d-sm-flex align-items-center pt-3 pt-md-0">
-                                    <button class="btn btn-lg btn-icon btn-primary px-3 w-100" type="submit">공원 검색</button>
+                                    <button class="btn btn-lg btn-icon btn-primary px-3 w-100" type="submit">검색</button>
                                 </div>
                             </div>
                         </form>

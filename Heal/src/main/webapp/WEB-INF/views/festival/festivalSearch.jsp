@@ -18,15 +18,6 @@
 <input type="hidden" id="enddate" value="${enddate}" > 
 
 <main>
-<section class="jarallax bg-dark zindex-1 py-xxl-5" data-jarallax data-speed="0.5"><span class="img-overlay bg-transparent opacity-50" style="background-image: linear-gradient(0deg, rgba(31, 27, 45, .7), rgba(31, 27, 45, .7));"></span>
-            <div class="jarallax-img" style="background-image: url(${path}/resources/image/festivalHero4.png);"></div>
-            <div class="content-overlay container py-md-5" style="margin-top: 50px;">
-                <div class="mt-5 mb-md-5 py-5 ">
-                    <div class="col-xl-6 col-lg-8 col-md-10 mx-auto mb-sm-5 mb-4 px-0" style="width: 1000px; height: 0px;">
-                        <h1 class="display-5 text-white" style="margin-bottom: 50px; text-align: center; font-size: 75px;">Festival</h1>
-                    </div>
-                </div>
-        </section>
 	<div class="container-fluid mt-5 pt-5 p-0" style="width: 75%;">
 		<div class="row g-0 mt-n3">
 			<!-- Filters sidebar (Offcanvas on mobile)-->

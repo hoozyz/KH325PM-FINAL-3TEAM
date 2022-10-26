@@ -257,7 +257,7 @@
 
         <!-- @@@@@@ 함께,축제 시작 @@@@@@-->
         <section class="container mb-2" style="margin-top:80px;">
-            <div class="d-sm-flex align-items-center justify-content-between mb-4 pb-2">
+            <div class="d-sm-flex align-items-center justify-content-between mb-2 pb-2">
                 <div>
                     <h2 class="h3 mb-sm-0" style="display:inline; color: #F7B202;">함께</h2>
                     <h2 class="h3 mb-sm-0" style=display:inline;>, 축제</h2>

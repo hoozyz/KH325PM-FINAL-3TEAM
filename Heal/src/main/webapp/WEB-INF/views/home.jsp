@@ -104,7 +104,7 @@
                     <option value="축제">축제</option>
                     </select>                         
                         </div>
-                        <input class="btn btn-primary btn-lg rounded-pill w-100 w-md-auto ms-sm-3" type="submit" value="Search"/>
+                        <input class="btn btn-primary btn-lg rounded-pill w-100 w-md-auto ms-sm-3" type="submit" value="검색"/>
                     </div>
                 </form>
             </div>
