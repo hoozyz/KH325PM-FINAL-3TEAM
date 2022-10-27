@@ -60,7 +60,7 @@
             <c:if test="${!empty photoList}">
             	<c:forEach var="i" begin="0" end="${photoList.size() - 1}">
            			<div class="card card-hover card-horizontal border-0 shadow-sm mb-4">
-           			<c:set var="renamefile" value="${list.get(i).renamefile}"/>
+           			<c:set var="renamefile" value="${photoList.get(i).renamefile}"/>
            			<c:if test="${fn:contains(renamefile,',')}">
                         <c:set var="split" value="${fn:split(renamefile,',')}"/>
                         <a class="card-img-top" href="${path}/photo/view?no=${photoList.get(i).no}" style="background-image: url(/resources/upload/image/${split[0]});">

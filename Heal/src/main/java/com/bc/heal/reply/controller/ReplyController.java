@@ -70,10 +70,10 @@ public class ReplyController {
 	}
 	
 	@PostMapping("/write")
-	public String write(Model model, @ModelAttribute Reply reply, @Param("title") String title,
+	public String write(Model model, @ModelAttribute Reply reply,
 			@SessionAttribute(name = "loginMember", required = false) Member loginMember) {
 		reply.setMemberno(loginMember.getNo());
-		reply.setTitle(title);
+		System.out.println(reply);
 		service.save(reply);
 		String no = ""+reply.getPhotono();
 		

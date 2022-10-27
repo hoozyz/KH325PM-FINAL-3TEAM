@@ -33,7 +33,8 @@
  					 CREATEDATE,
  					 MODIFYDATE,
  					 MEMBERNO, 
- 					 PHOTONO
+ 					 PHOTONO,
+ 					 TITLE
  			  FROM (SELECT * 
  			  		FROM TBL_REPLY 
  			  		ORDER BY NO DESC))
@@ -62,14 +63,16 @@
 			CREATEDATE,
 			MODIFYDATE,
 			MEMBERNO,
-			PHOTONO		
+			PHOTONO,
+			TITLE	
 		) VALUES (
 			REPLY_SEQ.NEXTVAL,
 			#{cont},
 			SYSDATE,
 			SYSDATE,
 			#{memberno},
-			#{photono}
+			#{photono},
+			#{title}
 		)
 	</insert>
 	

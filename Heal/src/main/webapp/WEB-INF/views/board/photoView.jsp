@@ -24,6 +24,7 @@
                     </div>
                     <div class="modal-body px-sm-5 px-4">
                         <form class="needs-validation" action="${path}/reply/write" method="POST">
+                        	<input type="hidden" name="title" value="${photo.title}">
                         	<input type="hidden" name="photono" value="${photo.no}">
                             <div class="mb-3">
                                 <label class="form-label" for="review-name">아이디<span class='text-danger'>*</span></label>
@@ -45,7 +46,7 @@
 	<div class="container mt-5 mb-md-4 pt-5">
         <nav class="mb-3 pt-md-3" aria-label="breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="real-estate-home-v1.html">HEALERS</a></li>
+            <li class="breadcrumb-item"><a href="${path}/">HEALERS</a></li>
             <li class="breadcrumb-item active" aria-current="page">포토게시판</li>
           </ol>
         </nav>
@@ -136,7 +137,7 @@
 	        	<c:if test="${!empty repList}">
 	        		<c:forEach var="i" begin="0" end="${repList.size() - 1}">
 	        			<div class="mb-4 pb-4 border-bottom"><div class="d-flex justify-content-between mb-3">
-	        			<div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/i3.jpg" width="48" alt="Avatar">
+	        			<div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="${path}/resources/image/13.png" width="48" alt="Avatar">
 	                    <div class="ps-2"><h6 class="fs-base mb-i">${repList.get(i).id}</h6>${repList.get(i).cont}</div></div>
 	                    <p>${repList.get(i).modifydate}</p>
 	            </div></div>

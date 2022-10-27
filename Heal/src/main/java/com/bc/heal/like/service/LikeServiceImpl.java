@@ -42,26 +42,33 @@ public class LikeServiceImpl implements LikeService {
 		Map<String, Integer> map = new HashMap<>();
 		map.put("no", no);
 		int no1 = Integer.parseInt(param.get("likeNo"));
-		if(!param.containsKey("check")) {
-			if (type.equals("hotel")) {
-				map.put("hotelno", no1);
+		if (type.equals("hotel")) {
+			map.put("hotelno", no1);
+			if (!param.containsKey("check")) {
 				insertLike(new Like(0, no, no1, 0, 0, 0, 0));
-			} else if (type.equals("camp")) {
-				map.put("campno", no1);
+			}
+		} else if (type.equals("camp")) {
+			map.put("campno", no1);
+			if (!param.containsKey("check")) {
 				insertLike(new Like(0, no, 0, no1, 0, 0, 0));
-			} else if (type.equals("festival")) {
-				map.put("festivalno", no1);
+			}
+		} else if (type.equals("festival")) {
+			map.put("festivalno", no1);
+			if (!param.containsKey("check")) {
 				insertLike(new Like(0, no, 0, 0, no1, 0, 0));
-			} else if (type.equals("food")) {
-				map.put("foodno", no1);
+			}
+		} else if (type.equals("food")) {
+			map.put("foodno", no1);
+			if (!param.containsKey("check")) {
 				insertLike(new Like(0, no, 0, 0, 0, no1, 0));
-			} else if (type.equals("park")) {
-				map.put("parkno", no1);
+			}
+		} else if (type.equals("park")) {
+			map.put("parkno", no1);
+			if (!param.containsKey("check")) {
 				insertLike(new Like(0, no, 0, 0, 0, 0, no1));
 			}
 		}
-		System.out.println(mapper.checkNo(map));
-		if(mapper.checkNo(map) == 0) {
+		if (mapper.checkNo(map) == 0) {
 			return 0;
 		}
 		return mapper.selectNo(map);

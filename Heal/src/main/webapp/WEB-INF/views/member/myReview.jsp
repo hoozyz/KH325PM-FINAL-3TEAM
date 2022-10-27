@@ -248,7 +248,7 @@
 		                <div class="mb-4 pb-4 border-bottom">
 		                  <div class="d-flex justify-content-between mb-3">
 		                    <div class="pe-2">
-		                      <h6 class="mb-0">포토게시판 제목&nbsp :&nbsp&nbsp ${repList.get(i).title}</h6>
+		                      <a href="${path}/photo/view?no=${repList.get(i).photono}" style="text-decoration: none;"><h6 class="mb-0">포토게시판 제목&nbsp :&nbsp&nbsp ${repList.get(i).title}</h6></a>
 		                    </div><span class="text-muted fs-sm">${repList.get(i).modifydate}</span>
 		                  </div>
 		                  <div style="display: inline-block;">
