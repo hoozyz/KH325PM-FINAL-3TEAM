@@ -1403,12 +1403,7 @@
                             <span class="badge bg-success me-2"><c:out value="${park.category}"/></span>
                             <div class="text-nowrap" id="like_button">
 								<span id="likeDiv">
-                					<c:if test="${likeCheck == 0}">
-                						<button class="btn btn-icon btn-light-primary btn shadow-sm rounded-circle ms-2 mb-2" id="likePlus1" onclick="like_Plus(${campNo})" type="button" data-bs-toggle="tooltip"><i class="fi-heart"></i></button>
-                					</c:if>
-                					<c:if test="${likeCheck == 1}">
-                						<button class="btn btn-icon btn-light-primary btn shadow-sm rounded-circle ms-2 mb-2" id="likeMinus1" onclick="like_Minus(${likeNo})" type="button" data-bs-toggle="tooltip"><i class="fi-heart-filled"></i></button>
-                					</c:if>
+                						<button class="btn btn-icon btn-light-primary btn shadow-sm rounded-circle ms-2 mb-2" id="likePlus1" onclick="like_Plus(${park.no})" type="button" data-bs-toggle="tooltip"><i class="fi-heart"></i></button>
                 				</span>
                 				
                                 <div class="dropdown d-inline-block" data-bs-toggle="tooltip" title="Share">
