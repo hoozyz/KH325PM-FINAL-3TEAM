@@ -65,8 +65,8 @@
             <c:if test="${loginMember != null}">
 	          	<input type="hidden" name="no" value="${photo.no}">
 	            <div>
-	            	<p class="fs-lg" style="float: left; margin-left: 10px;">제목</p>
 	            	<c:if test="${loginMember.no == photo.memberno}">
+	            	<p class="fs-lg" style="float: left; margin-left: 10px;">제목</p>
 	          		<input class="form-control" name="title" type="text" value="${photo.title}">
 	          		<p class="fs-lg" style="margin-top: 20px; margin-left:10px;">내용</p>
 	            	<textarea class="form-control" style="height:150px; width: 100%; margin-bottom: 20px;" name="cont" id="update-content">${photo.cont}</textarea>
@@ -74,26 +74,26 @@
             		<input class="btn btn-primary btn-lg rounded-pill" onclick="deletePhoto(${photo.no})" formaction="${path}/photo/delete" type="submit" value="삭제" style="float: right;margin-left: 15px;padding-left: 20px;padding-right: 20px;padding-top: 10px;padding-bottom: 10px;">
 	          	</c:if>
 	          	<c:if test="${loginMember.no != photo.memberno}">
+	          		<p class="fs-lg" style="float: left; margin-left: 10px;">제목</p>
 	          		<input class="form-control" name="title" type="text" value="${photo.title}" readonly>
 	          		<p class="fs-lg" style="margin-top: 20px; margin-left:10px;">내용</p>
-	            	<textarea class="form-control" style="height:220px; width: 100%;" name="cont" id="update-content" readonly>${photo.cont}</textarea>
+	            	<textarea class="form-control" style="height:150px; width: 100%;" name="cont" id="update-content" readonly>${photo.cont}</textarea>
 	          	</c:if>
 	          	<c:if test="${loginMember.id == 'admin'}">
+	          		<p class="fs-lg" style="float: left; margin-left: 10px;">제목</p>
 	          		<input class="form-control" name="title" type="text" value="${photo.title}" readonly>
 	          		<p class="fs-lg" style="margin-top: 20px; margin-left:10px;">내용</p>
-	            	<textarea class="form-control" style="height:220px; width: 100%;" name="cont" id="update-content" readonly>${photo.cont}</textarea>
+	            	<textarea class="form-control" style="height:150px; width: 100%;" name="cont" id="update-content" readonly>${photo.cont}</textarea>
 	            	<input class="btn btn-primary btn-lg rounded-pill" onclick="deletePhoto(${photo.no})" formaction="${path}/photo/delete" type="submit" value="삭제" style="float: right;margin-left: 15px;padding-left: 20px;padding-right: 20px;padding-top: 10px;padding-bottom: 10px;">
 	          	</c:if>
 	            </div>
             </c:if>
             <c:if test="${loginMember == null}">
-            	<div style="height: 50px; margin-bottom: 30px;">
-	            	<div class="mb-4 h1" style="float: left;">제목</div>
-		            <input class="form-control" name="title" type="text" value="${photo.title}" style="float: right;width: 300px;margin-top: 3px;" readonly>
-	            </div>
-	          	<div>
-	          		<span class="fs-lg" style="margin-top: 20px; margin-left:10px;">내용</span>
-	            	<textarea class="form-control" style="height:220px; width: 100%; margin-bottom: 20px; margin-top: 10px;" name="cont" id="update-content" readonly>${photo.cont}</textarea>
+            	<div>
+	            	<p class="fs-lg" style="float: left; margin-left: 10px;">제목</p>
+		            <input class="form-control" name="title" type="text" value="${photo.title}" readonly>
+	          		<p class="fs-lg" style="margin-top: 20px; margin-left:10px;">내용</p>
+	            	<textarea class="form-control" style="height:150px; width: 100%; margin-bottom: 20px; margin-top: 10px;" name="cont" id="update-content" readonly>${photo.cont}</textarea>
 	          	</div>
             </c:if>
           </form>
