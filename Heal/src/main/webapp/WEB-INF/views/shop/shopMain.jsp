@@ -133,7 +133,7 @@
             }
             
             h2 {
-                font-size: 30px;
+                font-size: 40px;
             }
         </style>
 
@@ -148,8 +148,8 @@
             <div class="content-overlay container py-md-5">
                 <div class="mt-5 mb-md-5 py-5">
                     <div class="col-xl-6 col-lg-8 col-md-10 mx-auto mb-sm-5 mb-4 px-0 text-center">
-                        <h1 class="display-1 mt-sm-5 mb-0">SHOPPING</h1>
-                        <p class="fs-lg text-white">&nbsp;&nbsp;&nbsp;&nbsp;현대보다 더 현대적인 H.Mall입니다.</p>
+                        <h1 class="mt-sm-5 mb-0" style="font-size:100px; color:#EB6B17">H.Mall</h1>
+                        <p class="text-white" style="font-size:30px">&nbsp;&nbsp;&nbsp;&nbsp;현대보다 더 현대적인 H.Mall입니다.</p>
                     </div>
 
                 </div>
