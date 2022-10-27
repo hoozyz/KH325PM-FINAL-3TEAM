@@ -2283,10 +2283,6 @@
             </div>
         </section>
         
-        
-        
-        <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
-        
         <!-- Vendor scrits: js libraries and plugins-->
         <script src="${path}/resources/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="${path}/resources/vendor/simplebar/dist/simplebar.min.js"></script>
