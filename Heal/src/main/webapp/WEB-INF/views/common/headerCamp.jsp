@@ -9,7 +9,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>HEALING</title>
+    <title>HEALERS</title>
 
     <!-- Favicon and Touch Icons-->
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -178,11 +178,11 @@
         <!-- Sign In Modal-->
         <div class="modal fade" id="signin-modal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered p-2 my-0 mx-auto">
-                <div class="modal-content" style="width:500px;text-align:center;"">
+                <div class="modal-content" style="width:500px;text-align:center;">
                     <div class="modal-body">
                         <button class="btn-close position-absolute top-0 end-0 mt-3 me-3" type="button" data-bs-dismiss="modal"></button>
                             <div>
-                               <img class="d-block mx-auto mb-2" src="${path}/resources/image/logotest5.png" width="344" alt="Illustartion">
+                               <img class="d-block mx-auto mb-2" src="${path}/resources/image/logotest5.png" width="250" style="margin-top: 20px; margin-bottom: 20px;" alt="Illustartion">
                             </div>
                             <div>
                                 <form class="needs-validation" action="${path}/login" method="POST">
@@ -203,7 +203,7 @@
 				                        </label>
                                         </div>
                                     </div>
-                                    <input class="btn btn-lg rounded-pill w-100" style="background-color:#201627; color:#D9E2F2; font-weight:800; font-size:15pt;" type="submit" value="로그인">
+                                    <input class="btn btn-lg rounded-pill" style="background-color:#E65D01; width:90%; color:white; font-weight:800; font-size:15pt;" type="submit" value="로그인">
                                 </form>
                                 <div class="d-flex align-items-center py-4">
                                     <hr class="w-100">
@@ -225,7 +225,7 @@
                         <button class="btn-close position-absolute top-0 end-0 mt-3 me-3" type="button" data-bs-dismiss="modal"></button>
                         <div class="mx-0 align-items-center">
                             <div>
-                               <img class="d-block mx-auto" src="${path}/resources/image/logotest5.png" width="344" alt="Illustartion">
+                               <img class="d-block mx-auto" src="${path}/resources/image/logotest5.png" width="280" style="margin-top: 30px; margin-bottom: 30px;" alt="Illustartion">
                             </div>
                             <div class="px-4 pb-4 px-sm-5 pb-sm-5">
                                 <form class="needs-validation" action="${path}/member/enroll" method="POST" novalidate>
@@ -269,7 +269,7 @@
                                     </div>
                                     <div class="form-check mb-4">
                                     </div>
-                                    <button class="btn btn-lg rounded-pill w-100" style="background-color:#201627; color:#D9E2F2; font-weight:800; font-size:15pt;" type="submit">회원가입</button>
+                                    <button class="btn btn-lg rounded-pill w-100" style="background-color:#E65D01; color:white; font-weight:800; font-size:15pt;" type="submit">회원가입</button>
                                 <div class="mt-sm-4 pt-md-3">이미 계정이 있으신가요? <a href="#signin-modal" data-bs-toggle="modal" data-bs-dismiss="modal">로그인</a></div>
                                 </form>
                             </div>

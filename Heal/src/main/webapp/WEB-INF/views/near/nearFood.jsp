@@ -140,7 +140,7 @@
             
             <div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch my-2">
               <hr class="d-none d-sm-block w-100 mx-4">
-              <div class="d-none d-sm-flex align-items-center flex-shrink-0 text-muted"><i class="fi-check-circle me-2"></i><span class="fs-sm mt-n1">총 ${listCount}</span></div>
+              <div class="d-none d-sm-flex align-items-center flex-shrink-0 text-muted"><i class="fi-check-circle me-2"></i><span class="fs-sm mt-n1">총 ${listCount}건</span></div>
             </div> 
             <!-- 음식 리스트 -->
 				<div class="row g-4 py-4">

@@ -27,15 +27,15 @@ public class HotelServiceImpl implements HotelService{
 		
 		Map<String, String> map = new HashMap<String, String>();
 		String keyword = param.get("keyword");
-		String addr = param.get("addr");
+		String city = param.get("city");
 		String price = param.get("price");
 		String price2 = param.get("price2");
 		
 		if (keyword != null && keyword.isEmpty()==false) {
 			map.put("keyword", keyword);
 		}
-		if (addr != null && addr.isEmpty()==false) {
-			map.put("addr", addr);
+		if (city != null && city.isEmpty()==false) {
+			map.put("city", city);
 		}
 		if (price != null && price.isEmpty()==false ) {
 			map.put("price", price);
@@ -54,15 +54,15 @@ public class HotelServiceImpl implements HotelService{
 		
 		Map<String, String> map = new HashMap<String, String>();
 		String keyword = param.get("keyword");
-		String addr = param.get("addr");
+		String city = param.get("city");
 		String price = param.get("price");
 		String price2 = param.get("price2");
 		
 		if (keyword != null && keyword.isEmpty()==false) {
 			map.put("keyword", keyword);
 		}
-		if (addr != null && addr.isEmpty()==false) {
-			map.put("addr", addr);
+		if (city != null && city.isEmpty()==false) {
+			map.put("city", city);
 		}
 		if (price != null && price.isEmpty()==false ) {
 			map.put("price", price);

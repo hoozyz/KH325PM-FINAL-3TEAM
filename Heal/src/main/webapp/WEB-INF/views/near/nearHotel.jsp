@@ -52,7 +52,6 @@
                 <div class="pb-4 mb-2">
                   <h3 class="h6">위치</h3>
                   <select class="form-select mb-2" name="city">
-                   <option value="" selected disabled>도/시</option>
                     <option value="" selected disabled>도/시</option>                                              
                     <option value="서울특별시">서울특별시</option>            
                     <option value="부산광역시">부산광역시</option>            
@@ -120,7 +119,7 @@
             
             <div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch my-2">
               <hr class="d-none d-sm-block w-100 mx-4">
-              <div class="d-none d-sm-flex align-items-center flex-shrink-0 text-muted"><i class="fi-check-circle me-2"></i><span class="fs-sm mt-n1">총 ${listCount}</span></div>
+              <div class="d-none d-sm-flex align-items-center flex-shrink-0 text-muted"><i class="fi-check-circle me-2"></i><span class="fs-sm mt-n1">총 ${listCount}건</span></div>
             </div>
             <!-- Catalog grid-->
             <div class="row g-4 py-4">
