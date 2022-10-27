@@ -257,7 +257,7 @@
                                     <div class="ps-1"><span class="tns-current-slide fs-5 fw-bold"></span><span class="fs-5 fw-bold">/</span><span class="tns-total-slides fs-5 fw-bold"></span></div>
                                 </div>
                                 <div class="tns-carousel-inner" data-carousel-options="{&quot;navAsThumbnails&quot;: true, &quot;navContainer&quot;: &quot;#thumbnails&quot;, &quot;gutter&quot;: 12, &quot;responsive&quot;: {&quot;0&quot;:{&quot;controls&quot;: false},&quot;500&quot;:{&quot;controls&quot;: true}}}">
-                                    <div><img class="rounded-3" src="${path}/resources/image/hotelDetail1.jpg" alt="Image"></div>
+                                    <div><img class="rounded-3" src="${path}/resources/image/hoteldetailhotel5.jpg" alt="Image"></div>
                                     <div><img class="rounded-3" src="${path}/resources/image/hotelDetail2.jpg" alt="Image"></div>
                                     <div><img class="rounded-3" src="${path}/resources/image/hotelDetail3.jpg" alt="Image"></div>
                                     <div><img class="rounded-3" src="${path}/resources/image/hotelDetail4.jpg" alt="Image"></div>
@@ -266,7 +266,7 @@
                             </div>
                             <!-- Thumbnails nav-->
                             <ul class="tns-thumbnails mb-4" id="thumbnails">
-                                <li class="tns-thumbnail"><img src="${path}/resources/image/hotelDetail1.jpg" alt="Thumbnail"></li>
+                                <li class="tns-thumbnail"><img src="${path}/resources/image/hoteldetailhotel5.jpg" alt="Thumbnail"></li>
                                 <li class="tns-thumbnail"><img src="${path}/resources/image/hotelDetail2.jpg" alt="Thumbnail"></li>
                                 <li class="tns-thumbnail"><img src="${path}/resources/image/hotelDetail3.jpg" alt="Thumbnail"></li>
                                 <li class="tns-thumbnail"><img src="${path}/resources/image/hotelDetail4.jpg" alt="Thumbnail"></li>
