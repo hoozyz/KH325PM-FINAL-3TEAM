@@ -174,14 +174,14 @@ public class PhotoController {
 		return "/member/myPhoto";
 	}
 
-	@PostMapping("/delete")
+	@GetMapping("/delete")
 	public String delete(Model model, int no, HttpServletRequest req) { // 이전페이지 필요하면 req
 		service.delete(no);
 
 		return "redirect: /photo/main";
 	}
 
-	@PostMapping("/update") 
+	@GetMapping("/update") 
 	public String update(@ModelAttribute Photo photo) {
 		service.update(photo);
 		String no = ""+photo.getNo();

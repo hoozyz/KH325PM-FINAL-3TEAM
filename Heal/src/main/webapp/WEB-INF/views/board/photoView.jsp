@@ -54,7 +54,7 @@
     <section class="container mb-5 pb-2">
         <div class="row align-items-center justify-content-center">
         	<!-- Hero content-->
-          <form class="col-lg-4 col-md-5 col-sm-9 order-md-1 order-2 text-md-start text-center" id="photoForm" method="post">
+          <form class="col-lg-4 col-md-5 col-sm-9 order-md-1 order-2 text-md-start text-center" id="photoForm" method="get">
             <c:if test="${loginMember != null}">
 	          	<input type="hidden" name="no" value="${photo.no}">
 	            <div>

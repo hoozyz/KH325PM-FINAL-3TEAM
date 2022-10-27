@@ -94,7 +94,7 @@
 		                    <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm" type="button" style="float: left; margin-left: 770px;" id="contextMenu1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fi-dots-vertical"></i></button>
 		                  <ul class="dropdown-menu my-1" aria-labelledby="contextMenu1">
 		                    <li>
-		                      <button class="dropdown-item" type="button" onclick="location.href='${path}/board/delete?no=${boardList.get(i).no}'"><i class="fi-trash opacity-60 me-2"></i>삭제</button>
+		                      <button class="dropdown-item" type="button" onclick="deleteRev(${revList.get(i).no})"><i class="fi-trash opacity-60 me-2"></i>삭제</button>
 		                    </li>
 		                  </ul>
 		                  </div>
@@ -256,7 +256,7 @@
 		                <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm" type="button" style="float: left; margin-left: 120px;" id="contextMenu1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fi-dots-vertical"></i></button>
 		                  <ul class="dropdown-menu my-1" aria-labelledby="contextMenu1">
 		                    <li>
-		                      <button class="dropdown-item" type="button" onclick="deleteRev(${repList.get(i).no})"><i class="fi-trash opacity-60 me-2"></i>삭제</button>
+		                      <button class="dropdown-item" type="button" onclick="deleteRep(${repList.get(i).no})"><i class="fi-trash opacity-60 me-2"></i>삭제</button>
 		                    </li>
 		                  </ul>
 	                		</div>
@@ -276,7 +276,7 @@
    					location.href='${path}/review/delete?no=' + no;
    				}
    			}
-   			function deleteRev(no) {
+   			function deleteRep(no) {
    				if(confirm("정말로 삭제하시겠습니까?!")) {
    					location.href='${path}/reply/delete?no=' + no;
    				}

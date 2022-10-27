@@ -58,14 +58,14 @@
 			        <c:if test="${allList.get(i).getClass().toString().contains('Camp')}"> <!-- 캠핑장에 대한 찜일때 -->
 			        	<!-- Item-->
 			        	<div class="card card-hover card-horizontal border-0 shadow-sm mb-4">
-			          <div class="card-img-top position-relative" style="background-image: url(${allList.get(i).image});"><a class="stretched-link" href="real-estate-single-v1.html"></a>
+			          <div class="card-img-top position-relative" style="background-image: url(${allList.get(i).image});"><a class="stretched-link" href="${path}/camp/campDetail?no=${allList.get(i).no}"></a>
 			            <div class="position-absolute end-0 top-0 pt-3 pe-3 zindex-5">
 			              <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle shadow-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" onclick="deleteLike(${likeList.get(i).no})" title="찜 삭제"><i class="fi-heart-filled"></i></button>
 			            </div>
 			          </div>
 			          <div class="card-body position-relative pb-3">
 			            <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">${allList.get(i).category}</h4>
-			            <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">${allList.get(i).name}</a></h3>
+			            <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="${path}/camp/campDetail?no=${allList.get(i).no}">${allList.get(i).name}</a></h3>
 			            <p class="mb-2 fs-sm text-muted">${allList.get(i).addr}</p>
 			            <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>${allList.get(i).price} 원</div>
 			          	</div>
@@ -74,13 +74,13 @@
 			        <c:if test="${allList.get(i).getClass().toString().contains('Hotel')}"> 
 			        	<!-- Item-->
 			        	<div class="card card-hover card-horizontal border-0 shadow-sm mb-4">
-			          <div class="card-img-top position-relative" style="background-image: url()});"><a class="stretched-link" href="real-estate-single-v1.html"></a>
+			          <div class="card-img-top position-relative" style="background-image: url(${allList.get(i).image})});"><a class="stretched-link" href="${path}/hotel/hotelDetail?no=${allList.get(i).no}"></a>
 			            <div class="position-absolute end-0 top-0 pt-3 pe-3 zindex-5">
 			              <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle shadow-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" onclick="deleteLike(${likeList.get(i).no})" title="찜 삭제"><i class="fi-heart-filled"></i></button>
 			            </div>
 			          </div>
 			          <div class="card-body position-relative pb-3">
-			            <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">${allList.get(i).name}</a></h3>
+			            <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="${path}hotel/hotelDetail?no=${allList.get(i).no}">${allList.get(i).name}</a></h3>
 			            <p class="mb-2 fs-sm text-muted">${allList.get(i).addr}</p>
 			            <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>${allList.get(i).price} 원</div>
 			          	</div>
@@ -89,14 +89,14 @@
 			        <c:if test="${allList.get(i).getClass().toString().contains('Festival')}"> 
 			        <!-- Item-->
 			        <div class="card card-hover card-horizontal border-0 shadow-sm mb-4">
-			          <div class="card-img-top position-relative" style="background-image: url(img/real-estate/catalog/16.jpg);"><a class="stretched-link" href="real-estate-single-v1.html"></a>
+			          <div class="card-img-top position-relative" style="background-image: url(${allList.get(i).image});"><a class="stretched-link" href="${path}/festival/festivalDetail?no=${allList.get(i).no}"></a>
 			            <div class="position-absolute end-0 top-0 pt-3 pe-3 zindex-5">
 			              <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle shadow-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" onclick="deleteLike(${likeList.get(i).no})" title="찜 삭제"><i class="fi-heart-filled"></i></button>
 			            </div>
 			          </div>
 			          <div class="card-body position-relative pb-3">
 			            <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">${allList.get(i).place}</h4>
-			            <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">${allList.get(i).name}</a></h3>
+			            <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="${path}/festival/festivalDetail?no=${allList.get(i).no}">${allList.get(i).name}</a></h3>
 			            <p class="mb-2 fs-sm text-muted">${allList.get(i).addr}</p>
 			            <div class="d-flex align-items-center justify-content-center justify-content-sm-start border-top pt-3 pb-2 mt-3 text-nowrap">
 			            <span class="d-inline-block me-4 fs-sm">${allList.get(i).startdate} ~ ${allList.get(i).enddate}</span>
@@ -107,14 +107,14 @@
 			        <c:if test="${allList.get(i).getClass().toString().contains('Food')}"> 
 			        <!-- Item-->
 			        <div class="card card-hover card-horizontal border-0 shadow-sm mb-4">
-			          <div class="card-img-top position-relative" style="background-image: url(img/real-estate/catalog/16.jpg);"><a class="stretched-link" href="real-estate-single-v1.html"></a>
+			          <div class="card-img-top position-relative" style="background-image: url(${allList.get(i).image});"><a class="stretched-link" href="${path}/food/foodDetail?no=${allList.get(i).no}"></a>
 			          <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">${allList.get(i).type}</span></div>
 			            <div class="position-absolute end-0 top-0 pt-3 pe-3 zindex-5">
 			            <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle shadow-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" onclick="deleteLike(${likeList.get(i).no})" title="찜 삭제"><i class="fi-heart-filled"></i></button>
 			            </div>
 			          </div>
 			          <div class="card-body position-relative pb-3">
-			            <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">${allList.get(i).name}</a></h3>
+			            <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="${path}/food/foodDetail?no=${allList.get(i).no}">${allList.get(i).name}</a></h3>
 			            <p class="mb-2 fs-sm text-muted">${allList.get(i).addr}</p>
 			            <div class="d-flex align-items-center justify-content-center justify-content-sm-start border-top pt-3 pb-2 mt-3 text-nowrap">
 			            <span class="d-inline-block me-4 fs-sm">주요음식&nbsp :&nbsp&nbsp ${allList.get(i).main}</span>
@@ -125,14 +125,14 @@
 			        <c:if test="${allList.get(i).getClass().toString().contains('Park')}"> 
 			        <!-- Item-->
 			        <div class="card card-hover card-horizontal border-0 shadow-sm mb-4">
-			          <div class="card-img-top position-relative" style="background-image: url(img/real-estate/catalog/16.jpg);"><a class="stretched-link" href="real-estate-single-v1.html"></a>
+			          <div class="card-img-top position-relative" style="background-image: url(${allList.get(i).image});"><a class="stretched-link" href="${path}/park/parkDetail?no=${allList.get(i).no}"></a>
 			            <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success mb-1">${allList.get(i).category}</span></div>
 			            <div class="position-absolute end-0 top-0 pt-3 pe-3 zindex-5">
 			            <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle shadow-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" onclick="deleteLike(${likeList.get(i).no})" title="찜 삭제"><i class="fi-heart-filled"></i></button>
 			            </div>
 			          </div>
 			          <div class="card-body position-relative pb-3">
-			            <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">${allList.get(i).name}</a></h3>
+			            <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="${path}/park/parkDetail?no=${allList.get(i).no}">${allList.get(i).name}</a></h3>
 			            <p class="mb-2 fs-sm text-muted">${allList.get(i).addr}</p>
 			            <div class="d-flex align-items-center justify-content-center justify-content-sm-start border-top pt-3 pb-2 mt-3 text-nowrap">
 			            <span class="d-inline-block me-4 fs-sm">운동시설 &nbsp :&nbsp&nbsp ${allList.get(i).sport}</span>
