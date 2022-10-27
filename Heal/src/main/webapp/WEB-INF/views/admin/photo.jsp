@@ -25,7 +25,7 @@
           <aside class="col-lg-4 col-md-5 pe-xl-4 mb-5">
             <!-- Account nav-->
             <div class="card card-body border-0 shadow-sm pb-1 me-lg-1">
-              <div class="d-flex d-md-block d-lg-flex align-items-start pt-lg-2 mb-4"><img class="rounded-circle" src="img/avatars/03.jpg" width="48" alt="Annette Black">
+              <div class="d-flex d-md-block d-lg-flex align-items-start pt-lg-2 mb-4"><img class="rounded-circle" src="${path}/resources/image/13.png" width="48" alt="Annette Black">
                 <div class="pt-md-2 pt-lg-0 ps-3 ps-md-0 ps-lg-3">
                   <h2 class="fs-lg mb-0">관리자</h2>
                   <ul class="list-unstyled fs-sm mt-3 mb-0">
@@ -69,7 +69,7 @@
                     </c:if>
              		   <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info">${list.get(i).category}</span></div></a>
 		         		<div class="card-body position-relative pb-3">
-		                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">${list.get(i).title}</a></h3>
+		                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="${path}/photo/view?no=${list.get(i).no}">${list.get(i).title}</a></h3>
 		                <p class="mb-2 fs-sm text-muted" style="word-break:break-all;">${list.get(i).cont}</p>
 		                <div class="d-flex align-items-center justify-content-center justify-content-sm-start border-top pt-3 pb-2 mt-3 text-nowrap">
 		                <span class="d-inline-block me-4 fs-sm">조회수 : ${list.get(i).readcount}</span>

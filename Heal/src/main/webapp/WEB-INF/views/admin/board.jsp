@@ -24,7 +24,7 @@
           <aside class="col-lg-4 col-md-5 pe-xl-4 mb-5">
             <!-- Account nav-->
             <div class="card card-body border-0 shadow-sm pb-1 me-lg-1">
-              <div class="d-flex d-md-block d-lg-flex align-items-start pt-lg-2 mb-4"><img class="rounded-circle" src="img/avatars/03.jpg" width="48" alt="Annette Black">
+              <div class="d-flex d-md-block d-lg-flex align-items-start pt-lg-2 mb-4"><img class="rounded-circle" src="${path}/resources/image/13.png" width="48" alt="Annette Black">
                 <div class="pt-md-2 pt-lg-0 ps-3 ps-md-0 ps-lg-3">
                   <h2 class="fs-lg mb-0">관리자</h2>
                   <ul class="list-unstyled fs-sm mt-3 mb-0">
@@ -58,7 +58,7 @@
 		                <!-- Review-->
 		                <div class="mb-4 pb-4 border-bottom">
 		                  <div class="d-flex justify-content-between mb-3">
-		                    <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/03.jpg" width="48" alt="Avatar">
+		                    <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="${path}/resources/image/13.png" width="48" alt="Avatar">
 		                      <div class="ps-2">
 		                        <h6 class="fs-base mb-0">${list.get(i).title}</h6><span class="star-rating">${memList.get(i).id}</span>
 		                      </div>

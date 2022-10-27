@@ -62,6 +62,11 @@
  		ORDER BY NO DESC
 	</select>
 	
+	<select id="getPhotoCountAll" resultType="int">
+ 		SELECT COUNT(*)
+ 		FROM TBL_PHOTO
+	</select>
+	
 	<select id="getPhotoCount" parameterType="map" resultType="int">
  		SELECT COUNT(*)
  		FROM TBL_PHOTO
