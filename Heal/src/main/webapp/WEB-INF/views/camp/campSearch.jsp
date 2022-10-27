@@ -11,11 +11,15 @@
 <c:set var="addr" value="${param.addr}"/>
 <c:set var="theme" value="${param.theme}"/>
 <c:set var="category" value="${param.category}"/>
+<c:set var="price" value="${param.price}"/>
+<c:set var="price2" value="${param.price2}"/>
 
 <input type="hidden" id="keyword" value="${keyword}" > 
 <input type="hidden" id="addr" value="${addr}" >  
 <input type="hidden" id="theme" value="${theme}" >  
 <input type="hidden" id="category" value="${category}" >  
+<input type="hidden" id="price" value="${price}" >  
+<input type="hidden" id="price2" value="${price2}" >  
 
 
 <main>
@@ -110,19 +114,20 @@
                   <h3 class="h6">소형기준 1박 가격</h3>
                   <div class="ps-2" style="width:180px;">
                         <div class="input-group">
-                          <input class="form-control range-slider-value-min" type="text" name="money">
+                          <input class="form-control range-slider-value-min" type="text" name="price" >
                           <span class="input-group-text fs-base">원</span>
                         </div>
                       </div>
                       <div class="text-muted" style="margin-left: 90px;">~</div>
                       <div class="ps-2" style="width:180px;">
                         <div class="input-group">
-                          <input class="form-control" type="text" name="money">
+                          <input class="form-control" type="text" name="price2">
                           <span class="input-group-text fs-base">원</span>
                         </div>
                       </div>
                 </div>
                 <div class="border-top py-4">
+                    <button class="btn btn-outline-primary" type="button" onclick="window.location.reload()"><i class="fi-rotate-right me-2"></i>조건 새로고침</button>
                 </div>
               </div>
             </form>
@@ -149,7 +154,7 @@
             <div id="rightSide" style="">
             	<div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch my-2">
               <hr class="d-none d-sm-block w-100 mx-4">
-              <div class="d-none d-sm-flex align-items-center flex-shrink-0 text-muted"><i class="fi-check-circle me-2"></i><span class="fs-sm mt-n1">${listCount} 개</span></div>
+              <div class="d-none d-sm-flex align-items-center flex-shrink-0 text-muted"><i class="fi-check-circle me-2"></i><span class="fs-sm mt-n1">총 ${listCount}</span></div>
             </div>
             <!-- Catalog grid-->
             <div class="row g-4 py-4">
@@ -329,8 +334,12 @@
 		var addr = document.getElementById("addr");  
 		var theme = document.getElementById("theme");  
 		var category = document.getElementById("category");  
+		var price = document.getElementById("price");  
+		var price2 = document.getElementById("price2");  
+
 		
-		pageUrl = pageUrl + '&keyword='+ keyword.value + '&addr=' + addr.value + '&theme=' + theme.value + '&category=' + category.value  ;  
+		
+		pageUrl = pageUrl + '&keyword='+ keyword.value + '&addr=' + addr.value + '&theme=' + theme.value + '&category=' + category.value + '&price=' + price.value + '&price2=' + price2.value  ;  
 		
 		location.href = encodeURI(pageUrl);	
 	}

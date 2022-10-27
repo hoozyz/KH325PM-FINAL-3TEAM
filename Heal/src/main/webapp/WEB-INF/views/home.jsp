@@ -1296,7 +1296,7 @@ else{
     
    
 
-    <section class="container-fluid mb-5 mt-n3 mt-lg-0 pt-4" style="background: #e4dabe; height:550px;">
+    <section class="container-fluid mb-5 mt-n3 mt-lg-0 pt-4" style="background:#CCD2F0; height:550px;">
         <section class="container mb-5 pb-2">
             <div class="d-flex align-items-center justify-content-between mb-3">
                 <h2 class="mb-0">진행중인 <span style="color:#f7b202">축제</span> <span class="h2_span">현재 진행중인 축제를 즐겨보세요!</span></h2>
@@ -1457,10 +1457,10 @@ else{
         <div class="container mb-3">
             <div class="row">
                 <div class="col-lg-7">
-                    <h2 class="h3 w-100 ">전국 맛집</h2>
+                    <h2 class=" w-100 ">전국 맛집</h2>
                 </div>
                 <div class="col-lg-5">
-                    <h2 class="h3 w-100 ">H.Mall</h2>
+                    <h2 class=" w-100 ">H.Mall</h2>
                 </div>
             </div>
             <div class="row">

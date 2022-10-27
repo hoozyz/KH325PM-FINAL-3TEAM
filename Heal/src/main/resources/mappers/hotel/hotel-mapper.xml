@@ -30,6 +30,9 @@
 			<if test="city != null">
 			AND ADDR LIKE '%'||#{city}||'%'
 		</if>
+		<if test="price != null">
+			AND PRICE BETWEEN #{price} AND #{price2}	
+		</if>
 		ORDER BY NO DESC
 	</select>
 		
@@ -40,8 +43,11 @@
 		<if test="keyword != null">
 			AND NAME LIKE '%'||#{keyword}||'%'
 		</if>
-			<if test="city != null">
+		<if test="city != null">
 			AND ADDR LIKE '%'||#{city}||'%'
+		</if>
+		<if test="price != null">
+			AND PRICE BETWEEN #{price} AND #{price2}	
 		</if>
 		ORDER BY NO DESC
 	</select> 

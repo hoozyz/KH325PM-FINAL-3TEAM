@@ -154,12 +154,12 @@
     	
 /*     	소제목 css */
     	 h2 {
-		        font-size: 35px
+		        font-size: 40px
 		    }
 		    
 	    .h2_span {
-	        font-size: 17px;
-	        font-weight: 500;
+	        font-size: 19px;
+	        font-weight: 600;
 	    }
 /*     	소제목 css 끝 */
 		    

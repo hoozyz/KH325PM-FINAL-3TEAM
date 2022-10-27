@@ -1,5 +1,6 @@
 package com.bc.heal.camp.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +25,36 @@ public class CampServiceImpl implements CampService{
 
 	@Override
 	public int getCampCount(Map<String, String> param) {
-		return mapper.selectCampCount(param);
+		
+		Map<String, String> map = new HashMap<String, String>();
+		String keyword = param.get("keyword");
+		String addr = param.get("addr");
+		String theme = param.get("theme");
+		String category = param.get("category");
+		String price = param.get("price");
+		String price2 = param.get("price2");
+		
+		if (keyword != null && keyword.isEmpty()==false) {
+			map.put("keyword", keyword);
+		}
+		if (addr != null && addr.isEmpty()==false) {
+			map.put("addr", addr);
+		}
+		if (theme != null && theme.isEmpty()==false ) {
+			map.put("theme", theme);
+		} 
+		if (category != null && category.isEmpty()==false ) {
+			map.put("category", category);
+		}
+		if (price != null && price.isEmpty()==false ) {
+			map.put("price", price);
+		}
+		if (price2 != null && price2.isEmpty()==false) {
+			map.put("price2", price2);
+		}
+		
+		
+		return mapper.selectCampCount(map);
 	}
 
 	@Override
@@ -32,7 +62,36 @@ public class CampServiceImpl implements CampService{
 		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
 		RowBounds rowBounds = new RowBounds(offset, pageInfo.getListLimit());
 		
-		return mapper.selectCampList(rowBounds, param);
+		Map<String, String> map = new HashMap<String, String>();
+		String keyword = param.get("keyword");
+		String addr = param.get("addr");
+		String theme = param.get("theme");
+		String category = param.get("category");
+		String price = param.get("price");
+		String price2 = param.get("price2");
+		
+		if (keyword != null && keyword.isEmpty()==false) {
+			map.put("keyword", keyword);
+		}
+		if (addr != null && addr.isEmpty()==false) {
+			map.put("addr", addr);
+		}
+		if (theme != null && theme.isEmpty()==false ) {
+			map.put("theme", theme);
+		} 
+		if (category != null && category.isEmpty()==false ) {
+			map.put("category", category);
+		}
+		if (price != null && price.isEmpty()==false ) {
+			map.put("price", price);
+		}
+		if (price2 != null && price2.isEmpty()==false) {
+			map.put("price2", price2);
+		}
+		
+		
+		
+		return mapper.selectCampList(rowBounds, map);
 	}
 
 	@Override

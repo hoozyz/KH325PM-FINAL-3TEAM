@@ -11,11 +11,13 @@
 
 <c:set var="keyword" value="${param.keyword}"/>
 <c:set var="searchcity" value="${param.city}"/>
-<c:set var="searchmoney" value="${param.money}"/>
+<c:set var="searchprice" value="${param.price}"/>
+<c:set var="searchprice2" value="${param.price2}"/>
 
 <input type="hidden" id="keyword" value="${keyword}" > 
 <input type="hidden" id="city" value="${searchcity}" > 
-<input type="hidden" id="money" value="${searchmoney}" > 
+<input type="hidden" id="price" value="${searchprice}" > 
+<input type="hidden" id="price2" value="${searchprice2}" > 
 
 
 
@@ -70,14 +72,14 @@
                   <h3 class="h6">1박당 가격</h3>
                   	 <div class="ps-2" style="width:180px;">
                         <div class="input-group">
-                          <input class="form-control range-slider-value-min" type="text" name="money">
+                          <input class="form-control range-slider-value-min" type="text" name="price">
                           <span class="input-group-text fs-base">원</span>
                         </div>
                       </div>
                       <div class="text-muted" style="margin-left: 90px;">~</div>
                       <div class="ps-2" style="width:180px;">
                         <div class="input-group">
-                          <input class="form-control" type="text" name="money">
+                          <input class="form-control" type="text" name="price2">
                           <span class="input-group-text fs-base">원</span>
                         </div>
                       </div>
@@ -128,7 +130,7 @@
 									</div>
 									<div class="">
 									<!-- 이미지는 임시, 페이징 다 끝내면 디폴트로 첫 페이지는 임의로 12개 구성 -->
-										<img src="${path}/resources/image/hotelhotel<%=Math.round(Math.random()* 9 + 1)%>.jpg" alt="Image" style="width: 100%;  height: 150px;  object-fit: cover;">
+										<img src="${path}/resources/image/hotelhotel<%=Math.round(Math.random()* 17 + 1)%>.jpg" alt="Image" style="width: 100%;  height: 150px;  object-fit: cover;">
 									</div>
 								</div>
 								<div class="card-body position-relative pb-3"
@@ -255,12 +257,11 @@
 	function movePage(pageUrl) {
 		var keyword = document.getElementById("keyword");
 		var addr = document.getElementById("city");
-		var price = document.getElementById("money");
+		var price = document.getElementById("price");
+		var price2 = document.getElementById("price2");
 
-		pageUrl = pageUrl 
-		+ '&keyword=' + keyword.value 
-		+ '&city=' + city.value
-		+ '&money=' + money.value;
+		pageUrl = pageUrl + '&keyword=' + keyword.value + '&city=' + city.value + '&price=' + price.value + '&price2=' + price2.value;
+	
 		location.href = encodeURI(pageUrl);
 	}
 </script>

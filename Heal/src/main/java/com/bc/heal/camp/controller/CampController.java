@@ -103,6 +103,9 @@ public class CampController {
 		model.addAttribute("campList", campList);
 		model.addAttribute("param", param);
 		model.addAttribute("pageInfo", pageInfo);
+		
+		System.out.println("컨트롤부: "+param);
+		
 
 		return "/camp/campSearch";
 	}

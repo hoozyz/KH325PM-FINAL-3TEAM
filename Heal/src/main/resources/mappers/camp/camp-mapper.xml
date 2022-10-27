@@ -45,7 +45,7 @@
 			AND CATEGORY LIKE '%'||#{category}||'%'
 		</if>
 		<if test="price != null">
-			AND PRICE LIKE '%'||#{price}||'%'
+			AND PRICE BETWEEN #{price} AND #{price2}	
 		</if>
 		ORDER BY NO DESC
 	</select>
@@ -68,9 +68,8 @@
 			AND CATEGORY LIKE '%'||#{category}||'%'
 		</if>
 		<if test="price != null">
-			AND PRICE LIKE '%'||#{price}||'%'
+			AND PRICE BETWEEN #{price} AND #{price2}	
 		</if>
-		ORDER BY NO DESC
 	</select>
 	
 	<update id="updateCamp" parameterType="string">
