@@ -1150,8 +1150,8 @@
             <!-- Breadcrumb-->
             <nav class="mb-3 pt-md-3" aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/">HEALING</a></li>
-                    <li class="breadcrumb-item"><a href="${path}/park/parkList">공원</a></li>
+                    <li class="breadcrumb-item"><a href="/">HEALERS</a></li>
+                    <li class="breadcrumb-item"><a href="${path}/park/parkMain">공원</a></li>
                     <li class="breadcrumb-item active" aria-current="page">${park.name}</li>
                 </ol>
             </nav>

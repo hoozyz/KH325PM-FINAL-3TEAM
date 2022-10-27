@@ -13,7 +13,7 @@
         <!-- Breadcrumb-->
         <nav class="mb-4 pt-md-3" aria-label="Breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">HEALING</a></li>
+            <li class="breadcrumb-item"><a href="/">HEALERS</a></li>
             <li class="breadcrumb-item"><a href="${path}/member/myInfo">마이페이지</a></li>
             <li class="breadcrumb-item active" aria-current="page">나의 예약</li>
           </ol>

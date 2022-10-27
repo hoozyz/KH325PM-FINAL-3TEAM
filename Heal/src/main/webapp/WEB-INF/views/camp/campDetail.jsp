@@ -1123,8 +1123,8 @@
             <!-- Breadcrumb-->
             <nav class="mb-3 pt-md-3" aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="real-estate-home-v1.html">홈페이지</a></li>
-                    <li class="breadcrumb-item"><a href="real-estate-catalog-rent.html">캠핑장</a></li>
+                    <li class="breadcrumb-item"><a href="/">HEALERS</a></li>
+                    <li class="breadcrumb-item"><a href="${path}/camp/campMain">캠핑장</a></li>
                     <li class="breadcrumb-item active" aria-current="page">${camp.name}</li>
                 </ol>
             </nav>

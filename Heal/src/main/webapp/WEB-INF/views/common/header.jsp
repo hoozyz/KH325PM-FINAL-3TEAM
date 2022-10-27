@@ -189,7 +189,7 @@
                     <div class="modal-body">
                         <button class="btn-close position-absolute top-0 end-0 mt-3 me-3" type="button" data-bs-dismiss="modal"></button>
                             <div>
-                               <img class="d-block mx-auto" src="" width="344" alt="Illustartion">
+                               <img class="d-block mx-auto" src="${path}/resources/image/logotest5.png" width="344" alt="Illustartion">
                             </div>
                             <div>
                                 <form class="needs-validation" action="${path}/login" method="POST">
@@ -232,7 +232,7 @@
                         <button class="btn-close position-absolute top-0 end-0 mt-3 me-3" type="button" data-bs-dismiss="modal"></button>
                         <div class="mx-0 align-items-center">
                             <div>
-                               <img class="d-block mx-auto" src="${path}/resources/image/" width="344" alt="Illustartion">
+                               <img class="d-block mx-auto mb-2" src="${path}/resources/image/logotest5.png" width="344" alt="Illustartion">
                             </div>
                             <div class="px-4 pb-4 px-sm-5 pb-sm-5">
                                 <form class="needs-validation" action="${path}/member/enroll" method="POST" novalidate>

@@ -1121,7 +1121,7 @@
             <!-- Breadcrumb-->
             <nav class="mb-3 pt-md-3" aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="${path}/">홈페이지</a></li>
+                    <li class="breadcrumb-item"><a href="${path}/">HEALERS</a></li>
                     <li class="breadcrumb-item"><a href="${path}/festival/festivalMain">축제</a></li>
                     <li class="breadcrumb-item active" aria-current="page">${festival.name}</li>
                 </ol>

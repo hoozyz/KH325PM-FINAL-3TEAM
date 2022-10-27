@@ -144,7 +144,7 @@
             <!-- Breadcrumb-->
             <nav class="mb-3 pt-md-2" aria-label="Breadcrumb">
               <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="${path}/">HEALING</a></li>
+                <li class="breadcrumb-item"><a href="${path}/">HEALERS</a></li>
                 <li class="breadcrumb-item active" aria-current="page">캠핑장 검색 결과</li>
               </ol>
             </nav>

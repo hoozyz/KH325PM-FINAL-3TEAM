@@ -1696,8 +1696,8 @@
             <!-- Breadcrumb-->
             <nav class="mb-3 pt-md-3" aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="${path}/home">홈페이지</a></li>
-                    <li class="breadcrumb-item"><a href="${path}/nearFood">음식점</a></li>
+                    <li class="breadcrumb-item"><a href="${path}/">HEALERS</a></li>
+                    <li class="breadcrumb-item"><a href="${path}/near/nearFood">음식점</a></li>
                     <li class="breadcrumb-item active" aria-current="page">${food.name}</li>
                 </ol>
             </nav>
