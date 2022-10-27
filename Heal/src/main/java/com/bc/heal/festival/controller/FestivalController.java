@@ -97,7 +97,7 @@ public class FestivalController {
 		System.out.println("총 게시글 수  : " + listCount);
 		model.addAttribute("listCount", listCount);
 		
-		PageInfo pageInfo = new PageInfo(page, 10, listCount, 6);
+		PageInfo pageInfo = new PageInfo(page, 5, listCount, 6);
 		List<Festival> list = service.getFestivalList(pageInfo, param);
 		
 		model.addAttribute("list", list);

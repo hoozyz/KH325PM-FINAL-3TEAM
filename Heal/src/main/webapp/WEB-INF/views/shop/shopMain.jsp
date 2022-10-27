@@ -584,7 +584,7 @@
         <section class="container mb-5 pb-md-4">
             <div class="d-flex align-items-center justify-content-between mb-3">
                 <h2 class="mb-0">인생은 먹는 재미</h2>
-                <a class="btn btn-link fw-normal p-0" href="real-estate-catalog-rent.html">View all<i class="fi-arrow-long-right ms-2"></i></a>
+                <a class="btn btn-link fw-normal p-0" href="real-estate-catalog-rent.html">더보기<i class="fi-arrow-long-right ms-2"></i></a>
             </div>
             <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside tns-nav-outside-flush mx-n2">
                 <div class="tns-carousel-inner row gx-4 mx-0 pt-3 pb-4" data-carousel-options="{&quot;items&quot;: 4, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3},&quot;992&quot;:{&quot;items&quot;:4}}}">
@@ -621,7 +621,7 @@
         <!-- Top offers (carousel)-->
         <section class="container mb-5 pb-md-4">
             <div class="d-flex align-items-center justify-content-between mb-3">
-                <h2 class=" mb-0">요리는 도구빨</h2><a class="btn btn-link fw-normal p-0" href="real-estate-catalog-rent.html">View all<i class="fi-arrow-long-right ms-2"></i></a>
+                <h2 class=" mb-0">요리는 도구빨</h2><a class="btn btn-link fw-normal p-0" href="real-estate-catalog-rent.html">더보기<i class="fi-arrow-long-right ms-2"></i></a>
             </div>
             <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside tns-nav-outside-flush mx-n2">
                 <div class="tns-carousel-inner row gx-4 mx-0 pt-3 pb-4" data-carousel-options="{&quot;items&quot;: 4, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3},&quot;992&quot;:{&quot;items&quot;:4}}}">

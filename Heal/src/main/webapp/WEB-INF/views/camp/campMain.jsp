@@ -59,7 +59,7 @@
                             <div class="row g-0">
                                 <div class="col-md-10 d-sm-flex align-items-center">
                                     <div class="input-group input-group-lg border-end-md"><span class="input-group-text text-muted rounded-pill ps-3"><i class="fi-search"></i></span>
-                                        <input class="form-control" name="keyword" type="text" placeholder="키워드를 입력하세요">
+                                        <input class="form-control" name="keyword" type="text" placeholder="캠핑을 검색하세요">
                                     </div>
                                     <hr class="d-sm-none my-2">
                                     <div class="dropdown w-sm-50 border-end-sm" data-bs-toggle="select">
@@ -69,7 +69,6 @@
                                             <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">서울특별시</span></a></li>
                                             <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">부산광역시</span></a></li>
                                             <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">대구광역시</span></a></li>
-                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">부산광역시</span></a></li>
                                             <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">인천광역시</span></a></li>
                                             <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">광주광역시</span></a></li>
                                             <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">대전광역시</span></a></li>
@@ -83,7 +82,7 @@
                                             <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">전라남도</span></a></li>
                                             <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">경상북도</span></a></li>
                                             <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">경상남도</span></a></li>
-                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">제주도</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">제주특별자치도</span></a></li>
                                         </ul>
                                     </div>
                                     <hr class="d-sm-none my-2">

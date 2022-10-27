@@ -80,7 +80,7 @@
                     <hr class="d-md-none my-2">
                     <div class="d-sm-flex">
                     <div class="dropdown w-100 mb-sm-0 mb-3 border-end-md">      	
-                    <select class="form-select" style="width:75pt; margin-top:6px;" name="city">			
+                    <select class="form-select" style="width:120pt; margin-top:6px;" name="addr">			
 					<option value="" selected disabled>도/시</option>
                     <option value="서울특별시">서울특별시</option>                                             
                     <option value="부산광역시">부산광역시</option>
@@ -89,16 +89,21 @@
                     <option value="광주광역시">광주광역시</option>
                     <option value="대전광역시">대전광역시</option>
                     <option value="울산광역시">울산광역시</option>
+                    <option value="세종특별시">세종특별시</option>
                     <option value="경기도">경기도</option>
                     <option value="강원도">강원도</option>
-                    <option value="충청도">충청도</option>
-                    <option value="전라도">전라도</option>
-                    <option value="경상도">경상도</option>
+                    <option value="충청북도">충청북도</option>
+                    <option value="충청남도">충청남도</option>
+                    <option value="전라북도">전라북도</option>
+                    <option value="전라남도">전라남도</option>
+                    <option value="경상북도">경상북도</option>
+                    <option value="경상남도">경상남도</option>
                     <option value="제주특별자치도">제주특별자치도</option>                
                  	 </select>                
                         </div>
                         <div class="dropdown w-100 mb-sm-0 mb-3" data-bs-toggle="select">                       
-                    <select class="form-select mb-2" name="typeCtg" style="width:80pt; margin-top:6px;" onchange="setType(this.value);">			
+                    <select class="form-select mb-2" name="typeCtg" style="width:80pt; margin-top:6px;" onchange="setType(this.value);">
+					<option value="" selected disabled>테마</option>
 					<option value="캠핑장">캠핑장</option>
                     <option value="공원">공원</option>                                             
                     <option value="축제">축제</option>
@@ -113,28 +118,26 @@
     
     <!-- 카테고리 검색 ~ 액션태그 --> 
     <script>
-function setType(param){
-
-alert(param);
-
-if(param == "캠핑장"){
-	$("#searchFrm").attr("action","${path}/camp/campSearch")
-	}
-	
-else if(param == "공원"){
-	$("#searchFrm").attr("action","${path}/park/parkList")
-	}
-	
-else if(param == "축제"){
-	$("#searchFrm").attr("action","${path}/festival/festivalSearch")
-	}
-	
-else{
-	$("#searchFrm").attr("action", "")
-	}
-
-}
-</script> 
+		function setType(param){
+		
+		if(param == "캠핑장"){
+			$("#searchFrm").attr("action","${path}/camp/campSearch")
+			}
+			
+		else if(param == "공원"){
+			$("#searchFrm").attr("action","${path}/park/parkList")
+			}
+			
+		else if(param == "축제"){
+			$("#searchFrm").attr("action","${path}/festival/festivalSearch")
+			}
+			
+		else{
+			$("#searchFrm").attr("action", "")
+			}
+		
+		}
+	</script> 
 
 		<div class="modal fade" id="modal-air" tabindex="-1"> 
             <div class="modal-dialog modal-dialog-centered" role="document" style="margin-left: 800px;">
@@ -1294,9 +1297,7 @@ else{
         </div>
     </section>
     
-   
-
-    <section class="container-fluid mb-5 mt-n3 mt-lg-0 pt-4" style="background:#CCD2F0; height:550px;">
+        <section class="container-fluid mb-5 mt-n3 mt-lg-0 pt-4" style="background:#CCD2F0; height:550px;">
         <section class="container mb-5 pb-2">
             <div class="d-flex align-items-center justify-content-between mb-3">
                 <h2 class="mb-0">진행중인 <span style="color:#f7b202">축제</span> <span class="h2_span">현재 진행중인 축제를 즐겨보세요!</span></h2>
@@ -1457,10 +1458,10 @@ else{
         <div class="container mb-3">
             <div class="row">
                 <div class="col-lg-7">
-                    <h2 class=" w-100 ">전국 맛집</h2>
+                    <h2 class="w-100 ">전국 맛집</h2>
                 </div>
                 <div class="col-lg-5">
-                    <h2 class=" w-100 ">H.Mall</h2>
+                    <h2 class="w-100 ">H.Mall</h2>
                 </div>
             </div>
             <div class="row">

@@ -309,7 +309,7 @@
                         </li>
                         
                         
-                        <li class="nav-item px-3"><a class="nav-link" href="${path}/shop/main" role="button" aria-expanded="false" id="NSR">H.Mall몰</a></li>
+                        <li class="nav-item px-3"><a class="nav-link" href="${path}/shop/main" role="button" aria-expanded="false" id="NSR">H.Mall</a></li>
                         <li class="nav-item dropdown px-3"><a class="nav-link dropdown" href="${path}/photo/main" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="NSR">게시판</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="${path}/photo/main">포토게시판</a></li>

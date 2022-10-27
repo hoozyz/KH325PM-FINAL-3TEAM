@@ -37,7 +37,7 @@
                   <h3 class="h6" style="margin-left: 20px;">캠핑장명 검색</h3>
                 <div class="form-group mb-lg-2 rounded-pill" style="height: 53px;">
                   <div class="input-group"><span class="input-group-text text-muted"><i class="fi-search"></i></span>
-                    <input class="form-control" type="text"  name="keyword" placeholder="검색어를 입력하세요">
+                    <input class="form-control" type="text" value="${param.keyword}" name="keyword" placeholder="검색어를 입력하세요">
                   </div>
                   <input class="btn btn-primary rounded-pill d-lg-inline-block d-none" type="submit" value="검색">
                   <button class="btn btn-icon btn-primary rounded-circle flex-shrink-0 d-lg-none d-inline-flex" type="button">
@@ -52,19 +52,23 @@
                   <h3 class="h6">위치</h3>
                   <select class="form-select mb-2" name="addr">
                     <option value="" selected disabled>도/시</option>
-                    <option value="서울특별시">서울특별시</option>
-                    <option value="부산광역시">부산광역시</option>
-                    <option value="대구광역시">대구광역시</option>
-                    <option value="인천광역시">인천광역시</option>
-                    <option value="광주광역시">광주광역시</option>
-                    <option value="대전광역시">대전광역시</option>
-                    <option value="울산광역시">울산광역시</option>
-                    <option value="경기">경기도</option>
-                    <option value="강원">강원도</option>
-                    <option value="충청">충청도</option>
-                    <option value="전라">전라도</option>
-                    <option value="경상">경상도</option>
-                    <option value="제주">제주특별자치도</option>
+                    <option value="서울특별시">서울특별시</option>    
+                    <option value="부산광역시">부산광역시</option>    
+                    <option value="대구광역시">대구광역시</option>    
+                    <option value="인천광역시">인천광역시</option>    
+                    <option value="광주광역시">광주광역시</option>    
+                    <option value="대전광역시">대전광역시</option>    
+                    <option value="울산광역시">울산광역시</option>    
+                    <option value="세종특별시">세종특별시</option>    
+                    <option value="경기도">경기도</option>        
+                    <option value="강원도">강원도</option>        
+                    <option value="충청북도">충청북도</option>      
+                    <option value="충청남도">충청남도</option>      
+                    <option value="전라북도">전라북도</option>      
+                    <option value="전라남도">전라남도</option>      
+                    <option value="경상북도">경상북도</option>      
+                    <option value="경상남도">경상남도</option>      
+                    <option value="제주특별자치도">제주특별자치도</option>
                   </select>
                 </div>
                 <div class="pb-4">
@@ -87,7 +91,7 @@
                 </div>
                 
                 
-                <div class="pb-4">
+                <div class="">
                   <h3 class="h6">카테고리</h3>
                   <div class="overflow-auto" data-simplebar data-simplebar-auto-hide="false" style="height: 11rem;">
                     <div class="form-check">
@@ -154,7 +158,7 @@
             <div id="rightSide" style="">
             	<div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch my-2">
               <hr class="d-none d-sm-block w-100 mx-4">
-              <div class="d-none d-sm-flex align-items-center flex-shrink-0 text-muted"><i class="fi-check-circle me-2"></i><span class="fs-sm mt-n1">총 ${listCount}</span></div>
+              <div class="d-none d-sm-flex align-items-center flex-shrink-0 text-muted"><i class="fi-check-circle me-2"></i><span class="fs-sm mt-n1">총 ${listCount}건</span></div>
             </div>
             <!-- Catalog grid-->
             <div class="row g-4 py-4">

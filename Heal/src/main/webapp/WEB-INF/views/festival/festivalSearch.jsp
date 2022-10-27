@@ -50,7 +50,12 @@
 							<div class="pb-4 mb-2">
 								<h3 class="h6">위치</h3>
 								<select class="form-select mb-2" name="addr">
-									<option value="${param.addr}" selected disabled>${param.addr}</option>
+									<c:if test="${empty param.addr}">
+										<option value="" selected disabled>도/시</option>
+									</c:if>
+									<c:if test="${!empty param.addr}">
+										<option value="${param.addr}" selected disabled>${param.addr}</option>
+									</c:if>
 									<option value="서울특별시">서울특별시</option>
 									<option value="부산광역시">부산광역시</option>
 									<option value="대구광역시">대구광역시</option>
@@ -116,7 +121,7 @@
               <div class="d-flex align-items-center flex-shrink-0">
               </div>
               <hr class="d-none d-sm-block w-100 mx-4">
-              <div class="d-none d-sm-flex align-items-center flex-shrink-0 text-muted"><i class="fi-check-circle me-2"></i><span class="fs-sm mt-n1">${listCount} 건</span></div>
+              <div class="d-none d-sm-flex align-items-center flex-shrink-0 text-muted"><i class="fi-check-circle me-2"></i><span class="fs-sm mt-n1">총 ${listCount}건</span></div>
             </div>
 			<!-- Catalog grid-->
 			<div class="search-data row g-4 py-4">

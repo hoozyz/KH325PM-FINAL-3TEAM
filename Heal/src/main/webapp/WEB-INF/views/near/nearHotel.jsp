@@ -33,8 +33,8 @@
               </div>
               <div class="offcanvas-header d-block border-bottom pt-0 pt-lg-4 px-lg-0">
                 <ul class="nav nav-tabs mb-0">
-                  <li class="nav-item"><a class="nav-link" href="/front/nearFood.html"><i class="fi-rent fs-base me-2"></i>음식점</a></li>
-                  <li class="nav-item"><a class="nav-link active" href="/front/nearHotel.html"><i class="fi-home fs-base me-2"></i>숙박 업소</a></li>
+                  <li class="nav-item"><a class="nav-link" href="${path}/near/nearFood"><i class="fi-rent fs-base me-2"></i>음식점</a></li>
+                  <li class="nav-item"><a class="nav-link active" href="#"><i class="fi-home fs-base me-2"></i>숙박 업소</a></li>
                 </ul>
               </div>
               <!-- Search form-->
@@ -53,19 +53,24 @@
                   <h3 class="h6">위치</h3>
                   <select class="form-select mb-2" name="city">
                    <option value="" selected disabled>도/시</option>
-                    <option value="서울특별시">서울특별시</option>                                             
-                    <option value="부산광역시">부산광역시</option>
-                    <option value="대구광역시">대구광역시</option>
-                    <option value="인천광역시">인천광역시</option>
-                    <option value="광주광역시">광주광역시</option>
-                    <option value="대전광역시">대전광역시</option>
-                    <option value="울산광역시">울산광역시</option>
-                    <option value="경기도">경기도</option>
-                    <option value="강원도">강원도</option>
-                    <option value="충청도">충청도</option>
-                    <option value="전라도">전라도</option>
-                    <option value="경상도">경상도</option>
-                    <option value="제주특별자치도">제주특별자치도</option>       
+                    <option value="" selected disabled>도/시</option>                                              
+                    <option value="서울특별시">서울특별시</option>            
+                    <option value="부산광역시">부산광역시</option>            
+                    <option value="대구광역시">대구광역시</option>            
+                    <option value="인천광역시">인천광역시</option>            
+                    <option value="광주광역시">광주광역시</option>            
+                    <option value="대전광역시">대전광역시</option>            
+                    <option value="울산광역시">울산광역시</option>            
+                    <option value="세종특별시">세종특별시</option>            
+                    <option value="경기도">경기도</option>                
+                    <option value="강원도">강원도</option>                
+                    <option value="충청북도">충청북도</option>              
+                    <option value="충청남도">충청남도</option>              
+                    <option value="전라북도">전라북도</option>              
+                    <option value="전라남도">전라남도</option>              
+                    <option value="경상북도">경상북도</option>              
+                    <option value="경상남도">경상남도</option>              
+                    <option value="제주특별자치도">제주특별자치도</option>        
                   </select>
                 </div>
                 <div class="pb-4 mb-2">

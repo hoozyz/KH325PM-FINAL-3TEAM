@@ -9,12 +9,12 @@
 </jsp:include>
 
 <c:set var="keyword" value="${param.keyword}"/>
-<c:set var="city" value="${param.city}"/>
+<c:set var="addr" value="${param.addr}"/>
 <c:set var="category" value="${param.category}"/>
 <c:set var="sport" value="${param.sport}"/>
 
 <input type="hidden" id="keyword" value="${keyword}" > 
-<input type="hidden" id="city" value="${city}" >  
+<input type="hidden" id="addr" value="${addr}" >  
 <input type="hidden" id="category" value="${category}" >
 <input type="hidden" id="sport" value="${sport}" >
 
@@ -46,21 +46,25 @@
               <div class="offcanvas-body py-lg-4">
                 <div class="pb-4">
                   <h3 class="h6">도/시</h3>
-                  <select class="form-select mb-2" name="city">
+                  <select class="form-select mb-2" name="addr">
                     <option value="" selected disabled>도/시</option>
-                    <option value="서울특별시">서울특별시</option>
-                    <option value="부산광역시">부산광역시</option>
-                    <option value="대구광역시">대구광역시</option>
-                    <option value="인천광역시">인천광역시</option>
-                    <option value="광주광역시">광주광역시</option>
-                    <option value="대전광역시">대전광역시</option>
-                    <option value="울산광역시">울산광역시</option>
-                    <option value="경기">경기도</option>
-                    <option value="강원">강원도</option>
-                    <option value="충청">충청도</option>
-                    <option value="전라">전라도</option>
-                    <option value="경상">경상도</option>
-                    <option value="제주">제주특별자치도</option>
+                    <option value="서울특별시">서울특별시</option>        
+                    <option value="부산광역시">부산광역시</option>        
+                    <option value="대구광역시">대구광역시</option>        
+                    <option value="인천광역시">인천광역시</option>        
+                    <option value="광주광역시">광주광역시</option>        
+                    <option value="대전광역시">대전광역시</option>        
+                    <option value="울산광역시">울산광역시</option>        
+                    <option value="세종특별시">세종특별시</option>        
+                    <option value="경기도">경기도</option>            
+                    <option value="강원도">강원도</option>            
+                    <option value="충청북도">충청북도</option>          
+                    <option value="충청남도">충청남도</option>          
+                    <option value="전라북도">전라북도</option>          
+                    <option value="전라남도">전라남도</option>          
+                    <option value="경상북도">경상북도</option>          
+                    <option value="경상남도">경상남도</option>          
+                    <option value="제주특별자치도">제주특별자치도</option>    
                   </select>
                 </div>
                 <div class="pb-4">
@@ -125,7 +129,7 @@
               <div class="d-flex align-items-center flex-shrink-0">
               </div>
               <hr class="d-none d-sm-block w-100 mx-4">
-              <div class="d-none d-sm-flex align-items-center flex-shrink-0 text-muted"><i class="fi-check-circle me-2"></i><span class="fs-sm mt-n1">${searchCount} result</span></div>
+              <div class="d-none d-sm-flex align-items-center flex-shrink-0 text-muted"><i class="fi-check-circle me-2"></i><span class="fs-sm mt-n1">총 ${searchCount}건</span></div>
             </div>
 
 			<script type="text/javascript">
@@ -163,7 +167,7 @@
 		                    		<img src="${path}/resources/image/pSearchWater/searchWater<%=Math.round(Math.random()*9 + 1)%>.png" alt="Image" style="width: 100%;  height: 100%;  object-fit: cover;">
 		                    	</c:if>
 		                    	<c:if test="${fn:contains(parkCategory, '역사')}">
-		                    		<img src="${path}/resources/image/psearchHis/searchHis<%=Math.round(Math.random()*9 + 1)%>.png" alt="Image" style="width: 100%;  height: 100%;  object-fit: cover;">
+		                    		<img src="${path}/resources/image/pSearchHis/searchHis<%=Math.round(Math.random()*9 + 1)%>.png" alt="Image" style="width: 100%;  height: 100%;  object-fit: cover;">
 		                    	</c:if>
 		                    	<c:if test="${!fn:contains(parkCategory, '수변') && !fn:contains(parkCategory, '어린이') && !fn:contains(parkCategory, '역사')}">
 		                    		<img src="${path}/resources/image/pSearchOther/park<%=Math.round(Math.random()*12 + 1)%>.png" alt="Image" style="width: 100%;  height: 100%;  object-fit: cover;">
@@ -232,33 +236,19 @@
 			          var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 			           
 			          // 마커를 표시할 위치와 title 객체 배열입니다 
-			         var positions = [
-					    {
-					    	content: '<div>${list.get(0).name}</div>', 
-					        latlng: new kakao.maps.LatLng('${list.get(0).lat}', '${list.get(0).lng}')
-					    },
-					    {
-					    	content: '<div>${list.get(1).name}</div>', 
-					        latlng: new kakao.maps.LatLng('${list.get(1).lat}', '${list.get(1).lng}')
-					    },
-					    {
-					    	content: '<div>${list.get(2).name}</div>', 
-					        latlng: new kakao.maps.LatLng('${campList.get(2).lat}', '${list.get(2).lng}')
-					    },
-					    {
-					    	content: '<div>${list.get(3).name}</div>', 
-					        latlng: new kakao.maps.LatLng('${list.get(3).lat}', '${list.get(3).lng}')
-					    },
-					    {
-					    	content: '<div>${list.get(4).name}</div>', 
-					        latlng: new kakao.maps.LatLng('${list.get(4).lat}', '${list.get(4).lng}')
-					    },
-					    {
-					    	content: '<div>${list.get(5).name}</div>', 
-					        latlng: new kakao.maps.LatLng('${list.get(5).lat}', '${list.get(5).lng}')
-					    }
-					];
-					 
+			          var positions = [];
+		        	  
+						<c:forEach items="${list}" var="item">
+							var name = "${item.name}";
+							var lat = "${item.lat}";
+							var lng = "${item.lng}";
+							var position = {
+								content: '<div>'+name+'</div>', 
+								latlng: new kakao.maps.LatLng(lat, lng)
+							}
+					       	positions.push(position);
+						</c:forEach>
+		        	  
 			          for (var i = 0; i < positions.length; i ++) {
 					    // 마커를 생성합니다
 					    var marker = new kakao.maps.Marker({
@@ -301,18 +291,18 @@
 				$(this).html('<i class="fi-map me-2"></i>위치 보기');
      			$(this).attr('id','mapOpen');
      		});
-        </script>
-		<script type="text/javascript" charset="UTF-8">
+    </script>
+	<script type="text/javascript" charset="UTF-8">
 			function movePage(pageUrl){
 				var keyword = document.getElementById("keyword");
-				var city = document.getElementById("city");
+				var addr = document.getElementById("addr");
 				var category = document.getElementById("category");
 				var sport = document.getElementById("sport");
 				
-				pageUrl = pageUrl + '&keyword=' + keyword.value + '&city=' + city.value + '&category=' + category.value + '&sport=' + sport.value; 
+				pageUrl = pageUrl + '&keyword=' + keyword.value + '&addr=' + addr.value + '&category=' + category.value + '&sport=' + sport.value; 
 				
 				location.href = encodeURI(pageUrl);	
 			}
-		</script>
+	</script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
