@@ -15,9 +15,9 @@
 <footer class="footer pt-3 text-light" style="background-color: #201627;">
         <div class="container mb-4 py-4 pb-lg-5">
             <div class="row ">
-                <div class="col-4" style="position: relative;  top: -10px;">
-                    <a class="d-inline-block" href="#"><img src="${path}/resources/image/logotest4.png" width="250" alt="미안해" ></a>
-                    <div class="nav-link-light" style="font-size:20px; margin-right:70px;">힐링 장소 검색 플랫폼 ,<br><br>HEALERS에 오신 것을 환영합니다.<br><br> 지금 바로, 나만의 힐링스팟을 찾아보세요!</div>
+                <div class="col-4" style="position: relative;  top: -10px; ">
+                    <a class="d-inline-block" style="margin-bottom: 25px"href="#"><img src="${path}/resources/image/logotest4.png" width="250" alt="미안해" ></a>
+                    <div class="nav-link-light" style="font-size:20px; margin-right:70px;">힐링 장소 검색 플랫폼 ,<br>HEALERS에 오신 것을 환영합니다.<br> 지금 바로, 나만의 힐링스팟을 찾아보세요!</div>
                 </div>
                 <!-- Links-->
                 <div class="col-3">
