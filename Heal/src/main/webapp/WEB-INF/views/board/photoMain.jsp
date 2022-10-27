@@ -69,7 +69,7 @@
 
 <body class="fixed-bottom-btn">
     <main class="page-wrapper">
-        <div class="container-fluid mt-5 pt-5 p-0">
+        <div class="container mt-5 pt-5 p-0">
             <div class="row g-0 mt-n3">
                 <!-- Page content-->
                 <div class="position-relative overflow-hidden pb-5 pt-4 px-3 px-xl-4 px-xxl-5">
@@ -137,11 +137,11 @@
                                     	<c:set var="split" value="${fn:split(renamefile,',')}"/>
                                     	<c:set var="length" value="${fn:length(split)}"/>
                                     	<c:forEach var="j" begin="0" end="${length-1}">
-                                    		<img src="/resources/upload/image/${split[j]}" style="width:100%; height:265px">
+                                    		<img src="/resources/upload/image/${split[j]}" style="width:100%; height:230px">
                                     	</c:forEach>
                                     	</c:if>
                                     	<c:if test="${not fn:contains(renamefile,',')}">
-                                    		<img src="/resources/upload/image/${list.get(i).renamefile}" style="width:100%; height:265px">
+                                    		<img src="/resources/upload/image/${list.get(i).renamefile}" style="width:100%; height:230px">
                                     	</c:if>
                                     </div>
                                     </div>
