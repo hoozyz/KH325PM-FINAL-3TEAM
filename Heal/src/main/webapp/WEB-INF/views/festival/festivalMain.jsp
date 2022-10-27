@@ -19,8 +19,8 @@
             <div class="jarallax-img" style="background-image: url(${path}/resources/image/festivalHero4.png);"></div>
             <div class="content-overlay container py-md-5" style="margin-top: 150px;">
                 <div class="mt-5 mb-md-5 py-5 ">
-                    <div class="col-xl-6 col-lg-8 col-md-10 mx-auto mb-sm-5 mb-4 px-0" style="width: 1000px; height: 0px;">
-                        <h1 class="display-3 text-white" style="margin-bottom: 40px;">Festival</h1>
+                    <div class="col-xl-6 col-lg-8 col-md-10 mx-auto mb-sm-5 mb-4 px-0" style="width: 1000px; height: 130px;">
+                        <h1 class="display-1 text-white" style="margin-bottom: 40px;">Festival</h1>
                     	<!-- @@@@@@ 검색창 시작 @@@@@@-->
                     	<form class="form-group d-block" name="festivalSearchFrm" method="get" action="${path}/festival/festivalSearch">
                         	<div class="row g-0">
@@ -76,8 +76,8 @@
         <section class="container pt-5">
             <div class="d-flex align-items-center justify-content-between">
                 <div>
-                    <h2 class="h3 mb-sm-0 " style="display:inline; color: #FD5D08; ">전국 방방곡곡 </h2>
-                    <h2 class="h3 mb-sm-0 " style=display:inline;>축제 모아보기</h2>
+                    <h2 class=" mb-sm-0 " style="display:inline; color: #FD5D08; ">전국 방방곡곡 </h2>
+                    <h2 class=" mb-sm-0 " style=display:inline;>축제 모아보기</h2>
                 </div>
             </div>
         </section>
@@ -235,9 +235,9 @@
         <!-- Post vacancy CTA-->
         <section class="container mb-3">
             <div>
-                <h2 class="h3 mb-sm-0" style=display:inline;>이달의</h2>
-                <h2 class="h3 mb-sm-0" style="display:inline; color: #F7B202;">추천</h2>
-                <h6 class="h6 mb-sm-0" style=display:inline;>힐러가 축제를 추천합니다!</h6>
+                <h2 class=" mb-sm-0" style=display:inline;>이달의</h2>
+                <h2 class=" mb-sm-0" style="display:inline; color: #F7B202;">추천</h2>
+                <h6 class=" mb-sm-0" style=display:inline;>힐러가 축제를 추천합니다!</h6>
             </div>
         </section>
         <!-- <section class="container-fluid mb-5 mt-n3 mt-lg-0 pt-3" style="background: #e4dabe; height:350px;"> -->
@@ -259,9 +259,9 @@
         <section class="container mb-2" style="margin-top:80px;">
             <div class="d-sm-flex align-items-center justify-content-between mb-2">
                 <div>
-                    <h2 class="h3 mb-sm-0" style="display:inline; color: #F7B202;">함께</h2>
-                    <h2 class="h3 mb-sm-0" style=display:inline;>, 축제</h2>
-                    <h6 class="h6 mb-sm-0" style=display:inline;>행복한 순간 여기, 우리</h6>
+                    <h2 class=" mb-sm-0" style="display:inline; color: #F7B202;">함께</h2>
+                    <h2 class=" mb-sm-0" style=display:inline;>, 축제</h2>
+                    <h6 class=" mb-sm-0" style=display:inline;>행복한 순간 여기, 우리</h6>
                 </div>
             </div>
         </section>

@@ -15,9 +15,9 @@
 <footer class="footer pt-3 text-light" style="background-color: #201627;">
         <div class="container mb-4 py-4 pb-lg-5">
             <div class="row ">
-                <div class="col-4">
-                    <a class="d-inline-block" href="#"><img src="<%=request.getContextPath() %>/resources/images/footer/footerImg.png" width="300" alt="미안해"></a>
-                    <div class="nav-link-light" style="font-size:20px; margin-right:70px;">힐링 장소 검색 플랫폼 ,<br>HEALING에 오신 것을 환영합니다.<br> 지금 바로, 나만의 힐링스팟을 찾아보세요!</div>
+                <div class="col-4" style="position: relative;  top: -10px;">
+                    <a class="d-inline-block" href="#"><img src="${path}/resources/image/logotest4.png" width="250" alt="미안해" ></a>
+                    <div class="nav-link-light" style="font-size:20px; margin-right:70px;">힐링 장소 검색 플랫폼 ,<br><br>HEALERS에 오신 것을 환영합니다.<br><br> 지금 바로, 나만의 힐링스팟을 찾아보세요!</div>
                 </div>
                 <!-- Links-->
                 <div class="col-3">
@@ -39,10 +39,12 @@
                 </div>
                 <!-- Subscription form-->
                 <div class="col-2">
-                    <h3 class="fs-base text-light">OPEN API</h3>
-                      <img src="${path}/resources/image/footer/kopis0.png" class="my-2" width="150" alt="Logo">                        
-                      <img src="${path}/resources/image/footer/naver0.png" class="my-2" width="150" alt="Logo">                       
-                      <img src="${path}/resources/image/footer/kakao.png" class="my-2" width="150" alt="Logo" style="height:43px;">   
+                    <h3 class="fs-base text-light" style="margin-bottom:7px">OPEN API</h3>
+                      <img src="${path}/resources/image/GoCamp6.png" class="my-1" width="150" alt="Logo">                        
+                      <img src="${path}/resources/image/odsay.png" class="my-1" width="150" alt="Logo" style="height:40px;">                        
+                      <img src="${path}/resources/image/openApi.png" class="my-1" width="150" alt="Logo" style="height:30px;">                        
+                      <img src="${path}/resources/image/footer/naver0.png" class="my-1" width="150" alt="Logo">                       
+                      <img src="${path}/resources/image/footer/kakao.png" class="my-1" width="150"   alt="Logo" style="height:30px;">   
                 </div>
             </div>
         </div>

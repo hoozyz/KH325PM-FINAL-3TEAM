@@ -199,7 +199,7 @@
             <div class="content-overlay container py-md-5">
                 <div class="mt-5 mb-md-5 py-5">
                     <div class="col-xl-6 col-lg-8 col-md-10 mx-auto mb-sm-5 mb-4 px-0">
-                        <h1 class="display-5 text-white" style="margin-bottom: 90px;">공원</h1>
+                        <h1 class="display-1 text-white" style="margin-bottom: 90px;">공원</h1>
                     </div>
                     <div class="col-xl-8 col-lg-9 col-md-10 mx-auto px-0">
                         <!-- @@@@@@ 검색창 시작 @@@@@@-->
@@ -275,8 +275,8 @@
         <section class="container mt-4 mb-5 pb-3 pb-lg-4">
             <div class="d-flex align-items-end justify-content-between mb-1 pb-md-2">
                 <div class="d-flex align-items-end justify-content-between">
-                    <h2 class="h3 mb-0">인기&nbsp; </h2>
-                    <h2 class="h3 mb-0" style="color:#687519">공원</h2>
+                    <h2 class=" mb-0">인기&nbsp; </h2>
+                    <h2 class=" mb-0" style="color:#687519">공원</h2>
                     <hr style="width: 1100px; margin-left: 30px; margin-bottom: 15px; border: 1px; color: rgb(181, 180, 180);">
                 </div>
 
@@ -544,8 +544,8 @@
         <section class="container mb-sm-4 mb-3 pb-lg-4">
             <div class="d-flex align-items-end justify-content-between mb-1 pb-md-2">
                 <div class="d-flex align-items-end justify-content-between">
-                    <h2 class="h3 mb-0" style="color:#687519">공원&nbsp;</h2>
-                    <h2 class="h3 mb-0">둘러보기</h2>
+                    <h2 class=" mb-0" style="color:#687519">공원&nbsp;</h2>
+                    <h2 class=" mb-0">둘러보기</h2>
                 </div><a class="btn btn-link fw-normal ms-2 p-0" href="${path}/park/parkList">더보기<i class="fi-arrow-long-right ms-2"></i></a>
             </div>
             <!-- No image-->
@@ -731,7 +731,7 @@
         <!--@@@@@@@@@@ 포토갤러리 시작 @@@@@@@@@@-->
         <section class="container mb-5 pb-2">
             <div class="d-flex align-items-center justify-content-between mb-3">
-                <h2 class="h3 mb-0">포토갤러리</h2><a class="btn btn-link fw-normal ms-md-3 pb-0" href="${path}/photo/main">더보기<i class="fi-arrow-long-right ms-2"></i></a>
+                <h2 class=" mb-0">포토갤러리</h2><a class="btn btn-link fw-normal ms-md-3 pb-0" href="${path}/photo/main">더보기<i class="fi-arrow-long-right ms-2"></i></a>
             </div>
             <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside tns-nav-outside-flush mx-n2">
                 <div class="tns-carousel-inner row gx-4 mx-0 pb-4" data-carousel-options="{&quot;items&quot;: 4, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3},&quot;992&quot;:{&quot;items&quot;:4}}}">
