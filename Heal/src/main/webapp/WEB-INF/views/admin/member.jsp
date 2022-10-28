@@ -67,7 +67,7 @@
                 <div class="dropdown">
                   <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm" type="button" id="contextMenu1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fi-dots-vertical"></i></button>
                   <ul class="dropdown-menu pb-3 my-1" aria-labelledby="contextMenu1">
-                    <li><a class="d-block px-3" onclick="deleteMember()">멤버 탈퇴</a></li>
+                    <li><a class="d-block px-3" onclick="deleteMember()" style="text-decoration: none;">멤버 탈퇴</a></li>
                   </ul>
                 </div>
               </div>
