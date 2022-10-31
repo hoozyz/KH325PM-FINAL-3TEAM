@@ -11,6 +11,8 @@
 <link rel="stylesheet" media="screen" href="${path}/resources/vendor/simplebar/dist/simplebar.min.css" />
 <link rel="stylesheet" media="screen" href="${path}/resources/vendor/nouislider/dist/nouislider.min.css" />
 <link rel="stylesheet" media="screen" href="${path}/resources/vendor/tiny-slider/dist/tiny-slider.css" />
+<link rel="stylesheet" media="screen" href="${path}/resources/css/themeButton.min.css">
+<link rel="stylesheet" media="screen" href="${path}/resources/css/theme.min.css">
 		<style>
                 .weather_area {
                     position: relative;

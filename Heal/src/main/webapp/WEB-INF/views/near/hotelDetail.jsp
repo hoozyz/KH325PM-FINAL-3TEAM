@@ -11,6 +11,7 @@
 <link rel="stylesheet" media="screen" href="${path}/resources/vendor/tiny-slider/dist/tiny-slider.css" />
 <!-- Main Theme Styles + Bootstrap-->
 <link rel="stylesheet" media="screen" href="${path}/resources/css/themeButton.min.css">
+<link rel="stylesheet" media="screen" href="${path}/resources/css/themeButton.min.css">
 <script defer src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" integrity="sha384-vuFJ2JiSdUpXLKGK+tDteQZBqNlMwAjhZ3TvPaDfN9QmbPb7Q8qUpbSNapQev3YF" crossorigin="anonymous"></script>   
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 

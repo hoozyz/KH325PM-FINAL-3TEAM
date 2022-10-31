@@ -189,9 +189,10 @@
 		<!-- Vendor Styles-->
 	    <link rel="stylesheet" media="screen" href="${path}/resources/vendor/simplebar/dist/simplebar.min.css" />
 	    <link rel="stylesheet" media="screen" href="${path}/resources/vendor/nouislider/dist/nouislider.min.css" />
-	    <link rel="stylesheet" media="screen" href="${path}/resources/vendor/tiny-slider/dist/tiny-slider.css" />.
+	    <link rel="stylesheet" media="screen" href="${path}/resources/vendor/tiny-slider/dist/tiny-slider.css" />
 	    <!-- Main Theme Styles + Bootstrap-->
 	    <link rel="stylesheet" media="screen" href="${path}/resources/css/theme.min.css">
+	    <link rel="stylesheet" media="screen" href="${path}/resources/css/themeButton.min.css">
     
             <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
     
