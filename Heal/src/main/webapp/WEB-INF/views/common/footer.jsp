@@ -23,8 +23,8 @@
                 <div class="col-3">
                     <h3 class="fs-base text-light">MEMBER</h3>
                     <ul class="list-unstyled fs-sm">
-                        <li class="nav-link-light"> <span>김상현</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>김영후</span></li>
-                        <li class="nav-link-light"> <span>이정우</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>정세은</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>정우성</span></li>
+                        <li class="nav-link-light"> <span>김상현</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>김영후</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>이정우</span></li>
+                        <li class="nav-link-light"> <span>정세은</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>정우성</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>김현민</span></li>
 
                     </ul>
                 </div>
