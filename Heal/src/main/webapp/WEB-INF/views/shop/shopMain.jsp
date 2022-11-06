@@ -559,7 +559,7 @@
 
             // 0d 00h 00m 00s
             function getClock1() {
-               const masTime = new Date("2022-11-03 00:00:00");
+               const masTime = new Date("2023-11-03 00:00:00");
                 const todayTime = new Date();
                 
                 const diff = masTime - todayTime;
