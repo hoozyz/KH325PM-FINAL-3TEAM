@@ -33,7 +33,7 @@ DB 파싱을 바꿀 수 없어 교통 예매가 있는 페이지는
   * Mybatis
   * maven
   
-** 기술 스택
+**기술 스택**
 
   * Java(jdk 1.8.0)
   * Spring Framework MVC
