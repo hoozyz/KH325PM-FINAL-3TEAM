@@ -46,24 +46,24 @@ DB 파싱을 바꿀 수 없어 교통 예매가 있는 페이지는
 
 <details>
 <summary>교통 예매 (출발역, 도착역, 시간, 편도, 왕복)</summary>
- (https://user-images.githubusercontent.com/93322974/229851037-9aa623a7-4722-4fe8-9d74-26f7200d46c2.png
+  <img src="https://user-images.githubusercontent.com/93322974/229851037-9aa623a7-4722-4fe8-9d74-26f7200d46c2.png">
 </details>
 
 <details>
 <summary>카테고리 별 검색, 상세 페이지 (최근 본 장소, 리뷰, 예약, 교통 예매, 지도, 날씨)</summary>
-  https://user-images.githubusercontent.com/93322974/229851430-415d5e1d-c7bf-4da7-8278-055d9e0529d7.png
-https://user-images.githubusercontent.com/93322974/229851477-8fc5f69b-9754-4508-87cd-179369b52bfe.png
-https://user-images.githubusercontent.com/93322974/229851731-f90943bb-d078-4c79-902f-99929da1fbce.png
+  <img src="https://user-images.githubusercontent.com/93322974/229851430-415d5e1d-c7bf-4da7-8278-055d9e0529d7.png">
+  <img src="https://user-images.githubusercontent.com/93322974/229851477-8fc5f69b-9754-4508-87cd-179369b52bfe.png">
+  <img src="https://user-images.githubusercontent.com/93322974/229851731-f90943bb-d078-4c79-902f-99929da1fbce.png">
 </details>
 
 <details>
 <summary>쇼핑, 포토, 자유 게시판</summary>
-https://user-images.githubusercontent.com/93322974/229851948-7272b5ca-1f05-4efb-9819-7ab330872de1.png
-https://user-images.githubusercontent.com/93322974/229852094-c071cc3b-35a9-45db-84e7-4ca43b778cda.png
+  <img src="https://user-images.githubusercontent.com/93322974/229851948-7272b5ca-1f05-4efb-9819-7ab330872de1.png">
+  <img src="https://user-images.githubusercontent.com/93322974/229852094-c071cc3b-35a9-45db-84e7-4ca43b778cda.png">
 </details>
 
 <details>
 <summary>마이페이지 (정보 수정, 나의 게시글, 나의 찜/리뷰, 나의 예약)</summary>
-https://user-images.githubusercontent.com/93322974/229852295-f37cc3aa-3153-4ca2-a473-aea09b142c29.png
-https://user-images.githubusercontent.com/93322974/229852436-8725b331-75f4-4004-bfad-2978a3d90672.png
+  <img src="https://user-images.githubusercontent.com/93322974/229852295-f37cc3aa-3153-4ca2-a473-aea09b142c29.png">
+  <img src="https://user-images.githubusercontent.com/93322974/229852436-8725b331-75f4-4004-bfad-2978a3d90672.png">
 </details>
