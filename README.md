@@ -45,21 +45,21 @@ DB 파싱을 바꿀 수 없어 교통 예매가 있는 페이지는
 # 2-3. 완성된 화면
 
 <details>
-<summary>* 교통 예매 (출발역, 도착역, 시간, 편도, 왕복)</summary>
+<summary>교통 예매 (출발역, 도착역, 시간, 편도, 왕복)</summary>
   
 </details>
 
 <details>
-<summary>* 카테고리 별 검색, 상세 페이지 (최근 본 장소, 리뷰, 예약, 교통 예매, 지도, 날씨)</summary>
+<summary>카테고리 별 검색, 상세 페이지 (최근 본 장소, 리뷰, 예약, 교통 예매, 지도, 날씨)</summary>
 
 </details>
 
 <details>
-<summary>* 쇼핑, 포토, 자유 게시판</summary>
+<summary>쇼핑, 포토, 자유 게시판</summary>
 
 </details>
 
 <details>
-<summary>* 마이페이지 (정보 수정, 나의 게시글, 나의 찜/리뷰, 나의 예약)</summary>
+<summary>마이페이지 (정보 수정, 나의 게시글, 나의 찜/리뷰, 나의 예약)</summary>
 
 </details>
